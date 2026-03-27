@@ -818,7 +818,6 @@ function ChatInterfaceInner() {
                     lineHeight: 1.5,
                     maxHeight: 96,
                     fontFamily: 'inherit',
-                    // @ts-ignore
                     fieldSizing: 'content',
                   } as React.CSSProperties}
                   onFocus={e => {
