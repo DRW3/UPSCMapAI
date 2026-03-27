@@ -37,6 +37,7 @@ export interface RetrievedPYQ {
 // Gemini vectors; switching providers would produce incorrect similarity scores.
 // fetchRelevantPYQs falls back to keyword search automatically.
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function embedText(_text: string): Promise<number[]> {
   throw new Error('Semantic embeddings not available — using keyword fallback')
 }
