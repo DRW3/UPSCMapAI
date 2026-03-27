@@ -231,6 +231,7 @@ export async function GET(req: NextRequest) {
   return NextResponse.json({ pyqs: dedupe(fallback, limit) })
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function dedupe(rows: any[], limit: number): any[] {
   const seen = new Set<string>()
   return rows.filter(q => {
