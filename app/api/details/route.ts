@@ -1,10 +1,10 @@
 import { NextRequest } from 'next/server'
-import { GoogleGenerativeAI } from '@google/generative-ai'
+import Anthropic from '@anthropic-ai/sdk'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!)
+const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 
 const SYSTEM = `You are a concise UPSC geography and history expert.
 Given a location name and map context, return a focused study card in markdown.
@@ -37,20 +37,19 @@ export async function POST(req: NextRequest) {
   const stream = new ReadableStream({
     async start(controller) {
       try {
-        const model = genAI.getGenerativeModel({
-          model: 'gemini-2.5-flash',
-          systemInstruction: SYSTEM,
+        const claudeStream = client.messages.stream({
+          model: 'claude-sonnet-4-5',
+          max_tokens: 1024,
+          system: SYSTEM,
+          messages: [{
+            role: 'user',
+            content: `Location: ${icon} ${name}\nMap context: ${mapContext || 'India geography'}`,
+          }],
         })
 
-        const prompt = `Location: ${icon} ${name}
-Map context: ${mapContext || 'India geography'}`
-
-        const result = await model.generateContentStream(prompt)
-
-        for await (const chunk of result.stream) {
-          const text = chunk.text()
-          if (text) {
-            controller.enqueue(encoder.encode(`data: ${JSON.stringify({ text })}\n\n`))
+        for await (const event of claudeStream) {
+          if (event.type === 'content_block_delta' && event.delta.type === 'text_delta') {
+            controller.enqueue(encoder.encode(`data: ${JSON.stringify({ text: event.delta.text })}\n\n`))
           }
         }
         controller.enqueue(encoder.encode('data: [DONE]\n\n'))

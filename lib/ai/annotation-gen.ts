@@ -1,8 +1,8 @@
-import { GoogleGenerativeAI } from '@google/generative-ai'
+import Anthropic from '@anthropic-ai/sdk'
 import type { ParsedMapIntent } from '@/types'
 import type { RetrievedPYQ } from '@/lib/pyq/retrieval'
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!)
+const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 
 const UPSC_SYSTEM_INSTRUCTION_WITH_PYQS = `You are an expert UPSC teacher writing concise, exam-focused geographical and historical notes.
 Format your response in Markdown with these exact sections:
@@ -77,18 +77,19 @@ export async function* streamAnnotations(
   intent: ParsedMapIntent,
   pyqs: RetrievedPYQ[] = [],
 ): AsyncGenerator<string> {
-  const model = genAI.getGenerativeModel({
-    model: 'gemini-2.5-flash',
-    systemInstruction: pyqs.length > 0
+  const claudeStream = client.messages.stream({
+    model: 'claude-sonnet-4-5',
+    max_tokens: 2048,
+    system: pyqs.length > 0
       ? UPSC_SYSTEM_INSTRUCTION_WITH_PYQS
       : UPSC_SYSTEM_INSTRUCTION_NO_PYQS,
+    messages: [{ role: 'user', content: buildPrompt(intent, pyqs) }],
   })
 
-  const streamResult = await model.generateContentStream(buildPrompt(intent, pyqs))
-
-  for await (const chunk of streamResult.stream) {
-    const text = chunk.text()
-    if (text) yield text
+  for await (const event of claudeStream) {
+    if (event.type === 'content_block_delta' && event.delta.type === 'text_delta') {
+      yield event.delta.text
+    }
   }
 }
 
