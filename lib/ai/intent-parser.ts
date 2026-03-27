@@ -157,8 +157,9 @@ Parse user map requests into precise structured intents. Always be VERY DETAILED
 
 Rules for data_layers:
 - Always include a base_political layer (India state boundaries) as the FIRST layer with data_source "gadm_india_states"
-- For historical maps always add a historical_boundary layer with data_source "custom_historical_{era}"
-- Add a rivers layer (data_source "natural_earth_rivers") ONLY when map_type is "physical_rivers". NEVER add rivers for political, historical, thematic, state-geography, or any other map type — even if rivers are briefly mentioned.
+- For historical maps (historical_kingdoms, historical_battles, historical_routes, historical_colonial, historical_revolt) ALWAYS add a historical_boundary layer with data_source "custom_historical_{era}" where {era} is the empire/period name (e.g. custom_historical_mughal, custom_historical_mauryan, custom_historical_gupta)
+- For any river query (map_type "physical_rivers" OR query asks about a specific river like Ganga, Yamuna, etc.) ALWAYS add a rivers layer with data_source "natural_earth_rivers". NEVER add rivers for political, thematic, or state-geography maps.
+- For mountain range queries (map_type "physical_mountains" OR query asks about Himalayas, Western Ghats, etc.) add a historical_boundary layer with data_source "custom_physical_{range}" where {range} is the mountain name (e.g. custom_physical_himalayas, custom_physical_western_ghats)
 - For international/neighbors maps still include base_political as the base layer
 
 Rules for features_to_show (used ONLY for Wikidata live data triggers — BE VERY STRICT):

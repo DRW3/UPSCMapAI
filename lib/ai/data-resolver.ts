@@ -152,11 +152,55 @@ export function detectEmpire(title: string, features: string[], dataSource: stri
   return 'medieval'
 }
 
+// ─── Mountain Range Polygons ─────────────────────────────────────────────────
+
+const MOUNTAIN_POLYGONS: Record<string, [number, number][]> = {
+  himalayas:     [[72.0,27.5],[74.0,35.0],[79.0,35.5],[85.0,34.5],[90.0,32.0],[97.5,29.0],[97.5,27.0],[90.0,26.5],[85.0,26.5],[79.0,28.0],[74.0,31.0],[72.0,27.5]],
+  western_ghats: [[74.0,8.0],[77.5,8.0],[77.5,15.0],[76.0,18.0],[74.5,21.0],[73.5,18.0],[73.5,12.0],[74.0,8.0]],
+  eastern_ghats: [[78.5,11.5],[82.0,12.0],[86.0,19.0],[83.0,20.5],[80.0,20.0],[78.0,17.0],[78.0,14.5],[78.5,11.5]],
+  vindhya:       [[72.5,22.0],[86.5,22.0],[86.5,25.0],[72.5,25.0],[72.5,22.0]],
+  satpura:       [[74.0,21.0],[82.5,21.0],[82.5,23.5],[74.0,23.5],[74.0,21.0]],
+  aravalli:      [[72.0,23.5],[74.5,24.5],[76.5,29.5],[77.5,30.5],[76.5,30.5],[74.0,28.5],[72.5,25.0],[72.0,23.5]],
+  nilgiris:      [[76.0,10.5],[77.5,10.5],[77.5,12.0],[76.0,12.0],[76.0,10.5]],
+  karakoram:     [[73.5,34.0],[80.5,34.0],[80.5,37.0],[73.5,37.0],[73.5,34.0]],
+  shivalik:      [[73.0,29.5],[88.0,29.5],[88.0,31.5],[73.0,31.5],[73.0,29.5]],
+}
+
+const MOUNTAIN_COLORS: Record<string, string> = {
+  himalayas: '#8b7355', western_ghats: '#2d7a40', eastern_ghats: '#4a7a55',
+  vindhya: '#8a6040', satpura: '#7a7050', aravalli: '#9a6030',
+  nilgiris: '#2a6a50', karakoram: '#6a7a8a', shivalik: '#8a7060',
+}
+
+export function detectMountainRange(title: string, features: string[]): string {
+  const text = `${title} ${features.join(' ')}`.toLowerCase()
+  if (text.includes('western ghats') || text.includes('sahyadri')) return 'western_ghats'
+  if (text.includes('eastern ghats')) return 'eastern_ghats'
+  if (text.includes('himalaya') || text.includes('himalayas')) return 'himalayas'
+  if (text.includes('vindhya')) return 'vindhya'
+  if (text.includes('satpura')) return 'satpura'
+  if (text.includes('aravalli') || text.includes('aravallis')) return 'aravalli'
+  if (text.includes('nilgiri')) return 'nilgiris'
+  if (text.includes('karakoram')) return 'karakoram'
+  if (text.includes('shivalik')) return 'shivalik'
+  return 'himalayas'
+}
+
 export function getHistoricalGeoJSON(
   dataSource: string,
   title: string = '',
   features: string[] = []
 ): GeoJSON.FeatureCollection | null {
+  if (dataSource.startsWith('custom_physical')) {
+    const mountain = dataSource.replace('custom_physical_', '')
+    const coords = MOUNTAIN_POLYGONS[mountain]
+    if (!coords) return null
+    const color = MOUNTAIN_COLORS[mountain] ?? '#8b7355'
+    return {
+      type: 'FeatureCollection',
+      features: [{ type: 'Feature', geometry: { type: 'Polygon', coordinates: [coords] }, properties: { mountain, color, title } }],
+    }
+  }
   if (!dataSource.startsWith('custom_historical')) return null
   const empire = detectEmpire(title, features, dataSource)
   const coords = EMPIRE_POLYGONS[empire] ?? EMPIRE_POLYGONS.medieval

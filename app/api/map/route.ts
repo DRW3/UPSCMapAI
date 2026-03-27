@@ -1,16 +1,89 @@
 import { NextRequest } from 'next/server'
 import { parseMapIntent } from '@/lib/ai/intent-parser'
 import { streamAnnotations } from '@/lib/ai/annotation-gen'
-import { getBoundsForScope, detectEmpire, getEmpireCities } from '@/lib/ai/data-resolver'
+import { getBoundsForScope, detectEmpire, getEmpireCities, detectMountainRange } from '@/lib/ai/data-resolver'
 import { detectWebQueries, fetchWebGeoData } from '@/lib/geo/webquery'
 import { fetchRelevantPYQs } from '@/lib/pyq/retrieval'
-import type { MapOperation, AnnotatedPoint } from '@/types'
+import type { MapLayer, MapOperation, AnnotatedPoint, ParsedMapIntent } from '@/types'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
 function sseEvent(data: object): string {
   return `data: ${JSON.stringify(data)}\n\n`
+}
+
+const RIVER_NAMES_SET = new Set([
+  'ganga', 'ganges', 'yamuna', 'brahmaputra', 'godavari', 'krishna', 'kaveri', 'cauvery',
+  'indus', 'narmada', 'mahanadi', 'chambal', 'tapti', 'tapi', 'betwa', 'son', 'damodar',
+  'sutlej', 'chenab', 'jhelum', 'beas', 'ravi', 'sabarmati', 'mahi', 'luni',
+  'tungabhadra', 'periyar', 'teesta', 'manas', 'subansiri', 'ghaggar',
+])
+
+const MOUNTAIN_NAMES_SET = new Set([
+  'western ghats', 'sahyadri', 'eastern ghats', 'himalayas', 'himalaya',
+  'vindhya', 'vindhyas', 'satpura', 'aravalli', 'aravallis', 'nilgiris',
+  'karakoram', 'shivalik', 'shivaliks',
+])
+
+/** Post-process parsed intent to guarantee required layers are always present */
+function ensureRequiredLayers(intent: ParsedMapIntent): ParsedMapIntent {
+  const layers: MapLayer[] = [...intent.data_layers]
+  const allFeatures = [...(intent.features_to_show ?? []), ...(intent.features_to_highlight ?? [])]
+
+  // Always ensure base political layer exists as first layer
+  if (!layers.some(l => l.layer_type === 'base_political')) {
+    layers.unshift({
+      layer_id: 'base-india',
+      layer_type: 'base_political',
+      data_source: 'gadm_india_states',
+      visible: true,
+    })
+  }
+
+  // Ensure rivers layer for any river query
+  const hasHighlightedRiver = allFeatures.some(
+    f => RIVER_NAMES_SET.has(f.toLowerCase().replace(/\s+river$/i, '').trim())
+  )
+  const isRiverQuery = intent.map_type === 'physical_rivers' || hasHighlightedRiver
+  if (isRiverQuery && !layers.some(l => l.layer_type === 'rivers')) {
+    layers.push({
+      layer_id: 'rivers-india',
+      layer_type: 'rivers',
+      data_source: 'natural_earth_rivers',
+      visible: true,
+    })
+  }
+
+  // Ensure historical boundary for historical queries
+  const isHistorical = intent.map_type.startsWith('historical') ||
+    layers.some(l => l.data_source?.startsWith('custom_historical'))
+  if (isHistorical && !layers.some(l => l.layer_type === 'historical_boundary')) {
+    const empire = detectEmpire(intent.title, allFeatures, '')
+    layers.push({
+      layer_id: 'empire-boundary',
+      layer_type: 'historical_boundary',
+      data_source: `custom_historical_${empire}`,
+      visible: true,
+    })
+  }
+
+  // Ensure mountain range polygon for mountain queries
+  const hasHighlightedMountain = allFeatures.some(
+    f => MOUNTAIN_NAMES_SET.has(f.toLowerCase().trim())
+  )
+  const isMountainQuery = intent.map_type === 'physical_mountains' || hasHighlightedMountain
+  if (isMountainQuery && !layers.some(l => l.data_source?.startsWith('custom_physical'))) {
+    const mountain = detectMountainRange(intent.title, allFeatures)
+    layers.push({
+      layer_id: 'mountain-boundary',
+      layer_type: 'historical_boundary',
+      data_source: `custom_physical_${mountain}`,
+      visible: true,
+    })
+  }
+
+  return { ...intent, data_layers: layers }
 }
 
 export async function POST(req: NextRequest) {
@@ -28,8 +101,10 @@ export async function POST(req: NextRequest) {
       }
 
       try {
-        // 1. Parse intent with Gemini — includes annotated_points with real coordinates
-        const intent = await parseMapIntent(message)
+        // 1. Parse intent — includes annotated_points with real coordinates
+        const rawIntent = await parseMapIntent(message)
+        // Post-process: guarantee correct layers regardless of LLM output
+        const intent = ensureRequiredLayers(rawIntent)
 
         // 2. Detect if this query needs live Wikidata thematic data
         // Skip Wikidata entirely for specific queries (features_to_highlight non-empty)
@@ -70,7 +145,11 @@ export async function POST(req: NextRequest) {
 
         let empireCityPoints: AnnotatedPoint[] = []
         if (isHistorical) {
-          const empire = detectEmpire(intent.title, intent.features_to_show, '')
+          const empire = detectEmpire(
+            intent.title,
+            [...intent.features_to_show, ...intent.features_to_highlight],
+            ''
+          )
           empireCityPoints = getEmpireCities(empire)
         }
 

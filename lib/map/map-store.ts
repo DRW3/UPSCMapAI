@@ -91,10 +91,19 @@ export const useMapStore = create<MapStore>((set, get) => ({
           return { highlightedFeatures: op.feature_ids }
         case 'add_markers': {
           const highlights = state.highlightedFeatures
+          const mapType = state.intent?.map_type ?? ''
           let incoming = op.points
-          // When a specific topic is highlighted, drop markers that don't match
-          // any highlight term — prevents irrelevant capitals/cities from appearing
-          if (highlights.length > 0) {
+          // Only apply highlight-term filtering for political/economic/thematic maps
+          // where the highlighted item name reliably appears in marker labels.
+          // Physical queries (rivers, mountains) and historical queries generate markers
+          // that are ALL relevant (e.g. points on a river, peaks in a range, empire cities)
+          // but labels may not repeat the feature name verbatim.
+          const shouldFilter = highlights.length > 0 && (
+            mapType.startsWith('political') ||
+            mapType.startsWith('economic') ||
+            mapType.startsWith('thematic')
+          )
+          if (shouldFilter) {
             const terms = highlights.map(h => h.toLowerCase().trim())
             const relevant = incoming.filter(pt => {
               const haystack = `${pt.label} ${pt.id}`.toLowerCase()
