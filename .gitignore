@@ -34,3 +34,16 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# scraped PYQ data (large, regenerable)
+/data/pyqs/scraped/
+/data/pyqs/all_pyqs.json
+/data/pyqs/.embed_progress.json
+/data/pyqs/.all_embed_progress.json
+/data/pyqs/.generate_progress.json
+
+# large PDF source files
+/data/pyqs/extracted/*.pdf
+
+# uri cache
+/data/pyqs/extracted/.uri_cache.json
