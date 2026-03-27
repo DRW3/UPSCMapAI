@@ -52,6 +52,35 @@ html, body {
   animation: slideUp 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* ── Chat message fade + slide-up entry ─────────────────────────────────── */
+@keyframes chatMsgIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.chat-msg-enter {
+  animation: chatMsgIn 0.24s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ── Floating chat open button — pulse glow ─────────────────────────────── */
+@keyframes chatBtnGlow {
+  0%,100% { box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 0 rgba(99,102,241,0.35); }
+  50%      { box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 8px rgba(99,102,241,0); }
+}
+.chat-open-btn {
+  animation: chatBtnGlow 2.8s ease-in-out infinite;
+}
+
+/* ── Spinner keyframe (used inline in ChatInterface) ────────────────────── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Bounce for loading dots ────────────────────────────────────────────── */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-4px); }
+}
+
 /* ── Custom popup ────────────────────────────────────────────────────────── */
 .maplibregl-popup.map-popup .maplibregl-popup-content {
   background: rgba(255, 255, 255, 0.97);
