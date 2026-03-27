@@ -8,11 +8,14 @@ const MIN_WIDTH = 240
 const MAX_WIDTH = 600
 const DEFAULT_WIDTH = 340
 
-export default function UPSCNotes() {
+export default function UPSCNotes({ mobileFullscreen = false }: { mobileFullscreen?: boolean }) {
   const { sidebarContent, isSidebarLoading, intent, annotatedPoints, setFocusCoordinates, setNotesState } = useMapStore()
   const contentRef = useRef<HTMLDivElement>(null)
   const [width, setWidth] = useState(DEFAULT_WIDTH)
   const [open, setOpen] = useState(false)
+
+  // In mobile fullscreen mode we treat the panel as always "open"
+  const effectiveOpen = open || mobileFullscreen
 
   // Keep the store in sync whenever open or width changes
   useEffect(() => {
@@ -79,13 +82,13 @@ export default function UPSCNotes() {
     boxShadow: '-12px 0 48px rgba(0,0,0,0.45)',
   }
 
-  // Collapsed tab
-  if (!open) {
+  // Collapsed tab — desktop only (mobile uses the bottom tab bar for navigation)
+  if (!effectiveOpen) {
     return (
       <button
         onClick={() => setOpen(true)}
         title="Open UPSC Notes"
-        className="absolute right-0 top-1/2 -translate-y-1/2 z-20 flex flex-col items-center gap-2 py-5 px-2.5 rounded-l-2xl transition-all hover:px-3"
+        className="absolute right-0 top-1/2 -translate-y-1/2 z-20 hidden md:flex flex-col items-center gap-2 py-5 px-2.5 rounded-l-2xl transition-all hover:px-3"
         style={{
           background: 'rgba(7,11,22,0.80)',
           backdropFilter: 'blur(16px)',
@@ -109,17 +112,29 @@ export default function UPSCNotes() {
     )
   }
 
+  // Mobile fullscreen: fills the entire parent <main>
+  // Desktop: resizable side panel anchored to the right
   return (
-    <div className="absolute right-0 top-0 bottom-0 z-20 flex select-none" style={{ width }}>
+    <div
+      className={[
+        'absolute z-20 flex select-none',
+        mobileFullscreen
+          ? 'inset-0 flex-col'          // mobile: full screen, vertical stack
+          : 'right-0 top-0 bottom-0 hidden md:flex',  // desktop: side panel
+      ].join(' ')}
+      style={mobileFullscreen ? {} : { width }}
+    >
 
-      {/* Drag handle */}
-      <div
-        onMouseDown={onDragStart}
-        className="w-3 flex-shrink-0 cursor-col-resize group flex items-center justify-center"
-        style={{ background: 'rgba(255,255,255,0.02)' }}
-      >
-        <div className="w-0.5 h-20 rounded-full bg-white/[0.08] group-hover:bg-indigo-500/60 group-active:bg-indigo-400 transition-colors duration-150" />
-      </div>
+      {/* Drag handle — desktop side panel only */}
+      {!mobileFullscreen && (
+        <div
+          onMouseDown={onDragStart}
+          className="w-3 flex-shrink-0 cursor-col-resize group flex items-center justify-center"
+          style={{ background: 'rgba(255,255,255,0.02)' }}
+        >
+          <div className="w-0.5 h-20 rounded-full bg-white/[0.08] group-hover:bg-indigo-500/60 group-active:bg-indigo-400 transition-colors duration-150" />
+        </div>
+      )}
 
       {/* Panel */}
       <div className="flex-1 flex flex-col overflow-hidden min-w-0" style={glassPanel}>
@@ -161,9 +176,10 @@ export default function UPSCNotes() {
               ))}
             </div>
           )}
+          {/* Close button — desktop only; on mobile the tab bar handles navigation */}
           <button
             onClick={() => setOpen(false)}
-            className="w-6 h-6 flex items-center justify-center rounded-lg text-white/25 hover:text-white/60 hover:bg-white/[0.07] transition-all flex-shrink-0"
+            className="hidden md:flex w-6 h-6 items-center justify-center rounded-lg text-white/25 hover:text-white/60 hover:bg-white/[0.07] transition-all flex-shrink-0"
           >
             <svg width="9" height="9" viewBox="0 0 9 9" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
               <path d="M1 1l7 7M8 1L1 8" />

@@ -724,7 +724,7 @@ export default function HomePage() {
       </div>
 
       {/* ── Footer ───────────────────────────────────────────────────────── */}
-      <div className="border-t border-white/[0.04] px-6 py-5 flex items-center justify-between text-[11px] text-white/20">
+      <div className="border-t border-white/[0.04] px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-1.5 text-[11px] text-white/20">
         <span>UPSC Map AI · Built for serious aspirants</span>
         <span>Maps · Notes · AI · Free</span>
       </div>
