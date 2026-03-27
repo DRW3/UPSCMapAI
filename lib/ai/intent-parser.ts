@@ -1,153 +1,150 @@
-import { GoogleGenerativeAI, SchemaType, FunctionCallingMode } from '@google/generative-ai'
-import type { FunctionDeclaration } from '@google/generative-ai'
+import Groq from 'groq-sdk'
 import type { ParsedMapIntent } from '@/types'
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!)
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
 
-const PARSE_MAP_INTENT_FUNCTION: FunctionDeclaration = {
-  name: 'parse_map_intent',
-  description: 'Parse a natural language UPSC map request into a structured intent object',
-  parameters: {
-    type: SchemaType.OBJECT,
-    properties: {
-      map_type: {
-        type: SchemaType.STRING,
-        format: 'enum',
-        enum: [
-          'physical_rivers', 'physical_mountains', 'physical_passes',
-          'physical_climate', 'physical_soil', 'physical_vegetation',
-          'political_states', 'political_districts', 'political_borders',
-          'historical_kingdoms', 'historical_battles', 'historical_routes',
-          'historical_colonial', 'historical_revolt',
-          'economic_minerals', 'economic_agriculture', 'economic_industry',
-          'economic_transport', 'economic_ports',
-          'international_neighbors', 'international_maritime',
-          'thematic_protected_areas', 'thematic_disasters',
-          'thematic_tribal', 'thematic_environment',
-        ],
-        description: 'Primary category of the map',
-      },
-      region_scope: {
-        type: SchemaType.STRING,
-        format: 'enum',
-        enum: [
-          'all_india', 'peninsular_india', 'north_india', 'northeast_india',
-          'south_india', 'central_india', 'himalayan_region',
-          'specific_state', 'specific_district', 'world', 'south_asia', 'indian_ocean',
-        ],
-        description: 'Geographic scope of the map',
-      },
-      region_specific: {
-        type: SchemaType.STRING,
-        description: 'State/district name when region_scope is specific_state or specific_district',
-      },
-      time_period: {
-        type: SchemaType.OBJECT,
-        properties: {
-          era: {
-            type: SchemaType.STRING,
-            format: 'enum',
-            enum: [
-              'contemporary', 'ancient_pre500CE', 'early_medieval_500_1200CE',
-              'medieval_1200_1600CE', 'late_medieval_1600_1800CE',
-              'colonial_1800_1947', 'post_independence',
-            ],
-          },
-          specific_year: { type: SchemaType.NUMBER },
-          specific_event: { type: SchemaType.STRING },
+const PARSE_MAP_INTENT_FUNCTION: Groq.Chat.ChatCompletionTool = {
+  type: 'function',
+  function: {
+    name: 'parse_map_intent',
+    description: 'Parse a natural language UPSC map request into a structured intent object',
+    parameters: {
+      type: 'object',
+      properties: {
+        map_type: {
+          type: 'string',
+          enum: [
+            'physical_rivers', 'physical_mountains', 'physical_passes',
+            'physical_climate', 'physical_soil', 'physical_vegetation',
+            'political_states', 'political_districts', 'political_borders',
+            'historical_kingdoms', 'historical_battles', 'historical_routes',
+            'historical_colonial', 'historical_revolt',
+            'economic_minerals', 'economic_agriculture', 'economic_industry',
+            'economic_transport', 'economic_ports',
+            'international_neighbors', 'international_maritime',
+            'thematic_protected_areas', 'thematic_disasters',
+            'thematic_tribal', 'thematic_environment',
+          ],
+          description: 'Primary category of the map',
         },
-      },
-      features_to_show: {
-        type: SchemaType.ARRAY,
-        items: { type: SchemaType.STRING },
-        description: 'Feature names/categories to show — used for Wikidata live queries (ramsar, national_parks, tiger_reserves etc.)',
-      },
-      features_to_highlight: {
-        type: SchemaType.ARRAY,
-        items: { type: SchemaType.STRING },
-        description: 'The 1-3 specific named things the user is asking about — used to dim everything else on the map. LEAVE EMPTY for general/overview queries. Examples: ["Ganga"] for a Ganga river query, ["Maharashtra"] for a Maharashtra state query, ["Western Ghats"] for a Western Ghats query, ["Panipat"] for a Panipat battle query, ["coal"] for a coal deposits query, ["Mauryan"] for a Mauryan empire query. Rule: if the query names a specific thing → put that name here. If the query is broad (major rivers, all states, India map) → EMPTY.',
-      },
-      annotation_level: {
-        type: SchemaType.STRING,
-        format: 'enum',
-        enum: ['minimal', 'standard', 'detailed'],
-        description: 'How much labeling/annotation to show',
-      },
-      upsc_context: {
-        type: SchemaType.STRING,
-        description: 'One sentence on why this map matters for UPSC exam',
-      },
-      data_layers: {
-        type: SchemaType.ARRAY,
-        items: {
-          type: SchemaType.OBJECT,
+        region_scope: {
+          type: 'string',
+          enum: [
+            'all_india', 'peninsular_india', 'north_india', 'northeast_india',
+            'south_india', 'central_india', 'himalayan_region',
+            'specific_state', 'specific_district', 'world', 'south_asia', 'indian_ocean',
+          ],
+          description: 'Geographic scope of the map',
+        },
+        region_specific: {
+          type: 'string',
+          description: 'State/district name when region_scope is specific_state or specific_district',
+        },
+        time_period: {
+          type: 'object',
           properties: {
-            layer_id: { type: SchemaType.STRING },
-            layer_type: {
-              type: SchemaType.STRING,
-              format: 'enum',
+            era: {
+              type: 'string',
               enum: [
-                'base_political', 'rivers', 'relief', 'points_of_interest',
-                'historical_boundary', 'thematic_choropleth', 'event_markers',
-                'routes', 'labels',
+                'contemporary', 'ancient_pre500CE', 'early_medieval_500_1200CE',
+                'medieval_1200_1600CE', 'late_medieval_1600_1800CE',
+                'colonial_1800_1947', 'post_independence',
               ],
             },
-            data_source: { type: SchemaType.STRING },
-            visible: { type: SchemaType.BOOLEAN },
+            specific_year: { type: 'number' },
+            specific_event: { type: 'string' },
           },
-          required: ['layer_id', 'layer_type', 'data_source', 'visible'],
         },
-        description: 'Ordered list of map layers to render',
-      },
-      sidebar_topics: {
-        type: SchemaType.ARRAY,
-        items: { type: SchemaType.STRING },
-        description: 'Topics for the UPSC notes sidebar',
-      },
-      title: {
-        type: SchemaType.STRING,
-        description: 'Short display title for the map (max 60 chars)',
-      },
-      annotated_points: {
-        type: SchemaType.ARRAY,
-        description: 'Geographic markers for the map. ONLY include locations directly relevant to the query topic — never pad with unrelated cities or capitals. 6-15 focused points for specific queries; 12-20 for broad overviews. Coordinates must be accurate.',
-        items: {
-          type: SchemaType.OBJECT,
-          properties: {
-            id: {
-              type: SchemaType.STRING,
-              description: 'Unique snake_case identifier',
+        features_to_show: {
+          type: 'array',
+          items: { type: 'string' },
+          description: 'Feature names/categories to show — used for Wikidata live queries (ramsar, national_parks, tiger_reserves etc.)',
+        },
+        features_to_highlight: {
+          type: 'array',
+          items: { type: 'string' },
+          description: 'The 1-3 specific named things the user is asking about — used to dim everything else on the map. LEAVE EMPTY for general/overview queries. Examples: ["Ganga"] for a Ganga river query, ["Maharashtra"] for a Maharashtra state query, ["Western Ghats"] for a Western Ghats query, ["Panipat"] for a Panipat battle query, ["coal"] for a coal deposits query, ["Mauryan"] for a Mauryan empire query. Rule: if the query names a specific thing → put that name here. If the query is broad (major rivers, all states, India map) → EMPTY.',
+        },
+        annotation_level: {
+          type: 'string',
+          enum: ['minimal', 'standard', 'detailed'],
+          description: 'How much labeling/annotation to show',
+        },
+        upsc_context: {
+          type: 'string',
+          description: 'One sentence on why this map matters for UPSC exam',
+        },
+        data_layers: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              layer_id: { type: 'string' },
+              layer_type: {
+                type: 'string',
+                enum: [
+                  'base_political', 'rivers', 'relief', 'points_of_interest',
+                  'historical_boundary', 'thematic_choropleth', 'event_markers',
+                  'routes', 'labels',
+                ],
+              },
+              data_source: { type: 'string' },
+              visible: { type: 'boolean' },
             },
-            lat: {
-              type: SchemaType.NUMBER,
-              description: 'Latitude in decimal degrees (must be accurate)',
-            },
-            lng: {
-              type: SchemaType.NUMBER,
-              description: 'Longitude in decimal degrees (must be accurate)',
-            },
-            label: {
-              type: SchemaType.STRING,
-              description: 'Display label — concise but descriptive, add context in parentheses',
-            },
-            icon: {
-              type: SchemaType.STRING,
-              description: 'Emoji icon: 🏛️=capital/city, ⚔️=battle, 🌊=river/lake, ⛰️=mountain range, 🏔️=peak/pass, ⚓=port, ☸️=religious, 🎓=education, ⛏️=mineral/industry, 🌿=forest/protected, 🌍=country, 🏗️=dam/infra, ⚛️=nuclear, 🏭=thermal, 💧=hydro, 📍=other',
-            },
-            color: {
-              type: SchemaType.STRING,
-              description: 'Hex color — use consistent colors per feature type: #e63946=battles/military, #2980b9=rivers/water, #27ae60=forests/protected, #e67e22=historical capitals, #8e44ad=religious/cultural, #2c3e50=industry/infra, #c0392b=colonial, #f39c12=mountains',
-            },
+            required: ['layer_id', 'layer_type', 'data_source', 'visible'],
           },
-          required: ['id', 'lat', 'lng', 'label', 'icon', 'color'],
+          description: 'Ordered list of map layers to render',
+        },
+        sidebar_topics: {
+          type: 'array',
+          items: { type: 'string' },
+          description: 'Topics for the UPSC notes sidebar',
+        },
+        title: {
+          type: 'string',
+          description: 'Short display title for the map (max 60 chars)',
+        },
+        annotated_points: {
+          type: 'array',
+          description: 'Geographic markers for the map. ONLY include locations directly relevant to the query topic — never pad with unrelated cities or capitals. 6-15 focused points for specific queries; 12-20 for broad overviews. Coordinates must be accurate.',
+          items: {
+            type: 'object',
+            properties: {
+              id: {
+                type: 'string',
+                description: 'Unique snake_case identifier',
+              },
+              lat: {
+                type: 'number',
+                description: 'Latitude in decimal degrees (must be accurate)',
+              },
+              lng: {
+                type: 'number',
+                description: 'Longitude in decimal degrees (must be accurate)',
+              },
+              label: {
+                type: 'string',
+                description: 'Display label — concise but descriptive, add context in parentheses',
+              },
+              icon: {
+                type: 'string',
+                description: 'Emoji icon: 🏛️=capital/city, ⚔️=battle, 🌊=river/lake, ⛰️=mountain range, 🏔️=peak/pass, ⚓=port, ☸️=religious, 🎓=education, ⛏️=mineral/industry, 🌿=forest/protected, 🌍=country, 🏗️=dam/infra, ⚛️=nuclear, 🏭=thermal, 💧=hydro, 📍=other',
+              },
+              color: {
+                type: 'string',
+                description: 'Hex color — use consistent colors per feature type: #e63946=battles/military, #2980b9=rivers/water, #27ae60=forests/protected, #e67e22=historical capitals, #8e44ad=religious/cultural, #2c3e50=industry/infra, #c0392b=colonial, #f39c12=mountains',
+              },
+            },
+            required: ['id', 'lat', 'lng', 'label', 'icon', 'color'],
+          },
         },
       },
+      required: [
+        'map_type', 'region_scope', 'features_to_show', 'features_to_highlight',
+        'annotation_level', 'upsc_context', 'data_layers', 'sidebar_topics', 'title',
+        'annotated_points',
+      ],
     },
-    required: [
-      'map_type', 'region_scope', 'features_to_show', 'features_to_highlight',
-      'annotation_level', 'upsc_context', 'data_layers', 'sidebar_topics', 'title',
-      'annotated_points',
-    ],
   },
 }
 
@@ -195,39 +192,38 @@ Rules for sidebar_topics: exactly 5 topics, each starting with "GS-I:", "GS-II:"
 annotation_level: "detailed" for historical, "standard" for physical/political/international`
 
 export async function parseMapIntent(userMessage: string): Promise<ParsedMapIntent> {
-  const model = genAI.getGenerativeModel({
-    model: 'gemini-2.5-flash',
-    systemInstruction: SYSTEM_INSTRUCTION,
-    tools: [{ functionDeclarations: [PARSE_MAP_INTENT_FUNCTION] }],
-    toolConfig: {
-      functionCallingConfig: {
-        mode: FunctionCallingMode.ANY,
-        allowedFunctionNames: ['parse_map_intent'],
-      },
-    },
+  const response = await groq.chat.completions.create({
+    model: 'llama-3.3-70b-versatile',
+    messages: [
+      { role: 'system', content: SYSTEM_INSTRUCTION },
+      { role: 'user', content: userMessage },
+    ],
+    tools: [PARSE_MAP_INTENT_FUNCTION],
+    tool_choice: { type: 'function', function: { name: 'parse_map_intent' } },
   })
 
-  const result = await model.generateContent(userMessage)
-  const calls = result.response.functionCalls()
-
-  if (!calls || calls.length === 0) {
-    throw new Error('Gemini did not return a function call')
+  const toolCall = response.choices[0]?.message?.tool_calls?.[0]
+  if (!toolCall) {
+    throw new Error('Groq did not return a function call')
   }
 
-  return calls[0].args as ParsedMapIntent
+  return JSON.parse(toolCall.function.arguments) as ParsedMapIntent
 }
 
-/** Lightweight follow-up classification using Flash */
+/** Lightweight follow-up classification */
 export async function classifyFollowUp(
   userMessage: string,
   currentIntent: ParsedMapIntent
 ): Promise<'full_replace' | 'modify'> {
-  const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' })
+  const response = await groq.chat.completions.create({
+    model: 'llama-3.3-70b-versatile',
+    messages: [{
+      role: 'user',
+      content: `Current map: "${currentIntent.title}"\nUser message: "${userMessage}"\n\nClassify as "full_replace" (completely new map) or "modify" (minor change). Reply with only one of those two words.`,
+    }],
+    max_tokens: 20,
+  })
 
-  const result = await model.generateContent(
-    `Current map: "${currentIntent.title}"\nUser message: "${userMessage}"\n\nClassify as "full_replace" (completely new map) or "modify" (minor change). Reply with only one of those two words.`
-  )
-
-  const text = result.response.text().trim()
+  const text = response.choices[0]?.message?.content?.trim() ?? ''
   return text.startsWith('modify') ? 'modify' : 'full_replace'
 }

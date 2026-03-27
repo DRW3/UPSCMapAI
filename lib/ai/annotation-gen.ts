@@ -1,8 +1,8 @@
-import { GoogleGenerativeAI } from '@google/generative-ai'
+import Groq from 'groq-sdk'
 import type { ParsedMapIntent } from '@/types'
 import type { RetrievedPYQ } from '@/lib/pyq/retrieval'
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!)
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
 
 const UPSC_SYSTEM_INSTRUCTION_WITH_PYQS = `You are an expert UPSC teacher writing concise, exam-focused geographical and historical notes.
 Format your response in Markdown with these exact sections:
@@ -77,17 +77,22 @@ export async function* streamAnnotations(
   intent: ParsedMapIntent,
   pyqs: RetrievedPYQ[] = [],
 ): AsyncGenerator<string> {
-  const model = genAI.getGenerativeModel({
-    model: 'gemini-2.5-flash',
-    systemInstruction: pyqs.length > 0
-      ? UPSC_SYSTEM_INSTRUCTION_WITH_PYQS
-      : UPSC_SYSTEM_INSTRUCTION_NO_PYQS,
+  const groqStream = await groq.chat.completions.create({
+    model: 'llama-3.3-70b-versatile',
+    stream: true,
+    messages: [
+      {
+        role: 'system',
+        content: pyqs.length > 0
+          ? UPSC_SYSTEM_INSTRUCTION_WITH_PYQS
+          : UPSC_SYSTEM_INSTRUCTION_NO_PYQS,
+      },
+      { role: 'user', content: buildPrompt(intent, pyqs) },
+    ],
   })
 
-  const streamResult = await model.generateContentStream(buildPrompt(intent, pyqs))
-
-  for await (const chunk of streamResult.stream) {
-    const text = chunk.text()
+  for await (const chunk of groqStream) {
+    const text = chunk.choices[0]?.delta?.content || ''
     if (text) yield text
   }
 }
