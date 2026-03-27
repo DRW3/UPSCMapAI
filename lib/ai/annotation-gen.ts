@@ -2,7 +2,11 @@ import Groq from 'groq-sdk'
 import type { ParsedMapIntent } from '@/types'
 import type { RetrievedPYQ } from '@/lib/pyq/retrieval'
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
+let _groq: Groq | null = null
+function getGroq() {
+  if (!_groq) _groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
+  return _groq
+}
 
 const UPSC_SYSTEM_INSTRUCTION_WITH_PYQS = `You are an expert UPSC teacher writing concise, exam-focused geographical and historical notes.
 Format your response in Markdown with these exact sections:
@@ -77,7 +81,7 @@ export async function* streamAnnotations(
   intent: ParsedMapIntent,
   pyqs: RetrievedPYQ[] = [],
 ): AsyncGenerator<string> {
-  const groqStream = await groq.chat.completions.create({
+  const groqStream = await getGroq().chat.completions.create({
     model: 'llama-3.3-70b-versatile',
     stream: true,
     messages: [
@@ -92,7 +96,7 @@ export async function* streamAnnotations(
   })
 
   for await (const chunk of groqStream) {
-    const text = chunk.choices[0]?.delta?.content || ''
+    const text = chunk.choices[0]?.delta?.content
     if (text) yield text
   }
 }

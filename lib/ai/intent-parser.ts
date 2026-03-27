@@ -1,9 +1,13 @@
 import Groq from 'groq-sdk'
 import type { ParsedMapIntent } from '@/types'
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
+let _groq: Groq | null = null
+function getGroq() {
+  if (!_groq) _groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
+  return _groq
+}
 
-const PARSE_MAP_INTENT_FUNCTION: Groq.Chat.ChatCompletionTool = {
+const PARSE_MAP_INTENT_TOOL: Groq.Chat.Completions.ChatCompletionTool = {
   type: 'function',
   function: {
     name: 'parse_map_intent',
@@ -192,19 +196,19 @@ Rules for sidebar_topics: exactly 5 topics, each starting with "GS-I:", "GS-II:"
 annotation_level: "detailed" for historical, "standard" for physical/political/international`
 
 export async function parseMapIntent(userMessage: string): Promise<ParsedMapIntent> {
-  const response = await groq.chat.completions.create({
+  const response = await getGroq().chat.completions.create({
     model: 'llama-3.3-70b-versatile',
     messages: [
       { role: 'system', content: SYSTEM_INSTRUCTION },
       { role: 'user', content: userMessage },
     ],
-    tools: [PARSE_MAP_INTENT_FUNCTION],
+    tools: [PARSE_MAP_INTENT_TOOL],
     tool_choice: { type: 'function', function: { name: 'parse_map_intent' } },
   })
 
   const toolCall = response.choices[0]?.message?.tool_calls?.[0]
-  if (!toolCall) {
-    throw new Error('Groq did not return a function call')
+  if (!toolCall || toolCall.type !== 'function') {
+    throw new Error('Groq did not return a tool call')
   }
 
   return JSON.parse(toolCall.function.arguments) as ParsedMapIntent
@@ -215,7 +219,7 @@ export async function classifyFollowUp(
   userMessage: string,
   currentIntent: ParsedMapIntent
 ): Promise<'full_replace' | 'modify'> {
-  const response = await groq.chat.completions.create({
+  const response = await getGroq().chat.completions.create({
     model: 'llama-3.3-70b-versatile',
     messages: [{
       role: 'user',

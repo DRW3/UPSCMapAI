@@ -4,7 +4,11 @@ import Groq from 'groq-sdk'
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
+let _groq: Groq | null = null
+function getGroq() {
+  if (!_groq) _groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
+  return _groq
+}
 
 const SYSTEM = `You are a concise UPSC geography and history expert.
 Given a location name and map context, return a focused study card in markdown.
@@ -37,7 +41,7 @@ export async function POST(req: NextRequest) {
   const stream = new ReadableStream({
     async start(controller) {
       try {
-        const groqStream = await groq.chat.completions.create({
+        const groqStream = await getGroq().chat.completions.create({
           model: 'llama-3.3-70b-versatile',
           stream: true,
           messages: [
@@ -50,7 +54,7 @@ export async function POST(req: NextRequest) {
         })
 
         for await (const chunk of groqStream) {
-          const text = chunk.choices[0]?.delta?.content || ''
+          const text = chunk.choices[0]?.delta?.content
           if (text) {
             controller.enqueue(encoder.encode(`data: ${JSON.stringify({ text })}\n\n`))
           }
