@@ -53,6 +53,9 @@ const PARSE_MAP_INTENT_TOOL: Groq.Chat.Completions.ChatCompletionTool = {
                 'contemporary', 'ancient_pre500CE', 'early_medieval_500_1200CE',
                 'medieval_1200_1600CE', 'late_medieval_1600_1800CE',
                 'colonial_1800_1947', 'post_independence',
+                // Short aliases the model often generates
+                'ancient', 'medieval', 'colonial', 'modern',
+                'early_medieval', 'late_medieval', 'pre_independence',
               ],
             },
             specific_year: { type: 'number' },
