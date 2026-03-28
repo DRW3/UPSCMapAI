@@ -1,10 +1,14 @@
 import { NextRequest } from 'next/server'
-import { GoogleGenerativeAI } from '@google/generative-ai'
+import Groq from 'groq-sdk'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!)
+let _groq: Groq | null = null
+function getGroq() {
+  if (!_groq) _groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
+  return _groq
+}
 
 const SYSTEM = `You are a concise UPSC geography and history expert.
 Given a location name and map context, return a focused study card in markdown.
@@ -37,18 +41,20 @@ export async function POST(req: NextRequest) {
   const stream = new ReadableStream({
     async start(controller) {
       try {
-        const model = genAI.getGenerativeModel({
-          model: 'gemini-2.5-flash',
-          systemInstruction: SYSTEM,
+        const groqStream = await getGroq().chat.completions.create({
+          model: 'llama-3.3-70b-versatile',
+          stream: true,
+          messages: [
+            { role: 'system', content: SYSTEM },
+            {
+              role: 'user',
+              content: `Location: ${icon} ${name}\nMap context: ${mapContext || 'India geography'}`,
+            },
+          ],
         })
 
-        const prompt = `Location: ${icon} ${name}
-Map context: ${mapContext || 'India geography'}`
-
-        const result = await model.generateContentStream(prompt)
-
-        for await (const chunk of result.stream) {
-          const text = chunk.text()
+        for await (const chunk of groqStream) {
+          const text = chunk.choices[0]?.delta?.content
           if (text) {
             controller.enqueue(encoder.encode(`data: ${JSON.stringify({ text })}\n\n`))
           }

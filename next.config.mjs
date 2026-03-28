@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  transpilePackages: ['react-markdown', 'remark-gfm'],
   webpack: (config, { isServer }) => {
     if (!isServer) {
       // maplibre-gl uses worker threads — treat as external on server

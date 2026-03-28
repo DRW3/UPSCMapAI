@@ -6,7 +6,6 @@
  * map notes with real past questions.
  */
 
-import { GoogleGenerativeAI } from '@google/generative-ai'
 import { createServerClient } from '@/lib/supabase/server'
 import type { ParsedMapIntent } from '@/types'
 
@@ -34,13 +33,13 @@ export interface RetrievedPYQ {
 }
 
 // ── Embedding ─────────────────────────────────────────────────────────────────
+// Semantic embeddings are disabled: the Supabase PYQ data was indexed with
+// Gemini vectors; switching providers would produce incorrect similarity scores.
+// fetchRelevantPYQs falls back to keyword search automatically.
 
-const genAI   = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!)
-const embModel = genAI.getGenerativeModel({ model: 'gemini-embedding-001' })
-
-async function embedText(text: string): Promise<number[]> {
-  const res = await embModel.embedContent(text.slice(0, 2000))
-  return res.embedding.values
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+async function embedText(_text: string): Promise<number[]> {
+  throw new Error('Semantic embeddings not available — using keyword fallback')
 }
 
 // ── Build query text from map intent ─────────────────────────────────────────
