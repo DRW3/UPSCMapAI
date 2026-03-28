@@ -167,6 +167,40 @@ export function getHistoricalGeoJSON(
   }
 }
 
+/**
+ * Compute the geographic bounding box [minLng, minLat, maxLng, maxLat] for a
+ * layer's polygon/area data.  Returns null for layers without inline geometry
+ * (e.g. file-based GeoJSON loaded by the map).
+ */
+export function getLayerGeoBounds(
+  layer: MapLayer,
+  title: string,
+  features: string[],
+): [number, number, number, number] | null {
+  if (layer.layer_type === 'historical_boundary') {
+    const geojson = getHistoricalGeoJSON(layer.data_source, title, features)
+    if (!geojson) return null
+    let minLng = Infinity, minLat = Infinity, maxLng = -Infinity, maxLat = -Infinity
+    for (const feature of geojson.features) {
+      const coords =
+        feature.geometry.type === 'Polygon'
+          ? (feature.geometry.coordinates as number[][][])[0]
+          : feature.geometry.type === 'MultiPolygon'
+            ? (feature.geometry.coordinates as number[][][][]).flat(1)[0]
+            : []
+      for (const coord of coords) {
+        const [lng, lat] = coord as [number, number]
+        if (lng < minLng) minLng = lng
+        if (lng > maxLng) maxLng = lng
+        if (lat < minLat) minLat = lat
+        if (lat > maxLat) maxLat = lat
+      }
+    }
+    if (minLng !== Infinity) return [minLng, minLat, maxLng, maxLat]
+  }
+  return null
+}
+
 // ─── MapLibre Style ───────────────────────────────────────────────────────────
 
 export function buildMapLibreStyle(layer: MapLayer): Record<string, unknown>[] {

@@ -25,8 +25,13 @@ interface MapStore extends MapState {
 }
 
 const defaultViewport = {
-  center: [82.8, 22.5] as [number, number],
+  center: [78.9, 22.5] as [number, number],
   zoom: 4.2,
+}
+
+const globeViewport = {
+  center: [78.9, 22.5] as [number, number],
+  zoom: 2.2,
 }
 
 export const useMapStore = create<MapStore>((set, get) => ({
@@ -43,6 +48,7 @@ export const useMapStore = create<MapStore>((set, get) => ({
   focusCoordinates: null,
   notesOpen: false,
   notesWidth: 340,
+  targetBounds: null,
 
   setIntent: (intent) => set({ intent }),
   setSidebarContent: (content) => set({ sidebarContent: content }),
@@ -108,6 +114,7 @@ export const useMapStore = create<MapStore>((set, get) => ({
         }
         case 'zoom_to':
           return {
+            targetBounds: op.bounds,
             viewport: {
               center: [(op.bounds[0] + op.bounds[2]) / 2, (op.bounds[1] + op.bounds[3]) / 2],
               zoom: 5,
@@ -125,6 +132,8 @@ export const useMapStore = create<MapStore>((set, get) => ({
       highlightedFeatures: [],
       annotatedPoints: [],
       sidebarContent: '',
+      targetBounds: null,
+      viewport: globeViewport,  // zoom out to globe for the swoop animation
     }),
 
   resetMap: () =>

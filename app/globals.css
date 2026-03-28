@@ -63,13 +63,66 @@ html, body {
   animation: chatMsgIn 0.24s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* ── Floating chat open button — pulse glow ─────────────────────────────── */
-@keyframes chatBtnGlow {
-  0%,100% { box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 0 rgba(99,102,241,0.35); }
-  50%      { box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 8px rgba(99,102,241,0); }
+/* ── Futuristic search bar — animated gradient border ──────────────────── */
+@property --border-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
 }
-.chat-open-btn {
-  animation: chatBtnGlow 2.8s ease-in-out infinite;
+@keyframes borderSpin {
+  to { --border-angle: 360deg; }
+}
+.search-bar-border {
+  background: conic-gradient(
+    from var(--border-angle),
+    #6366f1 0%,
+    #a78bfa 25%,
+    #818cf8 50%,
+    #6366f180 75%,
+    #6366f1 100%
+  );
+  animation: borderSpin 3s linear infinite;
+  box-shadow:
+    0 0 20px rgba(99,102,241,0.3),
+    0 0 40px rgba(99,102,241,0.1);
+}
+/* Fallback for browsers without @property (uses static gradient + glow pulse) */
+@supports not (background: conic-gradient(from 0deg, red, blue)) {
+  .search-bar-border {
+    background: linear-gradient(135deg, #6366f1, #a78bfa, #818cf8, #6366f1);
+    animation: searchBarGlowFallback 2.5s ease-in-out infinite;
+  }
+}
+@keyframes searchBarGlowFallback {
+  0%,100% { box-shadow: 0 0 20px rgba(99,102,241,0.3), 0 0 40px rgba(99,102,241,0.1); }
+  50%     { box-shadow: 0 0 28px rgba(99,102,241,0.5), 0 0 56px rgba(99,102,241,0.15); }
+}
+
+/* ── Infinite scroll for topic chips ───────────────────────────────────── */
+@keyframes topicScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.topic-scroll-track {
+  animation: topicScroll 30s linear infinite;
+}
+.topic-scroll-track:hover,
+.topic-scroll-container:hover .topic-scroll-track {
+  animation-play-state: paused;
+}
+
+/* ── Search spinner ────────────────────────────────────────────────────── */
+.search-spinner {
+  animation: spin 0.7s linear infinite;
+}
+
+/* ── Glowing notes icon — breathing pulse ──────────────────────────────── */
+@keyframes notesIconGlow {
+  0%,100% { box-shadow: 0 0 6px rgba(99,102,241,0.3), 0 0 0 0 rgba(99,102,241,0.2); }
+  50%     { box-shadow: 0 0 14px rgba(99,102,241,0.5), 0 0 0 4px rgba(99,102,241,0.08); }
+}
+.notes-icon-glow {
+  animation: notesIconGlow 2s ease-in-out infinite;
 }
 
 /* ── Spinner keyframe (used inline in ChatInterface) ────────────────────── */

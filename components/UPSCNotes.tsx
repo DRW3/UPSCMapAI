@@ -330,8 +330,8 @@ function renderInline(
                 alignItems: 'center',
                 gap: '3px',
                 color: '#f1f5f9',          // always bright white-ish text
-                background: `${color}28`,  // tinted background from marker color
-                border: `1px solid ${color}60`,
+                background: `${color}3a`,  // tinted background from marker color
+                border: `1px solid ${color}80`,
                 borderRadius: '5px',
                 padding: '0px 5px 1px 4px',
                 cursor: 'pointer',
@@ -343,13 +343,13 @@ function renderInline(
               }}
               onMouseEnter={e => {
                 const el = e.currentTarget as HTMLElement
-                el.style.background = `${color}45`
-                el.style.borderColor = `${color}99`
+                el.style.background = `${color}55`
+                el.style.borderColor = `${color}aa`
               }}
               onMouseLeave={e => {
                 const el = e.currentTarget as HTMLElement
-                el.style.background = `${color}28`
-                el.style.borderColor = `${color}60`
+                el.style.background = `${color}3a`
+                el.style.borderColor = `${color}80`
               }}
             >
               {/* Coloured dot matching the marker */}

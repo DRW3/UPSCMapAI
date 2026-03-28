@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState, useMemo } from 'react'
 import type { Map as MapLibreMap, GeoJSONSource } from 'maplibre-gl'
 import { useMapStore } from '@/lib/map/map-store'
-import { buildMapLibreStyle, resolveDataPath, getHistoricalGeoJSON, detectEmpire } from '@/lib/ai/data-resolver'
+import { buildMapLibreStyle, resolveDataPath, getHistoricalGeoJSON, detectEmpire, getLayerGeoBounds } from '@/lib/ai/data-resolver'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ML = any
@@ -130,6 +130,8 @@ export default function MapCanvas() {
   const mountedSourceIds  = useRef<Set<string>>(new Set())
   const wasLoadingRef     = useRef(false)
   const loadedSpriteIds   = useRef<Set<string>>(new Set())
+  const isFirstLoad       = useRef(true)        // true until first search lands
+  const flyAnimationRef   = useRef<number | null>(null) // rAF id for staged animation
   const [mapReady, setMapReady]       = useState(false)
   const [legendOpen, setLegendOpen]     = useState(typeof window !== 'undefined' ? window.innerWidth > 768 : true)
   const [simplified, setSimplified]     = useState(false)
@@ -141,7 +143,7 @@ export default function MapCanvas() {
   const [contextMenu, setContextMenu]       = useState<ContextMenu | null>(null)
   const [detailsMarker, setDetailsMarker]   = useState<MarkerPopup | null>(null)
 
-  const { layers, highlightedFeatures, viewport, annotatedPoints, intent, isSidebarLoading, setPendingMessage, focusCoordinates, setFocusCoordinates, notesOpen, notesWidth } = useMapStore()
+  const { layers, highlightedFeatures, viewport, annotatedPoints, intent, isSidebarLoading, setPendingMessage, focusCoordinates, setFocusCoordinates, notesOpen, notesWidth, targetBounds } = useMapStore()
 
   // ── Init map ─────────────────────────────────────────────────────────────
   useEffect(() => {
@@ -156,9 +158,10 @@ export default function MapCanvas() {
         container: mapContainer.current!,
         // MapLibre demotiles — vector tiles at Natural Earth 10m quality, no API key needed
         style: 'https://demotiles.maplibre.org/style.json',
-        bounds: [[67, 6], [98, 37.5]],  // India bounds — auto-fits to viewport
-        fitBoundsOptions: { padding: 10 },
+        center: [78.9, 22.5],   // Center on India
+        zoom: 1.8,              // Start zoomed out to show the globe
         attributionControl: false,
+        maxPitch: 0,
       })
 
       mapInstance.on('load', () => {
@@ -569,12 +572,82 @@ export default function MapCanvas() {
     for (const id of labelLayers) setL(id, vis(!simplified))
   }, [simplified, mapReady])
 
-  // ── Fly to viewport (initial broad zoom from AI) ─────────────────────────
+  // ── Google Earth-style swoop to viewport ─────────────────────────────────
+  // Uses fitBounds so the zoom adapts to the user's screen size automatically.
+  // When targetBounds is available (from zoom_to op), swoop to those bounds
+  // so the plotted area fits the screen. Falls back to India bounds.
   useEffect(() => {
     const map = mapRef.current
     if (!map || !mapReady) return
-    map.flyTo({ center: viewport.center, zoom: viewport.zoom, duration: 1000, essential: true })
-  }, [viewport, mapReady])
+
+    if (flyAnimationRef.current) {
+      cancelAnimationFrame(flyAnimationRef.current)
+      flyAnimationRef.current = null
+    }
+
+    const currentZoom = map.getZoom()
+
+    // Compute swoop target: prefer area-aware bounds (polygon + targetBounds),
+    // fall back to targetBounds from zoom_to, then India bounds.
+    let swoopBounds: [[number, number], [number, number]]
+
+    // Start from targetBounds (region-level) or India
+    const baseBounds = targetBounds
+      ? [[targetBounds[0], targetBounds[1]], [targetBounds[2], targetBounds[3]]] as [[number, number], [number, number]]
+      : [[68, 6.5], [97.5, 37]] as [[number, number], [number, number]]
+
+    // Expand to include polygon layer geometry (e.g. empire boundaries)
+    let minLng = baseBounds[0][0], minLat = baseBounds[0][1]
+    let maxLng = baseBounds[1][0], maxLat = baseBounds[1][1]
+
+    for (const layer of layers) {
+      if (!layer.visible) continue
+      const lb = getLayerGeoBounds(layer, intent?.title ?? '', intent?.features_to_show ?? [])
+      if (lb) {
+        minLng = Math.min(minLng, lb[0])
+        minLat = Math.min(minLat, lb[1])
+        maxLng = Math.max(maxLng, lb[2])
+        maxLat = Math.max(maxLat, lb[3])
+      }
+    }
+
+    swoopBounds = [[minLng, minLat], [maxLng, maxLat]]
+
+    const isMobileView = window.matchMedia('(max-width: 768px)').matches
+    const fitPadding = { top: isMobileView ? 100 : 80, bottom: isMobileView ? 130 : 80, left: 20, right: 20 }
+
+    function swoopToTarget() {
+      map!.fitBounds(swoopBounds, {
+        padding: fitPadding,
+        duration: 2200,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ...(({ essential: true, curve: 1.6, speed: 0.7 }) as any),
+      })
+    }
+
+    // First search: single swoop from globe
+    if (isFirstLoad.current && currentZoom < 3) {
+      isFirstLoad.current = false
+      swoopToTarget()
+      return
+    }
+
+    isFirstLoad.current = false
+
+    // Subsequent searches: pull back to globe, then swoop
+    if (currentZoom > 4) {
+      map.flyTo({
+        center: map.getCenter(),
+        zoom: 2.2,
+        speed: 1.5,
+        curve: 1.2,
+        essential: true,
+      })
+      map.once('moveend', () => swoopToTarget())
+    } else {
+      swoopToTarget()
+    }
+  }, [viewport, mapReady, targetBounds, layers, intent])
 
   // ── Focus on a specific point (triggered from notes click) ───────────────
   useEffect(() => {
@@ -586,15 +659,15 @@ export default function MapCanvas() {
     const bottomPadFocus = isMobileView3 ? 140 : 60
     map.flyTo({
       center: focusCoordinates,
-      zoom: Math.max(map.getZoom(), 7),
+      zoom: Math.min(Math.max(map.getZoom(), 5.5), 7),
       duration: 900,
       essential: true,
-      padding: { top: 60, right: rightPadFocus, bottom: bottomPadFocus, left: 40 },
+      padding: { top: 80, right: rightPadFocus, bottom: bottomPadFocus, left: 50 },
     })
     setFocusCoordinates(null)
   }, [focusCoordinates, mapReady, setFocusCoordinates, notesOpen, notesWidth])
 
-  // ── Zoom-to-fit: tightly fit all markers once loading finishes ────────────
+  // ── Zoom-to-fit: fit all markers + polygon areas once loading finishes ────
   useEffect(() => {
     const map = mapRef.current
     if (!map || !mapReady) return
@@ -603,40 +676,84 @@ export default function MapCanvas() {
     const justFinished = wasLoadingRef.current && !isSidebarLoading
     wasLoadingRef.current = isSidebarLoading
 
-    if (!justFinished || annotatedPoints.length === 0) return
+    if (!justFinished) return
 
-    const lngs = annotatedPoints.map(p => p.coordinates[0])
-    const lats  = annotatedPoints.map(p => p.coordinates[1])
-    const minLng = Math.min(...lngs), maxLng = Math.max(...lngs)
-    const minLat  = Math.min(...lats),  maxLat  = Math.max(...lats)
+    // Collect coordinates from annotated points
+    const allLngs = annotatedPoints.map(p => p.coordinates[0])
+    const allLats = annotatedPoints.map(p => p.coordinates[1])
+
+    // Also include polygon layer bounds so plotted areas aren't clipped
+    for (const layer of layers) {
+      if (!layer.visible) continue
+      const lb = getLayerGeoBounds(layer, intent?.title ?? '', intent?.features_to_show ?? [])
+      if (lb) {
+        allLngs.push(lb[0], lb[2])
+        allLats.push(lb[1], lb[3])
+      }
+    }
+
+    // Nothing to fit
+    if (allLngs.length === 0) return
+
+    const minLng = Math.min(...allLngs), maxLng = Math.max(...allLngs)
+    const minLat = Math.min(...allLats), maxLat = Math.max(...allLats)
+
+    // Add margin around the bounds so content doesn't sit at the very edge
+    const lngSpan = Math.max(maxLng - minLng, 1)  // at least 1 degree span
+    const latSpan = Math.max(maxLat - minLat, 1)
+    const margin = 0.10  // 10% breathing room on each side
+    const expandedBounds: [[number, number], [number, number]] = [
+      [minLng - lngSpan * margin, minLat - latSpan * margin],
+      [maxLng + lngSpan * margin, maxLat + latSpan * margin],
+    ]
 
     // Padding: account for notes panel (desktop) or bottom sheet (mobile)
     const isMobileView = window.matchMedia('(max-width: 768px)').matches
     const rightPad = notesOpen ? notesWidth + 40 : 60
-    const bottomPad = isMobileView ? 140 : 80  // peek bar on mobile
+    const bottomPad = isMobileView ? 160 : 100  // peek bar on mobile
 
     map.fitBounds(
-      [[minLng, minLat], [maxLng, maxLat]],
-      { padding: { top: 80, right: rightPad, bottom: bottomPad, left: 40 }, duration: 1200, maxZoom: 10 },
+      expandedBounds,
+      {
+        padding: { top: 100, right: rightPad, bottom: bottomPad, left: 50 },
+        duration: 1800,
+        maxZoom: 7,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ...(({ animate: true, essential: true, curve: 1.4, speed: 0.9 }) as any),
+      },
     )
-  }, [isSidebarLoading, annotatedPoints, mapReady, notesOpen, notesWidth])
+  }, [isSidebarLoading, annotatedPoints, mapReady, notesOpen, notesWidth, layers, intent])
 
   // ── Re-fit when notes panel opens/closes or is resized ───────────────────
   useEffect(() => {
     const map = mapRef.current
-    if (!map || !mapReady || annotatedPoints.length === 0 || isSidebarLoading) return
+    if (!map || !mapReady || isSidebarLoading) return
 
-    const lngs = annotatedPoints.map(p => p.coordinates[0])
-    const lats  = annotatedPoints.map(p => p.coordinates[1])
-    const minLng = Math.min(...lngs), maxLng = Math.max(...lngs)
-    const minLat  = Math.min(...lats),  maxLat  = Math.max(...lats)
+    // Collect bounds from markers AND polygon layers
+    const allLngs2 = annotatedPoints.map(p => p.coordinates[0])
+    const allLats2 = annotatedPoints.map(p => p.coordinates[1])
+    for (const layer of layers) {
+      if (!layer.visible) continue
+      const lb = getLayerGeoBounds(layer, intent?.title ?? '', intent?.features_to_show ?? [])
+      if (lb) {
+        allLngs2.push(lb[0], lb[2])
+        allLats2.push(lb[1], lb[3])
+      }
+    }
+    if (allLngs2.length === 0) return
+
+    const minLng = Math.min(...allLngs2), maxLng = Math.max(...allLngs2)
+    const minLat = Math.min(...allLats2), maxLat = Math.max(...allLats2)
+    const lngSpan2 = Math.max(maxLng - minLng, 1)
+    const latSpan2 = Math.max(maxLat - minLat, 1)
+    const m2 = 0.10
     const isMobileView2 = window.matchMedia('(max-width: 768px)').matches
     const rightPad2 = notesOpen ? notesWidth + 40 : 60
-    const bottomPad2 = isMobileView2 ? 140 : 80
+    const bottomPad2 = isMobileView2 ? 160 : 100
 
     map.fitBounds(
-      [[minLng, minLat], [maxLng, maxLat]],
-      { padding: { top: 80, right: rightPad2, bottom: bottomPad2, left: 40 }, duration: 600, maxZoom: 10 },
+      [[minLng - lngSpan2 * m2, minLat - latSpan2 * m2], [maxLng + lngSpan2 * m2, maxLat + latSpan2 * m2]],
+      { padding: { top: 100, right: rightPad2, bottom: bottomPad2, left: 50 }, duration: 600, maxZoom: 7 },
     )
   // Only re-trigger on notes state changes, not every point update
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -725,25 +842,34 @@ export default function MapCanvas() {
             transform: 'translateX(-50%) translateY(-100%)',
           }}
         >
-          <div className="bg-white rounded-2xl overflow-hidden w-[230px]"
-            style={{ boxShadow: '0 12px 40px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.06)' }}>
-            {/* Colored top bar */}
-            <div style={{ height: 3, background: markerPopup.color }} />
+          <div className="rounded-2xl overflow-hidden w-[240px]"
+            style={{
+              background: 'rgba(10, 14, 28, 0.94)',
+              backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)',
+              border: `1px solid ${markerPopup.color}40`,
+              boxShadow: `0 12px 40px rgba(0,0,0,0.4), 0 0 20px ${markerPopup.color}15`,
+            }}>
+            {/* Colored top accent */}
+            <div style={{ height: 2.5, background: `linear-gradient(90deg, ${markerPopup.color}, ${markerPopup.color}60)` }} />
             <div className="p-3.5">
               {/* Name + icon */}
-              <div className="flex items-start gap-2.5 mb-3.5">
-                <span className="text-[22px] leading-none flex-shrink-0 mt-0.5">{markerPopup.icon}</span>
-                <p className="text-[13px] font-semibold text-gray-800 leading-snug flex-1">{markerPopup.name}</p>
+              <div className="flex items-start gap-2.5 mb-3">
+                <div className="w-9 h-9 rounded-lg flex items-center justify-center text-[18px] flex-shrink-0"
+                  style={{ background: `${markerPopup.color}18`, border: `1px solid ${markerPopup.color}35` }}>
+                  {markerPopup.icon}
+                </div>
+                <p className="text-[13px] font-semibold text-white/90 leading-snug flex-1 pt-1">{markerPopup.name}</p>
                 <button
                   onClick={() => setMarkerPopup(null)}
-                  className="text-gray-300 hover:text-gray-500 flex-shrink-0 -mt-0.5 -mr-0.5 text-lg leading-none"
+                  className="text-white/25 hover:text-white/60 flex-shrink-0 -mt-0.5 -mr-0.5 text-lg leading-none transition-colors"
                 >×</button>
               </div>
               {/* Action buttons */}
               <div className="flex gap-2">
                 <button
                   onClick={() => askAI(`Tell me about "${markerPopup.name}" and its importance for UPSC`)}
-                  className="flex-1 flex items-center justify-center gap-1.5 px-2.5 py-2 rounded-xl bg-indigo-600 text-white text-[11px] font-semibold hover:bg-indigo-500 active:bg-indigo-700 transition-colors"
+                  className="flex-1 flex items-center justify-center gap-1.5 px-2.5 py-2 rounded-xl text-white text-[11px] font-semibold transition-colors"
+                  style={{ background: markerPopup.color, boxShadow: `0 2px 10px ${markerPopup.color}40` }}
                 >
                   <svg className="w-3 h-3" fill="none" viewBox="0 0 12 12" stroke="currentColor" strokeWidth="2">
                     <path d="M6 1C3.24 1 1 3.02 1 5.5c0 .95.3 1.83.8 2.56L1 11l3.2-.76A5.1 5.1 0 006 10.5c2.76 0 5-2.02 5-4.5S8.76 1 6 1z" strokeLinejoin="round"/>
@@ -752,7 +878,8 @@ export default function MapCanvas() {
                 </button>
                 <button
                   onClick={() => askAI(`Show a detailed UPSC map focused on ${markerPopup.name} and surrounding region`)}
-                  className="flex-1 flex items-center justify-center gap-1.5 px-2.5 py-2 rounded-xl bg-gray-100 text-gray-700 text-[11px] font-semibold hover:bg-gray-200 active:bg-gray-300 transition-colors"
+                  className="flex-1 flex items-center justify-center gap-1.5 px-2.5 py-2 rounded-xl text-[11px] font-semibold transition-colors"
+                  style={{ background: 'rgba(255,255,255,0.07)', color: 'rgba(255,255,255,0.65)', border: '1px solid rgba(255,255,255,0.1)' }}
                 >
                   <svg className="w-3 h-3" fill="none" viewBox="0 0 12 12" stroke="currentColor" strokeWidth="2">
                     <circle cx="5" cy="5" r="4"/><path d="M8.5 8.5L11 11" strokeLinecap="round"/>
@@ -763,8 +890,8 @@ export default function MapCanvas() {
             </div>
             {/* Down arrow */}
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full overflow-hidden w-4 h-2">
-              <div className="w-3 h-3 bg-white rotate-45 translate-x-0.5 -translate-y-1.5"
-                style={{ boxShadow: '1px 1px 3px rgba(0,0,0,0.08)' }} />
+              <div className="w-3 h-3 rotate-45 translate-x-0.5 -translate-y-1.5"
+                style={{ background: 'rgba(10, 14, 28, 0.94)', boxShadow: `1px 1px 3px ${markerPopup.color}20` }} />
             </div>
           </div>
         </div>
@@ -780,21 +907,31 @@ export default function MapCanvas() {
             transform: 'translateX(-50%) translateY(-100%)',
           }}
         >
-          <div className="bg-white rounded-xl overflow-hidden w-[210px]"
-            style={{ boxShadow: '0 8px 30px rgba(0,0,0,0.14), 0 0 0 1px rgba(0,0,0,0.06)' }}>
-            <div style={{ height: 3, background: 'linear-gradient(90deg, #4f46e5, #7c3aed)' }} />
+          <div className="rounded-xl overflow-hidden w-[220px]"
+            style={{
+              background: 'rgba(10, 14, 28, 0.94)',
+              backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)',
+              border: '1px solid rgba(99,102,241,0.3)',
+              boxShadow: '0 8px 30px rgba(0,0,0,0.4), 0 0 16px rgba(99,102,241,0.1)',
+            }}>
+            <div style={{ height: 2.5, background: 'linear-gradient(90deg, #6366f1, #a78bfa)' }} />
             <div className="p-3">
               <div className="flex items-center justify-between mb-3">
-                <p className="text-[13px] font-bold text-gray-800 leading-none">{statePopup.name}</p>
+                <div className="flex items-center gap-2">
+                  <span className="w-6 h-6 rounded-md flex items-center justify-center text-[12px]"
+                    style={{ background: 'rgba(99,102,241,0.15)', border: '1px solid rgba(99,102,241,0.3)' }}>🗺️</span>
+                  <p className="text-[13px] font-bold text-white/90 leading-none">{statePopup.name}</p>
+                </div>
                 <button
                   onClick={() => setStatePopup(null)}
-                  className="text-gray-300 hover:text-gray-500 text-lg leading-none ml-2"
+                  className="text-white/25 hover:text-white/60 text-lg leading-none ml-2 transition-colors"
                 >×</button>
               </div>
               <div className="flex gap-2">
                 <button
                   onClick={() => askAI(`Tell me about ${statePopup.name} — geography, economy, and UPSC significance`)}
-                  className="flex-1 flex items-center justify-center gap-1.5 px-2.5 py-2 rounded-lg bg-indigo-600 text-white text-[11px] font-semibold hover:bg-indigo-500 transition-colors"
+                  className="flex-1 flex items-center justify-center gap-1.5 px-2.5 py-2 rounded-lg text-white text-[11px] font-semibold transition-colors"
+                  style={{ background: '#6366f1', boxShadow: '0 2px 10px rgba(99,102,241,0.4)' }}
                 >
                   <svg className="w-3 h-3" fill="none" viewBox="0 0 12 12" stroke="currentColor" strokeWidth="2">
                     <path d="M6 1C3.24 1 1 3.02 1 5.5c0 .95.3 1.83.8 2.56L1 11l3.2-.76A5.1 5.1 0 006 10.5c2.76 0 5-2.02 5-4.5S8.76 1 6 1z" strokeLinejoin="round"/>
@@ -803,7 +940,8 @@ export default function MapCanvas() {
                 </button>
                 <button
                   onClick={() => askAI(`Show me a detailed UPSC map of ${statePopup.name} — rivers, districts, historical sites, minerals`)}
-                  className="flex-1 flex items-center justify-center gap-1.5 px-2.5 py-2 rounded-lg bg-gray-100 text-gray-700 text-[11px] font-semibold hover:bg-gray-200 transition-colors"
+                  className="flex-1 flex items-center justify-center gap-1.5 px-2.5 py-2 rounded-lg text-[11px] font-semibold transition-colors"
+                  style={{ background: 'rgba(255,255,255,0.07)', color: 'rgba(255,255,255,0.65)', border: '1px solid rgba(255,255,255,0.1)' }}
                 >
                   <svg className="w-3 h-3" fill="none" viewBox="0 0 12 12" stroke="currentColor" strokeWidth="2">
                     <rect x="1" y="1" width="10" height="10" rx="1.5"/><path d="M4 6h4M6 4v4" strokeLinecap="round"/>
@@ -1002,7 +1140,7 @@ export default function MapCanvas() {
 
       {/* ── Map controls (top-right, simplified on mobile) ─────────────────── */}
       {mapReady && (
-        <div className="absolute top-4 right-3 md:right-4 z-10 flex flex-col gap-2">
+        <div className="absolute right-3 md:right-4 z-10 flex flex-col gap-2" style={{ top: 'calc(env(safe-area-inset-top, 0px) + 140px)' }}>
           {/* Compass — desktop only */}
           <div className="w-9 h-9 rounded-xl items-center justify-center hidden md:flex" style={glassStyle}>
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -1214,8 +1352,15 @@ function MarkerDetailsPanel({ marker, mapContext, onClose, onAskAI }: MarkerDeta
 
   return (
     <div
-      className="absolute bottom-32 md:bottom-5 right-3 md:right-5 z-40 w-[calc(100%-24px)] md:w-[310px] max-h-[50vh] md:max-h-[520px] flex flex-col rounded-2xl overflow-hidden details-panel-enter"
-      style={panelStyle}
+      className="absolute z-40 flex flex-col rounded-2xl overflow-hidden details-panel-enter"
+      style={{
+        ...panelStyle,
+        top: 'calc(env(safe-area-inset-top, 0px) + 150px)',
+        right: 12,
+        bottom: 'auto',
+        width: 'min(calc(100% - 24px), 320px)',
+        maxHeight: 'calc(100vh - env(safe-area-inset-top, 0px) - 280px)',
+      } as React.CSSProperties}
     >
       {/* Colour accent top bar */}
       <div style={{ height: 2.5, background: `linear-gradient(90deg, ${marker.color}, ${marker.color}60)`, flexShrink: 0 }} />
@@ -1230,8 +1375,8 @@ function MarkerDetailsPanel({ marker, mapContext, onClose, onAskAI }: MarkerDeta
         </div>
         <div className="flex-1 min-w-0">
           <h3 className="text-[14px] font-bold text-white leading-snug">{marker.name}</h3>
-          <p className="text-[10px] mt-0.5 font-mono" style={{ color: marker.color + 'aa' }}>
-            {marker.lat.toFixed(3)}°N · {marker.lng.toFixed(3)}°E
+          <p className="text-[10px] mt-1" style={{ color: marker.color + 'aa' }}>
+            {mapContext || 'UPSC Geography'}
           </p>
         </div>
         <button

@@ -41,7 +41,7 @@ const PARSE_MAP_INTENT_TOOL: Groq.Chat.Completions.ChatCompletionTool = {
           description: 'Geographic scope of the map',
         },
         region_specific: {
-          type: 'string',
+          type: ['string', 'null'],
           description: 'State/district name when region_scope is specific_state or specific_district',
         },
         time_period: {
@@ -58,8 +58,8 @@ const PARSE_MAP_INTENT_TOOL: Groq.Chat.Completions.ChatCompletionTool = {
                 'early_medieval', 'late_medieval', 'pre_independence',
               ],
             },
-            specific_year: { type: 'number' },
-            specific_event: { type: 'string' },
+            specific_year: { type: ['number', 'null'] },
+            specific_event: { type: ['string', 'null'] },
           },
         },
         features_to_show: {
@@ -200,22 +200,50 @@ Rules for sidebar_topics: exactly 5 topics, each starting with "GS-I:", "GS-II:"
 annotation_level: "detailed" for historical, "standard" for physical/political/international`
 
 export async function parseMapIntent(userMessage: string): Promise<ParsedMapIntent> {
-  const response = await getGroq().chat.completions.create({
-    model: 'llama-3.3-70b-versatile',
-    messages: [
-      { role: 'system', content: SYSTEM_INSTRUCTION },
-      { role: 'user', content: userMessage },
-    ],
-    tools: [PARSE_MAP_INTENT_TOOL],
-    tool_choice: { type: 'function', function: { name: 'parse_map_intent' } },
-  })
+  // Try the original request. If the model refuses to call the tool (e.g. for
+  // queries it deems non-map-related), retry once with a stronger prompt that
+  // forces a map interpretation. If that also fails, throw a user-friendly error.
+  async function attempt(msg: string): Promise<ParsedMapIntent> {
+    const response = await getGroq().chat.completions.create({
+      model: 'openai/gpt-oss-120b',
+      messages: [
+        { role: 'system', content: SYSTEM_INSTRUCTION },
+        { role: 'user', content: msg },
+      ],
+      tools: [PARSE_MAP_INTENT_TOOL],
+      tool_choice: { type: 'function', function: { name: 'parse_map_intent' } },
+    })
 
-  const toolCall = response.choices[0]?.message?.tool_calls?.[0]
-  if (!toolCall || toolCall.type !== 'function') {
-    throw new Error('Groq did not return a tool call')
+    const toolCall = response.choices[0]?.message?.tool_calls?.[0]
+    if (!toolCall || toolCall.type !== 'function') {
+      throw new Error('Model did not return a tool call')
+    }
+
+    return JSON.parse(toolCall.function.arguments) as ParsedMapIntent
   }
 
-  return JSON.parse(toolCall.function.arguments) as ParsedMapIntent
+  try {
+    return await attempt(userMessage)
+  } catch (err: unknown) {
+    // Check if the error is a tool_use_failed / model-refused-to-call-tool error
+    const errMsg = err instanceof Error ? err.message : String(err)
+    const isToolRefusal = errMsg.includes('tool_use_failed') ||
+      errMsg.includes('did not call a tool') ||
+      errMsg.includes('did not return a tool call')
+
+    if (!isToolRefusal) throw err
+
+    // Retry with a forced map-interpretation prompt
+    try {
+      return await attempt(
+        `Create a UPSC-relevant map for the following query. Even if the topic seems unrelated to geography, find the closest geographic/map angle and generate the map intent.\n\nQuery: "${userMessage}"`
+      )
+    } catch {
+      throw new Error(
+        'Could not interpret this as a map query. Try asking about a geographic topic — rivers, states, battles, empires, minerals, national parks, etc.'
+      )
+    }
+  }
 }
 
 /** Lightweight follow-up classification */
@@ -224,7 +252,7 @@ export async function classifyFollowUp(
   currentIntent: ParsedMapIntent
 ): Promise<'full_replace' | 'modify'> {
   const response = await getGroq().chat.completions.create({
-    model: 'llama-3.3-70b-versatile',
+    model: 'openai/gpt-oss-120b',
     messages: [{
       role: 'user',
       content: `Current map: "${currentIntent.title}"\nUser message: "${userMessage}"\n\nClassify as "full_replace" (completely new map) or "modify" (minor change). Reply with only one of those two words.`,

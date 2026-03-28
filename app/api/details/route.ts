@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
     async start(controller) {
       try {
         const groqStream = await getGroq().chat.completions.create({
-          model: 'llama-3.3-70b-versatile',
+          model: 'openai/gpt-oss-120b',
           stream: true,
           messages: [
             { role: 'system', content: SYSTEM },

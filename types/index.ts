@@ -90,6 +90,8 @@ export interface MapState {
     zoom: number
   }
   annotatedPoints: AnnotatedPoint[]
+  /** Actual bounds from the zoom_to operation — used to fit the plotted area on screen */
+  targetBounds: [number, number, number, number] | null
 }
 
 export interface MapSession {

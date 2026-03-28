@@ -53,3 +53,23 @@ next-env.d.ts
 /happy-jepsen/
 /lucid-sammet/
 /stoic-turing/
+/condescending-volhard/
+/infallible-pike/
+/confident-roentgen/
+/dazzling-bohr/
+/eloquent-lumiere/
+/zen-austin/
+/objective-haibt/
+/adoring-blackwell/
+/loving-golick/
+/determined-nobel/
+/busy-allen/
+/stupefied-swanson/
+/keen-hawking/
+/friendly-grothendieck/
+/modest-bassi/
+/modest-wilson/
+/lucid-kare/
+
+# env files with API keys
+.env.groq
