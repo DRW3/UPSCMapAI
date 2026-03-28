@@ -271,8 +271,10 @@ function ChatInterfaceInner() {
   const stepIndexRef   = useRef(0)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef       = useRef<HTMLTextAreaElement>(null)
+  const proxyInputRef  = useRef<HTMLInputElement>(null)  // always-mounted hidden input for mobile keyboard trick
   const sheetRef       = useRef<HTMLDivElement>(null)
   const isDraggingRef  = useRef(false)
+  const wantsFocusRef  = useRef(false)  // flag: transfer focus to real textarea on next render
 
   function startStepCycle() {
     stepIndexRef.current = 0
@@ -437,6 +439,16 @@ function ChatInterfaceInner() {
     startSheetDrag(e.clientY, 'mouse')
   }
 
+  // Open the sheet and immediately trigger the keyboard via the proxy input.
+  // On mobile, focus() only opens the keyboard during a user gesture, so we
+  // focus a hidden always-mounted input synchronously in the tap handler.
+  function openSheetWithKeyboard() {
+    wantsFocusRef.current = true
+    // Focus the proxy input RIGHT NOW (synchronous, within the tap gesture) → keyboard opens
+    proxyInputRef.current?.focus()
+    setSheetState('open')
+  }
+
   // Clickable location pill style — distinct, tappable
   // Uses <span> instead of <button> so iOS Safari doesn't apply UA button styles
   const locPillStyle: React.CSSProperties = {
@@ -564,11 +576,16 @@ function ChatInterfaceInner() {
     if (messages.length > 1) setActiveTab('chat')
   }, [messages.length])
 
-  // Focus input when panel opens — works on both desktop and mobile.
-  // On mobile, the keyboard auto-opens because focus is triggered from a user tap.
+  // Transfer focus from proxy input to real textarea once the sheet is open.
+  // The proxy was focused synchronously during the user tap (which opens the keyboard),
+  // now we move focus to the real textarea so keystrokes go to the right place.
   useEffect(() => {
-    if (sheetState === 'open' || sheetState === 'expanded') {
-      setTimeout(() => inputRef.current?.focus(), 350)
+    if ((sheetState === 'open' || sheetState === 'expanded') && wantsFocusRef.current) {
+      wantsFocusRef.current = false
+      // Short delay to let the sheet finish rendering the textarea
+      requestAnimationFrame(() => {
+        inputRef.current?.focus()
+      })
     }
   }, [sheetState])
 
@@ -809,7 +826,7 @@ function ChatInterfaceInner() {
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 20, paddingTop: 'env(safe-area-inset-top, 10px)' }}>
           {/* Search bar with animated gradient border — left margin accounts for back button */}
           <div
-            onClick={() => { setSheetState('open'); setTimeout(() => inputRef.current?.focus(), 100) }}
+            onClick={() => openSheetWithKeyboard()}
             className="search-bar-border"
             style={{
               margin: '8px 12px 0 60px',
@@ -900,7 +917,7 @@ function ChatInterfaceInner() {
         }}>
           {/* Search bar with animated gradient border */}
           <div
-            onClick={() => { setSheetState('open'); setTimeout(() => inputRef.current?.focus(), 100) }}
+            onClick={() => openSheetWithKeyboard()}
             className="search-bar-border"
             style={{
               borderRadius: 24,
@@ -990,6 +1007,28 @@ function ChatInterfaceInner() {
         </div>
       )}
 
+      {/* Hidden proxy input — always in the DOM so we can focus it synchronously
+           during a tap gesture to open the mobile keyboard. Once the real textarea
+           renders, focus transfers to it automatically. */}
+      <input
+        ref={proxyInputRef}
+        aria-hidden="true"
+        tabIndex={-1}
+        style={{
+          position: 'fixed', bottom: 0, left: '-9999px',
+          width: 1, height: 1, opacity: 0,
+          border: 'none', padding: 0, margin: 0,
+          fontSize: 16,  // 16px prevents iOS Safari auto-zoom on focus
+        }}
+        onKeyDown={e => {
+          // Forward Enter to send, other keys will transfer naturally
+          if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault()
+            if (input.trim()) sendMessage(input)
+          }
+        }}
+      />
+
       {/* ── Slide-up chat panel (3-state: closed / peek / open) ─────────── */}
       <div
         ref={sheetRef}
@@ -1042,7 +1081,7 @@ function ChatInterfaceInner() {
         {/* ── Peek content (mobile only) ─────────────────────────────────── */}
         {isMobile && sheetState === 'peek' && (
           <div
-            onClick={() => { setSheetState('open'); setTimeout(() => inputRef.current?.focus(), 100) }}
+            onClick={() => openSheetWithKeyboard()}
             style={{
               display: 'flex', flexDirection: 'column', gap: 8,
               padding: '2px 14px 14px',
