@@ -260,8 +260,14 @@ function normalizeIntent(raw: ParsedMapIntent): ParsedMapIntent {
 }
 
 export async function parseMapIntent(userMessage: string): Promise<ParsedMapIntent> {
-  // Models in priority order: try 70B for quality, fall back to 8B for availability
-  const MODELS = ['llama-3.3-70b-versatile', 'llama-3.1-8b-instant'] as const
+  // Models in priority order — diverse providers for maximum availability.
+  // Each has 500K+ TPD except llama-3.3-70b (100K) which we try first for quality.
+  const MODELS = [
+    'llama-3.3-70b-versatile',
+    'qwen/qwen3-32b',
+    'meta-llama/llama-4-scout-17b-16e-instruct',
+    'llama-3.1-8b-instant',
+  ] as const
 
   async function attempt(msg: string, model: string): Promise<ParsedMapIntent> {
     const response = await getGroq().chat.completions.create({
@@ -283,28 +289,17 @@ export async function parseMapIntent(userMessage: string): Promise<ParsedMapInte
     return normalizeIntent(raw)
   }
 
-  // Try each model — if one is rate-limited, try the next
+  const forcedPrompt = `You MUST call the parse_map_intent function for this query. Interpret it as a geographic/map topic no matter what. If the exact thing doesn't exist in that region, map the region itself with what IS geographically notable there.\n\nQuery: "${userMessage}"`
+
+  // Try each model with original prompt, then forced prompt. On ANY error, move on.
   for (const model of MODELS) {
-    // Try 1: direct parse
     try {
       return await attempt(userMessage, model)
-    } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : String(err)
-      const isRateLimit = msg.includes('429') || msg.includes('rate_limit')
-      if (isRateLimit) continue // try next model
-    }
+    } catch { /* try forced prompt */ }
 
-    // Try 2: force a geographic interpretation (same model)
     try {
-      return await attempt(
-        `You MUST create a map intent for this query. Even if the exact topic doesn't exist in that region, show the region on the map and note what IS geographically relevant there instead. Always produce valid output.\n\nQuery: "${userMessage}"`,
-        model,
-      )
-    } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : String(err)
-      const isRateLimit = msg.includes('429') || msg.includes('rate_limit')
-      if (isRateLimit) continue // try next model
-    }
+      return await attempt(forcedPrompt, model)
+    } catch { /* try next model */ }
   }
 
   // All models exhausted
