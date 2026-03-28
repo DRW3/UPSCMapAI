@@ -326,12 +326,26 @@ function ChatInterfaceInner() {
     }
   }
 
-  // Process React children — linkify any string children
-  function linkifyChildren(children: React.ReactNode): React.ReactNode {
-    return React.Children.map(children, child => {
-      if (typeof child === 'string') return linkifyLocations(child)
-      return child
-    })
+  // Preprocess markdown text: inject [label](loc:lng,lat) links for map pins
+  function injectLocationLinks(markdown: string): string {
+    try {
+      if (!annotatedPoints.length || !markdown) return markdown
+      const valid = [...annotatedPoints]
+        .filter(p => p.label && p.label.length >= 3)
+        .sort((a, b) => b.label.length - a.label.length)
+      if (!valid.length) return markdown
+
+      let result = markdown
+      for (const pt of valid) {
+        const escaped = pt.label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+        // Match label not already inside a markdown link [...](...)
+        const regex = new RegExp(`(?<!\\[)\\b(${escaped})\\b(?!\\]\\()`, 'gi')
+        result = result.replace(regex, `[$1](loc:${pt.coordinates[0]},${pt.coordinates[1]})`)
+      }
+      return result
+    } catch {
+      return markdown
+    }
   }
 
   // Parse chat text: render **bold** and make matching locations clickable
@@ -378,12 +392,12 @@ function ChatInterfaceInner() {
     if (messages.length > 1) setActiveTab('chat')
   }, [messages.length])
 
-  // Focus input when panel opens
+  // Focus input when panel opens (skip on mobile — causes viewport zoom)
   useEffect(() => {
-    if (sheetState === 'open') {
+    if (sheetState === 'open' && !isMobile) {
       setTimeout(() => inputRef.current?.focus(), 350)
     }
-  }, [sheetState])
+  }, [sheetState, isMobile])
 
   // Detect mobile viewport
   useEffect(() => {
@@ -548,24 +562,23 @@ function ChatInterfaceInner() {
   // Compute current map title for peek state
   const currentMapTitle = useMapStore.getState().intent?.title ?? ''
 
-  // Location-aware markdown components — linkifies ALL text, not just bold
+  // Location-aware markdown: handle loc: links as clickable map buttons
   const notesMdComponents: Components = {
     ...mdComponents,
-    p: ({ children }) => (
-      <p className="text-[12px] leading-relaxed mb-1.5 text-white/75">{linkifyChildren(children)}</p>
-    ),
-    li: ({ children }) => (
-      <div className="flex gap-2 text-[12px] leading-relaxed py-0.5 text-white/75">
-        <span className="text-indigo-400/80 mt-[3px] flex-shrink-0 text-[7px]">◆</span>
-        <span className="flex-1">{linkifyChildren(children)}</span>
-      </div>
-    ),
-    strong: ({ children }) => (
-      <strong className="font-semibold" style={{ color: 'rgba(255,255,255,0.92)' }}>{linkifyChildren(children)}</strong>
-    ),
-    td: ({ children }) => (
-      <td className="border border-white/10 px-2 py-1 text-white/70">{linkifyChildren(children)}</td>
-    ),
+    a: ({ href, children }) => {
+      if (href?.startsWith('loc:')) {
+        const coords = href.slice(4).split(',').map(Number) as [number, number]
+        if (coords.length === 2 && !isNaN(coords[0]) && !isNaN(coords[1])) {
+          return (
+            <button onClick={(e) => { e.stopPropagation(); flyToLocation(coords) }}
+              style={locBtnStyle}>
+              {children}<span style={{ fontSize: 9, marginLeft: 2, opacity: 0.6 }}>📍</span>
+            </button>
+          )
+        }
+      }
+      return <a href={href} target="_blank" rel="noopener noreferrer" style={{ color: '#a5b4fc' }}>{children}</a>
+    },
   }
 
   return (
@@ -879,7 +892,7 @@ function ChatInterfaceInner() {
                       }}>
                         {msg.content ? (
                           <ReactMarkdown remarkPlugins={[remarkGfm]} components={notesMdComponents}>
-                            {msg.content}
+                            {injectLocationLinks(msg.content)}
                           </ReactMarkdown>
                         ) : (
                           /* Skeleton while streaming starts */
@@ -1019,7 +1032,7 @@ function ChatInterfaceInner() {
                     background: 'rgba(255,255,255,0.06)',
                     border: '1px solid rgba(255,255,255,0.1)',
                     padding: '10px 14px',
-                    fontSize: 13, color: 'white',
+                    fontSize: 16, color: 'white',
                     outline: 'none',
                     opacity: isLoading ? 0.4 : 1,
                     lineHeight: 1.5,
