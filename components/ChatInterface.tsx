@@ -335,14 +335,14 @@ function ChatInterfaceInner() {
         .sort((a, b) => b.label.length - a.label.length)
       if (!valid.length) return markdown
 
-      let result = markdown
-      for (const pt of valid) {
-        const escaped = pt.label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-        // Match label not already inside a markdown link [...](...)
-        const regex = new RegExp(`(?<!\\[)\\b(${escaped})\\b(?!\\]\\()`, 'gi')
-        result = result.replace(regex, `[$1](loc:${pt.coordinates[0]},${pt.coordinates[1]})`)
-      }
-      return result
+      // Single-pass replace — no lookbehinds (Safari compat)
+      const pattern = valid.map(p => p.label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')
+      const regex = new RegExp(`(${pattern})`, 'gi')
+      return markdown.replace(regex, (match) => {
+        const pt = valid.find(p => p.label.toLowerCase() === match.toLowerCase())
+        if (pt) return `[${match}](loc:${pt.coordinates[0]},${pt.coordinates[1]})`
+        return match
+      })
     } catch {
       return markdown
     }
@@ -974,46 +974,32 @@ function ChatInterfaceInner() {
                   </div>
                 )
               })}
+              {/* Suggested queries — inside scroll area so they don't overlap input */}
+              {messages.length === 1 && (
+                <div style={{ padding: '8px 0 4px' }}>
+                  <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.3)', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600 }}>
+                    Try a topic
+                  </p>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                    {SUGGESTED_QUERIES.map(q => (
+                      <button
+                        key={q}
+                        onClick={() => sendMessage(q)}
+                        style={{
+                          fontSize: 12, padding: '8px 12px', borderRadius: 16, cursor: 'pointer',
+                          background: 'rgba(255,255,255,0.06)',
+                          border: '1px solid rgba(255,255,255,0.1)',
+                          color: 'rgba(255,255,255,0.65)',
+                        }}
+                      >
+                        {q}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
               <div ref={messagesEndRef} />
             </div>
-
-            {/* Suggested queries */}
-            {messages.length === 1 && (
-              <div style={{ padding: '0 14px 10px', flexShrink: 0 }}>
-                <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.3)', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600 }}>
-                  Popular topics
-                </p>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                  {SUGGESTED_QUERIES.map(q => (
-                    <button
-                      key={q}
-                      onClick={() => sendMessage(q)}
-                      style={{
-                        fontSize: 11, padding: '6px 10px', borderRadius: 8, cursor: 'pointer',
-                        background: 'rgba(255,255,255,0.05)',
-                        border: '1px solid rgba(255,255,255,0.08)',
-                        color: 'rgba(255,255,255,0.6)',
-                        transition: 'all 0.15s',
-                      }}
-                      onMouseEnter={e => {
-                        const el = e.currentTarget as HTMLElement
-                        el.style.background = 'rgba(99,102,241,0.2)'
-                        el.style.borderColor = 'rgba(99,102,241,0.4)'
-                        el.style.color = '#a5b4fc'
-                      }}
-                      onMouseLeave={e => {
-                        const el = e.currentTarget as HTMLElement
-                        el.style.background = 'rgba(255,255,255,0.05)'
-                        el.style.borderColor = 'rgba(255,255,255,0.08)'
-                        el.style.color = 'rgba(255,255,255,0.6)'
-                      }}
-                    >
-                      {q}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
 
             {/* Input */}
             <div style={{ padding: '10px 14px 16px', flexShrink: 0, borderTop: '1px solid rgba(255,255,255,0.07)' }}>
