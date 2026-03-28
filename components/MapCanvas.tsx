@@ -589,8 +589,6 @@ export default function MapCanvas() {
 
     // Compute swoop target: prefer area-aware bounds (polygon + targetBounds),
     // fall back to targetBounds from zoom_to, then India bounds.
-    let swoopBounds: [[number, number], [number, number]]
-
     // Start from targetBounds (region-level) or India
     const baseBounds = targetBounds
       ? [[targetBounds[0], targetBounds[1]], [targetBounds[2], targetBounds[3]]] as [[number, number], [number, number]]
@@ -611,7 +609,7 @@ export default function MapCanvas() {
       }
     }
 
-    swoopBounds = [[minLng, minLat], [maxLng, maxLat]]
+    const swoopBounds: [[number, number], [number, number]] = [[minLng, minLat], [maxLng, maxLat]]
 
     const isMobileView = window.matchMedia('(max-width: 768px)').matches
     const fitPadding = { top: isMobileView ? 100 : 80, bottom: isMobileView ? 130 : 80, left: 20, right: 20 }
