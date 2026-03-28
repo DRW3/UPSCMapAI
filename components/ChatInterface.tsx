@@ -567,12 +567,13 @@ function ChatInterfaceInner() {
     if (messages.length > 1) setActiveTab('chat')
   }, [messages.length])
 
-  // Focus input when panel opens (skip on mobile — causes viewport zoom)
+  // Focus input when panel opens — works on both desktop and mobile.
+  // On mobile, the keyboard auto-opens because focus is triggered from a user tap.
   useEffect(() => {
-    if ((sheetState === 'open' || sheetState === 'expanded') && !isMobile) {
+    if (sheetState === 'open' || sheetState === 'expanded') {
       setTimeout(() => inputRef.current?.focus(), 350)
     }
-  }, [sheetState, isMobile])
+  }, [sheetState])
 
   // Detect mobile viewport
   useEffect(() => {
@@ -811,7 +812,7 @@ function ChatInterfaceInner() {
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 20, paddingTop: 'env(safe-area-inset-top, 10px)' }}>
           {/* Search bar with animated gradient border — left margin accounts for back button */}
           <div
-            onClick={() => setSheetState('open')}
+            onClick={() => { setSheetState('open'); setTimeout(() => inputRef.current?.focus(), 100) }}
             className="search-bar-border"
             style={{
               margin: '8px 12px 0 60px',
@@ -902,7 +903,7 @@ function ChatInterfaceInner() {
         }}>
           {/* Search bar with animated gradient border */}
           <div
-            onClick={() => setSheetState('open')}
+            onClick={() => { setSheetState('open'); setTimeout(() => inputRef.current?.focus(), 100) }}
             className="search-bar-border"
             style={{
               borderRadius: 24,
@@ -1043,7 +1044,7 @@ function ChatInterfaceInner() {
         {/* ── Peek content (mobile only) ─────────────────────────────────── */}
         {isMobile && sheetState === 'peek' && (
           <div
-            onClick={() => setSheetState('open')}
+            onClick={() => { setSheetState('open'); setTimeout(() => inputRef.current?.focus(), 100) }}
             style={{
               display: 'flex', flexDirection: 'column', gap: 8,
               padding: '2px 14px 14px',
