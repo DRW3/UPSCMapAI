@@ -93,8 +93,8 @@ export async function POST(req: NextRequest) {
           }
         }
 
-        // 8b. Correct coordinates using curated lookup (fixes model inaccuracies)
-        const correctedPoints = correctCoordinates(allStaticPoints)
+        // 8b. Correct coordinates: curated lookup + Nominatim geocoding
+        const correctedPoints = await correctCoordinates(allStaticPoints)
 
         if (correctedPoints.length > 0) {
           send({ type: 'map_operation', operation: { op: 'add_markers', points: correctedPoints } as MapOperation })
