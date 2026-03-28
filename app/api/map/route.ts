@@ -5,6 +5,7 @@ import { getBoundsForScope, detectEmpire, getEmpireCities } from '@/lib/ai/data-
 import { detectWebQueries, fetchWebGeoData } from '@/lib/geo/webquery'
 import { fetchRelevantPYQs } from '@/lib/pyq/retrieval'
 import { searchForContext } from '@/lib/search/web-search'
+import { correctCoordinates } from '@/lib/geo/coord-fix'
 import type { MapOperation, AnnotatedPoint } from '@/types'
 
 export const runtime = 'nodejs'
@@ -92,20 +93,23 @@ export async function POST(req: NextRequest) {
           }
         }
 
-        if (allStaticPoints.length > 0) {
-          send({ type: 'map_operation', operation: { op: 'add_markers', points: allStaticPoints } as MapOperation })
+        // 8b. Correct coordinates using curated lookup (fixes model inaccuracies)
+        const correctedPoints = correctCoordinates(allStaticPoints)
+
+        if (correctedPoints.length > 0) {
+          send({ type: 'map_operation', operation: { op: 'add_markers', points: correctedPoints } as MapOperation })
         }
 
         // 9. Send chat status message
         if (needsWebData) {
           send({
             type: 'chat_text',
-            text: `**${intent.title}** — ${allStaticPoints.length} locations marked. Fetching live ${webQueryKeys.map(k => k.replace(/_/g, ' ')).join(', ')} from Wikidata…`,
+            text: `**${intent.title}** — ${correctedPoints.length} locations marked. Fetching live ${webQueryKeys.map(k => k.replace(/_/g, ' ')).join(', ')} from Wikidata…`,
           })
         } else {
           send({
             type: 'chat_text',
-            text: buildChatResponse(intent, allStaticPoints.length),
+            text: buildChatResponse(intent, correctedPoints.length),
           })
         }
 
@@ -138,7 +142,7 @@ export async function POST(req: NextRequest) {
         } else if (needsWebData && totalWebPoints === 0) {
           send({
             type: 'chat_text_append',
-            text: ` → No live data returned. Showing ${allStaticPoints.length} AI-mapped locations.`,
+            text: ` → No live data returned. Showing ${correctedPoints.length} AI-mapped locations.`,
           })
         }
 
