@@ -199,6 +199,66 @@ Rules for features_to_highlight — populate for SPECIFIC queries, EMPTY for ove
 Rules for sidebar_topics: exactly 5 topics, each starting with "GS-I:", "GS-II:", "GS-III:", or "Prelims:"
 annotation_level: "detailed" for historical, "standard" for physical/political/international`
 
+/**
+ * Post-process the model's output to fix data_layers.
+ * The llama model often returns wrong data_source / layer_type values.
+ * We rebuild them deterministically based on map_type since we know
+ * exactly what layers each type needs.
+ */
+function normalizeIntent(raw: ParsedMapIntent): ParsedMapIntent {
+  const mt = raw.map_type ?? 'political_states'
+  const layers: ParsedMapIntent['data_layers'] = []
+
+  // 1. Base political layer (always present)
+  const isWorld = mt.startsWith('international') || raw.region_scope === 'world'
+  layers.push({
+    layer_id: 'base-political',
+    layer_type: 'base_political',
+    data_source: isWorld ? 'world_countries' : 'gadm_india_states',
+    visible: true,
+  })
+
+  // 2. Rivers layer — only for physical_rivers
+  if (mt === 'physical_rivers') {
+    layers.push({
+      layer_id: 'rivers',
+      layer_type: 'rivers',
+      data_source: 'natural_earth_rivers',
+      visible: true,
+    })
+  }
+
+  // 3. Historical boundary — for any historical map type
+  if (mt.startsWith('historical')) {
+    const era = raw.time_period?.era ?? 'medieval'
+    layers.push({
+      layer_id: 'historical-boundary',
+      layer_type: 'historical_boundary',
+      data_source: `custom_historical_${era}`,
+      visible: true,
+    })
+  }
+
+  // 4. Thematic layers
+  if (mt.startsWith('thematic_protected')) {
+    layers.push({ layer_id: 'protected-areas', layer_type: 'points_of_interest', data_source: 'protected_areas', visible: true })
+  }
+  if (mt.startsWith('thematic_disasters')) {
+    layers.push({ layer_id: 'disaster-zones', layer_type: 'thematic_choropleth', data_source: 'disaster_zones', visible: true })
+  }
+  if (mt.startsWith('economic_minerals')) {
+    layers.push({ layer_id: 'minerals', layer_type: 'thematic_choropleth', data_source: 'mineral_deposits', visible: true })
+  }
+
+  // Fix annotated_points: ensure coordinates are valid numbers
+  const points = (raw.annotated_points ?? []).filter(
+    p => p.lat != null && p.lng != null && !isNaN(p.lat) && !isNaN(p.lng)
+      && Math.abs(p.lat) <= 90 && Math.abs(p.lng) <= 180
+  )
+
+  return { ...raw, data_layers: layers, annotated_points: points }
+}
+
 export async function parseMapIntent(userMessage: string): Promise<ParsedMapIntent> {
   async function attempt(msg: string): Promise<ParsedMapIntent> {
     const response = await getGroq().chat.completions.create({
@@ -216,7 +276,8 @@ export async function parseMapIntent(userMessage: string): Promise<ParsedMapInte
       throw new Error('Model did not return a tool call')
     }
 
-    return JSON.parse(toolCall.function.arguments) as ParsedMapIntent
+    const raw = JSON.parse(toolCall.function.arguments) as ParsedMapIntent
+    return normalizeIntent(raw)
   }
 
   // Try 1: direct parse
