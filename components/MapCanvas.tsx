@@ -131,7 +131,7 @@ export default function MapCanvas() {
   const wasLoadingRef     = useRef(false)
   const loadedSpriteIds   = useRef<Set<string>>(new Set())
   const [mapReady, setMapReady]       = useState(false)
-  const [legendOpen, setLegendOpen]     = useState(true)
+  const [legendOpen, setLegendOpen]     = useState(typeof window !== 'undefined' ? window.innerWidth > 768 : true)
   const [simplified, setSimplified]     = useState(false)
   const [hiddenIcons, setHiddenIcons]   = useState<Set<string>>(new Set())
 
@@ -697,9 +697,9 @@ export default function MapCanvas() {
         </div>
       )}
 
-      {/* ── Map title ─────────────────────────────────────────────────────── */}
+      {/* ── Map title (hidden on mobile — search bar occupies that space) ── */}
       {intent && mapReady && (
-        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 pointer-events-none">
+        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 pointer-events-none hidden md:block">
           <div className="rounded-2xl px-5 py-2.5 text-center" style={glassStyle}>
             <p className="text-[9px] font-bold text-indigo-400 uppercase tracking-[0.2em] leading-none mb-1.5">
               {intent.map_type.replace(/_/g, ' ')}
@@ -1054,9 +1054,9 @@ export default function MapCanvas() {
         </div>
       )}
 
-      {/* ── "Ask about this map" floating bar (bottom center) ─────────────── */}
+      {/* ── "Ask about this map" floating bar (bottom center, above peek bar on mobile) */}
       {intent && mapReady && annotatedPoints.length > 0 && !markerPopup && !statePopup && !contextMenu && !detailsMarker && (
-        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-10 flex gap-2">
+        <div className="absolute bottom-24 md:bottom-5 left-1/2 -translate-x-1/2 z-10 flex gap-2">
           <button
             onClick={() => askAI(`Based on the current map "${intent.title}", what are the 5 most important UPSC points I should focus on?`)}
             className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-[12px] font-semibold text-white/80 hover:text-white transition-all hover:scale-105 active:scale-95"
@@ -1093,9 +1093,9 @@ export default function MapCanvas() {
         </div>
       )}
 
-      {/* ── Marker count badge (bottom-right) ─────────────────────────────── */}
+      {/* ── Marker count badge (bottom-right, above peek bar on mobile) ──── */}
       {annotatedPoints.length > 0 && mapReady && !detailsMarker && (
-        <div className="absolute bottom-5 right-4 z-10">
+        <div className="absolute bottom-24 md:bottom-5 right-4 z-10">
           <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl" style={glassStyle}>
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
             <span className="text-[11px] font-medium text-white/60">

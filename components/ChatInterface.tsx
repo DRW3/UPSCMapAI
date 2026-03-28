@@ -241,7 +241,7 @@ function ChatInterfaceInner() {
   ])
   const [input, setInput]         = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const [isOpen, setIsOpen]       = useState(false)
+  const [sheetState, setSheetState] = useState<'closed' | 'peek' | 'open'>('closed')
   const [activeTab, setActiveTab] = useState<Tab>('chat')
   const [reasoningStep, setReasoningStep] = useState('')
   const [isMobile, setIsMobile]   = useState(false)
@@ -286,7 +286,7 @@ function ChatInterfaceInner() {
     const q = searchParams.get('q')
     if (q && !autoQueryFiredRef.current && !isLoading) {
       autoQueryFiredRef.current = true
-      setIsOpen(true)
+      setSheetState('open')
       sendMessageRef.current(decodeURIComponent(q))
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -294,7 +294,7 @@ function ChatInterfaceInner() {
 
   useEffect(() => {
     if (!pendingMessage || isLoading) return
-    setIsOpen(true)
+    setSheetState('open')
     sendMessageRef.current(pendingMessage)
     setPendingMessage(null)
   }, [pendingMessage, isLoading, setPendingMessage])
@@ -310,10 +310,10 @@ function ChatInterfaceInner() {
 
   // Focus input when panel opens
   useEffect(() => {
-    if (isOpen) {
+    if (sheetState === 'open') {
       setTimeout(() => inputRef.current?.focus(), 350)
     }
-  }, [isOpen])
+  }, [sheetState])
 
   // Detect mobile viewport
   useEffect(() => {
@@ -334,7 +334,7 @@ function ChatInterfaceInner() {
     setMessages(prev => [...prev, userMsg, loadingMsg])
     setInput('')
     setIsLoading(true)
-    setIsOpen(true)
+    setSheetState('open')
     clearMapData()
     setNotesCardText('')
     setNotesCardVisible(false)
@@ -466,6 +466,10 @@ function ChatInterfaceInner() {
     } finally {
       stopSteps()
       setIsLoading(false)
+      // Auto-collapse to peek on mobile so map is visible
+      if (window.matchMedia('(max-width: 768px)').matches) {
+        setTimeout(() => setSheetState('peek'), 600)
+      }
     }
   }
 
@@ -473,173 +477,113 @@ function ChatInterfaceInner() {
     if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(input) }
   }
 
+  // Compute current map title for peek state
+  const currentMapTitle = useMapStore.getState().intent?.title ?? ''
+
   return (
     <>
-      {/* ── Mobile top bar ──────────────────────────────────────────────────── */}
-      {isMobile && (
-        <div style={{
-          position: 'fixed', top: 0, left: 0, right: 0,
-          height: 50, zIndex: 25,
-          display: 'flex', alignItems: 'center', padding: '0 16px',
-          background: 'rgba(7, 11, 22, 0.78)',
-          backdropFilter: 'blur(12px)',
-          WebkitBackdropFilter: 'blur(12px)',
-          borderBottom: '1px solid rgba(255,255,255,0.07)',
-        }}>
-          <span style={{
-            width: 24, height: 24, borderRadius: 7,
-            background: 'rgba(99,102,241,0.25)',
-            border: '1px solid rgba(99,102,241,0.4)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 12, flexShrink: 0, marginRight: 8,
-          }}>🗺</span>
-          <span style={{ fontSize: 14, fontWeight: 700, color: 'rgba(165,180,252,0.95)', letterSpacing: '-0.01em' }}>
-            UPSC Map AI
-          </span>
-          <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.28)', marginLeft: 8 }}>
-            · India geography &amp; history
-          </span>
-        </div>
-      )}
-
-      {/* ── Mobile notes card overlay (top) ─────────────────────────────────── */}
-      {isMobile && notesCardVisible && notesCardText && (
-        <div
-          className="notes-card-mobile scrollbar-thin"
+      {/* ── Mobile: Google Maps-style floating search bar (when sheet closed) ─ */}
+      {isMobile && sheetState === 'closed' && (
+        <button
+          onClick={() => setSheetState('open')}
+          aria-label="Open search"
           style={{
-            position: 'fixed', top: 58, left: 12, right: 12,
-            zIndex: 15,
-            maxHeight: '40vh',
-            overflowY: 'auto',
-            background: 'rgba(10, 14, 26, 0.93)',
-            backdropFilter: 'blur(16px)',
-            WebkitBackdropFilter: 'blur(16px)',
-            border: '1px solid rgba(99,102,241,0.28)',
-            borderRadius: 18,
-            boxShadow: '0 8px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(99,102,241,0.12)',
+            position: 'fixed', top: 14, left: 14, right: 14, zIndex: 25,
+            height: 48, display: 'flex', alignItems: 'center', gap: 12,
+            padding: '0 16px', borderRadius: 28,
+            background: 'rgba(10,14,26,0.88)',
+            backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)',
+            border: '1px solid rgba(255,255,255,0.12)',
+            boxShadow: '0 4px 24px rgba(0,0,0,0.4)',
+            color: 'rgba(255,255,255,0.55)', fontSize: 14, fontWeight: 500,
+            cursor: 'pointer', userSelect: 'none',
           }}
         >
-          {/* Sticky header */}
-          <div style={{
-            display: 'flex', alignItems: 'center',
-            padding: '10px 14px 9px',
-            borderBottom: '1px solid rgba(255,255,255,0.07)',
-            position: 'sticky', top: 0,
-            background: 'rgba(10, 14, 26, 0.97)',
-            backdropFilter: 'blur(12px)',
-            WebkitBackdropFilter: 'blur(12px)',
-            borderRadius: '18px 18px 0 0',
-            zIndex: 1,
-          }}>
-            <span style={{ fontSize: 11, fontWeight: 700, color: '#818cf8', textTransform: 'uppercase', letterSpacing: '0.15em' }}>
-              📖 Study Notes
-            </span>
-            {isLoading && (
-              <div style={{ display: 'flex', gap: 3, marginLeft: 8 }}>
-                {[0, 1, 2].map(i => (
-                  <span key={i} style={{
-                    width: 4, height: 4, borderRadius: '50%',
-                    background: '#818cf8',
-                    animation: 'bounce 0.6s ease-in-out infinite',
-                    animationDelay: `${i * 0.15}s`,
-                  }} />
-                ))}
-              </div>
-            )}
-            <button
-              onClick={() => setNotesCardVisible(false)}
-              aria-label="Dismiss notes"
-              style={{
-                marginLeft: 'auto', width: 26, height: 26, borderRadius: '50%',
-                background: 'rgba(255,255,255,0.08)',
-                border: '1px solid rgba(255,255,255,0.1)',
-                cursor: 'pointer', flexShrink: 0,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                color: 'rgba(255,255,255,0.5)', fontSize: 16, lineHeight: 1,
-              }}
-            >
-              ×
-            </button>
-          </div>
-          {/* Notes content */}
-          <div style={{ padding: '10px 14px 16px' }}>
-            <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
-              {notesCardText}
-            </ReactMarkdown>
-          </div>
-        </div>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="2" style={{ flexShrink: 0, opacity: 0.5 }}>
+            <circle cx="7.5" cy="7.5" r="5.5"/><path d="M12 12l4 4" strokeLinecap="round"/>
+          </svg>
+          Search UPSC topics...
+        </button>
       )}
 
-      {/* ── Floating open button (collapsed state) ──────────────────────── */}
-      <button
-        onClick={() => setIsOpen(true)}
-        aria-label="Open chat"
-        className="chat-open-btn"
-        style={{
-          position: 'fixed',
-          bottom: 24,
-          ...(isMobile
-            ? { right: 20, left: 'auto', transform: isOpen ? 'translateY(80px)' : 'translateY(0)' }
-            : { left: '50%', transform: isOpen ? 'translateX(-50%) translateY(80px)' : 'translateX(-50%) translateY(0)' }
-          ),
-          opacity: isOpen ? 0 : 1,
-          transition: 'transform 300ms cubic-bezier(0.32, 0.72, 0, 1), opacity 200ms ease',
-          pointerEvents: isOpen ? 'none' : 'auto',
-          zIndex: 40,
-          display: 'flex',
-          alignItems: 'center',
-          gap: 10,
-          padding: isMobile ? '14px 16px' : '12px 20px',
-          borderRadius: 32,
-          background: 'rgba(7, 11, 22, 0.92)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
-          border: '1px solid rgba(99,102,241,0.35)',
-          boxShadow: '0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(99,102,241,0.15)',
-          color: 'white',
-          cursor: 'pointer',
-          userSelect: 'none',
-        }}
-      >
-        {/* Map icon */}
-        <span style={{
-          width: 28, height: 28, borderRadius: 8,
-          background: 'rgba(99,102,241,0.25)',
-          border: '1px solid rgba(99,102,241,0.4)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: 14, flexShrink: 0,
-        }}>🗺</span>
-        {!isMobile && (
+      {/* ── Mobile: Notes chip (compact, top-left, when sheet not fully open) ── */}
+      {isMobile && notesCardText && notesCardVisible && sheetState !== 'open' && (
+        <button
+          onClick={() => { setActiveTab('chat'); setSheetState('open') }}
+          className="notes-chip-mobile"
+          style={{
+            position: 'fixed',
+            top: sheetState === 'closed' ? 70 : 14,
+            left: 14, zIndex: 20,
+            display: 'flex', alignItems: 'center', gap: 6,
+            padding: '8px 14px', borderRadius: 20,
+            background: 'rgba(10,14,26,0.88)',
+            backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
+            border: '1px solid rgba(99,102,241,0.3)',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.35)',
+            color: '#a5b4fc', fontSize: 12, fontWeight: 600,
+            cursor: 'pointer',
+          }}
+        >
+          <span style={{ fontSize: 13 }}>📖</span>
+          Study Notes
+          {isLoading && (
+            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#818cf8', animation: 'pulse 1s ease-in-out infinite' }} />
+          )}
+        </button>
+      )}
+
+      {/* ── Desktop: Floating open button (unchanged) ──────────────────────── */}
+      {!isMobile && (
+        <button
+          onClick={() => setSheetState('open')}
+          aria-label="Open chat"
+          className="chat-open-btn"
+          style={{
+            position: 'fixed', bottom: 24,
+            left: '50%',
+            transform: sheetState !== 'closed' ? 'translateX(-50%) translateY(80px)' : 'translateX(-50%) translateY(0)',
+            opacity: sheetState !== 'closed' ? 0 : 1,
+            transition: 'transform 300ms cubic-bezier(0.32, 0.72, 0, 1), opacity 200ms ease',
+            pointerEvents: sheetState !== 'closed' ? 'none' : 'auto',
+            zIndex: 40, display: 'flex', alignItems: 'center', gap: 10,
+            padding: '12px 20px', borderRadius: 32,
+            background: 'rgba(7, 11, 22, 0.92)',
+            backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)',
+            border: '1px solid rgba(99,102,241,0.35)',
+            boxShadow: '0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(99,102,241,0.15)',
+            color: 'white', cursor: 'pointer', userSelect: 'none',
+          }}
+        >
+          <span style={{
+            width: 28, height: 28, borderRadius: 8,
+            background: 'rgba(99,102,241,0.25)', border: '1px solid rgba(99,102,241,0.4)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: 14, flexShrink: 0,
+          }}>🗺</span>
           <span style={{ fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.85)' }}>
             Ask about UPSC…
           </span>
-        )}
-        {isMobile && (
-          <span style={{ fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.85)' }}>
-            Ask anything…
-          </span>
-        )}
-        {/* Pulse dot when loading */}
-        {isLoading && (
-          <span style={{
-            width: 7, height: 7, borderRadius: '50%',
-            background: '#818cf8', animation: 'pulse 1s ease-in-out infinite',
-          }} />
-        )}
-      </button>
+          {isLoading && (
+            <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#818cf8', animation: 'pulse 1s ease-in-out infinite' }} />
+          )}
+        </button>
+      )}
 
-      {/* ── Slide-up chat panel ────────────────────────────────────────────── */}
+      {/* ── Slide-up chat panel (3-state: closed / peek / open) ─────────── */}
       <div
         style={{
           position: 'fixed',
           bottom: 0,
           left: 0,
           right: 0,
-          height: isMobile ? '50vh' : '58vh',
+          height: isMobile ? '42vh' : '58vh',
           zIndex: 40,
           display: 'flex',
           flexDirection: 'column',
-          transform: isOpen ? 'translateY(0)' : 'translateY(100%)',
+          transform: isMobile
+            ? { closed: 'translateY(100%)', peek: 'translateY(calc(100% - 84px))', open: 'translateY(0)' }[sheetState]
+            : (sheetState !== 'closed' ? 'translateY(0)' : 'translateY(100%)'),
           transition: 'transform 300ms cubic-bezier(0.32, 0.72, 0, 1)',
           background: 'rgba(7, 11, 22, 0.96)',
           backdropFilter: 'blur(28px)',
@@ -655,7 +599,7 @@ function ChatInterfaceInner() {
           style={{ display: 'flex', justifyContent: 'center', padding: '10px 0 6px', flexShrink: 0 }}
         >
           <button
-            onClick={() => setIsOpen(false)}
+            onClick={() => setSheetState(prev => prev === 'open' ? (isMobile ? 'peek' : 'closed') : 'closed')}
             title="Close panel"
             style={{
               width: 40, height: 4, borderRadius: 2,
@@ -668,36 +612,82 @@ function ChatInterfaceInner() {
           />
         </div>
 
+        {/* ── Peek content (mobile only, shown in peek state) ─────────── */}
+        {isMobile && sheetState === 'peek' && (
+          <button
+            onClick={() => setSheetState('open')}
+            style={{
+              display: 'flex', alignItems: 'center', gap: 10,
+              padding: '6px 16px 14px', width: '100%',
+              background: 'none', border: 'none', cursor: 'pointer',
+              textAlign: 'left',
+            }}
+          >
+            <span style={{
+              width: 28, height: 28, borderRadius: 8,
+              background: 'rgba(99,102,241,0.2)', border: '1px solid rgba(99,102,241,0.35)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: 13, flexShrink: 0,
+            }}>✦</span>
+            <span style={{
+              flex: 1, fontSize: 13, fontWeight: 500,
+              color: 'rgba(255,255,255,0.6)',
+              whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+            }}>
+              {currentMapTitle || 'Ask about UPSC topics...'}
+            </span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="2" style={{ flexShrink: 0, transform: 'rotate(180deg)' }}>
+              <path d="M4 10l4-4 4 4" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+        )}
+
+        {/* ── Full sheet content (when open) ──────────────────────────── */}
+        {(sheetState === 'open' || !isMobile) && (
+        <>
         {/* ── Header ──────────────────────────────────────────────────────── */}
         <div style={{ flexShrink: 0, borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
           {/* Brand + controls */}
-          <div style={{ padding: '4px 14px 8px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div style={{ padding: '0px 14px 8px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <span style={{
-                width: 26, height: 26, borderRadius: 7,
+                width: 22, height: 22, borderRadius: 6,
                 background: 'rgba(99,102,241,0.25)',
                 border: '1px solid rgba(99,102,241,0.4)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 13, flexShrink: 0,
+                fontSize: 11, flexShrink: 0,
               }}>🗺</span>
-              <span style={{ fontSize: 13, fontWeight: 600, color: 'white' }}>UPSC Map AI</span>
+              <span style={{ fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.7)' }}>UPSC Map AI</span>
             </div>
-            <button
-              onClick={() => {
-                resetMap()
-                setMessages([{ id: 'welcome', role: 'assistant', content: 'All cleared. What topic do you want to study next?' }])
-                setActiveTab('chat')
-              }}
-              style={{
-                fontSize: 11, color: 'rgba(255,255,255,0.3)',
-                background: 'none', border: 'none', cursor: 'pointer',
-                padding: '4px 8px', borderRadius: 8,
-              }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.6)' }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.3)' }}
-            >
-              Clear
-            </button>
+            <div style={{ display: 'flex', gap: 4, alignItems: 'center' }}>
+              <button
+                onClick={() => {
+                  resetMap()
+                  setMessages([{ id: 'welcome', role: 'assistant', content: 'All cleared. What topic do you want to study next?' }])
+                  setActiveTab('chat')
+                }}
+                style={{
+                  fontSize: 11, color: 'rgba(255,255,255,0.3)',
+                  background: 'none', border: 'none', cursor: 'pointer',
+                  padding: '4px 8px', borderRadius: 8,
+                }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.6)' }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.3)' }}
+              >
+                Clear
+              </button>
+              {isMobile && (
+                <button
+                  onClick={() => setSheetState('closed')}
+                  style={{
+                    width: 28, height: 28, borderRadius: 8,
+                    background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    color: 'rgba(255,255,255,0.4)', fontSize: 16, cursor: 'pointer',
+                  }}
+                >×</button>
+              )}
+            </div>
           </div>
 
           {/* Tabs */}
@@ -1034,6 +1024,8 @@ function ChatInterfaceInner() {
               </div>
             )}
           </div>
+        )}
+        </>
         )}
       </div>
     </>
