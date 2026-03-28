@@ -81,22 +81,13 @@ html, body {
   50%       { transform: translateY(-4px); }
 }
 
-/* ── Mobile notes card slide-down ───────────────────────────────────────── */
+/* ── Mobile notes card slide-down (used by desktop notes overlay) ──────── */
 @keyframes notesCardSlideDown {
   from { opacity: 0; transform: translateY(-16px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 .notes-card-mobile {
   animation: notesCardSlideDown 0.35s cubic-bezier(0.32, 0.72, 0, 1) both;
-}
-
-/* ── Mobile: notes chip slide-in ────────────────────────────────────────── */
-@keyframes notesChipIn {
-  from { opacity: 0; transform: translateX(-12px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-.notes-chip-mobile {
-  animation: notesChipIn 0.3s cubic-bezier(0.32, 0.72, 0, 1) both;
 }
 
 @media (max-width: 768px) {

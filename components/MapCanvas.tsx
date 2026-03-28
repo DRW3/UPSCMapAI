@@ -886,9 +886,9 @@ export default function MapCanvas() {
         />
       )}
 
-      {/* ── Legend ────────────────────────────────────────────────────────── */}
+      {/* ── Legend (hidden on mobile — peek bar shows key info) ────────── */}
       {(visibleLayers.length > 0 || annotatedPoints.length > 0) && mapReady && (
-        <div className="absolute bottom-5 left-4 z-10 w-[215px]">
+        <div className="absolute bottom-5 left-4 z-10 w-[215px] hidden md:block">
           <div className="rounded-2xl overflow-hidden" style={glassStyle}>
             {/* Header */}
             <button
@@ -1054,9 +1054,9 @@ export default function MapCanvas() {
         </div>
       )}
 
-      {/* ── "Ask about this map" floating bar (bottom center, above peek bar on mobile) */}
+      {/* ── "Ask about this map" floating bar (desktop only — mobile uses peek bar) */}
       {intent && mapReady && annotatedPoints.length > 0 && !markerPopup && !statePopup && !contextMenu && !detailsMarker && (
-        <div className="absolute bottom-24 md:bottom-5 left-1/2 -translate-x-1/2 z-10 flex gap-2">
+        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-10 hidden md:flex gap-2">
           <button
             onClick={() => askAI(`Based on the current map "${intent.title}", what are the 5 most important UPSC points I should focus on?`)}
             className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-[12px] font-semibold text-white/80 hover:text-white transition-all hover:scale-105 active:scale-95"
@@ -1093,9 +1093,9 @@ export default function MapCanvas() {
         </div>
       )}
 
-      {/* ── Marker count badge (bottom-right, above peek bar on mobile) ──── */}
+      {/* ── Marker count badge (desktop only — mobile shows count in peek bar) */}
       {annotatedPoints.length > 0 && mapReady && !detailsMarker && (
-        <div className="absolute bottom-24 md:bottom-5 right-4 z-10">
+        <div className="absolute bottom-5 right-4 z-10 hidden md:block">
           <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl" style={glassStyle}>
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
             <span className="text-[11px] font-medium text-white/60">
@@ -1208,7 +1208,7 @@ function MarkerDetailsPanel({ marker, mapContext, onClose, onAskAI }: MarkerDeta
 
   return (
     <div
-      className="absolute bottom-5 right-5 z-40 w-[310px] max-h-[520px] flex flex-col rounded-2xl overflow-hidden details-panel-enter"
+      className="absolute bottom-32 md:bottom-5 right-3 md:right-5 z-40 w-[calc(100%-24px)] md:w-[310px] max-h-[50vh] md:max-h-[520px] flex flex-col rounded-2xl overflow-hidden details-panel-enter"
       style={panelStyle}
     >
       {/* Colour accent top bar */}

@@ -246,7 +246,6 @@ function ChatInterfaceInner() {
   const [reasoningStep, setReasoningStep] = useState('')
   const [isMobile, setIsMobile]   = useState(false)
   const [notesCardText, setNotesCardText]       = useState('')
-  const [notesCardVisible, setNotesCardVisible] = useState(false)
   const stepTimerRef   = useRef<ReturnType<typeof setInterval> | null>(null)
   const stepIndexRef   = useRef(0)
   const messagesEndRef = useRef<HTMLDivElement>(null)
@@ -275,6 +274,7 @@ function ChatInterfaceInner() {
     applyOperation, setSidebarContent, setSidebarLoading, resetMap, clearMapData,
     pendingMessage, setPendingMessage,
     saveSession, loadSession, sessions, activeSessionId,
+    annotatedPoints,
   } = useMapStore()
 
   const sendMessageRef = useRef(sendMessage)
@@ -337,7 +337,6 @@ function ChatInterfaceInner() {
     setSheetState('open')
     clearMapData()
     setNotesCardText('')
-    setNotesCardVisible(false)
     setSidebarLoading(true)
     startStepCycle()
 
@@ -417,7 +416,6 @@ function ChatInterfaceInner() {
             notesText += event.text as string
             setSidebarContent(notesText) // keep store in sync for session persistence
             setNotesCardText(notesText)
-            setNotesCardVisible(true)
             setMessages(prev => prev.map(m =>
               m.id === notesMsgId ? { ...m, content: notesText, isLoading: false } : m
             ))
@@ -482,54 +480,27 @@ function ChatInterfaceInner() {
 
   return (
     <>
-      {/* ── Mobile: Google Maps-style floating search bar (when sheet closed) ─ */}
+      {/* ── Mobile: Floating search bar (closed state, avoids map controls) ── */}
       {isMobile && sheetState === 'closed' && (
         <button
           onClick={() => setSheetState('open')}
           aria-label="Open search"
           style={{
-            position: 'fixed', top: 14, left: 14, right: 14, zIndex: 25,
-            height: 48, display: 'flex', alignItems: 'center', gap: 12,
-            padding: '0 16px', borderRadius: 28,
-            background: 'rgba(10,14,26,0.88)',
+            position: 'fixed', top: 14, left: 14, right: 56, zIndex: 25,
+            height: 48, display: 'flex', alignItems: 'center', gap: 10,
+            padding: '0 16px', borderRadius: 24,
+            background: 'rgba(10,14,26,0.9)',
             backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)',
-            border: '1px solid rgba(255,255,255,0.12)',
-            boxShadow: '0 4px 24px rgba(0,0,0,0.4)',
-            color: 'rgba(255,255,255,0.55)', fontSize: 14, fontWeight: 500,
+            border: '1px solid rgba(255,255,255,0.1)',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
+            color: 'rgba(255,255,255,0.5)', fontSize: 14, fontWeight: 500,
             cursor: 'pointer', userSelect: 'none',
           }}
         >
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="2" style={{ flexShrink: 0, opacity: 0.5 }}>
-            <circle cx="7.5" cy="7.5" r="5.5"/><path d="M12 12l4 4" strokeLinecap="round"/>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" style={{ flexShrink: 0, opacity: 0.5 }}>
+            <circle cx="7" cy="7" r="5"/><path d="M11 11l3.5 3.5" strokeLinecap="round"/>
           </svg>
           Search UPSC topics...
-        </button>
-      )}
-
-      {/* ── Mobile: Notes chip (compact, top-left, when sheet not fully open) ── */}
-      {isMobile && notesCardText && notesCardVisible && sheetState !== 'open' && (
-        <button
-          onClick={() => { setActiveTab('chat'); setSheetState('open') }}
-          className="notes-chip-mobile"
-          style={{
-            position: 'fixed',
-            top: sheetState === 'closed' ? 70 : 14,
-            left: 14, zIndex: 20,
-            display: 'flex', alignItems: 'center', gap: 6,
-            padding: '8px 14px', borderRadius: 20,
-            background: 'rgba(10,14,26,0.88)',
-            backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
-            border: '1px solid rgba(99,102,241,0.3)',
-            boxShadow: '0 4px 20px rgba(0,0,0,0.35)',
-            color: '#a5b4fc', fontSize: 12, fontWeight: 600,
-            cursor: 'pointer',
-          }}
-        >
-          <span style={{ fontSize: 13 }}>📖</span>
-          Study Notes
-          {isLoading && (
-            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#818cf8', animation: 'pulse 1s ease-in-out infinite' }} />
-          )}
         </button>
       )}
 
@@ -582,7 +553,7 @@ function ChatInterfaceInner() {
           display: 'flex',
           flexDirection: 'column',
           transform: isMobile
-            ? { closed: 'translateY(100%)', peek: 'translateY(calc(100% - 84px))', open: 'translateY(0)' }[sheetState]
+            ? { closed: 'translateY(100%)', peek: 'translateY(calc(100% - 112px))', open: 'translateY(0)' }[sheetState]
             : (sheetState !== 'closed' ? 'translateY(0)' : 'translateY(100%)'),
           transition: 'transform 300ms cubic-bezier(0.32, 0.72, 0, 1)',
           background: 'rgba(7, 11, 22, 0.96)',
@@ -612,34 +583,70 @@ function ChatInterfaceInner() {
           />
         </div>
 
-        {/* ── Peek content (mobile only, shown in peek state) ─────────── */}
+        {/* ── Peek content (mobile only — info row + fake input) ────────── */}
         {isMobile && sheetState === 'peek' && (
-          <button
+          <div
             onClick={() => setSheetState('open')}
             style={{
-              display: 'flex', alignItems: 'center', gap: 10,
-              padding: '6px 16px 14px', width: '100%',
-              background: 'none', border: 'none', cursor: 'pointer',
-              textAlign: 'left',
+              display: 'flex', flexDirection: 'column', gap: 8,
+              padding: '2px 14px 14px',
+              cursor: 'pointer',
             }}
           >
-            <span style={{
-              width: 28, height: 28, borderRadius: 8,
-              background: 'rgba(99,102,241,0.2)', border: '1px solid rgba(99,102,241,0.35)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 13, flexShrink: 0,
-            }}>✦</span>
-            <span style={{
-              flex: 1, fontSize: 13, fontWeight: 500,
-              color: 'rgba(255,255,255,0.6)',
-              whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+            {/* Row 1: Map title + marker count + notes badge */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, minHeight: 24 }}>
+              <span style={{
+                width: 20, height: 20, borderRadius: 6,
+                background: 'rgba(99,102,241,0.2)', border: '1px solid rgba(99,102,241,0.3)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: 10, flexShrink: 0,
+              }}>✦</span>
+              <span style={{
+                flex: 1, fontSize: 12, fontWeight: 600,
+                color: 'rgba(255,255,255,0.65)',
+                whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+              }}>
+                {currentMapTitle || 'UPSC Map AI'}
+              </span>
+              {annotatedPoints.length > 0 && (
+                <span style={{
+                  fontSize: 10, color: 'rgba(255,255,255,0.3)',
+                  display: 'flex', alignItems: 'center', gap: 4,
+                }}>
+                  <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#34d399' }} />
+                  {annotatedPoints.length} pins
+                </span>
+              )}
+              {notesCardText && (
+                <span style={{
+                  fontSize: 10, fontWeight: 600, color: '#818cf8',
+                  padding: '2px 8px', borderRadius: 10,
+                  background: 'rgba(99,102,241,0.12)',
+                  border: '1px solid rgba(99,102,241,0.2)',
+                }}>
+                  📖 Notes
+                </span>
+              )}
+            </div>
+            {/* Row 2: Fake search input (tap to expand) */}
+            <div style={{
+              display: 'flex', alignItems: 'center', gap: 10,
+              padding: '10px 14px',
+              borderRadius: 14,
+              background: 'rgba(255,255,255,0.06)',
+              border: '1px solid rgba(255,255,255,0.1)',
             }}>
-              {currentMapTitle || 'Ask about UPSC topics...'}
-            </span>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="2" style={{ flexShrink: 0, transform: 'rotate(180deg)' }}>
-              <path d="M4 10l4-4 4 4" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1.8" style={{ flexShrink: 0 }}>
+                <circle cx="6.5" cy="6.5" r="4.5"/><path d="M10 10l3 3" strokeLinecap="round"/>
+              </svg>
+              <span style={{ flex: 1, fontSize: 13, color: 'rgba(255,255,255,0.3)' }}>
+                Ask a follow-up question...
+              </span>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ flexShrink: 0, opacity: 0.4 }}>
+                <path d="M7 1l1.8 5H13l-3.6 2.6L10.8 13 7 10.2 3.2 13l1.4-4.4L1 6h4.2z" fill="#818cf8"/>
+              </svg>
+            </div>
+          </div>
         )}
 
         {/* ── Full sheet content (when open) ──────────────────────────── */}
