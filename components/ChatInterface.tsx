@@ -274,8 +274,50 @@ function ChatInterfaceInner() {
     applyOperation, setSidebarContent, setSidebarLoading, resetMap, clearMapData,
     pendingMessage, setPendingMessage,
     saveSession, loadSession, sessions, activeSessionId,
-    annotatedPoints,
+    annotatedPoints, setFocusCoordinates,
   } = useMapStore()
+
+  // Fly to a location on the map and collapse sheet on mobile
+  function flyToLocation(coords: [number, number]) {
+    setFocusCoordinates(coords)
+    if (isMobile) setSheetState('peek')
+  }
+
+  // Match text against annotated points
+  function findPoint(text: string) {
+    return annotatedPoints.find(p => {
+      const label = p.label.toLowerCase()
+      const t = text.toLowerCase()
+      return label === t || t.includes(label) || label.includes(t)
+    })
+  }
+
+  // Parse chat text: render **bold** and make matching locations clickable
+  function renderChatContent(content: string) {
+    const parts = content.split(/(\*\*[^*]+\*\*)/g)
+    return parts.map((part, i) => {
+      const boldMatch = part.match(/^\*\*(.+)\*\*$/)
+      if (boldMatch) {
+        const text = boldMatch[1]
+        const point = findPoint(text)
+        if (point) {
+          return (
+            <button key={i} onClick={(e) => { e.stopPropagation(); flyToLocation(point.coordinates) }}
+              style={{
+                color: '#a5b4fc', background: 'rgba(99,102,241,0.1)',
+                border: 'none', borderBottom: '1px dashed rgba(129,140,248,0.4)',
+                padding: '1px 4px', borderRadius: 4, cursor: 'pointer',
+                font: 'inherit', fontWeight: 700, display: 'inline',
+              }}>
+              {text} <span style={{ fontSize: 10, opacity: 0.7 }}>📍</span>
+            </button>
+          )
+        }
+        return <strong key={i}>{text}</strong>
+      }
+      return <span key={i}>{part}</span>
+    })
+  }
 
   const sendMessageRef = useRef(sendMessage)
   sendMessageRef.current = sendMessage
@@ -478,6 +520,29 @@ function ChatInterfaceInner() {
   // Compute current map title for peek state
   const currentMapTitle = useMapStore.getState().intent?.title ?? ''
 
+  // Location-aware markdown components for notes (bold locations become clickable)
+  const notesMdComponents: Components = {
+    ...mdComponents,
+    strong: ({ children }) => {
+      const text = String(children ?? '')
+      const point = findPoint(text)
+      if (point) {
+        return (
+          <button onClick={(e) => { e.stopPropagation(); flyToLocation(point.coordinates) }}
+            style={{
+              color: '#a5b4fc', background: 'rgba(99,102,241,0.1)',
+              border: 'none', borderBottom: '1px dashed rgba(129,140,248,0.4)',
+              padding: '1px 4px', borderRadius: 4, cursor: 'pointer',
+              font: 'inherit', fontWeight: 700, display: 'inline',
+            }}>
+            {children} <span style={{ fontSize: 9, opacity: 0.6 }}>📍</span>
+          </button>
+        )
+      }
+      return <strong className="font-semibold" style={{ color: 'rgba(255,255,255,0.92)' }}>{children}</strong>
+    },
+  }
+
   return (
     <>
       {/* ── Mobile: Floating search bar (closed state, avoids map controls) ── */}
@@ -486,7 +551,7 @@ function ChatInterfaceInner() {
           onClick={() => setSheetState('open')}
           aria-label="Open search"
           style={{
-            position: 'fixed', top: 14, left: 14, right: 56, zIndex: 20,
+            position: 'fixed', top: 14, left: 14, right: 64, zIndex: 20,
             height: 48, display: 'flex', alignItems: 'center', gap: 10,
             padding: '0 16px', borderRadius: 24,
             background: 'rgba(10,14,26,0.9)',
@@ -789,7 +854,7 @@ function ChatInterfaceInner() {
                         boxShadow: 'inset 0 1px 0 rgba(99,102,241,0.1)',
                       }}>
                         {msg.content ? (
-                          <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
+                          <ReactMarkdown remarkPlugins={[remarkGfm]} components={notesMdComponents}>
                             {msg.content}
                           </ReactMarkdown>
                         ) : (
@@ -854,7 +919,7 @@ function ChatInterfaceInner() {
                             </span>
                           </div>
                         ) : (
-                          <span dangerouslySetInnerHTML={{ __html: msg.content.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') }} />
+                          <span>{renderChatContent(msg.content)}</span>
                         )}
                       </div>
                     </div>

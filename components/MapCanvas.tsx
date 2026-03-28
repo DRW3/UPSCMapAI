@@ -994,16 +994,18 @@ export default function MapCanvas() {
         </div>
       )}
 
-      {/* ── Map controls (top-right) ───────────────────────────────────────── */}
+      {/* ── Map controls (top-right, simplified on mobile) ─────────────────── */}
       {mapReady && (
-        <div className="absolute top-4 right-4 z-10 flex flex-col gap-2">
-          <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={glassStyle}>
+        <div className="absolute top-4 right-3 md:right-4 z-10 flex flex-col gap-2">
+          {/* Compass — desktop only */}
+          <div className="w-9 h-9 rounded-xl items-center justify-center hidden md:flex" style={glassStyle}>
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
               <polygon points="9,2 11,9 9,8 7,9" fill="#e63946" />
               <polygon points="9,16 7,9 9,10 11,9" fill="#ffffff" fillOpacity="0.4" />
               <circle cx="9" cy="9" r="1.5" fill="white" fillOpacity="0.7" />
             </svg>
           </div>
+          {/* Zoom */}
           <div className="rounded-xl overflow-hidden flex flex-col" style={glassStyle}>
             <button onClick={() => mapRef.current?.zoomIn({ duration: 300 })}
               className="w-9 h-9 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-colors text-lg font-light border-b border-white/[0.06]"
@@ -1012,6 +1014,7 @@ export default function MapCanvas() {
               className="w-9 h-9 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-colors text-lg font-light"
             >−</button>
           </div>
+          {/* Reset to India */}
           <button
             onClick={() => mapRef.current?.fitBounds([[68,8],[97.5,37.5]], { duration: 800, padding: 20 })}
             className="w-9 h-9 rounded-xl flex items-center justify-center text-white/50 hover:text-white transition-colors"
@@ -1023,12 +1026,11 @@ export default function MapCanvas() {
               <line x1="2" y1="7.5" x2="13" y2="7.5" />
             </svg>
           </button>
-
-          {/* Detail toggle */}
+          {/* Detail toggle — desktop only */}
           <button
             onClick={() => setSimplified(s => !s)}
             title={simplified ? 'Show full detail' : 'Less detail'}
-            className="w-9 h-9 rounded-xl flex items-center justify-center transition-all"
+            className="w-9 h-9 rounded-xl items-center justify-center transition-all hidden md:flex"
             style={{
               ...glassStyle,
               ...(simplified
@@ -1037,14 +1039,12 @@ export default function MapCanvas() {
             }}
           >
             {simplified ? (
-              /* Stacked lines = "simple" (active) */
               <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
                 <line x1="2" y1="4.5" x2="13" y2="4.5" />
                 <line x1="2" y1="7.5" x2="13" y2="7.5" />
                 <line x1="2" y1="10.5" x2="13" y2="10.5" />
               </svg>
             ) : (
-              /* Layered squares = "full detail" */
               <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="2" y="5" width="11" height="7" rx="1" />
                 <path d="M4.5 5V3.5a1 1 0 011-1h4a1 1 0 011 1V5" />
