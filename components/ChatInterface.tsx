@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect, Suspense } from 'react'
+import React, { useState, useRef, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { useMapStore } from '@/lib/map/map-store'
 import type { MapOperation, MapSession } from '@/types'
@@ -283,12 +283,50 @@ function ChatInterfaceInner() {
     if (isMobile) setSheetState('peek')
   }
 
-  // Match text against annotated points
-  function findPoint(text: string) {
-    return annotatedPoints.find(p => {
-      const label = p.label.toLowerCase()
-      const t = text.toLowerCase()
-      return label === t || t.includes(label) || label.includes(t)
+  // Clickable location button style
+  const locBtnStyle: React.CSSProperties = {
+    color: '#a5b4fc', background: 'rgba(99,102,241,0.12)',
+    border: 'none', borderBottom: '1.5px dashed rgba(129,140,248,0.4)',
+    padding: '1px 5px', borderRadius: 4, cursor: 'pointer',
+    font: 'inherit', fontWeight: 600, display: 'inline',
+    lineHeight: 'inherit',
+  }
+
+  // Scan text for ANY annotated point label and make matches clickable
+  function linkifyLocations(text: string): React.ReactNode {
+    if (!annotatedPoints.length || !text || text.length < 2) return text
+
+    // Build regex from labels (3+ chars, longest first to avoid partial matches)
+    const valid = [...annotatedPoints]
+      .filter(p => p.label.length >= 3)
+      .sort((a, b) => b.label.length - a.label.length)
+    if (!valid.length) return text
+
+    const pattern = valid.map(p => p.label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')
+    const regex = new RegExp(`\\b(${pattern})\\b`, 'gi')
+
+    const parts = text.split(regex)
+    if (parts.length <= 1) return text
+
+    return parts.map((part, i) => {
+      const point = valid.find(p => p.label.toLowerCase() === part.toLowerCase())
+      if (point) {
+        return (
+          <button key={i} onClick={(e) => { e.stopPropagation(); flyToLocation(point.coordinates) }}
+            style={locBtnStyle}>
+            {part}<span style={{ fontSize: 9, marginLeft: 2, opacity: 0.6 }}>📍</span>
+          </button>
+        )
+      }
+      return <span key={i}>{part}</span>
+    })
+  }
+
+  // Process React children — linkify any string children
+  function linkifyChildren(children: React.ReactNode): React.ReactNode {
+    return React.Children.map(children, child => {
+      if (typeof child === 'string') return linkifyLocations(child)
+      return child
     })
   }
 
@@ -299,23 +337,9 @@ function ChatInterfaceInner() {
       const boldMatch = part.match(/^\*\*(.+)\*\*$/)
       if (boldMatch) {
         const text = boldMatch[1]
-        const point = findPoint(text)
-        if (point) {
-          return (
-            <button key={i} onClick={(e) => { e.stopPropagation(); flyToLocation(point.coordinates) }}
-              style={{
-                color: '#a5b4fc', background: 'rgba(99,102,241,0.1)',
-                border: 'none', borderBottom: '1px dashed rgba(129,140,248,0.4)',
-                padding: '1px 4px', borderRadius: 4, cursor: 'pointer',
-                font: 'inherit', fontWeight: 700, display: 'inline',
-              }}>
-              {text} <span style={{ fontSize: 10, opacity: 0.7 }}>📍</span>
-            </button>
-          )
-        }
-        return <strong key={i}>{text}</strong>
+        return <strong key={i}>{linkifyLocations(text)}</strong>
       }
-      return <span key={i}>{part}</span>
+      return <span key={i}>{linkifyLocations(part)}</span>
     })
   }
 
@@ -520,27 +544,24 @@ function ChatInterfaceInner() {
   // Compute current map title for peek state
   const currentMapTitle = useMapStore.getState().intent?.title ?? ''
 
-  // Location-aware markdown components for notes (bold locations become clickable)
+  // Location-aware markdown components — linkifies ALL text, not just bold
   const notesMdComponents: Components = {
     ...mdComponents,
-    strong: ({ children }) => {
-      const text = String(children ?? '')
-      const point = findPoint(text)
-      if (point) {
-        return (
-          <button onClick={(e) => { e.stopPropagation(); flyToLocation(point.coordinates) }}
-            style={{
-              color: '#a5b4fc', background: 'rgba(99,102,241,0.1)',
-              border: 'none', borderBottom: '1px dashed rgba(129,140,248,0.4)',
-              padding: '1px 4px', borderRadius: 4, cursor: 'pointer',
-              font: 'inherit', fontWeight: 700, display: 'inline',
-            }}>
-            {children} <span style={{ fontSize: 9, opacity: 0.6 }}>📍</span>
-          </button>
-        )
-      }
-      return <strong className="font-semibold" style={{ color: 'rgba(255,255,255,0.92)' }}>{children}</strong>
-    },
+    p: ({ children }) => (
+      <p className="text-[12px] leading-relaxed mb-1.5 text-white/75">{linkifyChildren(children)}</p>
+    ),
+    li: ({ children }) => (
+      <div className="flex gap-2 text-[12px] leading-relaxed py-0.5 text-white/75">
+        <span className="text-indigo-400/80 mt-[3px] flex-shrink-0 text-[7px]">◆</span>
+        <span className="flex-1">{linkifyChildren(children)}</span>
+      </div>
+    ),
+    strong: ({ children }) => (
+      <strong className="font-semibold" style={{ color: 'rgba(255,255,255,0.92)' }}>{linkifyChildren(children)}</strong>
+    ),
+    td: ({ children }) => (
+      <td className="border border-white/10 px-2 py-1 text-white/70">{linkifyChildren(children)}</td>
+    ),
   }
 
   return (
