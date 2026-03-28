@@ -268,6 +268,7 @@ function ChatInterfaceInner() {
   const [isMobile, setIsMobile]   = useState(false)
   const [notesCardText, setNotesCardText]       = useState('')
   const [viewportH, setViewportH] = useState(typeof window !== 'undefined' ? window.innerHeight : 800)
+  const [fullH, setFullH] = useState(typeof window !== 'undefined' ? window.innerHeight : 800)  // full viewport without keyboard
   const stepTimerRef   = useRef<ReturnType<typeof setInterval> | null>(null)
   const stepIndexRef   = useRef(0)
   const messagesEndRef = useRef<HTMLDivElement>(null)
@@ -601,9 +602,11 @@ function ChatInterfaceInner() {
   }, [])
 
   // Track visual viewport height (shrinks when the mobile keyboard opens).
-  // This lets us cap the sheet so it never covers more than 80% of the
-  // VISIBLE screen, keeping the map peeking above even with the keyboard up.
+  // fullH = screen height without keyboard, viewportH = current visible height.
+  // When keyboard is open (viewportH < 75% of fullH), the sheet takes 90% of
+  // visible space so user can see the chat + input. Map peeks at 10% above.
   useEffect(() => {
+    setFullH(window.innerHeight)
     const vv = window.visualViewport
     if (!vv) return
     function onResize() {
@@ -817,7 +820,7 @@ function ChatInterfaceInner() {
 
   return (
     <>
-      {/* ── Back button — always visible ──────────────────────────────────── */}
+      {/* ── Back button — always visible, above everything ────────────────── */}
       <button
         onClick={() => router.push('/')}
         aria-label="Back to home"
@@ -826,7 +829,7 @@ function ChatInterfaceInner() {
           position: 'fixed',
           top: isMobile ? 'calc(env(safe-area-inset-top, 10px) + 12px)' : '20px',
           left: 12,
-          zIndex: 35,
+          zIndex: 50,
         }}
         onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(99,102,241,0.5)'; e.currentTarget.style.background = 'rgba(99,102,241,0.15)' }}
         onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(99,102,241,0.25)'; e.currentTarget.style.background = 'rgba(10, 14, 28, 0.88)' }}
@@ -1052,8 +1055,16 @@ function ChatInterfaceInner() {
           bottom: 0,
           left: 0,
           right: 0,
-          height: sheetState === 'expanded' ? Math.floor(viewportH * 0.8) : Math.floor(viewportH * 0.6),
-          maxHeight: Math.floor(viewportH * 0.8),
+          height: (() => {
+            const keyboardOpen = isMobile && viewportH < fullH * 0.75
+            if (keyboardOpen) return Math.floor(viewportH * 0.9)  // keyboard open: 90% visible, 10% map peek
+            if (sheetState === 'expanded') return Math.floor(viewportH * 0.8)
+            return Math.floor(viewportH * 0.6)
+          })(),
+          maxHeight: (() => {
+            const keyboardOpen = isMobile && viewportH < fullH * 0.75
+            return keyboardOpen ? Math.floor(viewportH * 0.9) : Math.floor(viewportH * 0.8)
+          })(),
           zIndex: 30,
           display: 'flex',
           flexDirection: 'column',
@@ -1490,7 +1501,7 @@ function ChatInterfaceInner() {
                       background: 'transparent',
                       border: 'none',
                       padding: '8px 0',
-                      fontSize: 15, color: 'white',
+                      fontSize: 16, color: 'white',
                       outline: 'none',
                       opacity: isLoading ? 0.4 : 1,
                       lineHeight: 1.5,
