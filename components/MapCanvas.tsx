@@ -156,8 +156,8 @@ export default function MapCanvas() {
         container: mapContainer.current!,
         // MapLibre demotiles — vector tiles at Natural Earth 10m quality, no API key needed
         style: 'https://demotiles.maplibre.org/style.json',
-        center: [82.8, 22.5],
-        zoom: 4.2,
+        bounds: [[67, 6], [98, 37.5]],  // India bounds — auto-fits to viewport
+        fitBoundsOptions: { padding: 10 },
         attributionControl: false,
       })
 
@@ -580,14 +580,16 @@ export default function MapCanvas() {
   useEffect(() => {
     const map = mapRef.current
     if (!map || !mapReady || !focusCoordinates) return
-    // Offset the target centre so the pin lands in the visible area, not under the notes panel
-    const rightPad = notesOpen ? notesWidth + 24 : 40
+    // Offset the target so the pin lands in visible area (above sheet on mobile, beside notes on desktop)
+    const isMobileView3 = window.matchMedia('(max-width: 768px)').matches
+    const rightPadFocus = notesOpen ? notesWidth + 24 : 40
+    const bottomPadFocus = isMobileView3 ? 140 : 60
     map.flyTo({
       center: focusCoordinates,
       zoom: Math.max(map.getZoom(), 7),
       duration: 900,
       essential: true,
-      padding: { top: 60, right: rightPad, bottom: 60, left: 40 },
+      padding: { top: 60, right: rightPadFocus, bottom: bottomPadFocus, left: 40 },
     })
     setFocusCoordinates(null)
   }, [focusCoordinates, mapReady, setFocusCoordinates, notesOpen, notesWidth])
@@ -608,12 +610,14 @@ export default function MapCanvas() {
     const minLng = Math.min(...lngs), maxLng = Math.max(...lngs)
     const minLat  = Math.min(...lats),  maxLat  = Math.max(...lats)
 
-    // Right padding grows to keep markers clear of the notes panel when it is open
+    // Padding: account for notes panel (desktop) or bottom sheet (mobile)
+    const isMobileView = window.matchMedia('(max-width: 768px)').matches
     const rightPad = notesOpen ? notesWidth + 40 : 60
+    const bottomPad = isMobileView ? 140 : 80  // peek bar on mobile
 
     map.fitBounds(
       [[minLng, minLat], [maxLng, maxLat]],
-      { padding: { top: 80, right: rightPad, bottom: 80, left: 60 }, duration: 1200, maxZoom: 10 },
+      { padding: { top: 80, right: rightPad, bottom: bottomPad, left: 40 }, duration: 1200, maxZoom: 10 },
     )
   }, [isSidebarLoading, annotatedPoints, mapReady, notesOpen, notesWidth])
 
@@ -626,11 +630,13 @@ export default function MapCanvas() {
     const lats  = annotatedPoints.map(p => p.coordinates[1])
     const minLng = Math.min(...lngs), maxLng = Math.max(...lngs)
     const minLat  = Math.min(...lats),  maxLat  = Math.max(...lats)
-    const rightPad = notesOpen ? notesWidth + 40 : 60
+    const isMobileView2 = window.matchMedia('(max-width: 768px)').matches
+    const rightPad2 = notesOpen ? notesWidth + 40 : 60
+    const bottomPad2 = isMobileView2 ? 140 : 80
 
     map.fitBounds(
       [[minLng, minLat], [maxLng, maxLat]],
-      { padding: { top: 80, right: rightPad, bottom: 80, left: 60 }, duration: 600, maxZoom: 10 },
+      { padding: { top: 80, right: rightPad2, bottom: bottomPad2, left: 40 }, duration: 600, maxZoom: 10 },
     )
   // Only re-trigger on notes state changes, not every point update
   // eslint-disable-next-line react-hooks/exhaustive-deps

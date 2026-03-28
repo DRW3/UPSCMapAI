@@ -283,13 +283,23 @@ function ChatInterfaceInner() {
     if (isMobile) setSheetState('peek')
   }
 
-  // Clickable location button style
+  // Clickable location pill style — distinct, tappable
   const locBtnStyle: React.CSSProperties = {
-    color: '#a5b4fc', background: 'rgba(99,102,241,0.12)',
-    border: 'none', borderBottom: '1.5px dashed rgba(129,140,248,0.4)',
-    padding: '1px 5px', borderRadius: 4, cursor: 'pointer',
-    font: 'inherit', fontWeight: 600, display: 'inline',
-    lineHeight: 'inherit',
+    color: '#c7d2fe',
+    background: 'rgba(99,102,241,0.18)',
+    border: '1px solid rgba(99,102,241,0.35)',
+    padding: '2px 10px 2px 6px',
+    borderRadius: 12,
+    cursor: 'pointer',
+    font: 'inherit',
+    fontSize: 'inherit',
+    fontWeight: 600,
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: 3,
+    lineHeight: 1.4,
+    verticalAlign: 'baseline',
+    whiteSpace: 'nowrap',
   }
 
   // Scan text for ANY annotated point label and make matches clickable
@@ -315,7 +325,7 @@ function ChatInterfaceInner() {
           return (
             <button key={i} onClick={(e) => { e.stopPropagation(); flyToLocation(point.coordinates) }}
               style={locBtnStyle}>
-              {part}<span style={{ fontSize: 9, marginLeft: 2, opacity: 0.6 }}>📍</span>
+              <span style={{ fontSize: 11 }}>📍</span>{part}
             </button>
           )
         }
@@ -572,7 +582,7 @@ function ChatInterfaceInner() {
           return (
             <button onClick={(e) => { e.stopPropagation(); flyToLocation(coords) }}
               style={locBtnStyle}>
-              {children}<span style={{ fontSize: 9, marginLeft: 2, opacity: 0.6 }}>📍</span>
+              <span style={{ fontSize: 11 }}>📍</span>{children}
             </button>
           )
         }
