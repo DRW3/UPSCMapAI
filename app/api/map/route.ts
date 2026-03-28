@@ -4,6 +4,7 @@ import { streamAnnotations } from '@/lib/ai/annotation-gen'
 import { getBoundsForScope, detectEmpire, getEmpireCities } from '@/lib/ai/data-resolver'
 import { detectWebQueries, fetchWebGeoData } from '@/lib/geo/webquery'
 import { fetchRelevantPYQs } from '@/lib/pyq/retrieval'
+import { searchForContext } from '@/lib/search/web-search'
 import type { MapOperation, AnnotatedPoint } from '@/types'
 
 export const runtime = 'nodejs'
@@ -38,12 +39,14 @@ export async function POST(req: NextRequest) {
         const webQueryKeys = isSpecificQuery ? [] : detectWebQueries(intent.features_to_show, intent.map_type)
         const needsWebData = webQueryKeys.length > 0
 
-        // 3. Start Wikidata + PYQ fetch in parallel
+        // 3. Start Wikidata + PYQ + Web Search fetch in parallel
         const webDataPromise = needsWebData
           ? fetchWebGeoData(webQueryKeys)
           : Promise.resolve([])
         const pyqPromise = fetchRelevantPYQs(intent, { limit: 5, threshold: 0.45 })
           .catch(() => [])   // never block the map if Supabase is down
+        const webSearchPromise = searchForContext(message, intent.title)
+          .catch(() => '')   // never block if search fails
 
         // 4. Send full_replace map operation
         send({ type: 'map_operation', operation: { op: 'full_replace', intent } as MapOperation })
@@ -139,9 +142,10 @@ export async function POST(req: NextRequest) {
           })
         }
 
-        // 11. Stream UPSC notes with real PYQs
+        // 11. Stream UPSC notes with real PYQs + web search context
         const pyqs = await pyqPromise
-        for await (const chunk of streamAnnotations(intent, pyqs)) {
+        const webContext = await webSearchPromise
+        for await (const chunk of streamAnnotations(intent, pyqs, webContext)) {
           send({ type: 'sidebar_text', text: chunk })
         }
         send({ type: 'sidebar_done' })

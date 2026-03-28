@@ -9,6 +9,8 @@ function getGroq() {
 }
 
 const UPSC_SYSTEM_INSTRUCTION_WITH_PYQS = `You are an expert UPSC teacher writing concise, exam-focused geographical and historical notes.
+You may receive web search context — use those facts (dates, figures, details) to make your notes precise and accurate. Do not mention that you used web search.
+
 Format your response in Markdown with these exact sections:
 ## Overview
 Brief explanation of what this map shows (2-3 sentences).
@@ -28,6 +30,8 @@ Use ONLY the real PYQs provided in the prompt — copy them verbatim, do NOT inv
 Keep total length under 600 words. Use precise facts, years, and figures. Avoid fluff.`
 
 const UPSC_SYSTEM_INSTRUCTION_NO_PYQS = `You are an expert UPSC teacher writing concise, exam-focused geographical and historical notes.
+You may receive web search context — use those facts (dates, figures, details) to make your notes precise and accurate. Do not mention that you used web search.
+
 Format your response in Markdown with these sections:
 ## Overview
 Brief explanation of what this map shows (2-3 sentences).
@@ -57,7 +61,7 @@ function formatPYQsForPrompt(pyqs: RetrievedPYQ[]): string {
   }).join('\n\n')
 }
 
-function buildPrompt(intent: ParsedMapIntent, pyqs: RetrievedPYQ[]): string {
+function buildPrompt(intent: ParsedMapIntent, pyqs: RetrievedPYQ[], webContext: string = ''): string {
   const base = `Generate UPSC study notes for this map:
 Title: ${intent.title}
 Map Type: ${intent.map_type}
@@ -68,18 +72,24 @@ Features shown: ${intent.features_to_show.join(', ')}
 UPSC Context: ${intent.upsc_context}
 Topics to cover: ${intent.sidebar_topics.join(', ')}`
 
-  if (pyqs.length === 0) return base
+  let prompt = base
 
-  return `${base}
+  if (webContext) {
+    prompt += webContext
+  }
 
-REAL PAST YEAR QUESTIONS (use these verbatim in the PYQs section — do NOT modify or invent):
-${formatPYQsForPrompt(pyqs)}`
+  if (pyqs.length > 0) {
+    prompt += `\n\nREAL PAST YEAR QUESTIONS (use these verbatim in the PYQs section — do NOT modify or invent):\n${formatPYQsForPrompt(pyqs)}`
+  }
+
+  return prompt
 }
 
-/** Stream UPSC notes for a given map intent, enriched with real PYQs from Supabase */
+/** Stream UPSC notes for a given map intent, enriched with real PYQs + web search context */
 export async function* streamAnnotations(
   intent: ParsedMapIntent,
   pyqs: RetrievedPYQ[] = [],
+  webContext: string = '',
 ): AsyncGenerator<string> {
   const groqStream = await getGroq().chat.completions.create({
     model: 'llama-3.1-8b-instant',
@@ -91,7 +101,7 @@ export async function* streamAnnotations(
           ? UPSC_SYSTEM_INSTRUCTION_WITH_PYQS
           : UPSC_SYSTEM_INSTRUCTION_NO_PYQS,
       },
-      { role: 'user', content: buildPrompt(intent, pyqs) },
+      { role: 'user', content: buildPrompt(intent, pyqs, webContext) },
     ],
   })
 
