@@ -205,7 +205,7 @@ export async function parseMapIntent(userMessage: string): Promise<ParsedMapInte
   // forces a map interpretation. If that also fails, throw a user-friendly error.
   async function attempt(msg: string): Promise<ParsedMapIntent> {
     const response = await getGroq().chat.completions.create({
-      model: 'openai/gpt-oss-120b',
+      model: 'llama-3.3-70b-versatile',
       messages: [
         { role: 'system', content: SYSTEM_INSTRUCTION },
         { role: 'user', content: msg },
@@ -252,7 +252,7 @@ export async function classifyFollowUp(
   currentIntent: ParsedMapIntent
 ): Promise<'full_replace' | 'modify'> {
   const response = await getGroq().chat.completions.create({
-    model: 'openai/gpt-oss-120b',
+    model: 'llama-3.1-8b-instant',
     messages: [{
       role: 'user',
       content: `Current map: "${currentIntent.title}"\nUser message: "${userMessage}"\n\nClassify as "full_replace" (completely new map) or "modify" (minor change). Reply with only one of those two words.`,
