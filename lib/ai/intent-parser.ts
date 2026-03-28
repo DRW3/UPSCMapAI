@@ -260,13 +260,11 @@ function normalizeIntent(raw: ParsedMapIntent): ParsedMapIntent {
 }
 
 export async function parseMapIntent(userMessage: string): Promise<ParsedMapIntent> {
-  // Models in priority order — diverse providers for maximum availability.
-  // Each has 500K+ TPD except llama-3.3-70b (100K) which we try first for quality.
   const MODELS = [
-    'llama-3.3-70b-versatile',
-    'qwen/qwen3-32b',
-    'meta-llama/llama-4-scout-17b-16e-instruct',
-    'llama-3.1-8b-instant',
+    'llama-3.1-8b-instant',                        // fastest, highest limits (500K TPD)
+    'qwen/qwen3-32b',                              // good quality, 500K TPD
+    'meta-llama/llama-4-scout-17b-16e-instruct',   // 500K TPD
+    'llama-3.3-70b-versatile',                      // best quality, lowest limits (100K TPD)
   ] as const
 
   async function attempt(msg: string, model: string): Promise<ParsedMapIntent> {
@@ -289,20 +287,27 @@ export async function parseMapIntent(userMessage: string): Promise<ParsedMapInte
     return normalizeIntent(raw)
   }
 
-  const forcedPrompt = `You MUST call the parse_map_intent function for this query. Interpret it as a geographic/map topic no matter what. If the exact thing doesn't exist in that region, map the region itself with what IS geographically notable there.\n\nQuery: "${userMessage}"`
-
-  // Try each model with original prompt, then forced prompt. On ANY error, move on.
-  for (const model of MODELS) {
-    try {
-      return await attempt(userMessage, model)
-    } catch { /* try forced prompt */ }
-
-    try {
-      return await attempt(forcedPrompt, model)
-    } catch { /* try next model */ }
+  // Race all models in parallel — first successful response wins.
+  // This gives the speed of the fastest available model instead of
+  // waiting for each to fail sequentially.
+  try {
+    return await Promise.any(
+      MODELS.map(model => attempt(userMessage, model))
+    )
+  } catch {
+    // All models failed on direct prompt — try forced prompt in parallel
   }
 
-  // All models exhausted
+  const forcedPrompt = `You MUST call the parse_map_intent function for this query. Interpret it as a geographic/map topic no matter what. If the exact thing doesn't exist in that region, map the region itself with what IS geographically notable there.\n\nQuery: "${userMessage}"`
+
+  try {
+    return await Promise.any(
+      MODELS.map(model => attempt(forcedPrompt, model))
+    )
+  } catch {
+    // All models failed
+  }
+
   throw new ParseFailedError(userMessage)
 }
 
