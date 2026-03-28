@@ -363,12 +363,9 @@ function ChatInterfaceInner() {
 
       const totalMove = Math.abs(y - drag.startY)
       if (totalMove < 5) {
-        // Tap toggle: expanded→open→peek→closed (or open on desktop)
-        setSheetState(prev => {
-          if (prev === 'expanded') return 'open'
-          if (prev === 'open') return isMobile ? 'peek' : 'closed'
-          return 'open'
-        })
+        // Ignore taps on the drag handle — only respond to actual drags
+        isDraggingRef.current = false
+        return
       } else {
         const delta = y - drag.startY
         const draggedUp = delta < 0
@@ -1002,6 +999,7 @@ function ChatInterfaceInner() {
           left: 0,
           right: 0,
           height: sheetState === 'expanded' ? '80vh' : '60vh',
+          maxHeight: '80vh',
           zIndex: 30,
           display: 'flex',
           flexDirection: 'column',
