@@ -260,9 +260,12 @@ function normalizeIntent(raw: ParsedMapIntent): ParsedMapIntent {
 }
 
 export async function parseMapIntent(userMessage: string): Promise<ParsedMapIntent> {
-  async function attempt(msg: string): Promise<ParsedMapIntent> {
+  // Models in priority order: try 70B for quality, fall back to 8B for availability
+  const MODELS = ['llama-3.3-70b-versatile', 'llama-3.1-8b-instant'] as const
+
+  async function attempt(msg: string, model: string): Promise<ParsedMapIntent> {
     const response = await getGroq().chat.completions.create({
-      model: 'llama-3.3-70b-versatile',
+      model,
       messages: [
         { role: 'system', content: SYSTEM_INSTRUCTION },
         { role: 'user', content: msg },
@@ -280,23 +283,31 @@ export async function parseMapIntent(userMessage: string): Promise<ParsedMapInte
     return normalizeIntent(raw)
   }
 
-  // Try 1: direct parse
-  try {
-    return await attempt(userMessage)
-  } catch {
-    // ignore, try stronger prompt
+  // Try each model — if one is rate-limited, try the next
+  for (const model of MODELS) {
+    // Try 1: direct parse
+    try {
+      return await attempt(userMessage, model)
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : String(err)
+      const isRateLimit = msg.includes('429') || msg.includes('rate_limit')
+      if (isRateLimit) continue // try next model
+    }
+
+    // Try 2: force a geographic interpretation (same model)
+    try {
+      return await attempt(
+        `You MUST create a map intent for this query. Even if the exact topic doesn't exist in that region, show the region on the map and note what IS geographically relevant there instead. Always produce valid output.\n\nQuery: "${userMessage}"`,
+        model,
+      )
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : String(err)
+      const isRateLimit = msg.includes('429') || msg.includes('rate_limit')
+      if (isRateLimit) continue // try next model
+    }
   }
 
-  // Try 2: force a geographic interpretation
-  try {
-    return await attempt(
-      `You MUST create a map intent for this query. Even if the exact topic doesn't exist in that region, show the region on the map and note what IS geographically relevant there instead. Always produce valid output.\n\nQuery: "${userMessage}"`
-    )
-  } catch {
-    // ignore, fall through to fallback
-  }
-
-  // Try 3: return null to signal the route handler to use the fallback path
+  // All models exhausted
   throw new ParseFailedError(userMessage)
 }
 
