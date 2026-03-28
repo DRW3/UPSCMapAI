@@ -22,5 +22,5 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules", "scripts", "gracious-engelbart", "happy-jepsen", "lucid-sammet", "stoic-turing", "condescending-volhard", "confident-roentgen", "infallible-pike", "dazzling-bohr", "eloquent-lumiere", "zen-austin", "objective-haibt", "adoring-blackwell", "busy-allen", "determined-nobel", "loving-golick", "stupefied-swanson", "friendly-grothendieck", "keen-hawking", "modest-bassi", "modest-wilson"]
+  "exclude": ["node_modules", "scripts", "gracious-engelbart", "happy-jepsen", "lucid-sammet", "stoic-turing", "condescending-volhard", "confident-roentgen", "infallible-pike", "dazzling-bohr", "eloquent-lumiere", "zen-austin", "objective-haibt", "adoring-blackwell", "busy-allen", "determined-nobel", "loving-golick", "stupefied-swanson", "friendly-grothendieck", "keen-hawking", "modest-bassi", "modest-wilson", "lucid-kare"]
 }
