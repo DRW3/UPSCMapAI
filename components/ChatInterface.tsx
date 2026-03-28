@@ -486,7 +486,7 @@ function ChatInterfaceInner() {
           onClick={() => setSheetState('open')}
           aria-label="Open search"
           style={{
-            position: 'fixed', top: 14, left: 14, right: 56, zIndex: 25,
+            position: 'fixed', top: 14, left: 14, right: 56, zIndex: 20,
             height: 48, display: 'flex', alignItems: 'center', gap: 10,
             padding: '0 16px', borderRadius: 24,
             background: 'rgba(10,14,26,0.9)',
@@ -517,7 +517,7 @@ function ChatInterfaceInner() {
             opacity: sheetState !== 'closed' ? 0 : 1,
             transition: 'transform 300ms cubic-bezier(0.32, 0.72, 0, 1), opacity 200ms ease',
             pointerEvents: sheetState !== 'closed' ? 'none' : 'auto',
-            zIndex: 40, display: 'flex', alignItems: 'center', gap: 10,
+            zIndex: 30, display: 'flex', alignItems: 'center', gap: 10,
             padding: '12px 20px', borderRadius: 32,
             background: 'rgba(7, 11, 22, 0.92)',
             backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)',
@@ -548,38 +548,39 @@ function ChatInterfaceInner() {
           bottom: 0,
           left: 0,
           right: 0,
-          height: isMobile ? '42vh' : '58vh',
-          zIndex: 40,
+          height: isMobile ? '50vh' : '58vh',
+          zIndex: 30,
           display: 'flex',
           flexDirection: 'column',
           transform: isMobile
             ? { closed: 'translateY(100%)', peek: 'translateY(calc(100% - 112px))', open: 'translateY(0)' }[sheetState]
             : (sheetState !== 'closed' ? 'translateY(0)' : 'translateY(100%)'),
-          transition: 'transform 300ms cubic-bezier(0.32, 0.72, 0, 1)',
-          background: 'rgba(7, 11, 22, 0.96)',
+          transition: 'transform 300ms cubic-bezier(0.2, 0, 0, 1)',
+          background: 'rgba(7, 11, 22, 0.97)',
           backdropFilter: 'blur(28px)',
           WebkitBackdropFilter: 'blur(28px)',
           borderTop: '1px solid rgba(255,255,255,0.08)',
-          borderRadius: '20px 20px 0 0',
-          boxShadow: '0 -12px 48px rgba(0,0,0,0.5)',
+          borderRadius: '28px 28px 0 0',
+          boxShadow: '0 -8px 40px rgba(0,0,0,0.5)',
           overflow: 'hidden',
+          paddingBottom: 'env(safe-area-inset-bottom, 0px)',
         }}
       >
-        {/* Drag handle */}
+        {/* Drag handle (M3: 32x4, centered) */}
         <div
-          style={{ display: 'flex', justifyContent: 'center', padding: '10px 0 6px', flexShrink: 0 }}
+          style={{ display: 'flex', justifyContent: 'center', padding: '12px 0 8px', flexShrink: 0 }}
         >
           <button
             onClick={() => setSheetState(prev => prev === 'open' ? (isMobile ? 'peek' : 'closed') : 'closed')}
             title="Close panel"
             style={{
-              width: 40, height: 4, borderRadius: 2,
-              background: 'rgba(255,255,255,0.18)',
+              width: 32, height: 4, borderRadius: 2,
+              background: 'rgba(255,255,255,0.22)',
               border: 'none', cursor: 'pointer', padding: 0,
               transition: 'background 0.15s',
             }}
-            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.35)' }}
-            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.18)' }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.4)' }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.22)' }}
           />
         </div>
 

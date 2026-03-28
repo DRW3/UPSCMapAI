@@ -7,6 +7,8 @@
 html, body {
   height: 100%;
   background: #070b14;
+  /* Enable safe area insets for iOS */
+  -webkit-text-size-adjust: 100%;
 }
 
 /* Map page needs full lock — applied via .map-page class on wrapper */
