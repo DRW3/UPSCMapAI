@@ -267,6 +267,7 @@ function ChatInterfaceInner() {
   const [reasoningStep, setReasoningStep] = useState('')
   const [isMobile, setIsMobile]   = useState(false)
   const [notesCardText, setNotesCardText]       = useState('')
+  const [viewportH, setViewportH] = useState(typeof window !== 'undefined' ? window.innerHeight : 800)
   const stepTimerRef   = useRef<ReturnType<typeof setInterval> | null>(null)
   const stepIndexRef   = useRef(0)
   const messagesEndRef = useRef<HTMLDivElement>(null)
@@ -327,7 +328,8 @@ function ChatInterfaceInner() {
     } catch { /* identity → 0 */ }
 
     const sheetHeight = sheet.offsetHeight
-    const maxHeight = window.innerHeight * 0.8   // 80vh max
+    const vvH = window.visualViewport?.height ?? window.innerHeight
+    const maxHeight = vvH * 0.8   // 80% of visible viewport (accounts for keyboard)
     const drag = { startY: clientY, lastY: clientY, lastTime: Date.now(), velocity: 0 }
 
     sheet.style.transition = 'none'
@@ -596,6 +598,19 @@ function ChatInterfaceInner() {
     const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches)
     mql.addEventListener('change', handler)
     return () => mql.removeEventListener('change', handler)
+  }, [])
+
+  // Track visual viewport height (shrinks when the mobile keyboard opens).
+  // This lets us cap the sheet so it never covers more than 80% of the
+  // VISIBLE screen, keeping the map peeking above even with the keyboard up.
+  useEffect(() => {
+    const vv = window.visualViewport
+    if (!vv) return
+    function onResize() {
+      setViewportH(vv!.height)
+    }
+    vv.addEventListener('resize', onResize)
+    return () => vv.removeEventListener('resize', onResize)
   }, [])
 
   async function sendMessage(text: string) {
@@ -1037,8 +1052,8 @@ function ChatInterfaceInner() {
           bottom: 0,
           left: 0,
           right: 0,
-          height: sheetState === 'expanded' ? '80vh' : '60vh',
-          maxHeight: '80vh',
+          height: sheetState === 'expanded' ? Math.floor(viewportH * 0.8) : Math.floor(viewportH * 0.6),
+          maxHeight: Math.floor(viewportH * 0.8),
           zIndex: 30,
           display: 'flex',
           flexDirection: 'column',
