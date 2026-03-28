@@ -200,9 +200,6 @@ Rules for sidebar_topics: exactly 5 topics, each starting with "GS-I:", "GS-II:"
 annotation_level: "detailed" for historical, "standard" for physical/political/international`
 
 export async function parseMapIntent(userMessage: string): Promise<ParsedMapIntent> {
-  // Try the original request. If the model refuses to call the tool (e.g. for
-  // queries it deems non-map-related), retry once with a stronger prompt that
-  // forces a map interpretation. If that also fails, throw a user-friendly error.
   async function attempt(msg: string): Promise<ParsedMapIntent> {
     const response = await getGroq().chat.completions.create({
       model: 'llama-3.3-70b-versatile',
@@ -222,28 +219,59 @@ export async function parseMapIntent(userMessage: string): Promise<ParsedMapInte
     return JSON.parse(toolCall.function.arguments) as ParsedMapIntent
   }
 
+  // Try 1: direct parse
   try {
     return await attempt(userMessage)
-  } catch (err: unknown) {
-    // Check if the error is a tool_use_failed / model-refused-to-call-tool error
-    const errMsg = err instanceof Error ? err.message : String(err)
-    const isToolRefusal = errMsg.includes('tool_use_failed') ||
-      errMsg.includes('did not call a tool') ||
-      errMsg.includes('did not return a tool call')
-
-    if (!isToolRefusal) throw err
-
-    // Retry with a forced map-interpretation prompt
-    try {
-      return await attempt(
-        `Create a UPSC-relevant map for the following query. Even if the topic seems unrelated to geography, find the closest geographic/map angle and generate the map intent.\n\nQuery: "${userMessage}"`
-      )
-    } catch {
-      throw new Error(
-        'Could not interpret this as a map query. Try asking about a geographic topic — rivers, states, battles, empires, minerals, national parks, etc.'
-      )
-    }
+  } catch {
+    // ignore, try stronger prompt
   }
+
+  // Try 2: force a geographic interpretation
+  try {
+    return await attempt(
+      `You MUST create a map intent for this query. Even if the exact topic doesn't exist in that region, show the region on the map and note what IS geographically relevant there instead. Always produce valid output.\n\nQuery: "${userMessage}"`
+    )
+  } catch {
+    // ignore, fall through to fallback
+  }
+
+  // Try 3: return null to signal the route handler to use the fallback path
+  throw new ParseFailedError(userMessage)
+}
+
+/** Sentinel error so the route handler can distinguish parse failures from real errors */
+export class ParseFailedError extends Error {
+  public readonly query: string
+  constructor(query: string) {
+    super('parse_failed')
+    this.name = 'ParseFailedError'
+    this.query = query
+  }
+}
+
+/** Use the 8B model to generate helpful suggestions when parsing fails */
+export async function generateFallbackResponse(query: string): Promise<string> {
+  const response = await getGroq().chat.completions.create({
+    model: 'llama-3.1-8b-instant',
+    messages: [
+      {
+        role: 'system',
+        content: `You are an expert UPSC geography and history assistant. The user searched for a topic that couldn't be mapped. Your job is to:
+1. Briefly explain why this specific topic might not have map results (e.g., "There are no active volcanoes in Bhutan" or "This topic is not geographic in nature")
+2. Suggest 3-5 closely related UPSC-relevant topics they CAN search for that WILL produce map results
+3. Keep it concise, friendly, and helpful
+
+Format as a short paragraph + bullet list of suggestions. Use markdown.`,
+      },
+      {
+        role: 'user',
+        content: `The user searched for: "${query}"\n\nGive a helpful response explaining what they can search instead.`,
+      },
+    ],
+    max_tokens: 300,
+  })
+
+  return response.choices[0]?.message?.content?.trim() ?? ''
 }
 
 /** Lightweight follow-up classification */

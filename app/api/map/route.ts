@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server'
-import { parseMapIntent } from '@/lib/ai/intent-parser'
+import { parseMapIntent, ParseFailedError, generateFallbackResponse } from '@/lib/ai/intent-parser'
 import { streamAnnotations } from '@/lib/ai/annotation-gen'
 import { getBoundsForScope, detectEmpire, getEmpireCities } from '@/lib/ai/data-resolver'
 import { detectWebQueries, fetchWebGeoData } from '@/lib/geo/webquery'
@@ -152,7 +152,24 @@ export async function POST(req: NextRequest) {
 
         controller.enqueue(encoder.encode('data: [DONE]\n\n'))
       } catch (err) {
-        send({ type: 'error', message: err instanceof Error ? err.message : 'Unknown error' })
+        if (err instanceof ParseFailedError) {
+          // Generate a helpful fallback response with suggestions
+          try {
+            const fallback = await generateFallbackResponse(err.query)
+            send({
+              type: 'chat_text',
+              text: fallback || `I couldn't find map data for **"${err.query}"**. Try a more specific geographic topic like rivers, mountain ranges, historical empires, or national parks.`,
+            })
+          } catch {
+            send({
+              type: 'chat_text',
+              text: `I couldn't find map data for **"${err.query}"**. Try searching for:\n- **Rivers** — Ganga, Brahmaputra, Peninsular rivers\n- **Empires** — Mughal, Mauryan, Chola dynasty\n- **Geography** — Western Ghats, Himalayan passes, Northeast India\n- **Resources** — Coal deposits, iron ore, nuclear plants\n- **Protected areas** — Tiger reserves, national parks, Ramsar wetlands`,
+            })
+          }
+          send({ type: 'sidebar_done' })
+        } else {
+          send({ type: 'error', message: err instanceof Error ? err.message : 'Unknown error' })
+        }
         controller.enqueue(encoder.encode('data: [DONE]\n\n'))
       } finally {
         controller.close()
