@@ -131,7 +131,7 @@ const PARSE_MAP_INTENT_TOOL: Groq.Chat.Completions.ChatCompletionTool = {
               },
               label: {
                 type: 'string',
-                description: 'Display label — concise but descriptive, add context in parentheses',
+                description: 'Display label shown on map — include a brief one-liner explanation. Format: "Name — key fact". Examples: "Pataliputra — Mauryan capital city", "Jharia — largest coal field in India", "Plassey — decisive 1757 battle site"',
               },
               icon: {
                 type: 'string',
@@ -182,8 +182,9 @@ Rules for annotated_points — ONLY PLOT WHAT THE QUERY IS ABOUT:
 - For general overviews (major rivers, all states, India map): spread markers evenly across the topic — 12-20 points.
 - For specific single-topic queries: 6-15 highly focused points, ALL directly about that topic.
 - For neighbors/international: capital cities of neighboring countries + major border crossings + New Delhi.
-- Use accurate real-world coordinates — these are plotted on a live map.
+- Use accurate real-world coordinates — these are plotted on a live map. Double-check lat/lng values.
 - Quality over quantity. 8 perfectly relevant points is far better than 25 padded ones.
+- Labels MUST include a brief one-liner explanation: "Name — key fact". NOT just bare names. The label is shown on the map next to the pin so the user understands what each point is without clicking.
 
 Rules for features_to_highlight — populate for SPECIFIC queries, EMPTY for overviews:
 - "Ganga river" → ["Ganga"] | "Major rivers of India" → []

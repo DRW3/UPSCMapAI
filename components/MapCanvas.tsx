@@ -492,27 +492,26 @@ export default function MapCanvas() {
       map.addSource('annotated-points', { type: 'geojson', data: geojson, cluster: false })
       mountedSourceIds.current.add('annotated-points')
 
-      // ── Layer 1: Outer glow / pulse ──────────────────────────────────────
+      // ── Layer 1: Outer glow / pulse (more visible) ──────────────────────
       map.addLayer({
         id: 'pts-halo', type: 'circle', source: 'annotated-points',
         paint: {
-          'circle-radius':          ['interpolate', ['linear'], ['zoom'], 2, 20, 4, 28, 7, 38, 10, 52],
+          'circle-radius':          ['interpolate', ['linear'], ['zoom'], 2, 22, 4, 30, 7, 42, 10, 56],
           'circle-color':           ['get', 'color'],
-          'circle-opacity':         ['interpolate', ['linear'], ['zoom'], 2, 0.07, 5, 0.10, 8, 0.14],
-          'circle-blur':            0.8,
+          'circle-opacity':         ['interpolate', ['linear'], ['zoom'], 2, 0.12, 5, 0.18, 8, 0.22],
+          'circle-blur':            0.7,
           'circle-stroke-width':    0,
           'circle-pitch-alignment': 'map',
         },
       })
 
-      // ── Layer 2: Teardrop pin sprite (emoji only, no text baked in) ────────
+      // ── Layer 2: Teardrop pin sprite — bigger at low zoom ────────────────
       map.addLayer({
         id: 'pts-marker', type: 'symbol', source: 'annotated-points',
         layout: {
           'icon-image':            ['get', 'sprite'],
-          // Pin scales: small at country-zoom, full at city-zoom
-          'icon-size':             ['interpolate', ['linear'], ['zoom'], 2, 0.45, 4, 0.6, 6, 0.75, 9, 0.9, 12, 1.0],
-          'icon-anchor':           'bottom',   // pin-tip sits on the coordinate
+          'icon-size':             ['interpolate', ['linear'], ['zoom'], 2, 0.6, 4, 0.75, 6, 0.85, 9, 0.95, 12, 1.0],
+          'icon-anchor':           'bottom',
           'icon-allow-overlap':    true,
           'icon-ignore-placement': true,
           'symbol-placement':      'point',
@@ -520,25 +519,26 @@ export default function MapCanvas() {
         },
       })
 
-      // ── Layer 3: Name label — rendered by MapLibre below each pin ────────
+      // ── Layer 3: Name label — visible at all zoom levels, prominent ──────
       map.addLayer({
         id: 'pts-label', type: 'symbol', source: 'annotated-points',
-        minzoom: 4,
+        minzoom: 2,
         layout: {
           'text-field':          ['get', 'name'],
           'text-anchor':         'top',
-          'text-offset':         [0, 0.35],     // just below the pin tip
-          'text-size':           ['interpolate', ['linear'], ['zoom'], 4, 9, 7, 11, 10, 13],
+          'text-offset':         [0, 0.4],
+          'text-size':           ['interpolate', ['linear'], ['zoom'], 2, 10, 5, 12, 8, 14, 12, 15],
           'text-font':           ['Open Sans Regular'],
-          'text-max-width':      9,
+          'text-max-width':      10,
           'text-allow-overlap':  false,
+          'text-optional':       true,
           'symbol-sort-key':     ['-', 0, ['get', 'pyq_count']],
         },
         paint: {
           'text-color':       '#ffffff',
-          'text-halo-color':  'rgba(0,0,0,0.75)',
-          'text-halo-width':  1.5,
-          'text-opacity':     ['interpolate', ['linear'], ['zoom'], 4, 0, 5, 1],
+          'text-halo-color':  'rgba(0,0,0,0.85)',
+          'text-halo-width':  2,
+          'text-opacity':     ['interpolate', ['linear'], ['zoom'], 2, 0.7, 4, 0.85, 6, 1],
         },
       })
     }
