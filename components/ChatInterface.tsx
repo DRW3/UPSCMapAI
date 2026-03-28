@@ -272,6 +272,7 @@ function ChatInterfaceInner() {
   const stepTimerRef   = useRef<ReturnType<typeof setInterval> | null>(null)
   const stepIndexRef   = useRef(0)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const notesElRef     = useRef<HTMLDivElement>(null)  // ref for the notes message element
   const inputRef       = useRef<HTMLTextAreaElement>(null)
   const proxyInputRef  = useRef<HTMLInputElement>(null)  // always-mounted hidden input for mobile keyboard trick
   const sheetRef       = useRef<HTMLDivElement>(null)
@@ -1104,14 +1105,25 @@ function ChatInterfaceInner() {
           }} />
         </div>
 
-        {/* ── Peek content (mobile only) ─────────────────────────────────── */}
+        {/* ── Peek content (mobile only) — swipeable + tappable ────────────── */}
         {isMobile && sheetState === 'peek' && (
           <div
-            onClick={() => openSheetWithKeyboard()}
+            onTouchStart={onDragTouchStart}
+            onClick={() => {
+              // Notes visible → open to show notes, scroll to them (no keyboard)
+              // No notes → open with keyboard for search
+              if (notesCardText) {
+                setSheetState('open')
+                setTimeout(() => notesElRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 350)
+              } else {
+                openSheetWithKeyboard()
+              }
+            }}
             style={{
               display: 'flex', flexDirection: 'column', gap: 8,
               padding: '2px 14px 14px',
               cursor: 'pointer',
+              touchAction: 'none',
             }}
           >
             {/* Row 1: Last topic + marker count */}
@@ -1166,7 +1178,7 @@ function ChatInterfaceInner() {
                     Study Notes
                   </span>
                   <span style={{ marginLeft: 'auto', fontSize: 10, color: 'rgba(129,140,248,0.6)', fontWeight: 500 }}>
-                    Swipe up ↑
+                    Tap to read ↑
                   </span>
                 </div>
                 {/* Preview text — 3 lines with fade */}
@@ -1323,7 +1335,7 @@ function ChatInterfaceInner() {
                 // ── Notes message ────────────────────────────────────────────
                 if (msg.isNotes) {
                   return (
-                    <div key={msg.id} className="chat-msg-enter" style={{ width: '100%' }}>
+                    <div key={msg.id} ref={notesElRef} className="chat-msg-enter" style={{ width: '100%' }}>
                       {/* Notes header */}
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
                         <span style={{
