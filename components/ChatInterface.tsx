@@ -294,32 +294,36 @@ function ChatInterfaceInner() {
 
   // Scan text for ANY annotated point label and make matches clickable
   function linkifyLocations(text: string): React.ReactNode {
-    if (!annotatedPoints.length || !text || text.length < 2) return text
+    try {
+      if (!annotatedPoints.length || !text || text.length < 2) return text
 
-    // Build regex from labels (3+ chars, longest first to avoid partial matches)
-    const valid = [...annotatedPoints]
-      .filter(p => p.label.length >= 3)
-      .sort((a, b) => b.label.length - a.label.length)
-    if (!valid.length) return text
+      // Build regex from labels (3+ chars, longest first to avoid partial matches)
+      const valid = [...annotatedPoints]
+        .filter(p => p.label && p.label.length >= 3)
+        .sort((a, b) => b.label.length - a.label.length)
+      if (!valid.length) return text
 
-    const pattern = valid.map(p => p.label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')
-    const regex = new RegExp(`\\b(${pattern})\\b`, 'gi')
+      const pattern = valid.map(p => p.label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')
+      const regex = new RegExp(`(${pattern})`, 'gi')
 
-    const parts = text.split(regex)
-    if (parts.length <= 1) return text
+      const parts = text.split(regex)
+      if (parts.length <= 1) return text
 
-    return parts.map((part, i) => {
-      const point = valid.find(p => p.label.toLowerCase() === part.toLowerCase())
-      if (point) {
-        return (
-          <button key={i} onClick={(e) => { e.stopPropagation(); flyToLocation(point.coordinates) }}
-            style={locBtnStyle}>
-            {part}<span style={{ fontSize: 9, marginLeft: 2, opacity: 0.6 }}>📍</span>
-          </button>
-        )
-      }
-      return <span key={i}>{part}</span>
-    })
+      return parts.map((part, i) => {
+        const point = valid.find(p => p.label.toLowerCase() === part.toLowerCase())
+        if (point) {
+          return (
+            <button key={i} onClick={(e) => { e.stopPropagation(); flyToLocation(point.coordinates) }}
+              style={locBtnStyle}>
+              {part}<span style={{ fontSize: 9, marginLeft: 2, opacity: 0.6 }}>📍</span>
+            </button>
+          )
+        }
+        return <span key={i}>{part}</span>
+      })
+    } catch {
+      return text // fallback: return plain text if regex fails
+    }
   }
 
   // Process React children — linkify any string children
@@ -566,25 +570,24 @@ function ChatInterfaceInner() {
 
   return (
     <>
-      {/* ── Mobile: Floating search bar (closed state, avoids map controls) ── */}
-      {isMobile && sheetState === 'closed' && (
+      {/* ── Mobile: Google Maps-style white search bar (always visible when not open) */}
+      {isMobile && sheetState !== 'open' && (
         <button
           onClick={() => setSheetState('open')}
           aria-label="Open search"
           style={{
-            position: 'fixed', top: 14, left: 14, right: 64, zIndex: 20,
+            position: 'fixed', top: 12, left: 12, right: 56, zIndex: 20,
             height: 48, display: 'flex', alignItems: 'center', gap: 10,
-            padding: '0 16px', borderRadius: 24,
-            background: 'rgba(10,14,26,0.9)',
-            backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)',
-            border: '1px solid rgba(255,255,255,0.1)',
-            boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
-            color: 'rgba(255,255,255,0.5)', fontSize: 14, fontWeight: 500,
+            padding: '0 14px', borderRadius: 24,
+            background: 'rgba(255,255,255,0.95)',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.05)',
+            color: '#5f6368', fontSize: 15, fontWeight: 400,
             cursor: 'pointer', userSelect: 'none',
+            letterSpacing: '-0.01em',
           }}
         >
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" style={{ flexShrink: 0, opacity: 0.5 }}>
-            <circle cx="7" cy="7" r="5"/><path d="M11 11l3.5 3.5" strokeLinecap="round"/>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#9aa0a6" strokeWidth="2" style={{ flexShrink: 0 }}>
+            <circle cx="7.5" cy="7.5" r="5.5"/><path d="M12 12l4 4" strokeLinecap="round"/>
           </svg>
           Search UPSC topics...
         </button>
@@ -715,22 +718,22 @@ function ChatInterfaceInner() {
                 </span>
               )}
             </div>
-            {/* Row 2: Fake search input (tap to expand) */}
+            {/* Row 2: Fake search input — white like Google Maps */}
             <div style={{
               display: 'flex', alignItems: 'center', gap: 10,
               padding: '10px 14px',
-              borderRadius: 14,
-              background: 'rgba(255,255,255,0.06)',
-              border: '1px solid rgba(255,255,255,0.1)',
+              borderRadius: 12,
+              background: 'rgba(255,255,255,0.92)',
+              boxShadow: '0 1px 4px rgba(0,0,0,0.15)',
             }}>
-              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1.8" style={{ flexShrink: 0 }}>
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="#9aa0a6" strokeWidth="1.8" style={{ flexShrink: 0 }}>
                 <circle cx="6.5" cy="6.5" r="4.5"/><path d="M10 10l3 3" strokeLinecap="round"/>
               </svg>
-              <span style={{ flex: 1, fontSize: 13, color: 'rgba(255,255,255,0.3)' }}>
+              <span style={{ flex: 1, fontSize: 13, color: '#80868b' }}>
                 Ask a follow-up question...
               </span>
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ flexShrink: 0, opacity: 0.4 }}>
-                <path d="M7 1l1.8 5H13l-3.6 2.6L10.8 13 7 10.2 3.2 13l1.4-4.4L1 6h4.2z" fill="#818cf8"/>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4285f4" strokeWidth="1.8" style={{ flexShrink: 0 }}>
+                <path d="M14 2L2 8.5l4.5 1.8L9 14.5l5-12.5z" strokeLinejoin="round"/>
               </svg>
             </div>
           </div>
