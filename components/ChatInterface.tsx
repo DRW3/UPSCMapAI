@@ -244,6 +244,9 @@ function ChatInterfaceInner() {
   const [isOpen, setIsOpen]       = useState(false)
   const [activeTab, setActiveTab] = useState<Tab>('chat')
   const [reasoningStep, setReasoningStep] = useState('')
+  const [isMobile, setIsMobile]   = useState(false)
+  const [notesCardText, setNotesCardText]       = useState('')
+  const [notesCardVisible, setNotesCardVisible] = useState(false)
   const stepTimerRef   = useRef<ReturnType<typeof setInterval> | null>(null)
   const stepIndexRef   = useRef(0)
   const messagesEndRef = useRef<HTMLDivElement>(null)
@@ -312,6 +315,15 @@ function ChatInterfaceInner() {
     }
   }, [isOpen])
 
+  // Detect mobile viewport
+  useEffect(() => {
+    const mql = window.matchMedia('(max-width: 768px)')
+    setIsMobile(mql.matches)
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches)
+    mql.addEventListener('change', handler)
+    return () => mql.removeEventListener('change', handler)
+  }, [])
+
   async function sendMessage(text: string) {
     if (!text.trim() || isLoading) return
 
@@ -324,6 +336,8 @@ function ChatInterfaceInner() {
     setIsLoading(true)
     setIsOpen(true)
     clearMapData()
+    setNotesCardText('')
+    setNotesCardVisible(false)
     setSidebarLoading(true)
     startStepCycle()
 
@@ -402,6 +416,8 @@ function ChatInterfaceInner() {
             }
             notesText += event.text as string
             setSidebarContent(notesText) // keep store in sync for session persistence
+            setNotesCardText(notesText)
+            setNotesCardVisible(true)
             setMessages(prev => prev.map(m =>
               m.id === notesMsgId ? { ...m, content: notesText, isLoading: false } : m
             ))
@@ -459,6 +475,101 @@ function ChatInterfaceInner() {
 
   return (
     <>
+      {/* ── Mobile top bar ──────────────────────────────────────────────────── */}
+      {isMobile && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, right: 0,
+          height: 50, zIndex: 25,
+          display: 'flex', alignItems: 'center', padding: '0 16px',
+          background: 'rgba(7, 11, 22, 0.78)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          borderBottom: '1px solid rgba(255,255,255,0.07)',
+        }}>
+          <span style={{
+            width: 24, height: 24, borderRadius: 7,
+            background: 'rgba(99,102,241,0.25)',
+            border: '1px solid rgba(99,102,241,0.4)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: 12, flexShrink: 0, marginRight: 8,
+          }}>🗺</span>
+          <span style={{ fontSize: 14, fontWeight: 700, color: 'rgba(165,180,252,0.95)', letterSpacing: '-0.01em' }}>
+            UPSC Map AI
+          </span>
+          <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.28)', marginLeft: 8 }}>
+            · India geography &amp; history
+          </span>
+        </div>
+      )}
+
+      {/* ── Mobile notes card overlay (top) ─────────────────────────────────── */}
+      {isMobile && notesCardVisible && notesCardText && (
+        <div
+          className="notes-card-mobile scrollbar-thin"
+          style={{
+            position: 'fixed', top: 58, left: 12, right: 12,
+            zIndex: 15,
+            maxHeight: '40vh',
+            overflowY: 'auto',
+            background: 'rgba(10, 14, 26, 0.93)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
+            border: '1px solid rgba(99,102,241,0.28)',
+            borderRadius: 18,
+            boxShadow: '0 8px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(99,102,241,0.12)',
+          }}
+        >
+          {/* Sticky header */}
+          <div style={{
+            display: 'flex', alignItems: 'center',
+            padding: '10px 14px 9px',
+            borderBottom: '1px solid rgba(255,255,255,0.07)',
+            position: 'sticky', top: 0,
+            background: 'rgba(10, 14, 26, 0.97)',
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
+            borderRadius: '18px 18px 0 0',
+            zIndex: 1,
+          }}>
+            <span style={{ fontSize: 11, fontWeight: 700, color: '#818cf8', textTransform: 'uppercase', letterSpacing: '0.15em' }}>
+              📖 Study Notes
+            </span>
+            {isLoading && (
+              <div style={{ display: 'flex', gap: 3, marginLeft: 8 }}>
+                {[0, 1, 2].map(i => (
+                  <span key={i} style={{
+                    width: 4, height: 4, borderRadius: '50%',
+                    background: '#818cf8',
+                    animation: 'bounce 0.6s ease-in-out infinite',
+                    animationDelay: `${i * 0.15}s`,
+                  }} />
+                ))}
+              </div>
+            )}
+            <button
+              onClick={() => setNotesCardVisible(false)}
+              aria-label="Dismiss notes"
+              style={{
+                marginLeft: 'auto', width: 26, height: 26, borderRadius: '50%',
+                background: 'rgba(255,255,255,0.08)',
+                border: '1px solid rgba(255,255,255,0.1)',
+                cursor: 'pointer', flexShrink: 0,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                color: 'rgba(255,255,255,0.5)', fontSize: 16, lineHeight: 1,
+              }}
+            >
+              ×
+            </button>
+          </div>
+          {/* Notes content */}
+          <div style={{ padding: '10px 14px 16px' }}>
+            <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
+              {notesCardText}
+            </ReactMarkdown>
+          </div>
+        </div>
+      )}
+
       {/* ── Floating open button (collapsed state) ──────────────────────── */}
       <button
         onClick={() => setIsOpen(true)}
@@ -467,8 +578,10 @@ function ChatInterfaceInner() {
         style={{
           position: 'fixed',
           bottom: 24,
-          left: '50%',
-          transform: isOpen ? 'translateX(-50%) translateY(80px)' : 'translateX(-50%) translateY(0)',
+          ...(isMobile
+            ? { right: 20, left: 'auto', transform: isOpen ? 'translateY(80px)' : 'translateY(0)' }
+            : { left: '50%', transform: isOpen ? 'translateX(-50%) translateY(80px)' : 'translateX(-50%) translateY(0)' }
+          ),
           opacity: isOpen ? 0 : 1,
           transition: 'transform 300ms cubic-bezier(0.32, 0.72, 0, 1), opacity 200ms ease',
           pointerEvents: isOpen ? 'none' : 'auto',
@@ -476,7 +589,7 @@ function ChatInterfaceInner() {
           display: 'flex',
           alignItems: 'center',
           gap: 10,
-          padding: '12px 20px',
+          padding: isMobile ? '14px 16px' : '12px 20px',
           borderRadius: 32,
           background: 'rgba(7, 11, 22, 0.92)',
           backdropFilter: 'blur(20px)',
@@ -496,9 +609,16 @@ function ChatInterfaceInner() {
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           fontSize: 14, flexShrink: 0,
         }}>🗺</span>
-        <span style={{ fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.85)' }}>
-          Ask about UPSC…
-        </span>
+        {!isMobile && (
+          <span style={{ fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.85)' }}>
+            Ask about UPSC…
+          </span>
+        )}
+        {isMobile && (
+          <span style={{ fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.85)' }}>
+            Ask anything…
+          </span>
+        )}
         {/* Pulse dot when loading */}
         {isLoading && (
           <span style={{
@@ -515,7 +635,7 @@ function ChatInterfaceInner() {
           bottom: 0,
           left: 0,
           right: 0,
-          height: '58vh',
+          height: isMobile ? '50vh' : '58vh',
           zIndex: 40,
           display: 'flex',
           flexDirection: 'column',

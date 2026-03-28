@@ -81,6 +81,30 @@ html, body {
   50%       { transform: translateY(-4px); }
 }
 
+/* ── Mobile notes card slide-down ───────────────────────────────────────── */
+@keyframes notesCardSlideDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.notes-card-mobile {
+  animation: notesCardSlideDown 0.35s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+/* ── Mobile top bar ──────────────────────────────────────────────────────── */
+.mobile-top-bar {
+  display: none;
+}
+@media (max-width: 768px) {
+  .mobile-top-bar {
+    display: flex;
+  }
+  /* Notes card only shown on mobile via JS isMobile check, no extra CSS needed */
+  /* Ensure map fills screen on mobile */
+  .map-page {
+    position: relative;
+  }
+}
+
 /* ── Custom popup ────────────────────────────────────────────────────────── */
 .maplibregl-popup.map-popup .maplibregl-popup-content {
   background: rgba(255, 255, 255, 0.97);
