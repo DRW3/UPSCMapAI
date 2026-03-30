@@ -7,9 +7,7 @@ import {
   type CrownLevel,
   CROWN_COLORS,
   QUESTIONS_PER_CROWN,
-} from '@/components/journey/types'
-
-// ── Props ───────────────────────────────────────────────────────────────────────
+} from './types'
 
 interface TopicDetailSheetProps {
   topic: LearningTopic
@@ -19,8 +17,6 @@ interface TopicDetailSheetProps {
   onStartPractice: () => void
   onOpenMap: () => void
 }
-
-// ── Component ───────────────────────────────────────────────────────────────────
 
 export default function TopicDetailSheet({
   topic,
@@ -34,13 +30,13 @@ export default function TopicDetailSheet({
   const [dismissing, setDismissing] = useState(false)
 
   useEffect(() => {
-    const t = setTimeout(() => setVisible(true), 30)
+    const t = setTimeout(() => setVisible(true), 20)
     return () => clearTimeout(t)
   }, [])
 
   function handleDismiss() {
     setDismissing(true)
-    setTimeout(onClose, 300)
+    setTimeout(onClose, 350)
   }
 
   const color = subject.color
@@ -55,259 +51,219 @@ export default function TopicDetailSheet({
 
   const isCompleted = progress.state === 'completed'
   const isStarted = progress.state === 'started'
-  const buttonLabel = isCompleted
-    ? crown >= 5
-      ? 'PRACTICE AGAIN'
-      : 'LEVEL UP CROWN'
-    : isStarted
-      ? 'CONTINUE PRACTICE'
-      : 'START PRACTICE'
+  const hasProgress = isStarted || isCompleted
 
-  const difficultyLabel = topic.difficulty === 1 ? 'Easy' : topic.difficulty === 2 ? 'Medium' : 'Hard'
-  const difficultyColor = topic.difficulty === 1 ? '#34d399' : topic.difficulty === 2 ? '#fbbf24' : '#f87171'
-  const freqLabel = topic.pyqFrequency === 'high' ? 'Frequently Asked' : topic.pyqFrequency === 'medium' ? 'Sometimes Asked' : 'Rarely Asked'
-  const freqColor = topic.pyqFrequency === 'high' ? '#f472b6' : topic.pyqFrequency === 'medium' ? '#fbbf24' : '#64748b'
+  const buttonLabel = isCompleted ? 'PRACTICE AGAIN' : isStarted ? 'CONTINUE' : 'START PRACTICE'
+  const buttonIsOutline = isCompleted
+
+  const diffLevel = topic.difficulty
+  const diffColor = diffLevel === 1 ? '#34d399' : diffLevel === 2 ? '#fbbf24' : '#f87171'
+  const diffLabel = diffLevel === 1 ? 'Easy' : diffLevel === 2 ? 'Medium' : 'Hard'
+
+  const freq = topic.pyqFrequency
+  const freqColor = freq === 'high' ? '#f87171' : freq === 'medium' ? '#fbbf24' : 'rgba(255,255,255,0.30)'
+  const freqLabel = freq === 'high' ? 'Frequently Asked' : freq === 'medium' ? 'Sometimes Asked' : 'Rarely Asked'
+
+  // SVG ring for crown progress
+  const ringSize = 32
+  const ringStroke = 3
+  const ringRadius = (ringSize - ringStroke) / 2
+  const ringCircumference = 2 * Math.PI * ringRadius
+  const ringOffset = ringCircumference - (progressPct / 100) * ringCircumference
 
   return (
     <>
-      <style jsx global>{`
-        @keyframes tds-slideUp {
-          from { transform: translateY(100%); }
-          to { transform: translateY(0); }
-        }
-        @keyframes tds-slideDown {
-          from { transform: translateY(0); }
-          to { transform: translateY(100%); }
-        }
-        @keyframes tds-fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        @keyframes tds-fadeOut {
-          from { opacity: 1; }
-          to { opacity: 0; }
-        }
+      <style>{`
+        @keyframes tds-slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+        @keyframes tds-slideDown { from { transform: translateY(0); } to { transform: translateY(100%); } }
+        @keyframes tds-fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes tds-fadeOut { from { opacity: 1; } to { opacity: 0; } }
       `}</style>
 
       {/* Backdrop */}
       <div
-        className="fixed inset-0 z-[90]"
+        className="fixed inset-0 z-[70]"
         style={{
-          background: 'rgba(0,0,0,0.6)',
+          background: 'rgba(0,0,0,0.5)',
           backdropFilter: 'blur(4px)',
-          animation: dismissing ? 'tds-fadeOut 0.3s ease forwards' : 'tds-fadeIn 0.25s ease forwards',
+          WebkitBackdropFilter: 'blur(4px)',
+          animation: dismissing ? 'tds-fadeOut 0.3s ease forwards' : 'tds-fadeIn 0.2s ease forwards',
         }}
         onClick={handleDismiss}
       />
 
       {/* Sheet */}
       <div
-        className="fixed bottom-0 left-0 right-0 z-[91] flex flex-col"
+        onClick={(e) => e.stopPropagation()}
+        className="fixed bottom-0 left-0 right-0 z-[71] flex flex-col"
         style={{
-          maxHeight: '80vh',
+          maxHeight: '75vh',
           borderRadius: '24px 24px 0 0',
-          background: 'linear-gradient(180deg, rgba(18,18,28,0.98) 0%, rgba(12,12,20,0.99) 100%)',
-          backdropFilter: 'blur(40px)',
-          border: '1px solid rgba(255,255,255,0.06)',
+          background: 'rgba(10,10,20,0.95)',
+          backdropFilter: 'blur(32px)',
+          WebkitBackdropFilter: 'blur(32px)',
+          border: '1px solid rgba(255,255,255,0.08)',
           borderBottom: 'none',
           boxShadow: '0 -8px 40px rgba(0,0,0,0.5)',
           animation: dismissing
-            ? 'tds-slideDown 0.3s ease forwards'
+            ? 'tds-slideDown 0.35s ease forwards'
             : visible
               ? 'tds-slideUp 0.35s cubic-bezier(0.16,1,0.3,1) forwards'
               : 'none',
           transform: visible && !dismissing ? undefined : 'translateY(100%)',
         }}
       >
-        {/* Drag Handle */}
-        <div className="flex justify-center pt-3 pb-1">
+        {/* Drag handle */}
+        <div className="flex justify-center pt-3 pb-2">
           <div className="rounded-full" style={{ width: 40, height: 4, background: 'rgba(255,255,255,0.2)' }} />
         </div>
 
         {/* Scrollable content */}
-        <div className="flex-1 overflow-y-auto px-5 pb-6" style={{ scrollbarWidth: 'none' }}>
-          {/* Header: icon + title + subject */}
-          <div className="flex items-start gap-4 pt-2 pb-4">
+        <div className="flex-1 overflow-y-auto px-5 pb-4" style={{ scrollbarWidth: 'none' }}>
+          {/* Icon + Title + Subject */}
+          <div className="flex items-center gap-3 pb-4">
             <div
-              className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0"
+              className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl flex-shrink-0"
               style={{
-                background: `linear-gradient(135deg, ${color}22 0%, ${color}0a 100%)`,
-                border: `2px solid ${color}44`,
-                boxShadow: `0 4px 16px ${color}15`,
+                background: `linear-gradient(135deg, ${color}20, ${color}08)`,
+                border: `1.5px solid ${color}35`,
               }}
             >
               {topic.icon}
             </div>
-            <div className="flex-1 min-w-0 pt-1">
-              <h2 className="text-[18px] font-bold text-white/92 leading-tight">{topic.title}</h2>
-              <div className="flex items-center gap-2 mt-1.5">
-                <span className="text-[11px] font-semibold px-2.5 py-0.5 rounded-lg"
-                  style={{ background: `${color}18`, color }}>
-                  {subject.shortTitle} &middot; {subject.paper}
-                </span>
-              </div>
+            <div className="flex-1 min-w-0">
+              <h2 className="text-[17px] font-bold leading-tight" style={{ color: 'rgba(255,255,255,0.92)' }}>
+                {topic.title}
+              </h2>
+              <p className="text-[12px] mt-0.5" style={{ color }}>{subject.shortTitle}</p>
             </div>
-            {/* Close */}
-            <button
-              onClick={handleDismiss}
-              className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-              style={{ background: 'rgba(255,255,255,0.06)' }}
-            >
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="2" strokeLinecap="round">
-                <path d="M1 1l10 10M11 1L1 11" />
-              </svg>
-            </button>
           </div>
 
-          {/* Tags: difficulty + frequency */}
-          <div className="flex gap-2 mb-5">
-            <span className="flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 rounded-xl"
-              style={{ background: `${difficultyColor}12`, color: difficultyColor, border: `1px solid ${difficultyColor}25` }}>
-              <DifficultyDots level={topic.difficulty} color={difficultyColor} />
-              {difficultyLabel}
+          {/* Difficulty + PYQ Frequency */}
+          <div className="flex items-center gap-3 mb-5">
+            <span className="flex items-center gap-1.5 text-[11px] font-semibold" style={{ color: diffColor }}>
+              <span className="flex gap-0.5">
+                {[1, 2, 3].map(d => (
+                  <span key={d} className="inline-block rounded-full" style={{ width: 6, height: 6, background: d <= diffLevel ? diffColor : 'rgba(255,255,255,0.15)' }} />
+                ))}
+              </span>
+              {diffLabel}
             </span>
-            <span className="flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 rounded-xl"
-              style={{ background: `${freqColor}12`, color: freqColor, border: `1px solid ${freqColor}25` }}>
-              <FireSmall color={freqColor} />
+            <span style={{ color: 'rgba(255,255,255,0.15)' }}>|</span>
+            <span className="flex items-center gap-1 text-[11px] font-semibold" style={{ color: freqColor }}>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill={freqColor} opacity={0.8}>
+                <path d="M12 2C10.5 6 6 8.5 6 13c0 3.5 2.5 7 6 7s6-3.5 6-7c0-4.5-4.5-7-6-11z" />
+              </svg>
               {freqLabel}
             </span>
           </div>
 
-          {/* Crown Progress */}
-          {(isStarted || isCompleted) && (
-            <div className="rounded-2xl p-4 mb-4" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center gap-2">
-                  <span className="text-[16px]">👑</span>
-                  <span className="text-[13px] font-bold" style={{ color: CROWN_COLORS[crown] }}>
-                    Crown Level {crown}
-                  </span>
-                </div>
-                {crown < 5 && (
-                  <span className="text-[11px] text-white/35">
-                    {correctProgress}/{correctNeeded} correct → Lv {nextCrown}
-                  </span>
-                )}
-              </div>
-              {crown < 5 && (
-                <div className="h-2 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.06)' }}>
-                  <div
-                    className="h-full rounded-full transition-all duration-500"
-                    style={{
-                      width: `${progressPct}%`,
-                      background: `linear-gradient(90deg, ${CROWN_COLORS[crown]}, ${CROWN_COLORS[nextCrown]})`,
-                      boxShadow: `0 0 8px ${CROWN_COLORS[crown]}60`,
-                    }}
-                  />
-                </div>
-              )}
-              {crown >= 5 && (
-                <p className="text-[12px] text-white/40 mt-1">Legendary mastery achieved!</p>
-              )}
-              {/* Stats row */}
-              <div className="flex gap-4 mt-3">
-                <div>
-                  <p className="text-[16px] font-bold text-white">{progress.questionsAnswered}</p>
-                  <p className="text-[9px] text-white/30">Attempted</p>
-                </div>
-                <div>
-                  <p className="text-[16px] font-bold text-white">{progress.correctAnswers}</p>
-                  <p className="text-[9px] text-white/30">Correct</p>
-                </div>
-                <div>
-                  <p className="text-[16px] font-bold" style={{ color: accuracy >= 70 ? '#34d399' : accuracy >= 40 ? '#fbbf24' : '#f87171' }}>
-                    {accuracy}%
+          {/* Crown Progress Card */}
+          {hasProgress && (
+            <div
+              className="rounded-[16px] p-4 mb-5"
+              style={{
+                background: 'rgba(255,255,255,0.04)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                border: '1px solid rgba(255,255,255,0.06)',
+              }}
+            >
+              <div className="flex items-center gap-3">
+                {/* Progress ring */}
+                <svg width={ringSize} height={ringSize} className="flex-shrink-0" style={{ transform: 'rotate(-90deg)' }}>
+                  <circle cx={ringSize / 2} cy={ringSize / 2} r={ringRadius} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth={ringStroke} />
+                  <circle cx={ringSize / 2} cy={ringSize / 2} r={ringRadius} fill="none" stroke={CROWN_COLORS[crown]} strokeWidth={ringStroke} strokeLinecap="round"
+                    strokeDasharray={ringCircumference} strokeDashoffset={crown >= 5 ? 0 : ringOffset} />
+                </svg>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[13px] font-bold" style={{ color: CROWN_COLORS[crown] }}>
+                      Level {crown}/5
+                    </span>
+                    <span className="text-[12px] font-semibold" style={{ color: accuracy >= 70 ? '#34d399' : accuracy >= 40 ? '#fbbf24' : '#f87171' }}>
+                      {accuracy}%
+                    </span>
+                  </div>
+                  {crown < 5 && (
+                    <div className="mt-2 h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.06)' }}>
+                      <div className="h-full rounded-full" style={{
+                        width: `${progressPct}%`,
+                        background: `linear-gradient(90deg, ${CROWN_COLORS[crown]}, ${CROWN_COLORS[nextCrown]})`,
+                        boxShadow: `0 0 6px ${CROWN_COLORS[crown]}50`,
+                      }} />
+                    </div>
+                  )}
+                  <p className="text-[11px] mt-1.5" style={{ color: 'rgba(255,255,255,0.30)' }}>
+                    {crown >= 5 ? 'Legendary mastery achieved' : `${progress.questionsAnswered} questions answered`}
                   </p>
-                  <p className="text-[9px] text-white/30">Accuracy</p>
-                </div>
-                <div>
-                  <p className="text-[16px] font-bold" style={{ color: '#fbbf24' }}>{progress.xpEarned}</p>
-                  <p className="text-[9px] text-white/30">XP Earned</p>
                 </div>
               </div>
             </div>
           )}
 
           {/* Key Concepts */}
-          <div className="mb-4">
-            <p className="text-[12px] font-semibold text-white/50 uppercase tracking-wider mb-2.5">Key Concepts</p>
-            <div className="flex flex-wrap gap-2">
-              {topic.concepts.map((concept) => (
-                <span
-                  key={concept}
-                  className="text-[12px] font-medium px-3 py-1.5 rounded-xl"
-                  style={{ background: `${color}0c`, color: `${color}cc`, border: `1px solid ${color}20` }}
-                >
-                  {concept}
-                </span>
-              ))}
-            </div>
+          <p className="text-[11px] font-semibold uppercase tracking-wider mb-2" style={{ color: 'rgba(255,255,255,0.30)' }}>
+            Key Concepts
+          </p>
+          <div className="flex flex-wrap gap-1.5 mb-5">
+            {topic.concepts.map((concept) => (
+              <span
+                key={concept}
+                className="text-[11px] font-medium px-2.5 py-1 rounded-full"
+                style={{
+                  background: `${color}10`,
+                  color: `${color}bb`,
+                  border: '1px solid rgba(255,255,255,0.06)',
+                }}
+              >
+                {concept}
+              </span>
+            ))}
           </div>
 
-          {/* Map Query Preview */}
+          {/* Explore on Map link */}
           <button
             onClick={onOpenMap}
-            className="w-full rounded-2xl p-4 flex items-center gap-3 mb-4 transition-all active:scale-[0.98]"
-            style={{
-              background: 'linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(99,102,241,0.03) 100%)',
-              border: '1px solid rgba(99,102,241,0.15)',
-            }}
+            className="flex items-center gap-1.5 mb-4 transition-opacity active:opacity-60"
           >
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center text-[20px]"
-              style={{ background: 'rgba(99,102,241,0.12)' }}>
-              🗺️
-            </div>
-            <div className="flex-1 text-left">
-              <p className="text-[13px] font-semibold text-indigo-300">Explore on Map</p>
-              <p className="text-[11px] text-white/30 mt-0.5 line-clamp-1">{topic.mapQuery}</p>
-            </div>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="rgba(165,180,252,0.5)" strokeWidth="2" strokeLinecap="round">
-              <path d="M6 3l5 5-5 5" />
+            <span className="text-[13px]">🗺️</span>
+            <span className="text-[12px] font-semibold" style={{ color: '#818cf8' }}>Explore on Map</span>
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="#818cf8" strokeWidth="2" strokeLinecap="round">
+              <path d="M6 4l4 4-4 4" />
             </svg>
           </button>
-
-          {/* Last Practiced */}
-          {progress.lastPracticed && (
-            <p className="text-[11px] text-white/25 text-center mb-4">
-              Last practiced: {new Date(progress.lastPracticed).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
-            </p>
-          )}
         </div>
 
-        {/* Action button (sticky bottom) */}
-        <div className="px-5 pb-5 pt-2" style={{ borderTop: '1px solid rgba(255,255,255,0.04)' }}>
+        {/* CTA Button */}
+        <div className="px-5 pt-2" style={{ borderTop: '1px solid rgba(255,255,255,0.04)', paddingBottom: 'max(20px, env(safe-area-inset-bottom))' }}>
           <button
             onClick={onStartPractice}
-            className="w-full py-4 rounded-2xl text-[15px] font-extrabold text-white tracking-wide transition-all hover:scale-[1.01] active:scale-[0.97]"
+            className="w-full flex items-center justify-center gap-2 text-[15px] font-extrabold tracking-wide transition-all active:scale-[0.97]"
             style={{
-              background: `linear-gradient(135deg, ${color}, ${color}cc)`,
-              boxShadow: `0 4px 24px ${color}35`,
+              height: 56,
+              borderRadius: 16,
+              color: buttonIsOutline ? 'rgba(255,255,255,0.55)' : '#fff',
+              background: buttonIsOutline
+                ? 'transparent'
+                : `linear-gradient(135deg, #6366f1, #8b5cf6)`,
+              border: buttonIsOutline
+                ? '1.5px solid rgba(255,255,255,0.12)'
+                : '1px solid rgba(99,102,241,0.2)',
+              boxShadow: buttonIsOutline
+                ? 'none'
+                : '0 4px 24px rgba(99,102,241,0.3)',
             }}
           >
             {buttonLabel}
+            {!buttonIsOutline && (
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                <path d="M6 3l5 5-5 5" />
+              </svg>
+            )}
           </button>
         </div>
       </div>
     </>
-  )
-}
-
-// ── Helper sub-components ────────────────────────────────────────────────────────
-
-function DifficultyDots({ level, color }: { level: 1 | 2 | 3; color: string }) {
-  return (
-    <div className="flex gap-0.5">
-      {[1, 2, 3].map(d => (
-        <div key={d} className="rounded-full" style={{ width: 5, height: 5, background: d <= level ? color : 'rgba(255,255,255,0.15)' }} />
-      ))}
-    </div>
-  )
-}
-
-function FireSmall({ color }: { color: string }) {
-  return (
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-      <path d="M12 2C10.5 6 6 8.5 6 13c0 3.5 2.5 7 6 7s6-3.5 6-7c0-4.5-4.5-7-6-11z" fill={color} opacity={0.8} />
-    </svg>
   )
 }

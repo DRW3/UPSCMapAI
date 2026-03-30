@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { type DailyGoalTier, DAILY_GOALS } from '@/components/journey/types'
+import { type DailyGoalTier, DAILY_GOALS } from './types'
 
 interface DailyGoalModalProps {
   currentTier: DailyGoalTier
@@ -12,107 +12,129 @@ interface DailyGoalModalProps {
 
 const TIERS: DailyGoalTier[] = ['casual', 'regular', 'serious', 'intense']
 
-export default function DailyGoalModal({ currentTier, todayXp, onSelect, onClose }: DailyGoalModalProps) {
+export default function DailyGoalModal({ currentTier, onSelect, onClose }: DailyGoalModalProps) {
   const [selected, setSelected] = useState<DailyGoalTier>(currentTier)
 
   return (
     <>
-      <style jsx global>{`
+      <style>{`
         @keyframes dgm-fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes dgm-scaleIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        @keyframes dgm-scaleIn {
+          from { transform: scale(0.95) translateY(-50%); opacity: 0; }
+          to   { transform: scale(1) translateY(-50%); opacity: 1; }
+        }
       `}</style>
 
       {/* Backdrop */}
       <div
-        className="fixed inset-0 z-[110]"
-        style={{ background: 'rgba(0,0,0,0.65)', backdropFilter: 'blur(4px)', animation: 'dgm-fadeIn 0.2s ease' }}
+        className="fixed inset-0 z-[90]"
+        style={{
+          background: 'rgba(0,0,0,0.6)',
+          backdropFilter: 'blur(8px)',
+          WebkitBackdropFilter: 'blur(8px)',
+          animation: 'dgm-fadeIn 0.2s ease',
+        }}
         onClick={onClose}
       />
 
       {/* Modal */}
       <div
-        className="fixed left-4 right-4 z-[111] rounded-3xl overflow-hidden"
+        className="fixed left-4 right-4 z-[91]"
+        onClick={(e) => e.stopPropagation()}
         style={{
           top: '50%',
           transform: 'translateY(-50%)',
-          maxWidth: 380,
+          maxWidth: 360,
           margin: '0 auto',
-          background: 'linear-gradient(180deg, rgba(20,20,32,0.99) 0%, rgba(14,14,22,0.99) 100%)',
+          background: 'rgba(10,10,20,0.95)',
+          backdropFilter: 'blur(32px)',
+          WebkitBackdropFilter: 'blur(32px)',
           border: '1px solid rgba(255,255,255,0.08)',
+          borderRadius: 20,
           boxShadow: '0 16px 64px rgba(0,0,0,0.6)',
-          animation: 'dgm-scaleIn 0.25s cubic-bezier(0.16,1,0.3,1)',
+          animation: 'dgm-scaleIn 0.3s cubic-bezier(0.16,1,0.3,1) forwards',
+          overflow: 'hidden',
         }}
       >
-        <div className="px-6 pt-6 pb-2 text-center">
-          <p className="text-[24px] mb-1">🎯</p>
-          <h3 className="text-[18px] font-bold text-white/90">Daily XP Goal</h3>
-          <p className="text-[12px] text-white/40 mt-1">How much do you want to study each day?</p>
+        {/* Header */}
+        <div className="px-6 pt-6 pb-3 text-center">
+          <p className="text-[28px] mb-1.5">🎯</p>
+          <h3 className="text-[18px] font-bold" style={{ color: 'rgba(255,255,255,0.92)' }}>
+            Set Your Daily Goal
+          </h3>
+          <p className="text-[12px] mt-1" style={{ color: 'rgba(255,255,255,0.55)' }}>
+            Study consistently to build your streak
+          </p>
         </div>
 
-        <div className="px-5 py-4 flex flex-col gap-2.5">
+        {/* Tier options */}
+        <div className="px-5 py-3 flex flex-col gap-2">
           {TIERS.map(tier => {
             const cfg = DAILY_GOALS[tier]
             const isActive = tier === selected
             const isCurrent = tier === currentTier
-            const progressPct = Math.min(100, (todayXp / cfg.xpTarget) * 100)
 
             return (
               <button
                 key={tier}
                 onClick={() => setSelected(tier)}
-                className="flex items-center gap-3.5 px-4 py-3.5 rounded-2xl transition-all duration-200"
+                className="flex items-center gap-3 px-4 transition-all duration-200"
                 style={{
-                  background: isActive ? 'rgba(99,102,241,0.12)' : 'rgba(255,255,255,0.03)',
-                  border: `1.5px solid ${isActive ? 'rgba(99,102,241,0.4)' : 'rgba(255,255,255,0.06)'}`,
-                  transform: isActive ? 'scale(1.02)' : 'scale(1)',
+                  height: 56,
+                  borderRadius: 16,
+                  background: isActive ? 'rgba(99,102,241,0.08)' : 'rgba(255,255,255,0.04)',
+                  backdropFilter: 'blur(20px)',
+                  border: isActive
+                    ? '1px solid rgba(99,102,241,0.3)'
+                    : '1px solid rgba(255,255,255,0.06)',
+                  boxShadow: isActive ? '0 0 20px rgba(99,102,241,0.1)' : 'none',
+                  transform: isActive ? 'scale(1.01)' : 'scale(1)',
                 }}
               >
-                <span className="text-[22px] flex-shrink-0">{cfg.icon}</span>
-                <div className="flex-1 text-left">
-                  <div className="flex items-center gap-2">
-                    <span className="text-[14px] font-bold" style={{ color: isActive ? '#a5b4fc' : 'rgba(255,255,255,0.7)' }}>
-                      {cfg.label}
-                    </span>
-                    {isCurrent && (
-                      <span className="text-[9px] font-semibold px-2 py-0.5 rounded-full"
-                        style={{ background: 'rgba(99,102,241,0.2)', color: '#a5b4fc' }}>
-                        Current
-                      </span>
-                    )}
-                  </div>
-                  <span className="text-[12px] text-white/35">{cfg.xpTarget} XP per day</span>
-                </div>
-                {/* Mini progress for today */}
-                <div className="flex flex-col items-end gap-1">
-                  <span className="text-[11px] font-bold tabular-nums" style={{ color: progressPct >= 100 ? '#34d399' : '#fbbf24' }}>
-                    {todayXp}/{cfg.xpTarget}
+                <span className="text-[20px] flex-shrink-0">{cfg.icon}</span>
+                <div className="flex-1 text-left flex items-center gap-2">
+                  <span
+                    className="text-[14px] font-bold"
+                    style={{ color: isActive ? '#818cf8' : 'rgba(255,255,255,0.55)' }}
+                  >
+                    {cfg.label}
                   </span>
-                  <div className="w-12 h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.06)' }}>
-                    <div className="h-full rounded-full" style={{
-                      width: `${progressPct}%`,
-                      background: progressPct >= 100 ? '#34d399' : 'linear-gradient(90deg, #6366f1, #8b5cf6)',
-                    }} />
-                  </div>
+                  {isCurrent && (
+                    <span
+                      className="text-[9px] font-semibold px-1.5 py-0.5 rounded-full"
+                      style={{ background: 'rgba(99,102,241,0.15)', color: '#a78bfa' }}
+                    >
+                      Current
+                    </span>
+                  )}
                 </div>
+                <span
+                  className="text-[13px] font-bold"
+                  style={{ color: isActive ? 'rgba(255,255,255,0.92)' : 'rgba(255,255,255,0.30)' }}
+                >
+                  {cfg.xpTarget} XP
+                </span>
               </button>
             )
           })}
         </div>
 
-        <div className="px-5 pb-5 pt-1 flex gap-3">
+        {/* Action buttons */}
+        <div className="px-5 pb-5 pt-3 flex gap-3">
           <button
             onClick={onClose}
-            className="flex-1 py-3.5 rounded-2xl text-[14px] font-bold text-white/50 transition-all active:scale-[0.97]"
-            style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}
+            className="flex-1 py-3.5 text-[14px] font-semibold transition-all active:scale-[0.97]"
+            style={{ color: 'rgba(255,255,255,0.55)', background: 'transparent', borderRadius: 9999 }}
           >
             Cancel
           </button>
           <button
             onClick={() => { onSelect(selected); onClose() }}
-            className="flex-1 py-3.5 rounded-2xl text-[14px] font-bold text-white transition-all active:scale-[0.97]"
+            className="flex-1 py-3.5 text-[14px] font-bold text-white transition-all active:scale-[0.97]"
             style={{
+              borderRadius: 9999,
               background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
-              boxShadow: '0 4px 16px rgba(99,102,241,0.3)',
+              boxShadow: '0 4px 20px rgba(99,102,241,0.3)',
             }}
           >
             Set Goal

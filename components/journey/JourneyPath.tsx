@@ -1,478 +1,252 @@
 'use client'
 
-import { useEffect, useRef, useMemo, useCallback } from 'react'
+import { useEffect, useRef, useMemo, useCallback, useState } from 'react'
 import type { LearningSubject, LearningTopic, LearningUnit } from '@/data/syllabus'
 import {
-  type TopicProgress,
-  type NodeState,
-  type CrownLevel,
-  DEFAULT_TOPIC_PROGRESS,
-  CROWN_COLORS,
-  PATH_POSITIONS,
+  type TopicProgress, type NodeState, type CrownLevel,
+  DEFAULT_TOPIC_PROGRESS, CROWN_COLORS, PATH_POSITIONS,
 } from '@/components/journey/types'
 
 // ---------------------------------------------------------------------------
-// Props
+// Props & Internal types
 // ---------------------------------------------------------------------------
 
 export interface JourneyPathProps {
   subjects: LearningSubject[]
   progress: Record<string, TopicProgress>
-  activeSubjectId: string | null // filter to show only one subject, or null for all
+  activeSubjectId: string | null
   onNodeTap: (topicId: string, topic: LearningTopic, subject: LearningSubject) => void
+  onSubjectChange: (subjectId: string | null) => void
 }
 
-// ---------------------------------------------------------------------------
-// Internal types for the flattened node list
-// ---------------------------------------------------------------------------
-
-interface TopicNode {
-  kind: 'topic'
-  topic: LearningTopic
-  unit: LearningUnit
-  subject: LearningSubject
-  progress: TopicProgress
-  state: NodeState
-  isFirstAvailable: boolean
-  globalIndex: number // position within all topic nodes (for path placement)
+interface FlatTopicNode {
+  kind: 'topic'; topic: LearningTopic; unit: LearningUnit
+  subject: LearningSubject; progress: TopicProgress; state: NodeState
+  isFirstAvailable: boolean; globalIndex: number
 }
-
-interface UnitHeader {
-  kind: 'unit'
-  unit: LearningUnit
-  subject: LearningSubject
-  completedCount: number
-  totalCount: number
+interface UnitHeaderData {
+  kind: 'unit'; unit: LearningUnit; subject: LearningSubject
+  completedCount: number; totalCount: number
 }
-
-type PathItem = TopicNode | UnitHeader
-
-// ---------------------------------------------------------------------------
-// CSS keyframes injected once
-// ---------------------------------------------------------------------------
-
-const KEYFRAMES_ID = 'journey-path-keyframes'
-
-function ensureKeyframes() {
-  if (typeof document === 'undefined') return
-  if (document.getElementById(KEYFRAMES_ID)) return
-  const style = document.createElement('style')
-  style.id = KEYFRAMES_ID
-  style.textContent = `
-    @keyframes jp-bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-    @keyframes jp-pulse-ring {
-      0% { transform: scale(1); opacity: 0.6; }
-      70% { transform: scale(1.45); opacity: 0; }
-      100% { transform: scale(1.45); opacity: 0; }
-    }
-    @keyframes jp-glow {
-      0%, 100% { box-shadow: 0 0 12px 2px var(--glow-color); }
-      50% { box-shadow: 0 0 22px 6px var(--glow-color); }
-    }
-    @keyframes jp-star-spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    @keyframes jp-fade-in {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  `
-  document.head.appendChild(style)
-}
-
-// ---------------------------------------------------------------------------
-// Layout constants
-// ---------------------------------------------------------------------------
-
-const NODE_SIZE = 64
-const VERTICAL_SPACING = 110
-const CONTAINER_PADDING_X = 24
-const HEADER_HEIGHT = 80
-const PATH_WIDTH = 16
-const SCROLL_OFFSET_TOP = 200 // px from top when auto-scrolling to available node
+type ListItem = FlatTopicNode | UnitHeaderData
 
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
 
-function getNodePosition(index: number, containerWidth: number) {
-  const pattern = PATH_POSITIONS[index % PATH_POSITIONS.length]
-  const usable = containerWidth - CONTAINER_PADDING_X * 2 - NODE_SIZE
-  const x = CONTAINER_PADDING_X + pattern.x * usable
-  return x
+function hexToRgb(hex: string): string {
+  const h = hex.replace('#', '')
+  return `${parseInt(h.slice(0, 2), 16)},${parseInt(h.slice(2, 4), 16)},${parseInt(h.slice(4, 6), 16)}`
 }
 
-/** Build the SVG path "d" string that connects all topic nodes */
-function buildPathD(
-  nodePositions: Array<{ cx: number; cy: number }>,
-): string {
-  if (nodePositions.length === 0) return ''
-  const pts = nodePositions
-  let d = `M ${pts[0].cx} ${pts[0].cy}`
-  for (let i = 1; i < pts.length; i++) {
-    const prev = pts[i - 1]
-    const cur = pts[i]
-    // Cubic bezier: the control points pull the curve horizontally at 40% and 60%
-    const midY = (prev.cy + cur.cy) / 2
-    d += ` C ${prev.cx} ${midY}, ${cur.cx} ${midY}, ${cur.cx} ${cur.cy}`
-  }
-  return d
-}
+const NODE_SIZE = 56
+const LINE_H = 36
 
-function stateLabel(state: NodeState, crownLevel: CrownLevel): string {
-  if (state === 'locked') return ''
-  if (state === 'available') return 'START'
-  if (state === 'started') return 'Continue'
-  // completed — show crown level
-  return `Crown ${crownLevel}`
-}
-
-function crownEmoji(level: CrownLevel): string {
-  if (level <= 0) return ''
-  if (level === 1) return '👑'
-  if (level === 2) return '👑'
-  if (level === 3) return '👑'
-  if (level === 4) return '👑'
-  return '💎' // level 5 legendary
-}
+const KEYFRAMES = `
+@keyframes jp-pulse{0%,100%{transform:scale(1);opacity:.2}50%{transform:scale(1.5);opacity:0}}
+@keyframes jp-fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes jp-shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+`
 
 // ---------------------------------------------------------------------------
-// Sub-components
+// SubjectFilterPills
 // ---------------------------------------------------------------------------
 
-function CrownBadge({ level }: { level: CrownLevel; color: string }) {
-  if (level <= 0) return null
-  const bgColor = CROWN_COLORS[level]
+function SubjectFilterPills({ subjects, activeSubjectId, onSubjectChange }: {
+  subjects: LearningSubject[]; activeSubjectId: string | null
+  onSubjectChange: (id: string | null) => void
+}) {
+  const pill = (active: boolean, color: string, rgb: string): React.CSSProperties => ({
+    height: 32, padding: '0 12px', borderRadius: 9999, fontSize: 12,
+    fontWeight: active ? 600 : 500, whiteSpace: 'nowrap', flexShrink: 0, cursor: 'pointer',
+    border: active ? `1px solid rgba(${rgb},0.4)` : '1px solid rgba(255,255,255,0.06)',
+    background: active ? `rgba(${rgb},0.12)` : 'rgba(255,255,255,0.02)',
+    color: active ? color : 'rgba(255,255,255,0.45)',
+    boxShadow: active ? `0 0 10px rgba(${rgb},0.2)` : 'none',
+    transition: 'all 200ms ease-out',
+  })
+
   return (
-    <div
-      style={{
-        position: 'absolute',
-        top: -8,
-        right: -6,
-        width: 26,
-        height: 26,
-        borderRadius: '50%',
-        background: bgColor,
-        border: '2.5px solid #080810',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: 13,
-        zIndex: 3,
-        boxShadow: `0 2px 8px ${bgColor}66`,
-      }}
-    >
-      {crownEmoji(level)}
+    <div style={{ position: 'sticky', top: 0, zIndex: 10, padding: '8px 0 12px',
+      background: 'linear-gradient(to bottom, #050510 60%, transparent)' }}>
+      <div style={{ display: 'flex', gap: 8, overflowX: 'auto', scrollbarWidth: 'none', padding: '0 4px' }}>
+        <button onClick={() => onSubjectChange(null)}
+          style={{ ...pill(activeSubjectId === null, '#818cf8', '99,102,241'), padding: '0 14px', fontWeight: 600 }}>
+          All
+        </button>
+        {subjects.map((s) => {
+          const active = activeSubjectId === s.id
+          return (
+            <button key={s.id} onClick={() => onSubjectChange(active ? null : s.id)}
+              style={pill(active, s.color, hexToRgb(s.color))}>
+              {s.icon} {s.shortTitle}
+            </button>
+          )
+        })}
+      </div>
     </div>
   )
 }
 
-function LockIcon() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="11" width="18" height="11" rx="2" />
-      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-    </svg>
-  )
-}
-
-function CheckIcon() {
-  return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="20 6 9 17 4 12" />
-    </svg>
-  )
-}
-
 // ---------------------------------------------------------------------------
-// Topic Node component
+// UnitHeader (minimal glass divider)
 // ---------------------------------------------------------------------------
 
-function TopicNodeView({
-  node,
-  x,
-  y,
-  onTap,
-}: {
-  node: TopicNode
-  x: number
-  y: number
-  onTap: () => void
-}) {
-  const { topic, subject, state, isFirstAvailable } = node
-  const crown = node.progress.crownLevel
-  const color = subject.color
-
-  const isInteractive = state === 'available' || state === 'started' || state === 'completed'
-
-  // --- Node circle style ---
-  const circleStyle: React.CSSProperties = {
-    width: NODE_SIZE,
-    height: NODE_SIZE,
-    borderRadius: '50%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: 28,
-    position: 'relative',
-    cursor: isInteractive ? 'pointer' : 'default',
-    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-    userSelect: 'none',
-    WebkitTapHighlightColor: 'transparent',
-  }
-
-  if (state === 'locked') {
-    Object.assign(circleStyle, {
-      background: 'linear-gradient(145deg, #1e1e2e 0%, #14141e 100%)',
-      border: '3px solid rgba(255,255,255,0.08)',
-      opacity: 0.55,
-    })
-  } else if (state === 'available') {
-    Object.assign(circleStyle, {
-      background: `linear-gradient(145deg, ${color} 0%, ${color}cc 100%)`,
-      border: `3px solid ${color}`,
-      boxShadow: `0 0 18px 4px ${color}55`,
-      ['--glow-color' as string]: `${color}88`,
-      animation: isFirstAvailable ? 'jp-bounce 1.8s ease-in-out infinite, jp-glow 2s ease-in-out infinite' : 'jp-glow 2s ease-in-out infinite',
-    })
-  } else if (state === 'started') {
-    Object.assign(circleStyle, {
-      background: `linear-gradient(145deg, ${color}ee 0%, ${color}aa 100%)`,
-      border: `3px solid ${color}cc`,
-      boxShadow: `0 4px 16px ${color}33`,
-    })
-  } else {
-    // completed
-    Object.assign(circleStyle, {
-      background: `linear-gradient(145deg, ${color} 0%, ${color}dd 100%)`,
-      border: `3px solid ${color}`,
-      boxShadow: `0 4px 12px ${color}44`,
-    })
-  }
-
-  // --- Label below ---
-  const label = stateLabel(state, crown)
-
+function UnitHeader({ data }: { data: UnitHeaderData }) {
+  const { unit, subject, completedCount, totalCount } = data
+  const line: React.CSSProperties = { flex: 1, height: 1, background: 'rgba(255,255,255,0.06)' }
   return (
-    <div
-      style={{
-        position: 'absolute',
-        left: x - NODE_SIZE / 2,
-        top: y - NODE_SIZE / 2,
-        width: NODE_SIZE,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        zIndex: 2,
-        animation: 'jp-fade-in 0.4s ease-out both',
-        animationDelay: `${node.globalIndex * 40}ms`,
-      }}
-    >
-      {/* Pulse ring for available */}
-      {state === 'available' && (
-        <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: NODE_SIZE,
-            height: NODE_SIZE,
-            borderRadius: '50%',
-            border: `3px solid ${color}`,
-            animation: 'jp-pulse-ring 2s ease-out infinite',
-            pointerEvents: 'none',
-          }}
-        />
-      )}
-
-      {/* Circle */}
-      <div
-        role={isInteractive ? 'button' : undefined}
-        tabIndex={isInteractive ? 0 : undefined}
-        aria-label={topic.title}
-        onClick={isInteractive ? onTap : undefined}
-        onKeyDown={isInteractive ? (e) => { if (e.key === 'Enter' || e.key === ' ') onTap() } : undefined}
-        style={circleStyle}
-      >
-        {state === 'locked' && <LockIcon />}
-        {state === 'available' && <span style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))' }}>{topic.icon}</span>}
-        {state === 'started' && <span style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))' }}>{topic.icon}</span>}
-        {state === 'completed' && <CheckIcon />}
-
-        {/* Crown badge */}
-        <CrownBadge level={crown} color={color} />
-      </div>
-
-      {/* Topic title */}
-      <span
-        style={{
-          marginTop: 6,
-          fontSize: 11,
-          fontWeight: 600,
-          color: state === 'locked' ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.85)',
-          textAlign: 'center',
-          maxWidth: 110,
-          lineHeight: '1.3',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          display: '-webkit-box',
-          WebkitLineClamp: 2,
-          WebkitBoxOrient: 'vertical',
-        }}
-      >
-        {topic.title}
+    <div style={{ height: 48, display: 'flex', alignItems: 'center', gap: 10, margin: '20px 0 8px' }}>
+      <div style={line} />
+      <span style={{ fontSize: 14, color: 'rgba(255,255,255,0.55)', whiteSpace: 'nowrap' }}>
+        {subject.icon} {unit.title}
       </span>
-
-      {/* State label */}
-      {label && (
-        <span
-          style={{
-            marginTop: 2,
-            fontSize: 10,
-            fontWeight: 700,
-            letterSpacing: '0.05em',
-            textTransform: 'uppercase',
-            color: state === 'available'
-              ? color
-              : state === 'started'
-                ? `${color}cc`
-                : CROWN_COLORS[crown],
-            textShadow: state === 'available' ? `0 0 8px ${color}88` : undefined,
-          }}
-        >
-          {label}
-        </span>
-      )}
+      <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.30)', background: 'rgba(255,255,255,0.04)',
+        padding: '2px 8px', borderRadius: 9999 }}>
+        {completedCount}/{totalCount}
+      </span>
+      <div style={line} />
     </div>
   )
 }
 
 // ---------------------------------------------------------------------------
-// Unit Header component
+// ConnectingLine (SVG bezier between consecutive nodes)
 // ---------------------------------------------------------------------------
 
-function UnitHeaderView({
-  header,
-  y,
-}: {
-  header: UnitHeader
-  y: number
+function ConnectingLine({ prevX, currX, filled, w }: {
+  prevX: number; currX: number; filled: boolean; w: number
 }) {
-  const { unit, subject, completedCount, totalCount } = header
-  const color = subject.color
-  const pct = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0
+  const clamp = (v: number) => Math.max(NODE_SIZE / 2, Math.min(w - NODE_SIZE / 2, v * (w - NODE_SIZE) + NODE_SIZE / 2))
+  const x0 = clamp(prevX), x1 = clamp(currX), my = LINE_H / 2
+  const d = `M ${x0} 0 C ${x0} ${my}, ${x1} ${my}, ${x1} ${LINE_H}`
+  const base = { fill: 'none' as const, strokeWidth: 6, strokeLinecap: 'round' as const }
+  return (
+    <svg width={w} height={LINE_H} style={{ display: 'block' }}>
+      <path d={d} {...base} stroke="rgba(255,255,255,0.04)" />
+      {filled && (
+        <>
+          <defs>
+            <linearGradient id="cl-g" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#6366f1" /><stop offset="100%" stopColor="#8b5cf6" />
+            </linearGradient>
+            <filter id="cl-glow">
+              <feDropShadow dx="0" dy="0" stdDeviation="2" floodColor="#6366f1" floodOpacity="0.35" />
+            </filter>
+          </defs>
+          <path d={d} {...base} stroke="url(#cl-g)" filter="url(#cl-glow)" />
+        </>
+      )}
+    </svg>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// TopicNode (56x56 glassmorphic circle on winding path)
+// ---------------------------------------------------------------------------
+
+function TopicNode({ node, onTap, w }: { node: FlatTopicNode; onTap: () => void; w: number }) {
+  const { topic, subject, state, isFirstAvailable, globalIndex, progress: tp } = node
+  const crown = tp.crownLevel
+  const rgb = hexToRgb(subject.color)
+  const isInteractive = state !== 'locked'
+  const pos = PATH_POSITIONS[globalIndex % PATH_POSITIONS.length]
+  const leftPx = Math.max(0, Math.min(w - NODE_SIZE - 60, (w - NODE_SIZE - 60) * pos.x))
+
+  // Progress ring for started nodes
+  const progressRing = state === 'started' && crown > 0 ? (() => {
+    const r = 30, C = 2 * Math.PI * r
+    return (
+      <svg width={64} height={64} style={{ position: 'absolute', top: -4, left: -4, pointerEvents: 'none' }}>
+        <circle cx={32} cy={32} r={r} fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth={2} />
+        <circle cx={32} cy={32} r={r} fill="none" stroke={subject.color} strokeWidth={2}
+          strokeLinecap="round" strokeDasharray={C} strokeDashoffset={C * (1 - crown / 5)}
+          transform="rotate(-90 32 32)" style={{ transition: 'stroke-dashoffset 500ms ease-out' }} />
+      </svg>
+    )
+  })() : null
+
+  const stateLabel =
+    state === 'available' ? { text: 'Start', color: '#6366f1', wt: 700 } :
+    state === 'started'   ? { text: 'Continue', color: 'rgba(255,255,255,0.55)', wt: 500 } :
+    state === 'completed' ? { text: `Crown ${crown}`, color: CROWN_COLORS[crown], wt: 500 } : null
+
+  const press = isInteractive ? {
+    onPointerDown: (e: React.PointerEvent) => { (e.currentTarget as HTMLElement).style.transform = 'scale(0.95)' },
+    onPointerUp: (e: React.PointerEvent) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)' },
+    onPointerLeave: (e: React.PointerEvent) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)' },
+  } : {}
+
+  const cs: React.CSSProperties = {
+    width: NODE_SIZE, height: NODE_SIZE, borderRadius: '50%', position: 'relative',
+    display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24,
+    cursor: isInteractive ? 'pointer' : 'default', transition: 'transform 150ms ease-out',
+    userSelect: 'none', WebkitTapHighlightColor: 'transparent',
+    backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)',
+    ...(state === 'locked'    ? { background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' } :
+       state === 'available'  ? { background: 'rgba(255,255,255,0.06)', border: `1px solid rgba(${rgb},0.2)` } :
+       state === 'started'    ? { background: 'rgba(255,255,255,0.06)', border: `1px solid rgba(${rgb},0.15)` } :
+                                { background: `rgba(${rgb},0.15)`, border: `1px solid rgba(${rgb},0.2)` }),
+  }
 
   return (
-    <div
-      style={{
-        position: 'absolute',
-        left: 12,
-        right: 12,
-        top: y,
-        height: HEADER_HEIGHT,
-        borderRadius: 16,
-        background: `linear-gradient(135deg, ${color}22 0%, ${color}0a 100%)`,
-        border: `1.5px solid ${color}33`,
-        display: 'flex',
-        alignItems: 'center',
-        padding: '0 20px',
-        gap: 14,
-        zIndex: 3,
-        animation: 'jp-fade-in 0.4s ease-out both',
-      }}
-    >
-      {/* Gate / checkpoint accent */}
-      <div
-        style={{
-          position: 'absolute',
-          left: 0,
-          top: 0,
-          bottom: 0,
-          width: 5,
-          borderRadius: '16px 0 0 16px',
-          background: `linear-gradient(180deg, ${color} 0%, ${color}88 100%)`,
-        }}
-      />
+    <div style={{ paddingLeft: leftPx, animation: 'jp-fadeUp 400ms cubic-bezier(0.16,1,0.3,1) both',
+      animationDelay: `${globalIndex * 30}ms` }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: NODE_SIZE + 60 }}>
+        {/* Pulse ring */}
+        {state === 'available' && isFirstAvailable && (
+          <div style={{ position: 'absolute', top: 0, left: leftPx + 2, width: NODE_SIZE, height: NODE_SIZE,
+            borderRadius: '50%', border: `2px solid rgba(${rgb},0.3)`,
+            animation: 'jp-pulse 2s ease-in-out infinite', pointerEvents: 'none' }} />
+        )}
 
-      {/* Icon */}
-      <div
-        style={{
-          width: 48,
-          height: 48,
-          borderRadius: 12,
-          background: `${color}1a`,
-          border: `2px solid ${color}44`,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: 24,
-          flexShrink: 0,
-        }}
-      >
-        {unit.icon}
-      </div>
+        <div style={{ position: 'relative' }}>
+          {progressRing}
+          <div role={isInteractive ? 'button' : undefined} tabIndex={isInteractive ? 0 : undefined}
+            aria-label={topic.title} onClick={isInteractive ? onTap : undefined}
+            onKeyDown={isInteractive ? (e) => { if (e.key === 'Enter' || e.key === ' ') onTap() } : undefined}
+            {...press} style={cs}>
+            {state === 'locked'
+              ? <span style={{ opacity: 0.3, filter: 'grayscale(1)' }}>🔒</span>
+              : state === 'completed'
+                ? <><span>{topic.icon}</span>
+                    <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: 'rgba(0,0,0,0.3)',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="#34d399"
+                        strokeWidth={3} strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </div></>
+                : <span>{topic.icon}</span>}
 
-      {/* Text */}
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <div
-          style={{
-            fontSize: 14,
-            fontWeight: 700,
-            color: 'rgba(255,255,255,0.92)',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap',
-          }}
-        >
-          {unit.title}
+            {crown > 0 && (
+              <div style={{
+                position: 'absolute', top: -4, right: -4, width: 20, height: 20, borderRadius: '50%',
+                background: CROWN_COLORS[crown as CrownLevel], border: '2px solid #050510',
+                fontSize: 9, fontWeight: 700, color: '#fff', zIndex: 3,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                boxShadow: `0 2px 6px ${CROWN_COLORS[crown as CrownLevel]}66`,
+                ...(crown === 5 ? { backgroundImage: 'linear-gradient(90deg, #f472b6, #c084fc, #f472b6)',
+                  backgroundSize: '200% 100%', animation: 'jp-shimmer 2s linear infinite' } : {}),
+              }}>
+                {crown}
+              </div>
+            )}
+          </div>
         </div>
-        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.45)', marginTop: 2, fontWeight: 500 }}>
-          {subject.shortTitle} &middot; {subject.paper}
-        </div>
-      </div>
 
-      {/* Progress pill */}
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-end',
-          gap: 4,
-          flexShrink: 0,
-        }}
-      >
-        <span
-          style={{
-            fontSize: 13,
-            fontWeight: 700,
-            color: color,
-          }}
-        >
-          {completedCount}/{totalCount}
-        </span>
-        {/* Mini progress bar */}
-        <div
-          style={{
-            width: 56,
-            height: 5,
-            borderRadius: 3,
-            background: 'rgba(255,255,255,0.08)',
-            overflow: 'hidden',
-          }}
-        >
-          <div
-            style={{
-              width: `${pct}%`,
-              height: '100%',
-              borderRadius: 3,
-              background: `linear-gradient(90deg, ${color} 0%, ${color}cc 100%)`,
-              transition: 'width 0.5s ease',
-            }}
-          />
+        <div style={{ marginTop: 4, textAlign: 'center', maxWidth: NODE_SIZE + 56 }}>
+          <div style={{ fontSize: 12, lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box',
+            WebkitLineClamp: 2, WebkitBoxOrient: 'vertical',
+            color: state === 'locked' ? 'rgba(255,255,255,0.30)' : 'rgba(255,255,255,0.55)' }}>
+            {topic.title}
+          </div>
+          {stateLabel && (
+            <span style={{ fontSize: 10, fontWeight: stateLabel.wt, color: stateLabel.color,
+              marginTop: 2, display: 'inline-block' }}>
+              {stateLabel.text}
+            </span>
+          )}
         </div>
       </div>
     </div>
@@ -483,294 +257,89 @@ function UnitHeaderView({
 // Main component
 // ---------------------------------------------------------------------------
 
-export default function JourneyPath({
-  subjects,
-  progress,
-  activeSubjectId,
-  onNodeTap,
-}: JourneyPathProps) {
+export default function JourneyPath({ subjects, progress, activeSubjectId, onNodeTap, onSubjectChange }: JourneyPathProps) {
   const scrollRef = useRef<HTMLDivElement>(null)
-  const firstAvailableRef = useRef<number | null>(null) // y position
+  const firstAvailableRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [cw, setCw] = useState(360)
 
-  // Inject CSS keyframes
+  // Measure container width
   useEffect(() => {
-    ensureKeyframes()
+    const el = containerRef.current
+    if (!el) return
+    const ro = new ResizeObserver(([e]) => { if (e) setCw(e.contentRect.width) })
+    ro.observe(el)
+    return () => ro.disconnect()
   }, [])
 
-  // --- Flatten subjects into PathItems ---
-  const { items, topicPositions, totalHeight, firstAvailableY } = useMemo(() => {
-    const filtered = activeSubjectId
-      ? subjects.filter((s) => s.id === activeSubjectId)
-      : subjects
-
-    const result: PathItem[] = []
-    const positions: Array<{ cx: number; cy: number; progressRatio: number }> = []
-    let currentY = 40 // starting top padding
-    let globalTopicIndex = 0
-    let foundFirstAvailable = false
-    let firstAvailY: number | null = null
-
-    // Fixed layout width matching the SVG viewBox
-    const containerWidth = 480
-
+  // Flatten subjects → ListItems
+  const items = useMemo<ListItem[]>(() => {
+    const filtered = activeSubjectId ? subjects.filter((s) => s.id === activeSubjectId) : subjects
+    const result: ListItem[] = []
+    let gi = 0, foundFirst = false
     for (const subject of filtered) {
       for (const unit of subject.units) {
-        // Unit header
-        const completedInUnit = unit.topics.filter(
-          (t) => (progress[t.id] || DEFAULT_TOPIC_PROGRESS).state === 'completed'
-        ).length
-
-        result.push({
-          kind: 'unit',
-          unit,
-          subject,
-          completedCount: completedInUnit,
-          totalCount: unit.topics.length,
-        })
-        currentY += HEADER_HEIGHT + 24 // header + gap
-
-        // Topic nodes
+        let done = 0
+        for (const t of unit.topics) if ((progress[t.id] || DEFAULT_TOPIC_PROGRESS).state === 'completed') done++
+        result.push({ kind: 'unit', unit, subject, completedCount: done, totalCount: unit.topics.length })
         for (const topic of unit.topics) {
           const tp = progress[topic.id] || DEFAULT_TOPIC_PROGRESS
-          const state = tp.state
-          const isFA = !foundFirstAvailable && (state === 'available' || state === 'started')
-          if (isFA) {
-            foundFirstAvailable = true
-            firstAvailY = currentY
-          }
-
-          const x = getNodePosition(globalTopicIndex, containerWidth)
-          const cy = currentY + NODE_SIZE / 2
-
-          positions.push({
-            cx: x,
-            cy,
-            progressRatio: state === 'completed' ? 1 : state === 'started' ? 0.5 : 0,
-          })
-
-          result.push({
-            kind: 'topic',
-            topic,
-            unit,
-            subject,
-            progress: tp,
-            state,
-            isFirstAvailable: isFA,
-            globalIndex: globalTopicIndex,
-          })
-
-          currentY += VERTICAL_SPACING
-          globalTopicIndex++
+          const isFA = !foundFirst && (tp.state === 'available' || tp.state === 'started')
+          if (isFA) foundFirst = true
+          result.push({ kind: 'topic', topic, unit, subject, progress: tp, state: tp.state, isFirstAvailable: isFA, globalIndex: gi++ })
         }
-
-        // Add gap between units
-        currentY += 20
       }
     }
-
-    return {
-      items: result,
-      topicPositions: positions,
-      totalHeight: currentY + 80,
-      firstAvailableY: firstAvailY,
-    }
+    return result
   }, [subjects, progress, activeSubjectId])
 
-  // Store firstAvailableY for scroll
-  firstAvailableRef.current = firstAvailableY
-
-  // --- Auto-scroll to first available on mount ---
-  useEffect(() => {
-    const el = scrollRef.current
-    if (!el || firstAvailableRef.current == null) return
-    const targetScroll = Math.max(0, firstAvailableRef.current - SCROLL_OFFSET_TOP)
-    // Small delay so the DOM has painted
-    const id = requestAnimationFrame(() => {
-      el.scrollTo({ top: targetScroll, behavior: 'smooth' })
-    })
-    return () => cancelAnimationFrame(id)
-  }, [activeSubjectId]) // re-scroll when subject filter changes
-
-  // --- Compute SVG path data ---
-  const { pathD, progressPathD } = useMemo(() => {
-    if (topicPositions.length === 0) return { pathD: '', progressPathD: '' }
-
-    const pts = topicPositions.map((p) => ({ cx: p.cx, cy: p.cy }))
-    const fullD = buildPathD(pts)
-
-    // Find the last completed or started node to know where to cut the progress path
-    let lastProgressIdx = -1
-    for (let i = 0; i < topicPositions.length; i++) {
-      if (topicPositions[i].progressRatio > 0) {
-        lastProgressIdx = i
-      }
-    }
-
-    let progD = ''
-    if (lastProgressIdx >= 0) {
-      // Include one extra node so the path leads to the current node
-      const progressPts = pts.slice(0, lastProgressIdx + 1)
-      // If the last node is "started" (not complete), extend halfway to next node
-      if (lastProgressIdx < pts.length - 1 && topicPositions[lastProgressIdx].progressRatio < 1) {
-        const cur = pts[lastProgressIdx]
-        const next = pts[lastProgressIdx + 1]
-        progressPts.push({
-          cx: (cur.cx + next.cx) / 2,
-          cy: (cur.cy + next.cy) / 2,
-        })
-      }
-      progD = buildPathD(progressPts)
-    }
-
-    return { pathD: fullD, progressPathD: progD }
-  }, [topicPositions])
-
-  // --- Handle node tap ---
-  const handleNodeTap = useCallback(
-    (node: TopicNode) => {
-      onNodeTap(node.topic.id, node.topic, node.subject)
-    },
-    [onNodeTap]
-  )
-
-  // --- Pre-compute render positions for each item ---
-  const itemPositions = useMemo(() => {
-    const positions: Array<{ y: number; x?: number }> = []
-    let y = 40
-    let tIdx = 0
-    const cw = 480
-
-    for (let i = 0; i < items.length; i++) {
-      const item = items[i]
-      if (item.kind === 'unit') {
-        positions.push({ y })
-        y += HEADER_HEIGHT + 24
-      } else {
-        const x = getNodePosition(tIdx, cw)
-        positions.push({ y: y + NODE_SIZE / 2, x })
-        y += VERTICAL_SPACING
-        tIdx++
-        const next = items[i + 1]
-        if (!next || next.kind === 'unit') {
-          y += 20
-        }
-      }
-    }
-    return positions
+  const completedIds = useMemo(() => {
+    const s = new Set<string>()
+    for (const it of items) if (it.kind === 'topic' && it.state === 'completed') s.add(it.topic.id)
+    return s
   }, [items])
 
+  // Auto-scroll to first available
+  useEffect(() => {
+    const id = requestAnimationFrame(() => {
+      const n = firstAvailableRef.current, c = scrollRef.current
+      if (!n || !c) return
+      const cr = c.getBoundingClientRect(), nr = n.getBoundingClientRect()
+      c.scrollTo({ top: Math.max(0, c.scrollTop + nr.top - cr.top - 140), behavior: 'smooth' })
+    })
+    return () => cancelAnimationFrame(id)
+  }, [activeSubjectId])
+
+  const handleTap = useCallback((n: FlatTopicNode) => onNodeTap(n.topic.id, n.topic, n.subject), [onNodeTap])
+
+  let prev: FlatTopicNode | null = null
+
   return (
-    <div
-      ref={scrollRef}
-      style={{
-        width: '100%',
-        maxWidth: 480,
-        margin: '0 auto',
-        height: '100dvh',
-        overflowY: 'auto',
-        overflowX: 'hidden',
-        position: 'relative',
-        WebkitOverflowScrolling: 'touch',
-      }}
-    >
-      {/* Scrollable inner container */}
-      <div
-        style={{
-          position: 'relative',
-          width: '100%',
-          height: totalHeight,
-          minHeight: '100%',
-        }}
-      >
-        {/* SVG Path behind everything */}
-        <svg
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: totalHeight,
-            pointerEvents: 'none',
-            zIndex: 1,
-          }}
-          viewBox={`0 0 480 ${totalHeight}`}
-          preserveAspectRatio="xMidYMid meet"
-        >
-          {/* Background (unfilled) path */}
-          {pathD && (
-            <path
-              d={pathD}
-              fill="none"
-              stroke="rgba(255,255,255,0.06)"
-              strokeWidth={PATH_WIDTH}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          )}
-          {/* Progress (filled) path */}
-          {progressPathD && (
-            <path
-              d={progressPathD}
-              fill="none"
-              stroke="url(#progressGrad)"
-              strokeWidth={PATH_WIDTH}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          )}
-          {/* Gradient definition for progress */}
-          <defs>
-            <linearGradient id="progressGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#a78bfa" stopOpacity="0.9" />
-              <stop offset="100%" stopColor="#6366f1" stopOpacity="0.9" />
-            </linearGradient>
-          </defs>
-        </svg>
-
-        {/* Render all items using pre-computed positions */}
-        {items.map((item, i) => {
-          const pos = itemPositions[i]
-          if (item.kind === 'unit') {
+    <>
+      <style>{KEYFRAMES}</style>
+      <div ref={scrollRef} style={{ width: '100%', maxWidth: 400, margin: '0 auto', height: '100%',
+        overflowY: 'auto', overflowX: 'hidden', padding: '0 20px 120px', WebkitOverflowScrolling: 'touch' }}>
+        <SubjectFilterPills subjects={subjects} activeSubjectId={activeSubjectId} onSubjectChange={onSubjectChange} />
+        <div ref={containerRef} style={{ position: 'relative', width: '100%' }}>
+          {items.map((item) => {
+            if (item.kind === 'unit') { prev = null; return <UnitHeader key={`u-${item.unit.id}`} data={item} /> }
+            const node = item
+            const showLine = prev !== null
+            const filled = showLine && prev !== null && completedIds.has(prev.topic.id)
+            const pPos = prev ? PATH_POSITIONS[prev.globalIndex % PATH_POSITIONS.length] : null
+            const cPos = PATH_POSITIONS[node.globalIndex % PATH_POSITIONS.length]
+            const line = showLine && pPos
+              ? <ConnectingLine prevX={pPos.x} currX={cPos.x} filled={filled} w={cw} /> : null
+            prev = node
             return (
-              <UnitHeaderView
-                key={`unit-${item.unit.id}-${item.subject.id}`}
-                header={item}
-                y={pos.y}
-              />
+              <div key={`t-${node.topic.id}`} ref={node.isFirstAvailable ? firstAvailableRef : undefined}>
+                {line}
+                <TopicNode node={node} onTap={() => handleTap(node)} w={cw} />
+              </div>
             )
-          }
-          return (
-            <TopicNodeView
-              key={`topic-${item.topic.id}`}
-              node={item}
-              x={pos.x!}
-              y={pos.y}
-              onTap={() => handleNodeTap(item)}
-            />
-          )
-        })}
-
-        {/* Decorative sparkle dots along the path */}
-        {topicPositions
-          .filter((_, i) => i % 3 === 1)
-          .map((pos, i) => (
-            <div
-              key={`star-${i}`}
-              style={{
-                position: 'absolute',
-                left: pos.cx + (i % 2 === 0 ? 38 : -50),
-                top: pos.cy - 10,
-                width: 6,
-                height: 6,
-                borderRadius: '50%',
-                background: 'rgba(255,255,255,0.06)',
-                animation: `jp-star-spin ${3 + i}s linear infinite`,
-                pointerEvents: 'none',
-                zIndex: 0,
-              }}
-            />
-          ))}
+          })}
+        </div>
       </div>
-    </div>
+    </>
   )
 }

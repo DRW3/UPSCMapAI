@@ -95,9 +95,12 @@ export async function POST(req: NextRequest) {
 
         // 8b. Correct coordinates: curated lookup + Nominatim geocoding
         const correctedPoints = await correctCoordinates(allStaticPoints)
+        console.log(`[map/route] "${message}" → ${aiPoints.length} AI pts, ${empireCityPoints.length} empire pts → ${correctedPoints.length} after coord fix`)
 
         if (correctedPoints.length > 0) {
           send({ type: 'map_operation', operation: { op: 'add_markers', points: correctedPoints } as MapOperation })
+        } else {
+          console.warn(`[map/route] Zero points for query: "${message}"`)
         }
 
         // 9. Send chat status message

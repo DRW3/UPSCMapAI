@@ -1,264 +1,167 @@
 'use client'
 
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import type { LearningTopic, LearningSubject } from '@/data/syllabus'
 import { UPSC_SYLLABUS } from '@/data/syllabus'
-import {
-  type TopicProgress,
-  type JourneyProgress,
-  DEFAULT_TOPIC_PROGRESS,
-  CROWN_COLORS,
-} from '@/components/journey/types'
-
-// ── Props ───────────────────────────────────────────────────────────────────────
+import { type TopicProgress, type JourneyProgress, type NodeState, DEFAULT_TOPIC_PROGRESS } from './types'
 
 interface PracticeTabProps {
   progress: JourneyProgress
-  topicStates: Record<string, TopicProgress>
-  onStartPractice: (topicId: string, topic: LearningTopic, subject: LearningSubject) => void
-  onSwitchToLearn: () => void
+  subjects: LearningSubject[]
+  topicStates: Record<string, { state: NodeState; topic: LearningTopic; subject: LearningSubject }>
+  onTopicSelect: (topicId: string, topic: LearningTopic, subject: LearningSubject) => void
+  onStartQuickMix: () => void
+  onNavigateToPath: () => void
 }
-
-// ── Helpers ─────────────────────────────────────────────────────────────────────
 
 interface TopicWithMeta {
-  topic: LearningTopic
-  subject: LearningSubject
-  progress: TopicProgress
-  accuracy: number
-  daysSincePractice: number
+  topic: LearningTopic; subject: LearningSubject; tp: TopicProgress; accuracy: number; daysSince: number
 }
 
-function getTopicMeta(subjects: LearningSubject[], topicStates: Record<string, TopicProgress>): TopicWithMeta[] {
-  const now = Date.now()
-  const result: TopicWithMeta[] = []
-  for (const subject of subjects) {
-    for (const unit of subject.units) {
-      for (const topic of unit.topics) {
-        const tp = topicStates[topic.id] || DEFAULT_TOPIC_PROGRESS
-        if (tp.state === 'started' || tp.state === 'completed') {
-          const accuracy = tp.questionsAnswered > 0
-            ? (tp.correctAnswers / tp.questionsAnswered) * 100
-            : 0
-          const daysSince = tp.lastPracticed
-            ? Math.floor((now - new Date(tp.lastPracticed).getTime()) / 86400000)
-            : 999
-          result.push({ topic, subject, progress: tp as TopicProgress, accuracy, daysSincePractice: daysSince })
-        }
-      }
+function buildTopicList(subjects: LearningSubject[], progress: JourneyProgress): TopicWithMeta[] {
+  const now = Date.now(), result: TopicWithMeta[] = []
+  for (const subject of subjects) for (const unit of subject.units) for (const topic of unit.topics) {
+    const tp = progress.topics[topic.id] || DEFAULT_TOPIC_PROGRESS
+    if (tp.state === 'started' || tp.state === 'completed') {
+      const accuracy = tp.questionsAnswered > 0 ? (tp.correctAnswers / tp.questionsAnswered) * 100 : 0
+      const daysSince = tp.lastPracticed ? Math.floor((now - new Date(tp.lastPracticed).getTime()) / 86400000) : 999
+      result.push({ topic, subject, tp, accuracy, daysSince })
     }
   }
   return result
 }
 
-// ── Component ───────────────────────────────────────────────────────────────────
+function pickNextUp(all: TopicWithMeta[]): TopicWithMeta | null {
+  const weak = all.filter(t => t.tp.questionsAnswered >= 3 && t.accuracy < 40).sort((a, b) => a.accuracy - b.accuracy)
+  if (weak[0]) return weak[0]
+  const due = all.filter(t => t.tp.state === 'completed' && t.daysSince >= 3).sort((a, b) => b.daysSince - a.daysSince)
+  if (due[0]) return due[0]
+  const started = all.filter(t => t.tp.state === 'started')
+  return started[0] || all[0] || null
+}
 
-export default function PracticeTab({ topicStates, onStartPractice, onSwitchToLearn }: PracticeTabProps) {
-  const allTopics = useMemo(() => getTopicMeta(UPSC_SYLLABUS, topicStates), [topicStates])
+function reason(t: TopicWithMeta): string {
+  if (t.tp.questionsAnswered >= 3 && t.accuracy < 40) return 'Weakest topic'
+  if (t.tp.state === 'completed' && t.daysSince >= 3) return 'Due for review'
+  if (t.tp.state === 'started') return 'Continue learning'
+  return 'Practice next'
+}
 
-  // Weak topics: accuracy < 60%, sorted by worst
-  const weakTopics = useMemo(
-    () => allTopics
-      .filter(t => t.progress.questionsAnswered >= 3 && t.accuracy < 60)
-      .sort((a, b) => a.accuracy - b.accuracy)
-      .slice(0, 5),
-    [allTopics]
+const GLASS = { background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: 20 } as const
+const ELEVATED = { background: 'rgba(255,255,255,0.06)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', border: '1px solid rgba(255,255,255,0.08)', boxShadow: '0 8px 32px rgba(0,0,0,0.3)', borderRadius: 20 } as const
+
+export default function PracticeTab({ progress, subjects, onTopicSelect, onStartQuickMix, onNavigateToPath }: PracticeTabProps) {
+  const allTopics = useMemo(() => buildTopicList(subjects.length > 0 ? subjects : UPSC_SYLLABUS, progress), [subjects, progress])
+  const nextUp = useMemo(() => pickNextUp(allTopics), [allTopics])
+  const weakTopics = useMemo(() => allTopics.filter(t => t.tp.questionsAnswered >= 3 && t.accuracy < 60).sort((a, b) => a.accuracy - b.accuracy), [allTopics])
+  const reviewTopics = useMemo(() => allTopics.filter(t => t.tp.state === 'completed' && t.daysSince >= 1).sort((a, b) => b.daysSince - a.daysSince), [allTopics])
+  const [reviewOpen, setReviewOpen] = useState(false)
+  const [weakOpen, setWeakOpen] = useState(false)
+  const fmt = (d: number) => d === 0 ? 'today' : d === 1 ? 'yesterday' : `${d}d ago`
+
+  if (allTopics.length === 0) return (
+    <div style={{ minHeight: '60vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 24, padding: '0 24px', textAlign: 'center' }}>
+      <span style={{ fontSize: 64, lineHeight: 1 }}>🎯</span>
+      <p style={{ fontSize: 16, fontWeight: 700, color: 'rgba(255,255,255,0.85)', margin: 0 }}>Start learning to unlock practice</p>
+      <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.35)', maxWidth: 260, lineHeight: 1.6, margin: 0 }}>Complete at least one topic on the learning path to begin practicing.</p>
+      <button onClick={onNavigateToPath} style={{ padding: '14px 32px', borderRadius: 16, background: 'linear-gradient(135deg,#6366f1,#8b5cf6)', boxShadow: '0 4px 20px rgba(99,102,241,0.3)', fontSize: 14, fontWeight: 700, color: '#fff', border: 'none', cursor: 'pointer' }}>
+        Go to Path →
+      </button>
+    </div>
   )
-
-  // Review topics: completed topics sorted by longest time since practice
-  const reviewTopics = useMemo(
-    () => allTopics
-      .filter(t => t.progress.state === 'completed')
-      .sort((a, b) => b.daysSincePractice - a.daysSincePractice)
-      .slice(0, 6),
-    [allTopics]
-  )
-
-  // Random daily challenge candidates: any started or completed topic
-  const dailyChallengeTopics = useMemo(
-    () => allTopics.length > 0
-      ? allTopics.sort(() => Math.random() - 0.5).slice(0, 3)
-      : [],
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [allTopics.length]
-  )
-
-  // In-progress topics (started but not completed)
-  const inProgressTopics = useMemo(
-    () => allTopics.filter(t => t.progress.state === 'started').slice(0, 4),
-    [allTopics]
-  )
-
-  if (allTopics.length === 0) {
-    return (
-      <div className="flex flex-col items-center justify-center h-full gap-4 px-6 text-center">
-        <span className="text-5xl">🏋️</span>
-        <p className="text-[15px] font-semibold text-white/80">No topics to practice yet</p>
-        <p className="text-[12px] text-white/40 max-w-[280px]">
-          Start learning topics on the path to unlock practice mode. Complete at least one topic to begin reviewing.
-        </p>
-        <button
-          onClick={onSwitchToLearn}
-          className="mt-2 px-5 py-2.5 rounded-2xl text-[13px] font-semibold text-white"
-          style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}
-        >
-          Go to Path →
-        </button>
-      </div>
-    )
-  }
 
   return (
-    <div className="h-full overflow-y-auto px-4" style={{ scrollbarWidth: 'none', paddingTop: 108, paddingBottom: 96 }}>
-      {/* Daily Challenge */}
-      {dailyChallengeTopics.length > 0 && (
-        <Section title="Daily Challenge" icon="⚡" subtitle="Random mix to test your knowledge">
-          <div
-            className="rounded-2xl p-4 mb-1"
-            style={{
-              background: 'linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.06) 100%)',
-              border: '1px solid rgba(99,102,241,0.15)',
-            }}
-          >
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center text-[24px]"
-                style={{ background: 'rgba(99,102,241,0.15)' }}>
-                🎲
-              </div>
-              <div className="flex-1">
-                <p className="text-[14px] font-bold text-white/90">Quick Mix</p>
-                <p className="text-[11px] text-white/40">{dailyChallengeTopics.length} random topics &middot; 5 questions each</p>
-              </div>
-            </div>
-            <div className="flex flex-wrap gap-1.5 mb-3">
-              {dailyChallengeTopics.map(t => (
-                <span key={t.topic.id} className="text-[10px] font-medium px-2.5 py-1 rounded-lg"
-                  style={{ background: `${t.subject.color}15`, color: `${t.subject.color}cc` }}>
-                  {t.topic.icon} {t.topic.title}
-                </span>
-              ))}
-            </div>
-            <button
-              onClick={() => {
-                const t = dailyChallengeTopics[0]
-                onStartPractice(t.topic.id, t.topic, t.subject)
-              }}
-              className="w-full py-3 rounded-xl text-[13px] font-bold text-white transition-all active:scale-[0.97]"
-              style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)', boxShadow: '0 4px 16px rgba(99,102,241,0.25)' }}
-            >
-              Start Challenge
-            </button>
+    <div style={{ padding: '16px 16px 40px', display: 'flex', flexDirection: 'column', gap: 20 }}>
+      <h2 style={{ fontSize: 20, fontWeight: 700, color: 'rgba(255,255,255,0.92)', margin: 0 }}>Practice</h2>
+
+      {/* Next Up Hero */}
+      {nextUp && (
+        <button onClick={() => onTopicSelect(nextUp.topic.id, nextUp.topic, nextUp.subject)} style={{ ...ELEVATED, width: '100%', textAlign: 'left' as const, padding: 20, cursor: 'pointer' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 14 }}>
+            <span style={{ fontSize: 14 }}>⚡</span>
+            <span style={{ fontSize: 11, fontWeight: 700, color: '#818cf8', letterSpacing: '0.05em', textTransform: 'uppercase' as const }}>Next Up</span>
+            <span style={{ marginLeft: 'auto', fontSize: 11, color: 'rgba(255,255,255,0.35)' }}>{reason(nextUp)}</span>
           </div>
-        </Section>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+            <div style={{ width: 52, height: 52, borderRadius: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, flexShrink: 0, background: `${nextUp.subject.color}15`, border: `1px solid ${nextUp.subject.color}25` }}>
+              {nextUp.topic.icon}
+            </div>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <p style={{ fontSize: 15, fontWeight: 700, color: 'rgba(255,255,255,0.92)', margin: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' as const }}>{nextUp.topic.title}</p>
+              {nextUp.tp.questionsAnswered > 0 && (
+                <p style={{ fontSize: 12, color: nextUp.accuracy < 40 ? '#f87171' : nextUp.accuracy < 60 ? '#fbbf24' : '#34d399', margin: '4px 0 0', fontWeight: 600 }}>Accuracy: {Math.round(nextUp.accuracy)}%</p>
+              )}
+            </div>
+          </div>
+          <div style={{ marginTop: 16, padding: '12px 0', borderRadius: 12, textAlign: 'center', background: 'linear-gradient(135deg,#6366f1,#8b5cf6)', boxShadow: '0 4px 20px rgba(99,102,241,0.25)', fontSize: 13, fontWeight: 700, color: '#fff' }}>
+            Practice Now →
+          </div>
+        </button>
       )}
 
-      {/* In Progress */}
-      {inProgressTopics.length > 0 && (
-        <Section title="Continue Learning" icon="📝" subtitle="Topics you've started">
-          <div className="flex flex-col gap-2">
-            {inProgressTopics.map(t => (
-              <TopicCard key={t.topic.id} item={t} onTap={() => onStartPractice(t.topic.id, t.topic, t.subject)} />
-            ))}
+      {/* Quick Mix */}
+      <div onClick={onStartQuickMix} style={{ ...GLASS, padding: 16, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 14 }}>
+        <span style={{ fontSize: 24 }}>🎲</span>
+        <div style={{ flex: 1 }}>
+          <p style={{ fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.85)', margin: 0 }}>Quick Mix</p>
+          <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', margin: '2px 0 0' }}>5 random questions from across topics</p>
+        </div>
+        <span style={{ fontSize: 13, fontWeight: 700, color: '#818cf8' }}>Start →</span>
+      </div>
+
+      {/* Stat Pills */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+        {[{ n: weakTopics.length, label: 'weak topics', color: '#f87171', toggle: () => setWeakOpen(o => !o) },
+          { n: reviewTopics.length, label: 'due reviews', color: '#fbbf24', toggle: () => setReviewOpen(o => !o) }].map(p => (
+          <div key={p.label} onClick={p.toggle} style={{ padding: '14px 16px', borderRadius: 16, cursor: 'pointer', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)', textAlign: 'center' }}>
+            <p style={{ fontSize: 20, fontWeight: 800, color: p.n > 0 ? p.color : 'rgba(255,255,255,0.55)', margin: 0 }}>{p.n}</p>
+            <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', margin: '2px 0 0' }}>{p.label}</p>
           </div>
-        </Section>
+        ))}
+      </div>
+
+      {/* Review Queue */}
+      {reviewTopics.length > 0 && (
+        <Expandable title="Review Queue" badge={`${reviewTopics.length} topics due`} open={reviewOpen} toggle={() => setReviewOpen(o => !o)}>
+          {reviewTopics.slice(0, 8).map(t => (
+            <Row key={t.topic.id} icon={t.topic.icon} title={t.topic.title} detail={fmt(t.daysSince)} onTap={() => onTopicSelect(t.topic.id, t.topic, t.subject)} />
+          ))}
+        </Expandable>
       )}
 
       {/* Weak Topics */}
       {weakTopics.length > 0 && (
-        <Section title="Needs Improvement" icon="🔴" subtitle="Topics with under 60% accuracy">
-          <div className="flex flex-col gap-2">
-            {weakTopics.map(t => (
-              <TopicCard key={t.topic.id} item={t} onTap={() => onStartPractice(t.topic.id, t.topic, t.subject)} showAccuracy />
-            ))}
-          </div>
-        </Section>
-      )}
-
-      {/* Review */}
-      {reviewTopics.length > 0 && (
-        <Section title="Review & Level Up" icon="🔄" subtitle="Revisit completed topics to earn more crowns">
-          <div className="flex flex-col gap-2">
-            {reviewTopics.map(t => (
-              <TopicCard key={t.topic.id} item={t} onTap={() => onStartPractice(t.topic.id, t.topic, t.subject)} showDaysSince />
-            ))}
-          </div>
-        </Section>
+        <Expandable title="Weak Topics" badge={`${weakTopics.length} < 60%`} open={weakOpen} toggle={() => setWeakOpen(o => !o)}>
+          {weakTopics.slice(0, 8).map(t => (
+            <Row key={t.topic.id} icon={t.topic.icon} title={t.topic.title} detail={`${Math.round(t.accuracy)}%`} detailColor={t.accuracy < 40 ? '#f87171' : '#fbbf24'} onTap={() => onTopicSelect(t.topic.id, t.topic, t.subject)} />
+          ))}
+        </Expandable>
       )}
     </div>
   )
 }
 
-// ── Sub-components ──────────────────────────────────────────────────────────────
-
-function Section({ title, icon, subtitle, children }: { title: string; icon: string; subtitle: string; children: React.ReactNode }) {
+function Expandable({ title, badge, open, toggle, children }: { title: string; badge: string; open: boolean; toggle: () => void; children: React.ReactNode }) {
   return (
-    <div className="mb-5">
-      <div className="flex items-center gap-2 mb-1">
-        <span className="text-[16px]">{icon}</span>
-        <h3 className="text-[14px] font-bold text-white/85">{title}</h3>
+    <div style={{ ...GLASS, overflow: 'hidden' }}>
+      <button onClick={toggle} style={{ width: '100%', padding: '14px 16px', display: 'flex', alignItems: 'center', gap: 8, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' as const }}>
+        <span style={{ fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.85)', flex: 1 }}>{title}</span>
+        <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)' }}>{badge}</span>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="2" strokeLinecap="round" style={{ transform: open ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.25s ease', flexShrink: 0 }}><path d="M3 5l4 4 4-4" /></svg>
+      </button>
+      <div style={{ maxHeight: open ? 400 : 0, overflow: 'hidden', transition: 'max-height 0.3s ease', padding: open ? '0 12px 12px' : '0 12px 0' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>{children}</div>
       </div>
-      <p className="text-[11px] text-white/30 mb-3 ml-7">{subtitle}</p>
-      {children}
     </div>
   )
 }
 
-function TopicCard({
-  item,
-  onTap,
-  showAccuracy,
-  showDaysSince,
-}: {
-  item: TopicWithMeta
-  onTap: () => void
-  showAccuracy?: boolean
-  showDaysSince?: boolean
-}) {
-  const { topic, subject, progress, accuracy, daysSincePractice } = item
-  const color = subject.color
-  const crown = progress.crownLevel
-
+function Row({ icon, title, detail, detailColor, onTap }: { icon: string; title: string; detail: string; detailColor?: string; onTap: () => void }) {
   return (
-    <button
-      onClick={onTap}
-      className="w-full flex items-center gap-3 px-3.5 py-3 rounded-2xl text-left transition-all active:scale-[0.98]"
-      style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}
-    >
-      {/* Icon */}
-      <div
-        className="w-11 h-11 rounded-xl flex items-center justify-center text-[20px] flex-shrink-0"
-        style={{ background: `${color}15`, border: `1.5px solid ${color}25` }}
-      >
-        {topic.icon}
-      </div>
-
-      {/* Info */}
-      <div className="flex-1 min-w-0">
-        <p className="text-[13px] font-semibold text-white/85 truncate">{topic.title}</p>
-        <div className="flex items-center gap-2 mt-0.5">
-          <span className="text-[10px] font-medium" style={{ color }}>{subject.shortTitle}</span>
-          {crown > 0 && (
-            <span className="flex items-center gap-0.5 text-[10px] font-bold" style={{ color: CROWN_COLORS[crown] }}>
-              👑 {crown}
-            </span>
-          )}
-          {showAccuracy && (
-            <span className="text-[10px] font-bold" style={{ color: accuracy < 40 ? '#f87171' : '#fbbf24' }}>
-              {Math.round(accuracy)}% acc
-            </span>
-          )}
-          {showDaysSince && daysSincePractice > 0 && (
-            <span className="text-[10px] text-white/30">
-              {daysSincePractice === 1 ? 'yesterday' : `${daysSincePractice}d ago`}
-            </span>
-          )}
-        </div>
-      </div>
-
-      {/* Arrow */}
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="2" strokeLinecap="round" className="flex-shrink-0">
-        <path d="M5 2l5 5-5 5" />
-      </svg>
+    <button onClick={onTap} style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 10, padding: '10px 8px', borderRadius: 12, background: 'rgba(255,255,255,0.02)', border: 'none', cursor: 'pointer', textAlign: 'left' as const }}>
+      <span style={{ fontSize: 16 }}>{icon}</span>
+      <span style={{ flex: 1, fontSize: 13, fontWeight: 500, color: 'rgba(255,255,255,0.75)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' as const }}>{title}</span>
+      <span style={{ fontSize: 11, fontWeight: 600, color: detailColor || 'rgba(255,255,255,0.30)', flexShrink: 0 }}>{detail}</span>
     </button>
   )
 }

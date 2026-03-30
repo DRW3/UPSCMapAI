@@ -1,10 +1,11 @@
 'use client'
 
 import { useState, useEffect, useCallback, useMemo } from 'react'
-import { UPSC_SYLLABUS, TOTAL_TOPICS, type LearningTopic, type LearningSubject } from '@/data/syllabus'
+import { UPSC_SYLLABUS, type LearningTopic, type LearningSubject } from '@/data/syllabus'
 import {
   type JourneyProgress,
   type TopicProgress,
+  type NodeState,
   type CrownLevel,
   type DailyGoalTier,
   DEFAULT_PROGRESS,
@@ -16,10 +17,11 @@ import {
   DAILY_GOALS,
   checkAchievements,
 } from '@/components/journey/types'
-import { StatsHeader } from '@/components/journey/StatsHeader'
+import { StatsHeader, STATS_HEADER_HEIGHT } from '@/components/journey/StatsHeader'
 import JourneyPath from '@/components/journey/JourneyPath'
 import PracticeSheet from '@/components/journey/PracticeSheet'
-import { BottomNav } from '@/components/journey/BottomNav'
+import { BottomNav, BOTTOM_NAV_HEIGHT } from '@/components/journey/BottomNav'
+import HomeTab from '@/components/journey/HomeTab'
 import TopicDetailSheet from '@/components/journey/TopicDetailSheet'
 import PracticeTab from '@/components/journey/PracticeTab'
 import ProfileTab from '@/components/journey/ProfileTab'
@@ -58,7 +60,6 @@ function loadJourneyProgress(): JourneyProgress {
           topics,
           totalXp: Object.keys(topics).length * 50,
         }
-        // Migrate streak
         const streak = parseInt(localStorage.getItem('upsc-streak-v1') || '0')
         migrated.streak = streak
         migrated.lastStudyDate = localStorage.getItem('upsc-last-day')
@@ -83,7 +84,7 @@ function computeTopicStates(
   progress: JourneyProgress
 ): Record<string, TopicProgress> {
   const result: Record<string, TopicProgress> = {}
-  let prevDone = true // first topic is always available
+  let prevDone = true
 
   for (const subject of subjects) {
     for (const unit of subject.units) {
@@ -93,12 +94,11 @@ function computeTopicStates(
           result[topic.id] = existing
           prevDone = existing.state === 'completed'
         } else if (prevDone) {
-          // This topic is available (previous was completed or this is first)
           result[topic.id] = {
             ...(existing || DEFAULT_TOPIC_PROGRESS),
             state: 'available',
           }
-          prevDone = false // subsequent ones are locked until this is done
+          prevDone = false
         } else {
           result[topic.id] = {
             ...(existing || DEFAULT_TOPIC_PROGRESS),
@@ -114,12 +114,11 @@ function computeTopicStates(
 
 // ── Hearts refill logic ───────────────────────────────────────────────────────
 
-const HEART_REFILL_MS = 30 * 60 * 1000 // 30 minutes per heart
+const HEART_REFILL_MS = 30 * 60 * 1000
 
 function computeHearts(progress: JourneyProgress): number {
   if (progress.hearts >= 5) return 5
   if (!progress.heartsLastRefill) return progress.hearts
-
   const elapsed = Date.now() - new Date(progress.heartsLastRefill).getTime()
   const refilled = Math.floor(elapsed / HEART_REFILL_MS)
   return Math.min(5, progress.hearts + refilled)
@@ -129,16 +128,11 @@ function computeHearts(progress: JourneyProgress): number {
 
 function computeStreak(progress: JourneyProgress): { streak: number; isToday: boolean } {
   if (!progress.lastStudyDate) return { streak: 0, isToday: false }
-
   const today = new Date().toISOString().slice(0, 10)
   const last = progress.lastStudyDate.slice(0, 10)
-
   if (last === today) return { streak: progress.streak, isToday: true }
-
   const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10)
   if (last === yesterday) return { streak: progress.streak, isToday: false }
-
-  // Streak broken
   return { streak: 0, isToday: false }
 }
 
@@ -147,29 +141,49 @@ function computeStreak(progress: JourneyProgress): { streak: number; isToday: bo
 function resetDailyIfNeeded(progress: JourneyProgress): JourneyProgress {
   const today = new Date().toISOString().slice(0, 10)
   if (progress.todayDate !== today) {
-    return {
-      ...progress,
-      todayXp: 0,
-      todayDate: today,
-    }
+    return { ...progress, todayXp: 0, todayDate: today }
   }
   return progress
 }
+
+// ── Enriched topic state (includes topic + subject refs for HomeTab/PracticeTab)
+
+type EnrichedTopicState = { state: NodeState; topic: LearningTopic; subject: LearningSubject }
+
+function buildEnrichedStates(
+  subjects: LearningSubject[],
+  topicStates: Record<string, TopicProgress>,
+): Record<string, EnrichedTopicState> {
+  const result: Record<string, EnrichedTopicState> = {}
+  for (const subject of subjects) {
+    for (const unit of subject.units) {
+      for (const topic of unit.topics) {
+        const tp = topicStates[topic.id]
+        if (tp) result[topic.id] = { state: tp.state, topic, subject }
+      }
+    }
+  }
+  return result
+}
+
+// ── Tab type ─────────────────────────────────────────────────────────────────
+
+type TabId = 'home' | 'path' | 'practice' | 'profile'
 
 // ── Main Component ────────────────────────────────────────────────────────────
 
 export function MobileLearningJourney() {
   const [progress, setProgress] = useState<JourneyProgress>(DEFAULT_PROGRESS)
   const [activeSubjectId, setActiveSubjectId] = useState<string | null>(null)
-  const [activeTab, setActiveTab] = useState<'learn' | 'practice' | 'map' | 'profile'>('learn')
+  const [activeTab, setActiveTab] = useState<TabId>('home')
 
-  // Topic detail sheet (pre-practice)
+  // Topic detail sheet
   const [detailTarget, setDetailTarget] = useState<{
     topic: LearningTopic
     subject: LearningSubject
   } | null>(null)
 
-  // Practice sheet (quiz)
+  // Practice sheet
   const [practiceTarget, setPracticeTarget] = useState<{
     topic: LearningTopic
     subject: LearningSubject
@@ -186,12 +200,9 @@ export function MobileLearningJourney() {
   // Load progress on mount
   useEffect(() => {
     let loaded = loadJourneyProgress()
-    // Compute current hearts
     loaded.hearts = computeHearts(loaded)
-    // Compute streak
     const { streak } = computeStreak(loaded)
     loaded.streak = streak
-    // Reset daily XP if new day
     loaded = resetDailyIfNeeded(loaded)
     setProgress(loaded)
     setMounted(true)
@@ -202,38 +213,30 @@ export function MobileLearningJourney() {
     if (mounted) saveJourneyProgress(progress)
   }, [progress, mounted])
 
-  // Computed topic states (with availability)
+  // Computed topic states
   const topicStates = useMemo(
     () => computeTopicStates(UPSC_SYLLABUS, progress),
     [progress]
   )
 
-  // Completed count
-  const completedTopics = useMemo(
-    () => Object.values(topicStates).filter(t => t.state === 'completed').length,
+  // Enriched topic states (with topic + subject refs)
+  const enrichedTopicStates = useMemo(
+    () => buildEnrichedStates(UPSC_SYLLABUS, topicStates),
     [topicStates]
   )
-
-  // Active subject color
-  const accentColor = useMemo(() => {
-    if (activeSubjectId) {
-      const s = UPSC_SYLLABUS.find(s => s.id === activeSubjectId)
-      return s?.color || '#6366f1'
-    }
-    return '#6366f1'
-  }, [activeSubjectId])
 
   // Current hearts
   const hearts = useMemo(() => computeHearts(progress), [progress])
 
+  // Daily goal XP target
+  const dailyGoalXp = DAILY_GOALS[progress.dailyGoalTier].xpTarget
+
   // ── Handlers ────────────────────────────────────────────────────────────────
 
-  // Handle node tap → show topic detail sheet
   const handleNodeTap = useCallback((topicId: string, topic: LearningTopic, subject: LearningSubject) => {
     const state = topicStates[topicId]
     if (!state || state.state === 'locked') return
 
-    // Mark as started if available
     if (state.state === 'available') {
       setProgress(prev => ({
         ...prev,
@@ -247,16 +250,13 @@ export function MobileLearningJourney() {
       }))
     }
 
-    // Open topic detail sheet
     setDetailTarget({ topic, subject })
   }, [topicStates])
 
-  // Handle start practice from detail sheet or practice tab
   const handleStartPractice = useCallback((topicId: string, topic: LearningTopic, subject: LearningSubject) => {
     const state = topicStates[topicId]
     if (!state || state.state === 'locked') return
 
-    // Mark as started if available
     if (state.state === 'available') {
       setProgress(prev => ({
         ...prev,
@@ -270,22 +270,39 @@ export function MobileLearningJourney() {
       }))
     }
 
-    setDetailTarget(null) // close detail if open
+    setDetailTarget(null)
     setPracticeTarget({ topic, subject })
   }, [topicStates])
 
-  // Handle practice from detail sheet
   const handleDetailStartPractice = useCallback(() => {
     if (!detailTarget) return
     handleStartPractice(detailTarget.topic.id, detailTarget.topic, detailTarget.subject)
   }, [detailTarget, handleStartPractice])
 
-  // Open map for topic
   const handleOpenMap = useCallback(() => {
     if (detailTarget) {
       window.location.href = `/map?q=${encodeURIComponent(detailTarget.topic.mapQuery)}`
     }
   }, [detailTarget])
+
+  // Quick mix: pick a random practiced topic
+  const handleStartQuickMix = useCallback(() => {
+    const practiced = Object.entries(topicStates)
+      .filter(([, tp]) => tp.state === 'started' || tp.state === 'completed')
+    if (practiced.length === 0) return
+
+    const [topicId] = practiced[Math.floor(Math.random() * practiced.length)]
+    for (const subject of UPSC_SYLLABUS) {
+      for (const unit of subject.units) {
+        for (const topic of unit.topics) {
+          if (topic.id === topicId) {
+            setPracticeTarget({ topic, subject })
+            return
+          }
+        }
+      }
+    }
+  }, [topicStates])
 
   // Handle practice complete
   const handlePracticeComplete = useCallback((result: {
@@ -305,31 +322,25 @@ export function MobileLearningJourney() {
       const newCorrect = existing.correctAnswers + result.correct
       const newAnswered = existing.questionsAnswered + result.total
 
-      // Crown level: level up every QUESTIONS_PER_CROWN correct answers
       let newCrown = existing.crownLevel
       const neededForNext = (newCrown + 1) * QUESTIONS_PER_CROWN
       if (newCorrect >= neededForNext && newCrown < 5) {
         newCrown = Math.min(5, newCrown + 1) as CrownLevel
       }
 
-      // State: completed if at least crown 1
       const newState = newCrown >= 1 ? 'completed' : 'started'
 
-      // XP
       let xpGained = result.correct * XP_PER_CORRECT
       if (isPerfect) xpGained += XP_PER_PERFECT_ROUND
       if (newCrown > existing.crownLevel) xpGained += XP_PER_CROWN_LEVEL
 
-      // Streak
       const { streak, isToday } = computeStreak(prev)
       const newStreak = isToday ? streak : streak + 1
 
-      // Gems: +5 for perfect, +2 for crown up
       let gemsGained = 0
       if (isPerfect) gemsGained += 5
       if (newCrown > existing.crownLevel) gemsGained += 2
 
-      // Daily goal tracking
       const newTodayXp = (prev.todayDate === todayDate ? prev.todayXp : 0) + xpGained
       const goalXp = DAILY_GOALS[prev.dailyGoalTier].xpTarget
       const prevGoalMet = prev.todayDate === todayDate && prev.todayXp >= goalXp
@@ -337,7 +348,6 @@ export function MobileLearningJourney() {
       const goalJustMet = !prevGoalMet && nowGoalMet
       const newGoalStreak = goalJustMet ? prev.goalStreakDays + 1 : prev.goalStreakDays
 
-      // Study calendar
       const calendar = [...(prev.studyCalendar || [])]
       const existingDay = calendar.find(d => d.date === todayDate)
       if (existingDay) {
@@ -352,11 +362,9 @@ export function MobileLearningJourney() {
           goalMet: nowGoalMet,
         })
       }
-      // Keep only last 90 days
       const cutoff = new Date(Date.now() - 90 * 86400000).toISOString().slice(0, 10)
       const trimmedCalendar = calendar.filter(d => d.date >= cutoff)
 
-      // Perfect scores
       const newPerfects = (prev.perfectScores || 0) + (isPerfect ? 1 : 0)
 
       const updated: JourneyProgress = {
@@ -384,17 +392,15 @@ export function MobileLearningJourney() {
         achievements: prev.achievements || [],
       }
 
-      // Check achievements
       const newAchievements = checkAchievements(updated, UPSC_SYLLABUS)
       if (newAchievements.length > 0) {
         updated.achievements = [
           ...updated.achievements,
           ...newAchievements.map(id => ({ id, unlockedAt: today })),
         ]
-        // Queue toasts (via setTimeout to avoid setState-in-setState)
-        setTimeout(() => {
+        queueMicrotask(() => {
           setAchievementQueue(prev => [...prev, ...newAchievements])
-        }, 500)
+        })
       }
 
       return updated
@@ -403,7 +409,6 @@ export function MobileLearningJourney() {
     setPracticeTarget(null)
   }, [practiceTarget])
 
-  // Handle heart lost
   const handleHeartLost = useCallback(() => {
     setProgress(prev => ({
       ...prev,
@@ -412,72 +417,117 @@ export function MobileLearningJourney() {
     }))
   }, [])
 
-  // Handle tab change
-  const handleTabChange = useCallback((tab: 'learn' | 'practice' | 'map' | 'profile') => {
-    if (tab === 'map') {
-      window.location.href = '/map'
-      return
-    }
+  const handleTabChange = useCallback((tab: TabId) => {
     setActiveTab(tab)
   }, [])
 
-  // Handle daily goal tier change
   const handleGoalTierChange = useCallback((tier: DailyGoalTier) => {
     setProgress(prev => ({ ...prev, dailyGoalTier: tier }))
   }, [])
 
-  // Handle achievement toast dismiss
   const handleAchievementDone = useCallback(() => {
     setAchievementQueue(prev => prev.slice(1))
   }, [])
 
+  // ── Loading state ──────────────────────────────────────────────────────────
+
   if (!mounted) {
     return (
-      <div className="flex items-center justify-center" style={{ height: '100dvh', background: '#080810' }}>
+      <div className="flex items-center justify-center" style={{ height: '100dvh', background: '#050510' }}>
         <div className="w-10 h-10 rounded-full border-2 border-indigo-500/30 border-t-indigo-500 animate-spin" />
       </div>
     )
   }
 
+  // ── Render ─────────────────────────────────────────────────────────────────
+
   return (
-    <div className="flex flex-col" style={{ height: '100dvh', background: '#080810', overflow: 'hidden' }}>
-      {/* Stats Header + Subject Tabs */}
+    <div style={{ height: '100dvh', background: '#050510', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
+
+      {/* Aurora background orbs */}
+      <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 0 }}>
+        <div style={{
+          position: 'absolute', width: 500, height: 500, borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(99,102,241,0.06) 0%, transparent 70%)',
+          top: -200, left: -100, filter: 'blur(80px)',
+        }} />
+        <div style={{
+          position: 'absolute', width: 400, height: 400, borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(139,92,246,0.04) 0%, transparent 70%)',
+          bottom: -100, right: -150, filter: 'blur(80px)',
+        }} />
+        <div style={{
+          position: 'absolute', width: 300, height: 300, borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(52,211,153,0.03) 0%, transparent 70%)',
+          top: '40%', right: -50, filter: 'blur(60px)',
+        }} />
+      </div>
+
+      {/* Stats Header */}
       <StatsHeader
-        progress={progress}
-        subjects={UPSC_SYLLABUS}
-        activeSubjectId={activeSubjectId}
-        onSubjectChange={setActiveSubjectId}
-        totalTopics={TOTAL_TOPICS}
-        completedTopics={completedTopics}
-        onOpenGoalModal={() => setGoalModalOpen(true)}
+        streak={progress.streak}
+        todayXp={progress.todayXp}
+        dailyGoalXp={dailyGoalXp}
+        onDailyGoalClick={() => setGoalModalOpen(true)}
       />
 
-      {/* Main Content */}
-      <div className="flex-1 overflow-hidden">
-        {activeTab === 'learn' && (
-          <JourneyPath
-            subjects={UPSC_SYLLABUS}
-            progress={topicStates}
-            activeSubjectId={activeSubjectId}
-            onNodeTap={handleNodeTap}
-          />
+      {/* Main Content Area */}
+      <div style={{
+        marginTop: STATS_HEADER_HEIGHT,
+        marginBottom: BOTTOM_NAV_HEIGHT,
+        flex: 1,
+        minHeight: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        overflow: 'hidden',
+        position: 'relative',
+        zIndex: 1,
+      }}>
+        {activeTab === 'home' && (
+          <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}>
+            <HomeTab
+              progress={progress}
+              subjects={UPSC_SYLLABUS}
+              topicStates={enrichedTopicStates}
+              onTopicTap={handleNodeTap}
+              onNavigateToPath={() => setActiveTab('path')}
+            />
+          </div>
+        )}
+
+        {activeTab === 'path' && (
+          <div style={{ flex: 1, minHeight: 0 }}>
+            <JourneyPath
+              subjects={UPSC_SYLLABUS}
+              progress={topicStates}
+              activeSubjectId={activeSubjectId}
+              onNodeTap={handleNodeTap}
+              onSubjectChange={setActiveSubjectId}
+            />
+          </div>
         )}
 
         {activeTab === 'practice' && (
-          <PracticeTab
-            progress={progress}
-            topicStates={topicStates}
-            onStartPractice={handleStartPractice}
-            onSwitchToLearn={() => setActiveTab('learn')}
-          />
+          <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}>
+            <PracticeTab
+              progress={progress}
+              subjects={UPSC_SYLLABUS}
+              topicStates={enrichedTopicStates}
+              onTopicSelect={handleNodeTap}
+              onStartQuickMix={handleStartQuickMix}
+              onNavigateToPath={() => setActiveTab('path')}
+            />
+          </div>
         )}
 
         {activeTab === 'profile' && (
-          <ProfileTab
-            progress={progress}
-            topicStates={topicStates}
-            completedTopics={completedTopics}
-          />
+          <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}>
+            <ProfileTab
+              progress={progress}
+              subjects={UPSC_SYLLABUS}
+              onDailyGoalClick={() => setGoalModalOpen(true)}
+            />
+          </div>
         )}
       </div>
 
@@ -485,7 +535,6 @@ export function MobileLearningJourney() {
       <BottomNav
         activeTab={activeTab}
         onTabChange={handleTabChange}
-        accentColor={accentColor}
       />
 
       {/* Topic Detail Sheet */}

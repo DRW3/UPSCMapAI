@@ -2,251 +2,219 @@
 
 import { useState } from 'react'
 
+// ── Constants ─────────────────────────────────────────────────────────────────
+
+export const BOTTOM_NAV_HEIGHT = 72
+
 // ── Types ──────────────────────────────────────────────────────────────────────
 
-type TabId = 'learn' | 'practice' | 'map' | 'profile'
+type TabId = 'home' | 'path' | 'practice' | 'profile'
 
 interface BottomNavProps {
   activeTab: TabId
   onTabChange: (tab: TabId) => void
-  accentColor: string
 }
 
-// ── Inline SVG Icons ───────────────────────────────────────────────────────────
+// ── SVG Icons (20x20, stroke-based) ─────────────────────────────────────────
 
-function BookIcon({ active, color }: { active: boolean; color: string }) {
-  const fill = active ? color : 'rgba(255,255,255,0.35)'
+function HomeIcon({ color }: { color: string }) {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      {/* Open book with path/road motif */}
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
       <path
-        d="M4 19.5A2.5 2.5 0 016.5 17H12v-2H6.5A2.5 2.5 0 014 17.5V6a2 2 0 012-2h5v11l-2.5-1.5L6 15V4h6v13h6a2 2 0 002-2V6a2 2 0 00-2-2h-5v11l2.5-1.5L18 15V4h-6"
-        fill="none"
-        stroke={fill}
-        strokeWidth="1.5"
+        d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1V10.5z"
+        stroke={color}
+        strokeWidth="1.8"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      {/* Simplified path icon */}
+    </svg>
+  )
+}
+
+function PathIcon({ color }: { color: string }) {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
       <path
-        d="M3 19h18"
-        stroke={fill}
-        strokeWidth="1.5"
+        d="M12 2C8 2 4 6 4 10c0 6 8 12 8 12s8-6 8-12c0-4-4-8-8-8z"
+        stroke={color}
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="12" cy="10" r="2.5" stroke={color} strokeWidth="1.8" />
+    </svg>
+  )
+}
+
+function PracticeIcon({ color }: { color: string }) {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+      <path
+        d="M13 2L4 14h7l-2 8 9-12h-7l2-8z"
+        stroke={color}
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+function ProfileIcon({ color }: { color: string }) {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="8" r="4" stroke={color} strokeWidth="1.8" />
+      <path
+        d="M4 21c0-3.3 3.6-6 8-6s8 2.7 8 6"
+        stroke={color}
+        strokeWidth="1.8"
         strokeLinecap="round"
       />
-      <path
-        d="M6 4v12.5"
-        stroke={fill}
-        strokeWidth="0"
-      />
-      {/* Book shape */}
-      <rect x="3" y="3" width="18" height="15" rx="2" fill="none" stroke={fill} strokeWidth="1.5" />
-      <line x1="12" y1="3" x2="12" y2="18" stroke={fill} strokeWidth="1.5" />
-      {/* Page lines */}
-      <line x1="7" y1="7" x2="10" y2="7" stroke={fill} strokeWidth="1" strokeLinecap="round" opacity="0.6" />
-      <line x1="7" y1="10" x2="10" y2="10" stroke={fill} strokeWidth="1" strokeLinecap="round" opacity="0.6" />
-      <line x1="7" y1="13" x2="9" y2="13" stroke={fill} strokeWidth="1" strokeLinecap="round" opacity="0.6" />
-      <line x1="14" y1="7" x2="17" y2="7" stroke={fill} strokeWidth="1" strokeLinecap="round" opacity="0.6" />
-      <line x1="14" y1="10" x2="17" y2="10" stroke={fill} strokeWidth="1" strokeLinecap="round" opacity="0.6" />
-      {/* Bottom bar */}
-      <path d="M3 18h18v1a2 2 0 01-2 2H5a2 2 0 01-2-2v-1z" fill={fill} opacity="0.15" />
     </svg>
   )
 }
 
-function DumbbellIcon({ active, color }: { active: boolean; color: string }) {
-  const fill = active ? color : 'rgba(255,255,255,0.35)'
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      {/* Dumbbell / strength icon */}
-      <rect x="3" y="9" width="3" height="6" rx="1" fill={fill} opacity={active ? 1 : 0.6} />
-      <rect x="18" y="9" width="3" height="6" rx="1" fill={fill} opacity={active ? 1 : 0.6} />
-      <rect x="6" y="7" width="3" height="10" rx="1.5" fill={fill} opacity={active ? 0.85 : 0.45} />
-      <rect x="15" y="7" width="3" height="10" rx="1.5" fill={fill} opacity={active ? 0.85 : 0.45} />
-      <rect x="9" y="10.5" width="6" height="3" rx="1" fill={fill} opacity={active ? 0.7 : 0.35} />
-      {/* Sparkle for active */}
-      {active && (
-        <>
-          <circle cx="12" cy="5" r="1" fill={fill} opacity="0.5" />
-          <circle cx="9" cy="6" r="0.5" fill={fill} opacity="0.3" />
-          <circle cx="15" cy="6" r="0.5" fill={fill} opacity="0.3" />
-        </>
-      )}
-    </svg>
-  )
-}
+// ── Tab Definitions ─────────────────────────────────────────────────────────
 
-function GlobeIcon({ active, color }: { active: boolean; color: string }) {
-  const fill = active ? color : 'rgba(255,255,255,0.35)'
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      {/* Globe */}
-      <circle cx="12" cy="12" r="9" fill="none" stroke={fill} strokeWidth="1.5" />
-      {/* Horizontal lines */}
-      <ellipse cx="12" cy="12" rx="9" ry="3.5" fill="none" stroke={fill} strokeWidth="1" opacity="0.5" />
-      <ellipse cx="12" cy="12" rx="9" ry="7" fill="none" stroke={fill} strokeWidth="0" />
-      {/* Vertical meridian */}
-      <ellipse cx="12" cy="12" rx="3.5" ry="9" fill="none" stroke={fill} strokeWidth="1" opacity="0.5" />
-      {/* Equator */}
-      <line x1="3" y1="12" x2="21" y2="12" stroke={fill} strokeWidth="0.75" opacity="0.3" />
-      {/* Continent hint shapes */}
-      <path d="M8 7c1-1 3-1 4 0s2 2 1 3-3 1-4 0-2-2-1-3z" fill={fill} opacity="0.2" />
-      <path d="M13 14c1 0 2 1 2 2s-1 2-2 1-1-2 0-3z" fill={fill} opacity="0.15" />
-      {/* Map pin for active state */}
-      {active && (
-        <g>
-          <path d="M15 8a2 2 0 11-4 0 2 2 0 014 0z" fill={fill} opacity="0.6" />
-          <path d="M13 10l-1 3" stroke={fill} strokeWidth="1" strokeLinecap="round" opacity="0.4" />
-        </g>
-      )}
-    </svg>
-  )
-}
-
-function PersonIcon({ active, color }: { active: boolean; color: string }) {
-  const fill = active ? color : 'rgba(255,255,255,0.35)'
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      {/* Head */}
-      <circle cx="12" cy="8" r="3.5" fill="none" stroke={fill} strokeWidth="1.5" />
-      {active && <circle cx="12" cy="8" r="3.5" fill={fill} opacity="0.15" />}
-      {/* Body */}
-      <path
-        d="M5.5 20c0-3.5 2.9-6.5 6.5-6.5s6.5 3 6.5 6.5"
-        fill="none"
-        stroke={fill}
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      {active && (
-        <path
-          d="M5.5 20c0-3.5 2.9-6.5 6.5-6.5s6.5 3 6.5 6.5"
-          fill={fill}
-          opacity="0.1"
-        />
-      )}
-    </svg>
-  )
-}
-
-// ── Tab Config ─────────────────────────────────────────────────────────────────
-
-const TABS: Array<{ id: TabId; label: string; Icon: typeof BookIcon }> = [
-  { id: 'learn', label: 'Learn', Icon: BookIcon },
-  { id: 'practice', label: 'Practice', Icon: DumbbellIcon },
-  { id: 'map', label: 'Map', Icon: GlobeIcon },
-  { id: 'profile', label: 'Profile', Icon: PersonIcon },
-]
-
-// ── Tab Button ─────────────────────────────────────────────────────────────────
-
-function NavTab({
-  label,
-  Icon,
-  active,
-  accentColor,
-  onTap,
-}: {
+const TABS: Array<{
   id: TabId
   label: string
-  Icon: typeof BookIcon
+  Icon: React.FC<{ color: string }>
+}> = [
+  { id: 'home',     label: 'Home',     Icon: HomeIcon },
+  { id: 'path',     label: 'Path',     Icon: PathIcon },
+  { id: 'practice', label: 'Practice', Icon: PracticeIcon },
+  { id: 'profile',  label: 'You',      Icon: ProfileIcon },
+]
+
+// ── NavItem ─────────────────────────────────────────────────────────────────
+
+function NavItem({
+  tab,
+  active,
+  onTap,
+}: {
+  tab: (typeof TABS)[number]
   active: boolean
-  accentColor: string
   onTap: () => void
 }) {
-  const [bounce, setBounce] = useState(false)
-
-  const handleTap = () => {
-    if (!active) {
-      setBounce(true)
-      setTimeout(() => setBounce(false), 400)
-    }
-    onTap()
-  }
+  const [pressed, setPressed] = useState(false)
+  const { Icon } = tab
+  const activeColor = '#6366f1'
+  const inactiveColor = 'rgba(255,255,255,0.4)'
 
   return (
     <button
-      onClick={handleTap}
-      className="flex-1 flex flex-col items-center justify-center gap-0.5 py-1 relative"
+      onClick={() => {
+        setPressed(true)
+        setTimeout(() => setPressed(false), 200)
+        onTap()
+      }}
       style={{
-        transform: bounce ? 'scale(1.1)' : 'scale(1)',
-        transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 2,
+        height: '100%',
+        border: 'none',
+        background: 'transparent',
+        cursor: 'pointer',
+        padding: '0 4px',
+        transform: pressed ? 'scale(0.90)' : 'scale(1)',
+        transition: 'transform 200ms ease',
+        WebkitTapHighlightColor: 'transparent',
+        position: 'relative',
       }}
     >
-      {/* Active indicator dot */}
-      {active && (
-        <div
-          className="absolute -top-1 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full"
-          style={{
-            background: accentColor,
-            boxShadow: `0 0 8px ${accentColor}80`,
-          }}
-        />
-      )}
-
-      {/* Icon with glow */}
+      {/* Icon with optional glow */}
       <div
         style={{
-          filter: active ? `drop-shadow(0 0 6px ${accentColor}50)` : 'none',
-          transition: 'filter 0.2s ease',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: 32,
+          height: 32,
+          borderRadius: 999,
+          boxShadow: active ? '0 0 12px rgba(99,102,241,0.4)' : 'none',
+          transition: 'box-shadow 200ms ease',
         }}
       >
-        <Icon active={active} color={accentColor} />
+        <Icon color={active ? activeColor : inactiveColor} />
       </div>
 
-      {/* Label */}
+      {/* Label: only shown when active */}
       <span
-        className="text-[10px] font-semibold leading-tight transition-all duration-200"
         style={{
-          color: active ? accentColor : 'rgba(255,255,255,0.25)',
-          opacity: active ? 1 : 0.8,
-          transform: active ? 'translateY(0)' : 'translateY(0)',
+          fontSize: 10,
+          fontWeight: 600,
+          color: activeColor,
+          lineHeight: 1,
+          opacity: active ? 1 : 0,
+          maxHeight: active ? 12 : 0,
+          overflow: 'hidden',
+          transition: 'opacity 200ms ease, max-height 200ms ease',
         }}
       >
-        {label}
+        {tab.label}
       </span>
+
+      {/* Active dot indicator */}
+      <div
+        style={{
+          width: 4,
+          height: 4,
+          borderRadius: 999,
+          background: active ? 'linear-gradient(135deg, #6366f1, #a78bfa)' : 'transparent',
+          boxShadow: active ? '0 0 8px rgba(99,102,241,0.6)' : 'none',
+          opacity: active ? 1 : 0,
+          transition: 'opacity 200ms ease',
+          marginTop: 1,
+        }}
+      />
     </button>
   )
 }
 
-// ── Main Component ─────────────────────────────────────────────────────────────
+// ── BottomNav ───────────────────────────────────────────────────────────────
 
-export function BottomNav({ activeTab, onTabChange, accentColor }: BottomNavProps) {
+export default function BottomNav({ activeTab, onTabChange }: BottomNavProps) {
   return (
     <div
-      className="fixed bottom-0 left-0 right-0 z-50"
-      style={{
-        background: 'rgba(8,8,16,0.98)',
-        borderTop: '1px solid rgba(255,255,255,0.06)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-      }}
+      className="fixed bottom-0 left-0 right-0 z-[50]"
+      style={{ pointerEvents: 'none' }}
     >
-      {/* Tab Row */}
       <div
-        className="flex items-center justify-around"
-        style={{ height: 64 }}
+        style={{
+          marginLeft: 16,
+          marginRight: 16,
+          marginBottom: `calc(12px + env(safe-area-inset-bottom, 0px))`,
+          height: 60,
+          background: 'rgba(10,10,20,0.75)',
+          backdropFilter: 'blur(28px)',
+          WebkitBackdropFilter: 'blur(28px)',
+          border: '1px solid rgba(255,255,255,0.08)',
+          borderRadius: 9999,
+          boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
+          display: 'flex',
+          alignItems: 'center',
+          overflow: 'hidden',
+          pointerEvents: 'auto',
+        }}
       >
-        {TABS.map(tab => (
-          <NavTab
+        {TABS.map((tab) => (
+          <NavItem
             key={tab.id}
-            id={tab.id}
-            label={tab.label}
-            Icon={tab.Icon}
+            tab={tab}
             active={activeTab === tab.id}
-            accentColor={accentColor}
             onTap={() => onTabChange(tab.id)}
           />
         ))}
       </div>
-
-      {/* Safe area spacer (for devices with home indicator) */}
-      <div
-        style={{
-          paddingBottom: 'env(safe-area-inset-bottom, 0px)',
-          background: 'rgba(8,8,16,0.98)',
-        }}
-      />
     </div>
   )
 }
+
+// Named export for backward compatibility
+export { BottomNav }

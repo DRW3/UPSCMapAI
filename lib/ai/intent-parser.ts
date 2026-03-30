@@ -1,10 +1,17 @@
 import Groq from 'groq-sdk'
+import { GoogleGenerativeAI } from '@google/generative-ai'
 import type { ParsedMapIntent } from '@/types'
 
 let _groq: Groq | null = null
 function getGroq() {
   if (!_groq) _groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
   return _groq
+}
+
+let _gemini: GoogleGenerativeAI | null = null
+function getGemini() {
+  if (!_gemini) _gemini = new GoogleGenerativeAI(process.env.GEMINI_API_KEY ?? '')
+  return _gemini
 }
 
 const PARSE_MAP_INTENT_TOOL: Groq.Chat.Completions.ChatCompletionTool = {
@@ -242,62 +249,132 @@ function normalizeIntent(raw: ParsedMapIntent): ParsedMapIntent {
   // 4. Thematic data is rendered via Wikidata live queries + annotated markers,
   // not GeoJSON polygon overlays — no additional layers needed here.
 
-  // Fix annotated_points: ensure coordinates are valid numbers
-  const points = (raw.annotated_points ?? []).filter(
-    p => p.lat != null && p.lng != null && !isNaN(p.lat) && !isNaN(p.lng)
-      && Math.abs(p.lat) <= 90 && Math.abs(p.lng) <= 180
-  )
+  // Fix annotated_points: coerce string coords to numbers & validate
+  const rawPoints = raw.annotated_points ?? []
+  const points = rawPoints
+    .map(p => ({
+      ...p,
+      lat: typeof p.lat === 'string' ? parseFloat(p.lat) : p.lat,
+      lng: typeof p.lng === 'string' ? parseFloat(p.lng) : p.lng,
+    }))
+    .filter(
+      p => p.lat != null && p.lng != null && !isNaN(p.lat) && !isNaN(p.lng)
+        && Math.abs(p.lat) <= 90 && Math.abs(p.lng) <= 180
+    )
+  if (rawPoints.length > 0 && points.length < rawPoints.length) {
+    console.warn(`[intent-parser] Filtered ${rawPoints.length - points.length}/${rawPoints.length} points with invalid coords`)
+  }
 
   return { ...raw, data_layers: layers, annotated_points: points }
 }
 
+/** Attempt parsing via a Groq model using tool calling */
+async function attemptGroq(msg: string, model: string): Promise<ParsedMapIntent> {
+  const response = await getGroq().chat.completions.create({
+    model,
+    messages: [
+      { role: 'system', content: SYSTEM_INSTRUCTION },
+      { role: 'user', content: msg },
+    ],
+    tools: [PARSE_MAP_INTENT_TOOL],
+    tool_choice: { type: 'function', function: { name: 'parse_map_intent' } },
+  })
+
+  const toolCall = response.choices[0]?.message?.tool_calls?.[0]
+  if (!toolCall || toolCall.type !== 'function') {
+    throw new Error(`${model}: no tool call returned`)
+  }
+
+  const raw = JSON.parse(toolCall.function.arguments) as ParsedMapIntent
+  const intent = normalizeIntent(raw)
+  console.log(`[intent-parser] ✓ ${model} → ${intent.annotated_points?.length ?? 0} points`)
+  return intent
+}
+
+/** Fallback: use Groq JSON mode (no tool calling) — avoids schema validation failures on smaller models */
+async function attemptGroqJson(msg: string, model: string): Promise<ParsedMapIntent> {
+  const response = await getGroq().chat.completions.create({
+    model,
+    messages: [
+      {
+        role: 'system',
+        content: `${SYSTEM_INSTRUCTION}\n\nRespond with ONLY a valid JSON object. Required fields: map_type (string), region_scope (string), features_to_show (string[]), features_to_highlight (string[]), annotation_level (string), upsc_context (string), data_layers (array), sidebar_topics (string[] of 5), title (string), annotated_points (array of {id: string, lat: number, lng: number, label: string, icon: emoji string, color: hex string}). annotated_points MUST have 6-20 geographically accurate points with real lat/lng coordinates.`,
+      },
+      { role: 'user', content: msg },
+    ],
+    response_format: { type: 'json_object' },
+  })
+
+  const content = response.choices[0]?.message?.content
+  if (!content) throw new Error(`${model} JSON: empty response`)
+
+  const raw = JSON.parse(content) as ParsedMapIntent
+  const intent = normalizeIntent(raw)
+  console.log(`[intent-parser] ✓ ${model} (json) → ${intent.annotated_points?.length ?? 0} points`)
+  return intent
+}
+
+/** Attempt parsing via Gemini JSON mode — more reliable for structured output */
+async function attemptGemini(msg: string): Promise<ParsedMapIntent> {
+  if (!process.env.GEMINI_API_KEY) throw new Error('GEMINI_API_KEY not set')
+
+  const model = getGemini().getGenerativeModel({
+    model: 'gemini-2.0-flash',
+    systemInstruction: `${SYSTEM_INSTRUCTION}\n\nRespond with ONLY a valid JSON object. Required fields: map_type, region_scope, features_to_show, features_to_highlight, annotation_level, upsc_context, data_layers (array), sidebar_topics (array of 5), title, annotated_points (array of objects with id, lat, lng, label, icon, color). annotated_points MUST have 6-20 geographically accurate points.`,
+    generationConfig: {
+      responseMimeType: 'application/json',
+      temperature: 0.2,
+    },
+  })
+
+  const result = await model.generateContent(msg)
+  const text = result.response.text()
+  const raw = JSON.parse(text) as ParsedMapIntent
+  const intent = normalizeIntent(raw)
+  console.log(`[intent-parser] ✓ gemini-2.0-flash → ${intent.annotated_points?.length ?? 0} points`)
+  return intent
+}
+
 export async function parseMapIntent(userMessage: string): Promise<ParsedMapIntent> {
-  const MODELS = [
-    'llama-3.1-8b-instant',                        // fastest, highest limits (500K TPD)
-    'qwen/qwen3-32b',                              // good quality, 500K TPD
-    'meta-llama/llama-4-scout-17b-16e-instruct',   // 500K TPD
-    'llama-3.3-70b-versatile',                      // best quality, lowest limits (100K TPD)
+  // Models that reliably handle tool calling (schema validation passes)
+  const TOOL_MODELS = [
+    'qwen/qwen3-32b',
+    'llama-3.3-70b-versatile',
   ] as const
 
-  async function attempt(msg: string, model: string): Promise<ParsedMapIntent> {
-    const response = await getGroq().chat.completions.create({
-      model,
-      messages: [
-        { role: 'system', content: SYSTEM_INSTRUCTION },
-        { role: 'user', content: msg },
-      ],
-      tools: [PARSE_MAP_INTENT_TOOL],
-      tool_choice: { type: 'function', function: { name: 'parse_map_intent' } },
-    })
+  // Models for JSON mode fallback (no schema validation — all produce valid JSON)
+  const JSON_MODELS = [
+    'llama-3.1-8b-instant',            // fastest
+    'llama-3.3-70b-versatile',          // best quality
+    'meta-llama/llama-4-scout-17b-16e-instruct',
+  ] as const
 
-    const toolCall = response.choices[0]?.message?.tool_calls?.[0]
-    if (!toolCall || toolCall.type !== 'function') {
-      throw new Error('Model did not return a tool call')
-    }
-
-    const raw = JSON.parse(toolCall.function.arguments) as ParsedMapIntent
-    return normalizeIntent(raw)
+  // Round 1: Race tool-calling models + JSON-mode models + Gemini in parallel
+  try {
+    return await Promise.any([
+      ...TOOL_MODELS.map(m => attemptGroq(userMessage, m)),
+      ...JSON_MODELS.map(m => attemptGroqJson(userMessage, m)),
+      attemptGemini(userMessage),
+    ])
+  } catch (err) {
+    console.error('[intent-parser] Round 1 all failed:', err instanceof AggregateError
+      ? err.errors.map(e => (e as Error).message)
+      : (err as Error).message)
   }
 
-  // Race all models in parallel — first successful response wins.
-  // This gives the speed of the fastest available model instead of
-  // waiting for each to fail sequentially.
-  try {
-    return await Promise.any(
-      MODELS.map(model => attempt(userMessage, model))
-    )
-  } catch {
-    // All models failed on direct prompt — try forced prompt in parallel
-  }
-
-  const forcedPrompt = `You MUST call the parse_map_intent function for this query. Interpret it as a geographic/map topic no matter what. If the exact thing doesn't exist in that region, map the region itself with what IS geographically notable there.\n\nQuery: "${userMessage}"`
+  // Round 2: Retry with a forceful prompt
+  const forcedPrompt = `You MUST respond about this query. Interpret it as a geographic/map topic no matter what. If the exact thing doesn't exist in that region, map the region itself with what IS geographically notable there.\n\nQuery: "${userMessage}"`
 
   try {
-    return await Promise.any(
-      MODELS.map(model => attempt(forcedPrompt, model))
-    )
-  } catch {
-    // All models failed
+    return await Promise.any([
+      ...TOOL_MODELS.map(m => attemptGroq(forcedPrompt, m)),
+      ...JSON_MODELS.map(m => attemptGroqJson(forcedPrompt, m)),
+      attemptGemini(forcedPrompt),
+    ])
+  } catch (err) {
+    console.error('[intent-parser] Round 2 all failed:', err instanceof AggregateError
+      ? err.errors.map(e => (e as Error).message)
+      : (err as Error).message)
   }
 
   throw new ParseFailedError(userMessage)
