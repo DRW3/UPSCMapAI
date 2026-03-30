@@ -55,16 +55,34 @@ export default function PracticeTab({ progress, subjects, onTopicSelect, onStart
   const nextUp = useMemo(() => pickNextUp(allTopics), [allTopics])
   const weakTopics = useMemo(() => allTopics.filter(t => t.tp.questionsAnswered >= 3 && t.accuracy < 60).sort((a, b) => a.accuracy - b.accuracy), [allTopics])
   const reviewTopics = useMemo(() => allTopics.filter(t => t.tp.state === 'completed' && t.daysSince >= 1).sort((a, b) => b.daysSince - a.daysSince), [allTopics])
+  const hasPracticedTopics = allTopics.length > 0
   const [reviewOpen, setReviewOpen] = useState(false)
   const [weakOpen, setWeakOpen] = useState(false)
+  const [heroPressed, setHeroPressed] = useState(false)
   const fmt = (d: number) => d === 0 ? 'today' : d === 1 ? 'yesterday' : `${d}d ago`
 
   if (allTopics.length === 0) return (
-    <div style={{ minHeight: '60vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 24, padding: '0 24px', textAlign: 'center' }}>
-      <span style={{ fontSize: 64, lineHeight: 1 }}>🎯</span>
-      <p style={{ fontSize: 16, fontWeight: 700, color: 'rgba(255,255,255,0.85)', margin: 0 }}>Start learning to unlock practice</p>
-      <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.35)', maxWidth: 260, lineHeight: 1.6, margin: 0 }}>Complete at least one topic on the learning path to begin practicing.</p>
-      <button onClick={onNavigateToPath} style={{ padding: '14px 32px', borderRadius: 16, background: 'linear-gradient(135deg,#6366f1,#8b5cf6)', boxShadow: '0 4px 20px rgba(99,102,241,0.3)', fontSize: 14, fontWeight: 700, color: '#fff', border: 'none', cursor: 'pointer' }}>
+    <div style={{ minHeight: '60vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 28, padding: '0 24px', textAlign: 'center' }}>
+      <div style={{
+        width: 96, height: 96, borderRadius: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center',
+        background: 'radial-gradient(circle, rgba(99,102,241,0.15) 0%, rgba(99,102,241,0.04) 70%, transparent 100%)',
+        boxShadow: '0 0 40px rgba(99,102,241,0.12), 0 0 80px rgba(139,92,246,0.06)',
+      }}>
+        <span style={{ fontSize: 48, lineHeight: 1 }}>🎯</span>
+      </div>
+      <div>
+        <p style={{ fontSize: 18, fontWeight: 800, color: 'rgba(255,255,255,0.92)', margin: 0 }}>Your practice hub</p>
+        <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.40)', maxWidth: 280, lineHeight: 1.7, margin: '10px auto 0' }}>
+          Complete your first topic on the Path to unlock smart practice recommendations
+        </p>
+      </div>
+      <button onClick={onNavigateToPath} style={{
+        padding: '14px 36px', borderRadius: 16,
+        background: 'linear-gradient(135deg,#6366f1,#8b5cf6)',
+        boxShadow: '0 4px 24px rgba(99,102,241,0.35), 0 0 48px rgba(99,102,241,0.10)',
+        fontSize: 14, fontWeight: 700, color: '#fff', border: 'none', cursor: 'pointer',
+        transition: 'transform 150ms ease',
+      }}>
         Go to Path →
       </button>
     </div>
@@ -76,7 +94,7 @@ export default function PracticeTab({ progress, subjects, onTopicSelect, onStart
 
       {/* Next Up Hero */}
       {nextUp && (
-        <button onClick={() => onTopicSelect(nextUp.topic.id, nextUp.topic, nextUp.subject)} style={{ ...ELEVATED, width: '100%', textAlign: 'left' as const, padding: 20, cursor: 'pointer' }}>
+        <button onClick={() => onTopicSelect(nextUp.topic.id, nextUp.topic, nextUp.subject)} style={{ ...ELEVATED, width: '100%', textAlign: 'left' as const, padding: 20, cursor: 'pointer', WebkitTapHighlightColor: 'transparent' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 14 }}>
             <span style={{ fontSize: 14 }}>⚡</span>
             <span style={{ fontSize: 11, fontWeight: 700, color: '#818cf8', letterSpacing: '0.05em', textTransform: 'uppercase' as const }}>Next Up</span>
@@ -93,30 +111,50 @@ export default function PracticeTab({ progress, subjects, onTopicSelect, onStart
               )}
             </div>
           </div>
-          <div style={{ marginTop: 16, padding: '12px 0', borderRadius: 12, textAlign: 'center', background: 'linear-gradient(135deg,#6366f1,#8b5cf6)', boxShadow: '0 4px 20px rgba(99,102,241,0.25)', fontSize: 13, fontWeight: 700, color: '#fff' }}>
+          <div
+            onPointerDown={() => setHeroPressed(true)}
+            onPointerUp={() => setHeroPressed(false)}
+            onPointerLeave={() => setHeroPressed(false)}
+            style={{
+              marginTop: 16, padding: '12px 0', borderRadius: 12, textAlign: 'center',
+              background: 'linear-gradient(135deg,#6366f1,#8b5cf6)',
+              boxShadow: '0 4px 20px rgba(99,102,241,0.25)',
+              fontSize: 13, fontWeight: 700, color: '#fff',
+              transform: heroPressed ? 'scale(0.97)' : 'scale(1)',
+              transition: 'transform 150ms ease',
+              WebkitTapHighlightColor: 'transparent',
+            }}
+          >
             Practice Now →
           </div>
         </button>
       )}
 
       {/* Quick Mix */}
-      <div onClick={onStartQuickMix} style={{ ...GLASS, padding: 16, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 14 }}>
+      <div
+        onClick={hasPracticedTopics ? onStartQuickMix : undefined}
+        style={{
+          ...GLASS, padding: 16, display: 'flex', alignItems: 'center', gap: 14,
+          cursor: hasPracticedTopics ? 'pointer' : 'default',
+          opacity: hasPracticedTopics ? 1 : 0.5,
+          transition: 'opacity 200ms ease',
+        }}
+      >
         <span style={{ fontSize: 24 }}>🎲</span>
         <div style={{ flex: 1 }}>
           <p style={{ fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.85)', margin: 0 }}>Quick Mix</p>
-          <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', margin: '2px 0 0' }}>5 random questions from across topics</p>
+          <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', margin: '2px 0 0' }}>
+            {hasPracticedTopics ? '5 random questions from across topics' : 'Practice a topic first'}
+          </p>
         </div>
-        <span style={{ fontSize: 13, fontWeight: 700, color: '#818cf8' }}>Start →</span>
+        {hasPracticedTopics && <span style={{ fontSize: 13, fontWeight: 700, color: '#818cf8' }}>Start →</span>}
       </div>
 
       {/* Stat Pills */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-        {[{ n: weakTopics.length, label: 'weak topics', color: '#f87171', toggle: () => setWeakOpen(o => !o) },
-          { n: reviewTopics.length, label: 'due reviews', color: '#fbbf24', toggle: () => setReviewOpen(o => !o) }].map(p => (
-          <div key={p.label} onClick={p.toggle} style={{ padding: '14px 16px', borderRadius: 16, cursor: 'pointer', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)', textAlign: 'center' }}>
-            <p style={{ fontSize: 20, fontWeight: 800, color: p.n > 0 ? p.color : 'rgba(255,255,255,0.55)', margin: 0 }}>{p.n}</p>
-            <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', margin: '2px 0 0' }}>{p.label}</p>
-          </div>
+        {[{ n: weakTopics.length, label: 'weak topics', color: '#f87171', toggle: () => setWeakOpen(o => !o), open: weakOpen },
+          { n: reviewTopics.length, label: 'due reviews', color: '#fbbf24', toggle: () => setReviewOpen(o => !o), open: reviewOpen }].map(p => (
+          <StatPill key={p.label} count={p.n} label={p.label} color={p.color} open={p.open} onToggle={p.n > 0 ? p.toggle : undefined} />
         ))}
       </div>
 
@@ -137,6 +175,41 @@ export default function PracticeTab({ progress, subjects, onTopicSelect, onStart
           ))}
         </Expandable>
       )}
+    </div>
+  )
+}
+
+function StatPill({ count, label, color, open, onToggle }: { count: number; label: string; color: string; open: boolean; onToggle?: () => void }) {
+  const [hovered, setHovered] = useState(false)
+  const [pressed, setPressed] = useState(false)
+  const disabled = count === 0
+  return (
+    <div
+      onClick={disabled ? undefined : onToggle}
+      onPointerEnter={() => !disabled && setHovered(true)}
+      onPointerLeave={() => { setHovered(false); setPressed(false) }}
+      onPointerDown={() => !disabled && setPressed(true)}
+      onPointerUp={() => setPressed(false)}
+      style={{
+        padding: '14px 16px', borderRadius: 16, textAlign: 'center',
+        background: hovered ? 'rgba(255,255,255,0.07)' : 'rgba(255,255,255,0.04)',
+        border: '1px solid rgba(255,255,255,0.06)',
+        cursor: disabled ? 'default' : 'pointer',
+        opacity: disabled ? 0.4 : 1,
+        transform: pressed ? 'scale(0.97)' : 'scale(1)',
+        transition: 'background 150ms ease, opacity 200ms ease, transform 150ms ease',
+        position: 'relative' as const,
+      }}
+    >
+      <p style={{ fontSize: 20, fontWeight: 800, color: count > 0 ? color : 'rgba(255,255,255,0.55)', margin: 0 }}>{count}</p>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4, marginTop: 2 }}>
+        <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', margin: 0 }}>{label}</p>
+        {!disabled && (
+          <svg width="8" height="8" viewBox="0 0 8 8" fill="none" style={{ transform: open ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 200ms ease', flexShrink: 0 }}>
+            <path d="M1.5 3L4 5.5L6.5 3" stroke="rgba(255,255,255,0.30)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        )}
+      </div>
     </div>
   )
 }

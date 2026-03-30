@@ -418,8 +418,10 @@ export function MobileLearningJourney() {
   }, [])
 
   const handleTabChange = useCallback((tab: TabId) => {
+    // Don't switch tabs while overlays are open
+    if (practiceTarget || detailTarget) return
     setActiveTab(tab)
-  }, [])
+  }, [practiceTarget, detailTarget])
 
   const handleGoalTierChange = useCallback((tier: DailyGoalTier) => {
     setProgress(prev => ({ ...prev, dailyGoalTier: tier }))
@@ -433,8 +435,11 @@ export function MobileLearningJourney() {
 
   if (!mounted) {
     return (
-      <div className="flex items-center justify-center" style={{ height: '100dvh', background: '#050510' }}>
+      <div className="flex flex-col items-center justify-center" style={{ height: '100dvh', background: '#050510' }}>
         <div className="w-10 h-10 rounded-full border-2 border-indigo-500/30 border-t-indigo-500 animate-spin" />
+        <div style={{ marginTop: 16, fontSize: 14, color: 'rgba(255,255,255,0.4)' }}>
+          Loading your journey...
+        </div>
       </div>
     )
   }

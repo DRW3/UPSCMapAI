@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import type { LearningTopic, LearningSubject } from '@/data/syllabus'
 import {
   type TopicProgress,
@@ -29,6 +29,12 @@ export default function TopicDetailSheet({
   const [visible, setVisible] = useState(false)
   const [dismissing, setDismissing] = useState(false)
 
+  // Drag-to-dismiss
+  const dragStartY = useRef(0)
+  const dragOffset = useRef(0)
+  const isDragging = useRef(false)
+  const [dragTranslate, setDragTranslate] = useState(0)
+
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 20)
     return () => clearTimeout(t)
@@ -37,6 +43,31 @@ export default function TopicDetailSheet({
   function handleDismiss() {
     setDismissing(true)
     setTimeout(onClose, 350)
+  }
+
+  // Drag-to-dismiss handlers
+  function handleTouchStart(e: React.TouchEvent) {
+    dragStartY.current = e.touches[0].clientY
+    isDragging.current = true
+  }
+
+  function handleTouchMove(e: React.TouchEvent) {
+    if (!isDragging.current) return
+    const delta = e.touches[0].clientY - dragStartY.current
+    if (delta > 0) {
+      dragOffset.current = delta
+      setDragTranslate(delta)
+    }
+  }
+
+  function handleTouchEnd() {
+    isDragging.current = false
+    if (dragOffset.current > 120) {
+      handleDismiss()
+    } else {
+      setDragTranslate(0)
+      dragOffset.current = 0
+    }
   }
 
   const color = subject.color
@@ -95,6 +126,9 @@ export default function TopicDetailSheet({
       {/* Sheet */}
       <div
         onClick={(e) => e.stopPropagation()}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
         className="fixed bottom-0 left-0 right-0 z-[71] flex flex-col"
         style={{
           maxHeight: '75vh',
@@ -105,12 +139,15 @@ export default function TopicDetailSheet({
           border: '1px solid rgba(255,255,255,0.08)',
           borderBottom: 'none',
           boxShadow: '0 -8px 40px rgba(0,0,0,0.5)',
+          transform: visible && !dismissing
+            ? `translateY(${dragTranslate}px)`
+            : 'translateY(100%)',
+          transition: isDragging.current ? 'none' : 'transform 0.35s cubic-bezier(0.16,1,0.3,1)',
           animation: dismissing
             ? 'tds-slideDown 0.35s ease forwards'
-            : visible
+            : visible && dragTranslate === 0
               ? 'tds-slideUp 0.35s cubic-bezier(0.16,1,0.3,1) forwards'
               : 'none',
-          transform: visible && !dismissing ? undefined : 'translateY(100%)',
         }}
       >
         {/* Drag handle */}

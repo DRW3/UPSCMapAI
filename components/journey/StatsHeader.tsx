@@ -69,7 +69,7 @@ function GoalRing({ todayXp, goalXp, onClick }: { todayXp: number; goalXp: numbe
 export default function StatsHeader({ streak, todayXp, dailyGoalXp, onDailyGoalClick }: StatsHeaderProps) {
   return (
     <div
-      className="fixed top-0 left-0 right-0 z-[50]"
+      className="fixed top-0 left-0 right-0 z-[51]"
       style={{
         height: STATS_HEADER_HEIGHT,
         padding: '0 16px',
@@ -120,6 +120,7 @@ export default function StatsHeader({ streak, todayXp, dailyGoalXp, onDailyGoalC
               fontWeight: 600,
               color: '#f0f0f5',
               fontVariantNumeric: 'tabular-nums',
+              opacity: streak > 0 ? 1 : 0.3,
               animation: streak > 0 ? 'statsStreakGlow 2.5s ease-in-out infinite' : 'none',
             }}
           >

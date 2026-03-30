@@ -7,6 +7,7 @@ import {
   type JourneyProgress,
   DEFAULT_TOPIC_PROGRESS,
   ACHIEVEMENTS,
+  DAILY_GOALS,
 } from './types'
 
 // ── Props ───────────────────────────────────────────────────────────────────────
@@ -27,7 +28,7 @@ const ELEVATED = { background: 'rgba(255,255,255,0.06)', backdropFilter: 'blur(2
 
 // ── Component ───────────────────────────────────────────────────────────────────
 
-export default function ProfileTab({ progress, subjects }: ProfileTabProps) {
+export default function ProfileTab({ progress, subjects, onDailyGoalClick }: ProfileTabProps) {
   const level = getLevel(progress.totalXp)
   const xpInLevel = getXpInLevel(progress.totalXp)
   const [showAllAchievements, setShowAllAchievements] = useState(false)
@@ -117,6 +118,52 @@ export default function ProfileTab({ progress, subjects }: ProfileTabProps) {
         <BentoCard icon="📚" value={stats.completedTopics} label="topics" glow="rgba(139,92,246,0.12)" />
         <BentoCard icon="💎" value={progress.gems} label="gems" glow="rgba(34,211,238,0.12)" />
       </div>
+
+      {/* ── Daily Goal ── */}
+      {(() => {
+        const goalConfig = DAILY_GOALS[progress.dailyGoalTier]
+        const todayStr = new Date().toISOString().slice(0, 10)
+        const todayXp = progress.todayDate === todayStr ? progress.todayXp : 0
+        const goalMet = todayXp >= goalConfig.xpTarget
+        const pct = Math.min(100, Math.round((todayXp / goalConfig.xpTarget) * 100))
+        return (
+          <div style={{ ...GLASS, padding: 18 }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <span style={{ fontSize: 18 }}>{goalConfig.icon}</span>
+                <span style={{ fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.85)' }}>
+                  Daily Goal: {goalConfig.label} ({goalConfig.xpTarget} XP)
+                </span>
+              </div>
+              {goalMet && <span style={{ fontSize: 14 }}>&#10003;</span>}
+            </div>
+            <div style={{ height: 10, borderRadius: 9999, overflow: 'hidden', background: 'rgba(255,255,255,0.06)', marginBottom: 10 }}>
+              <div style={{
+                height: '100%', borderRadius: 9999, width: `${pct}%`,
+                background: goalMet
+                  ? 'linear-gradient(90deg, #22c55e, #34d399)'
+                  : 'linear-gradient(90deg, #6366f1, #8b5cf6)',
+                boxShadow: goalMet ? '0 0 12px rgba(34,197,94,0.3)' : '0 0 12px rgba(99,102,241,0.2)',
+                transition: 'width 0.7s ease',
+              }} />
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <span style={{ fontSize: 12, fontWeight: 600, color: goalMet ? '#34d399' : 'rgba(255,255,255,0.50)' }}>
+                {todayXp}/{goalConfig.xpTarget} XP today
+              </span>
+              <button
+                onClick={onDailyGoalClick}
+                style={{
+                  background: 'none', border: 'none', cursor: 'pointer', padding: 0,
+                  fontSize: 12, fontWeight: 600, color: '#818cf8',
+                }}
+              >
+                Change Goal
+              </button>
+            </div>
+          </div>
+        )
+      })()}
 
       {/* ── Study Activity Heatmap ── */}
       <div>
@@ -239,8 +286,12 @@ export default function ProfileTab({ progress, subjects }: ProfileTabProps) {
                     opacity: unlocked ? 1 : 0.3,
                   }}
                 >
-                  <span style={{ fontSize: 22, filter: unlocked ? 'none' : 'grayscale(1) brightness(0.5)' }}>
-                    {unlocked ? ach.icon : '?'}
+                  <span style={{
+                    fontSize: 22,
+                    filter: unlocked ? 'none' : 'grayscale(1) brightness(0.4)',
+                    opacity: unlocked ? 1 : 0.3,
+                  }}>
+                    {ach.icon}
                   </span>
                   {unlocked && (
                     <span style={{ fontSize: 9, fontWeight: 600, color: 'rgba(255,255,255,0.50)', textAlign: 'center', lineHeight: 1.2 }}>

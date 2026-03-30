@@ -62,6 +62,7 @@ export default function PracticeSheet({
   // Quiz state
   const [pyqs, setPyqs] = useState<PYQ[]>([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
   const [currentIdx, setCurrentIdx] = useState(0)
   const [selected, setSelected] = useState<string | null>(null)
   const [revealed, setRevealed] = useState(false)
@@ -86,8 +87,9 @@ export default function PracticeSheet({
   }, [])
 
   // Fetch PYQs
-  useEffect(() => {
+  const fetchQuestions = useCallback(() => {
     setLoading(true)
+    setError(false)
     const keywords = topic.concepts.slice(0, 4).join(',')
     fetch(
       `/api/journey/pyqs?subject=${subject.id}&topic=${topic.id}&keywords=${encodeURIComponent(keywords)}&limit=5`
@@ -97,8 +99,15 @@ export default function PracticeSheet({
         setPyqs(d.pyqs || [])
         setLoading(false)
       })
-      .catch(() => setLoading(false))
+      .catch(() => {
+        setError(true)
+        setLoading(false)
+      })
   }, [topic.id, subject.id, topic.concepts])
+
+  useEffect(() => {
+    if (sheetVisible) fetchQuestions()
+  }, [sheetVisible, fetchQuestions])
 
   const current = pyqs[currentIdx]
   const isCorrect = revealed && selected === current?.answer
@@ -498,6 +507,32 @@ export default function PracticeSheet({
         <div className="flex-1 overflow-y-auto px-5 pb-4" style={{ scrollbarWidth: 'none', minHeight: 0 }}>
           {loading ? (
             <LoadingState color={subject.color} />
+          ) : error && pyqs.length === 0 ? (
+            <div className="flex flex-col items-center justify-center py-20 gap-2 text-center" style={{ height: '60%', padding: 32 }}>
+              <div style={{ fontSize: 48, marginBottom: 16 }}>⚠️</div>
+              <div style={{ fontSize: 18, fontWeight: 600, color: 'rgba(255,255,255,0.9)', marginBottom: 8 }}>
+                Couldn&apos;t load questions
+              </div>
+              <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.5)', marginBottom: 24 }}>
+                Check your connection and try again
+              </div>
+              <button
+                onClick={fetchQuestions}
+                className="transition-all active:scale-[0.97]"
+                style={{
+                  padding: '12px 24px',
+                  borderRadius: 12,
+                  background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+                  color: '#fff',
+                  border: 'none',
+                  fontSize: 15,
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                }}
+              >
+                Retry
+              </button>
+            </div>
           ) : pyqs.length === 0 ? (
             <EmptyState topic={topic} subject={subject} onClose={handleDismiss} />
           ) : localHearts <= 0 && !done ? (

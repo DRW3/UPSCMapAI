@@ -43,7 +43,7 @@ const NODE_SIZE = 56
 const LINE_H = 36
 
 const KEYFRAMES = `
-@keyframes jp-pulse{0%,100%{transform:scale(1);opacity:.2}50%{transform:scale(1.5);opacity:0}}
+@keyframes jp-pulse{0%,100%{transform:scale(1);opacity:0.6}50%{transform:scale(1.8);opacity:0}}
 @keyframes jp-fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 @keyframes jp-shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
 `
@@ -114,27 +114,29 @@ function UnitHeader({ data }: { data: UnitHeaderData }) {
 // ConnectingLine (SVG bezier between consecutive nodes)
 // ---------------------------------------------------------------------------
 
-function ConnectingLine({ prevX, currX, filled, w }: {
-  prevX: number; currX: number; filled: boolean; w: number
+function ConnectingLine({ prevX, currX, filled, w, index }: {
+  prevX: number; currX: number; filled: boolean; w: number; index: number
 }) {
   const clamp = (v: number) => Math.max(NODE_SIZE / 2, Math.min(w - NODE_SIZE / 2, v * (w - NODE_SIZE) + NODE_SIZE / 2))
   const x0 = clamp(prevX), x1 = clamp(currX), my = LINE_H / 2
   const d = `M ${x0} 0 C ${x0} ${my}, ${x1} ${my}, ${x1} ${LINE_H}`
   const base = { fill: 'none' as const, strokeWidth: 6, strokeLinecap: 'round' as const }
+  const gId = `cl-g-${index}`
+  const fId = `cl-glow-${index}`
   return (
     <svg width={w} height={LINE_H} style={{ display: 'block' }}>
-      <path d={d} {...base} stroke="rgba(255,255,255,0.04)" />
+      <path d={d} {...base} stroke="rgba(255,255,255,0.08)" />
       {filled && (
         <>
           <defs>
-            <linearGradient id="cl-g" x1="0" y1="0" x2="0" y2="1">
+            <linearGradient id={gId} x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#6366f1" /><stop offset="100%" stopColor="#8b5cf6" />
             </linearGradient>
-            <filter id="cl-glow">
+            <filter id={fId}>
               <feDropShadow dx="0" dy="0" stdDeviation="2" floodColor="#6366f1" floodOpacity="0.35" />
             </filter>
           </defs>
-          <path d={d} {...base} stroke="url(#cl-g)" filter="url(#cl-glow)" />
+          <path d={d} {...base} stroke={`url(#${gId})`} filter={`url(#${fId})`} />
         </>
       )}
     </svg>
@@ -180,10 +182,10 @@ function TopicNode({ node, onTap, w }: { node: FlatTopicNode; onTap: () => void;
   const cs: React.CSSProperties = {
     width: NODE_SIZE, height: NODE_SIZE, borderRadius: '50%', position: 'relative',
     display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24,
-    cursor: isInteractive ? 'pointer' : 'default', transition: 'transform 150ms ease-out',
+    transition: 'transform 150ms ease-out',
     userSelect: 'none', WebkitTapHighlightColor: 'transparent',
     backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)',
-    ...(state === 'locked'    ? { background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' } :
+    ...(state === 'locked'    ? { background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.04)' } :
        state === 'available'  ? { background: 'rgba(255,255,255,0.06)', border: `1px solid rgba(${rgb},0.2)` } :
        state === 'started'    ? { background: 'rgba(255,255,255,0.06)', border: `1px solid rgba(${rgb},0.15)` } :
                                 { background: `rgba(${rgb},0.15)`, border: `1px solid rgba(${rgb},0.2)` }),
@@ -192,20 +194,24 @@ function TopicNode({ node, onTap, w }: { node: FlatTopicNode; onTap: () => void;
   return (
     <div style={{ paddingLeft: leftPx, animation: 'jp-fadeUp 400ms cubic-bezier(0.16,1,0.3,1) both',
       animationDelay: `${globalIndex * 30}ms` }}>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: NODE_SIZE + 60 }}>
-        {/* Pulse ring */}
-        {state === 'available' && isFirstAvailable && (
-          <div style={{ position: 'absolute', top: 0, left: leftPx + 2, width: NODE_SIZE, height: NODE_SIZE,
-            borderRadius: '50%', border: `2px solid rgba(${rgb},0.3)`,
-            animation: 'jp-pulse 2s ease-in-out infinite', pointerEvents: 'none' }} />
-        )}
+      {/* Issue 7: onClick on outer wrapper so text label is part of tap target */}
+      <div role={isInteractive ? 'button' : undefined} tabIndex={isInteractive ? 0 : undefined}
+        aria-label={topic.title} onClick={isInteractive ? onTap : undefined}
+        onKeyDown={isInteractive ? (e) => { if (e.key === 'Enter' || e.key === ' ') onTap() } : undefined}
+        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: NODE_SIZE + 60,
+          cursor: isInteractive ? 'pointer' : 'default',
+          /* Issue 5: locked nodes get 0.5 opacity on entire wrapper */
+          ...(state === 'locked' ? { opacity: 0.5 } : {}) }}>
 
-        <div style={{ position: 'relative' }}>
+        <div style={{ position: 'relative' }} {...press}>
           {progressRing}
-          <div role={isInteractive ? 'button' : undefined} tabIndex={isInteractive ? 0 : undefined}
-            aria-label={topic.title} onClick={isInteractive ? onTap : undefined}
-            onKeyDown={isInteractive ? (e) => { if (e.key === 'Enter' || e.key === ' ') onTap() } : undefined}
-            {...press} style={cs}>
+          {/* Issue 6: Pulse ring as child of node circle wrapper, using inset */}
+          {state === 'available' && isFirstAvailable && (
+            <div style={{ position: 'absolute', inset: -8,
+              borderRadius: '50%', border: `2px solid rgba(${rgb},0.3)`,
+              animation: 'jp-pulse 2s ease-in-out infinite', pointerEvents: 'none' }} />
+          )}
+          <div style={cs}>
             {state === 'locked'
               ? <span style={{ opacity: 0.3, filter: 'grayscale(1)' }}>🔒</span>
               : state === 'completed'
@@ -262,6 +268,9 @@ export default function JourneyPath({ subjects, progress, activeSubjectId, onNod
   const firstAvailableRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const [cw, setCw] = useState(360)
+  const [ready, setReady] = useState(false)
+
+  useEffect(() => { setReady(true) }, [])
 
   // Measure container width
   useEffect(() => {
@@ -301,6 +310,7 @@ export default function JourneyPath({ subjects, progress, activeSubjectId, onNod
 
   // Auto-scroll to first available
   useEffect(() => {
+    if (!ready) return
     const id = requestAnimationFrame(() => {
       const n = firstAvailableRef.current, c = scrollRef.current
       if (!n || !c) return
@@ -308,7 +318,7 @@ export default function JourneyPath({ subjects, progress, activeSubjectId, onNod
       c.scrollTo({ top: Math.max(0, c.scrollTop + nr.top - cr.top - 140), behavior: 'smooth' })
     })
     return () => cancelAnimationFrame(id)
-  }, [activeSubjectId])
+  }, [activeSubjectId, ready])
 
   const handleTap = useCallback((n: FlatTopicNode) => onNodeTap(n.topic.id, n.topic, n.subject), [onNodeTap])
 
@@ -329,7 +339,7 @@ export default function JourneyPath({ subjects, progress, activeSubjectId, onNod
             const pPos = prev ? PATH_POSITIONS[prev.globalIndex % PATH_POSITIONS.length] : null
             const cPos = PATH_POSITIONS[node.globalIndex % PATH_POSITIONS.length]
             const line = showLine && pPos
-              ? <ConnectingLine prevX={pPos.x} currX={cPos.x} filled={filled} w={cw} /> : null
+              ? <ConnectingLine prevX={pPos.x} currX={cPos.x} filled={filled} w={cw} index={node.globalIndex} /> : null
             prev = node
             return (
               <div key={`t-${node.topic.id}`} ref={node.isFirstAvailable ? firstAvailableRef : undefined}>

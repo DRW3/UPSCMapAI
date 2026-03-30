@@ -109,14 +109,17 @@ export default function HomeTab({
   const todayXp = progress.todayXp || 0
   const goalXp = DAILY_GOALS[progress.dailyGoalTier || 'regular'].xpTarget
 
-  const accuracy = useMemo(() => {
+  const { accuracy, totalQuestions } = useMemo(() => {
     let totalQ = 0
     let totalC = 0
     for (const tp of Object.values(progress.topics)) {
       totalQ += tp.questionsAnswered
       totalC += tp.correctAnswers
     }
-    return totalQ > 0 ? Math.round((totalC / totalQ) * 100) : 0
+    return {
+      accuracy: totalQ > 0 ? Math.round((totalC / totalQ) * 100) : 0,
+      totalQuestions: totalQ,
+    }
   }, [progress.topics])
 
   // ── Streak milestone progress ──────────────────────────────────────────────
@@ -133,7 +136,19 @@ export default function HomeTab({
     : null
   const crownLevel = continueTopicProgress?.crownLevel || 0
 
-  const allCompleted = !continueTopic && upNext.length === 0
+  // Whether any topic has been started or completed (i.e. not a brand-new user)
+  const hasStarted = useMemo(() => {
+    return Object.values(topicStates).some(
+      (s) => s.state === 'started' || s.state === 'completed'
+    )
+  }, [topicStates])
+
+  // All-complete only when there are completed topics AND nothing else is pending
+  const allCompleted = useMemo(() => {
+    const states = Object.values(topicStates)
+    const completed = states.filter((s) => s.state === 'completed').length
+    return completed > 0 && states.every((s) => s.state === 'completed' || s.state === 'locked')
+  }, [topicStates])
 
   return (
     <div style={{ minHeight: '100vh', padding: '16px 16px 100px 16px' }}>
@@ -168,7 +183,7 @@ export default function HomeTab({
       </div>
 
       {/* Streak Card */}
-      {progress.streak > 0 && (
+      {progress.streak > 0 ? (
         <div
           style={{
             background: 'rgba(255,255,255,0.04)',
@@ -231,10 +246,93 @@ export default function HomeTab({
             </span>
           </div>
         </div>
+      ) : (
+        <div
+          style={{
+            background: 'rgba(255,255,255,0.02)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            border: '1px solid rgba(255,255,255,0.04)',
+            borderRadius: 20,
+            padding: '14px 20px',
+            marginBottom: 16,
+            animation: 'homeGlowIn 600ms ease-out 100ms both',
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span style={{ fontSize: 20, lineHeight: 1, opacity: 0.5 }}>🔥</span>
+            <span style={{ fontSize: 15, fontWeight: 600, color: 'rgba(255,255,255,0.45)' }}>
+              Start a streak!
+            </span>
+          </div>
+          <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.30)', marginTop: 6, paddingLeft: 28 }}>
+            Study today to begin your streak journey
+          </div>
+        </div>
       )}
 
-      {/* Continue / Hero Card */}
-      {continueTopic ? (
+      {/* Welcome / Continue / Hero Card */}
+      {!hasStarted && !allCompleted ? (
+        <div
+          style={{
+            background: 'rgba(255,255,255,0.06)',
+            backdropFilter: 'blur(24px)',
+            WebkitBackdropFilter: 'blur(24px)',
+            border: '1px solid rgba(255,255,255,0.08)',
+            boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
+            borderRadius: 20,
+            padding: 24,
+            marginBottom: 24,
+            animation: 'homeGlowIn 600ms ease-out 200ms both',
+          }}
+        >
+          <div style={{
+            fontSize: 22,
+            fontWeight: 700,
+            color: 'rgba(255,255,255,0.92)',
+            marginBottom: 8,
+          }}>
+            Welcome, Aspirant! <span role="img" aria-label="wave">👋</span>
+          </div>
+          <div style={{
+            fontSize: 15,
+            color: 'rgba(255,255,255,0.55)',
+            lineHeight: 1.5,
+            marginBottom: 20,
+          }}>
+            280 topics across the UPSC syllabus await you.
+          </div>
+          <button
+            onClick={onNavigateToPath}
+            style={{
+              width: '100%',
+              height: 44,
+              border: 'none',
+              borderRadius: 12,
+              background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+              color: '#fff',
+              fontSize: 15,
+              fontWeight: 600,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 6,
+              boxShadow: '0 4px 16px rgba(99,102,241,0.3)',
+              transition: 'transform 150ms ease, opacity 150ms ease',
+              WebkitTapHighlightColor: 'transparent',
+            }}
+            onPointerDown={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(0.97)' }}
+            onPointerUp={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)' }}
+            onPointerCancel={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)' }}
+          >
+            Begin Your Journey
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      ) : continueTopic ? (
         <div
           style={{
             background: 'rgba(255,255,255,0.06)',
@@ -313,11 +411,12 @@ export default function HomeTab({
               justifyContent: 'center',
               gap: 6,
               boxShadow: '0 4px 16px rgba(99,102,241,0.3)',
-              transition: 'transform 150ms ease, box-shadow 150ms ease',
+              transition: 'transform 150ms ease, opacity 150ms ease',
+              WebkitTapHighlightColor: 'transparent',
             }}
-            onMouseDown={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(0.97)' }}
-            onMouseUp={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)' }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)' }}
+            onPointerDown={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(0.97)' }}
+            onPointerUp={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)' }}
+            onPointerCancel={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)' }}
           >
             Resume
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
@@ -407,7 +506,7 @@ export default function HomeTab({
               fontVariantNumeric: 'tabular-nums',
               lineHeight: 1.2,
             }}>
-              {accuracy}%
+              {totalQuestions > 0 ? `${accuracy}%` : '\u2014'}
             </div>
             <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.40)', marginTop: 2, fontWeight: 500 }}>
               Acc
@@ -439,6 +538,16 @@ export default function HomeTab({
             </div>
           </div>
         </div>
+        {todayXp === 0 && totalQuestions === 0 && (
+          <div style={{
+            fontSize: 12,
+            color: 'rgba(255,255,255,0.28)',
+            textAlign: 'center',
+            marginTop: 8,
+          }}>
+            Complete a topic to start tracking
+          </div>
+        )}
       </div>
 
       {/* Up Next */}
@@ -471,11 +580,12 @@ export default function HomeTab({
                   padding: '14px 16px',
                   cursor: 'pointer',
                   textAlign: 'left',
-                  transition: 'transform 150ms ease, background 150ms ease',
+                  transition: 'transform 150ms ease, opacity 150ms ease',
+                  WebkitTapHighlightColor: 'transparent',
                 }}
-                onMouseDown={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(0.98)' }}
-                onMouseUp={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)' }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)' }}
+                onPointerDown={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(0.97)' }}
+                onPointerUp={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)' }}
+                onPointerCancel={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)' }}
               >
                 <span style={{ fontSize: 22, lineHeight: 1, flexShrink: 0 }}>
                   {entry.topic.icon}
