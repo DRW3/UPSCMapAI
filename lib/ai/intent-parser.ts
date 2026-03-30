@@ -239,16 +239,8 @@ function normalizeIntent(raw: ParsedMapIntent): ParsedMapIntent {
     })
   }
 
-  // 4. Thematic layers
-  if (mt.startsWith('thematic_protected')) {
-    layers.push({ layer_id: 'protected-areas', layer_type: 'points_of_interest', data_source: 'protected_areas', visible: true })
-  }
-  if (mt.startsWith('thematic_disasters')) {
-    layers.push({ layer_id: 'disaster-zones', layer_type: 'thematic_choropleth', data_source: 'disaster_zones', visible: true })
-  }
-  if (mt.startsWith('economic_minerals')) {
-    layers.push({ layer_id: 'minerals', layer_type: 'thematic_choropleth', data_source: 'mineral_deposits', visible: true })
-  }
+  // 4. Thematic data is rendered via Wikidata live queries + annotated markers,
+  // not GeoJSON polygon overlays — no additional layers needed here.
 
   // Fix annotated_points: ensure coordinates are valid numbers
   const points = (raw.annotated_points ?? []).filter(

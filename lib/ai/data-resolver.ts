@@ -3,17 +3,13 @@ import type { ParsedMapIntent, MapLayer, AnnotatedPoint } from '@/types'
 const DATA_SOURCE_PATHS: Record<string, string> = {
   gadm_india_states: '/geojson/political/india-states.geojson',
   gadm_india_districts: '/geojson/political/india-districts.geojson',
-  natural_earth_rivers: '/geojson/physical/rivers-india.geojson',
-  natural_earth_relief: '/geojson/physical/relief-contours.geojson',
-  hydrosheds_rivers: '/geojson/physical/rivers-india.geojson',
-  osm_roads: '/geojson/physical/roads-nh.geojson',
-  mineral_deposits: '/geojson/thematic/minerals.geojson',
-  protected_areas: '/geojson/thematic/protected-areas.geojson',
-  disaster_zones: '/geojson/thematic/disaster-prone.geojson',
-  // World countries — used for international/neighboring country maps
-  world_countries: '/geojson/political/world-countries.geojson',
-  natural_earth_countries: '/geojson/political/world-countries.geojson',
-  south_asia_countries: '/geojson/political/world-countries.geojson',
+  natural_earth_rivers: '/geojson/physical/rivers-india-hd.geojson',
+  hydrosheds_rivers: '/geojson/physical/rivers-india-hd.geojson',
+  // World countries / international — fall back to India states for now
+  // (base map tiles from CARTO already show detailed world boundaries)
+  world_countries: '/geojson/political/india-states.geojson',
+  natural_earth_countries: '/geojson/political/india-states.geojson',
+  south_asia_countries: '/geojson/political/india-states.geojson',
 }
 
 // ─── Historical Empire Polygons ───────────────────────────────────────────────
@@ -211,14 +207,18 @@ export function buildMapLibreStyle(layer: MapLayer): Record<string, unknown>[] {
           id: `${layer.layer_id}-fill`,
           type: 'fill',
           source: layer.layer_id,
-          // India states slightly different from world land (#f0ebe0) so borders read clearly
-          paint: { 'fill-color': '#e2dbd0', 'fill-opacity': 1 },
+          // Light transparent fill — base map (CARTO Voyager) shows through with detail
+          paint: { 'fill-color': '#e2dbd0', 'fill-opacity': 0.35 },
         },
         {
           id: `${layer.layer_id}-line`,
           type: 'line',
           source: layer.layer_id,
-          paint: { 'line-color': '#9a8878', 'line-width': 0.7, 'line-opacity': 0.85 },
+          paint: {
+            'line-color': '#5a4a3a',
+            'line-width': ['interpolate', ['linear'], ['zoom'], 3, 0.6, 5, 1.0, 8, 1.5],
+            'line-opacity': 0.7,
+          },
         },
         {
           id: `${layer.layer_id}-labels`,
@@ -233,46 +233,46 @@ export function buildMapLibreStyle(layer: MapLayer): Record<string, unknown>[] {
             'text-allow-overlap': false,
           },
           paint: {
-            'text-color': '#3d3528',
-            'text-halo-color': 'rgba(226,219,208,0.9)',
-            'text-halo-width': 1.5,
+            'text-color': '#2c2419',
+            'text-halo-color': 'rgba(255,255,255,0.92)',
+            'text-halo-width': 2,
           },
         },
       ]
     case 'rivers':
       return [
-        // ── Outer glow ────────────────────────────────────────────────────
+        // ── Outer glow — subtle on light base ────────────────────────────
         {
           id: `${layer.layer_id}-glow`,
           type: 'line',
           source: layer.layer_id,
           paint: {
-            'line-color': '#38bdf8',
-            'line-width': ['interpolate', ['linear'], ['zoom'], 3, 10, 7, 22, 10, 32],
-            'line-opacity': 0.12,
-            'line-blur': 8,
+            'line-color': '#0284c7',
+            'line-width': ['interpolate', ['linear'], ['zoom'], 3, 8, 7, 18, 10, 28],
+            'line-opacity': 0.15,
+            'line-blur': 6,
           },
         },
-        // ── Dark casing (gives depth) ─────────────────────────────────────
+        // ── Dark casing (gives depth on light background) ────────────────
         {
           id: `${layer.layer_id}-casing`,
           type: 'line',
           source: layer.layer_id,
           paint: {
-            'line-color': '#0369a1',
-            'line-width': ['interpolate', ['linear'], ['zoom'], 3, 3.5, 7, 7, 10, 11],
-            'line-opacity': 0.55,
+            'line-color': '#0c4a6e',
+            'line-width': ['interpolate', ['linear'], ['zoom'], 3, 3, 7, 6, 10, 9],
+            'line-opacity': 0.6,
           },
         },
-        // ── Bright main line ──────────────────────────────────────────────
+        // ── Main river line — vivid blue ─────────────────────────────────
         {
           id: `${layer.layer_id}-line`,
           type: 'line',
           source: layer.layer_id,
           paint: {
-            'line-color': '#38bdf8',
-            'line-width': ['interpolate', ['linear'], ['zoom'], 3, 2, 7, 4.5, 10, 7],
-            'line-opacity': 1,
+            'line-color': '#0284c7',
+            'line-width': ['interpolate', ['linear'], ['zoom'], 3, 1.5, 7, 3.5, 10, 5.5],
+            'line-opacity': 0.9,
           },
         },
         // ── River name labels along the path ─────────────────────────────
@@ -282,7 +282,8 @@ export function buildMapLibreStyle(layer: MapLayer): Record<string, unknown>[] {
           source: layer.layer_id,
           minzoom: 4,
           layout: {
-            'text-field': ['coalesce', ['get', 'name'], ['get', 'NAME'], ['get', 'namelong']],
+            // Prefer ASCII-normalized name for clean display (no diacritics)
+            'text-field': ['coalesce', ['get', 'name_ascii'], ['get', 'name'], ['get', 'NAME'], ['get', 'namelong']],
             'text-size': ['interpolate', ['linear'], ['zoom'], 4, 10, 8, 13],
             'text-font': ['Open Sans Regular'],
             'symbol-placement': 'line',
@@ -294,7 +295,7 @@ export function buildMapLibreStyle(layer: MapLayer): Record<string, unknown>[] {
             'text-halo-color': 'rgba(255,255,255,0.95)',
             'text-halo-width': 2,
           },
-          filter: ['!=', ['coalesce', ['get', 'name'], ''], ''],
+          filter: ['!=', ['coalesce', ['get', 'name_ascii'], ['get', 'name'], ''], ''],
         },
       ]
     case 'relief':
@@ -305,13 +306,13 @@ export function buildMapLibreStyle(layer: MapLayer): Record<string, unknown>[] {
           id: `${layer.layer_id}-fill`,
           type: 'fill',
           source: layer.layer_id,
-          paint: { 'fill-color': ['get', 'color'], 'fill-opacity': 0.18 },
+          paint: { 'fill-color': ['get', 'color'], 'fill-opacity': 0.25 },
         },
         {
           id: `${layer.layer_id}-line`,
           type: 'line',
           source: layer.layer_id,
-          paint: { 'line-color': ['get', 'color'], 'line-width': 2.5, 'line-dasharray': [5, 2], 'line-opacity': 0.85 },
+          paint: { 'line-color': ['get', 'color'], 'line-width': 3, 'line-dasharray': [5, 2], 'line-opacity': 0.9 },
         },
       ]
     case 'thematic_choropleth':

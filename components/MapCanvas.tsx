@@ -156,8 +156,32 @@ export default function MapCanvas() {
 
       mapInstance = new ml.Map({
         container: mapContainer.current!,
-        // MapLibre demotiles — vector tiles at Natural Earth 10m quality, no API key needed
-        style: 'https://demotiles.maplibre.org/style.json',
+        // CARTO Voyager — high-quality free vector tiles with detailed coastlines & boundaries
+        style: {
+          version: 8,
+          sources: {
+            'carto-voyager': {
+              type: 'raster',
+              tiles: [
+                'https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}@2x.png',
+                'https://b.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}@2x.png',
+                'https://c.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}@2x.png',
+              ],
+              tileSize: 256,
+              attribution: '&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>',
+            },
+          },
+          layers: [
+            {
+              id: 'carto-voyager-tiles',
+              type: 'raster',
+              source: 'carto-voyager',
+              minzoom: 0,
+              maxzoom: 20,
+            },
+          ],
+          glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
+        },
         center: [78.9, 22.5],   // Center on India
         zoom: 1.8,              // Start zoomed out to show the globe
         attributionControl: false,
@@ -165,18 +189,6 @@ export default function MapCanvas() {
       })
 
       mapInstance.on('load', () => {
-        // Restyle base map to match our color theme
-        const sp = (id: string, prop: string, val: unknown) => {
-          try { mapInstance.setPaintProperty(id, prop, val) } catch {}
-        }
-        sp('background',           'background-color',  '#1a3a52')  // ocean
-        sp('countries-fill',       'fill-color',        '#f0ebe0')  // land
-        sp('countries-boundary',   'line-color',        '#8a7f70')
-        sp('countries-boundary',   'line-width',        0.8)
-        sp('countries-boundary',   'line-opacity',      0.9)
-        sp('countries-label',      'text-color',        '#4a4035')
-        sp('countries-label',      'text-halo-color',   'rgba(240,235,224,0.9)')
-        sp('countries-label',      'text-halo-width',   1.5)
 
         mapRef.current = mapInstance
         setMapReady(true)
@@ -336,9 +348,11 @@ export default function MapCanvas() {
       if (layer.layer_type === 'rivers') {
         const isRiverQuery = intent?.map_type === 'physical_rivers'
 
+        // Treat any highlighted feature as a potential river when on a river query,
+        // or match against known aliases for non-river queries
         const knownRiverFeatures = highlightedFeatures.filter(f => {
           const key = f.toLowerCase().replace(/\s+river$/i, '').replace(/\s+/g, '_').trim()
-          return key in RIVER_GEO_ALIASES
+          return key in RIVER_GEO_ALIASES || isRiverQuery
         })
         const hasHighlightedRiver = knownRiverFeatures.length > 0
 
@@ -357,13 +371,14 @@ export default function MapCanvas() {
         } else if (hasHighlightedRiver) {
           // Case 2: specific river — filter to matching features
           const riverFragments = expandToGeoRiverNames(knownRiverFeatures)
-          // Check both `name` and `name_alt` fields for robustness
+          // Check name, name_alt, name_ascii (diacritic-free), and namelong for robustness
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const matchFilter: any = ['any',
             ...riverFragments.flatMap(frag => [
+              ['>=', ['index-of', frag, ['downcase', ['coalesce', ['get', 'name_ascii'], '']]], 0],
+              ['>=', ['index-of', frag, ['downcase', ['coalesce', ['get', 'name_alt_ascii'], '']]], 0],
               ['>=', ['index-of', frag, ['downcase', ['coalesce', ['get', 'name'], '']]], 0],
               ['>=', ['index-of', frag, ['downcase', ['coalesce', ['get', 'name_alt'], '']]], 0],
-              ['>=', ['index-of', frag, ['downcase', ['coalesce', ['get', 'namelong'], '']]], 0],
             ]),
           ]
           for (const id of [glowId, casingId, lineId, labelsId]) {
@@ -407,20 +422,24 @@ export default function MapCanvas() {
       if (map.getLayer(fillId)) {
         const isPolitical = mapType.startsWith('political') || mapType.startsWith('thematic')
         if (hasHighlights && isPolitical) {
-          const matched = ['in', ['get', 'NAME_1'], ['literal', highlightedFeatures]]
-          // Highlighted state → indigo tint; others → completely hidden
+          // Expand highlighted features with GeoJSON-compatible name variants
+          // (GeoJSON uses old names: Orissa, Uttaranchal; AI generates modern: Odisha, Uttarakhand)
+          const expandedFeatures = expandStateNames(highlightedFeatures)
+          const matched = ['in', ['get', 'NAME_1'], ['literal', expandedFeatures]]
+          // Highlighted state → indigo tint; others → transparent so base map shows
           map.setPaintProperty(fillId, 'fill-color',
             ['case', matched, '#b8d0f8', '#d8d3cb'])
           map.setPaintProperty(fillId, 'fill-opacity',
-            ['case', matched, 1, 0])
+            ['case', matched, 0.7, 0])
           if (map.getLayer(lineId))
             map.setPaintProperty(lineId, 'line-opacity',
-              ['case', matched, 0.95, 0])
+              ['case', matched, 0.95, 0.15])
         } else {
+          // Default: transparent fill so detailed CARTO base map shows through
           map.setPaintProperty(fillId, 'fill-color', '#e2dbd0')
-          map.setPaintProperty(fillId, 'fill-opacity', 1)
+          map.setPaintProperty(fillId, 'fill-opacity', 0.35)
           if (map.getLayer(lineId))
-            map.setPaintProperty(lineId, 'line-opacity', 0.85)
+            map.setPaintProperty(lineId, 'line-opacity', 0.6)
         }
       }
     }
@@ -1528,43 +1547,119 @@ function buildMarkerSprite(icon: string, color: string): ImageData {
   return ctx.getImageData(0, 0, W * SCALE, H * SCALE)
 }
 
+// ── State name normalization ──────────────────────────────────────────────────
+// Maps modern state/UT names (used by the AI model) → GeoJSON NAME_1 field values.
+// The GeoJSON uses older GADM names that predate several Indian state reorganizations.
+const STATE_NAME_MAP: Record<string, string[]> = {
+  // Modern name → [GeoJSON NAME_1 variants to match]
+  'odisha':           ['Orissa', 'Odisha'],
+  'uttarakhand':      ['Uttaranchal', 'Uttarakhand'],
+  'telangana':        ['Andhra Pradesh', 'Telangana'],  // Telangana carved from AP in 2014
+  'ladakh':           ['Jammu and Kashmir', 'Ladakh'],   // Ladakh carved from J&K in 2019
+  'j&k':              ['Jammu and Kashmir'],
+  'jammu & kashmir':  ['Jammu and Kashmir'],
+  'jammu and kashmir': ['Jammu and Kashmir'],
+  'andhra pradesh':   ['Andhra Pradesh'],
+  // Merged UTs
+  'dadra and nagar haveli and daman and diu': ['Dadra and Nagar Haveli', 'Daman and Diu'],
+  'dnh and dd':       ['Dadra and Nagar Haveli', 'Daman and Diu'],
+  // Common shorthand
+  'hp':               ['Himachal Pradesh'],
+  'mp':               ['Madhya Pradesh'],
+  'up':               ['Uttar Pradesh'],
+  'ap':               ['Andhra Pradesh'],
+  'wb':               ['West Bengal'],
+  'tn':               ['Tamil Nadu'],
+  'jk':               ['Jammu and Kashmir'],
+  'a&n':              ['Andaman and Nicobar'],
+  'andaman':          ['Andaman and Nicobar'],
+  'nicobar':          ['Andaman and Nicobar'],
+}
+
+/**
+ * Expand highlighted feature names to include GeoJSON-compatible variants.
+ * Ensures "Odisha" matches GeoJSON's "Orissa", "Telangana" matches "Andhra Pradesh", etc.
+ */
+function expandStateNames(features: string[]): string[] {
+  const result = new Set<string>()
+  for (const f of features) {
+    result.add(f) // keep original
+    const key = f.toLowerCase().trim()
+    const mapped = STATE_NAME_MAP[key]
+    if (mapped) {
+      mapped.forEach(m => result.add(m))
+    }
+    // Also try partial match for compound names like "Jammu and Kashmir"
+    for (const [k, vals] of Object.entries(STATE_NAME_MAP)) {
+      if (key.includes(k) || k.includes(key)) {
+        vals.forEach(v => result.add(v))
+      }
+    }
+  }
+  return Array.from(result)
+}
+
 // ── River name alias expansion ────────────────────────────────────────────────
 // Maps common query names → lowercase fragments found in the rivers GeoJSON name/name_alt fields.
 // Include both the English (Natural Earth) and Hindi/native spellings for each river.
 const RIVER_GEO_ALIASES: Record<string, string[]> = {
+  // Major peninsular rivers
   ganga:        ['ganges', 'ganga'],
   ganges:       ['ganges', 'ganga'],
   yamuna:       ['yamuna', 'jumna'],
-  brahmaputra:  ['brahmaputra', 'dihang', 'jamuna'],
-  godavari:     ['godavari'],
+  brahmaputra:  ['brahmaputra', 'dihang', 'yarlung'],
+  godavari:     ['godavari', 'godavari'],
   krishna:      ['krishna', 'kistna'],
-  cauvery:      ['cauvery', 'kaveri', 'kavery'],
-  kaveri:       ['cauvery', 'kaveri', 'kavery'],
+  cauvery:      ['cauvery', 'kaveri', 'kavery', 'kolidam'],
+  kaveri:       ['cauvery', 'kaveri', 'kavery', 'kolidam'],
   narmada:      ['narmada', 'nerbudda'],
-  chambal:      ['chambal'],
   indus:        ['indus', 'sindhu'],
-  mahanadi:     ['mahanadi'],
+  mahanadi:     ['mahana nadi', 'mahanadi', 'mahana'],
+  // Punjab rivers
   sutlej:       ['sutlej', 'satluj'],
   chenab:       ['chenab', 'chanab'],
   jhelum:       ['jhelum', 'vitasta'],
   beas:         ['beas', 'vipasa'],
   ravi:         ['ravi'],
-  mahi:         ['mahi'],
+  // Central & Western
+  chambal:      ['chambal'],
   betwa:        ['betwa'],
-  tapti:        ['tapti', 'tapi'],
-  tapi:         ['tapti', 'tapi'],
-  son:          ['son ', 'sone'],   // trailing space to avoid matching "sonic" etc.
-  damodar:      ['damodar'],
-  mahananda:    ['mahananda'],
-  ghaggar:      ['ghaggar', 'hakra'],
+  tapti:        ['tapi', 'tapti'],
+  tapi:         ['tapi', 'tapti'],
+  mahi:         ['mahi'],
+  son:          ['son'],
+  parbati:      ['parbati'],
+  // Deccan tributaries
+  tungabhadra:  ['tungabhadra'],
+  bhima:        ['bhima'],
+  indravati:    ['indravati'],
+  wainganga:    ['wainganga'],
+  penna:        ['penner', 'penna', 'pennar'],
+  penner:       ['penner', 'penna', 'pennar'],
+  palar:        ['palar'],
+  kolidam:      ['kolidam', 'cauvery'],
+  tel:          ['tel'],
+  sankh:        ['sankh'],
+  brahmani:     ['brahmani'],
+  // Northeast
+  teesta:       ['tista', 'teesta'],
+  tista:        ['tista', 'teesta'],
+  luhit:        ['luhit'],
+  gandak:       ['gandak'],
+  ghaghra:      ['ghaghara', 'ghaghra', 'ghaggar'],
+  ghaghara:     ['ghaghara', 'ghaghra'],
+  sapt:         ['sapt'],
+  // Western
+  banas:        ['banas'],
   sabarmati:    ['sabarmati'],
   luni:         ['luni'],
+  // Other UPSC-relevant
+  damodar:      ['damodar'],
+  mahananda:    ['mahananda'],
+  ghaggar:      ['ghaggar', 'hakra', 'ghaghara'],
   periyar:      ['periyar'],
-  penna:        ['penna', 'pennar'],
-  tungabhadra:  ['tungabhadra', 'tungab'],
   sharavati:    ['sharavati'],
   koyna:        ['koyna'],
-  teesta:       ['teesta', 'tista'],
   subansiri:    ['subansiri'],
   manas:        ['manas'],
 }
@@ -1577,9 +1672,13 @@ function expandToGeoRiverNames(features: string[]): string[] {
     if (aliases) {
       aliases.forEach(a => result.add(a))
     } else {
-      // fallback: use the normalised key itself as a substring to search
-      result.add(key.replace(/_/g, ' '))
+      // fallback: use both underscore and space variants as substrings to search
+      const spaced = key.replace(/_/g, ' ')
+      result.add(spaced)
+      result.add(key)
     }
+    // Always add the raw query term so even unknown rivers get a match attempt
+    result.add(f.toLowerCase().replace(/\s+river$/i, '').trim())
   }
   return Array.from(result)
 }
