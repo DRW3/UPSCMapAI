@@ -20,7 +20,6 @@ import {
 import { StatsHeader, STATS_HEADER_HEIGHT } from '@/components/journey/StatsHeader'
 import JourneyPath from '@/components/journey/JourneyPath'
 import PracticeSheet from '@/components/journey/PracticeSheet'
-import { BottomNav, BOTTOM_NAV_HEIGHT } from '@/components/journey/BottomNav'
 import HomeTab from '@/components/journey/HomeTab'
 import TopicDetailSheet from '@/components/journey/TopicDetailSheet'
 import PracticeTab from '@/components/journey/PracticeTab'
@@ -468,18 +467,157 @@ export function MobileLearningJourney() {
         }} />
       </div>
 
-      {/* Stats Header */}
-      <StatsHeader
-        streak={progress.streak}
-        todayXp={progress.todayXp}
-        dailyGoalXp={dailyGoalXp}
-        onDailyGoalClick={() => setGoalModalOpen(true)}
-      />
+      {/* ── Unified Top Bar: stats + back/map buttons ───────────────────── */}
+      <div
+        className="fixed top-0 left-0 right-0 z-[51]"
+        style={{ pointerEvents: 'none' }}
+      >
+        <div style={{
+          margin: '0 12px',
+          paddingTop: 'env(safe-area-inset-top, 0px)',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 6,
+          pointerEvents: 'auto',
+        }}>
+          {/* Row 1: Back + Stats + Map button */}
+          <div style={{
+            height: 44,
+            background: 'rgba(10,10,20,0.7)',
+            backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)',
+            border: '1px solid rgba(255,255,255,0.08)',
+            borderRadius: 16,
+            display: 'flex', alignItems: 'center',
+            padding: '0 6px',
+            gap: 4,
+          }}>
+            {/* Back */}
+            <a
+              href="/"
+              style={{
+                width: 32, height: 32, borderRadius: 10,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                color: 'rgba(255,255,255,0.5)', flexShrink: 0,
+                background: 'rgba(255,255,255,0.04)',
+              }}
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <path d="M9 2L4 7l5 5" />
+              </svg>
+            </a>
+
+            {/* Streak */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginLeft: 4 }}>
+              <span style={{ fontSize: 16, lineHeight: 1, textShadow: progress.streak > 0 ? '0 0 8px rgba(249,115,22,0.5)' : 'none' }}>🔥</span>
+              <span style={{ fontSize: 13, fontWeight: 600, color: '#f0f0f5', opacity: progress.streak > 0 ? 1 : 0.3 }}>
+                {progress.streak}
+              </span>
+            </div>
+
+            <div style={{ flex: 1 }} />
+
+            {/* Daily Goal Ring */}
+            <button
+              onClick={() => setGoalModalOpen(true)}
+              style={{
+                width: 28, height: 28, position: 'relative',
+                background: 'none', border: 'none', cursor: 'pointer', padding: 0,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+              }}
+            >
+              {(() => {
+                const pct = Math.min(100, dailyGoalXp > 0 ? (progress.todayXp / dailyGoalXp) * 100 : 0)
+                const goalMet = pct >= 100
+                const r = 11, circ = 2 * Math.PI * r
+                return (
+                  <>
+                    <svg width="28" height="28" viewBox="0 0 28 28" style={{ position: 'absolute', inset: 0 }}>
+                      <circle cx="14" cy="14" r={r} fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="2.5" />
+                      <circle cx="14" cy="14" r={r} fill="none"
+                        stroke={goalMet ? '#34d399' : `hsl(${240 + (pct / 100) * 120}, 80%, 65%)`}
+                        strokeWidth="2.5" strokeLinecap="round"
+                        strokeDasharray={circ} strokeDashoffset={circ - (circ * pct) / 100}
+                        style={{ transform: 'rotate(-90deg)', transformOrigin: 'center', transition: 'stroke-dashoffset 500ms ease-out' }}
+                      />
+                    </svg>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" style={{ position: 'relative' }}>
+                      {goalMet
+                        ? <path d="M5 13l4 4L19 7" stroke="#34d399" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                        : <path d="M13 2L4 14h7l-2 8 9-12h-7l2-8z" fill="#FBBF24" />}
+                    </svg>
+                  </>
+                )
+              })()}
+            </button>
+
+            {/* Map link */}
+            <a
+              href="/map"
+              style={{
+                width: 32, height: 32, borderRadius: 10,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                flexShrink: 0,
+                background: 'rgba(99,102,241,0.15)',
+                border: '1px solid rgba(99,102,241,0.3)',
+              }}
+            >
+              <svg width="14" height="14" viewBox="0 0 15 15" fill="none" stroke="#a5b4fc" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M1 3.5l4-2 5 2 4-2V12L10 14 5 12 1 14V3.5z" />
+              </svg>
+            </a>
+          </div>
+
+          {/* Row 2: Segmented tab control */}
+          <div style={{
+            height: 38,
+            background: 'rgba(10,10,20,0.65)',
+            backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)',
+            border: '1px solid rgba(255,255,255,0.06)',
+            borderRadius: 12,
+            display: 'flex', alignItems: 'center',
+            padding: 3,
+            gap: 2,
+          }}>
+            {([
+              { id: 'home' as TabId, label: 'Home', icon: '🏠' },
+              { id: 'path' as TabId, label: 'Path', icon: '📍' },
+              { id: 'practice' as TabId, label: 'Practice', icon: '⚡' },
+              { id: 'profile' as TabId, label: 'You', icon: '👤' },
+            ]).map(tab => {
+              const isActive = activeTab === tab.id
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => handleTabChange(tab.id)}
+                  style={{
+                    flex: 1,
+                    height: 32,
+                    borderRadius: 9,
+                    border: 'none',
+                    cursor: 'pointer',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4,
+                    fontSize: 11, fontWeight: 600,
+                    background: isActive
+                      ? 'rgba(99,102,241,0.2)'
+                      : 'transparent',
+                    color: isActive ? '#a5b4fc' : 'rgba(255,255,255,0.35)',
+                    transition: 'all 200ms ease',
+                    WebkitTapHighlightColor: 'transparent',
+                    boxShadow: isActive ? '0 0 12px rgba(99,102,241,0.15)' : 'none',
+                  }}
+                >
+                  <span style={{ fontSize: 12, lineHeight: 1 }}>{tab.icon}</span>
+                  {tab.label}
+                </button>
+              )
+            })}
+          </div>
+        </div>
+      </div>
 
       {/* Main Content Area */}
       <div style={{
-        marginTop: STATS_HEADER_HEIGHT,
-        marginBottom: BOTTOM_NAV_HEIGHT,
+        marginTop: 'calc(env(safe-area-inset-top, 0px) + 96px)',
         flex: 1,
         minHeight: 0,
         display: 'flex',
@@ -535,12 +673,6 @@ export function MobileLearningJourney() {
           </div>
         )}
       </div>
-
-      {/* Bottom Navigation */}
-      <BottomNav
-        activeTab={activeTab}
-        onTabChange={handleTabChange}
-      />
 
       {/* Topic Detail Sheet */}
       {detailTarget && (
