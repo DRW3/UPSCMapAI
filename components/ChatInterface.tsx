@@ -7,8 +7,6 @@ import type { MapOperation, MapSession } from '@/types'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import type { Components } from 'react-markdown'
-import ExploreTab from './ExploreTab'
-import LearnTab from './LearnTab'
 
 interface Message {
   id: string
@@ -124,6 +122,62 @@ function InlineSessionChip({ session, isActive, onLoad }: {
   )
 }
 
+// ── Session card (Maps tab) ───────────────────────────────────────────────────
+
+function SessionCard({ session, isActive, onLoad }: {
+  session: MapSession
+  isActive: boolean
+  onLoad: () => void
+}) {
+  const color = getMapTypeColor(session.mapType)
+  return (
+    <button
+      onClick={onLoad}
+      className="w-full text-left rounded-2xl overflow-hidden transition-all hover:scale-[1.01] active:scale-[0.99]"
+      style={{
+        background: isActive ? `${color}14` : 'rgba(255,255,255,0.04)',
+        border: `1px solid ${isActive ? `${color}55` : 'rgba(255,255,255,0.08)'}`,
+        boxShadow: isActive ? `0 0 0 1px ${color}22, 0 4px 20px ${color}14` : 'none',
+      }}
+    >
+      <div style={{ height: 2.5, background: `linear-gradient(90deg, ${color}, ${color}88)` }} />
+      <div className="p-3">
+        <div className="flex items-start gap-2.5 mb-2">
+          <span
+            className="w-9 h-9 rounded-xl flex items-center justify-center text-[18px] flex-shrink-0 mt-0.5"
+            style={{ background: `${color}1e`, border: `1px solid ${color}44` }}
+          >
+            {getMapTypeEmoji(session.mapType)}
+          </span>
+          <div className="flex-1 min-w-0">
+            <p className="text-[12px] font-semibold leading-snug" style={{ color: isActive ? '#fff' : 'rgba(255,255,255,0.82)' }}>
+              {session.title}
+            </p>
+            <p className="text-[10px] mt-0.5 capitalize" style={{ color: `${color}cc` }}>
+              {session.mapType.replace(/_/g, ' ')}
+            </p>
+          </div>
+        </div>
+        <p className="text-[11px] text-white/35 leading-relaxed truncate mb-2.5 italic">
+          &ldquo;{session.query}&rdquo;
+        </p>
+        <div className="flex items-center justify-between">
+          <span className="text-[10px] text-white/25">{formatTimeAgo(session.timestamp)}</span>
+          <span
+            className="text-[10px] font-semibold px-2 py-0.5 rounded-lg"
+            style={{
+              background: isActive ? `${color}25` : 'rgba(255,255,255,0.06)',
+              color: isActive ? color : 'rgba(255,255,255,0.35)',
+            }}
+          >
+            {isActive ? '● Active' : 'Open'}
+          </span>
+        </div>
+      </div>
+    </button>
+  )
+}
+
 // ── Reasoning steps ────────────────────────────────────────────────────────────
 
 const INIT_STEPS = [
@@ -195,7 +249,7 @@ const mdComponents: Components = {
 
 // ── Main Component ─────────────────────────────────────────────────────────────
 
-type Tab = 'chat' | 'explore' | 'learn'
+type Tab = 'chat' | 'maps'
 
 function ChatInterfaceInner() {
   const router = useRouter()
@@ -1226,44 +1280,22 @@ function ChatInterfaceInner() {
             </div>
           </div>
 
-          {/* Tabs — icon-based 3-tab navigation */}
-          <div style={{ padding: '0 12px', display: 'flex', gap: 1 }}>
-            {([
-              {
-                id: 'chat' as Tab, label: 'Chat',
-                icon: (active: boolean) => (
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke={active ? '#a5b4fc' : 'rgba(255,255,255,0.35)'} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M2 2.5h12a.5.5 0 01.5.5v8a.5.5 0 01-.5.5H5L2 14V3a.5.5 0 01.5-.5z" />
-                  </svg>
-                ),
-              },
-              {
-                id: 'explore' as Tab, label: 'Explore',
-                icon: (active: boolean) => (
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke={active ? '#a5b4fc' : 'rgba(255,255,255,0.35)'} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="8" cy="8" r="6.5" />
-                    <path d="M10.5 5.5l-2 3-3 2 2-3 3-2z" fill={active ? '#a5b4fc' : 'none'} />
-                  </svg>
-                ),
-              },
-              {
-                id: 'learn' as Tab, label: 'Learn',
-                icon: (active: boolean) => (
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke={active ? '#a5b4fc' : 'rgba(255,255,255,0.35)'} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M2 12.5V4a1 1 0 011-1h4l1 1.5h5a1 1 0 011 1V12a1 1 0 01-1 1H3.5" />
-                    <path d="M2 12.5A1.5 1.5 0 013.5 11H14" />
-                  </svg>
-                ),
-              },
-            ]).map(tab => (
+          {/* Tabs */}
+          <div style={{ padding: '0 12px', display: 'flex', gap: 2 }}>
+            {(
+              [
+                { id: 'chat' as Tab, label: 'Chat', badge: undefined },
+                { id: 'maps' as Tab, label: 'Maps', badge: sessions.length > 0 ? sessions.length : undefined },
+              ]
+            ).map(tab => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 style={{
-                  display: 'flex', alignItems: 'center', gap: 5,
-                  padding: '7px 12px',
+                  display: 'flex', alignItems: 'center', gap: 6,
+                  padding: '8px 14px',
                   borderRadius: '10px 10px 0 0',
-                  fontSize: 10, fontWeight: 600, letterSpacing: '0.03em',
+                  fontSize: 11, fontWeight: 600, letterSpacing: '0.02em',
                   color: activeTab === tab.id ? '#a5b4fc' : 'rgba(255,255,255,0.3)',
                   background: activeTab === tab.id ? 'rgba(99,102,241,0.08)' : 'transparent',
                   borderBottom: activeTab === tab.id ? '2px solid #818cf8' : '2px solid transparent',
@@ -1272,8 +1304,19 @@ function ChatInterfaceInner() {
                   transition: 'all 0.15s',
                 }}
               >
-                {tab.icon(activeTab === tab.id)}
                 {tab.label}
+                {tab.badge != null && (
+                  <span style={{
+                    minWidth: 16, height: 16, borderRadius: 8,
+                    padding: '0 5px',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: 9, fontWeight: 700,
+                    background: activeTab === tab.id ? 'rgba(99,102,241,0.3)' : 'rgba(255,255,255,0.06)',
+                    color: activeTab === tab.id ? '#a5b4fc' : 'rgba(255,255,255,0.35)',
+                  }}>
+                    {tab.badge}
+                  </span>
+                )}
               </button>
             ))}
           </div>
@@ -1514,21 +1557,56 @@ function ChatInterfaceInner() {
           </>
         )}
 
-        {/* ── Explore tab ────────────────────────────────────────────────── */}
-        {activeTab === 'explore' && (
-          <ExploreTab
-            sessions={sessions}
-            activeSessionId={activeSessionId}
-            onSendMessage={(text) => { setActiveTab('chat'); sendMessage(text) }}
-            onLoadSession={(id) => { loadSession(id); setActiveTab('chat') }}
-          />
-        )}
-
-        {/* ── Learn tab ───────────────────────────────────────────────────── */}
-        {activeTab === 'learn' && (
-          <LearnTab
-            onSendMessage={(text) => { setActiveTab('chat'); sendMessage(text) }}
-          />
+        {/* ── Maps tab ─────────────────────────────────────────────────────── */}
+        {activeTab === 'maps' && (
+          <div className="flex-1 overflow-y-auto scrollbar-thin">
+            {sessions.length === 0 ? (
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', textAlign: 'center', padding: '24px 24px' }}>
+                <div style={{
+                  width: 52, height: 52, borderRadius: 16,
+                  background: 'rgba(99,102,241,0.1)',
+                  border: '1px solid rgba(99,102,241,0.2)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: 22, marginBottom: 14,
+                }}>
+                  🗺️
+                </div>
+                <p style={{ fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.4)', marginBottom: 8 }}>No maps studied yet</p>
+                <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.2)', lineHeight: 1.6 }}>
+                  Every question you ask creates a map you can come back to.
+                </p>
+                <button
+                  onClick={() => setActiveTab('chat')}
+                  style={{
+                    marginTop: 16, padding: '8px 16px', borderRadius: 12,
+                    fontSize: 12, fontWeight: 600,
+                    background: 'rgba(99,102,241,0.2)',
+                    border: '1px solid rgba(99,102,241,0.3)',
+                    color: '#a5b4fc', cursor: 'pointer',
+                  }}
+                >
+                  Go to Chat
+                </button>
+              </div>
+            ) : (
+              <div style={{ padding: 12, display: 'flex', flexDirection: 'column', gap: 10 }}>
+                <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.25)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600, marginBottom: 2 }}>
+                  {sessions.length} topic{sessions.length !== 1 ? 's' : ''} studied
+                </p>
+                {sessions.map(session => (
+                  <SessionCard
+                    key={session.id}
+                    session={session}
+                    isActive={session.id === activeSessionId}
+                    onLoad={() => {
+                      loadSession(session.id)
+                      setActiveTab('chat')
+                    }}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
         )}
         </>
         )}
