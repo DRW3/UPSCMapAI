@@ -1,0 +1,12 @@
+data/books/
+data/pyqs/
+scripts/
+condescending-volhard/
+adoring-blackwell/
+zen-austin/
+stupefied-swanson/
+loving-golick/
+lucid-sammet/
+infallible-pike/
+*.zip
+*.json.bak
