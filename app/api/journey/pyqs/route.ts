@@ -90,10 +90,15 @@ const SUBJECT_MAP: Record<string, string> = {
   'economy':           'Indian Economy',
   'environment':       'Environment and Ecology',
   'science-tech':      'Science and Technology',
-  'ethics':            'Ethics and Integrity',
-  'society':           'Indian Society',
+  'ethics':            'Ethics, Integrity and Aptitude',
+  'society':           'Indian Society and Culture',
   'art-culture':       'Art and Culture',
   'world-history':     'World History',
+  'post-independence': 'Post-Independence India',
+  'csat':              'CSAT — Civil Services Aptitude Test',
+  'essay':             'Essay Paper',
+  'current-affairs':   'Current Affairs and Analysis',
+  'general-science':   'General Science for Prelims',
 }
 
 export async function GET(req: NextRequest) {

@@ -9,12 +9,6 @@ const MobileLearningJourney = dynamic(
   { ssr: false, loading: () => <Loading /> }
 )
 
-// Desktop fallback — original component
-const LearningJourneyDesktop = dynamic(
-  () => import('@/components/LearningJourney').then(m => ({ default: m.LearningJourney })),
-  { ssr: false, loading: () => <Loading /> }
-)
-
 function Loading() {
   return (
     <div className="flex items-center justify-center" style={{ height: '100dvh', background: '#080810' }}>
@@ -39,14 +33,16 @@ export function JourneyClient() {
     return <MobileLearningJourney />
   }
 
-  // Desktop: use original layout with nav
+  // Desktop: render the same journey UI in a phone-frame container
+  // This ensures consistent v2 progress, crowns, achievements, etc.
   return (
     <div
-      className="min-h-screen"
+      className="min-h-screen flex flex-col items-center"
       style={{ background: 'linear-gradient(180deg, #080810 0%, #0a0a14 50%, #080810 100%)' }}
     >
+      {/* Desktop chrome header */}
       <nav
-        className="sticky top-0 z-40 flex items-center gap-4 px-6 h-14"
+        className="sticky top-0 z-40 flex items-center gap-4 px-6 h-14 w-full"
         style={{ background: 'rgba(8,8,16,0.88)', backdropFilter: 'blur(12px)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}
       >
         <a href="/" className="flex items-center gap-1.5 text-white/50 hover:text-white/80 transition-colors text-[12px]">
@@ -69,9 +65,23 @@ export function JourneyClient() {
           Open Map
         </a>
       </nav>
-      <main>
-        <LearningJourneyDesktop />
-      </main>
+
+      {/* Phone-frame container for the learning journey */}
+      <div className="flex-1 w-full flex justify-center py-6">
+        <div
+          className="relative overflow-hidden"
+          style={{
+            width: 420,
+            maxWidth: '100%',
+            height: 'calc(100vh - 80px)',
+            borderRadius: 32,
+            border: '1px solid rgba(255,255,255,0.08)',
+            boxShadow: '0 0 80px rgba(99,102,241,0.08), 0 0 2px rgba(255,255,255,0.1)',
+          }}
+        >
+          <MobileLearningJourney />
+        </div>
+      </div>
     </div>
   )
 }

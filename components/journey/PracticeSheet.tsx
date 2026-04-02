@@ -73,6 +73,10 @@ export default function PracticeSheet({
   const [showExplanation, setShowExplanation] = useState(false)
   const [shakeWrong, setShakeWrong] = useState(false)
 
+  // Consecutive correct streak
+  const [streak, setStreak] = useState(0)
+  const [streakPulse, setStreakPulse] = useState(false)
+
   // Drag-to-dismiss
   const sheetRef = useRef<HTMLDivElement>(null)
   const dragStartY = useRef(0)
@@ -170,12 +174,19 @@ export default function PracticeSheet({
 
     if (correct) {
       setSessionXp((x) => x + XP_PER_CORRECT)
+      const newStreak = streak + 1
+      setStreak(newStreak)
+      if (newStreak >= 2) {
+        setStreakPulse(true)
+        setTimeout(() => setStreakPulse(false), 500)
+      }
     } else {
       const newHearts = localHearts - 1
       setLocalHearts(newHearts)
       onHeartLost()
       setShakeWrong(true)
       setTimeout(() => setShakeWrong(false), 600)
+      setStreak(0)
     }
   }
 
@@ -375,6 +386,17 @@ export default function PracticeSheet({
             filter: brightness(1.5);
           }
         }
+        @keyframes ps-streakPulse {
+          0% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.25);
+          }
+          100% {
+            transform: scale(1);
+          }
+        }
       `}</style>
 
       {/* Backdrop */}
@@ -428,7 +450,7 @@ export default function PracticeSheet({
 
         {/* Quiz Header */}
         <div className="px-4 pb-3 flex flex-col gap-2">
-          {/* Top row: close, XP, hearts */}
+          {/* Top row: close, XP, streak, hearts */}
           <div className="flex items-center justify-between">
             {/* Close button */}
             <button
@@ -454,7 +476,7 @@ export default function PracticeSheet({
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-full"
               style={{ background: 'rgba(251,191,36,0.1)' }}
             >
-              <span className="text-[14px]">⚡</span>
+              <span className="text-[14px]">&#9889;</span>
               <span
                 className="text-[13px] font-bold tabular-nums"
                 style={{
@@ -465,6 +487,26 @@ export default function PracticeSheet({
                 {sessionXp} XP
               </span>
             </div>
+
+            {/* Streak Counter (2c) */}
+            {streak >= 2 && !done && (
+              <div
+                className="flex items-center gap-1 px-2.5 py-1.5 rounded-full"
+                style={{
+                  background: 'rgba(239,68,68,0.1)',
+                  border: '1px solid rgba(239,68,68,0.2)',
+                  animation: streakPulse ? 'ps-streakPulse 0.4s ease' : 'none',
+                }}
+              >
+                <span className="text-[13px]">&#128293;</span>
+                <span
+                  className="text-[13px] font-bold tabular-nums"
+                  style={{ color: '#f87171' }}
+                >
+                  {streak}
+                </span>
+              </div>
+            )}
 
             {/* Hearts */}
             <div className="flex items-center gap-1">
@@ -509,7 +551,7 @@ export default function PracticeSheet({
             <LoadingState color={subject.color} />
           ) : error && pyqs.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-20 gap-2 text-center" style={{ height: '60%', padding: 32 }}>
-              <div style={{ fontSize: 48, marginBottom: 16 }}>⚠️</div>
+              <div style={{ fontSize: 48, marginBottom: 16 }}>&#9888;&#65039;</div>
               <div style={{ fontSize: 18, fontWeight: 600, color: 'rgba(255,255,255,0.9)', marginBottom: 8 }}>
                 Couldn&apos;t load questions
               </div>
@@ -547,6 +589,8 @@ export default function PracticeSheet({
               previousCrownLvl={progress.crownLevel}
               color={subject.color}
               onFinish={handleFinish}
+              previousCorrectAnswers={progress.correctAnswers}
+              previousQuestionsAnswered={progress.questionsAnswered}
             />
           ) : (
             /* Active Question */
@@ -711,7 +755,7 @@ export default function PracticeSheet({
                       className="text-[20px]"
                       style={{ animation: 'ps-popIn 0.4s ease' }}
                     >
-                      🎉
+                      &#127881;
                     </span>
                     <span className="text-[17px] font-extrabold" style={{ color: '#22c55e' }}>
                       Correct!
@@ -744,12 +788,12 @@ export default function PracticeSheet({
                   </>
                 ) : (
                   <>
-                    <span className="text-[20px]">😔</span>
+                    <span className="text-[20px]">&#128532;</span>
                     <span className="text-[17px] font-extrabold" style={{ color: '#ef4444' }}>
                       Incorrect
                     </span>
                     <span className="ml-auto text-[12px] font-semibold text-red-400/60">
-                      -1 ❤️
+                      -1 &#10084;&#65039;
                     </span>
                   </>
                 )}
@@ -873,7 +917,7 @@ function EmptyState({
   return (
     <div className="flex flex-col items-center justify-center py-20 gap-5 text-center">
       <span className="text-5xl" style={{ animation: 'ps-popIn 0.5s ease' }}>
-        📭
+        &#128237;
       </span>
       <div>
         <p className="text-[16px] text-white/65 font-semibold">No questions available yet</p>
@@ -917,7 +961,7 @@ function NoHeartsScreen({ onClose }: { onClose: () => void }) {
   return (
     <div className="flex flex-col items-center justify-center py-16 gap-5 text-center">
       <div style={{ animation: 'ps-popIn 0.5s ease' }}>
-        <span className="text-6xl">💔</span>
+        <span className="text-6xl">&#128148;</span>
       </div>
       <div>
         <p className="text-[20px] font-bold text-white/90">No hearts left!</p>
@@ -927,7 +971,7 @@ function NoHeartsScreen({ onClose }: { onClose: () => void }) {
         className="flex items-center gap-2 px-5 py-3 rounded-2xl mt-1"
         style={{ background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.15)' }}
       >
-        <span className="text-[15px]">❤️</span>
+        <span className="text-[15px]">&#10084;&#65039;</span>
         <span className="text-[15px] font-bold tabular-nums text-red-400">{timeLeft}</span>
         <span className="text-[12px] text-white/30 ml-1">until next heart</span>
       </div>
@@ -951,6 +995,8 @@ function ScoreScreen({
   previousCrownLvl,
   color,
   onFinish,
+  previousCorrectAnswers,
+  previousQuestionsAnswered,
 }: {
   score: { correct: number; total: number }
   sessionXp: number
@@ -960,10 +1006,36 @@ function ScoreScreen({
   previousCrownLvl: CrownLevel
   color: string
   onFinish: () => void
+  previousCorrectAnswers: number
+  previousQuestionsAnswered: number
 }) {
   const percentage = score.total > 0 ? Math.round((score.correct / score.total) * 100) : 0
   const circumference = 2 * Math.PI * 45 // radius 45
   const dashOffset = circumference - (circumference * percentage) / 100
+
+  // Performance benchmark (2a)
+  const previousAccuracy = previousQuestionsAnswered > 0
+    ? Math.round((previousCorrectAnswers / previousQuestionsAnswered) * 100)
+    : null
+  const isNewBest = previousAccuracy !== null && percentage > previousAccuracy
+  // Topic average: combine previous + current session
+  const totalCorrectAll = previousCorrectAnswers + score.correct
+  const totalAnsweredAll = previousQuestionsAnswered + score.total
+  const topicAverage = totalAnsweredAll > 0 ? Math.round((totalCorrectAll / totalAnsweredAll) * 100) : percentage
+
+  // Next review schedule (2b)
+  let reviewText: string
+  let reviewColor: string
+  if (percentage >= 80) {
+    reviewText = 'Review in 7 days'
+    reviewColor = '#22c55e'
+  } else if (percentage >= 60) {
+    reviewText = 'Review in 3 days'
+    reviewColor = '#fbbf24'
+  } else {
+    reviewText = 'Review tomorrow'
+    reviewColor = '#f97316'
+  }
 
   return (
     <div className="flex flex-col items-center justify-center py-8 gap-6 text-center">
@@ -981,7 +1053,7 @@ function ScoreScreen({
                 animation: `ps-starBurst 0.6s ease ${i * 0.06}s both`,
               }}
             >
-              ✨
+              &#10024;
             </span>
           ))}
         </div>
@@ -1051,6 +1123,58 @@ function ScoreScreen({
         </p>
       </div>
 
+      {/* Performance Benchmark (2a) */}
+      {previousAccuracy !== null && (
+        <div
+          className="w-full max-w-[280px] rounded-2xl px-5 py-4 flex flex-col gap-2"
+          style={{
+            background: 'rgba(255,255,255,0.03)',
+            border: '1px solid rgba(255,255,255,0.06)',
+            animation: 'ps-xpCount 0.4s ease 0.7s both',
+          }}
+        >
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-[14px]">&#128202;</span>
+            <span className="text-[13px] font-bold text-white/70">Your Progress</span>
+          </div>
+          <div className="flex flex-col gap-1.5">
+            <div className="flex items-center gap-2">
+              <span className="text-[11px] text-white/25" style={{ width: 6, textAlign: 'center' }}>&#9500;</span>
+              <span className="text-[12px] text-white/50">This session:</span>
+              <span className="text-[12px] font-bold ml-auto" style={{ color: percentage >= 60 ? '#22c55e' : '#ef4444' }}>
+                {percentage}%
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-[11px] text-white/25" style={{ width: 6, textAlign: 'center' }}>&#9500;</span>
+              <span className="text-[12px] text-white/50">Previous best:</span>
+              <span className="text-[12px] font-bold text-white/60 ml-auto">{previousAccuracy}%</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-[11px] text-white/25" style={{ width: 6, textAlign: 'center' }}>&#9492;</span>
+              <span className="text-[12px] text-white/50">Topic average:</span>
+              <span className="text-[12px] font-bold text-white/60 ml-auto">{topicAverage}%</span>
+            </div>
+            {isNewBest && (
+              <div
+                className="flex items-center justify-center gap-1.5 mt-1.5 py-1.5 rounded-lg"
+                style={{
+                  background: 'rgba(34,197,94,0.08)',
+                  border: '1px solid rgba(34,197,94,0.15)',
+                  animation: 'ps-popIn 0.5s ease 1s both',
+                }}
+              >
+                <span className="text-[12px]">&#8599;&#65039;</span>
+                <span className="text-[12px] font-bold" style={{ color: '#22c55e' }}>
+                  New personal best!
+                </span>
+                <span className="text-[12px]">&#127881;</span>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* Crown level progress */}
       {crownedUp && (
         <div
@@ -1066,7 +1190,7 @@ function ScoreScreen({
               className="text-[28px]"
               style={{ animation: 'ps-crownGlow 1.5s ease infinite' }}
             >
-              👑
+              &#128081;
             </span>
             <span
               className="text-[15px] font-bold"
@@ -1139,7 +1263,28 @@ function ScoreScreen({
         >
           <span className="text-[13px] text-white/70 font-semibold">Total</span>
           <span className="text-[14px] font-extrabold" style={{ color: '#fbbf24' }}>
-            ⚡ {sessionXp} XP
+            &#9889; {sessionXp} XP
+          </span>
+        </div>
+      </div>
+
+      {/* Next Review Schedule (2b) */}
+      <div
+        className="w-full max-w-[280px] rounded-2xl px-5 py-3.5 flex items-center gap-3"
+        style={{
+          background: 'rgba(255,255,255,0.03)',
+          border: `1px solid ${reviewColor}20`,
+          animation: 'ps-xpCount 0.4s ease 1.1s both',
+        }}
+      >
+        <span className="text-[16px]">&#128197;</span>
+        <div className="flex flex-col">
+          <span className="text-[11px] font-semibold text-white/35">Next Review</span>
+          <span className="text-[12px] font-bold" style={{ color: reviewColor }}>
+            {reviewText}
+          </span>
+          <span className="text-[10px] text-white/25 mt-0.5">
+            Based on your {percentage}% accuracy
           </span>
         </div>
       </div>

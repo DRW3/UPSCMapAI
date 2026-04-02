@@ -81,6 +81,39 @@ export const ACHIEVEMENTS: AchievementDef[] = [
   { id: 'daily-goal-7',     title: 'Goal Streak',        description: 'Meet your daily XP goal 7 days in a row',          icon: '🔥', category: 'performance' },
 ]
 
+// ── User Profile (collected during onboarding) ───────────────────────────────
+
+export type PrepStage = 'beginner' | 'intermediate' | 'advanced'
+export type ExamYear = 2026 | 2027 | 2028 | 2029
+
+export interface UserProfile {
+  name: string
+  examYear: ExamYear
+  prepStage: PrepStage
+  strongSubjects: string[]   // subject IDs
+  weakSubjects: string[]     // subject IDs to focus on
+  dailyGoalTier: DailyGoalTier
+  onboardedAt: string        // ISO date
+}
+
+export const DEFAULT_PROFILE: UserProfile = {
+  name: '',
+  examYear: 2026,
+  prepStage: 'beginner',
+  strongSubjects: [],
+  weakSubjects: [],
+  dailyGoalTier: 'regular',
+  onboardedAt: '',
+}
+
+export const PROFILE_STORAGE_KEY = 'upsc-journey-profile'
+
+export const PREP_STAGE_CONFIG: Record<PrepStage, { label: string; icon: string; description: string }> = {
+  beginner:     { label: 'Just Starting',    icon: '🌱', description: 'New to UPSC preparation' },
+  intermediate: { label: 'Mid Preparation',  icon: '📖', description: 'Covered some topics, building depth' },
+  advanced:     { label: 'Final Revision',   icon: '🎯', description: 'Most syllabus covered, polishing' },
+}
+
 // ── Study Calendar ────────────────────────────────────────────────────────────
 
 export interface StudyDay {

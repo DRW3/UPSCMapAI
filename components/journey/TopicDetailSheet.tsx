@@ -5,6 +5,7 @@ import type { LearningTopic, LearningSubject } from '@/data/syllabus'
 import {
   type TopicProgress,
   type CrownLevel,
+  type UserProfile,
   CROWN_COLORS,
   QUESTIONS_PER_CROWN,
 } from './types'
@@ -13,6 +14,7 @@ interface TopicDetailSheetProps {
   topic: LearningTopic
   subject: LearningSubject
   progress: TopicProgress
+  profile: UserProfile | null
   onClose: () => void
   onStartPractice: () => void
   onOpenMap: () => void
@@ -22,6 +24,7 @@ export default function TopicDetailSheet({
   topic,
   subject,
   progress,
+  profile,
   onClose,
   onStartPractice,
   onOpenMap,
@@ -84,7 +87,13 @@ export default function TopicDetailSheet({
   const isStarted = progress.state === 'started'
   const hasProgress = isStarted || isCompleted
 
-  const buttonLabel = isCompleted ? 'PRACTICE AGAIN' : isStarted ? 'CONTINUE' : 'START PRACTICE'
+  const isFocusArea = profile?.weakSubjects?.includes(subject.id) ?? false
+
+  const buttonLabel = isFocusArea && !isCompleted && !isStarted
+    ? 'START FOCUS'
+    : isCompleted ? 'PRACTICE AGAIN'
+    : isStarted ? 'CONTINUE'
+    : 'START PRACTICE'
   const buttonIsOutline = isCompleted
 
   const diffLevel = topic.difficulty
@@ -176,6 +185,20 @@ export default function TopicDetailSheet({
             </div>
           </div>
 
+          {isFocusArea && (
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', gap: 5,
+              padding: '4px 10px', borderRadius: 8, marginBottom: 12,
+              background: 'rgba(249,115,22,0.10)',
+              border: '1px solid rgba(249,115,22,0.25)',
+            }}>
+              <span style={{ fontSize: 12, lineHeight: 1 }}>🎯</span>
+              <span style={{ fontSize: 11, fontWeight: 700, color: '#f97316', letterSpacing: '0.03em' }}>
+                FOCUS AREA
+              </span>
+            </div>
+          )}
+
           {/* Difficulty + PYQ Frequency */}
           <div className="flex items-center gap-3 mb-5">
             <span className="flex items-center gap-1.5 text-[11px] font-semibold" style={{ color: diffColor }}>
@@ -258,6 +281,12 @@ export default function TopicDetailSheet({
               </span>
             ))}
           </div>
+
+          {isFocusArea && (
+            <p style={{ fontSize: 12, color: 'rgba(249,115,22,0.7)', marginBottom: 12, lineHeight: 1.5 }}>
+              You marked {subject.shortTitle} as a focus area. Mastering this topic will strengthen your preparation.
+            </p>
+          )}
 
           {/* Explore on Map link */}
           <button

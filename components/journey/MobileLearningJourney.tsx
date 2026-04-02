@@ -8,6 +8,7 @@ import {
   type NodeState,
   type CrownLevel,
   type DailyGoalTier,
+  type UserProfile,
   DEFAULT_PROGRESS,
   DEFAULT_TOPIC_PROGRESS,
   XP_PER_CORRECT,
@@ -15,9 +16,9 @@ import {
   XP_PER_CROWN_LEVEL,
   QUESTIONS_PER_CROWN,
   DAILY_GOALS,
+  PROFILE_STORAGE_KEY,
   checkAchievements,
 } from '@/components/journey/types'
-import { StatsHeader, STATS_HEADER_HEIGHT } from '@/components/journey/StatsHeader'
 import JourneyPath from '@/components/journey/JourneyPath'
 import PracticeSheet from '@/components/journey/PracticeSheet'
 import HomeTab from '@/components/journey/HomeTab'
@@ -26,6 +27,7 @@ import PracticeTab from '@/components/journey/PracticeTab'
 import ProfileTab from '@/components/journey/ProfileTab'
 import DailyGoalModal from '@/components/journey/DailyGoalModal'
 import AchievementToast from '@/components/journey/AchievementToast'
+import OnboardingFlow, { hasCompletedOnboarding } from '@/components/journey/OnboardingFlow'
 
 // ── LocalStorage ──────────────────────────────────────────────────────────────
 
@@ -194,6 +196,12 @@ export function MobileLearningJourney() {
   // Achievement toast queue
   const [achievementQueue, setAchievementQueue] = useState<string[]>([])
 
+  // User profile
+  const [profile, setProfile] = useState<UserProfile | null>(null)
+
+  // Onboarding
+  const [showOnboarding, setShowOnboarding] = useState(false)
+
   const [mounted, setMounted] = useState(false)
 
   // Load progress on mount
@@ -205,6 +213,17 @@ export function MobileLearningJourney() {
     loaded = resetDailyIfNeeded(loaded)
     setProgress(loaded)
     setMounted(true)
+
+    // Load user profile
+    try {
+      const rawProfile = localStorage.getItem(PROFILE_STORAGE_KEY)
+      if (rawProfile) setProfile(JSON.parse(rawProfile))
+    } catch {}
+
+    // Show onboarding for first-time users
+    if (!hasCompletedOnboarding()) {
+      setShowOnboarding(true)
+    }
   }, [])
 
   // Save progress on change
@@ -430,6 +449,26 @@ export function MobileLearningJourney() {
     setAchievementQueue(prev => prev.slice(1))
   }, [])
 
+  const handleOnboardingComplete = useCallback((userProfile: UserProfile) => {
+    setProfile(userProfile)
+    setProgress(prev => ({ ...prev, dailyGoalTier: userProfile.dailyGoalTier }))
+    try { localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(userProfile)) } catch {}
+    setShowOnboarding(false)
+  }, [])
+
+  const handleProfileUpdate = useCallback((updatedProfile: UserProfile) => {
+    setProfile(updatedProfile)
+    try { localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(updatedProfile)) } catch {}
+  }, [])
+
+  const handleResetJourney = useCallback(() => {
+    setProgress(DEFAULT_PROGRESS)
+    try {
+      localStorage.removeItem(STORAGE_KEY)
+      localStorage.removeItem('upsc-journey-v1')
+    } catch {}
+  }, [])
+
   // ── Loading state ──────────────────────────────────────────────────────────
 
   if (!mounted) {
@@ -441,6 +480,12 @@ export function MobileLearningJourney() {
         </div>
       </div>
     )
+  }
+
+  // ── Onboarding ─────────────────────────────────────────────────────────────
+
+  if (showOnboarding) {
+    return <OnboardingFlow onComplete={handleOnboardingComplete} />
   }
 
   // ── Render ─────────────────────────────────────────────────────────────────
@@ -634,6 +679,7 @@ export function MobileLearningJourney() {
               topicStates={enrichedTopicStates}
               onTopicTap={handleNodeTap}
               onNavigateToPath={() => setActiveTab('path')}
+              profile={profile}
             />
           </div>
         )}
@@ -646,6 +692,8 @@ export function MobileLearningJourney() {
               activeSubjectId={activeSubjectId}
               onNodeTap={handleNodeTap}
               onSubjectChange={setActiveSubjectId}
+              profile={profile}
+              studyCalendar={progress.studyCalendar}
             />
           </div>
         )}
@@ -659,6 +707,7 @@ export function MobileLearningJourney() {
               onTopicSelect={handleNodeTap}
               onStartQuickMix={handleStartQuickMix}
               onNavigateToPath={() => setActiveTab('path')}
+              profile={profile}
             />
           </div>
         )}
@@ -669,6 +718,9 @@ export function MobileLearningJourney() {
               progress={progress}
               subjects={UPSC_SYLLABUS}
               onDailyGoalClick={() => setGoalModalOpen(true)}
+              profile={profile}
+              onProfileUpdate={handleProfileUpdate}
+              onResetJourney={handleResetJourney}
             />
           </div>
         )}
@@ -683,6 +735,7 @@ export function MobileLearningJourney() {
           onClose={() => setDetailTarget(null)}
           onStartPractice={handleDetailStartPractice}
           onOpenMap={handleOpenMap}
+          profile={profile}
         />
       )}
 
@@ -716,6 +769,7 @@ export function MobileLearningJourney() {
           onDone={handleAchievementDone}
         />
       )}
+
     </div>
   )
 }

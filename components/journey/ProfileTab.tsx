@@ -5,9 +5,11 @@ import { UPSC_SYLLABUS, TOTAL_TOPICS } from '@/data/syllabus'
 import type { LearningSubject } from '@/data/syllabus'
 import {
   type JourneyProgress,
+  type UserProfile,
   DEFAULT_TOPIC_PROGRESS,
   ACHIEVEMENTS,
   DAILY_GOALS,
+  PREP_STAGE_CONFIG,
 } from './types'
 
 // ── Props ───────────────────────────────────────────────────────────────────────
@@ -16,6 +18,9 @@ interface ProfileTabProps {
   progress: JourneyProgress
   subjects: LearningSubject[]
   onDailyGoalClick: () => void
+  profile: UserProfile | null
+  onProfileUpdate?: (profile: UserProfile) => void
+  onResetJourney?: () => void
 }
 
 // ── Helpers ─────────────────────────────────────────────────────────────────────
@@ -28,10 +33,17 @@ const ELEVATED = { background: 'rgba(255,255,255,0.06)', backdropFilter: 'blur(2
 
 // ── Component ───────────────────────────────────────────────────────────────────
 
-export default function ProfileTab({ progress, subjects, onDailyGoalClick }: ProfileTabProps) {
+export default function ProfileTab({ progress, subjects, onDailyGoalClick, profile, onProfileUpdate, onResetJourney }: ProfileTabProps) {
   const level = getLevel(progress.totalXp)
   const xpInLevel = getXpInLevel(progress.totalXp)
   const [showAllAchievements, setShowAllAchievements] = useState(false)
+  const [editMode, setEditMode] = useState(false)
+  const [editName, setEditName] = useState(profile?.name || '')
+  const [editExamYear, setEditExamYear] = useState<number>(profile?.examYear || 2026)
+  const [editPrepStage, setEditPrepStage] = useState<string>(profile?.prepStage || 'beginner')
+  const [editWeakSubjects, setEditWeakSubjects] = useState<string[]>(profile?.weakSubjects || [])
+  const [editStrongSubjects, setEditStrongSubjects] = useState<string[]>(profile?.strongSubjects || [])
+  const [showResetConfirm, setShowResetConfirm] = useState(false)
 
   const syllabus = subjects.length > 0 ? subjects : UPSC_SYLLABUS
 
@@ -95,8 +107,34 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick }: Pro
         }}>
           🎓
         </div>
-        <p style={{ fontSize: 22, fontWeight: 800, color: 'rgba(255,255,255,0.92)', margin: '14px 0 0' }}>Level {level}</p>
-        <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)', margin: '4px 0 0' }}>UPSC Aspirant</p>
+        {profile ? (
+          <>
+            <p style={{ fontSize: 22, fontWeight: 800, color: 'rgba(255,255,255,0.92)', margin: '14px 0 0' }}>{profile.name}</p>
+            <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.50)', margin: '4px 0 0' }}>
+              Level {level} · UPSC CSE {profile.examYear}
+            </p>
+            <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.40)', margin: '4px 0 0' }}>
+              {PREP_STAGE_CONFIG[profile.prepStage].icon} {PREP_STAGE_CONFIG[profile.prepStage].label}
+            </p>
+            {(() => {
+              // Exam countdown: UPSC CSE Prelims are typically in late May
+              const examDate = new Date(`${profile.examYear}-05-25`)
+              const now = new Date()
+              const diffMs = examDate.getTime() - now.getTime()
+              const daysRemaining = Math.max(0, Math.ceil(diffMs / 86400000))
+              return daysRemaining > 0 ? (
+                <p style={{ fontSize: 11, color: '#818cf8', margin: '6px 0 0', fontWeight: 600 }}>
+                  {daysRemaining} days remaining
+                </p>
+              ) : null
+            })()}
+          </>
+        ) : (
+          <>
+            <p style={{ fontSize: 22, fontWeight: 800, color: 'rgba(255,255,255,0.92)', margin: '14px 0 0' }}>Level {level}</p>
+            <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)', margin: '4px 0 0' }}>UPSC Aspirant</p>
+          </>
+        )}
         {/* XP Bar */}
         <div style={{ width: '100%', maxWidth: 240, marginTop: 16 }}>
           <div style={{ height: 8, borderRadius: 9999, overflow: 'hidden', background: 'rgba(255,255,255,0.06)' }}>
@@ -110,6 +148,60 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick }: Pro
           </p>
         </div>
       </div>
+
+      {/* ── Your Focus ── */}
+      {profile && (profile.weakSubjects.length > 0 || profile.strongSubjects.length > 0) && (() => {
+        const syllabusMap = new Map(syllabus.map(s => [s.id, s]))
+        const focusSubjects = profile.weakSubjects.map(id => syllabusMap.get(id)).filter(Boolean) as LearningSubject[]
+        const strongSubjects = profile.strongSubjects.map(id => syllabusMap.get(id)).filter(Boolean) as LearningSubject[]
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            {focusSubjects.length > 0 && (
+              <div>
+                <p style={{ fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.85)', marginBottom: 10 }}>Focus Areas</p>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                  {focusSubjects.map(s => (
+                    <div
+                      key={s.id}
+                      style={{
+                        display: 'inline-flex', alignItems: 'center', gap: 6,
+                        padding: '8px 14px', borderRadius: 9999,
+                        background: `${s.color}15`,
+                        border: `1.5px solid ${s.color}50`,
+                        boxShadow: `0 0 12px ${s.color}20`,
+                      }}
+                    >
+                      <span style={{ fontSize: 14 }}>{s.icon}</span>
+                      <span style={{ fontSize: 12, fontWeight: 600, color: s.color }}>{s.shortTitle}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            {strongSubjects.length > 0 && (
+              <div>
+                <p style={{ fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.50)', marginBottom: 10 }}>Strengths</p>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                  {strongSubjects.map(s => (
+                    <div
+                      key={s.id}
+                      style={{
+                        display: 'inline-flex', alignItems: 'center', gap: 6,
+                        padding: '8px 14px', borderRadius: 9999,
+                        background: 'rgba(255,255,255,0.04)',
+                        border: '1px solid rgba(255,255,255,0.08)',
+                      }}
+                    >
+                      <span style={{ fontSize: 14 }}>{s.icon}</span>
+                      <span style={{ fontSize: 12, fontWeight: 500, color: 'rgba(255,255,255,0.45)' }}>{s.shortTitle}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )
+      })()}
 
       {/* ── Bento Grid 2x2 ── */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
@@ -313,6 +405,223 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick }: Pro
             >
               {showAllAchievements ? 'Show Less' : 'View All →'}
             </button>
+          )}
+        </div>
+      </div>
+
+      {/* ── Settings ── */}
+      <div>
+        <p style={{ fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.85)', marginBottom: 10 }}>Settings</p>
+        <div style={{ ...GLASS, padding: 16, display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {profile && onProfileUpdate && !editMode && (
+            <button
+              onClick={() => {
+                setEditName(profile.name)
+                setEditExamYear(profile.examYear)
+                setEditPrepStage(profile.prepStage)
+                setEditWeakSubjects([...profile.weakSubjects])
+                setEditStrongSubjects([...profile.strongSubjects])
+                setEditMode(true)
+              }}
+              style={{
+                display: 'flex', alignItems: 'center', gap: 10, width: '100%',
+                padding: '12px 14px', borderRadius: 14,
+                background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)',
+                cursor: 'pointer', textAlign: 'left',
+              }}
+            >
+              <span style={{ fontSize: 16 }}>&#9998;</span>
+              <span style={{ fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.70)', flex: 1 }}>Edit Profile</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style={{ opacity: 0.3 }}>
+                <path d="M9 6l6 6-6 6" stroke="rgba(255,255,255,0.55)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          )}
+
+          {editMode && profile && onProfileUpdate && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+              {/* Name */}
+              <div>
+                <label style={{ fontSize: 11, fontWeight: 600, color: 'rgba(255,255,255,0.35)', display: 'block', marginBottom: 6 }}>Name</label>
+                <input
+                  type="text"
+                  value={editName}
+                  onChange={e => setEditName(e.target.value)}
+                  maxLength={24}
+                  style={{
+                    width: '100%', background: 'rgba(255,255,255,0.04)',
+                    border: '1px solid rgba(255,255,255,0.10)', borderRadius: 10,
+                    padding: '10px 12px', color: 'rgba(255,255,255,0.90)',
+                    fontSize: 14, fontWeight: 600, outline: 'none',
+                  }}
+                />
+              </div>
+
+              {/* Exam Year */}
+              <div>
+                <label style={{ fontSize: 11, fontWeight: 600, color: 'rgba(255,255,255,0.35)', display: 'block', marginBottom: 6 }}>Exam Year</label>
+                <div style={{ display: 'flex', gap: 8 }}>
+                  {[2026, 2027, 2028, 2029].map(y => (
+                    <button
+                      key={y}
+                      onClick={() => setEditExamYear(y)}
+                      style={{
+                        flex: 1, padding: '8px 0', borderRadius: 10, fontSize: 13, fontWeight: 600,
+                        background: editExamYear === y ? 'rgba(99,102,241,0.15)' : 'rgba(255,255,255,0.03)',
+                        border: editExamYear === y ? '1px solid rgba(99,102,241,0.4)' : '1px solid rgba(255,255,255,0.06)',
+                        color: editExamYear === y ? '#a5b4fc' : 'rgba(255,255,255,0.45)',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      {y}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Prep Stage */}
+              <div>
+                <label style={{ fontSize: 11, fontWeight: 600, color: 'rgba(255,255,255,0.35)', display: 'block', marginBottom: 6 }}>Prep Stage</label>
+                <div style={{ display: 'flex', gap: 8 }}>
+                  {(['beginner', 'intermediate', 'advanced'] as const).map(stage => (
+                    <button
+                      key={stage}
+                      onClick={() => setEditPrepStage(stage)}
+                      style={{
+                        flex: 1, padding: '8px 6px', borderRadius: 10, fontSize: 11, fontWeight: 600,
+                        background: editPrepStage === stage ? 'rgba(99,102,241,0.15)' : 'rgba(255,255,255,0.03)',
+                        border: editPrepStage === stage ? '1px solid rgba(99,102,241,0.4)' : '1px solid rgba(255,255,255,0.06)',
+                        color: editPrepStage === stage ? '#a5b4fc' : 'rgba(255,255,255,0.45)',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      {PREP_STAGE_CONFIG[stage].icon} {PREP_STAGE_CONFIG[stage].label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Focus Areas */}
+              <div>
+                <label style={{ fontSize: 11, fontWeight: 600, color: 'rgba(255,255,255,0.35)', display: 'block', marginBottom: 6 }}>Focus Areas (weak subjects)</label>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                  {syllabus.map(s => {
+                    const isWeak = editWeakSubjects.includes(s.id)
+                    return (
+                      <button
+                        key={s.id}
+                        onClick={() => {
+                          if (isWeak) {
+                            setEditWeakSubjects(editWeakSubjects.filter(id => id !== s.id))
+                          } else {
+                            setEditWeakSubjects([...editWeakSubjects, s.id])
+                            setEditStrongSubjects(editStrongSubjects.filter(id => id !== s.id))
+                          }
+                        }}
+                        style={{
+                          display: 'inline-flex', alignItems: 'center', gap: 4,
+                          padding: '6px 10px', borderRadius: 9999, fontSize: 11, fontWeight: 600,
+                          background: isWeak ? `${s.color}15` : 'rgba(255,255,255,0.03)',
+                          border: isWeak ? `1px solid ${s.color}50` : '1px solid rgba(255,255,255,0.06)',
+                          color: isWeak ? s.color : 'rgba(255,255,255,0.45)',
+                          cursor: 'pointer',
+                        }}
+                      >
+                        {s.icon} {s.shortTitle}
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+
+              {/* Save / Cancel */}
+              <div style={{ display: 'flex', gap: 10, marginTop: 4 }}>
+                <button
+                  onClick={() => setEditMode(false)}
+                  style={{
+                    flex: 1, padding: '10px 0', borderRadius: 12, fontSize: 13, fontWeight: 600,
+                    background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)',
+                    color: 'rgba(255,255,255,0.55)', cursor: 'pointer',
+                  }}
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={() => {
+                    const updated: UserProfile = {
+                      ...profile,
+                      name: editName.trim() || profile.name,
+                      examYear: editExamYear as UserProfile['examYear'],
+                      prepStage: editPrepStage as UserProfile['prepStage'],
+                      weakSubjects: editWeakSubjects,
+                      strongSubjects: editStrongSubjects,
+                    }
+                    onProfileUpdate(updated)
+                    setEditMode(false)
+                  }}
+                  style={{
+                    flex: 1, padding: '10px 0', borderRadius: 12, fontSize: 13, fontWeight: 700,
+                    background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+                    border: 'none', color: '#fff', cursor: 'pointer',
+                    boxShadow: '0 4px 16px rgba(99,102,241,0.3)',
+                  }}
+                >
+                  Save Changes
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Reset Journey */}
+          {onResetJourney && !showResetConfirm && (
+            <button
+              onClick={() => setShowResetConfirm(true)}
+              style={{
+                display: 'flex', alignItems: 'center', gap: 10, width: '100%',
+                padding: '12px 14px', borderRadius: 14,
+                background: 'rgba(239,68,68,0.04)', border: '1px solid rgba(239,68,68,0.10)',
+                cursor: 'pointer', textAlign: 'left',
+              }}
+            >
+              <span style={{ fontSize: 16 }}>&#128260;</span>
+              <span style={{ fontSize: 13, fontWeight: 600, color: 'rgba(239,68,68,0.65)', flex: 1 }}>Reset Journey</span>
+            </button>
+          )}
+
+          {showResetConfirm && onResetJourney && (
+            <div style={{
+              padding: 16, borderRadius: 14,
+              background: 'rgba(239,68,68,0.06)', border: '1px solid rgba(239,68,68,0.15)',
+            }}>
+              <p style={{ fontSize: 13, fontWeight: 600, color: 'rgba(239,68,68,0.85)', margin: '0 0 4px' }}>
+                Reset all progress?
+              </p>
+              <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.40)', margin: '0 0 12px' }}>
+                This will clear your XP, crowns, streaks, and achievements. This cannot be undone.
+              </p>
+              <div style={{ display: 'flex', gap: 10 }}>
+                <button
+                  onClick={() => setShowResetConfirm(false)}
+                  style={{
+                    flex: 1, padding: '10px 0', borderRadius: 10, fontSize: 12, fontWeight: 600,
+                    background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)',
+                    color: 'rgba(255,255,255,0.55)', cursor: 'pointer',
+                  }}
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={() => { onResetJourney(); setShowResetConfirm(false) }}
+                  style={{
+                    flex: 1, padding: '10px 0', borderRadius: 10, fontSize: 12, fontWeight: 700,
+                    background: 'rgba(239,68,68,0.2)', border: '1px solid rgba(239,68,68,0.3)',
+                    color: '#ef4444', cursor: 'pointer',
+                  }}
+                >
+                  Reset Everything
+                </button>
+              </div>
+            </div>
           )}
         </div>
       </div>
