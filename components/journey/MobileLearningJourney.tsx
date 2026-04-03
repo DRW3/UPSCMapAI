@@ -461,33 +461,22 @@ export function MobileLearningJourney() {
     setPracticeTarget(null)
   }, [practiceTarget])
 
-  // Find next available topic helper
+  // Find next sequential topic in syllabus (regardless of state — it will unlock after completion)
   const findNextTopic = useCallback((currentTopicId: string | undefined): { topic: LearningTopic; subject: LearningSubject } | null => {
+    if (!currentTopicId) return null
     let passedCurrent = false
     for (const subject of UPSC_SYLLABUS) {
       for (const unit of subject.units) {
         for (const topic of unit.topics) {
           if (topic.id === currentTopicId) { passedCurrent = true; continue }
-          if (!passedCurrent) continue
-          const tp = topicStates[topic.id]
-          if (tp && (tp.state === 'available' || tp.state === 'started')) {
+          if (passedCurrent) {
             return { topic, subject }
           }
         }
       }
     }
-    // Wrap around
-    for (const subject of UPSC_SYLLABUS) {
-      for (const unit of subject.units) {
-        for (const topic of unit.topics) {
-          if (topic.id === currentTopicId) continue
-          const tp = topicStates[topic.id]
-          if (tp && tp.state === 'available') return { topic, subject }
-        }
-      }
-    }
     return null
-  }, [topicStates])
+  }, [])
 
   // Find and open next available topic after practice — with celebration overlay
   const handleNextTopic = useCallback(() => {
@@ -531,21 +520,25 @@ export function MobileLearningJourney() {
 
     // After a brief delay for scroll animation, open the detail sheet
     setTimeout(() => {
-      // Mark as started if available
-      const tp = topicStates[data.nextTopic.id]
-      if (tp && tp.state === 'available') {
-        setProgress(prev => ({
-          ...prev,
-          topics: {
-            ...prev.topics,
-            [data.nextTopic.id]: {
-              ...(prev.topics[data.nextTopic.id] || DEFAULT_TOPIC_PROGRESS),
-              state: 'started' as const,
+      // Mark as started (use functional update to read latest state)
+      setProgress(prev => {
+        const existing = prev.topics[data.nextTopic.id]
+        const currentState = existing?.state
+        if (currentState === 'available' || currentState === 'locked' || !currentState) {
+          return {
+            ...prev,
+            topics: {
+              ...prev.topics,
+              [data.nextTopic.id]: {
+                ...(existing || DEFAULT_TOPIC_PROGRESS),
+                state: 'started' as const,
+              },
             },
-          },
-          todayTopicsRead: (prev.todayTopicsRead || 0) + 1,
-        }))
-      }
+            todayTopicsRead: (prev.todayTopicsRead || 0) + 1,
+          }
+        }
+        return prev
+      })
 
       // Open detail sheet for the next topic
       setDetailTarget({ topic: data.nextTopic, subject: data.nextSubject })
@@ -553,7 +546,7 @@ export function MobileLearningJourney() {
       // Clear newly unlocked after animation has played
       setTimeout(() => setNewlyUnlockedId(null), 3000)
     }, 800)
-  }, [celebrationData, topicStates])
+  }, [celebrationData])
 
   const handleHeartLost = useCallback(() => {
     setProgress(prev => ({
