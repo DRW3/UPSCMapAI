@@ -223,6 +223,9 @@ export function MobileLearningJourney() {
   // PadhAI Pro paywall
   const [paywallReason, setPaywallReason] = useState<'topics' | 'hearts' | null>(null)
 
+  // Real PYQ counts from database
+  const [pyqCounts, setPyqCounts] = useState<Record<string, number>>({})
+
   const [mounted, setMounted] = useState(false)
 
   // Load progress on mount
@@ -245,6 +248,21 @@ export function MobileLearningJourney() {
     if (!hasCompletedOnboarding()) {
       setShowOnboarding(true)
     }
+
+    // Fetch real PYQ counts from database (cached 1hr server-side)
+    const cachedCounts = localStorage.getItem('upsc-pyq-counts')
+    if (cachedCounts) {
+      try { setPyqCounts(JSON.parse(cachedCounts)) } catch {}
+    }
+    fetch('/api/journey/pyq-counts')
+      .then(r => r.json())
+      .then(d => {
+        if (d.counts) {
+          setPyqCounts(d.counts)
+          localStorage.setItem('upsc-pyq-counts', JSON.stringify(d.counts))
+        }
+      })
+      .catch(() => {})
   }, [])
 
   // Save progress on change
@@ -862,6 +880,7 @@ export function MobileLearningJourney() {
               newlyUnlockedId={newlyUnlockedId ?? undefined}
               isPro={progress.isPro}
               freeTopicIds={progress.freeTopicsOpened}
+              pyqCounts={pyqCounts}
             />
           </div>
         )}

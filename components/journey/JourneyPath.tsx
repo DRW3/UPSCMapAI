@@ -23,6 +23,7 @@ export interface JourneyPathProps {
   newlyUnlockedId?: string
   isPro?: boolean
   freeTopicIds?: string[]  // topic IDs the user has opened for free
+  pyqCounts?: Record<string, number>
 }
 
 interface FlatTopicNode {
@@ -313,12 +314,13 @@ function UnitHeader({ data }: { data: UnitHeaderData }) {
 // TopicCard (the core card-based design)
 // ---------------------------------------------------------------------------
 
-function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked, needsPro }: {
+function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked, needsPro, dbQuestionCount }: {
   node: FlatTopicNode
   onTap: () => void
   isFirstAvailable: boolean
   isNewlyUnlocked?: boolean
   needsPro?: boolean
+  dbQuestionCount?: number
 }) {
   const { topic, subject, state, progress: tp, globalIndex } = node
   const crown = tp.crownLevel
@@ -359,10 +361,10 @@ function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked, needsPro }:
     }
   })()
 
-  // Question count based on frequency + remaining to practice
-  const totalQs = topic.pyqFrequency === 'high' ? 20 : topic.pyqFrequency === 'medium' ? 10 : 5
+  // Question count from database + remaining to practice
+  const dbCount = dbQuestionCount ?? 0
   const answered = tp.questionsAnswered || 0
-  const remaining = Math.max(0, totalQs - answered)
+  const remaining = Math.max(0, dbCount - answered)
   const progressPct = state === 'started' && crown > 0 ? (crown / 5) * 100 : 0
 
   // Path dot vertical connector is rendered by the parent; here we render the card
@@ -623,22 +625,22 @@ function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked, needsPro }:
               ))}
             </div>
 
-            {/* Question count */}
+            {/* Question count from database */}
             <span style={{
               fontSize: 10, fontWeight: 600,
-              color: 'rgba(255,255,255,0.50)',
-              background: 'rgba(255,255,255,0.05)',
-              border: '1px solid rgba(255,255,255,0.08)',
+              color: dbCount > 0 ? 'rgba(255,255,255,0.55)' : 'rgba(255,255,255,0.25)',
+              background: dbCount > 0 ? 'rgba(255,255,255,0.05)' : 'rgba(255,255,255,0.02)',
+              border: `1px solid ${dbCount > 0 ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0.04)'}`,
               padding: '1px 7px',
               borderRadius: 6,
               lineHeight: 1.4,
               display: 'flex', alignItems: 'center', gap: 3,
             }}>
-              <span style={{ fontSize: 10 }}>📝</span> {totalQs} Qs
+              <span style={{ fontSize: 10 }}>📝</span> {dbCount} {dbCount === 1 ? 'Q' : 'Qs'}
             </span>
 
             {/* Remaining to practice */}
-            {answered > 0 && (
+            {dbCount > 0 && answered > 0 && (
               <span style={{
                 fontSize: 10, fontWeight: 600,
                 color: remaining === 0 ? '#34d399' : '#fbbf24',
@@ -752,6 +754,7 @@ export default function JourneyPath({
   newlyUnlockedId,
   isPro,
   freeTopicIds,
+  pyqCounts,
 }: JourneyPathProps) {
   const scrollRef = useRef<HTMLDivElement>(null)
   const firstAvailableRef = useRef<HTMLDivElement>(null)
@@ -933,6 +936,7 @@ export default function JourneyPath({
                   isFirstAvailable={node.isFirstAvailable}
                   isNewlyUnlocked={isNewlyUnlocked}
                   needsPro={nodeNeedsPro}
+                  dbQuestionCount={pyqCounts?.[node.topic.id] ?? 0}
                 />
               </div>
             )
