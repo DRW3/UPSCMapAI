@@ -44,6 +44,9 @@ export default function TopicDetailSheet({
   const [notes, setNotes] = useState<StudyNotes | null>(null)
   const [notesLoading, setNotesLoading] = useState(true)
 
+  // Topic image from Wikimedia Commons (copyright-free)
+  const [imageUrl, setImageUrl] = useState<string | null>(null)
+
   // Drag-to-dismiss
   const dragStartY = useRef(0)
   const dragOffset = useRef(0)
@@ -83,6 +86,34 @@ export default function TopicDetailSheet({
       })
       .catch(() => setNotesLoading(false))
   }, [topic.id, subject.id, topic.title, topic.concepts])
+
+  // Fetch topic image from Wikipedia API (Wikimedia Commons, CC-licensed)
+  useEffect(() => {
+    const imgCacheKey = `upsc-img-${topic.id}`
+    const cachedImg = localStorage.getItem(imgCacheKey)
+    if (cachedImg) {
+      setImageUrl(cachedImg === 'none' ? null : cachedImg)
+      return
+    }
+
+    const wikiTitle = topic.title.replace(/ /g, '_')
+    fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(wikiTitle)}`)
+      .then(r => r.json())
+      .then(data => {
+        const src = data?.thumbnail?.source || data?.originalimage?.source || null
+        if (src) {
+          // Get a larger version by adjusting the width parameter
+          const largerSrc = src.replace(/\/\d+px-/, '/600px-')
+          setImageUrl(largerSrc)
+          localStorage.setItem(imgCacheKey, largerSrc)
+        } else {
+          localStorage.setItem(imgCacheKey, 'none')
+        }
+      })
+      .catch(() => {
+        localStorage.setItem(imgCacheKey, 'none')
+      })
+  }, [topic.id, topic.title])
 
   const handleDismiss = useCallback(() => {
     setDismissing(true)
@@ -360,6 +391,44 @@ export default function TopicDetailSheet({
             )}
           </div>
 
+          {/* ── Topic Image (Wikimedia Commons, CC-licensed) ── */}
+          {imageUrl && (
+            <div style={{
+              margin: '0 20px 16px',
+              borderRadius: 16,
+              overflow: 'hidden',
+              border: '1px solid rgba(255,255,255,0.08)',
+              position: 'relative',
+              animation: 'tds-cardIn 0.4s ease 0.12s both',
+            }}>
+              <img
+                src={imageUrl}
+                alt={topic.title}
+                style={{
+                  width: '100%',
+                  height: 180,
+                  objectFit: 'cover',
+                  display: 'block',
+                }}
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).style.display = 'none'
+                }}
+              />
+              <div style={{
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                padding: '16px 12px 6px',
+                background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)',
+              }}>
+                <span style={{ fontSize: 9, color: 'rgba(255,255,255,0.4)', fontWeight: 500 }}>
+                  Image: Wikimedia Commons (CC)
+                </span>
+              </div>
+            </div>
+          )}
+
           {/* ── Study Notes Section ── */}
           <div style={{ padding: '0 20px', animation: 'tds-cardIn 0.35s ease 0.15s both' }}>
 
@@ -536,45 +605,6 @@ export default function TopicDetailSheet({
                   </p>
                 )}
 
-                {/* Wikipedia Link */}
-                <a
-                  href={`https://en.wikipedia.org/wiki/${encodeURIComponent(topic.title.replace(/ /g, '_'))}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 10,
-                    padding: '12px 16px',
-                    borderRadius: 14,
-                    marginBottom: 16,
-                    background: 'rgba(255,255,255,0.025)',
-                    border: '1px solid rgba(255,255,255,0.06)',
-                    textDecoration: 'none',
-                  }}
-                >
-                  <span style={{ fontSize: 18 }}>{'\uD83D\uDCDA'}</span>
-                  <div style={{ flex: 1 }}>
-                    <p style={{ fontSize: 13, fontWeight: 600, color: '#818cf8', margin: 0 }}>
-                      Read more on Wikipedia
-                    </p>
-                    <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', margin: '2px 0 0' }}>
-                      Free, open-source reference
-                    </p>
-                  </div>
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    stroke="#818cf8"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    opacity={0.5}
-                  >
-                    <path d="M6 4l4 4-4 4" />
-                  </svg>
-                </a>
               </>
             )}
 
