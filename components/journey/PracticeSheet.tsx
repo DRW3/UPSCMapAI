@@ -1266,7 +1266,7 @@ function ScoreScreen({
       <div className="w-full max-w-[280px] flex flex-col gap-3" style={{ animation: 'ps-xpCount 0.4s ease 1.2s both' }}>
         {onNextTopic && (
           <button
-            onClick={onNextTopic}
+            onClick={() => { onFinish(); setTimeout(onNextTopic, 100) }}
             className="w-full py-4 rounded-2xl text-[15px] font-extrabold text-white tracking-wide transition-all hover:scale-[1.01] active:scale-[0.97]"
             style={{
               background: `linear-gradient(135deg, ${color}, ${color}cc)`,

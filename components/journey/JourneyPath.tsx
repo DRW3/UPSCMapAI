@@ -52,29 +52,38 @@ const CONNECTOR_W = 20  // horizontal line from dot to card
 
 const KEYFRAMES = `
 @keyframes jp-fadeUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 @keyframes jp-pulse {
-  0%, 100% { box-shadow: 0 0 4px 2px rgba(99,102,241,0.3); }
-  50%      { box-shadow: 0 0 12px 6px rgba(99,102,241,0.5); }
+  0%, 100% { box-shadow: 0 0 4px 2px rgba(99,102,241,0.3); transform: scale(1); }
+  50%      { box-shadow: 0 0 14px 6px rgba(99,102,241,0.5); transform: scale(1.15); }
 }
 @keyframes jp-shimmer {
   0%   { background-position: -200% 0; }
   100% { background-position: 200% 0; }
 }
 @keyframes jp-pathGlow {
-  0%, 100% { opacity: 0.7; }
-  50%      { opacity: 1; }
+  0%, 100% { opacity: 0.6; filter: brightness(1); }
+  50%      { opacity: 1; filter: brightness(1.3); }
 }
 @keyframes jp-dotFlow {
-  0%   { transform: translateY(-6px); opacity: 0; }
+  0%   { transform: translateY(-8px); opacity: 0; }
   50%  { opacity: 1; }
-  100% { transform: translateY(6px); opacity: 0; }
+  100% { transform: translateY(8px); opacity: 0; }
 }
 @keyframes jp-borderPulse {
-  0%, 100% { border-color: rgba(var(--pulse-rgb), 0.25); box-shadow: 0 0 12px 0 rgba(var(--pulse-rgb), 0.08); }
-  50%      { border-color: rgba(var(--pulse-rgb), 0.50); box-shadow: 0 0 20px 2px rgba(var(--pulse-rgb), 0.18); }
+  0%, 100% { border-color: rgba(var(--pulse-rgb), 0.25); box-shadow: 0 0 12px 0 rgba(var(--pulse-rgb), 0.08); transform: scale(1); }
+  50%      { border-color: rgba(var(--pulse-rgb), 0.55); box-shadow: 0 0 24px 4px rgba(var(--pulse-rgb), 0.20); transform: scale(1.005); }
+}
+@keyframes jp-completedPop {
+  0%   { transform: scale(0.95); opacity: 0.7; }
+  60%  { transform: scale(1.02); }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes jp-slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 `
 
@@ -338,8 +347,8 @@ function TopicCard({ node, onTap, isFirstAvailable }: {
         display: 'flex',
         alignItems: 'center',
         paddingLeft: PATH_LEFT - DOT_SIZE / 2,
-        animation: `jp-fadeUp 400ms cubic-bezier(0.16,1,0.3,1) both`,
-        animationDelay: `${Math.min(globalIndex * 25, 400)}ms`,
+        animation: `jp-fadeUp 500ms cubic-bezier(0.16,1,0.3,1) both`,
+        animationDelay: `${Math.min(globalIndex * 40, 600)}ms`,
         position: 'relative',
       }}
     >
@@ -360,7 +369,11 @@ function TopicCard({ node, onTap, isFirstAvailable }: {
               : state === 'completed'
                 ? '0 0 6px 2px rgba(34,211,153,0.3)'
                 : 'none',
-          animation: state === 'available' && isFirstAvailable ? 'jp-pulse 2s ease-in-out infinite' : undefined,
+          animation: state === 'available' && isFirstAvailable
+            ? 'jp-pulse 2s ease-in-out infinite'
+            : state === 'available'
+              ? 'jp-pulse 3s ease-in-out infinite'
+              : undefined,
           transition: 'all 300ms ease-out',
         }}
       />
@@ -419,7 +432,7 @@ function TopicCard({ node, onTap, isFirstAvailable }: {
                 ? '0 0 8px rgba(34,211,153,0.08)'
                 : 'none',
           cursor: isInteractive ? 'pointer' : 'default',
-          transition: 'all 200ms ease-out',
+          transition: 'all 300ms cubic-bezier(0.16, 1, 0.3, 1)',
           position: 'relative',
           overflow: 'hidden',
           userSelect: 'none',

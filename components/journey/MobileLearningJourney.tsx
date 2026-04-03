@@ -449,12 +449,25 @@ export function MobileLearningJourney() {
 
   // Find and open next available topic after practice
   const handleNextTopic = useCallback(() => {
-    // Close practice sheet first
+    const currentTopicId = practiceTarget?.topic.id
+    // Close practice sheet
     setPracticeTarget(null)
-    // Find next available or started topic
+    // Switch to path tab briefly for visual transition
+    setActiveTab('path')
+
+    // Find next available topic (skip the one just practiced)
+    let foundNext = false
+    let passedCurrent = false
+
     for (const subject of UPSC_SYLLABUS) {
       for (const unit of subject.units) {
         for (const topic of unit.topics) {
+          if (topic.id === currentTopicId) {
+            passedCurrent = true
+            continue
+          }
+          if (!passedCurrent) continue
+
           const tp = topicStates[topic.id]
           if (tp && (tp.state === 'available' || tp.state === 'started')) {
             // Mark as started if available
@@ -471,18 +484,46 @@ export function MobileLearningJourney() {
                 todayTopicsRead: (prev.todayTopicsRead || 0) + 1,
               }))
             }
-            // Open detail sheet for next topic
+            // Brief delay to show path tab transition, then open detail
             setTimeout(() => {
               setDetailTarget({ topic, subject })
-            }, 400)
+            }, 800)
+            foundNext = true
             return
           }
         }
       }
     }
-    // No next topic found, switch to path tab
-    setActiveTab('path')
-  }, [topicStates])
+
+    // If no topic found after current, wrap around and check from start
+    if (!foundNext) {
+      for (const subject of UPSC_SYLLABUS) {
+        for (const unit of subject.units) {
+          for (const topic of unit.topics) {
+            if (topic.id === currentTopicId) continue
+            const tp = topicStates[topic.id]
+            if (tp && tp.state === 'available') {
+              setProgress(prev => ({
+                ...prev,
+                topics: {
+                  ...prev.topics,
+                  [topic.id]: {
+                    ...(prev.topics[topic.id] || DEFAULT_TOPIC_PROGRESS),
+                    state: 'started' as const,
+                  },
+                },
+                todayTopicsRead: (prev.todayTopicsRead || 0) + 1,
+              }))
+              setTimeout(() => {
+                setDetailTarget({ topic, subject })
+              }, 800)
+              return
+            }
+          }
+        }
+      }
+    }
+  }, [topicStates, practiceTarget])
 
   const handleHeartLost = useCallback(() => {
     setProgress(prev => ({
