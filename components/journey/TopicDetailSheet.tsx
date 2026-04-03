@@ -26,6 +26,13 @@ interface StudyNotes {
   importantFacts: string[]
   upscRelevance: string
   connections: string
+  // New engaging fields (optional for backward compat with cached notes)
+  hook?: string
+  timeline?: { year: string; event: string }[]
+  comparison?: { title: string; headers: [string, string]; rows: [string, string][] } | null
+  mnemonic?: string | null
+  examTip?: string
+  keyTakeaways?: string[]
 }
 
 export default function TopicDetailSheet({
@@ -206,6 +213,16 @@ export default function TopicDetailSheet({
 
   // Track image error to hide the entire image container
   const [imageError, setImageError] = useState(false)
+
+  // Renders text with **bold** markers as <strong> elements
+  function renderBoldText(text: string): React.ReactNode {
+    const parts = text.split(/\*\*(.*?)\*\*/g)
+    return parts.map((part, i) =>
+      i % 2 === 1
+        ? <strong key={i} style={{ color: 'rgba(255,255,255,0.95)', fontWeight: 700 }}>{part}</strong>
+        : part
+    )
+  }
 
   return (
     <>
@@ -528,25 +545,165 @@ export default function TopicDetailSheet({
             )}
 
             {/* Notes loaded successfully */}
-            {!notesLoading && notes && (
+            {!notesLoading && notes && (() => {
+              const wordCount = [notes.summary, ...(notes.keyPoints || []), ...(notes.importantFacts || []), notes.hook || '', notes.examTip || '', ...(notes.keyTakeaways || [])].join(' ').split(/\s+/).length
+              const readTime = Math.max(2, Math.ceil(wordCount / 200))
+              return (
               <>
-                {/* 6. Summary Card */}
+                {/* A. Read Time Estimate */}
                 <div
                   style={{
-                    padding: 16,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    marginBottom: 16,
+                    animation: 'tds-cardIn 0.3s ease 0.2s both',
+                  }}
+                >
+                  <span
+                    style={{
+                      fontSize: 11,
+                      color: 'rgba(255,255,255,0.35)',
+                      background: 'rgba(255,255,255,0.03)',
+                      padding: '4px 12px',
+                      borderRadius: 99,
+                    }}
+                  >
+                    {'\uD83D\uDCD6'} ~{readTime} min read
+                  </span>
+                </div>
+
+                {/* B. Hook Card */}
+                {notes.hook && (
+                  <div
+                    style={{
+                      marginBottom: 20,
+                      padding: 16,
+                      borderRadius: 16,
+                      background: 'rgba(79,209,197,0.06)',
+                      border: '1px solid rgba(79,209,197,0.15)',
+                      borderLeft: '3px solid rgba(79,209,197,0.5)',
+                      animation: 'tds-cardIn 0.3s ease 0.25s both',
+                    }}
+                  >
+                    <p style={{ fontSize: 13, fontWeight: 700, color: '#4FD1C5', margin: '0 0 8px' }}>
+                      {'\uD83D\uDCA1'} Did You Know?
+                    </p>
+                    <p style={{ fontSize: 15, lineHeight: 1.75, color: 'rgba(255,255,255,0.82)', margin: 0, letterSpacing: '-0.01em' }}>
+                      {renderBoldText(notes.hook)}
+                    </p>
+                  </div>
+                )}
+
+                {/* C. Summary Card */}
+                <div
+                  style={{
+                    padding: 18,
                     borderRadius: 16,
                     background: 'rgba(255,255,255,0.03)',
                     border: '1px solid rgba(255,255,255,0.06)',
                     marginBottom: 20,
+                    animation: 'tds-cardIn 0.3s ease 0.3s both',
                   }}
                 >
-                  <p style={{ fontSize: 14, lineHeight: 1.75, color: 'rgba(255,255,255,0.78)', margin: 0 }}>
-                    {notes.summary}
+                  <p style={{ fontSize: 15, lineHeight: 1.75, color: 'rgba(255,255,255,0.82)', margin: 0, letterSpacing: '-0.01em' }}>
+                    {renderBoldText(notes.summary)}
                   </p>
                 </div>
 
-                {/* 7. Key Points with inline map buttons */}
-                {notes.keyPoints.length > 0 && (
+                {/* D. Timeline */}
+                {notes.timeline && notes.timeline.length > 0 && (
+                  <div style={{ marginBottom: 20, animation: 'tds-cardIn 0.3s ease 0.35s both' }}>
+                    <h3
+                      style={{
+                        fontSize: 15,
+                        fontWeight: 700,
+                        color: 'rgba(255,255,255,0.88)',
+                        margin: '0 0 12px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 8,
+                      }}
+                    >
+                      <span style={{ fontSize: 16 }}>{'\uD83D\uDCC5'}</span> Timeline
+                    </h3>
+                    <div
+                      style={{
+                        padding: '16px 16px 16px 16px',
+                        borderRadius: 16,
+                        background: 'rgba(255,255,255,0.03)',
+                        border: '1px solid rgba(255,255,255,0.06)',
+                        position: 'relative' as const,
+                      }}
+                    >
+                      {/* Vertical line */}
+                      <div
+                        style={{
+                          position: 'absolute' as const,
+                          left: 36,
+                          top: 20,
+                          bottom: 20,
+                          width: 2,
+                          background: `${color}4D`,
+                          borderRadius: 1,
+                        }}
+                      />
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                        {notes.timeline.map((entry, idx) => (
+                          <div
+                            key={idx}
+                            style={{
+                              display: 'flex',
+                              alignItems: 'flex-start',
+                              gap: 12,
+                              paddingLeft: 24,
+                              position: 'relative' as const,
+                              animation: `tds-cardIn 0.3s ease ${0.4 + idx * 0.05}s both`,
+                            }}
+                          >
+                            {/* Circle dot */}
+                            <div
+                              style={{
+                                position: 'absolute' as const,
+                                left: 16,
+                                top: 5,
+                                width: 10,
+                                height: 10,
+                                borderRadius: '50%',
+                                background: color,
+                                boxShadow: `0 0 6px ${color}40`,
+                                flexShrink: 0,
+                              }}
+                            />
+                            {/* Year badge */}
+                            <span
+                              style={{
+                                fontSize: 12,
+                                fontWeight: 700,
+                                color,
+                                background: `${color}15`,
+                                padding: '2px 10px',
+                                borderRadius: 99,
+                                minWidth: 70,
+                                textAlign: 'center' as const,
+                                flexShrink: 0,
+                                marginLeft: 8,
+                              }}
+                            >
+                              {entry.year}
+                            </span>
+                            {/* Event */}
+                            <p style={{ fontSize: 14, lineHeight: 1.6, color: 'rgba(255,255,255,0.75)', margin: 0 }}>
+                              {entry.event}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* E. Key Concepts (improved Key Points) */}
+                {notes.keyPoints && notes.keyPoints.length > 0 && (
                   <div style={{ marginBottom: 20 }}>
                     <h3
                       style={{
@@ -559,7 +716,7 @@ export default function TopicDetailSheet({
                         gap: 8,
                       }}
                     >
-                      <span style={{ fontSize: 16 }}>{'\uD83D\uDCCC'}</span> Key Points
+                      <span style={{ fontSize: 16 }}>{'\uD83D\uDCCC'}</span> Key Concepts
                     </h3>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                       {notes.keyPoints.map((point, idx) => {
@@ -574,8 +731,9 @@ export default function TopicDetailSheet({
                               padding: '14px 16px',
                               borderRadius: 14,
                               background: 'rgba(255,255,255,0.025)',
+                              border: '1px solid rgba(255,255,255,0.04)',
                               borderLeft: `3px solid ${color}60`,
-                              animation: `tds-cardIn 0.3s ease ${0.25 + idx * 0.06}s both`,
+                              animation: `tds-cardIn 0.3s ease ${0.25 + idx * 0.05}s both`,
                             }}
                           >
                             <div style={{ display: 'flex', gap: 12 }}>
@@ -596,8 +754,8 @@ export default function TopicDetailSheet({
                               >
                                 {idx + 1}
                               </span>
-                              <p style={{ fontSize: 13, lineHeight: 1.65, color: 'rgba(255,255,255,0.72)', margin: 0 }}>
-                                {point}
+                              <p style={{ fontSize: 14, lineHeight: 1.7, color: 'rgba(255,255,255,0.78)', margin: 0 }}>
+                                {renderBoldText(point)}
                               </p>
                             </div>
                             {hasMapRelevance && (
@@ -628,8 +786,116 @@ export default function TopicDetailSheet({
                   </div>
                 )}
 
-                {/* 8. Quick Facts */}
-                {notes.importantFacts.length > 0 && (
+                {/* F. Comparison Table */}
+                {notes.comparison && notes.comparison.rows && notes.comparison.rows.length > 0 && (
+                  <div style={{ marginBottom: 20, animation: 'tds-cardIn 0.3s ease 0.4s both' }}>
+                    <h3
+                      style={{
+                        fontSize: 15,
+                        fontWeight: 700,
+                        color: 'rgba(255,255,255,0.88)',
+                        margin: '0 0 12px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 8,
+                      }}
+                    >
+                      <span style={{ fontSize: 16 }}>{'\uD83D\uDCCA'}</span> {notes.comparison.title || 'Comparison'}
+                    </h3>
+                    <div
+                      style={{
+                        borderRadius: 16,
+                        overflow: 'hidden',
+                        background: 'rgba(255,255,255,0.03)',
+                        border: '1px solid rgba(255,255,255,0.06)',
+                      }}
+                    >
+                      {/* Header row */}
+                      <div
+                        style={{
+                          display: 'flex',
+                          background: 'rgba(255,255,255,0.06)',
+                        }}
+                      >
+                        {notes.comparison.headers.map((header, hIdx) => (
+                          <div
+                            key={hIdx}
+                            style={{
+                              flex: 1,
+                              padding: '12px 14px',
+                              fontSize: 12,
+                              fontWeight: 700,
+                              color,
+                              textTransform: 'uppercase' as const,
+                              letterSpacing: '0.03em',
+                            }}
+                          >
+                            {header}
+                          </div>
+                        ))}
+                      </div>
+                      {/* Body rows */}
+                      {notes.comparison.rows.map((row, rIdx) => (
+                        <div
+                          key={rIdx}
+                          style={{
+                            display: 'flex',
+                            background: rIdx % 2 === 0 ? 'rgba(255,255,255,0.02)' : 'transparent',
+                            borderBottom: '1px solid rgba(255,255,255,0.04)',
+                          }}
+                        >
+                          {row.map((cell, cIdx) => (
+                            <div
+                              key={cIdx}
+                              style={{
+                                flex: 1,
+                                padding: '12px 14px',
+                                fontSize: 13,
+                                lineHeight: 1.5,
+                                color: 'rgba(255,255,255,0.72)',
+                              }}
+                            >
+                              {cell}
+                            </div>
+                          ))}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* G. Mnemonic Card */}
+                {notes.mnemonic && (
+                  <div
+                    style={{
+                      marginBottom: 20,
+                      padding: 16,
+                      borderRadius: 16,
+                      background: 'rgba(183,148,244,0.06)',
+                      border: '1px solid rgba(183,148,244,0.15)',
+                      borderLeft: '3px solid rgba(183,148,244,0.5)',
+                      animation: 'tds-cardIn 0.3s ease 0.45s both',
+                    }}
+                  >
+                    <p style={{ fontSize: 13, fontWeight: 700, color: '#B794F4', margin: '0 0 8px' }}>
+                      {'\uD83E\uDDE0'} Memory Trick
+                    </p>
+                    <p
+                      style={{
+                        fontSize: 15,
+                        fontFamily: "'SF Mono', 'Fira Code', monospace",
+                        lineHeight: 1.7,
+                        color: 'rgba(255,255,255,0.85)',
+                        margin: 0,
+                      }}
+                    >
+                      {notes.mnemonic}
+                    </p>
+                  </div>
+                )}
+
+                {/* H. Quick Facts (improved) */}
+                {notes.importantFacts && notes.importantFacts.length > 0 && (
                   <div style={{ marginBottom: 20 }}>
                     <h3
                       style={{
@@ -644,31 +910,79 @@ export default function TopicDetailSheet({
                     >
                       <span style={{ fontSize: 16 }}>{'\u26A1'}</span> Quick Facts
                     </h3>
-                    <div
-                      style={{
-                        padding: 16,
-                        borderRadius: 14,
-                        background: 'rgba(255,255,255,0.025)',
-                        border: '1px solid rgba(255,255,255,0.05)',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: 10,
-                      }}
-                    >
-                      {notes.importantFacts.map((fact, idx) => (
-                        <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
-                          <span
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                      {notes.importantFacts.map((fact, idx) => {
+                        const colonIdx = fact.indexOf(':')
+                        const hasLabel = colonIdx > 0 && colonIdx < 40
+                        const label = hasLabel ? fact.slice(0, colonIdx) : null
+                        const detail = hasLabel ? fact.slice(colonIdx + 1).trim() : fact
+                        return (
+                          <div
+                            key={idx}
                             style={{
-                              width: 6,
-                              height: 6,
-                              borderRadius: '50%',
-                              flexShrink: 0,
-                              background: color,
-                              marginTop: 7,
+                              padding: '10px 14px',
+                              borderRadius: 12,
+                              background: 'rgba(255,255,255,0.025)',
+                              borderLeft: `2px solid ${color}66`,
+                              animation: `tds-cardIn 0.3s ease ${0.35 + idx * 0.04}s both`,
                             }}
-                          />
-                          <p style={{ fontSize: 13, lineHeight: 1.6, color: 'rgba(255,255,255,0.68)', margin: 0 }}>
-                            {fact}
+                          >
+                            <p style={{ fontSize: 14, lineHeight: 1.65, color: 'rgba(255,255,255,0.72)', margin: 0 }}>
+                              {label && (
+                                <span style={{ fontWeight: 700, color }}>{label}: </span>
+                              )}
+                              {detail}
+                            </p>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                {/* I. Exam Tip Card */}
+                {notes.examTip && (
+                  <div
+                    style={{
+                      marginBottom: 20,
+                      padding: 16,
+                      borderRadius: 16,
+                      background: 'rgba(246,173,85,0.06)',
+                      border: '1px solid rgba(246,173,85,0.15)',
+                      borderLeft: '3px solid rgba(246,173,85,0.5)',
+                      animation: 'tds-cardIn 0.3s ease 0.5s both',
+                    }}
+                  >
+                    <p style={{ fontSize: 13, fontWeight: 700, color: '#F6AD55', margin: '0 0 8px' }}>
+                      {'\uD83C\uDFAF'} Exam Strategy
+                    </p>
+                    <p style={{ fontSize: 15, lineHeight: 1.75, color: 'rgba(255,255,255,0.82)', margin: 0, letterSpacing: '-0.01em' }}>
+                      {renderBoldText(notes.examTip)}
+                    </p>
+                  </div>
+                )}
+
+                {/* J. Key Takeaways */}
+                {notes.keyTakeaways && notes.keyTakeaways.length > 0 && (
+                  <div
+                    style={{
+                      marginBottom: 20,
+                      padding: 16,
+                      borderRadius: 16,
+                      background: 'rgba(52,211,153,0.06)',
+                      border: '1px solid rgba(52,211,153,0.15)',
+                      animation: 'tds-cardIn 0.3s ease 0.55s both',
+                    }}
+                  >
+                    <p style={{ fontSize: 13, fontWeight: 700, color: '#34d399', margin: '0 0 10px' }}>
+                      {'\u2705'} Remember This
+                    </p>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                      {notes.keyTakeaways.map((takeaway, idx) => (
+                        <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: 8 }}>
+                          <span style={{ color: '#34d399', fontSize: 14, fontWeight: 700, flexShrink: 0, marginTop: 1 }}>{'\u2713'}</span>
+                          <p style={{ fontSize: 14, lineHeight: 1.65, color: 'rgba(255,255,255,0.80)', margin: 0 }}>
+                            {takeaway}
                           </p>
                         </div>
                       ))}
@@ -676,15 +990,16 @@ export default function TopicDetailSheet({
                   </div>
                 )}
 
-                {/* 9. Connections */}
+                {/* K. Connections */}
                 {notes.connections && (
-                  <p style={{ fontSize: 12, lineHeight: 1.6, color: 'rgba(255,255,255,0.40)', margin: '0 0 16px' }}>
+                  <p style={{ fontSize: 13, lineHeight: 1.6, color: 'rgba(255,255,255,0.50)', margin: '0 0 16px' }}>
                     <span style={{ fontWeight: 600, color: 'rgba(255,255,255,0.55)' }}>Related Topics: </span>
                     {notes.connections}
                   </p>
                 )}
               </>
-            )}
+              )
+            })()}
 
             {/* Fallback: API failed, show concepts */}
             {!notesLoading && !notes && (

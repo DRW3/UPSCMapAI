@@ -24,46 +24,77 @@ export async function GET(req: Request) {
       messages: [
         {
           role: 'system',
-          content: 'You are an expert UPSC Civil Services tutor. Generate concise, factual study notes. Return only valid JSON.',
+          content:
+            "You are India's most engaging UPSC tutor — you make students genuinely excited about every topic. You explain like a brilliant friend who knows everything: conversational, vivid, full of surprising details. Generate study notes that are impossible to stop reading. Return only valid JSON, never markdown code blocks.",
         },
         {
           role: 'user',
-          content: `Generate comprehensive UPSC study notes for: "${topicTitle}" (Subject: ${subjectId.replace(/-/g, ' ')}).
+          content: `Generate rich, engaging UPSC study notes for: "${topicTitle}" (Subject: ${subjectId.replace(/-/g, ' ')}).
 
-This is for a UPSC Civil Services aspirant who needs to understand this topic thoroughly. Write like a top coaching institute teacher explaining to a beginner.
+Write like you're explaining to a curious friend over chai — vivid, surprising, and impossible to forget. NOT like a textbook.
 
-Return a JSON object:
+Return a JSON object with this EXACT structure:
+
 {
-  "summary": "4-5 sentence comprehensive overview. Start with what this topic is, its historical/geographical/political significance, and why it matters. Write in clear, simple English that even a first-time UPSC aspirant can understand.",
+  "hook": "A genuinely surprising fact, a thought-provoking question, a real UPSC PYQ, a counterintuitive detail, a 'What if...' question, or a fascinating historical anecdote about this topic. This must make the reader think 'Oh wow, I NEED to know more about this!' — NOT a generic opening statement.",
+
+  "summary": "3-4 crisp sentences. What is this topic, why does it matter in the big picture, and what makes it fascinating. No filler words.",
+
   "keyPoints": [
-    "Detailed point with context and explanation (2-3 sentences each). Don't just state facts — explain WHY they matter.",
-    ... (8-10 detailed key points covering all major aspects)
+    "Each point MUST use **double asterisks** around 1-2 key terms/phrases for visual emphasis. Example: '**Article 21** guarantees the right to life, but the Supreme Court has expanded this to include the right to privacy, clean air, and even the right to sleep. This single article has been the foundation of more landmark judgments than any other.' Each point should be 2-3 sentences explaining the WHAT and the WHY — why does this matter, what's the significance.",
+    "... (6-8 points total covering all major aspects)"
   ],
+
+  "timeline": [
+    {"year": "326 BCE", "event": "Alexander invades India — retreats from Beas after army mutiny"},
+    {"year": "321 BCE", "event": "Chandragupta Maurya defeats Nanda dynasty, establishes Mauryan Empire"}
+  ],
+
+  "comparison": {
+    "title": "Descriptive comparison title (e.g. 'Lok Sabha vs Rajya Sabha')",
+    "headers": ["Column A label", "Column B label"],
+    "rows": [
+      ["Row 1 Col A content", "Row 1 Col B content"],
+      ["Row 2 Col A content", "Row 2 Col B content"]
+    ]
+  },
+
+  "mnemonic": "A genuinely useful memory trick. e.g. 'LAMPS for mass movement triggers = Landslide, Avalanche, Mudflow, Permafrost, Snowline'",
+
   "importantFacts": [
-    "Specific fact with date/name/place/figure — formatted as 'Label: Detail'",
-    ... (6-8 important facts that are commonly tested)
+    "Label: Detail — specific dates, article numbers, names, figures. e.g. 'Founded: 1950, under Article 280 of the Constitution'",
+    "... (5-6 facts)"
   ],
-  "upscRelevance": "3-4 sentences explaining exactly how this topic appears in UPSC — which paper (Prelims GS/Mains GS-I/II/III/IV), what type of questions are asked, and what angle to prepare from.",
-  "connections": "2-3 sentences connecting this topic to other UPSC syllabus topics. For example: 'This connects to Modern History through... and to Polity through...'"
+
+  "examTip": "Practical exam strategy — be SPECIFIC. Mention actual question patterns UPSC uses, common wrong answer traps, which angle they test from, and what most aspirants miss. e.g. 'UPSC often frames questions on Fundamental Rights as negative statements — asking what is NOT a FR. They also love mixing up FR articles with DPSP articles.'",
+
+  "upscRelevance": "Which paper (Prelims GS / Mains GS-I/II/III/IV / Essay), what type of questions are asked (factual, analytical, application-based), and how frequently this appears. Be specific.",
+
+  "connections": "Connect to 2-3 other specific UPSC syllabus topics with brief explanation of the link. e.g. 'Connects to Fundamental Rights (Part III vs Part IV debate), to 73rd/74th Amendments (local governance link), and to Judicial Review (enforcement mechanisms).'",
+
+  "keyTakeaways": [
+    "If you remember nothing else, remember THIS — 3-4 concise bullet points that capture the absolute essentials.",
+    "..."
+  ]
 }
 
 Key concepts that MUST be covered: ${concepts || 'all major aspects'}
 
-Rules:
-- Write for a complete beginner — explain technical terms
-- Each key point should be 2-3 sentences with context, not just one-liners
-- Include specific years, names, places, constitutional articles, or policy names where relevant
-- Cover multiple dimensions: historical background, current relevance, constitutional provisions, government schemes, international comparisons as applicable
-- For history topics: include timeline, key personalities, causes and effects
-- For polity topics: include article numbers, amendment details, landmark judgments
-- For geography topics: include locations, climate data, economic significance
-- For economy topics: include schemes, data points, policy evolution
-- Make importantFacts formatted as "Label: Detail" (e.g., "Founded: 1947 by Jawaharlal Nehru")
-- Return ONLY the JSON object, no markdown or code blocks`,
+CRITICAL RULES:
+1. "timeline": ONLY include for history/chronological topics where dates matter. Include 4-8 entries with years and concise events. For non-chronological topics (like Geography concepts, Polity principles, Economy theories), set to empty array [].
+2. "comparison": ONLY include when there's a natural, meaningful comparison (e.g. Fundamental Rights vs DPSP, Lok Sabha vs Rajya Sabha, Mughal vs Maratha administration, Tropical vs Temperate cyclones). Include 3-5 rows. For topics without a natural comparison, set to null.
+3. "mnemonic": ONLY include if a genuine, useful memory trick exists or you can create a clever one. Must be actually helpful, not forced. Set to null if nothing works naturally.
+4. "keyPoints": MUST have 6-8 points. MUST use **double asterisks** around key terms in each point. Each point 2-3 sentences with context and significance.
+5. "importantFacts": Use "Label: Detail" format. Include specific numbers, dates, article numbers, names, places.
+6. "hook": Must be genuinely surprising or thought-provoking. A real PYQ question, a counterintuitive fact, a fascinating anecdote, or a provocative "did you know". NEVER a bland statement like "This is an important topic."
+7. "examTip": Be hyper-specific about how UPSC tests this — question patterns, common traps, what angle to prepare.
+8. "keyTakeaways": 3-4 crisp "remember this above all" bullets.
+9. Write for a complete beginner — explain jargon when you use it.
+10. Return ONLY the JSON object. No markdown code blocks, no backticks, no explanation outside the JSON.`,
         },
       ],
       temperature: 0.3,
-      max_tokens: 3000,
+      max_tokens: 4000,
     })
 
     const text = response.choices[0]?.message?.content?.trim() || '{}'
