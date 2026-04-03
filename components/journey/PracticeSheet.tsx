@@ -38,6 +38,7 @@ interface PracticeSheetProps {
     newCrownLevel: CrownLevel
   }) => void
   onHeartLost: () => void
+  onNextTopic?: () => void
 }
 
 // ── Component ───────────────────────────────────────────────────────────────────
@@ -50,6 +51,7 @@ export default function PracticeSheet({
   onClose,
   onComplete,
   onHeartLost,
+  onNextTopic,
 }: PracticeSheetProps) {
   // Sheet state
   const [sheetVisible, setSheetVisible] = useState(false)
@@ -564,6 +566,7 @@ export default function PracticeSheet({
             <ScoreScreen
               score={score}
               isPerfect={isPerfect}
+              onNextTopic={onNextTopic}
               crownedUp={crownedUp}
               newCrownLvl={newCrownLvl}
               previousCrownLvl={progress.crownLevel}
@@ -976,6 +979,7 @@ function ScoreScreen({
   onFinish,
   previousCorrectAnswers,
   previousQuestionsAnswered,
+  onNextTopic,
 }: {
   score: { correct: number; total: number }
   isPerfect: boolean
@@ -986,6 +990,7 @@ function ScoreScreen({
   onFinish: () => void
   previousCorrectAnswers: number
   previousQuestionsAnswered: number
+  onNextTopic?: () => void
 }) {
   const percentage = score.total > 0 ? Math.round((score.correct / score.total) * 100) : 0
   const circumference = 2 * Math.PI * 45 // radius 45
@@ -1257,18 +1262,35 @@ function ScoreScreen({
         </div>
       </div>
 
-      {/* Continue button */}
-      <button
-        onClick={onFinish}
-        className="w-full max-w-[280px] py-4 rounded-2xl text-[15px] font-extrabold text-white tracking-wide transition-all hover:scale-[1.01] active:scale-[0.97]"
-        style={{
-          background: `linear-gradient(135deg, ${color}, ${color}cc)`,
-          boxShadow: `0 4px 24px ${color}35`,
-          animation: 'ps-xpCount 0.4s ease 1.2s both',
-        }}
-      >
-        CONTINUE
-      </button>
+      {/* Action buttons */}
+      <div className="w-full max-w-[280px] flex flex-col gap-3" style={{ animation: 'ps-xpCount 0.4s ease 1.2s both' }}>
+        {onNextTopic && (
+          <button
+            onClick={onNextTopic}
+            className="w-full py-4 rounded-2xl text-[15px] font-extrabold text-white tracking-wide transition-all hover:scale-[1.01] active:scale-[0.97]"
+            style={{
+              background: `linear-gradient(135deg, ${color}, ${color}cc)`,
+              boxShadow: `0 4px 24px ${color}35`,
+            }}
+          >
+            NEXT TOPIC →
+          </button>
+        )}
+        <button
+          onClick={onFinish}
+          className={`w-full py-4 rounded-2xl text-[15px] font-extrabold tracking-wide transition-all hover:scale-[1.01] active:scale-[0.97] ${onNextTopic ? '' : 'text-white'}`}
+          style={{
+            background: onNextTopic
+              ? 'rgba(255,255,255,0.06)'
+              : `linear-gradient(135deg, ${color}, ${color}cc)`,
+            color: onNextTopic ? 'rgba(255,255,255,0.55)' : '#fff',
+            border: onNextTopic ? '1px solid rgba(255,255,255,0.10)' : 'none',
+            boxShadow: onNextTopic ? 'none' : `0 4px 24px ${color}35`,
+          }}
+        >
+          {onNextTopic ? 'BACK TO PATH' : 'CONTINUE'}
+        </button>
+      </div>
     </div>
   )
 }

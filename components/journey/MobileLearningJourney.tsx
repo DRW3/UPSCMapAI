@@ -447,6 +447,43 @@ export function MobileLearningJourney() {
     setPracticeTarget(null)
   }, [practiceTarget])
 
+  // Find and open next available topic after practice
+  const handleNextTopic = useCallback(() => {
+    // Close practice sheet first
+    setPracticeTarget(null)
+    // Find next available or started topic
+    for (const subject of UPSC_SYLLABUS) {
+      for (const unit of subject.units) {
+        for (const topic of unit.topics) {
+          const tp = topicStates[topic.id]
+          if (tp && (tp.state === 'available' || tp.state === 'started')) {
+            // Mark as started if available
+            if (tp.state === 'available') {
+              setProgress(prev => ({
+                ...prev,
+                topics: {
+                  ...prev.topics,
+                  [topic.id]: {
+                    ...(prev.topics[topic.id] || DEFAULT_TOPIC_PROGRESS),
+                    state: 'started' as const,
+                  },
+                },
+                todayTopicsRead: (prev.todayTopicsRead || 0) + 1,
+              }))
+            }
+            // Open detail sheet for next topic
+            setTimeout(() => {
+              setDetailTarget({ topic, subject })
+            }, 400)
+            return
+          }
+        }
+      }
+    }
+    // No next topic found, switch to path tab
+    setActiveTab('path')
+  }, [topicStates])
+
   const handleHeartLost = useCallback(() => {
     setProgress(prev => ({
       ...prev,
@@ -776,6 +813,7 @@ export function MobileLearningJourney() {
           onClose={() => setPracticeTarget(null)}
           onComplete={handlePracticeComplete}
           onHeartLost={handleHeartLost}
+          onNextTopic={handleNextTopic}
         />
       )}
 
