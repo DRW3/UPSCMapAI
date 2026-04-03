@@ -44,8 +44,9 @@ export default function TopicDetailSheet({
   const [notes, setNotes] = useState<StudyNotes | null>(null)
   const [notesLoading, setNotesLoading] = useState(true)
 
-  // Topic image from Wikimedia Commons (copyright-free)
+  // Topic image from Wikipedia
   const [imageUrl, setImageUrl] = useState<string | null>(null)
+  const [imageDesc, setImageDesc] = useState<string>('')
 
   // Drag-to-dismiss
   const dragStartY = useRef(0)
@@ -87,14 +88,21 @@ export default function TopicDetailSheet({
       .catch(() => setNotesLoading(false))
   }, [topic.id, subject.id, topic.title, topic.concepts])
 
-  // Fetch topic image from Wikipedia API (Wikimedia Commons, CC-licensed)
+  // Fetch topic image + description from Wikipedia API
   useEffect(() => {
     const imgCacheKey = `upsc-img-${topic.id}`
-    const cachedImg = localStorage.getItem(imgCacheKey)
-    if (cachedImg) {
-      setImageUrl(cachedImg === 'none' ? null : cachedImg)
+    const cached = localStorage.getItem(imgCacheKey)
+    if (cached && cached !== 'none') {
+      try {
+        const parsed = JSON.parse(cached)
+        setImageUrl(parsed.url)
+        setImageDesc(parsed.desc || '')
+      } catch {
+        setImageUrl(cached)
+      }
       return
     }
+    if (cached === 'none') return
 
     const wikiTitle = topic.title.replace(/ /g, '_')
     fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(wikiTitle)}`)
@@ -102,17 +110,16 @@ export default function TopicDetailSheet({
       .then(data => {
         const src = data?.thumbnail?.source || data?.originalimage?.source || null
         if (src) {
-          // Get a larger version by adjusting the width parameter
           const largerSrc = src.replace(/\/\d+px-/, '/600px-')
+          const desc = data?.description || data?.extract?.slice(0, 80) || ''
           setImageUrl(largerSrc)
-          localStorage.setItem(imgCacheKey, largerSrc)
+          setImageDesc(desc)
+          localStorage.setItem(imgCacheKey, JSON.stringify({ url: largerSrc, desc }))
         } else {
           localStorage.setItem(imgCacheKey, 'none')
         }
       })
-      .catch(() => {
-        localStorage.setItem(imgCacheKey, 'none')
-      })
+      .catch(() => localStorage.setItem(imgCacheKey, 'none'))
   }, [topic.id, topic.title])
 
   const handleDismiss = useCallback(() => {
@@ -179,12 +186,26 @@ export default function TopicDetailSheet({
     freq === 'high' ? '#f87171' : freq === 'medium' ? '#fbbf24' : 'rgba(255,255,255,0.35)'
   const freqLabel = freq === 'high' ? 'Frequently' : freq === 'medium' ? 'Sometimes' : 'Rarely'
 
+  // Fallback UPSC relevance text based on PYQ frequency
+  const fallbackRelevance =
+    freq === 'high'
+      ? `This topic appears frequently in UPSC ${subject.paper}. Focus on key facts, dates, and analytical angles for both Prelims and Mains.`
+      : freq === 'medium'
+        ? `This topic has appeared in past UPSC papers for ${subject.paper}. Understanding core concepts will help across multiple questions.`
+        : `While not frequently asked directly, this topic builds foundational understanding for ${subject.paper} and may appear as part of broader questions.`
+
+  // Map relevance regex for inline map buttons
+  const MAP_REGEX = /map|locat|region|river|site|city|cities|capital|border|coast|mountain|valley|penins|plateau|district|province|temple|fort|port/i
+
   // SVG ring for crown progress
   const ringSize = 48
   const ringStroke = 4
   const ringRadius = (ringSize - ringStroke) / 2
   const ringCircumference = 2 * Math.PI * ringRadius
   const ringOffset = ringCircumference - (progressPct / 100) * ringCircumference
+
+  // Track image error to hide the entire image container
+  const [imageError, setImageError] = useState(false)
 
   return (
     <>
@@ -249,7 +270,7 @@ export default function TopicDetailSheet({
               : 'none',
         }}
       >
-        {/* Drag handle */}
+        {/* 1. Drag handle */}
         <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 12, paddingBottom: 4 }}>
           <div style={{ width: 40, height: 4, borderRadius: 99, background: 'rgba(255,255,255,0.2)' }} />
         </div>
@@ -263,7 +284,7 @@ export default function TopicDetailSheet({
             paddingBottom: 16,
           }}
         >
-          {/* ── Compact Header ── */}
+          {/* 2. Compact header row */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 20px 8px' }}>
             <div
               style={{
@@ -307,7 +328,102 @@ export default function TopicDetailSheet({
             </div>
           </div>
 
-          {/* ── Stat Pills Row ── */}
+          {/* 3. Image with description */}
+          {imageUrl && !imageError && (
+            <div style={{
+              margin: '0 20px 16px',
+              borderRadius: 14,
+              overflow: 'hidden',
+              border: '1px solid rgba(255,255,255,0.08)',
+              position: 'relative',
+              animation: 'tds-cardIn 0.4s ease 0.12s both',
+            }}>
+              <img
+                src={imageUrl}
+                alt={topic.title}
+                style={{
+                  width: '100%',
+                  height: 160,
+                  objectFit: 'cover',
+                  display: 'block',
+                }}
+                onError={() => setImageError(true)}
+              />
+              <div style={{
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                padding: '20px 12px 8px',
+                background: 'linear-gradient(to top, rgba(0,0,0,0.75), transparent)',
+                display: 'flex',
+                alignItems: 'flex-end',
+                justifyContent: 'space-between',
+                gap: 8,
+              }}>
+                {imageDesc ? (
+                  <span style={{
+                    fontSize: 12,
+                    color: 'rgba(255,255,255,0.8)',
+                    lineHeight: 1.4,
+                    flex: 1,
+                    minWidth: 0,
+                  }}>
+                    {imageDesc}
+                  </span>
+                ) : (
+                  <span />
+                )}
+                <span style={{
+                  fontSize: 9,
+                  color: 'rgba(255,255,255,0.35)',
+                  fontWeight: 600,
+                  flexShrink: 0,
+                  padding: '2px 5px',
+                  borderRadius: 4,
+                  background: 'rgba(0,0,0,0.3)',
+                  letterSpacing: '0.03em',
+                }}>
+                  CC
+                </span>
+              </div>
+            </div>
+          )}
+
+          {/* 4. UPSC Relevance Banner (moved to top) */}
+          {notesLoading ? (
+            <div style={{
+              margin: '0 20px 16px',
+              height: 60,
+              borderRadius: 14,
+              background: 'rgba(255,255,255,0.04)',
+              animation: 'tds-shimmer 1.5s ease-in-out infinite',
+            }} />
+          ) : (
+            <div style={{
+              margin: '0 20px 16px',
+              padding: '14px 16px',
+              borderRadius: 14,
+              background: `${color}0C`,
+              border: `1px solid ${color}25`,
+              display: 'flex',
+              gap: 10,
+              alignItems: 'flex-start',
+              animation: 'tds-cardIn 0.35s ease 0.1s both',
+            }}>
+              <span style={{ fontSize: 20 }}>{'\uD83C\uDFAF'}</span>
+              <div>
+                <p style={{ fontSize: 13, fontWeight: 700, color: `${color}dd`, margin: '0 0 4px' }}>
+                  Why This Matters for UPSC
+                </p>
+                <p style={{ fontSize: 13, lineHeight: 1.65, color: 'rgba(255,255,255,0.68)', margin: 0 }}>
+                  {notes?.upscRelevance || fallbackRelevance}
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* 5. Stat pills row */}
           <div
             style={{
               display: 'flex',
@@ -316,7 +432,7 @@ export default function TopicDetailSheet({
               gap: 8,
               padding: '0 20px',
               marginBottom: 16,
-              animation: 'tds-cardIn 0.3s ease 0.1s both',
+              animation: 'tds-cardIn 0.3s ease 0.15s both',
             }}
           >
             {/* Difficulty */}
@@ -391,46 +507,8 @@ export default function TopicDetailSheet({
             )}
           </div>
 
-          {/* ── Topic Image (Wikimedia Commons, CC-licensed) ── */}
-          {imageUrl && (
-            <div style={{
-              margin: '0 20px 16px',
-              borderRadius: 16,
-              overflow: 'hidden',
-              border: '1px solid rgba(255,255,255,0.08)',
-              position: 'relative',
-              animation: 'tds-cardIn 0.4s ease 0.12s both',
-            }}>
-              <img
-                src={imageUrl}
-                alt={topic.title}
-                style={{
-                  width: '100%',
-                  height: 180,
-                  objectFit: 'cover',
-                  display: 'block',
-                }}
-                onError={(e) => {
-                  (e.currentTarget as HTMLImageElement).style.display = 'none'
-                }}
-              />
-              <div style={{
-                position: 'absolute',
-                bottom: 0,
-                left: 0,
-                right: 0,
-                padding: '16px 12px 6px',
-                background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)',
-              }}>
-                <span style={{ fontSize: 9, color: 'rgba(255,255,255,0.4)', fontWeight: 500 }}>
-                  Image: Wikimedia Commons (CC)
-                </span>
-              </div>
-            </div>
-          )}
-
           {/* ── Study Notes Section ── */}
-          <div style={{ padding: '0 20px', animation: 'tds-cardIn 0.35s ease 0.15s both' }}>
+          <div style={{ padding: '0 20px', animation: 'tds-cardIn 0.35s ease 0.2s both' }}>
 
             {/* Loading skeleton */}
             {notesLoading && (
@@ -452,7 +530,7 @@ export default function TopicDetailSheet({
             {/* Notes loaded successfully */}
             {!notesLoading && notes && (
               <>
-                {/* Summary Card */}
+                {/* 6. Summary Card */}
                 <div
                   style={{
                     padding: 16,
@@ -467,7 +545,7 @@ export default function TopicDetailSheet({
                   </p>
                 </div>
 
-                {/* Key Points */}
+                {/* 7. Key Points with inline map buttons */}
                 {notes.keyPoints.length > 0 && (
                   <div style={{ marginBottom: 20 }}>
                     <h3
@@ -484,47 +562,73 @@ export default function TopicDetailSheet({
                       <span style={{ fontSize: 16 }}>{'\uD83D\uDCCC'}</span> Key Points
                     </h3>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                      {notes.keyPoints.map((point, idx) => (
-                        <div
-                          key={idx}
-                          style={{
-                            display: 'flex',
-                            gap: 12,
-                            padding: '14px 16px',
-                            borderRadius: 14,
-                            background: 'rgba(255,255,255,0.025)',
-                            borderLeft: `3px solid ${color}60`,
-                            animation: `tds-cardIn 0.3s ease ${0.2 + idx * 0.06}s both`,
-                          }}
-                        >
-                          <span
+                      {notes.keyPoints.map((point, idx) => {
+                        const hasMapRelevance = MAP_REGEX.test(point)
+                        return (
+                          <div
+                            key={idx}
                             style={{
-                              width: 24,
-                              height: 24,
-                              borderRadius: 8,
-                              flexShrink: 0,
-                              background: `${color}15`,
-                              color: `${color}cc`,
                               display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              fontSize: 12,
-                              fontWeight: 800,
-                              marginTop: 1,
+                              flexDirection: 'column',
+                              gap: 8,
+                              padding: '14px 16px',
+                              borderRadius: 14,
+                              background: 'rgba(255,255,255,0.025)',
+                              borderLeft: `3px solid ${color}60`,
+                              animation: `tds-cardIn 0.3s ease ${0.25 + idx * 0.06}s both`,
                             }}
                           >
-                            {idx + 1}
-                          </span>
-                          <p style={{ fontSize: 13, lineHeight: 1.65, color: 'rgba(255,255,255,0.72)', margin: 0 }}>
-                            {point}
-                          </p>
-                        </div>
-                      ))}
+                            <div style={{ display: 'flex', gap: 12 }}>
+                              <span
+                                style={{
+                                  width: 24,
+                                  height: 24,
+                                  borderRadius: 8,
+                                  flexShrink: 0,
+                                  background: `${color}15`,
+                                  color: `${color}cc`,
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  fontSize: 12,
+                                  fontWeight: 800,
+                                }}
+                              >
+                                {idx + 1}
+                              </span>
+                              <p style={{ fontSize: 13, lineHeight: 1.65, color: 'rgba(255,255,255,0.72)', margin: 0 }}>
+                                {point}
+                              </p>
+                            </div>
+                            {hasMapRelevance && (
+                              <button
+                                onClick={onOpenMap}
+                                style={{
+                                  alignSelf: 'flex-end',
+                                  display: 'inline-flex',
+                                  alignItems: 'center',
+                                  gap: 4,
+                                  padding: '4px 10px',
+                                  borderRadius: 8,
+                                  background: 'rgba(129,140,248,0.08)',
+                                  border: '1px solid rgba(129,140,248,0.20)',
+                                  cursor: 'pointer',
+                                  fontSize: 11,
+                                  fontWeight: 600,
+                                  color: '#818cf8',
+                                }}
+                              >
+                                {'\uD83D\uDDFA\uFE0F'} View on Map
+                              </button>
+                            )}
+                          </div>
+                        )
+                      })}
                     </div>
                   </div>
                 )}
 
-                {/* Quick Facts */}
+                {/* 8. Quick Facts */}
                 {notes.importantFacts.length > 0 && (
                   <div style={{ marginBottom: 20 }}>
                     <h3
@@ -572,39 +676,13 @@ export default function TopicDetailSheet({
                   </div>
                 )}
 
-                {/* UPSC Relevance Card */}
-                {notes.upscRelevance && (
-                  <div
-                    style={{
-                      padding: 16,
-                      borderRadius: 14,
-                      marginBottom: 20,
-                      background: `${color}0A`,
-                      border: `1px solid ${color}20`,
-                    }}
-                  >
-                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
-                      <span style={{ fontSize: 15, marginTop: 1 }}>{'\uD83C\uDFAF'}</span>
-                      <div>
-                        <p style={{ fontSize: 12, fontWeight: 700, color: `${color}cc`, margin: '0 0 4px' }}>
-                          Why This Matters for UPSC
-                        </p>
-                        <p style={{ fontSize: 13, lineHeight: 1.65, color: 'rgba(255,255,255,0.65)', margin: 0 }}>
-                          {notes.upscRelevance}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* Connections */}
+                {/* 9. Connections */}
                 {notes.connections && (
-                  <p style={{ fontSize: 12, lineHeight: 1.6, color: 'rgba(255,255,255,0.40)', marginBottom: 16, margin: '0 0 16px' }}>
+                  <p style={{ fontSize: 12, lineHeight: 1.6, color: 'rgba(255,255,255,0.40)', margin: '0 0 16px' }}>
                     <span style={{ fontWeight: 600, color: 'rgba(255,255,255,0.55)' }}>Related Topics: </span>
                     {notes.connections}
                   </p>
                 )}
-
               </>
             )}
 
@@ -635,7 +713,7 @@ export default function TopicDetailSheet({
                         borderRadius: 14,
                         background: 'rgba(255,255,255,0.025)',
                         borderLeft: `3px solid ${color}60`,
-                        animation: `tds-cardIn 0.3s ease ${0.2 + idx * 0.06}s both`,
+                        animation: `tds-cardIn 0.3s ease ${0.25 + idx * 0.06}s both`,
                       }}
                     >
                       <span
@@ -651,7 +729,6 @@ export default function TopicDetailSheet({
                           justifyContent: 'center',
                           fontSize: 12,
                           fontWeight: 800,
-                          marginTop: 1,
                         }}
                       >
                         {idx + 1}
@@ -666,60 +743,7 @@ export default function TopicDetailSheet({
             )}
           </div>
 
-          {/* ── Map Card ── */}
-          {topic.mapQuery && (
-            <div style={{ padding: '0 20px' }}>
-              <button
-                onClick={onOpenMap}
-                style={{
-                  width: '100%',
-                  borderRadius: 16,
-                  padding: 16,
-                  marginBottom: 16,
-                  textAlign: 'left' as const,
-                  background: 'rgba(129,140,248,0.06)',
-                  border: '1px solid rgba(129,140,248,0.15)',
-                  cursor: 'pointer',
-                  animation: 'tds-cardIn 0.35s ease 0.35s both',
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                  <span style={{ fontSize: 20 }}>{'\uD83D\uDDFA\uFE0F'}</span>
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <p style={{ fontSize: 13, fontWeight: 600, color: '#818cf8', margin: 0 }}>
-                      Visualize on Map
-                    </p>
-                    <p
-                      style={{
-                        fontSize: 11,
-                        color: 'rgba(129,140,248,0.5)',
-                        margin: '4px 0 0',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        whiteSpace: 'nowrap' as const,
-                      }}
-                    >
-                      {topic.mapQuery}
-                    </p>
-                  </div>
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    stroke="#818cf8"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    opacity={0.6}
-                  >
-                    <path d="M6 4l4 4-4 4" />
-                  </svg>
-                </div>
-              </button>
-            </div>
-          )}
-
-          {/* ── Crown Progress Section ── */}
+          {/* 10. Crown Progress Section */}
           {hasProgress && (
             <div style={{ padding: '0 20px' }}>
               <div
@@ -839,7 +863,7 @@ export default function TopicDetailSheet({
           )}
         </div>
 
-        {/* ── Sticky Bottom CTA ── */}
+        {/* 11. Sticky bottom CTA */}
         <div
           style={{
             padding: '12px 20px',
