@@ -6,12 +6,10 @@ import type { LearningSubject } from '@/data/syllabus'
 import {
   type JourneyProgress,
   type UserProfile,
-  type CrownLevel,
   DEFAULT_TOPIC_PROGRESS,
   ACHIEVEMENTS,
   DAILY_GOALS,
   PREP_STAGE_CONFIG,
-  CROWN_COLORS,
   GLASS_STYLE,
   ELEVATED_STYLE,
 } from './types'
@@ -64,19 +62,6 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick, profi
     const completedTopics = allTp.filter(t => t.state === 'completed').length
     return { accuracy, completedTopics, totalAnswered, totalCorrect }
   }, [progress.topics])
-
-  // Crown distribution
-  const crownDistribution = useMemo(() => {
-    const dist: Record<number, number> = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
-    for (const tp of Object.values(progress.topics)) {
-      const cl = tp.crownLevel || 0
-      dist[cl] = (dist[cl] || 0) + 1
-    }
-    const trackedCount = Object.keys(progress.topics).length
-    const totalSyllabusTopics = syllabus.reduce((s, sub) => s + sub.units.reduce((s2, u) => s2 + u.topics.length, 0), 0)
-    dist[0] += Math.max(0, totalSyllabusTopics - trackedCount)
-    return dist
-  }, [progress.topics, syllabus])
 
   // Subject progress
   const subjectProgress = useMemo(() => {
@@ -572,49 +557,7 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick, profi
         </div>
       </div>
 
-      {/* ── SECTION 9: Crown Distribution ── */}
-      {Object.values(crownDistribution).some(v => v > 0) && (
-        <div>
-          <p style={{ fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.85)', marginBottom: 10 }}>Mastery Levels</p>
-          <div style={{ ...GLASS, padding: 16 }}>
-            <div style={{ display: 'flex', gap: 6, justifyContent: 'space-between' }}>
-              {([0, 1, 2, 3, 4, 5] as CrownLevel[]).map(level => {
-                const count = crownDistribution[level] || 0
-                const color = CROWN_COLORS[level]
-                const isActive = count > 0
-                return (
-                  <div key={level} style={{
-                    flex: 1, textAlign: 'center', padding: '8px 4px', borderRadius: 12,
-                    background: isActive ? `${color}12` : 'rgba(255,255,255,0.02)',
-                    border: `1px solid ${isActive ? `${color}25` : 'rgba(255,255,255,0.04)'}`,
-                  }}>
-                    <div style={{
-                      width: 18, height: 18, borderRadius: '50%',
-                      background: isActive ? color : 'rgba(255,255,255,0.08)',
-                      margin: '0 auto 4px',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    }}>
-                      {level > 0 && <span style={{ fontSize: 9, lineHeight: 1 }}>{'\uD83D\uDC51'}</span>}
-                    </div>
-                    <div style={{
-                      fontSize: 15, fontWeight: 700,
-                      color: isActive ? color : 'rgba(255,255,255,0.25)',
-                      fontVariantNumeric: 'tabular-nums', lineHeight: 1.2,
-                    }}>
-                      {count}
-                    </div>
-                    <div style={{ fontSize: 9, color: 'rgba(255,255,255,0.30)', marginTop: 1, fontWeight: 500 }}>
-                      Lv{level}
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ── SECTION 10: Achievements ── */}
+      {/* ── SECTION 9: Achievements ── */}
       <div>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
           <p style={{ fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.85)', margin: 0 }}>Achievements</p>

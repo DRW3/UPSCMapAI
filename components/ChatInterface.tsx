@@ -773,7 +773,7 @@ function ChatInterfaceInner() {
   }
 
   // Compute current map title for peek state
-  // Last searched topic — shown in the header instead of "UPSC Map AI"
+  // Last searched topic — shown in the header instead of "PadhAI UPSC"
   const lastUserQuery = messages.filter(m => m.role === 'user').pop()?.content ?? ''
   const currentMapTitle = useMapStore.getState().intent?.title || lastUserQuery || ''
 
@@ -1140,7 +1140,7 @@ function ChatInterfaceInner() {
                 color: 'rgba(255,255,255,0.75)',
                 whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
               }}>
-                {currentMapTitle || 'UPSC Map AI'}
+                {currentMapTitle || 'PadhAI UPSC'}
               </span>
               {annotatedPoints.length > 0 && (
                 <span style={{

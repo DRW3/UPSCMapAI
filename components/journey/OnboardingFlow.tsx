@@ -295,7 +295,7 @@ function WelcomeStep({ name, onNameChange }: { name: string; onNameChange: (v: s
         letterSpacing: '-0.02em',
         opacity: 0, animation: 'ob-slideUp 0.5s ease 0.2s forwards',
       }}>
-        Welcome to UPSC Map AI
+        Welcome to PadhAI UPSC
       </h1>
 
       <p style={{

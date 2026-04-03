@@ -459,7 +459,7 @@ export default function HomePage() {
             🗺️
           </div>
           <div>
-            <p className="text-sm font-bold text-white leading-none">UPSC Map AI</p>
+            <p className="text-sm font-bold text-white leading-none">PadhAI UPSC</p>
             <p className="text-[10px] text-white/30 leading-none mt-0.5">Learn geography visually</p>
           </div>
         </div>
@@ -725,7 +725,7 @@ export default function HomePage() {
 
       {/* ── Footer ───────────────────────────────────────────────────────── */}
       <div className="border-t border-white/[0.04] px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-1.5 text-[11px] text-white/20">
-        <span>UPSC Map AI · Built for serious aspirants</span>
+        <span>PadhAI UPSC · Built for serious aspirants</span>
         <span>Maps · Notes · AI · Free</span>
       </div>
     </div>
