@@ -359,7 +359,10 @@ function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked, needsPro }:
     }
   })()
 
-  const showPyqBadge = topic.pyqFrequency === 'high'
+  // Question count based on frequency + remaining to practice
+  const totalQs = topic.pyqFrequency === 'high' ? 20 : topic.pyqFrequency === 'medium' ? 10 : 5
+  const answered = tp.questionsAnswered || 0
+  const remaining = Math.max(0, totalQs - answered)
   const progressPct = state === 'started' && crown > 0 ? (crown / 5) * 100 : 0
 
   // Path dot vertical connector is rendered by the parent; here we render the card
@@ -620,19 +623,33 @@ function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked, needsPro }:
               ))}
             </div>
 
-            {/* PYQ badge */}
-            {showPyqBadge && (
+            {/* Question count */}
+            <span style={{
+              fontSize: 10, fontWeight: 600,
+              color: 'rgba(255,255,255,0.50)',
+              background: 'rgba(255,255,255,0.05)',
+              border: '1px solid rgba(255,255,255,0.08)',
+              padding: '1px 7px',
+              borderRadius: 6,
+              lineHeight: 1.4,
+              display: 'flex', alignItems: 'center', gap: 3,
+            }}>
+              <span style={{ fontSize: 10 }}>📝</span> {totalQs} Qs
+            </span>
+
+            {/* Remaining to practice */}
+            {answered > 0 && (
               <span style={{
                 fontSize: 10, fontWeight: 600,
-                color: '#fbbf24',
-                background: 'rgba(251,191,36,0.10)',
-                border: '1px solid rgba(251,191,36,0.20)',
-                padding: '1px 6px',
+                color: remaining === 0 ? '#34d399' : '#fbbf24',
+                background: remaining === 0 ? 'rgba(34,211,153,0.08)' : 'rgba(251,191,36,0.08)',
+                border: `1px solid ${remaining === 0 ? 'rgba(34,211,153,0.20)' : 'rgba(251,191,36,0.20)'}`,
+                padding: '1px 7px',
                 borderRadius: 6,
                 lineHeight: 1.4,
-                display: 'flex', alignItems: 'center', gap: 2,
+                display: 'flex', alignItems: 'center', gap: 3,
               }}>
-                <span style={{ fontSize: 9 }}>\u2605</span> PYQ
+                {remaining === 0 ? '✓ Done' : `${remaining} left`}
               </span>
             )}
           </div>
