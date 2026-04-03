@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react'
 import type { LearningTopic, LearningSubject } from '@/data/syllabus'
 import { UPSC_SYLLABUS } from '@/data/syllabus'
-import { type TopicProgress, type JourneyProgress, type NodeState, type UserProfile, DEFAULT_TOPIC_PROGRESS } from './types'
+import { type TopicProgress, type JourneyProgress, type NodeState, type UserProfile, DEFAULT_TOPIC_PROGRESS, GLASS_STYLE } from './types'
 
 interface PracticeTabProps {
   progress: JourneyProgress
@@ -13,6 +13,10 @@ interface PracticeTabProps {
   onStartQuickMix: () => void
   onNavigateToPath: () => void
   profile: UserProfile | null
+}
+
+function getLocalDate(d: Date = new Date()): string {
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
 }
 
 interface TopicWithMeta {
@@ -35,27 +39,22 @@ function buildTopicList(subjects: LearningSubject[], progress: JourneyProgress):
 function pickNextUp(all: TopicWithMeta[], weakSubjectIds?: string[]): TopicWithMeta | null {
   const weakSet = new Set(weakSubjectIds || [])
 
-  // First: weak accuracy in focus areas
   const weakFocus = all
     .filter(t => weakSet.has(t.subject.id) && t.tp.questionsAnswered >= 3 && t.accuracy < 60)
     .sort((a, b) => a.accuracy - b.accuracy)
   if (weakFocus[0]) return weakFocus[0]
 
-  // Then: any weak accuracy topic
   const weak = all.filter(t => t.tp.questionsAnswered >= 3 && t.accuracy < 40).sort((a, b) => a.accuracy - b.accuracy)
   if (weak[0]) return weak[0]
 
-  // Then: due for review in focus areas
   const dueFocus = all
     .filter(t => weakSet.has(t.subject.id) && t.tp.state === 'completed' && t.daysSince >= 3)
     .sort((a, b) => b.daysSince - a.daysSince)
   if (dueFocus[0]) return dueFocus[0]
 
-  // Then: any due for review
   const due = all.filter(t => t.tp.state === 'completed' && t.daysSince >= 3).sort((a, b) => b.daysSince - a.daysSince)
   if (due[0]) return due[0]
 
-  // Then: started topics in focus areas first
   const startedFocus = all.filter(t => weakSet.has(t.subject.id) && t.tp.state === 'started')
   if (startedFocus[0]) return startedFocus[0]
 
@@ -63,15 +62,7 @@ function pickNextUp(all: TopicWithMeta[], weakSubjectIds?: string[]): TopicWithM
   return started[0] || all[0] || null
 }
 
-function reason(t: TopicWithMeta, weakSubjectIds?: string[]): string {
-  const isFocus = weakSubjectIds && weakSubjectIds.includes(t.subject.id)
-  if (t.tp.questionsAnswered >= 3 && t.accuracy < 40) return isFocus ? 'Weak in focus area' : 'Weakest topic'
-  if (t.tp.state === 'completed' && t.daysSince >= 3) return isFocus ? 'Focus area review' : 'Due for review'
-  if (t.tp.state === 'started') return isFocus ? 'Continue (focus)' : 'Continue learning'
-  return 'Practice next'
-}
-
-// ── Urgency helpers ──────────────────────────────────────────────────────────
+// -- Urgency helpers --
 
 type UrgencyLevel = 'overdue' | 'due-soon' | 'recent' | 'none'
 
@@ -91,33 +82,21 @@ function urgencyColor(level: UrgencyLevel): string {
   }
 }
 
-function urgencyLabel(level: UrgencyLevel): string | null {
-  switch (level) {
-    case 'overdue': return 'overdue'
-    case 'due-soon': return 'due soon'
-    default: return null
-  }
-}
-
-// ── Accuracy trend helper ────────────────────────────────────────────────────
+// -- Accuracy trend helper --
 
 type TrendDirection = 'up' | 'down' | 'stable'
 
 function computeTrend(tp: TopicProgress): TrendDirection {
-  // We estimate trend by comparing current accuracy to what it would be
-  // without the last 3 answers. If not enough data, return stable.
   const total = tp.questionsAnswered
   const correct = tp.correctAnswers
   if (total < 4) return 'stable'
 
   const currentAcc = correct / total
-  // Best estimate: if crown level is rising relative to accuracy
   if (tp.crownLevel >= 3 && currentAcc >= 0.7) return 'up'
   if (tp.crownLevel >= 2 && currentAcc >= 0.6) return 'up'
   if (currentAcc < 0.35 && total >= 6) return 'down'
   if (currentAcc < 0.45 && total >= 8) return 'down'
 
-  // Use a simple heuristic: if accuracy is above 55% with decent volume, trending up
   if (currentAcc >= 0.55) return 'up'
   if (currentAcc < 0.45) return 'down'
   return 'stable'
@@ -125,13 +104,13 @@ function computeTrend(tp: TopicProgress): TrendDirection {
 
 function trendIndicator(dir: TrendDirection): { symbol: string; color: string } {
   switch (dir) {
-    case 'up': return { symbol: '\u2197', color: '#34d399' }    // ↗
-    case 'down': return { symbol: '\u2198', color: '#f87171' }  // ↘
-    case 'stable': return { symbol: '\u2192', color: 'rgba(255,255,255,0.35)' } // →
+    case 'up': return { symbol: '\u2197', color: '#34d399' }
+    case 'down': return { symbol: '\u2198', color: '#f87171' }
+    case 'stable': return { symbol: '\u2192', color: 'rgba(255,255,255,0.35)' }
   }
 }
 
-// ── Weekly stats helper ──────────────────────────────────────────────────────
+// -- Weekly stats helper --
 
 interface WeekStats {
   questions: number
@@ -154,8 +133,8 @@ function computeWeekStatsFromProgress(
   const weekEnd = new Date(weekStart)
   weekEnd.setDate(weekEnd.getDate() + 7)
 
-  const startStr = weekStart.toISOString().slice(0, 10)
-  const endStr = weekEnd.toISOString().slice(0, 10)
+  const startStr = getLocalDate(weekStart)
+  const endStr = getLocalDate(weekEnd)
 
   let questions = 0
   let xpEarned = 0
@@ -169,14 +148,13 @@ function computeWeekStatsFromProgress(
     }
   }
 
-  // Estimate accuracy from xp/questions ratio (10 xp per correct answer)
   const estimatedCorrect = questions > 0 ? Math.round(xpEarned / 10) : 0
   const accuracy = questions > 0 ? Math.min(100, Math.round((estimatedCorrect / questions) * 100)) : 0
 
   return { questions, accuracy, topics: activeDays }
 }
 
-// ── Pulse animation CSS (injected once) ──────────────────────────────────────
+// -- Pulse animation CSS (injected once) --
 
 const PULSE_KEYFRAMES = `
 @keyframes practiceTabPulse {
@@ -195,68 +173,86 @@ function ensurePulseAnimation() {
   pulseInjected = true
 }
 
-const GLASS = { background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: 20 } as const
-const ELEVATED = { background: 'rgba(255,255,255,0.06)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', border: '1px solid rgba(255,255,255,0.08)', boxShadow: '0 8px 32px rgba(0,0,0,0.3)', borderRadius: 20 } as const
+// -- Category type --
+
+type CategoryFilter = 'all' | 'review' | 'weak' | 'focus' | 'quickmix'
+
+// -- TopicRow component --
+
+function TopicRow({ icon, title, subject, rightContent, urgencyDot, onTap }: {
+  icon: string; title: string; subject: string;
+  rightContent: React.ReactNode; urgencyDot?: string; onTap: () => void
+}) {
+  return (
+    <button onClick={onTap} style={{
+      width: '100%', display: 'flex', alignItems: 'center', gap: 10,
+      padding: '12px 14px', borderRadius: 14,
+      background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)',
+      cursor: 'pointer', textAlign: 'left' as const,
+    }}>
+      {urgencyDot && (
+        <div style={{ position: 'relative', width: 8, height: 8, flexShrink: 0 }}>
+          <div style={{ width: 8, height: 8, borderRadius: 9999, background: urgencyDot }} />
+          {urgencyDot === '#ef4444' && (
+            <div style={{
+              position: 'absolute', top: 0, left: 0, width: 8, height: 8, borderRadius: 9999,
+              background: urgencyDot,
+              animation: 'practiceTabPulse 2s ease-out infinite',
+            }} />
+          )}
+        </div>
+      )}
+      <span style={{ fontSize: 18, lineHeight: 1, flexShrink: 0 }}>{icon}</span>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.85)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' as const }}>{title}</div>
+        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', marginTop: 1 }}>{subject}</div>
+      </div>
+      {rightContent}
+    </button>
+  )
+}
+
+// -- Main Component --
+
+const GLASS = { ...GLASS_STYLE } as const
 
 export default function PracticeTab({ progress, subjects, topicStates, onTopicSelect, onStartQuickMix, onNavigateToPath, profile }: PracticeTabProps) {
+  void topicStates // prop passed by parent but categories are computed from allTopics
+  const [activeCategory, setActiveCategory] = useState<CategoryFilter>('all')
+
   const allTopics = useMemo(() => buildTopicList(subjects.length > 0 ? subjects : UPSC_SYLLABUS, progress), [subjects, progress])
   const nextUp = useMemo(() => pickNextUp(allTopics, profile?.weakSubjects), [allTopics, profile])
   const weakThreshold = profile?.prepStage === 'advanced' ? 75 : profile?.prepStage === 'intermediate' ? 60 : 50
+
+  const reviewTopics = useMemo(() =>
+    allTopics.filter(t => t.tp.state === 'completed' && t.daysSince >= 3).sort((a, b) => b.daysSince - a.daysSince),
+    [allTopics]
+  )
   const weakTopics = useMemo(() =>
     allTopics.filter(t => t.tp.questionsAnswered >= 3 && t.accuracy < weakThreshold)
       .sort((a, b) => a.accuracy - b.accuracy),
     [allTopics, weakThreshold]
   )
-  const reviewTopics = useMemo(() => allTopics.filter(t => t.tp.state === 'completed' && t.daysSince >= 1).sort((a, b) => b.daysSince - a.daysSince), [allTopics])
   const focusTopics = useMemo(() => {
     if (!profile?.weakSubjects?.length) return []
     const weakSet = new Set(profile.weakSubjects)
     return allTopics.filter(t => weakSet.has(t.subject.id)).sort((a, b) => a.accuracy - b.accuracy)
   }, [allTopics, profile])
-  const hasPracticedTopics = allTopics.length > 0
-  const [reviewOpen, setReviewOpen] = useState(false)
-  const [weakOpen, setWeakOpen] = useState(false)
-  const [heroPressed, setHeroPressed] = useState(false)
-  const fmt = (d: number) => d === 0 ? 'today' : d === 1 ? 'yesterday' : `${d}d ago`
 
-  // ── New: Today's Plan computation ────────────────────────────────────────────
-  const todayPlan = useMemo(() => {
+  const hasPracticedTopics = allTopics.length > 0
+
+  // Priority topic for smart session
+  const priorityTopic = useMemo(() => {
     const reviewDue = allTopics.filter(t => t.tp.state === 'completed' && t.daysSince >= 3)
     const focusDue = focusTopics.filter(t => t.tp.questionsAnswered >= 3 && t.accuracy < weakThreshold)
-    const availableNew = Object.values(topicStates).filter(e => e.state === 'available').slice(0, 5)
-
-    const reviewCount = reviewDue.length
-    const focusCount = Math.min(focusDue.length, 2)
-    const newCount = Math.min(availableNew.length, 2)
-
-    const reviewMin = reviewCount * 5
-    const focusMin = focusCount * 8
-    const newMin = newCount * 6
-    const totalMin = reviewMin + focusMin + newMin
-
-    // Determine highest priority topic for "Start Smart Session"
-    let priorityTopic: TopicWithMeta | null = null
-    // Priority: overdue review > focus weak > next up
     const overdue = reviewDue.filter(t => t.daysSince >= 7).sort((a, b) => b.daysSince - a.daysSince)
-    if (overdue[0]) priorityTopic = overdue[0]
-    else if (focusDue[0]) priorityTopic = focusDue[0]
-    else if (reviewDue[0]) priorityTopic = reviewDue[0]
-    else priorityTopic = nextUp
+    if (overdue[0]) return overdue[0]
+    if (focusDue[0]) return focusDue[0]
+    if (reviewDue[0]) return reviewDue[0]
+    return nextUp
+  }, [allTopics, focusTopics, weakThreshold, nextUp])
 
-    return {
-      reviewCount,
-      reviewMin,
-      focusCount,
-      focusMin,
-      newCount,
-      newMin,
-      totalMin,
-      priorityTopic,
-      availableNewTopics: availableNew,
-    }
-  }, [allTopics, focusTopics, topicStates, weakThreshold, nextUp])
-
-  // ── New: Weekly stats ────────────────────────────────────────────────────────
+  // Weekly stats
   const weeklyStats = useMemo(() => {
     const thisWeek = computeWeekStatsFromProgress(progress, 0)
     const lastWeek = computeWeekStatsFromProgress(progress, 1)
@@ -266,23 +262,21 @@ export default function PracticeTab({ progress, subjects, topicStates, onTopicSe
     return { thisWeek, lastWeek, trend }
   }, [progress])
 
-  // ── New: Motivational banner ─────────────────────────────────────────────────
-  const motivationalMessage = useMemo(() => {
-    const streak = progress.streak
-    if (streak >= 30) return `Unstoppable. ${streak} days of pure dedication.`
-    if (streak >= 14) return `Two weeks strong! ${streak}-day streak. Keep the fire alive.`
-    if (streak >= 7) return `One full week! ${streak}-day streak and counting.`
-    if (streak >= 5) return `Consistency beats intensity. You've practiced ${streak} days straight!`
-    if (streak >= 3) return `Nice momentum! ${streak} days in a row. Keep it going.`
-    if (streak >= 1) return `You showed up today. That's what matters. Build on it.`
-    return 'Start strong today. One topic at a time.'
-  }, [progress.streak])
-
-  const streakEmoji = progress.streak >= 5 ? ' \uD83D\uDD25' : progress.streak >= 3 ? ' \u2728' : ''
+  const fmt = (d: number) => d === 0 ? 'today' : d === 1 ? 'yesterday' : `${d}d ago`
 
   // Inject pulse CSS
   if (typeof window !== 'undefined') ensurePulseAnimation()
 
+  // -- Category pills config --
+  const categories: { key: CategoryFilter; label: string; count?: number }[] = [
+    { key: 'all', label: 'All' },
+    { key: 'review', label: 'Review Due', count: reviewTopics.length },
+    { key: 'weak', label: 'Weak', count: weakTopics.length },
+    { key: 'focus', label: 'Focus Areas', count: focusTopics.length },
+    { key: 'quickmix', label: 'Quick Mix' },
+  ]
+
+  // -- Empty state --
   if (allTopics.length === 0) return (
     <div style={{ minHeight: '60vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 28, padding: '0 24px', textAlign: 'center' }}>
       <div style={{
@@ -309,405 +303,280 @@ export default function PracticeTab({ progress, subjects, topicStates, onTopicSe
         fontSize: 14, fontWeight: 700, color: '#fff', border: 'none', cursor: 'pointer',
         transition: 'transform 150ms ease',
       }}>
-        Go to Path →
+        Go to Path &rarr;
       </button>
     </div>
   )
 
-  return (
-    <div style={{ padding: '16px 16px 40px', display: 'flex', flexDirection: 'column', gap: 20 }}>
-      <h2 style={{ fontSize: 20, fontWeight: 700, color: 'rgba(255,255,255,0.92)', margin: 0 }}>Practice</h2>
+  // -- Render review topic row --
+  function renderReviewRow(t: TopicWithMeta) {
+    const urgency = getUrgency(t.daysSince)
+    const uColor = urgencyColor(urgency)
+    return (
+      <TopicRow
+        key={t.topic.id}
+        icon={t.topic.icon}
+        title={t.topic.title}
+        subject={t.subject.shortTitle}
+        urgencyDot={uColor}
+        onTap={() => onTopicSelect(t.topic.id, t.topic, t.subject)}
+        rightContent={
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', flexShrink: 0, gap: 1 }}>
+            <span style={{ fontSize: 11, fontWeight: 600, color: 'rgba(255,255,255,0.40)' }}>{fmt(t.daysSince)}</span>
+            {urgency === 'overdue' && (
+              <span style={{ fontSize: 9, fontWeight: 700, color: '#ef4444', textTransform: 'uppercase' as const, letterSpacing: '0.03em' }}>OVERDUE</span>
+            )}
+          </div>
+        }
+      />
+    )
+  }
 
-      {/* Motivational Banner */}
-      <div style={{
-        ...GLASS,
-        padding: '12px 16px',
-        display: 'flex',
-        alignItems: 'center',
-        gap: 10,
-      }}>
-        <span style={{ fontSize: 14, flexShrink: 0 }}>{progress.streak >= 3 ? '🔥' : '💪'}</span>
-        <p style={{
-          fontSize: 12,
-          fontWeight: 500,
-          color: 'rgba(255,255,255,0.55)',
-          margin: 0,
-          lineHeight: 1.5,
-          fontStyle: 'italic',
-        }}>
-          {motivationalMessage}{streakEmoji}
-        </p>
+  // -- Render weak topic row --
+  function renderWeakRow(t: TopicWithMeta) {
+    const trend = computeTrend(t.tp)
+    const ti = trendIndicator(trend)
+    const accColor = t.accuracy < 40 ? '#f87171' : '#fbbf24'
+    return (
+      <TopicRow
+        key={t.topic.id}
+        icon={t.topic.icon}
+        title={t.topic.title}
+        subject={t.subject.shortTitle}
+        onTap={() => onTopicSelect(t.topic.id, t.topic, t.subject)}
+        rightContent={
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 }}>
+            <span style={{ fontSize: 12, fontWeight: 700, color: accColor }}>{Math.round(t.accuracy)}%</span>
+            {t.tp.questionsAnswered >= 3 && (
+              <span style={{ fontSize: 13, fontWeight: 600, color: ti.color }}>{ti.symbol}</span>
+            )}
+          </div>
+        }
+      />
+    )
+  }
+
+  // -- Section header --
+  function SectionHeader({ icon, label, count }: { icon: string; label: string; count: number }) {
+    if (count === 0) return null
+    return (
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '4px 0' }}>
+        <span style={{ fontSize: 13 }}>{icon}</span>
+        <span style={{ fontSize: 12, fontWeight: 700, color: 'rgba(255,255,255,0.55)', letterSpacing: '0.03em' }}>{label}</span>
+        <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.25)', marginLeft: 2 }}>({count})</span>
       </div>
+    )
+  }
 
-      {/* Today's Plan Card */}
-      {(todayPlan.reviewCount > 0 || todayPlan.focusCount > 0 || todayPlan.newCount > 0) && (
-        <div style={{ ...ELEVATED, padding: 18 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 14 }}>
-            <span style={{ fontSize: 14 }}>📋</span>
-            <span style={{ fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.88)', letterSpacing: '0.03em' }}>Today&apos;s Plan</span>
-            <span style={{ marginLeft: 'auto', fontSize: 11, color: 'rgba(255,255,255,0.30)' }}>~{todayPlan.totalMin} min</span>
+  // -- Render category content --
+  function renderCategoryContent() {
+    switch (activeCategory) {
+      case 'all': {
+        const hasReview = reviewTopics.length > 0
+        const hasWeak = weakTopics.length > 0
+        const hasFocus = focusTopics.length > 0
+        if (!hasReview && !hasWeak && !hasFocus) {
+          return (
+            <div style={{ textAlign: 'center', padding: '32px 16px' }}>
+              <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.40)', margin: 0 }}>All topics are in good shape. Keep going!</p>
+            </div>
+          )
+        }
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            {hasReview && (
+              <>
+                <SectionHeader icon="🔄" label="Review Due" count={reviewTopics.length} />
+                {reviewTopics.slice(0, 5).map(renderReviewRow)}
+              </>
+            )}
+            {hasWeak && (
+              <>
+                <SectionHeader icon="⚠️" label="Weak Topics" count={weakTopics.length} />
+                {weakTopics.slice(0, 5).map(renderWeakRow)}
+              </>
+            )}
+            {hasFocus && (
+              <>
+                <SectionHeader icon="🎯" label="Focus Areas" count={focusTopics.length} />
+                {focusTopics.slice(0, 5).map(renderWeakRow)}
+              </>
+            )}
           </div>
+        )
+      }
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 14 }}>
-            {todayPlan.reviewCount > 0 && (
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <span style={{ fontSize: 12 }}>🔄</span>
-                <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.65)', flex: 1 }}>
-                  <span style={{ fontWeight: 600, color: '#fbbf24' }}>{todayPlan.reviewCount}</span> {todayPlan.reviewCount === 1 ? 'topic' : 'topics'} due for review
-                </span>
-                <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.25)' }}>~{todayPlan.reviewMin} min</span>
-              </div>
-            )}
-            {todayPlan.focusCount > 0 && (
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <span style={{ fontSize: 12 }}>🎯</span>
-                <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.65)', flex: 1 }}>
-                  <span style={{ fontWeight: 600, color: '#f97316' }}>{todayPlan.focusCount}</span> focus area {todayPlan.focusCount === 1 ? 'topic' : 'topics'}
-                </span>
-                <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.25)' }}>~{todayPlan.focusMin} min</span>
-              </div>
-            )}
-            {todayPlan.newCount > 0 && (
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <span style={{ fontSize: 12 }}>⭐</span>
-                <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.65)', flex: 1 }}>
-                  <span style={{ fontWeight: 600, color: '#818cf8' }}>{todayPlan.newCount}</span> new {todayPlan.newCount === 1 ? 'topic' : 'topics'} available
-                </span>
-                <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.25)' }}>~{todayPlan.newMin} min</span>
-              </div>
-            )}
+      case 'review': {
+        if (reviewTopics.length === 0) {
+          return (
+            <div style={{ textAlign: 'center', padding: '32px 16px' }}>
+              <span style={{ fontSize: 28 }}>✅</span>
+              <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.40)', margin: '8px 0 0' }}>No reviews due. You are on top of it!</p>
+            </div>
+          )
+        }
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+            {reviewTopics.map(renderReviewRow)}
           </div>
+        )
+      }
 
-          {todayPlan.priorityTopic && (
+      case 'weak': {
+        if (weakTopics.length === 0) {
+          return (
+            <div style={{ textAlign: 'center', padding: '32px 16px' }}>
+              <span style={{ fontSize: 28 }}>💪</span>
+              <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.40)', margin: '8px 0 0' }}>No weak topics. Strong performance!</p>
+            </div>
+          )
+        }
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+            {weakTopics.map(renderWeakRow)}
+          </div>
+        )
+      }
+
+      case 'focus': {
+        if (focusTopics.length === 0) {
+          return (
+            <div style={{ textAlign: 'center', padding: '32px 16px' }}>
+              <span style={{ fontSize: 28 }}>🎯</span>
+              <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.40)', margin: '8px 0 0' }}>
+                {profile?.weakSubjects?.length ? 'No topics practiced in focus areas yet.' : 'Set focus areas in your profile to see them here.'}
+              </p>
+            </div>
+          )
+        }
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+            {focusTopics.map(renderWeakRow)}
+          </div>
+        )
+      }
+
+      case 'quickmix': {
+        return (
+          <div style={{
+            ...GLASS, padding: 24, textAlign: 'center',
+            display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14,
+          }}>
+            <span style={{ fontSize: 40 }}>🎲</span>
+            <div>
+              <p style={{ fontSize: 15, fontWeight: 700, color: 'rgba(255,255,255,0.88)', margin: 0 }}>Quick Mix</p>
+              <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.40)', margin: '6px 0 0', lineHeight: 1.6 }}>
+                5 random questions from across all your practiced topics. Great for revision and keeping things fresh!
+              </p>
+            </div>
             <button
-              onClick={() => {
-                const t = todayPlan.priorityTopic!
-                onTopicSelect(t.topic.id, t.topic, t.subject)
-              }}
+              onClick={hasPracticedTopics ? onStartQuickMix : undefined}
               style={{
-                width: '100%', padding: '11px 0', borderRadius: 12, textAlign: 'center',
-                background: 'linear-gradient(135deg, #10b981, #059669)',
-                boxShadow: '0 4px 16px rgba(16,185,129,0.25)',
-                fontSize: 13, fontWeight: 700, color: '#fff', border: 'none', cursor: 'pointer',
+                padding: '13px 32px', borderRadius: 14,
+                background: hasPracticedTopics ? 'linear-gradient(135deg,#6366f1,#8b5cf6)' : 'rgba(255,255,255,0.06)',
+                boxShadow: hasPracticedTopics ? '0 4px 20px rgba(99,102,241,0.3)' : 'none',
+                fontSize: 14, fontWeight: 700, color: hasPracticedTopics ? '#fff' : 'rgba(255,255,255,0.3)',
+                border: 'none', cursor: hasPracticedTopics ? 'pointer' : 'default',
                 transition: 'transform 150ms ease',
               }}
             >
-              Start Smart Session →
+              Start Quick Mix &rarr;
             </button>
-          )}
-        </div>
-      )}
+          </div>
+        )
+      }
+    }
+  }
 
-      {/* Next Up Hero */}
-      {nextUp && (
-        <button onClick={() => onTopicSelect(nextUp.topic.id, nextUp.topic, nextUp.subject)} style={{ ...ELEVATED, width: '100%', textAlign: 'left' as const, padding: 20, cursor: 'pointer', WebkitTapHighlightColor: 'transparent' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 14 }}>
-            <span style={{ fontSize: 14 }}>⚡</span>
-            <span style={{ fontSize: 11, fontWeight: 700, color: '#818cf8', letterSpacing: '0.05em', textTransform: 'uppercase' as const }}>Next Up</span>
-            <span style={{ marginLeft: 'auto', fontSize: 11, color: 'rgba(255,255,255,0.35)' }}>{reason(nextUp, profile?.weakSubjects)}</span>
-            {profile?.weakSubjects?.includes(nextUp.subject.id) && (
-              <span style={{ fontSize: 9, fontWeight: 700, color: '#f97316', background: 'rgba(249,115,22,0.15)', padding: '2px 6px', borderRadius: 6, marginLeft: 4 }}>FOCUS</span>
-            )}
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-            <div style={{ width: 52, height: 52, borderRadius: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, flexShrink: 0, background: `${nextUp.subject.color}15`, border: `1px solid ${nextUp.subject.color}25` }}>
-              {nextUp.topic.icon}
-            </div>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <p style={{ fontSize: 15, fontWeight: 700, color: 'rgba(255,255,255,0.92)', margin: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' as const }}>{nextUp.topic.title}</p>
-              {nextUp.tp.questionsAnswered > 0 && (
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 4 }}>
-                  <p style={{ fontSize: 12, color: nextUp.accuracy < 40 ? '#f87171' : nextUp.accuracy < 60 ? '#fbbf24' : '#34d399', margin: 0, fontWeight: 600 }}>Accuracy: {Math.round(nextUp.accuracy)}%</p>
-                  {(() => {
-                    const trend = computeTrend(nextUp.tp)
-                    const ti = trendIndicator(trend)
-                    return <span style={{ fontSize: 12, color: ti.color, fontWeight: 600 }}>{ti.symbol}</span>
-                  })()}
-                </div>
-              )}
-            </div>
-          </div>
-          <div
-            onPointerDown={() => setHeroPressed(true)}
-            onPointerUp={() => setHeroPressed(false)}
-            onPointerLeave={() => setHeroPressed(false)}
+  return (
+    <div style={{ padding: '16px 16px 40px', display: 'flex', flexDirection: 'column', gap: 18 }}>
+
+      {/* SECTION 1: Header + Smart Session CTA */}
+      <div>
+        <h2 style={{ fontSize: 20, fontWeight: 700, color: 'rgba(255,255,255,0.92)', margin: 0 }}>Practice</h2>
+      </div>
+
+      {priorityTopic && (
+        <div>
+          <button
+            onClick={() => {
+              const t = priorityTopic!
+              onTopicSelect(t.topic.id, t.topic, t.subject)
+            }}
             style={{
-              marginTop: 16, padding: '12px 0', borderRadius: 12, textAlign: 'center',
-              background: 'linear-gradient(135deg,#6366f1,#8b5cf6)',
-              boxShadow: '0 4px 20px rgba(99,102,241,0.25)',
-              fontSize: 13, fontWeight: 700, color: '#fff',
-              transform: heroPressed ? 'scale(0.97)' : 'scale(1)',
+              width: '100%', padding: '15px 0', borderRadius: 14, textAlign: 'center',
+              background: 'linear-gradient(135deg, #10b981, #059669)',
+              boxShadow: '0 4px 20px rgba(16,185,129,0.3)',
+              fontSize: 14, fontWeight: 700, color: '#fff', border: 'none', cursor: 'pointer',
               transition: 'transform 150ms ease',
-              WebkitTapHighlightColor: 'transparent',
             }}
           >
-            Practice Now →
-          </div>
-        </button>
-      )}
-
-      {/* Focus Areas */}
-      {profile?.weakSubjects && profile.weakSubjects.length > 0 && focusTopics.length > 0 && (
-        <div style={{ ...GLASS, padding: 16 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 12 }}>
-            <span style={{ fontSize: 14 }}>🎯</span>
-            <span style={{ fontSize: 13, fontWeight: 700, color: '#f97316', letterSpacing: '0.03em' }}>Focus Areas</span>
-            <span style={{ marginLeft: 'auto', fontSize: 11, color: 'rgba(255,255,255,0.30)' }}>{focusTopics.length} topics</span>
-          </div>
-          {focusTopics.slice(0, 4).map(t => {
-            const trend = computeTrend(t.tp)
-            const ti = trendIndicator(trend)
-            return (
-              <RowWithTrend key={t.topic.id} icon={t.topic.icon} title={t.topic.title}
-                detail={t.tp.questionsAnswered > 0 ? `${Math.round(t.accuracy)}%` : 'New'}
-                detailColor={t.accuracy < 40 ? '#f87171' : t.accuracy < 60 ? '#fbbf24' : '#34d399'}
-                trendSymbol={t.tp.questionsAnswered >= 3 ? ti.symbol : undefined}
-                trendColor={t.tp.questionsAnswered >= 3 ? ti.color : undefined}
-                onTap={() => onTopicSelect(t.topic.id, t.topic, t.subject)} />
-            )
-          })}
-        </div>
-      )}
-
-      {/* Quick Mix */}
-      <div
-        onClick={hasPracticedTopics ? onStartQuickMix : undefined}
-        style={{
-          ...GLASS, padding: 16, display: 'flex', alignItems: 'center', gap: 14,
-          cursor: hasPracticedTopics ? 'pointer' : 'default',
-          opacity: hasPracticedTopics ? 1 : 0.5,
-          transition: 'opacity 200ms ease',
-        }}
-      >
-        <span style={{ fontSize: 24 }}>🎲</span>
-        <div style={{ flex: 1 }}>
-          <p style={{ fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.85)', margin: 0 }}>Quick Mix</p>
-          <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', margin: '2px 0 0' }}>
-            {hasPracticedTopics ? '5 random questions from across topics' : 'Practice a topic first'}
+            Start Smart Session &rarr;
+          </button>
+          <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', textAlign: 'center', margin: '6px 0 0' }}>
+            AI picks what matters most for you right now
           </p>
         </div>
-        {hasPracticedTopics && <span style={{ fontSize: 13, fontWeight: 700, color: '#818cf8' }}>Start →</span>}
+      )}
+
+      {/* SECTION 2: Category Filter Pills */}
+      <div style={{
+        display: 'flex', gap: 8, overflowX: 'auto',
+        paddingBottom: 4,
+        WebkitOverflowScrolling: 'touch',
+        msOverflowStyle: 'none',
+        scrollbarWidth: 'none',
+      }}>
+        {categories.map(cat => {
+          const isSelected = activeCategory === cat.key
+          return (
+            <button
+              key={cat.key}
+              onClick={() => setActiveCategory(cat.key)}
+              style={{
+                height: 34, borderRadius: 9999, fontSize: 12, fontWeight: 600,
+                padding: '0 14px', whiteSpace: 'nowrap' as const, flexShrink: 0,
+                background: isSelected ? 'rgba(99,102,241,0.15)' : 'rgba(255,255,255,0.04)',
+                border: isSelected ? '1px solid rgba(99,102,241,0.3)' : '1px solid rgba(255,255,255,0.06)',
+                color: isSelected ? '#a5b4fc' : 'rgba(255,255,255,0.45)',
+                cursor: 'pointer',
+                transition: 'all 150ms ease',
+              }}
+            >
+              {cat.label}{cat.count !== undefined ? ` (${cat.count})` : ''}
+            </button>
+          )
+        })}
       </div>
 
-      {/* Stat Pills */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-        {[{ n: weakTopics.length, label: 'weak topics', color: '#f87171', toggle: () => setWeakOpen(o => !o), open: weakOpen },
-          { n: reviewTopics.length, label: 'due reviews', color: '#fbbf24', toggle: () => setReviewOpen(o => !o), open: reviewOpen }].map(p => (
-          <StatPill key={p.label} count={p.n} label={p.label} color={p.color} open={p.open} onToggle={p.n > 0 ? p.toggle : undefined} />
-        ))}
+      {/* SECTION 3: Topic List */}
+      <div style={{ minHeight: 120 }}>
+        {renderCategoryContent()}
       </div>
 
-      {/* Weekly Stats Card */}
+      {/* SECTION 4: Weekly Snapshot (compact) */}
       {(weeklyStats.thisWeek.questions > 0 || weeklyStats.lastWeek.questions > 0) && (
-        <div style={{ ...GLASS, padding: 16 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 12 }}>
-            <span style={{ fontSize: 14 }}>📊</span>
-            <span style={{ fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.85)', letterSpacing: '0.03em' }}>Weekly Stats</span>
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.40)', width: 60, flexShrink: 0 }}>This week</span>
-              <span style={{ fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.75)' }}>
-                {weeklyStats.thisWeek.questions} questions
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: 8,
+          padding: '10px 14px', borderRadius: 12,
+          background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)',
+        }}>
+          <span style={{ fontSize: 12 }}>📊</span>
+          <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.50)', flex: 1 }}>
+            This week: <span style={{ fontWeight: 600, color: 'rgba(255,255,255,0.70)' }}>{weeklyStats.thisWeek.questions}</span> questions
+            <span style={{ color: 'rgba(255,255,255,0.25)', margin: '0 4px' }}>&middot;</span>
+            <span style={{ fontWeight: 600, color: weeklyStats.thisWeek.accuracy >= 70 ? '#34d399' : weeklyStats.thisWeek.accuracy >= 50 ? '#fbbf24' : '#f87171' }}>{weeklyStats.thisWeek.accuracy}%</span> acc
+          </span>
+          {weeklyStats.trend !== 'stable' && (() => {
+            const ti = trendIndicator(weeklyStats.trend)
+            return (
+              <span style={{ fontSize: 11, fontWeight: 600, color: ti.color, flexShrink: 0 }}>
+                {ti.symbol} {weeklyStats.trend === 'up' ? 'Improving' : 'Needs effort'}
               </span>
-              <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.30)' }}>·</span>
-              <span style={{ fontSize: 12, fontWeight: 600, color: weeklyStats.thisWeek.accuracy >= 70 ? '#34d399' : weeklyStats.thisWeek.accuracy >= 50 ? '#fbbf24' : '#f87171' }}>
-                {weeklyStats.thisWeek.accuracy}% acc
-              </span>
-              <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.30)' }}>·</span>
-              <span style={{ fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.55)' }}>
-                {weeklyStats.thisWeek.topics} {weeklyStats.thisWeek.topics === 1 ? 'day' : 'days'}
-              </span>
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.40)', width: 60, flexShrink: 0 }}>Last week</span>
-              <span style={{ fontSize: 12, fontWeight: 500, color: 'rgba(255,255,255,0.50)' }}>
-                {weeklyStats.lastWeek.questions} questions
-              </span>
-              <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.25)' }}>·</span>
-              <span style={{ fontSize: 12, fontWeight: 500, color: 'rgba(255,255,255,0.45)' }}>
-                {weeklyStats.lastWeek.accuracy}% acc
-              </span>
-              <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.25)' }}>·</span>
-              <span style={{ fontSize: 12, fontWeight: 500, color: 'rgba(255,255,255,0.40)' }}>
-                {weeklyStats.lastWeek.topics} {weeklyStats.lastWeek.topics === 1 ? 'day' : 'days'}
-              </span>
-            </div>
-
-            <div style={{ marginTop: 4, display: 'flex', alignItems: 'center', gap: 6 }}>
-              {(() => {
-                const ti = trendIndicator(weeklyStats.trend)
-                return (
-                  <>
-                    <span style={{ fontSize: 13, color: ti.color }}>{ti.symbol}</span>
-                    <span style={{ fontSize: 11, fontWeight: 600, color: ti.color }}>
-                      {weeklyStats.trend === 'up' ? 'Improving!' : weeklyStats.trend === 'down' ? 'Needs more effort' : 'Holding steady'}
-                    </span>
-                  </>
-                )
-              })()}
-            </div>
-          </div>
+            )
+          })()}
         </div>
       )}
-
-      {/* Review Queue */}
-      {reviewTopics.length > 0 && (
-        <Expandable title="Review Queue" badge={`${reviewTopics.length} topics due`} open={reviewOpen} toggle={() => setReviewOpen(o => !o)}>
-          {reviewTopics.slice(0, 8).map(t => {
-            const urgency = getUrgency(t.daysSince)
-            const trend = computeTrend(t.tp)
-            const ti = trendIndicator(trend)
-            return (
-              <ReviewRow
-                key={t.topic.id}
-                icon={t.topic.icon}
-                title={t.topic.title}
-                detail={fmt(t.daysSince)}
-                urgency={urgency}
-                trendSymbol={t.tp.questionsAnswered >= 3 ? ti.symbol : undefined}
-                trendColor={t.tp.questionsAnswered >= 3 ? ti.color : undefined}
-                onTap={() => onTopicSelect(t.topic.id, t.topic, t.subject)}
-              />
-            )
-          })}
-        </Expandable>
-      )}
-
-      {/* Weak Topics */}
-      {weakTopics.length > 0 && (
-        <Expandable title="Weak Topics" badge={`${weakTopics.length} < 60%`} open={weakOpen} toggle={() => setWeakOpen(o => !o)}>
-          {weakTopics.slice(0, 8).map(t => {
-            const trend = computeTrend(t.tp)
-            const ti = trendIndicator(trend)
-            return (
-              <RowWithTrend
-                key={t.topic.id}
-                icon={t.topic.icon}
-                title={t.topic.title}
-                detail={`${Math.round(t.accuracy)}%`}
-                detailColor={t.accuracy < 40 ? '#f87171' : '#fbbf24'}
-                trendSymbol={ti.symbol}
-                trendColor={ti.color}
-                onTap={() => onTopicSelect(t.topic.id, t.topic, t.subject)}
-              />
-            )
-          })}
-        </Expandable>
-      )}
     </div>
-  )
-}
-
-function StatPill({ count, label, color, open, onToggle }: { count: number; label: string; color: string; open: boolean; onToggle?: () => void }) {
-  const [hovered, setHovered] = useState(false)
-  const [pressed, setPressed] = useState(false)
-  const disabled = count === 0
-  return (
-    <div
-      onClick={disabled ? undefined : onToggle}
-      onPointerEnter={() => !disabled && setHovered(true)}
-      onPointerLeave={() => { setHovered(false); setPressed(false) }}
-      onPointerDown={() => !disabled && setPressed(true)}
-      onPointerUp={() => setPressed(false)}
-      style={{
-        padding: '14px 16px', borderRadius: 16, textAlign: 'center',
-        background: hovered ? 'rgba(255,255,255,0.07)' : 'rgba(255,255,255,0.04)',
-        border: '1px solid rgba(255,255,255,0.06)',
-        cursor: disabled ? 'default' : 'pointer',
-        opacity: disabled ? 0.4 : 1,
-        transform: pressed ? 'scale(0.97)' : 'scale(1)',
-        transition: 'background 150ms ease, opacity 200ms ease, transform 150ms ease',
-        position: 'relative' as const,
-      }}
-    >
-      <p style={{ fontSize: 20, fontWeight: 800, color: count > 0 ? color : 'rgba(255,255,255,0.55)', margin: 0 }}>{count}</p>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4, marginTop: 2 }}>
-        <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', margin: 0 }}>{label}</p>
-        {!disabled && (
-          <svg width="8" height="8" viewBox="0 0 8 8" fill="none" style={{ transform: open ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 200ms ease', flexShrink: 0 }}>
-            <path d="M1.5 3L4 5.5L6.5 3" stroke="rgba(255,255,255,0.30)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        )}
-      </div>
-    </div>
-  )
-}
-
-function Expandable({ title, badge, open, toggle, children }: { title: string; badge: string; open: boolean; toggle: () => void; children: React.ReactNode }) {
-  return (
-    <div style={{ ...GLASS, overflow: 'hidden' }}>
-      <button onClick={toggle} style={{ width: '100%', padding: '14px 16px', display: 'flex', alignItems: 'center', gap: 8, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' as const }}>
-        <span style={{ fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.85)', flex: 1 }}>{title}</span>
-        <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)' }}>{badge}</span>
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="2" strokeLinecap="round" style={{ transform: open ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.25s ease', flexShrink: 0 }}><path d="M3 5l4 4 4-4" /></svg>
-      </button>
-      <div style={{ maxHeight: open ? 400 : 0, overflow: 'hidden', transition: 'max-height 0.3s ease', padding: open ? '0 12px 12px' : '0 12px 0' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>{children}</div>
-      </div>
-    </div>
-  )
-}
-
-function RowWithTrend({ icon, title, detail, detailColor, trendSymbol, trendColor, onTap }: {
-  icon: string; title: string; detail: string; detailColor?: string;
-  trendSymbol?: string; trendColor?: string; onTap: () => void
-}) {
-  return (
-    <button onClick={onTap} style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 10, padding: '10px 8px', borderRadius: 12, background: 'rgba(255,255,255,0.02)', border: 'none', cursor: 'pointer', textAlign: 'left' as const }}>
-      <span style={{ fontSize: 16 }}>{icon}</span>
-      <span style={{ flex: 1, fontSize: 13, fontWeight: 500, color: 'rgba(255,255,255,0.75)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' as const }}>{title}</span>
-      {trendSymbol && (
-        <span style={{ fontSize: 12, fontWeight: 600, color: trendColor || 'rgba(255,255,255,0.35)', flexShrink: 0 }}>{trendSymbol}</span>
-      )}
-      <span style={{ fontSize: 11, fontWeight: 600, color: detailColor || 'rgba(255,255,255,0.30)', flexShrink: 0 }}>{detail}</span>
-    </button>
-  )
-}
-
-function ReviewRow({ icon, title, detail, urgency, trendSymbol, trendColor, onTap }: {
-  icon: string; title: string; detail: string; urgency: UrgencyLevel;
-  trendSymbol?: string; trendColor?: string; onTap: () => void
-}) {
-  const uColor = urgencyColor(urgency)
-  const uLabel = urgencyLabel(urgency)
-  const isOverdue = urgency === 'overdue'
-
-  return (
-    <button onClick={onTap} style={{
-      width: '100%', display: 'flex', alignItems: 'center', gap: 10, padding: '10px 8px', borderRadius: 12,
-      background: isOverdue ? 'rgba(239,68,68,0.06)' : 'rgba(255,255,255,0.02)',
-      border: isOverdue ? '1px solid rgba(239,68,68,0.12)' : 'none',
-      cursor: 'pointer', textAlign: 'left' as const,
-      position: 'relative' as const,
-    }}>
-      {/* Urgency dot with optional pulse */}
-      <div style={{ position: 'relative', width: 8, height: 8, flexShrink: 0 }}>
-        <div style={{
-          width: 8, height: 8, borderRadius: 9999,
-          background: uColor,
-        }} />
-        {isOverdue && (
-          <div style={{
-            position: 'absolute', top: 0, left: 0, width: 8, height: 8, borderRadius: 9999,
-            background: uColor,
-            animation: 'practiceTabPulse 2s ease-out infinite',
-          }} />
-        )}
-      </div>
-      <span style={{ fontSize: 16 }}>{icon}</span>
-      <span style={{ flex: 1, fontSize: 13, fontWeight: 500, color: 'rgba(255,255,255,0.75)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' as const }}>{title}</span>
-      {trendSymbol && (
-        <span style={{ fontSize: 12, fontWeight: 600, color: trendColor || 'rgba(255,255,255,0.35)', flexShrink: 0 }}>{trendSymbol}</span>
-      )}
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', flexShrink: 0, gap: 1 }}>
-        <span style={{ fontSize: 11, fontWeight: 600, color: 'rgba(255,255,255,0.30)' }}>{detail}</span>
-        {uLabel && (
-          <span style={{ fontSize: 9, fontWeight: 700, color: uColor, textTransform: 'uppercase' as const, letterSpacing: '0.03em' }}>{uLabel}</span>
-        )}
-      </div>
-    </button>
   )
 }

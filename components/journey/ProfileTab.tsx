@@ -6,10 +6,14 @@ import type { LearningSubject } from '@/data/syllabus'
 import {
   type JourneyProgress,
   type UserProfile,
+  type CrownLevel,
   DEFAULT_TOPIC_PROGRESS,
   ACHIEVEMENTS,
   DAILY_GOALS,
   PREP_STAGE_CONFIG,
+  CROWN_COLORS,
+  GLASS_STYLE,
+  ELEVATED_STYLE,
 } from './types'
 
 // ── Props ───────────────────────────────────────────────────────────────────────
@@ -25,11 +29,15 @@ interface ProfileTabProps {
 
 // ── Helpers ─────────────────────────────────────────────────────────────────────
 
+function getLocalDate(d: Date = new Date()): string {
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+}
+
 function getLevel(xp: number): number { return Math.floor(xp / 500) + 1 }
 function getXpInLevel(xp: number): number { return xp % 500 }
 
-const GLASS = { background: 'rgba(255,255,255,0.04)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: 20 } as const
-const ELEVATED = { background: 'rgba(255,255,255,0.06)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', border: '1px solid rgba(255,255,255,0.08)', boxShadow: '0 8px 32px rgba(0,0,0,0.3)', borderRadius: 20 } as const
+const GLASS = { ...GLASS_STYLE, backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' } as const
+const ELEVATED = { ...ELEVATED_STYLE } as const
 
 // ── Component ───────────────────────────────────────────────────────────────────
 
@@ -54,8 +62,21 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick, profi
     const totalCorrect = allTp.reduce((s, t) => s + t.correctAnswers, 0)
     const accuracy = totalAnswered > 0 ? Math.round((totalCorrect / totalAnswered) * 100) : 0
     const completedTopics = allTp.filter(t => t.state === 'completed').length
-    return { accuracy, completedTopics }
+    return { accuracy, completedTopics, totalAnswered, totalCorrect }
   }, [progress.topics])
+
+  // Crown distribution
+  const crownDistribution = useMemo(() => {
+    const dist: Record<number, number> = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
+    for (const tp of Object.values(progress.topics)) {
+      const cl = tp.crownLevel || 0
+      dist[cl] = (dist[cl] || 0) + 1
+    }
+    const trackedCount = Object.keys(progress.topics).length
+    const totalSyllabusTopics = syllabus.reduce((s, sub) => s + sub.units.reduce((s2, u) => s2 + u.topics.length, 0), 0)
+    dist[0] += Math.max(0, totalSyllabusTopics - trackedCount)
+    return dist
+  }, [progress.topics, syllabus])
 
   // Subject progress
   const subjectProgress = useMemo(() => {
@@ -76,12 +97,88 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick, profi
     const calMap = new Map(progress.studyCalendar?.map(d => [d.date, d]) || [])
     for (let i = 29; i >= 0; i--) {
       const d = new Date(Date.now() - i * 86400000)
-      const dateStr = d.toISOString().slice(0, 10)
+      const dateStr = getLocalDate(d)
       const entry = calMap.get(dateStr)
       days.push({ date: dateStr, xp: entry?.xpEarned || 0 })
     }
     return days
   }, [progress.studyCalendar])
+
+  // Journey Timeline
+  const journeyTimeline = useMemo(() => {
+    if (!profile?.examYear) return null
+
+    const examDate = new Date(profile.examYear, 4, 25) // May 25
+    const now = new Date()
+    const daysLeft = Math.max(0, Math.ceil((examDate.getTime() - now.getTime()) / 86400000))
+
+    // Total prep span (assume ~1 year from onboarding)
+    const onboardDate = profile.onboardedAt ? new Date(profile.onboardedAt) : new Date(now.getTime() - 30 * 86400000)
+    const totalDays = Math.max(1, Math.ceil((examDate.getTime() - onboardDate.getTime()) / 86400000))
+    const elapsed = totalDays - daysLeft
+    const timeProgressPct = Math.min(100, Math.round((elapsed / totalDays) * 100))
+
+    // Syllabus progress
+    const totalTopics = syllabus.reduce((s, sub) => s + sub.units.reduce((s2, u) => s2 + u.topics.length, 0), 0)
+    const completedTopics = Object.values(progress.topics).filter(t => t.state === 'completed').length
+    const syllabusPct = totalTopics > 0 ? Math.round((completedTopics / totalTopics) * 100) : 0
+
+    const remaining = totalTopics - completedTopics
+    const topicsPerWeek = daysLeft > 0 ? Math.round((remaining / daysLeft) * 7 * 10) / 10 : 0
+
+    // Pace status
+    let pace: 'ahead' | 'on_track' | 'behind' = 'on_track'
+    if (timeProgressPct > 0 && syllabusPct > 0) {
+      const ratio = syllabusPct / timeProgressPct
+      if (ratio >= 1.1) pace = 'ahead'
+      else if (ratio < 0.6) pace = 'behind'
+    }
+
+    // Per-subject data
+    const subjectData = syllabus.map(sub => {
+      const topics = sub.units.flatMap(u => u.topics)
+      const done = topics.filter(t => (progress.topics[t.id] || DEFAULT_TOPIC_PROGRESS).state === 'completed').length
+      return {
+        id: sub.id, title: sub.shortTitle, icon: sub.icon, color: sub.color,
+        total: topics.length, done, pct: topics.length > 0 ? Math.round((done / topics.length) * 100) : 0,
+      }
+    }).sort((a, b) => a.pct - b.pct) // least complete first
+
+    return { daysLeft, timeProgressPct, syllabusPct, topicsPerWeek, pace, subjectData, completedTopics, totalTopics }
+  }, [profile, progress.topics, syllabus])
+
+  // Exam Readiness Score
+  const examReadiness = useMemo(() => {
+    const totalTopics = syllabus.reduce((s, sub) => s + sub.units.reduce((s2, u) => s2 + u.topics.length, 0), 0)
+    const completedTopics = Object.values(progress.topics).filter(t => t.state === 'completed').length
+    const completionPct = totalTopics > 0 ? (completedTopics / totalTopics) * 100 : 0
+
+    const allTp = Object.values(progress.topics)
+    const totalAnswered = allTp.reduce((s, t) => s + t.questionsAnswered, 0)
+    const totalCorrect = allTp.reduce((s, t) => s + t.correctAnswers, 0)
+    const accuracyPct = totalAnswered > 0 ? (totalCorrect / totalAnswered) * 100 : 0
+
+    const crowns3Plus = allTp.filter(t => t.crownLevel >= 3).length
+    const masteryPct = totalTopics > 0 ? (crowns3Plus / totalTopics) * 100 : 0
+
+    // 50% completion + 30% accuracy + 20% mastery
+    const score = Math.round(completionPct * 0.5 + accuracyPct * 0.3 + masteryPct * 0.2)
+
+    let color: string
+    let statusMsg: string
+    if (score >= 60) {
+      color = '#22c55e'
+      statusMsg = 'Good progress — keep building momentum!'
+    } else if (score >= 40) {
+      color = '#eab308'
+      statusMsg = 'Making headway — increase practice for better results.'
+    } else {
+      color = '#ef4444'
+      statusMsg = 'Early stages — consistent daily study will get you there.'
+    }
+
+    return { score, color, statusMsg }
+  }, [progress.topics, syllabus])
 
   // Achievements
   const unlockedIds = new Set(progress.achievements?.map(a => a.id) || [])
@@ -98,32 +195,31 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick, profi
   return (
     <div style={{ padding: '16px 16px 100px', display: 'flex', flexDirection: 'column', gap: 20 }}>
 
-      {/* ── Avatar Card ── */}
-      <div style={{ ...ELEVATED, padding: '28px 20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      {/* ── SECTION 1: Avatar Card ── */}
+      <div style={{ ...ELEVATED, padding: '22px 18px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div style={{
-          width: 80, height: 80, borderRadius: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: 36, background: 'linear-gradient(145deg, rgba(99,102,241,0.15), rgba(139,92,246,0.10))',
+          width: 72, height: 72, borderRadius: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontSize: 32, background: 'linear-gradient(145deg, rgba(99,102,241,0.15), rgba(139,92,246,0.10))',
           border: '2.5px solid rgba(99,102,241,0.3)',
         }}>
-          🎓
+          {'\uD83C\uDF93'}
         </div>
         {profile ? (
           <>
-            <p style={{ fontSize: 22, fontWeight: 800, color: 'rgba(255,255,255,0.92)', margin: '14px 0 0' }}>{profile.name}</p>
-            <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.50)', margin: '4px 0 0' }}>
+            <p style={{ fontSize: 20, fontWeight: 800, color: 'rgba(255,255,255,0.92)', margin: '12px 0 0' }}>{profile.name}</p>
+            <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.50)', margin: '3px 0 0' }}>
               Level {level} · UPSC CSE {profile.examYear}
             </p>
-            <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.40)', margin: '4px 0 0' }}>
+            <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.40)', margin: '3px 0 0' }}>
               {PREP_STAGE_CONFIG[profile.prepStage].icon} {PREP_STAGE_CONFIG[profile.prepStage].label}
             </p>
             {(() => {
-              // Exam countdown: UPSC CSE Prelims are typically in late May
               const examDate = new Date(`${profile.examYear}-05-25`)
               const now = new Date()
               const diffMs = examDate.getTime() - now.getTime()
               const daysRemaining = Math.max(0, Math.ceil(diffMs / 86400000))
               return daysRemaining > 0 ? (
-                <p style={{ fontSize: 11, color: '#818cf8', margin: '6px 0 0', fontWeight: 600 }}>
+                <p style={{ fontSize: 11, color: '#818cf8', margin: '5px 0 0', fontWeight: 600 }}>
                   {daysRemaining} days remaining
                 </p>
               ) : null
@@ -131,25 +227,146 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick, profi
           </>
         ) : (
           <>
-            <p style={{ fontSize: 22, fontWeight: 800, color: 'rgba(255,255,255,0.92)', margin: '14px 0 0' }}>Level {level}</p>
-            <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)', margin: '4px 0 0' }}>UPSC Aspirant</p>
+            <p style={{ fontSize: 20, fontWeight: 800, color: 'rgba(255,255,255,0.92)', margin: '12px 0 0' }}>Level {level}</p>
+            <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)', margin: '3px 0 0' }}>UPSC Aspirant</p>
           </>
         )}
         {/* XP Bar */}
-        <div style={{ width: '100%', maxWidth: 240, marginTop: 16 }}>
+        <div style={{ width: '100%', maxWidth: 240, marginTop: 14 }}>
           <div style={{ height: 8, borderRadius: 9999, overflow: 'hidden', background: 'rgba(255,255,255,0.06)' }}>
             <div style={{
               height: '100%', borderRadius: 9999, width: `${(xpInLevel / 500) * 100}%`,
               background: 'linear-gradient(90deg, #6366f1, #8b5cf6)', transition: 'width 0.7s ease',
             }} />
           </div>
-          <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.30)', textAlign: 'center', margin: '8px 0 0' }}>
+          <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.30)', textAlign: 'center', margin: '6px 0 0' }}>
             {progress.totalXp.toLocaleString()} XP  ·  {500 - xpInLevel} to next level
           </p>
         </div>
       </div>
 
-      {/* ── Your Focus ── */}
+      {/* ── SECTION 2: Journey Timeline (NEW) ── */}
+      {journeyTimeline && (
+        <div style={{ ...ELEVATED, padding: 20 }}>
+          <p style={{ fontSize: 15, fontWeight: 700, color: 'rgba(255,255,255,0.85)', margin: '0 0 16px' }}>Your Journey Timeline</p>
+
+          {/* Part A: Overall Progress Bar */}
+          <div style={{ marginBottom: 16 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
+              <span style={{ fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.55)' }}>
+                {journeyTimeline.syllabusPct}% syllabus done
+              </span>
+              <span style={{ fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.55)' }}>
+                {journeyTimeline.daysLeft} days left
+              </span>
+            </div>
+            <div style={{ position: 'relative', height: 10, borderRadius: 5, background: 'rgba(255,255,255,0.06)' }}>
+              {/* Syllabus fill */}
+              <div style={{
+                position: 'absolute', top: 0, left: 0, height: '100%', borderRadius: 5,
+                width: `${journeyTimeline.syllabusPct}%`,
+                background: journeyTimeline.pace === 'behind'
+                  ? 'linear-gradient(90deg, #ef4444, #f87171)'
+                  : journeyTimeline.pace === 'ahead'
+                    ? 'linear-gradient(90deg, #22c55e, #4ade80)'
+                    : 'linear-gradient(90deg, #22c55e, #34d399)',
+                transition: 'width 0.7s ease',
+              }} />
+              {/* Time marker — vertical line showing how much time has elapsed */}
+              <div style={{
+                position: 'absolute', top: -3, left: `${journeyTimeline.timeProgressPct}%`,
+                width: 2, height: 16, borderRadius: 1,
+                background: 'rgba(255,255,255,0.70)',
+                transform: 'translateX(-1px)',
+              }} />
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 6 }}>
+              <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.30)' }}>Start</span>
+              <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.30)' }}>Prelims {profile?.examYear}</span>
+            </div>
+          </div>
+
+          {/* Part B: Pace Indicator */}
+          <div style={{
+            padding: '10px 14px', borderRadius: 12, marginBottom: 16,
+            background: journeyTimeline.pace === 'behind'
+              ? 'rgba(239,68,68,0.08)'
+              : journeyTimeline.pace === 'ahead'
+                ? 'rgba(34,197,94,0.08)'
+                : 'rgba(34,197,94,0.06)',
+            border: `1px solid ${
+              journeyTimeline.pace === 'behind'
+                ? 'rgba(239,68,68,0.15)'
+                : 'rgba(34,197,94,0.12)'
+            }`,
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <span style={{ fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.70)' }}>
+                Need {journeyTimeline.topicsPerWeek} topics/week
+              </span>
+              <span style={{
+                fontSize: 12, fontWeight: 700,
+                color: journeyTimeline.pace === 'behind' ? '#ef4444'
+                  : journeyTimeline.pace === 'ahead' ? '#22c55e' : '#34d399',
+              }}>
+                {journeyTimeline.pace === 'behind'
+                  ? 'Behind \u2014 need to speed up'
+                  : journeyTimeline.pace === 'ahead'
+                    ? 'Ahead \u2714'
+                    : 'On Track \u2714'}
+              </span>
+            </div>
+          </div>
+
+          {/* Part C: Subject Timeline Bars */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            {journeyTimeline.subjectData.map(sub => (
+              <div key={sub.id}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                    <span style={{ fontSize: 12 }}>{sub.icon}</span>
+                    <span style={{ fontSize: 11, fontWeight: 600, color: 'rgba(255,255,255,0.60)' }}>{sub.title}</span>
+                  </div>
+                  <span style={{ fontSize: 10, fontWeight: 600, color: 'rgba(255,255,255,0.35)' }}>
+                    {sub.done}/{sub.total}
+                  </span>
+                </div>
+                <div style={{ height: 6, borderRadius: 9999, overflow: 'hidden', background: 'rgba(255,255,255,0.05)' }}>
+                  <div style={{
+                    height: '100%', borderRadius: 9999, width: `${sub.pct}%`,
+                    background: `linear-gradient(90deg, ${sub.color}, ${sub.color}88)`,
+                    boxShadow: sub.pct > 0 ? `0 0 6px ${sub.color}25` : 'none',
+                    transition: 'width 0.5s ease',
+                  }} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* ── SECTION 3: Exam Readiness Score (NEW) ── */}
+      <div style={{ ...ELEVATED, padding: 20 }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
+          <p style={{ fontSize: 15, fontWeight: 700, color: 'rgba(255,255,255,0.85)', margin: 0 }}>Exam Readiness</p>
+          <span style={{ fontSize: 22, fontWeight: 800, color: examReadiness.color }}>
+            {examReadiness.score}%
+          </span>
+        </div>
+        <div style={{ height: 10, borderRadius: 5, overflow: 'hidden', background: 'rgba(255,255,255,0.06)', marginBottom: 10 }}>
+          <div style={{
+            height: '100%', borderRadius: 5, width: `${examReadiness.score}%`,
+            background: examReadiness.color,
+            boxShadow: `0 0 10px ${examReadiness.color}40`,
+            transition: 'width 0.7s ease',
+          }} />
+        </div>
+        <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.45)', margin: 0 }}>
+          {examReadiness.statusMsg}
+        </p>
+      </div>
+
+      {/* ── SECTION 4: Your Focus ── */}
       {profile && (profile.weakSubjects.length > 0 || profile.strongSubjects.length > 0) && (() => {
         const syllabusMap = new Map(syllabus.map(s => [s.id, s]))
         const focusSubjects = profile.weakSubjects.map(id => syllabusMap.get(id)).filter(Boolean) as LearningSubject[]
@@ -203,18 +420,18 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick, profi
         )
       })()}
 
-      {/* ── Bento Grid 2x2 ── */}
+      {/* ── SECTION 5: Bento Grid 2x2 ── */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-        <BentoCard icon="🔥" value={progress.streak} label="streak" glow="rgba(249,115,22,0.12)" />
-        <BentoCard icon="📊" value={`${stats.accuracy}%`} label="accuracy" glow="rgba(99,102,241,0.12)" />
-        <BentoCard icon="📚" value={stats.completedTopics} label="topics" glow="rgba(139,92,246,0.12)" />
-        <BentoCard icon="💎" value={progress.gems} label="gems" glow="rgba(34,211,238,0.12)" />
+        <BentoCard icon="\uD83D\uDD25" value={progress.streak} label="streak" glow="rgba(249,115,22,0.12)" />
+        <BentoCard icon="\uD83D\uDCCA" value={`${stats.accuracy}%`} label="accuracy" glow="rgba(99,102,241,0.12)" />
+        <BentoCard icon="\uD83D\uDCDA" value={stats.completedTopics} label="topics" glow="rgba(139,92,246,0.12)" />
+        <BentoCard icon="\uD83D\uDC8E" value={progress.gems} label="gems" glow="rgba(34,211,238,0.12)" />
       </div>
 
-      {/* ── Daily Goal ── */}
+      {/* ── SECTION 6: Daily Goal ── */}
       {(() => {
         const goalConfig = DAILY_GOALS[progress.dailyGoalTier]
-        const todayStr = new Date().toISOString().slice(0, 10)
+        const todayStr = getLocalDate()
         const todayXp = progress.todayDate === todayStr ? progress.todayXp : 0
         const goalMet = todayXp >= goalConfig.xpTarget
         const pct = Math.min(100, Math.round((todayXp / goalConfig.xpTarget) * 100))
@@ -257,57 +474,7 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick, profi
         )
       })()}
 
-      {/* ── Study Activity Heatmap ── */}
-      <div>
-        <p style={{ fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.85)', marginBottom: 10 }}>Study Activity</p>
-        <div style={{ ...GLASS, padding: 16 }}>
-          {/* Day labels */}
-          <div style={{ display: 'flex', gap: 3, marginBottom: 6 }}>
-            {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((d, i) => (
-              <span key={i} style={{ width: 'calc((100% - 18px) / 7)', fontSize: 9, color: 'rgba(255,255,255,0.20)', textAlign: 'center', fontWeight: 500 }}>
-                {d}
-              </span>
-            ))}
-          </div>
-          {/* Grid */}
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
-            {(() => {
-              const firstDay = new Date(calendarDays[0]?.date || Date.now())
-              const dow = (firstDay.getDay() + 6) % 7
-              return Array.from({ length: dow }, (_, i) => (
-                <div key={`off-${i}`} style={{ width: 'calc((100% - 18px) / 7)', aspectRatio: '1', borderRadius: 4 }} />
-              ))
-            })()}
-            {calendarDays.map(day => {
-              const intensity = day.xp === 0 ? 0 : day.xp <= 30 ? 1 : day.xp <= 60 ? 2 : day.xp <= 100 ? 3 : 4
-              const isToday = day.date === new Date().toISOString().slice(0, 10)
-              return (
-                <div
-                  key={day.date}
-                  title={`${day.date}: ${day.xp} XP`}
-                  style={{
-                    width: 'calc((100% - 18px) / 7)', aspectRatio: '1', borderRadius: 4,
-                    background: heatColors[intensity],
-                    border: isToday ? '1.5px solid rgba(255,255,255,0.5)' : '1px solid transparent',
-                    boxShadow: isToday ? '0 0 6px rgba(255,255,255,0.1)' : 'none',
-                    transition: 'background 0.2s',
-                  }}
-                />
-              )
-            })}
-          </div>
-          {/* Legend */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 4, marginTop: 10 }}>
-            <span style={{ fontSize: 9, color: 'rgba(255,255,255,0.20)' }}>Less</span>
-            {heatColors.map((c, i) => (
-              <div key={i} style={{ width: 10, height: 10, borderRadius: 3, background: c }} />
-            ))}
-            <span style={{ fontSize: 9, color: 'rgba(255,255,255,0.20)' }}>More</span>
-          </div>
-        </div>
-      </div>
-
-      {/* ── Subjects ── */}
+      {/* ── SECTION 7: Subject Progress ── */}
       <div>
         <p style={{ fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.85)', marginBottom: 10 }}>Subjects</p>
         <div style={{ ...GLASS, padding: 16, display: 'flex', flexDirection: 'column', gap: 14 }}>
@@ -355,7 +522,99 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick, profi
         </div>
       </div>
 
-      {/* ── Achievements ── */}
+      {/* ── SECTION 8: Study Activity Heatmap ── */}
+      <div>
+        <p style={{ fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.85)', marginBottom: 10 }}>Study Activity</p>
+        <div style={{ ...GLASS, padding: 16 }}>
+          {/* Day labels */}
+          <div style={{ display: 'flex', gap: 3, marginBottom: 6 }}>
+            {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((d, i) => (
+              <span key={i} style={{ width: 'calc((100% - 18px) / 7)', fontSize: 9, color: 'rgba(255,255,255,0.20)', textAlign: 'center', fontWeight: 500 }}>
+                {d}
+              </span>
+            ))}
+          </div>
+          {/* Grid */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
+            {(() => {
+              const firstDay = new Date(calendarDays[0]?.date || Date.now())
+              const dow = (firstDay.getDay() + 6) % 7
+              return Array.from({ length: dow }, (_, i) => (
+                <div key={`off-${i}`} style={{ width: 'calc((100% - 18px) / 7)', aspectRatio: '1', borderRadius: 4 }} />
+              ))
+            })()}
+            {calendarDays.map(day => {
+              const intensity = day.xp === 0 ? 0 : day.xp <= 30 ? 1 : day.xp <= 60 ? 2 : day.xp <= 100 ? 3 : 4
+              const isToday = day.date === getLocalDate()
+              return (
+                <div
+                  key={day.date}
+                  title={`${day.date}: ${day.xp} XP`}
+                  style={{
+                    width: 'calc((100% - 18px) / 7)', aspectRatio: '1', borderRadius: 4,
+                    background: heatColors[intensity],
+                    border: isToday ? '1.5px solid rgba(255,255,255,0.5)' : '1px solid transparent',
+                    boxShadow: isToday ? '0 0 6px rgba(255,255,255,0.1)' : 'none',
+                    transition: 'background 0.2s',
+                  }}
+                />
+              )
+            })}
+          </div>
+          {/* Legend */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 4, marginTop: 10 }}>
+            <span style={{ fontSize: 9, color: 'rgba(255,255,255,0.20)' }}>Less</span>
+            {heatColors.map((c, i) => (
+              <div key={i} style={{ width: 10, height: 10, borderRadius: 3, background: c }} />
+            ))}
+            <span style={{ fontSize: 9, color: 'rgba(255,255,255,0.20)' }}>More</span>
+          </div>
+        </div>
+      </div>
+
+      {/* ── SECTION 9: Crown Distribution ── */}
+      {Object.values(crownDistribution).some(v => v > 0) && (
+        <div>
+          <p style={{ fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.85)', marginBottom: 10 }}>Mastery Levels</p>
+          <div style={{ ...GLASS, padding: 16 }}>
+            <div style={{ display: 'flex', gap: 6, justifyContent: 'space-between' }}>
+              {([0, 1, 2, 3, 4, 5] as CrownLevel[]).map(level => {
+                const count = crownDistribution[level] || 0
+                const color = CROWN_COLORS[level]
+                const isActive = count > 0
+                return (
+                  <div key={level} style={{
+                    flex: 1, textAlign: 'center', padding: '8px 4px', borderRadius: 12,
+                    background: isActive ? `${color}12` : 'rgba(255,255,255,0.02)',
+                    border: `1px solid ${isActive ? `${color}25` : 'rgba(255,255,255,0.04)'}`,
+                  }}>
+                    <div style={{
+                      width: 18, height: 18, borderRadius: '50%',
+                      background: isActive ? color : 'rgba(255,255,255,0.08)',
+                      margin: '0 auto 4px',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    }}>
+                      {level > 0 && <span style={{ fontSize: 9, lineHeight: 1 }}>{'\uD83D\uDC51'}</span>}
+                    </div>
+                    <div style={{
+                      fontSize: 15, fontWeight: 700,
+                      color: isActive ? color : 'rgba(255,255,255,0.25)',
+                      fontVariantNumeric: 'tabular-nums', lineHeight: 1.2,
+                    }}>
+                      {count}
+                    </div>
+                    <div style={{ fontSize: 9, color: 'rgba(255,255,255,0.30)', marginTop: 1, fontWeight: 500 }}>
+                      Lv{level}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── SECTION 10: Achievements ── */}
       <div>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
           <p style={{ fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.85)', margin: 0 }}>Achievements</p>
@@ -403,13 +662,13 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick, profi
                 fontSize: 12, fontWeight: 600, color: '#818cf8', textAlign: 'center',
               }}
             >
-              {showAllAchievements ? 'Show Less' : 'View All →'}
+              {showAllAchievements ? 'Show Less' : 'View All \u2192'}
             </button>
           )}
         </div>
       </div>
 
-      {/* ── Settings ── */}
+      {/* ── SECTION 11: Settings ── */}
       <div>
         <p style={{ fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.85)', marginBottom: 10 }}>Settings</p>
         <div style={{ ...GLASS, padding: 16, display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -524,6 +783,39 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick, profi
                           background: isWeak ? `${s.color}15` : 'rgba(255,255,255,0.03)',
                           border: isWeak ? `1px solid ${s.color}50` : '1px solid rgba(255,255,255,0.06)',
                           color: isWeak ? s.color : 'rgba(255,255,255,0.45)',
+                          cursor: 'pointer',
+                        }}
+                      >
+                        {s.icon} {s.shortTitle}
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+
+              {/* Strengths */}
+              <div>
+                <label style={{ fontSize: 11, fontWeight: 600, color: 'rgba(255,255,255,0.35)', display: 'block', marginBottom: 6 }}>Strengths (strong subjects)</label>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                  {syllabus.map(s => {
+                    const isStrong = editStrongSubjects.includes(s.id)
+                    return (
+                      <button
+                        key={s.id}
+                        onClick={() => {
+                          if (isStrong) {
+                            setEditStrongSubjects(editStrongSubjects.filter(id => id !== s.id))
+                          } else {
+                            setEditStrongSubjects([...editStrongSubjects, s.id])
+                            setEditWeakSubjects(editWeakSubjects.filter(id => id !== s.id))
+                          }
+                        }}
+                        style={{
+                          display: 'inline-flex', alignItems: 'center', gap: 4,
+                          padding: '6px 10px', borderRadius: 9999, fontSize: 11, fontWeight: 600,
+                          background: isStrong ? 'rgba(255,255,255,0.10)' : 'rgba(255,255,255,0.03)',
+                          border: isStrong ? '1px solid rgba(255,255,255,0.25)' : '1px solid rgba(255,255,255,0.06)',
+                          color: isStrong ? 'rgba(255,255,255,0.75)' : 'rgba(255,255,255,0.45)',
                           cursor: 'pointer',
                         }}
                       >
