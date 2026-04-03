@@ -33,12 +33,6 @@ const BG_COLOR = '#050510'
 const EXAM_YEARS: ExamYear[] = [2026, 2027, 2028, 2029]
 const PREP_STAGES: PrepStage[] = ['beginner', 'intermediate', 'advanced']
 const GOAL_TIERS: DailyGoalTier[] = ['casual', 'regular', 'serious', 'intense']
-const GOAL_TIME_ESTIMATES: Record<DailyGoalTier, string> = {
-  casual: '~5 min/day',
-  regular: '~10 min/day',
-  serious: '~20 min/day',
-  intense: '30+ min/day',
-}
 
 // Subject list derived from syllabus
 const SUBJECT_LIST = UPSC_SYLLABUS.map(s => ({
@@ -633,7 +627,7 @@ function DailyGoalStep({ selected, onSelect }: {
         textAlign: 'center', margin: '8px 0 28px',
         opacity: 0, animation: 'ob-slideUp 0.5s ease 0.25s forwards',
       }}>
-        Set a daily XP goal. You can always change this later.
+        Set daily reading and practice targets. You can change this later.
       </p>
 
       <div style={{
@@ -676,15 +670,19 @@ function DailyGoalStep({ selected, onSelect }: {
                   {cfg.label}
                 </div>
                 <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.3)', marginTop: 2 }}>
-                  {GOAL_TIME_ESTIMATES[tier]}
+                  {cfg.timeEstimate}
                 </div>
               </div>
               <div style={{
-                fontSize: 14, fontWeight: 700, minWidth: 50, textAlign: 'right',
-                color: isActive ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.25)',
-                transition: 'color 200ms',
+                textAlign: 'right', flexShrink: 0,
               }}>
-                {cfg.xpTarget} XP
+                <div style={{
+                  fontSize: 12, fontWeight: 700,
+                  color: isActive ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.25)',
+                  transition: 'color 200ms',
+                }}>
+                  {cfg.readTarget} read · {cfg.practiceTarget} practice
+                </div>
               </div>
               <div style={{
                 width: 22, height: 22, borderRadius: 11, flexShrink: 0,
@@ -833,10 +831,10 @@ function SummaryStep({ profile }: { profile: UserProfile }) {
           </div>
           <div>
             <div style={{ fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.85)' }}>
-              {goalCfg.label} — {goalCfg.xpTarget} XP/day
+              {goalCfg.label} — {goalCfg.readTarget} read, {goalCfg.practiceTarget} practice/day
             </div>
             <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginTop: 1 }}>
-              {GOAL_TIME_ESTIMATES[profile.dailyGoalTier]}
+              {goalCfg.timeEstimate}
             </div>
           </div>
         </div>

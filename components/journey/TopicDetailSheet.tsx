@@ -48,7 +48,6 @@ export default function TopicDetailSheet({
     setTimeout(onClose, 350)
   }
 
-  // Drag-to-dismiss handlers
   function handleTouchStart(e: React.TouchEvent) {
     dragStartY.current = e.touches[0].clientY
     isDragging.current = true
@@ -90,10 +89,10 @@ export default function TopicDetailSheet({
   const isFocusArea = profile?.weakSubjects?.includes(subject.id) ?? false
 
   const buttonLabel = isFocusArea && !isCompleted && !isStarted
-    ? 'START FOCUS'
+    ? 'START FOCUS \u2192'
     : isCompleted ? 'PRACTICE AGAIN'
-    : isStarted ? 'CONTINUE'
-    : 'START PRACTICE'
+    : isStarted ? 'START PRACTICE \u2192'
+    : 'START STUDYING \u2192'
   const buttonIsOutline = isCompleted
 
   const diffLevel = topic.difficulty
@@ -101,12 +100,19 @@ export default function TopicDetailSheet({
   const diffLabel = diffLevel === 1 ? 'Easy' : diffLevel === 2 ? 'Medium' : 'Hard'
 
   const freq = topic.pyqFrequency
-  const freqColor = freq === 'high' ? '#f87171' : freq === 'medium' ? '#fbbf24' : 'rgba(255,255,255,0.30)'
-  const freqLabel = freq === 'high' ? 'Frequently Asked' : freq === 'medium' ? 'Sometimes Asked' : 'Rarely Asked'
+  const freqColor = freq === 'high' ? '#f87171' : freq === 'medium' ? '#fbbf24' : 'rgba(255,255,255,0.35)'
+  const freqLabel = freq === 'high' ? 'Frequently' : freq === 'medium' ? 'Sometimes' : 'Rarely'
+
+  // Study tip based on PYQ frequency
+  const studyTip = freq === 'high'
+    ? { icon: '\u2B50', text: 'This topic appears frequently in UPSC Prelims. Focus on factual details and dates.' }
+    : freq === 'medium'
+    ? { icon: '\uD83D\uDCDD', text: 'This topic has been asked occasionally. Understand the key concepts and their applications.' }
+    : { icon: '\uD83D\uDCA1', text: 'While less frequent in exams, understanding this topic builds a strong foundation.' }
 
   // SVG ring for crown progress
-  const ringSize = 32
-  const ringStroke = 3
+  const ringSize = 48
+  const ringStroke = 4
   const ringRadius = (ringSize - ringStroke) / 2
   const ringCircumference = 2 * Math.PI * ringRadius
   const ringOffset = ringCircumference - (progressPct / 100) * ringCircumference
@@ -118,15 +124,19 @@ export default function TopicDetailSheet({
         @keyframes tds-slideDown { from { transform: translateY(0); } to { transform: translateY(100%); } }
         @keyframes tds-fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes tds-fadeOut { from { opacity: 1; } to { opacity: 0; } }
+        @keyframes tds-cardIn {
+          from { opacity: 0; transform: translateY(8px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
       `}</style>
 
       {/* Backdrop */}
       <div
         className="fixed inset-0 z-[70]"
         style={{
-          background: 'rgba(0,0,0,0.5)',
-          backdropFilter: 'blur(4px)',
-          WebkitBackdropFilter: 'blur(4px)',
+          background: 'rgba(0,0,0,0.55)',
+          backdropFilter: 'blur(6px)',
+          WebkitBackdropFilter: 'blur(6px)',
           animation: dismissing ? 'tds-fadeOut 0.3s ease forwards' : 'tds-fadeIn 0.2s ease forwards',
         }}
         onClick={handleDismiss}
@@ -140,9 +150,9 @@ export default function TopicDetailSheet({
         onTouchEnd={handleTouchEnd}
         className="fixed bottom-0 left-0 right-0 z-[71] flex flex-col"
         style={{
-          maxHeight: '75vh',
+          maxHeight: '85vh',
           borderRadius: '24px 24px 0 0',
-          background: 'rgba(10,10,20,0.95)',
+          background: 'rgba(10,10,20,0.97)',
           backdropFilter: 'blur(32px)',
           WebkitBackdropFilter: 'blur(32px)',
           border: '1px solid rgba(255,255,255,0.08)',
@@ -160,149 +170,309 @@ export default function TopicDetailSheet({
         }}
       >
         {/* Drag handle */}
-        <div className="flex justify-center pt-3 pb-2">
+        <div className="flex justify-center pt-3 pb-1">
           <div className="rounded-full" style={{ width: 40, height: 4, background: 'rgba(255,255,255,0.2)' }} />
         </div>
 
-        {/* Scrollable content */}
-        <div className="flex-1 overflow-y-auto px-5 pb-4" style={{ scrollbarWidth: 'none' }}>
-          {/* Icon + Title + Subject */}
-          <div className="flex items-center gap-3 pb-4">
+        {/* Hero Section */}
+        <div
+          className="relative px-5 pt-4 pb-5 overflow-hidden"
+          style={{
+            background: `linear-gradient(135deg, ${color}25, ${color}08)`,
+          }}
+        >
+          {/* Decorative radial glow */}
+          <div
+            className="absolute pointer-events-none"
+            style={{
+              top: '-30%',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: 200,
+              height: 200,
+              borderRadius: '50%',
+              background: `radial-gradient(circle, ${color}18 0%, transparent 70%)`,
+            }}
+          />
+          <div className="flex flex-col items-center text-center relative">
             <div
-              className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl flex-shrink-0"
-              style={{
-                background: `linear-gradient(135deg, ${color}20, ${color}08)`,
-                border: `1.5px solid ${color}35`,
-              }}
+              className="flex items-center justify-center mb-3"
+              style={{ fontSize: 48, lineHeight: 1 }}
             >
               {topic.icon}
             </div>
-            <div className="flex-1 min-w-0">
-              <h2 className="text-[17px] font-bold leading-tight" style={{ color: 'rgba(255,255,255,0.92)' }}>
-                {topic.title}
-              </h2>
-              <p className="text-[12px] mt-0.5" style={{ color }}>{subject.shortTitle}</p>
-            </div>
+            <h2
+              className="text-[18px] font-bold leading-snug mb-2"
+              style={{ color: 'rgba(255,255,255,0.95)' }}
+            >
+              {topic.title}
+            </h2>
+            <span
+              className="text-[11px] font-semibold px-3 py-1 rounded-full"
+              style={{
+                background: `${color}18`,
+                color,
+                border: `1px solid ${color}30`,
+              }}
+            >
+              {subject.shortTitle}
+            </span>
           </div>
+        </div>
 
-          {isFocusArea && (
-            <div style={{
-              display: 'inline-flex', alignItems: 'center', gap: 5,
-              padding: '4px 10px', borderRadius: 8, marginBottom: 12,
-              background: 'rgba(249,115,22,0.10)',
-              border: '1px solid rgba(249,115,22,0.25)',
-            }}>
-              <span style={{ fontSize: 12, lineHeight: 1 }}>🎯</span>
-              <span style={{ fontSize: 11, fontWeight: 700, color: '#f97316', letterSpacing: '0.03em' }}>
-                FOCUS AREA
-              </span>
-            </div>
-          )}
+        {/* Scrollable content */}
+        <div className="flex-1 overflow-y-auto px-5 pt-4 pb-4" style={{ scrollbarWidth: 'none' }}>
 
-          {/* Difficulty + PYQ Frequency */}
-          <div className="flex items-center gap-3 mb-5">
-            <span className="flex items-center gap-1.5 text-[11px] font-semibold" style={{ color: diffColor }}>
+          {/* Quick Stats Row */}
+          <div
+            className="flex items-center justify-center gap-2 mb-5"
+            style={{ animation: 'tds-cardIn 0.3s ease 0.1s both' }}
+          >
+            {/* Difficulty */}
+            <div
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full"
+              style={{
+                background: 'rgba(255,255,255,0.04)',
+                border: '1px solid rgba(255,255,255,0.06)',
+              }}
+            >
               <span className="flex gap-0.5">
                 {[1, 2, 3].map(d => (
-                  <span key={d} className="inline-block rounded-full" style={{ width: 6, height: 6, background: d <= diffLevel ? diffColor : 'rgba(255,255,255,0.15)' }} />
+                  <span
+                    key={d}
+                    className="inline-block rounded-full"
+                    style={{
+                      width: 6,
+                      height: 6,
+                      background: d <= diffLevel ? diffColor : 'rgba(255,255,255,0.12)',
+                    }}
+                  />
                 ))}
               </span>
-              {diffLabel}
-            </span>
-            <span style={{ color: 'rgba(255,255,255,0.15)' }}>|</span>
-            <span className="flex items-center gap-1 text-[11px] font-semibold" style={{ color: freqColor }}>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill={freqColor} opacity={0.8}>
+              <span className="text-[11px] font-semibold" style={{ color: diffColor }}>{diffLabel}</span>
+            </div>
+
+            {/* PYQ Frequency */}
+            <div
+              className="flex items-center gap-1 px-3 py-1.5 rounded-full"
+              style={{
+                background: 'rgba(255,255,255,0.04)',
+                border: '1px solid rgba(255,255,255,0.06)',
+              }}
+            >
+              <svg width="11" height="11" viewBox="0 0 24 24" fill={freqColor} opacity={0.85}>
                 <path d="M12 2C10.5 6 6 8.5 6 13c0 3.5 2.5 7 6 7s6-3.5 6-7c0-4.5-4.5-7-6-11z" />
               </svg>
-              {freqLabel}
-            </span>
+              <span className="text-[11px] font-semibold" style={{ color: freqColor }}>{freqLabel}</span>
+            </div>
+
+            {/* Focus badge */}
+            {isFocusArea && (
+              <div
+                className="flex items-center gap-1 px-3 py-1.5 rounded-full"
+                style={{
+                  background: 'rgba(249,115,22,0.10)',
+                  border: '1px solid rgba(249,115,22,0.25)',
+                }}
+              >
+                <span style={{ fontSize: 10, lineHeight: 1 }}>{'\uD83C\uDFAF'}</span>
+                <span className="text-[11px] font-bold" style={{ color: '#f97316' }}>FOCUS</span>
+              </div>
+            )}
           </div>
 
-          {/* Crown Progress Card */}
+          {/* Study Notes Section */}
+          <div style={{ animation: 'tds-cardIn 0.35s ease 0.15s both' }}>
+            <div className="flex items-center gap-2 mb-3">
+              <span style={{ fontSize: 16 }}>{'\uD83D\uDCD6'}</span>
+              <h3 className="text-[14px] font-bold" style={{ color: 'rgba(255,255,255,0.85)' }}>
+                What to Study
+              </h3>
+            </div>
+
+            {/* Concept Cards Grid */}
+            <div className="grid grid-cols-2 gap-2 mb-4">
+              {topic.concepts.map((concept, idx) => (
+                <div
+                  key={concept}
+                  className="flex items-start gap-2.5 p-3 rounded-2xl"
+                  style={{
+                    background: 'rgba(255,255,255,0.04)',
+                    backdropFilter: 'blur(12px)',
+                    WebkitBackdropFilter: 'blur(12px)',
+                    border: '1px solid rgba(255,255,255,0.06)',
+                    borderLeft: `2px solid ${color}50`,
+                    animation: `tds-cardIn 0.3s ease ${0.2 + idx * 0.04}s both`,
+                  }}
+                >
+                  <span
+                    className="flex-shrink-0 flex items-center justify-center rounded-full text-[10px] font-bold"
+                    style={{
+                      width: 20,
+                      height: 20,
+                      background: `${color}18`,
+                      color: `${color}cc`,
+                      marginTop: 1,
+                    }}
+                  >
+                    {idx + 1}
+                  </span>
+                  <span
+                    className="text-[12px] font-medium leading-snug"
+                    style={{ color: 'rgba(255,255,255,0.75)' }}
+                  >
+                    {concept}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Study Tip */}
+          <div
+            className="rounded-2xl p-4 mb-5"
+            style={{
+              background: 'rgba(255,255,255,0.03)',
+              backdropFilter: 'blur(16px)',
+              WebkitBackdropFilter: 'blur(16px)',
+              border: '1px solid rgba(255,255,255,0.05)',
+              animation: 'tds-cardIn 0.35s ease 0.25s both',
+            }}
+          >
+            <p className="text-[12px] leading-relaxed" style={{ color: 'rgba(255,255,255,0.55)' }}>
+              <span className="mr-1.5">{studyTip.icon}</span>
+              {studyTip.text}
+            </p>
+          </div>
+
+          {/* Crown Progress Section */}
           {hasProgress && (
             <div
-              className="rounded-[16px] p-4 mb-5"
+              className="rounded-2xl p-4 mb-5"
               style={{
                 background: 'rgba(255,255,255,0.04)',
                 backdropFilter: 'blur(20px)',
                 WebkitBackdropFilter: 'blur(20px)',
                 border: '1px solid rgba(255,255,255,0.06)',
+                animation: 'tds-cardIn 0.35s ease 0.3s both',
               }}
             >
-              <div className="flex items-center gap-3">
-                {/* Progress ring */}
-                <svg width={ringSize} height={ringSize} className="flex-shrink-0" style={{ transform: 'rotate(-90deg)' }}>
-                  <circle cx={ringSize / 2} cy={ringSize / 2} r={ringRadius} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth={ringStroke} />
-                  <circle cx={ringSize / 2} cy={ringSize / 2} r={ringRadius} fill="none" stroke={CROWN_COLORS[crown]} strokeWidth={ringStroke} strokeLinecap="round"
-                    strokeDasharray={ringCircumference} strokeDashoffset={crown >= 5 ? 0 : ringOffset} />
-                </svg>
+              <p
+                className="text-[11px] font-semibold uppercase tracking-wider mb-3"
+                style={{ color: 'rgba(255,255,255,0.30)' }}
+              >
+                Your Progress
+              </p>
+              <div className="flex items-center gap-4">
+                {/* Crown ring */}
+                <div className="flex-shrink-0 relative">
+                  <svg width={ringSize} height={ringSize} style={{ transform: 'rotate(-90deg)' }}>
+                    <circle
+                      cx={ringSize / 2}
+                      cy={ringSize / 2}
+                      r={ringRadius}
+                      fill="none"
+                      stroke="rgba(255,255,255,0.06)"
+                      strokeWidth={ringStroke}
+                    />
+                    <circle
+                      cx={ringSize / 2}
+                      cy={ringSize / 2}
+                      r={ringRadius}
+                      fill="none"
+                      stroke={CROWN_COLORS[crown]}
+                      strokeWidth={ringStroke}
+                      strokeLinecap="round"
+                      strokeDasharray={ringCircumference}
+                      strokeDashoffset={crown >= 5 ? 0 : ringOffset}
+                    />
+                  </svg>
+                  <span
+                    className="absolute inset-0 flex items-center justify-center text-[14px]"
+                    style={{ lineHeight: 1 }}
+                  >
+                    {'\uD83D\uDC51'}
+                  </span>
+                </div>
+
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[13px] font-bold" style={{ color: CROWN_COLORS[crown] }}>
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-[14px] font-bold" style={{ color: CROWN_COLORS[crown] }}>
                       Level {crown}/5
                     </span>
-                    <span className="text-[12px] font-semibold" style={{ color: accuracy >= 70 ? '#34d399' : accuracy >= 40 ? '#fbbf24' : '#f87171' }}>
-                      {accuracy}%
+                    <span
+                      className="text-[13px] font-semibold"
+                      style={{
+                        color: accuracy >= 70 ? '#34d399' : accuracy >= 40 ? '#fbbf24' : '#f87171',
+                      }}
+                    >
+                      {accuracy}% accuracy
                     </span>
                   </div>
+
                   {crown < 5 && (
-                    <div className="mt-2 h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.06)' }}>
-                      <div className="h-full rounded-full" style={{
-                        width: `${progressPct}%`,
-                        background: `linear-gradient(90deg, ${CROWN_COLORS[crown]}, ${CROWN_COLORS[nextCrown]})`,
-                        boxShadow: `0 0 6px ${CROWN_COLORS[crown]}50`,
-                      }} />
+                    <div
+                      className="h-2 rounded-full overflow-hidden mb-1.5"
+                      style={{ background: 'rgba(255,255,255,0.06)' }}
+                    >
+                      <div
+                        className="h-full rounded-full transition-all duration-500"
+                        style={{
+                          width: `${progressPct}%`,
+                          background: `linear-gradient(90deg, ${CROWN_COLORS[crown]}, ${CROWN_COLORS[nextCrown]})`,
+                          boxShadow: `0 0 8px ${CROWN_COLORS[crown]}40`,
+                        }}
+                      />
                     </div>
                   )}
-                  <p className="text-[11px] mt-1.5" style={{ color: 'rgba(255,255,255,0.30)' }}>
-                    {crown >= 5 ? 'Legendary mastery achieved' : `${progress.questionsAnswered} questions answered`}
+
+                  <p className="text-[11px]" style={{ color: 'rgba(255,255,255,0.35)' }}>
+                    {crown >= 5
+                      ? 'Legendary mastery achieved'
+                      : `${progress.questionsAnswered} questions answered`}
                   </p>
                 </div>
               </div>
             </div>
           )}
 
-          {/* Key Concepts */}
-          <p className="text-[11px] font-semibold uppercase tracking-wider mb-2" style={{ color: 'rgba(255,255,255,0.30)' }}>
-            Key Concepts
-          </p>
-          <div className="flex flex-wrap gap-1.5 mb-5">
-            {topic.concepts.map((concept) => (
-              <span
-                key={concept}
-                className="text-[11px] font-medium px-2.5 py-1 rounded-full"
-                style={{
-                  background: `${color}10`,
-                  color: `${color}bb`,
-                  border: '1px solid rgba(255,255,255,0.06)',
-                }}
-              >
-                {concept}
-              </span>
-            ))}
-          </div>
-
-          {isFocusArea && (
-            <p style={{ fontSize: 12, color: 'rgba(249,115,22,0.7)', marginBottom: 12, lineHeight: 1.5 }}>
-              You marked {subject.shortTitle} as a focus area. Mastering this topic will strengthen your preparation.
-            </p>
+          {/* Map Connection */}
+          {topic.mapQuery && (
+            <button
+              onClick={onOpenMap}
+              className="w-full rounded-2xl p-4 mb-4 text-left transition-all active:scale-[0.98]"
+              style={{
+                background: 'rgba(129,140,248,0.06)',
+                border: '1px solid rgba(129,140,248,0.15)',
+                animation: 'tds-cardIn 0.35s ease 0.35s both',
+              }}
+            >
+              <div className="flex items-center gap-2.5">
+                <span style={{ fontSize: 20 }}>{'\uD83D\uDDFA\uFE0F'}</span>
+                <div className="flex-1 min-w-0">
+                  <p className="text-[13px] font-semibold" style={{ color: '#818cf8' }}>
+                    Visualize on Map
+                  </p>
+                  <p className="text-[11px] mt-0.5 truncate" style={{ color: 'rgba(129,140,248,0.5)' }}>
+                    {topic.mapQuery}
+                  </p>
+                </div>
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#818cf8" strokeWidth="2" strokeLinecap="round" opacity={0.6}>
+                  <path d="M6 4l4 4-4 4" />
+                </svg>
+              </div>
+            </button>
           )}
-
-          {/* Explore on Map link */}
-          <button
-            onClick={onOpenMap}
-            className="flex items-center gap-1.5 mb-4 transition-opacity active:opacity-60"
-          >
-            <span className="text-[13px]">🗺️</span>
-            <span className="text-[12px] font-semibold" style={{ color: '#818cf8' }}>Explore on Map</span>
-            <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="#818cf8" strokeWidth="2" strokeLinecap="round">
-              <path d="M6 4l4 4-4 4" />
-            </svg>
-          </button>
         </div>
 
-        {/* CTA Button */}
-        <div className="px-5 pt-2" style={{ borderTop: '1px solid rgba(255,255,255,0.04)', paddingBottom: 'max(20px, env(safe-area-inset-bottom))' }}>
+        {/* Sticky Bottom CTA */}
+        <div
+          className="px-5 pt-3"
+          style={{
+            borderTop: '1px solid rgba(255,255,255,0.06)',
+            paddingBottom: 'max(20px, env(safe-area-inset-bottom))',
+          }}
+        >
           <button
             onClick={onStartPractice}
             className="w-full flex items-center justify-center gap-2 text-[15px] font-extrabold tracking-wide transition-all active:scale-[0.97]"
@@ -312,21 +482,16 @@ export default function TopicDetailSheet({
               color: buttonIsOutline ? 'rgba(255,255,255,0.55)' : '#fff',
               background: buttonIsOutline
                 ? 'transparent'
-                : `linear-gradient(135deg, #6366f1, #8b5cf6)`,
+                : `linear-gradient(135deg, ${color}cc, ${color})`,
               border: buttonIsOutline
                 ? '1.5px solid rgba(255,255,255,0.12)'
-                : '1px solid rgba(99,102,241,0.2)',
+                : `1px solid ${color}40`,
               boxShadow: buttonIsOutline
                 ? 'none'
-                : '0 4px 24px rgba(99,102,241,0.3)',
+                : `0 4px 24px ${color}35`,
             }}
           >
             {buttonLabel}
-            {!buttonIsOutline && (
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-                <path d="M6 3l5 5-5 5" />
-              </svg>
-            )}
           </button>
         </div>
       </div>

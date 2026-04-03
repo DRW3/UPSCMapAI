@@ -5,9 +5,6 @@ import type { LearningTopic, LearningSubject } from '@/data/syllabus'
 import {
   type TopicProgress,
   type CrownLevel,
-  XP_PER_CORRECT,
-  XP_PER_PERFECT_ROUND,
-  XP_PER_CROWN_LEVEL,
   QUESTIONS_PER_CROWN,
   CROWN_COLORS,
 } from '@/components/journey/types'
@@ -38,7 +35,6 @@ interface PracticeSheetProps {
   onComplete: (result: {
     correct: number
     total: number
-    xpEarned: number
     newCrownLevel: CrownLevel
   }) => void
   onHeartLost: () => void
@@ -68,7 +64,6 @@ export default function PracticeSheet({
   const [revealed, setRevealed] = useState(false)
   const [score, setScore] = useState({ correct: 0, total: 0 })
   const [done, setDone] = useState(false)
-  const [sessionXp, setSessionXp] = useState(0)
   const [localHearts, setLocalHearts] = useState(hearts)
   const [showExplanation, setShowExplanation] = useState(false)
   const [shakeWrong, setShakeWrong] = useState(false)
@@ -173,7 +168,6 @@ export default function PracticeSheet({
     setScore(newScore)
 
     if (correct) {
-      setSessionXp((x) => x + XP_PER_CORRECT)
       const newStreak = streak + 1
       setStreak(newStreak)
       if (newStreak >= 2) {
@@ -208,17 +202,6 @@ export default function PracticeSheet({
   }
 
   function finishQuiz() {
-    // Calculate bonus XP
-    let finalXp = sessionXp
-    const isPerfect = score.correct === score.total && score.total > 0
-    if (isPerfect) {
-      finalXp += XP_PER_PERFECT_ROUND
-    }
-    const newCrown = calcNewCrownLevel(score.correct)
-    if (newCrown > progress.crownLevel) {
-      finalXp += XP_PER_CROWN_LEVEL
-    }
-    setSessionXp(finalXp)
     setDone(true)
   }
 
@@ -227,7 +210,6 @@ export default function PracticeSheet({
     onComplete({
       correct: score.correct,
       total: score.total,
-      xpEarned: sessionXp,
       newCrownLevel: newCrown,
     })
   }
@@ -471,20 +453,19 @@ export default function PracticeSheet({
               </svg>
             </button>
 
-            {/* XP Counter */}
+            {/* Score Counter */}
             <div
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-full"
-              style={{ background: 'rgba(251,191,36,0.1)' }}
+              style={{ background: 'rgba(34,197,94,0.1)' }}
             >
-              <span className="text-[14px]">&#9889;</span>
+              <span className="text-[14px]">&#9989;</span>
               <span
                 className="text-[13px] font-bold tabular-nums"
                 style={{
-                  color: '#fbbf24',
-                  animation: sessionXp > 0 ? 'ps-xpCount 0.3s ease' : 'none',
+                  color: '#34d399',
                 }}
               >
-                {sessionXp} XP
+                {score.correct}/{score.total}
               </span>
             </div>
 
@@ -582,7 +563,6 @@ export default function PracticeSheet({
           ) : done ? (
             <ScoreScreen
               score={score}
-              sessionXp={sessionXp}
               isPerfect={isPerfect}
               crownedUp={crownedUp}
               newCrownLvl={newCrownLvl}
@@ -781,9 +761,9 @@ export default function PracticeSheet({
                     </div>
                     <span
                       className="ml-auto text-[13px] font-bold"
-                      style={{ color: '#fbbf24', animation: 'ps-xpCount 0.3s ease 0.2s both' }}
+                      style={{ color: '#34d399', animation: 'ps-xpCount 0.3s ease 0.2s both' }}
                     >
-                      +{XP_PER_CORRECT} XP
+                      Correct!
                     </span>
                   </>
                 ) : (
@@ -988,7 +968,6 @@ function NoHeartsScreen({ onClose }: { onClose: () => void }) {
 
 function ScoreScreen({
   score,
-  sessionXp,
   isPerfect,
   crownedUp,
   newCrownLvl,
@@ -999,7 +978,6 @@ function ScoreScreen({
   previousQuestionsAnswered,
 }: {
   score: { correct: number; total: number }
-  sessionXp: number
   isPerfect: boolean
   crownedUp: boolean
   newCrownLvl: CrownLevel
@@ -1226,7 +1204,7 @@ function ScoreScreen({
         </div>
       )}
 
-      {/* XP breakdown */}
+      {/* Session Summary */}
       <div
         className="w-full max-w-[280px] rounded-2xl px-5 py-4 flex flex-col gap-2.5"
         style={{
@@ -1236,34 +1214,24 @@ function ScoreScreen({
         }}
       >
         <div className="flex items-center justify-between">
-          <span className="text-[12px] text-white/40">Correct answers</span>
-          <span className="text-[12px] font-bold" style={{ color: '#fbbf24' }}>
-            +{score.correct * XP_PER_CORRECT} XP
+          <span className="text-[12px] text-white/40">Questions attempted</span>
+          <span className="text-[12px] font-bold text-white/70">
+            {score.total}
           </span>
         </div>
-        {isPerfect && (
-          <div className="flex items-center justify-between">
-            <span className="text-[12px] text-white/40">Perfect bonus</span>
-            <span className="text-[12px] font-bold" style={{ color: '#fbbf24' }}>
-              +{XP_PER_PERFECT_ROUND} XP
-            </span>
-          </div>
-        )}
-        {crownedUp && (
-          <div className="flex items-center justify-between">
-            <span className="text-[12px] text-white/40">Crown level up</span>
-            <span className="text-[12px] font-bold" style={{ color: '#fbbf24' }}>
-              +{XP_PER_CROWN_LEVEL} XP
-            </span>
-          </div>
-        )}
+        <div className="flex items-center justify-between">
+          <span className="text-[12px] text-white/40">Correct answers</span>
+          <span className="text-[12px] font-bold" style={{ color: '#34d399' }}>
+            {score.correct}
+          </span>
+        </div>
         <div
           className="flex items-center justify-between pt-2 mt-1"
           style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
         >
-          <span className="text-[13px] text-white/70 font-semibold">Total</span>
-          <span className="text-[14px] font-extrabold" style={{ color: '#fbbf24' }}>
-            &#9889; {sessionXp} XP
+          <span className="text-[13px] text-white/70 font-semibold">Accuracy</span>
+          <span className="text-[14px] font-extrabold" style={{ color: percentage >= 60 ? '#34d399' : '#f87171' }}>
+            {percentage}%
           </span>
         </div>
       </div>

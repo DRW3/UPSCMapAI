@@ -11,9 +11,6 @@ import {
   type UserProfile,
   DEFAULT_PROGRESS,
   DEFAULT_TOPIC_PROGRESS,
-  XP_PER_CORRECT,
-  XP_PER_PERFECT_ROUND,
-  XP_PER_CROWN_LEVEL,
   QUESTIONS_PER_CROWN,
   DAILY_GOALS,
   PROFILE_STORAGE_KEY,
@@ -28,6 +25,19 @@ import ProfileTab from '@/components/journey/ProfileTab'
 import DailyGoalModal from '@/components/journey/DailyGoalModal'
 import AchievementToast from '@/components/journey/AchievementToast'
 import OnboardingFlow, { hasCompletedOnboarding } from '@/components/journey/OnboardingFlow'
+
+// ── Date helpers (local timezone, not UTC) ───────────────────────────────────
+
+function getLocalDate(): string {
+  const now = new Date()
+  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
+}
+
+function getLocalYesterday(): string {
+  const d = new Date()
+  d.setDate(d.getDate() - 1)
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+}
 
 // ── LocalStorage ──────────────────────────────────────────────────────────────
 
@@ -129,10 +139,10 @@ function computeHearts(progress: JourneyProgress): number {
 
 function computeStreak(progress: JourneyProgress): { streak: number; isToday: boolean } {
   if (!progress.lastStudyDate) return { streak: 0, isToday: false }
-  const today = new Date().toISOString().slice(0, 10)
+  const today = getLocalDate()
   const last = progress.lastStudyDate.slice(0, 10)
   if (last === today) return { streak: progress.streak, isToday: true }
-  const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10)
+  const yesterday = getLocalYesterday()
   if (last === yesterday) return { streak: progress.streak, isToday: false }
   return { streak: 0, isToday: false }
 }
@@ -140,9 +150,9 @@ function computeStreak(progress: JourneyProgress): { streak: number; isToday: bo
 // ── Daily reset ──────────────────────────────────────────────────────────────
 
 function resetDailyIfNeeded(progress: JourneyProgress): JourneyProgress {
-  const today = new Date().toISOString().slice(0, 10)
+  const today = getLocalDate()
   if (progress.todayDate !== today) {
-    return { ...progress, todayXp: 0, todayDate: today }
+    return { ...progress, todayXp: 0, todayTopicsRead: 0, todayTopicsPracticed: 0, todayDate: today }
   }
   return progress
 }
@@ -246,9 +256,6 @@ export function MobileLearningJourney() {
   // Current hearts
   const hearts = useMemo(() => computeHearts(progress), [progress])
 
-  // Daily goal XP target
-  const dailyGoalXp = DAILY_GOALS[progress.dailyGoalTier].xpTarget
-
   // ── Handlers ────────────────────────────────────────────────────────────────
 
   const handleNodeTap = useCallback((topicId: string, topic: LearningTopic, subject: LearningSubject) => {
@@ -265,6 +272,7 @@ export function MobileLearningJourney() {
             state: 'started' as const,
           },
         },
+        todayTopicsRead: (prev.todayTopicsRead || 0) + 1,
       }))
     }
 
@@ -285,6 +293,7 @@ export function MobileLearningJourney() {
             state: 'started' as const,
           },
         },
+        todayTopicsRead: (prev.todayTopicsRead || 0) + 1,
       }))
     }
 
@@ -326,13 +335,12 @@ export function MobileLearningJourney() {
   const handlePracticeComplete = useCallback((result: {
     correct: number
     total: number
-    xpEarned: number
     newCrownLevel: CrownLevel
   }) => {
     if (!practiceTarget) return
     const { topic } = practiceTarget
     const today = new Date().toISOString()
-    const todayDate = today.slice(0, 10)
+    const todayDate = getLocalDate()
     const isPerfect = result.correct === result.total && result.total > 0
 
     setProgress(prev => {
@@ -341,16 +349,11 @@ export function MobileLearningJourney() {
       const newAnswered = existing.questionsAnswered + result.total
 
       let newCrown = existing.crownLevel
-      const neededForNext = (newCrown + 1) * QUESTIONS_PER_CROWN
-      if (newCorrect >= neededForNext && newCrown < 5) {
-        newCrown = Math.min(5, newCrown + 1) as CrownLevel
+      while (newCrown < 5 && newCorrect >= (newCrown + 1) * QUESTIONS_PER_CROWN) {
+        newCrown = (newCrown + 1) as CrownLevel
       }
 
       const newState = newCrown >= 1 ? 'completed' : 'started'
-
-      let xpGained = result.correct * XP_PER_CORRECT
-      if (isPerfect) xpGained += XP_PER_PERFECT_ROUND
-      if (newCrown > existing.crownLevel) xpGained += XP_PER_CROWN_LEVEL
 
       const { streak, isToday } = computeStreak(prev)
       const newStreak = isToday ? streak : streak + 1
@@ -359,24 +362,40 @@ export function MobileLearningJourney() {
       if (isPerfect) gemsGained += 5
       if (newCrown > existing.crownLevel) gemsGained += 2
 
-      const newTodayXp = (prev.todayDate === todayDate ? prev.todayXp : 0) + xpGained
-      const goalXp = DAILY_GOALS[prev.dailyGoalTier].xpTarget
-      const prevGoalMet = prev.todayDate === todayDate && prev.todayXp >= goalXp
-      const nowGoalMet = newTodayXp >= goalXp
+      const goalCfg = DAILY_GOALS[prev.dailyGoalTier]
+      const prevReadCount = prev.todayDate === todayDate ? (prev.todayTopicsRead || 0) : 0
+      const prevPracticeCount = prev.todayDate === todayDate ? (prev.todayTopicsPracticed || 0) : 0
+      const newPracticeCount = prevPracticeCount + 1
+      const prevGoalMet = prevReadCount >= goalCfg.readTarget && prevPracticeCount >= goalCfg.practiceTarget
+      const nowGoalMet = prevReadCount >= goalCfg.readTarget && newPracticeCount >= goalCfg.practiceTarget
       const goalJustMet = !prevGoalMet && nowGoalMet
-      const newGoalStreak = goalJustMet ? prev.goalStreakDays + 1 : prev.goalStreakDays
+
+      // Reset goal streak if user missed a day (gap > 1 day since last goal date)
+      let baseGoalStreak = prev.goalStreakDays
+      const prevDate = prev.todayDate
+      if (prevDate && prevDate !== todayDate) {
+        const prevDateObj = new Date(prevDate)
+        const todayObj = new Date(todayDate)
+        const dayGap = Math.floor((todayObj.getTime() - prevDateObj.getTime()) / 86400000)
+        // If more than 1 day gap, or previous day goal wasn't met, reset
+        const prevDayGoalMet = (prev.todayTopicsRead || 0) >= goalCfg.readTarget && (prev.todayTopicsPracticed || 0) >= goalCfg.practiceTarget
+        if (dayGap > 1 || !prevDayGoalMet) {
+          baseGoalStreak = 0
+        }
+      }
+      const newGoalStreak = goalJustMet ? baseGoalStreak + 1 : baseGoalStreak
 
       const calendar = [...(prev.studyCalendar || [])]
       const existingDay = calendar.find(d => d.date === todayDate)
       if (existingDay) {
-        existingDay.xpEarned += xpGained
         existingDay.questionsAnswered += result.total
+        existingDay.correctAnswers = (existingDay.correctAnswers || 0) + result.correct
         existingDay.goalMet = existingDay.goalMet || nowGoalMet
       } else {
         calendar.push({
           date: todayDate,
-          xpEarned: xpGained,
           questionsAnswered: result.total,
+          correctAnswers: result.correct,
           goalMet: nowGoalMet,
         })
       }
@@ -392,17 +411,18 @@ export function MobileLearningJourney() {
           [topic.id]: {
             state: newState as TopicProgress['state'],
             crownLevel: newCrown,
-            xpEarned: existing.xpEarned + xpGained,
+            xpEarned: 0,
             questionsAnswered: newAnswered,
             correctAnswers: newCorrect,
             lastPracticed: today,
           },
         },
-        totalXp: prev.totalXp + xpGained,
+        totalXp: prev.totalXp,
         streak: newStreak,
         lastStudyDate: today,
         gems: prev.gems + gemsGained,
-        todayXp: newTodayXp,
+        todayXp: 0,
+        todayTopicsPracticed: (prev.todayDate === todayDate ? prev.todayTopicsPracticed || 0 : 0) + 1,
         todayDate: todayDate,
         goalStreakDays: newGoalStreak,
         perfectScores: newPerfects,
@@ -431,7 +451,7 @@ export function MobileLearningJourney() {
     setProgress(prev => ({
       ...prev,
       hearts: Math.max(0, prev.hearts - 1),
-      heartsLastRefill: prev.hearts === 5 ? new Date().toISOString() : prev.heartsLastRefill,
+      heartsLastRefill: prev.hearts >= 5 ? new Date().toISOString() : (prev.heartsLastRefill || new Date().toISOString()),
     }))
   }, [])
 
@@ -463,10 +483,14 @@ export function MobileLearningJourney() {
 
   const handleResetJourney = useCallback(() => {
     setProgress(DEFAULT_PROGRESS)
+    setProfile(null)
     try {
       localStorage.removeItem(STORAGE_KEY)
       localStorage.removeItem('upsc-journey-v1')
+      localStorage.removeItem(PROFILE_STORAGE_KEY)
+      localStorage.removeItem('upsc-journey-onboarded')
     } catch {}
+    setShowOnboarding(true)
   }, [])
 
   // ── Loading state ──────────────────────────────────────────────────────────
@@ -571,8 +595,11 @@ export function MobileLearningJourney() {
               }}
             >
               {(() => {
-                const pct = Math.min(100, dailyGoalXp > 0 ? (progress.todayXp / dailyGoalXp) * 100 : 0)
-                const goalMet = pct >= 100
+                const goalCfg = DAILY_GOALS[progress.dailyGoalTier]
+                const readPct = goalCfg.readTarget > 0 ? Math.min(100, ((progress.todayTopicsRead || 0) / goalCfg.readTarget) * 100) : 100
+                const practicePct = goalCfg.practiceTarget > 0 ? Math.min(100, ((progress.todayTopicsPracticed || 0) / goalCfg.practiceTarget) * 100) : 100
+                const pct = Math.round((readPct + practicePct) / 2)
+                const goalMet = readPct >= 100 && practicePct >= 100
                 const r = 11, circ = 2 * Math.PI * r
                 return (
                   <>
@@ -756,7 +783,6 @@ export function MobileLearningJourney() {
       {goalModalOpen && (
         <DailyGoalModal
           currentTier={progress.dailyGoalTier}
-          todayXp={progress.todayXp}
           onSelect={handleGoalTierChange}
           onClose={() => setGoalModalOpen(false)}
         />

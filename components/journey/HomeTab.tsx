@@ -168,9 +168,12 @@ export default function HomeTab({
   }, [topicStates, continueTopic, profile])
 
   // ── Today stats ────────────────────────────────────────────────────────────
-  const todayXp = progress.todayXp || 0
-  const goalXp = DAILY_GOALS[progress.dailyGoalTier || 'regular'].xpTarget
-  const goalMet = todayXp >= goalXp
+  const goalCfg = DAILY_GOALS[progress.dailyGoalTier || 'regular']
+  const todayRead = progress.todayTopicsRead || 0
+  const todayPracticed = progress.todayTopicsPracticed || 0
+  const readMet = todayRead >= goalCfg.readTarget
+  const practiceMet = todayPracticed >= goalCfg.practiceTarget
+  const goalMet = readMet && practiceMet
 
   const totalCorrect = useMemo(() => {
     let totalC = 0
@@ -285,8 +288,8 @@ export default function HomeTab({
         case 'twentyfive-topics': current = completedTopics; target = 25; break
         case 'fifty-topics': current = completedTopics; target = 50; break
         case 'hundred-topics': current = completedTopics; target = 100; break
-        case 'five-hundred-xp': current = progress.totalXp; target = 500; break
-        case 'two-thousand-xp': current = progress.totalXp; target = 2000; break
+        case 'hundred-questions': current = totalCorrect; target = 100; break
+        case 'five-hundred-questions': current = totalCorrect; target = 500; break
         case 'fifty-gems': current = progress.gems; target = 50; break
         case 'streak-3': current = progress.streak; target = 3; break
         case 'streak-7': current = progress.streak; target = 7; break
@@ -303,7 +306,7 @@ export default function HomeTab({
         case 'fifty-correct': current = totalCorrect; target = 50; break
         case 'hundred-correct': current = totalCorrect; target = 100; break
         case 'two-fifty-correct': current = totalCorrect; target = 250; break
-        case 'daily-goal-met': current = todayXp >= goalXp ? 1 : 0; target = 1; break
+        case 'daily-goal-met': current = goalMet ? 1 : 0; target = 1; break
         case 'daily-goal-7': current = progress.goalStreakDays; target = 7; break
         default: continue
       }
@@ -316,7 +319,7 @@ export default function HomeTab({
 
     candidates.sort((a, b) => b.pct - a.pct)
     return candidates.slice(0, 2)
-  }, [progress, completedTopics, crowns3Plus, totalCorrect, todayXp, goalXp])
+  }, [progress, completedTopics, crowns3Plus, totalCorrect, goalMet])
 
   // ── Today's Plan ──────────────────────────────────────────────────────────
   const todayPlan = useMemo(() => {
@@ -393,11 +396,9 @@ export default function HomeTab({
     return animDelay
   }
 
-  // ── Daily goal ring SVG ───────────────────────────────────────────────────
-  const goalPct = Math.min(100, (todayXp / goalXp) * 100)
-  const ringR = 28
-  const ringCirc = 2 * Math.PI * ringR
-  const ringOffset = ringCirc - (ringCirc * goalPct) / 100
+  // ── Daily goal progress ────────────────────────────────────────────────────
+  const readPct = goalCfg.readTarget > 0 ? Math.min(100, (todayRead / goalCfg.readTarget) * 100) : 100
+  const practicePct = goalCfg.practiceTarget > 0 ? Math.min(100, (todayPracticed / goalCfg.practiceTarget) * 100) : 100
 
   const hasPlanItems = todayPlan.reviewCount > 0 || todayPlan.focusCount > 0 || todayPlan.newCount > 0
 
@@ -469,34 +470,41 @@ export default function HomeTab({
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
           {/* SVG Ring */}
-          <div style={{ position: 'relative', width: 64, height: 64, flexShrink: 0 }}>
-            <svg width="64" height="64" viewBox="0 0 64 64">
-              <circle cx="32" cy="32" r={ringR} fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="5" />
-              <circle
-                cx="32" cy="32" r={ringR}
-                fill="none"
-                stroke={goalMet ? '#34d399' : '#6366f1'}
-                strokeWidth="5"
-                strokeLinecap="round"
-                strokeDasharray={ringCirc}
-                strokeDashoffset={ringOffset}
-                style={{ transform: 'rotate(-90deg)', transformOrigin: 'center', transition: 'stroke-dashoffset 500ms ease-out' }}
-              />
-            </svg>
-            <div style={{
-              position: 'absolute',
-              inset: 0,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: 16,
-              fontWeight: 700,
-              color: goalMet ? '#34d399' : 'rgba(255,255,255,0.92)',
-              fontVariantNumeric: 'tabular-nums',
-            }}>
-              {todayXp}
-            </div>
-          </div>
+          {(() => {
+            const combinedPct = Math.round((readPct + practicePct) / 2)
+            const ringR = 26
+            const ringCirc = 2 * Math.PI * ringR
+            const ringOffset = ringCirc - (ringCirc * combinedPct) / 100
+            return (
+              <div style={{ position: 'relative', width: 64, height: 64, flexShrink: 0 }}>
+                <svg width="64" height="64" viewBox="0 0 64 64">
+                  <circle cx="32" cy="32" r={ringR} fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="5" />
+                  <circle
+                    cx="32" cy="32" r={ringR}
+                    fill="none"
+                    stroke={goalMet ? '#34d399' : '#6366f1'}
+                    strokeWidth="5"
+                    strokeLinecap="round"
+                    strokeDasharray={ringCirc}
+                    strokeDashoffset={ringOffset}
+                    style={{ transform: 'rotate(-90deg)', transformOrigin: 'center', transition: 'stroke-dashoffset 500ms ease-out' }}
+                  />
+                </svg>
+                <div style={{
+                  position: 'absolute',
+                  inset: 0,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: goalMet ? 20 : 14,
+                  fontWeight: 700,
+                  color: goalMet ? '#34d399' : 'rgba(255,255,255,0.92)',
+                }}>
+                  {goalMet ? '\u2713' : `${combinedPct}%`}
+                </div>
+              </div>
+            )
+          })()}
 
           {/* Right side info */}
           <div style={{ flex: 1, minWidth: 0 }}>
@@ -504,11 +512,36 @@ export default function HomeTab({
               fontSize: 13,
               fontWeight: 600,
               color: 'rgba(255,255,255,0.70)',
-              marginBottom: 6,
+              marginBottom: 8,
             }}>
-              Daily Goal: {todayXp}/{goalXp} XP
+              Daily Goal
             </div>
-            <MiniProgressBar pct={goalPct} color={goalMet ? '#34d399' : 'linear-gradient(90deg, #6366f1, #a78bfa)'} height={6} />
+
+            {/* Read progress */}
+            <div style={{ marginBottom: 6 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
+                <span style={{ fontSize: 11, color: readMet ? '#34d399' : 'rgba(255,255,255,0.50)', fontWeight: 600 }}>
+                  Topics Read
+                </span>
+                <span style={{ fontSize: 11, fontWeight: 700, color: readMet ? '#34d399' : 'rgba(255,255,255,0.65)', fontVariantNumeric: 'tabular-nums' }}>
+                  {todayRead}/{goalCfg.readTarget}
+                </span>
+              </div>
+              <MiniProgressBar pct={readPct} color={readMet ? '#34d399' : 'linear-gradient(90deg, #6366f1, #a78bfa)'} height={5} />
+            </div>
+
+            {/* Practice progress */}
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
+                <span style={{ fontSize: 11, color: practiceMet ? '#34d399' : 'rgba(255,255,255,0.50)', fontWeight: 600 }}>
+                  Practice Sessions
+                </span>
+                <span style={{ fontSize: 11, fontWeight: 700, color: practiceMet ? '#34d399' : 'rgba(255,255,255,0.65)', fontVariantNumeric: 'tabular-nums' }}>
+                  {todayPracticed}/{goalCfg.practiceTarget}
+                </span>
+              </div>
+              <MiniProgressBar pct={practicePct} color={practiceMet ? '#34d399' : 'linear-gradient(90deg, #8b5cf6, #a78bfa)'} height={5} />
+            </div>
 
             <div style={{ marginTop: 8, display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
               {/* Streak badge */}

@@ -137,19 +137,18 @@ function computeWeekStatsFromProgress(
   const endStr = getLocalDate(weekEnd)
 
   let questions = 0
-  let xpEarned = 0
+  let correctAnswers = 0
   let activeDays = 0
 
   for (const day of calendar) {
     if (day.date >= startStr && day.date < endStr) {
       questions += day.questionsAnswered
-      xpEarned += day.xpEarned
+      correctAnswers += (day.correctAnswers || 0)
       if (day.questionsAnswered > 0) activeDays++
     }
   }
 
-  const estimatedCorrect = questions > 0 ? Math.round(xpEarned / 10) : 0
-  const accuracy = questions > 0 ? Math.min(100, Math.round((estimatedCorrect / questions) * 100)) : 0
+  const accuracy = questions > 0 ? Math.min(100, Math.round((correctAnswers / questions) * 100)) : 0
 
   return { questions, accuracy, topics: activeDays }
 }

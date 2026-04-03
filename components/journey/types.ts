@@ -18,16 +18,18 @@ export type DailyGoalTier = 'casual' | 'regular' | 'serious' | 'intense'
 
 export interface DailyGoalConfig {
   tier: DailyGoalTier
-  xpTarget: number
+  readTarget: number       // new topics to read/start per day
+  practiceTarget: number   // practice sessions to complete per day
   label: string
   icon: string
+  timeEstimate: string     // approximate time per day
 }
 
 export const DAILY_GOALS: Record<DailyGoalTier, DailyGoalConfig> = {
-  casual:  { tier: 'casual',  xpTarget: 30,  label: 'Casual',  icon: '🌱' },
-  regular: { tier: 'regular', xpTarget: 50,  label: 'Regular', icon: '📖' },
-  serious: { tier: 'serious', xpTarget: 100, label: 'Serious', icon: '🔥' },
-  intense: { tier: 'intense', xpTarget: 150, label: 'Intense', icon: '⚡' },
+  casual:  { tier: 'casual',  readTarget: 1, practiceTarget: 2, label: 'Casual',  icon: '🌱', timeEstimate: '~15 min' },
+  regular: { tier: 'regular', readTarget: 2, practiceTarget: 3, label: 'Regular', icon: '📖', timeEstimate: '~30 min' },
+  serious: { tier: 'serious', readTarget: 3, practiceTarget: 5, label: 'Serious', icon: '🔥', timeEstimate: '~50 min' },
+  intense: { tier: 'intense', readTarget: 5, practiceTarget: 8, label: 'Intense', icon: '⚡', timeEstimate: '~90 min' },
 }
 
 // ── Achievements ──────────────────────────────────────────────────────────────
@@ -56,8 +58,8 @@ export const ACHIEVEMENTS: AchievementDef[] = [
   { id: 'fifty-topics',     title: 'Half Century',       description: 'Complete 50 topics',                               icon: '⭐', category: 'milestone' },
   { id: 'hundred-topics',   title: 'Centurion',          description: 'Complete 100 topics',                              icon: '💯', category: 'milestone' },
   { id: 'first-subject',    title: 'Subject Cleared',    description: 'Complete all topics in a subject',                 icon: '🎓', category: 'milestone' },
-  { id: 'five-hundred-xp',  title: 'XP Hunter',          description: 'Earn 500 total XP',                               icon: '⚡', category: 'milestone' },
-  { id: 'two-thousand-xp',  title: 'XP Machine',         description: 'Earn 2000 total XP',                              icon: '🔋', category: 'milestone' },
+  { id: 'hundred-questions', title: 'Century of Questions', description: 'Answer 100 questions total',                      icon: '⚡', category: 'milestone' },
+  { id: 'five-hundred-questions', title: 'Quiz Machine',  description: 'Answer 500 questions total',                      icon: '🔋', category: 'milestone' },
   { id: 'fifty-gems',       title: 'Gem Collector',      description: 'Collect 50 gems',                                 icon: '💎', category: 'milestone' },
   // Streaks
   { id: 'streak-3',         title: 'Getting Started',    description: 'Maintain a 3-day study streak',                    icon: '🔥', category: 'streak' },
@@ -77,8 +79,8 @@ export const ACHIEVEMENTS: AchievementDef[] = [
   { id: 'fifty-correct',    title: 'Knowledge Base',     description: 'Answer 50 questions correctly',                    icon: '🧠', category: 'performance' },
   { id: 'hundred-correct',  title: 'Scholar',            description: 'Answer 100 questions correctly',                   icon: '📖', category: 'performance' },
   { id: 'two-fifty-correct',title: 'Walking Encyclopedia',description: 'Answer 250 questions correctly',                  icon: '🏛️', category: 'performance' },
-  { id: 'daily-goal-met',   title: 'Goal Getter',        description: 'Meet your daily XP goal',                          icon: '🎯', category: 'performance' },
-  { id: 'daily-goal-7',     title: 'Goal Streak',        description: 'Meet your daily XP goal 7 days in a row',          icon: '🔥', category: 'performance' },
+  { id: 'daily-goal-met',   title: 'Goal Getter',        description: 'Meet your daily read & practice target',           icon: '🎯', category: 'performance' },
+  { id: 'daily-goal-7',     title: 'Goal Streak',        description: 'Meet your daily target 7 days in a row',           icon: '🔥', category: 'performance' },
 ]
 
 // ── User Profile (collected during onboarding) ───────────────────────────────
@@ -118,8 +120,8 @@ export const PREP_STAGE_CONFIG: Record<PrepStage, { label: string; icon: string;
 
 export interface StudyDay {
   date: string       // YYYY-MM-DD
-  xpEarned: number
   questionsAnswered: number
+  correctAnswers: number
   goalMet: boolean
 }
 
@@ -136,6 +138,8 @@ export interface JourneyProgress {
   // Daily goal
   dailyGoalTier: DailyGoalTier
   todayXp: number
+  todayTopicsRead: number      // new topics started today
+  todayTopicsPracticed: number // practice sessions completed today
   todayDate: string | null         // YYYY-MM-DD — resets when date changes
   goalStreakDays: number            // consecutive days meeting goal
   // Achievements
@@ -155,6 +159,8 @@ export const DEFAULT_PROGRESS: JourneyProgress = {
   gems: 0,
   dailyGoalTier: 'regular',
   todayXp: 0,
+  todayTopicsRead: 0,
+  todayTopicsPracticed: 0,
   todayDate: null,
   goalStreakDays: 0,
   achievements: [],
@@ -171,10 +177,7 @@ export const DEFAULT_TOPIC_PROGRESS: TopicProgress = {
   lastPracticed: null,
 }
 
-// XP rewards
-export const XP_PER_CORRECT = 10
-export const XP_PER_PERFECT_ROUND = 25   // bonus for all correct
-export const XP_PER_CROWN_LEVEL = 50     // bonus when leveling up crown
+// Crown progression
 export const QUESTIONS_PER_CROWN = 5     // correct answers needed to level up
 
 // Crown colors by level
@@ -186,6 +189,25 @@ export const CROWN_COLORS: Record<CrownLevel, string> = {
   4: '#fbbf24',   // gold (level 4)
   5: '#f472b6',   // legendary pink (level 5)
 }
+
+// ── Shared Glass Card Styles ──────────────────────────────────────────────────
+// Base glass/elevated styles without padding or marginBottom.
+// Each consumer can spread these and add their own padding/margin as needed.
+
+export const GLASS_STYLE = {
+  background: 'rgba(255,255,255,0.04)',
+  border: '1px solid rgba(255,255,255,0.06)',
+  borderRadius: 20,
+} as const
+
+export const ELEVATED_STYLE = {
+  background: 'rgba(255,255,255,0.06)',
+  backdropFilter: 'blur(24px)',
+  WebkitBackdropFilter: 'blur(24px)',
+  border: '1px solid rgba(255,255,255,0.08)',
+  boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
+  borderRadius: 20,
+} as const
 
 // Node positions along the winding path (repeating pattern)
 export const PATH_POSITIONS: Array<{ x: number; curve: 'left' | 'center' | 'right' }> = [
@@ -213,6 +235,7 @@ export function checkAchievements(
   const topics = progress.topics
   const completedCount = Object.values(topics).filter(t => t.state === 'completed').length
   const totalCorrect = Object.values(topics).reduce((s, t) => s + t.correctAnswers, 0)
+  const totalAnswered = Object.values(topics).reduce((s, t) => s + t.questionsAnswered, 0)
   const maxCrown = Math.max(0, ...Object.values(topics).map(t => t.crownLevel))
   const crowns3Plus = Object.values(topics).filter(t => t.crownLevel >= 3).length
 
@@ -226,8 +249,8 @@ export function checkAchievements(
   check('twentyfive-topics', completedCount >= 25)
   check('fifty-topics',      completedCount >= 50)
   check('hundred-topics',    completedCount >= 100)
-  check('five-hundred-xp',   progress.totalXp >= 500)
-  check('two-thousand-xp',   progress.totalXp >= 2000)
+  check('hundred-questions',       totalAnswered >= 100)
+  check('five-hundred-questions',  totalAnswered >= 500)
   check('fifty-gems',        progress.gems >= 50)
 
   // Check if any full subject is completed
@@ -260,8 +283,10 @@ export function checkAchievements(
 
   // Daily goal
   const today = new Date().toISOString().slice(0, 10)
-  const goalXp = DAILY_GOALS[progress.dailyGoalTier].xpTarget
-  const goalMet = progress.todayDate === today && progress.todayXp >= goalXp
+  const goalCfg = DAILY_GOALS[progress.dailyGoalTier]
+  const goalMet = progress.todayDate === today
+    && progress.todayTopicsRead >= goalCfg.readTarget
+    && progress.todayTopicsPracticed >= goalCfg.practiceTarget
   check('daily-goal-met', goalMet)
   check('daily-goal-7',   progress.goalStreakDays >= 7)
 

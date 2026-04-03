@@ -5,7 +5,6 @@ import { type DailyGoalTier, DAILY_GOALS } from './types'
 
 interface DailyGoalModalProps {
   currentTier: DailyGoalTier
-  todayXp: number
   onSelect: (tier: DailyGoalTier) => void
   onClose: () => void
 }
@@ -63,7 +62,7 @@ export default function DailyGoalModal({ currentTier, onSelect, onClose }: Daily
             Set Your Daily Goal
           </h3>
           <p className="text-[12px] mt-1" style={{ color: 'rgba(255,255,255,0.55)' }}>
-            Study consistently to build your streak
+            Set daily reading and practice targets
           </p>
         </div>
 
@@ -108,12 +107,19 @@ export default function DailyGoalModal({ currentTier, onSelect, onClose }: Daily
                     </span>
                   )}
                 </div>
-                <span
-                  className="text-[13px] font-bold"
-                  style={{ color: isActive ? 'rgba(255,255,255,0.92)' : 'rgba(255,255,255,0.30)' }}
-                >
-                  {cfg.xpTarget} XP
-                </span>
+                <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                  <div style={{
+                    fontSize: 12, fontWeight: 700,
+                    color: isActive ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.30)',
+                  }}>
+                    {cfg.readTarget} read · {cfg.practiceTarget} practice
+                  </div>
+                  <div style={{
+                    fontSize: 10, color: 'rgba(255,255,255,0.25)', marginTop: 1,
+                  }}>
+                    {cfg.timeEstimate}
+                  </div>
+                </div>
               </button>
             )
           })}

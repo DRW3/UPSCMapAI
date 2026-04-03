@@ -199,9 +199,3 @@ export function formatPYQsMarkdown(pyqs: RetrievedPYQ[]): string {
   return lines.join('\n')
 }
 
-// ── Quick count helper (returns static estimate without DB) ────────────────
-
-export async function countPYQsForTopic(_topic: string): Promise<number> {
-  // Without a database, return a reasonable default
-  return 5
-}

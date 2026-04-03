@@ -31,8 +31,8 @@ function getLocalDate(d: Date = new Date()): string {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
 }
 
-function getLevel(xp: number): number { return Math.floor(xp / 500) + 1 }
-function getXpInLevel(xp: number): number { return xp % 500 }
+function getLevel(questionsAnswered: number): number { return Math.floor(questionsAnswered / 50) + 1 }
+function getQuestionsInLevel(questionsAnswered: number): number { return questionsAnswered % 50 }
 
 const GLASS = { ...GLASS_STYLE, backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' } as const
 const ELEVATED = { ...ELEVATED_STYLE } as const
@@ -40,8 +40,6 @@ const ELEVATED = { ...ELEVATED_STYLE } as const
 // ── Component ───────────────────────────────────────────────────────────────────
 
 export default function ProfileTab({ progress, subjects, onDailyGoalClick, profile, onProfileUpdate, onResetJourney }: ProfileTabProps) {
-  const level = getLevel(progress.totalXp)
-  const xpInLevel = getXpInLevel(progress.totalXp)
   const [showAllAchievements, setShowAllAchievements] = useState(false)
   const [editMode, setEditMode] = useState(false)
   const [editName, setEditName] = useState(profile?.name || '')
@@ -63,6 +61,9 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick, profi
     return { accuracy, completedTopics, totalAnswered, totalCorrect }
   }, [progress.topics])
 
+  const level = getLevel(stats.totalAnswered)
+  const questionsInLevel = getQuestionsInLevel(stats.totalAnswered)
+
   // Subject progress
   const subjectProgress = useMemo(() => {
     return syllabus.map(subject => {
@@ -78,13 +79,13 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick, profi
 
   // Study heatmap (last 30 days)
   const calendarDays = useMemo(() => {
-    const days: Array<{ date: string; xp: number }> = []
+    const days: Array<{ date: string; questions: number }> = []
     const calMap = new Map(progress.studyCalendar?.map(d => [d.date, d]) || [])
     for (let i = 29; i >= 0; i--) {
       const d = new Date(Date.now() - i * 86400000)
       const dateStr = getLocalDate(d)
       const entry = calMap.get(dateStr)
-      days.push({ date: dateStr, xp: entry?.xpEarned || 0 })
+      days.push({ date: dateStr, questions: entry?.questionsAnswered || 0 })
     }
     return days
   }, [progress.studyCalendar])
@@ -216,16 +217,16 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick, profi
             <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)', margin: '3px 0 0' }}>UPSC Aspirant</p>
           </>
         )}
-        {/* XP Bar */}
+        {/* Questions Progress Bar */}
         <div style={{ width: '100%', maxWidth: 240, marginTop: 14 }}>
           <div style={{ height: 8, borderRadius: 9999, overflow: 'hidden', background: 'rgba(255,255,255,0.06)' }}>
             <div style={{
-              height: '100%', borderRadius: 9999, width: `${(xpInLevel / 500) * 100}%`,
+              height: '100%', borderRadius: 9999, width: `${(questionsInLevel / 50) * 100}%`,
               background: 'linear-gradient(90deg, #6366f1, #8b5cf6)', transition: 'width 0.7s ease',
             }} />
           </div>
           <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.30)', textAlign: 'center', margin: '6px 0 0' }}>
-            {progress.totalXp.toLocaleString()} XP  ·  {500 - xpInLevel} to next level
+            {stats.totalAnswered.toLocaleString()} questions  ·  {50 - questionsInLevel} to next level
           </p>
         </div>
       </div>
@@ -417,33 +418,53 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick, profi
       {(() => {
         const goalConfig = DAILY_GOALS[progress.dailyGoalTier]
         const todayStr = getLocalDate()
-        const todayXp = progress.todayDate === todayStr ? progress.todayXp : 0
-        const goalMet = todayXp >= goalConfig.xpTarget
-        const pct = Math.min(100, Math.round((todayXp / goalConfig.xpTarget) * 100))
+        const todayRead = progress.todayDate === todayStr ? (progress.todayTopicsRead || 0) : 0
+        const todayPracticed = progress.todayDate === todayStr ? (progress.todayTopicsPracticed || 0) : 0
+        const readMet = todayRead >= goalConfig.readTarget
+        const practiceMet = todayPracticed >= goalConfig.practiceTarget
+        const goalMet = readMet && practiceMet
+        const readPct = goalConfig.readTarget > 0 ? Math.min(100, Math.round((todayRead / goalConfig.readTarget) * 100)) : 100
+        const practicePct = goalConfig.practiceTarget > 0 ? Math.min(100, Math.round((todayPracticed / goalConfig.practiceTarget) * 100)) : 100
         return (
           <div style={{ ...GLASS, padding: 18 }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                 <span style={{ fontSize: 18 }}>{goalConfig.icon}</span>
                 <span style={{ fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.85)' }}>
-                  Daily Goal: {goalConfig.label} ({goalConfig.xpTarget} XP)
+                  Daily Goal: {goalConfig.label}
                 </span>
               </div>
               {goalMet && <span style={{ fontSize: 14 }}>&#10003;</span>}
             </div>
-            <div style={{ height: 10, borderRadius: 9999, overflow: 'hidden', background: 'rgba(255,255,255,0.06)', marginBottom: 10 }}>
-              <div style={{
-                height: '100%', borderRadius: 9999, width: `${pct}%`,
-                background: goalMet
-                  ? 'linear-gradient(90deg, #22c55e, #34d399)'
-                  : 'linear-gradient(90deg, #6366f1, #8b5cf6)',
-                boxShadow: goalMet ? '0 0 12px rgba(34,197,94,0.3)' : '0 0 12px rgba(99,102,241,0.2)',
-                transition: 'width 0.7s ease',
-              }} />
+            <div style={{ marginBottom: 8 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
+                <span style={{ fontSize: 11, fontWeight: 600, color: readMet ? '#34d399' : 'rgba(255,255,255,0.50)' }}>Topics Read</span>
+                <span style={{ fontSize: 11, fontWeight: 700, color: readMet ? '#34d399' : 'rgba(255,255,255,0.60)', fontVariantNumeric: 'tabular-nums' }}>{todayRead}/{goalConfig.readTarget}</span>
+              </div>
+              <div style={{ height: 6, borderRadius: 9999, overflow: 'hidden', background: 'rgba(255,255,255,0.06)' }}>
+                <div style={{
+                  height: '100%', borderRadius: 9999, width: `${readPct}%`,
+                  background: readMet ? 'linear-gradient(90deg, #22c55e, #34d399)' : 'linear-gradient(90deg, #6366f1, #a78bfa)',
+                  transition: 'width 0.7s ease',
+                }} />
+              </div>
+            </div>
+            <div style={{ marginBottom: 10 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
+                <span style={{ fontSize: 11, fontWeight: 600, color: practiceMet ? '#34d399' : 'rgba(255,255,255,0.50)' }}>Practice Sessions</span>
+                <span style={{ fontSize: 11, fontWeight: 700, color: practiceMet ? '#34d399' : 'rgba(255,255,255,0.60)', fontVariantNumeric: 'tabular-nums' }}>{todayPracticed}/{goalConfig.practiceTarget}</span>
+              </div>
+              <div style={{ height: 6, borderRadius: 9999, overflow: 'hidden', background: 'rgba(255,255,255,0.06)' }}>
+                <div style={{
+                  height: '100%', borderRadius: 9999, width: `${practicePct}%`,
+                  background: practiceMet ? 'linear-gradient(90deg, #22c55e, #34d399)' : 'linear-gradient(90deg, #8b5cf6, #a78bfa)',
+                  transition: 'width 0.7s ease',
+                }} />
+              </div>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <span style={{ fontSize: 12, fontWeight: 600, color: goalMet ? '#34d399' : 'rgba(255,255,255,0.50)' }}>
-                {todayXp}/{goalConfig.xpTarget} XP today
+                {goalMet ? 'Goal complete!' : `${goalConfig.readTarget} read · ${goalConfig.practiceTarget} practice`}
               </span>
               <button
                 onClick={onDailyGoalClick}
@@ -529,12 +550,12 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick, profi
               ))
             })()}
             {calendarDays.map(day => {
-              const intensity = day.xp === 0 ? 0 : day.xp <= 30 ? 1 : day.xp <= 60 ? 2 : day.xp <= 100 ? 3 : 4
+              const intensity = day.questions === 0 ? 0 : day.questions <= 3 ? 1 : day.questions <= 6 ? 2 : day.questions <= 10 ? 3 : 4
               const isToday = day.date === getLocalDate()
               return (
                 <div
                   key={day.date}
-                  title={`${day.date}: ${day.xp} XP`}
+                  title={`${day.date}: ${day.questions} questions`}
                   style={{
                     width: 'calc((100% - 18px) / 7)', aspectRatio: '1', borderRadius: 4,
                     background: heatColors[intensity],
@@ -832,7 +853,7 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick, profi
                 Reset all progress?
               </p>
               <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.40)', margin: '0 0 12px' }}>
-                This will clear your XP, crowns, streaks, and achievements. This cannot be undone.
+                This will clear your progress, crowns, streaks, and achievements. This cannot be undone.
               </p>
               <div style={{ display: 'flex', gap: 10 }}>
                 <button
