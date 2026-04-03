@@ -59,8 +59,6 @@ Return a JSON object with this EXACT structure:
     ]
   },
 
-  "mnemonic": "A genuinely useful memory trick. e.g. 'LAMPS for mass movement triggers = Landslide, Avalanche, Mudflow, Permafrost, Snowline'",
-
   "importantFacts": [
     "Label: Detail — specific dates, article numbers, names, figures. e.g. 'Founded: 1950, under Article 280 of the Constitution'",
     "... (5-6 facts)"
@@ -83,15 +81,14 @@ Key concepts that MUST be covered: ${concepts || 'all major aspects'}
 CRITICAL RULES:
 1. "timeline": ONLY include for history/chronological topics where dates matter. Include 4-8 entries with years and concise events. For non-chronological topics (like Geography concepts, Polity principles, Economy theories), set to empty array [].
 2. "comparison": ONLY include when there's a natural, meaningful comparison (e.g. Fundamental Rights vs DPSP, Lok Sabha vs Rajya Sabha, Mughal vs Maratha administration, Tropical vs Temperate cyclones). Include 3-5 rows. For topics without a natural comparison, set to null.
-3. "mnemonic": ONLY include if a genuine, useful memory trick exists or you can create a clever one. Must be actually helpful, not forced. Set to null if nothing works naturally.
-4. "keyPoints": MUST have 6-8 points. MUST use **double asterisks** around key terms in each point. Each point 2-3 sentences with context and significance.
-5. "importantFacts": Use "Label: Detail" format. Include specific numbers, dates, article numbers, names, places.
-6. "hook": Must be genuinely surprising or thought-provoking. A real PYQ question, a counterintuitive fact, a fascinating anecdote, or a provocative "did you know". NEVER a bland statement like "This is an important topic."
-7. "examTip": Be hyper-specific about how UPSC tests this — question patterns, common traps, what angle to prepare.
-8. "keyTakeaways": 3-4 crisp "remember this above all" bullets.
-9. Write for a complete beginner — explain jargon when you use it.
-10. Return ONLY the JSON object. No markdown code blocks, no backticks, no explanation outside the JSON.
-11. Within "summary", "keyPoints", "hook", and "keyTakeaways" text, highlight 3-5 important terms per section using [[term||explanation]] syntax where term is the key phrase (a person, place, concept, article, treaty, battle, policy, scheme, constitutional provision, etc.) and explanation is 1-2 sentences about what it is and why it matters for UPSC. Example: "The [[Mauryan Empire||Founded by Chandragupta Maurya in 321 BCE. One of the most frequently tested topics in Prelims GS-I — focus on Ashoka's edicts, administrative divisions, and decline.]] was the first large empire in India." Highlight 3-5 key terms per text field — names, dates, articles, policies, battles, treaties, schemes, constitutional provisions. Don't over-highlight. Only highlight genuinely important terms that an aspirant would benefit from understanding deeply. Do NOT highlight common words or obvious terms. Do NOT use this syntax in importantFacts, upscRelevance, or connections fields.`,
+3. "keyPoints": MUST have 6-8 points. MUST use **double asterisks** around key terms in each point. Each point 2-3 sentences with context and significance.
+4. "importantFacts": Use "Label: Detail" format. Include specific numbers, dates, article numbers, names, places.
+5. "hook": Must be genuinely surprising or thought-provoking. A real PYQ question, a counterintuitive fact, a fascinating anecdote, or a provocative "did you know". NEVER a bland statement like "This is an important topic."
+6. "examTip": Be hyper-specific about how UPSC tests this — question patterns, common traps, what angle to prepare.
+7. "keyTakeaways": 3-4 crisp "remember this above all" bullets.
+8. Write for a complete beginner — explain jargon when you use it.
+9. Return ONLY the JSON object. No markdown code blocks, no backticks, no explanation outside the JSON.
+10. Within "summary", "keyPoints", "hook", and "keyTakeaways" text, highlight 3-5 important terms per section using [[term||explanation]] syntax where term is the key phrase (a person, place, concept, article, treaty, battle, policy, scheme, constitutional provision, etc.) and explanation is 1-2 sentences about what it is and why it matters for UPSC. Example: "The [[Mauryan Empire||Founded by Chandragupta Maurya in 321 BCE. One of the most frequently tested topics in Prelims GS-I — focus on Ashoka's edicts, administrative divisions, and decline.]] was the first large empire in India." Highlight 3-5 key terms per text field — names, dates, articles, policies, battles, treaties, schemes, constitutional provisions. Don't over-highlight. Only highlight genuinely important terms that an aspirant would benefit from understanding deeply. Do NOT highlight common words or obvious terms. Do NOT use this syntax in importantFacts, upscRelevance, or connections fields.`,
         },
       ],
       temperature: 0.3,

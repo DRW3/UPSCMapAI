@@ -60,6 +60,7 @@ export default function TopicDetailSheet({
   const dragOffset = useRef(0)
   const isDragging = useRef(false)
   const [dragTranslate, setDragTranslate] = useState(0)
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 20)
@@ -136,15 +137,30 @@ export default function TopicDetailSheet({
 
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
     dragStartY.current = e.touches[0].clientY
-    isDragging.current = true
+    // Only allow drag-to-dismiss if scroll container is at top
+    const scrollEl = scrollContainerRef.current
+    isDragging.current = !scrollEl || scrollEl.scrollTop <= 0
   }, [])
 
   const handleTouchMove = useCallback((e: React.TouchEvent) => {
     if (!isDragging.current) return
+    const scrollEl = scrollContainerRef.current
+    // If user scrolled down during this gesture, cancel drag
+    if (scrollEl && scrollEl.scrollTop > 0) {
+      isDragging.current = false
+      dragOffset.current = 0
+      setDragTranslate(0)
+      return
+    }
     const delta = e.touches[0].clientY - dragStartY.current
     if (delta > 0) {
       dragOffset.current = delta
       setDragTranslate(delta)
+    } else {
+      // Upward movement — don't drag, let scroll happen
+      isDragging.current = false
+      dragOffset.current = 0
+      setDragTranslate(0)
     }
   }, [])
 
@@ -343,6 +359,7 @@ export default function TopicDetailSheet({
 
         {/* Scrollable content */}
         <div
+          ref={scrollContainerRef}
           onScroll={() => { if (activeHighlight) setActiveHighlight(null) }}
           style={{
             flex: 1,
@@ -812,21 +829,24 @@ export default function TopicDetailSheet({
                               <button
                                 onClick={onOpenMap}
                                 style={{
-                                  alignSelf: 'flex-end',
-                                  display: 'inline-flex',
+                                  alignSelf: 'stretch',
+                                  display: 'flex',
                                   alignItems: 'center',
-                                  gap: 4,
-                                  padding: '4px 10px',
-                                  borderRadius: 8,
-                                  background: 'rgba(129,140,248,0.08)',
-                                  border: '1px solid rgba(129,140,248,0.20)',
+                                  justifyContent: 'center',
+                                  gap: 8,
+                                  padding: '12px 16px',
+                                  borderRadius: 12,
+                                  background: 'linear-gradient(135deg, rgba(99,102,241,0.12), rgba(139,92,246,0.12))',
+                                  border: '1px solid rgba(129,140,248,0.25)',
                                   cursor: 'pointer',
-                                  fontSize: 11,
-                                  fontWeight: 600,
-                                  color: '#818cf8',
+                                  fontSize: 14,
+                                  fontWeight: 700,
+                                  color: '#a5b4fc',
+                                  marginTop: 4,
+                                  WebkitTapHighlightColor: 'transparent',
                                 }}
                               >
-                                {'\uD83D\uDDFA\uFE0F'} View on Map
+                                {'\uD83D\uDDFA\uFE0F'} Visualize on Map
                               </button>
                             )}
                           </div>
@@ -914,36 +934,6 @@ export default function TopicDetailSheet({
                   </div>
                 )}
 
-                {/* G. Mnemonic Card */}
-                {notes.mnemonic && (
-                  <div
-                    style={{
-                      marginBottom: 20,
-                      padding: 16,
-                      borderRadius: 16,
-                      background: 'rgba(183,148,244,0.06)',
-                      border: '1px solid rgba(183,148,244,0.15)',
-                      borderLeft: '3px solid rgba(183,148,244,0.5)',
-                      animation: 'tds-cardIn 0.3s ease 0.45s both',
-                    }}
-                  >
-                    <p style={{ fontSize: 13, fontWeight: 700, color: '#B794F4', margin: '0 0 8px' }}>
-                      {'\uD83E\uDDE0'} Memory Trick
-                    </p>
-                    <p
-                      style={{
-                        fontSize: 15,
-                        fontFamily: "'SF Mono', 'Fira Code', monospace",
-                        lineHeight: 1.7,
-                        color: 'rgba(255,255,255,0.85)',
-                        margin: 0,
-                      }}
-                    >
-                      {notes.mnemonic}
-                    </p>
-                  </div>
-                )}
-
                 {/* H. Quick Facts (improved) */}
                 {notes.importantFacts && notes.importantFacts.length > 0 && (
                   <div style={{ marginBottom: 20 }}>
@@ -981,7 +971,7 @@ export default function TopicDetailSheet({
                               {label && (
                                 <span style={{ fontWeight: 700, color }}>{label}: </span>
                               )}
-                              {detail}
+                              {renderRichText(detail, color)}
                             </p>
                           </div>
                         )
