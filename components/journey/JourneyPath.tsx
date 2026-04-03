@@ -20,6 +20,7 @@ export interface JourneyPathProps {
   onSubjectChange: (subjectId: string | null) => void
   profile: UserProfile | null
   studyCalendar?: StudyDay[]
+  newlyUnlockedId?: string
 }
 
 interface FlatTopicNode {
@@ -84,6 +85,20 @@ const KEYFRAMES = `
 @keyframes jp-slideIn {
   from { opacity: 0; transform: translateX(-20px); }
   to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes jp-newlyUnlocked {
+  0% { transform: scale(0.8); opacity: 0; filter: brightness(2); }
+  40% { transform: scale(1.05); opacity: 1; filter: brightness(1.5); }
+  70% { transform: scale(0.98); filter: brightness(1.1); }
+  100% { transform: scale(1); opacity: 1; filter: brightness(1); }
+}
+@keyframes jp-unlockGlow {
+  0%, 100% { box-shadow: 0 0 20px 4px rgba(var(--glow-rgb), 0.3), 0 0 40px 8px rgba(var(--glow-rgb), 0.1); }
+  50% { box-shadow: 0 0 30px 8px rgba(var(--glow-rgb), 0.5), 0 0 60px 16px rgba(var(--glow-rgb), 0.2); }
+}
+@keyframes jp-unlockShimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
 }
 `
 
@@ -296,10 +311,11 @@ function UnitHeader({ data }: { data: UnitHeaderData }) {
 // TopicCard (the core card-based design)
 // ---------------------------------------------------------------------------
 
-function TopicCard({ node, onTap, isFirstAvailable }: {
+function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked }: {
   node: FlatTopicNode
   onTap: () => void
   isFirstAvailable: boolean
+  isNewlyUnlocked?: boolean
 }) {
   const { topic, subject, state, progress: tp, globalIndex } = node
   const crown = tp.crownLevel
@@ -347,33 +363,39 @@ function TopicCard({ node, onTap, isFirstAvailable }: {
         display: 'flex',
         alignItems: 'center',
         paddingLeft: PATH_LEFT - DOT_SIZE / 2,
-        animation: `jp-fadeUp 500ms cubic-bezier(0.16,1,0.3,1) both`,
-        animationDelay: `${Math.min(globalIndex * 40, 600)}ms`,
+        animation: isNewlyUnlocked && state === 'available'
+          ? `jp-newlyUnlocked 0.8s cubic-bezier(0.16,1,0.3,1) both`
+          : `jp-fadeUp 500ms cubic-bezier(0.16,1,0.3,1) both`,
+        animationDelay: isNewlyUnlocked ? undefined : `${Math.min(globalIndex * 40, 600)}ms`,
         position: 'relative',
       }}
     >
       {/* Path dot */}
       <div
         style={{
-          width: DOT_SIZE,
-          height: DOT_SIZE,
+          width: isNewlyUnlocked && state === 'available' ? DOT_SIZE + 4 : DOT_SIZE,
+          height: isNewlyUnlocked && state === 'available' ? DOT_SIZE + 4 : DOT_SIZE,
           borderRadius: '50%',
           background: stateConfig.dotColor,
           flexShrink: 0,
           position: 'relative',
           zIndex: 2,
-          boxShadow: state === 'available' && isFirstAvailable
-            ? `0 0 8px 3px rgba(${rgb},0.5)`
-            : state === 'available'
-              ? `0 0 6px 2px rgba(${rgb},0.3)`
-              : state === 'completed'
-                ? '0 0 6px 2px rgba(34,211,153,0.3)'
-                : 'none',
-          animation: state === 'available' && isFirstAvailable
-            ? 'jp-pulse 2s ease-in-out infinite'
-            : state === 'available'
-              ? 'jp-pulse 3s ease-in-out infinite'
-              : undefined,
+          boxShadow: isNewlyUnlocked && state === 'available'
+            ? `0 0 14px 6px rgba(${rgb},0.6)`
+            : state === 'available' && isFirstAvailable
+              ? `0 0 8px 3px rgba(${rgb},0.5)`
+              : state === 'available'
+                ? `0 0 6px 2px rgba(${rgb},0.3)`
+                : state === 'completed'
+                  ? '0 0 6px 2px rgba(34,211,153,0.3)'
+                  : 'none',
+          animation: isNewlyUnlocked && state === 'available'
+            ? 'jp-pulse 1.5s ease-in-out infinite'
+            : state === 'available' && isFirstAvailable
+              ? 'jp-pulse 2s ease-in-out infinite'
+              : state === 'available'
+                ? 'jp-pulse 3s ease-in-out infinite'
+                : undefined,
           transition: 'all 300ms ease-out',
         }}
       />
@@ -441,9 +463,12 @@ function TopicCard({ node, onTap, isFirstAvailable }: {
           ...(state === 'available' ? {
             // Use CSS custom property for the animation color
             ['--pulse-rgb' as string]: rgb,
-            animation: isFirstAvailable
-              ? 'jp-borderPulse 2.5s ease-in-out infinite'
-              : undefined,
+            ['--glow-rgb' as string]: rgb,
+            animation: isNewlyUnlocked
+              ? 'jp-unlockGlow 2s ease-in-out 0.8s infinite'
+              : isFirstAvailable
+                ? 'jp-borderPulse 2.5s ease-in-out infinite'
+                : undefined,
           } : {}),
         }}
       >
@@ -634,6 +659,17 @@ function TopicCard({ node, onTap, isFirstAvailable }: {
             }} />
           </div>
         )}
+
+        {/* Shimmer overlay for newly unlocked topics */}
+        {isNewlyUnlocked && (
+          <div style={{
+            position: 'absolute', top: 0, bottom: 0, width: '50%',
+            background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)',
+            animation: 'jp-unlockShimmer 1.5s ease-in-out 0.8s',
+            animationFillMode: 'both',
+            pointerEvents: 'none', zIndex: 5,
+          }} />
+        )}
       </div>
     </div>
   )
@@ -650,9 +686,11 @@ export default function JourneyPath({
   onNodeTap,
   onSubjectChange,
   profile,
+  newlyUnlockedId,
 }: JourneyPathProps) {
   const scrollRef = useRef<HTMLDivElement>(null)
   const firstAvailableRef = useRef<HTMLDivElement>(null)
+  const newlyUnlockedRef = useRef<HTMLDivElement>(null)
   const [ready, setReady] = useState(false)
 
   useEffect(() => { setReady(true) }, [])
@@ -709,22 +747,24 @@ export default function JourneyPath({
     return { totalTopics: total, completedTopics: completed }
   }, [subjects, progress])
 
-  // Auto-scroll to first available
+  // Auto-scroll to first available or newly unlocked topic
   useEffect(() => {
     if (!ready) return
     const id = requestAnimationFrame(() => {
-      const n = firstAvailableRef.current
       const c = scrollRef.current
-      if (!n || !c) return
+      if (!c) return
+      // Prefer scrolling to newly unlocked topic if available
+      const target = newlyUnlockedId ? newlyUnlockedRef.current : firstAvailableRef.current
+      if (!target) return
       const cr = c.getBoundingClientRect()
-      const nr = n.getBoundingClientRect()
+      const nr = target.getBoundingClientRect()
       c.scrollTo({
         top: Math.max(0, c.scrollTop + nr.top - cr.top - 140),
         behavior: 'smooth',
       })
     })
     return () => cancelAnimationFrame(id)
-  }, [activeSubjectId, ready])
+  }, [activeSubjectId, ready, newlyUnlockedId])
 
   const handleTap = useCallback(
     (n: FlatTopicNode) => onNodeTap(n.topic.id, n.topic, n.subject),
@@ -797,11 +837,12 @@ export default function JourneyPath({
 
             // Filled segment: vertical line between previous completed node and this node
             const showFilledSegment = prevTopicNode !== null && prevWasCompleted
+            const isNewlyUnlocked = node.topic.id === newlyUnlockedId
 
             const el = (
               <div
                 key={`t-${node.topic.id}`}
-                ref={node.isFirstAvailable ? firstAvailableRef : undefined}
+                ref={isNewlyUnlocked ? newlyUnlockedRef : node.isFirstAvailable ? firstAvailableRef : undefined}
                 style={{ position: 'relative', marginBottom: 8 }}
               >
                 {/* Filled path segment overlay if previous was completed */}
@@ -824,6 +865,7 @@ export default function JourneyPath({
                   node={node}
                   onTap={() => handleTap(node)}
                   isFirstAvailable={node.isFirstAvailable}
+                  isNewlyUnlocked={isNewlyUnlocked}
                 />
               </div>
             )

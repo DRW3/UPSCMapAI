@@ -39,6 +39,7 @@ interface PracticeSheetProps {
   }) => void
   onHeartLost: () => void
   onNextTopic?: () => void
+  nextTopicName?: string
 }
 
 // ── Component ───────────────────────────────────────────────────────────────────
@@ -52,6 +53,7 @@ export default function PracticeSheet({
   onComplete,
   onHeartLost,
   onNextTopic,
+  nextTopicName,
 }: PracticeSheetProps) {
   // Sheet state
   const [sheetVisible, setSheetVisible] = useState(false)
@@ -567,6 +569,7 @@ export default function PracticeSheet({
               score={score}
               isPerfect={isPerfect}
               onNextTopic={onNextTopic}
+              nextTopicName={nextTopicName}
               crownedUp={crownedUp}
               newCrownLvl={newCrownLvl}
               previousCrownLvl={progress.crownLevel}
@@ -980,6 +983,7 @@ function ScoreScreen({
   previousCorrectAnswers,
   previousQuestionsAnswered,
   onNextTopic,
+  nextTopicName,
 }: {
   score: { correct: number; total: number }
   isPerfect: boolean
@@ -991,6 +995,7 @@ function ScoreScreen({
   previousCorrectAnswers: number
   previousQuestionsAnswered: number
   onNextTopic?: () => void
+  nextTopicName?: string
 }) {
   const percentage = score.total > 0 ? Math.round((score.correct / score.total) * 100) : 0
   const circumference = 2 * Math.PI * 45 // radius 45
@@ -1022,6 +1027,7 @@ function ScoreScreen({
 
   return (
     <div className="flex flex-col items-center justify-center py-8 gap-6 text-center">
+      <style>{`@keyframes ps-btnShimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }`}</style>
       {/* Star burst for perfect */}
       {isPerfect && (
         <div className="relative">
@@ -1267,13 +1273,38 @@ function ScoreScreen({
         {onNextTopic && (
           <button
             onClick={() => { onFinish(); setTimeout(onNextTopic, 100) }}
-            className="w-full py-4 rounded-2xl text-[15px] font-extrabold text-white tracking-wide transition-all hover:scale-[1.01] active:scale-[0.97]"
+            className="w-full py-4 rounded-2xl text-[15px] font-extrabold text-white tracking-wide transition-all hover:scale-[1.01] active:scale-[0.97] relative overflow-hidden"
             style={{
               background: `linear-gradient(135deg, ${color}, ${color}cc)`,
               boxShadow: `0 4px 24px ${color}35`,
             }}
           >
-            NEXT TOPIC →
+            <span style={{ position: 'relative', zIndex: 1 }}>
+              {nextTopicName ? `Next: ${nextTopicName} →` : 'NEXT TOPIC →'}
+            </span>
+            <div
+              style={{
+                position: 'absolute',
+                inset: 0,
+                background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%)',
+                backgroundSize: '200% 100%',
+                animation: 'ps-btnShimmer 2s ease-in-out infinite',
+                pointerEvents: 'none',
+              }}
+            />
+          </button>
+        )}
+        {onNextTopic && (
+          <button
+            onClick={onFinish}
+            className="w-full py-3.5 rounded-2xl text-[14px] font-semibold tracking-wide transition-all hover:scale-[1.01] active:scale-[0.97]"
+            style={{
+              background: 'rgba(255,255,255,0.04)',
+              color: 'rgba(255,255,255,0.40)',
+              border: 'none',
+            }}
+          >
+            ↻ Retry This Topic
           </button>
         )}
         <button

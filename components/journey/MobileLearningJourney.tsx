@@ -25,6 +25,7 @@ import ProfileTab from '@/components/journey/ProfileTab'
 import DailyGoalModal from '@/components/journey/DailyGoalModal'
 import AchievementToast from '@/components/journey/AchievementToast'
 import OnboardingFlow, { hasCompletedOnboarding } from '@/components/journey/OnboardingFlow'
+import CelebrationOverlay from '@/components/journey/CelebrationOverlay'
 
 // ── Date helpers (local timezone, not UTC) ───────────────────────────────────
 
@@ -211,6 +212,19 @@ export function MobileLearningJourney() {
 
   // Onboarding
   const [showOnboarding, setShowOnboarding] = useState(false)
+
+  // Celebration overlay
+  const [celebrationData, setCelebrationData] = useState<{
+    completedTopicTitle: string
+    nextTopicTitle: string
+    nextTopicIcon: string
+    subjectColor: string
+    nextTopic: LearningTopic
+    nextSubject: LearningSubject
+  } | null>(null)
+
+  // Track newly unlocked topic for JourneyPath animation
+  const [newlyUnlockedId, setNewlyUnlockedId] = useState<string | null>(null)
 
   const [mounted, setMounted] = useState(false)
 
@@ -447,83 +461,99 @@ export function MobileLearningJourney() {
     setPracticeTarget(null)
   }, [practiceTarget])
 
-  // Find and open next available topic after practice
-  const handleNextTopic = useCallback(() => {
-    const currentTopicId = practiceTarget?.topic.id
-    // Close practice sheet
-    setPracticeTarget(null)
-    // Switch to path tab briefly for visual transition
-    setActiveTab('path')
-
-    // Find next available topic (skip the one just practiced)
-    let foundNext = false
+  // Find next available topic helper
+  const findNextTopic = useCallback((currentTopicId: string | undefined): { topic: LearningTopic; subject: LearningSubject } | null => {
     let passedCurrent = false
-
     for (const subject of UPSC_SYLLABUS) {
       for (const unit of subject.units) {
         for (const topic of unit.topics) {
-          if (topic.id === currentTopicId) {
-            passedCurrent = true
-            continue
-          }
+          if (topic.id === currentTopicId) { passedCurrent = true; continue }
           if (!passedCurrent) continue
-
           const tp = topicStates[topic.id]
           if (tp && (tp.state === 'available' || tp.state === 'started')) {
-            // Mark as started if available
-            if (tp.state === 'available') {
-              setProgress(prev => ({
-                ...prev,
-                topics: {
-                  ...prev.topics,
-                  [topic.id]: {
-                    ...(prev.topics[topic.id] || DEFAULT_TOPIC_PROGRESS),
-                    state: 'started' as const,
-                  },
-                },
-                todayTopicsRead: (prev.todayTopicsRead || 0) + 1,
-              }))
-            }
-            // Brief delay to show path tab transition, then open detail
-            setTimeout(() => {
-              setDetailTarget({ topic, subject })
-            }, 800)
-            foundNext = true
-            return
+            return { topic, subject }
           }
         }
       }
     }
+    // Wrap around
+    for (const subject of UPSC_SYLLABUS) {
+      for (const unit of subject.units) {
+        for (const topic of unit.topics) {
+          if (topic.id === currentTopicId) continue
+          const tp = topicStates[topic.id]
+          if (tp && tp.state === 'available') return { topic, subject }
+        }
+      }
+    }
+    return null
+  }, [topicStates])
 
-    // If no topic found after current, wrap around and check from start
-    if (!foundNext) {
-      for (const subject of UPSC_SYLLABUS) {
-        for (const unit of subject.units) {
-          for (const topic of unit.topics) {
-            if (topic.id === currentTopicId) continue
-            const tp = topicStates[topic.id]
-            if (tp && tp.state === 'available') {
-              setProgress(prev => ({
-                ...prev,
-                topics: {
-                  ...prev.topics,
-                  [topic.id]: {
-                    ...(prev.topics[topic.id] || DEFAULT_TOPIC_PROGRESS),
-                    state: 'started' as const,
-                  },
-                },
-                todayTopicsRead: (prev.todayTopicsRead || 0) + 1,
-              }))
-              setTimeout(() => {
-                setDetailTarget({ topic, subject })
-              }, 800)
-              return
-            }
-          }
-        }
-      }
+  // Find and open next available topic after practice — with celebration overlay
+  const handleNextTopic = useCallback(() => {
+    const completedTitle = practiceTarget?.topic.title || 'Topic'
+    const currentTopicId = practiceTarget?.topic.id
+    const subjectColor = practiceTarget?.subject.color || '#6366f1'
+
+    // Close practice sheet
+    setPracticeTarget(null)
+
+    // Find next topic
+    const next = findNextTopic(currentTopicId)
+
+    if (next) {
+      // Show celebration overlay
+      setCelebrationData({
+        completedTopicTitle: completedTitle,
+        nextTopicTitle: next.topic.title,
+        nextTopicIcon: next.topic.icon,
+        subjectColor,
+        nextTopic: next.topic,
+        nextSubject: next.subject,
+      })
+      // Set newly unlocked for path animation
+      setNewlyUnlockedId(next.topic.id)
+    } else {
+      // No next topic — just go to path
+      setActiveTab('path')
     }
-  }, [topicStates, practiceTarget])
+  }, [practiceTarget, findNextTopic])
+
+  // Handle celebration overlay dismiss → transition to next topic
+  const handleCelebrationDismiss = useCallback(() => {
+    const data = celebrationData
+    setCelebrationData(null)
+
+    if (!data) return
+
+    // Switch to path tab to show the unlocked topic animation
+    setActiveTab('path')
+
+    // After a brief delay for scroll animation, open the detail sheet
+    setTimeout(() => {
+      // Mark as started if available
+      const tp = topicStates[data.nextTopic.id]
+      if (tp && tp.state === 'available') {
+        setProgress(prev => ({
+          ...prev,
+          topics: {
+            ...prev.topics,
+            [data.nextTopic.id]: {
+              ...(prev.topics[data.nextTopic.id] || DEFAULT_TOPIC_PROGRESS),
+              state: 'started' as const,
+            },
+          },
+          todayTopicsRead: (prev.todayTopicsRead || 0) + 1,
+        }))
+      }
+
+      // Open detail sheet for the next topic
+      setDetailTarget({ topic: data.nextTopic, subject: data.nextSubject })
+
+      // Clear newly unlocked after animation has played
+      setTimeout(() => setNewlyUnlockedId(null), 3000)
+    }, 800)
+  }, [celebrationData, topicStates])
 
   const handleHeartLost = useCallback(() => {
     setProgress(prev => ({
@@ -799,6 +829,7 @@ export function MobileLearningJourney() {
               onSubjectChange={setActiveSubjectId}
               profile={profile}
               studyCalendar={progress.studyCalendar}
+              newlyUnlockedId={newlyUnlockedId ?? undefined}
             />
           </div>
         )}
@@ -855,6 +886,7 @@ export function MobileLearningJourney() {
           onComplete={handlePracticeComplete}
           onHeartLost={handleHeartLost}
           onNextTopic={handleNextTopic}
+          nextTopicName={findNextTopic(practiceTarget.topic.id)?.topic.title}
         />
       )}
 
@@ -872,6 +904,17 @@ export function MobileLearningJourney() {
         <AchievementToast
           achievementId={achievementQueue[0]}
           onDone={handleAchievementDone}
+        />
+      )}
+
+      {/* Celebration Overlay — Angry Birds style unlock */}
+      {celebrationData && (
+        <CelebrationOverlay
+          completedTopicTitle={celebrationData.completedTopicTitle}
+          nextTopicTitle={celebrationData.nextTopicTitle}
+          nextTopicIcon={celebrationData.nextTopicIcon}
+          subjectColor={celebrationData.subjectColor}
+          onDismiss={handleCelebrationDismiss}
         />
       )}
 
