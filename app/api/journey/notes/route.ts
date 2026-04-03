@@ -90,7 +90,8 @@ CRITICAL RULES:
 7. "examTip": Be hyper-specific about how UPSC tests this — question patterns, common traps, what angle to prepare.
 8. "keyTakeaways": 3-4 crisp "remember this above all" bullets.
 9. Write for a complete beginner — explain jargon when you use it.
-10. Return ONLY the JSON object. No markdown code blocks, no backticks, no explanation outside the JSON.`,
+10. Return ONLY the JSON object. No markdown code blocks, no backticks, no explanation outside the JSON.
+11. Within "summary", "keyPoints", "hook", and "keyTakeaways" text, highlight 3-5 important terms per section using [[term||explanation]] syntax where term is the key phrase (a person, place, concept, article, treaty, battle, policy, scheme, constitutional provision, etc.) and explanation is 1-2 sentences about what it is and why it matters for UPSC. Example: "The [[Mauryan Empire||Founded by Chandragupta Maurya in 321 BCE. One of the most frequently tested topics in Prelims GS-I — focus on Ashoka's edicts, administrative divisions, and decline.]] was the first large empire in India." Highlight 3-5 key terms per text field — names, dates, articles, policies, battles, treaties, schemes, constitutional provisions. Don't over-highlight. Only highlight genuinely important terms that an aspirant would benefit from understanding deeply. Do NOT highlight common words or obvious terms. Do NOT use this syntax in importantFacts, upscRelevance, or connections fields.`,
         },
       ],
       temperature: 0.3,

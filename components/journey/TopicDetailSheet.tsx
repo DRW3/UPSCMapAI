@@ -214,14 +214,63 @@ export default function TopicDetailSheet({
   // Track image error to hide the entire image container
   const [imageError, setImageError] = useState(false)
 
-  // Renders text with **bold** markers as <strong> elements
-  function renderBoldText(text: string): React.ReactNode {
-    const parts = text.split(/\*\*(.*?)\*\*/g)
-    return parts.map((part, i) =>
-      i % 2 === 1
-        ? <strong key={i} style={{ color: 'rgba(255,255,255,0.95)', fontWeight: 700 }}>{part}</strong>
-        : part
-    )
+  // Active highlight explanation popover
+  const [activeHighlight, setActiveHighlight] = useState<{ term: string; explanation: string } | null>(null)
+
+  // Renders text with **bold** markers AND [[term||explanation]] highlight capsules
+  function renderRichText(text: string, color: string): React.ReactNode {
+    // Split on [[term||explanation]] pattern
+    const parts = text.split(/(\[\[.*?\|\|.*?\]\])/g)
+
+    return parts.map((part, i) => {
+      const highlightMatch = part.match(/^\[\[(.*?)\|\|(.*?)\]\]$/)
+      if (highlightMatch) {
+        const [, term, explanation] = highlightMatch
+        return (
+          <span
+            key={i}
+            onClick={(e) => {
+              e.stopPropagation()
+              setActiveHighlight(prev =>
+                prev?.term === term ? null : { term, explanation }
+              )
+            }}
+            style={{
+              display: 'inline',
+              padding: '2px 8px',
+              margin: '0 1px',
+              borderRadius: 99,
+              background: `${color}15`,
+              border: `1px solid ${color}30`,
+              color: `${color}dd`,
+              fontSize: 'inherit',
+              fontWeight: 600,
+              cursor: 'pointer',
+              WebkitTapHighlightColor: 'transparent',
+              transition: 'all 150ms ease',
+              lineHeight: 1.8,
+            }}
+          >
+            {term}
+            <span style={{
+              display: 'inline-block',
+              marginLeft: 3,
+              fontSize: '0.7em',
+              opacity: 0.6,
+              verticalAlign: 'middle',
+            }}>{'\u24D8'}</span>
+          </span>
+        )
+      }
+
+      // Apply bold parsing to non-highlight parts
+      const boldParts = part.split(/\*\*(.*?)\*\*/g)
+      return boldParts.map((bp, j) =>
+        j % 2 === 1
+          ? <strong key={`${i}-${j}`} style={{ color: 'rgba(255,255,255,0.95)', fontWeight: 700 }}>{bp}</strong>
+          : <span key={`${i}-${j}`}>{bp}</span>
+      )
+    })
   }
 
   return (
@@ -294,6 +343,7 @@ export default function TopicDetailSheet({
 
         {/* Scrollable content */}
         <div
+          onScroll={() => { if (activeHighlight) setActiveHighlight(null) }}
           style={{
             flex: 1,
             overflowY: 'auto',
@@ -589,7 +639,7 @@ export default function TopicDetailSheet({
                       {'\uD83D\uDCA1'} Did You Know?
                     </p>
                     <p style={{ fontSize: 15, lineHeight: 1.75, color: 'rgba(255,255,255,0.82)', margin: 0, letterSpacing: '-0.01em' }}>
-                      {renderBoldText(notes.hook)}
+                      {renderRichText(notes.hook, color)}
                     </p>
                   </div>
                 )}
@@ -606,7 +656,7 @@ export default function TopicDetailSheet({
                   }}
                 >
                   <p style={{ fontSize: 15, lineHeight: 1.75, color: 'rgba(255,255,255,0.82)', margin: 0, letterSpacing: '-0.01em' }}>
-                    {renderBoldText(notes.summary)}
+                    {renderRichText(notes.summary, color)}
                   </p>
                 </div>
 
@@ -755,7 +805,7 @@ export default function TopicDetailSheet({
                                 {idx + 1}
                               </span>
                               <p style={{ fontSize: 14, lineHeight: 1.7, color: 'rgba(255,255,255,0.78)', margin: 0 }}>
-                                {renderBoldText(point)}
+                                {renderRichText(point, color)}
                               </p>
                             </div>
                             {hasMapRelevance && (
@@ -957,7 +1007,7 @@ export default function TopicDetailSheet({
                       {'\uD83C\uDFAF'} Exam Strategy
                     </p>
                     <p style={{ fontSize: 15, lineHeight: 1.75, color: 'rgba(255,255,255,0.82)', margin: 0, letterSpacing: '-0.01em' }}>
-                      {renderBoldText(notes.examTip)}
+                      {renderRichText(notes.examTip, color)}
                     </p>
                   </div>
                 )}
@@ -1057,6 +1107,86 @@ export default function TopicDetailSheet({
               </div>
             )}
           </div>
+
+          {/* Highlight Explanation Popover */}
+          {activeHighlight && (
+            <div
+              style={{
+                position: 'sticky',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                margin: '0 12px 8px',
+                padding: '14px 16px',
+                borderRadius: 16,
+                background: 'rgba(15,15,30,0.98)',
+                backdropFilter: 'blur(24px)',
+                WebkitBackdropFilter: 'blur(24px)',
+                border: `1px solid ${color}30`,
+                boxShadow: `0 -4px 24px rgba(0,0,0,0.4), 0 0 12px ${color}15`,
+                zIndex: 10,
+                animation: 'tds-cardIn 0.2s ease both',
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12 }}>
+                <div style={{ flex: 1 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                    <span style={{
+                      padding: '3px 10px',
+                      borderRadius: 99,
+                      background: `${color}20`,
+                      border: `1px solid ${color}35`,
+                      fontSize: 13,
+                      fontWeight: 700,
+                      color: `${color}ee`,
+                    }}>
+                      {activeHighlight.term}
+                    </span>
+                    <span style={{
+                      padding: '2px 7px',
+                      borderRadius: 6,
+                      background: 'rgba(251,191,36,0.10)',
+                      border: '1px solid rgba(251,191,36,0.20)',
+                      fontSize: 9,
+                      fontWeight: 700,
+                      color: '#fbbf24',
+                      letterSpacing: '0.05em',
+                    }}>
+                      UPSC
+                    </span>
+                  </div>
+                  <p style={{
+                    fontSize: 14,
+                    lineHeight: 1.7,
+                    color: 'rgba(255,255,255,0.78)',
+                    margin: 0,
+                  }}>
+                    {activeHighlight.explanation}
+                  </p>
+                </div>
+                <button
+                  onClick={() => setActiveHighlight(null)}
+                  style={{
+                    width: 28,
+                    height: 28,
+                    borderRadius: 8,
+                    background: 'rgba(255,255,255,0.06)',
+                    border: 'none',
+                    color: 'rgba(255,255,255,0.4)',
+                    fontSize: 14,
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                  }}
+                >
+                  {'\u2715'}
+                </button>
+              </div>
+            </div>
+          )}
 
           {/* 10. Crown Progress Section */}
           {hasProgress && (
