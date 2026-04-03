@@ -127,14 +127,16 @@ export default function TopicDetailSheet({
   const isCompleted = progress.state === 'completed'
   const isStarted = progress.state === 'started'
   const hasProgress = isStarted || isCompleted
-
   const isFocusArea = profile?.weakSubjects?.includes(subject.id) ?? false
 
+  // Button label logic
   const buttonLabel = isCompleted
     ? 'PRACTICE AGAIN'
     : isStarted
       ? 'START PRACTICE \u2192'
-      : 'START STUDYING \u2192'
+      : isFocusArea
+        ? 'START FOCUS \u2192'
+        : 'START STUDYING \u2192'
   const buttonIsOutline = isCompleted
 
   const diffLevel = topic.difficulty
@@ -160,20 +162,17 @@ export default function TopicDetailSheet({
         @keyframes tds-slideDown { from { transform: translateY(0); } to { transform: translateY(100%); } }
         @keyframes tds-fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes tds-fadeOut { from { opacity: 1; } to { opacity: 0; } }
-        @keyframes tds-cardIn {
-          from { opacity: 0; transform: translateY(8px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes tds-shimmer {
-          0%, 100% { opacity: 0.3; }
-          50% { opacity: 0.6; }
-        }
+        @keyframes tds-cardIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes tds-shimmer { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.5; } }
       `}</style>
 
       {/* Backdrop */}
       <div
-        className="fixed inset-0 z-[70]"
+        onClick={handleDismiss}
         style={{
+          position: 'fixed',
+          inset: 0,
+          zIndex: 70,
           background: 'rgba(0,0,0,0.55)',
           backdropFilter: 'blur(6px)',
           WebkitBackdropFilter: 'blur(6px)',
@@ -181,7 +180,6 @@ export default function TopicDetailSheet({
             ? 'tds-fadeOut 0.3s ease forwards'
             : 'tds-fadeIn 0.2s ease forwards',
         }}
-        onClick={handleDismiss}
       />
 
       {/* Sheet */}
@@ -190,9 +188,15 @@ export default function TopicDetailSheet({
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
-        className="fixed bottom-0 left-0 right-0 z-[71] flex flex-col"
         style={{
-          maxHeight: '85vh',
+          position: 'fixed',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          zIndex: 71,
+          display: 'flex',
+          flexDirection: 'column',
+          maxHeight: '92vh',
           borderRadius: '24px 24px 0 0',
           background: 'rgba(10,10,20,0.97)',
           backdropFilter: 'blur(32px)',
@@ -215,113 +219,122 @@ export default function TopicDetailSheet({
         }}
       >
         {/* Drag handle */}
-        <div className="flex justify-center pt-3 pb-1">
-          <div
-            className="rounded-full"
-            style={{ width: 40, height: 4, background: 'rgba(255,255,255,0.2)' }}
-          />
-        </div>
-
-        {/* Hero Section */}
-        <div
-          className="relative px-5 pt-4 pb-5 overflow-hidden"
-          style={{
-            background: `linear-gradient(135deg, ${color}25, ${color}08)`,
-          }}
-        >
-          {/* Decorative radial glow */}
-          <div
-            className="absolute pointer-events-none"
-            style={{
-              top: '-30%',
-              left: '50%',
-              transform: 'translateX(-50%)',
-              width: 200,
-              height: 200,
-              borderRadius: '50%',
-              background: `radial-gradient(circle, ${color}18 0%, transparent 70%)`,
-            }}
-          />
-          <div className="flex flex-col items-center text-center relative">
-            <div
-              className="flex items-center justify-center mb-3"
-              style={{ fontSize: 48, lineHeight: 1 }}
-            >
-              {topic.icon}
-            </div>
-            <h2
-              className="text-[18px] font-bold leading-snug mb-2"
-              style={{ color: 'rgba(255,255,255,0.95)' }}
-            >
-              {topic.title}
-            </h2>
-            <span
-              className="text-[11px] font-semibold px-3 py-1 rounded-full"
-              style={{
-                background: `${color}18`,
-                color,
-                border: `1px solid ${color}30`,
-              }}
-            >
-              {subject.shortTitle}
-            </span>
-          </div>
+        <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 12, paddingBottom: 4 }}>
+          <div style={{ width: 40, height: 4, borderRadius: 99, background: 'rgba(255,255,255,0.2)' }} />
         </div>
 
         {/* Scrollable content */}
         <div
-          className="flex-1 overflow-y-auto px-5 pt-4 pb-4"
-          style={{ scrollbarWidth: 'none' }}
+          style={{
+            flex: 1,
+            overflowY: 'auto',
+            scrollbarWidth: 'none' as const,
+            paddingBottom: 16,
+          }}
         >
-          {/* Quick Stats Row */}
+          {/* ── Compact Header ── */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 20px 8px' }}>
+            <div
+              style={{
+                width: 44,
+                height: 44,
+                borderRadius: 14,
+                background: `${color}18`,
+                border: `1.5px solid ${color}30`,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: 24,
+                flexShrink: 0,
+              }}
+            >
+              {topic.icon}
+            </div>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <h2
+                style={{
+                  fontSize: 17,
+                  fontWeight: 700,
+                  color: 'rgba(255,255,255,0.95)',
+                  margin: 0,
+                  lineHeight: 1.3,
+                }}
+              >
+                {topic.title}
+              </h2>
+              <span
+                style={{
+                  fontSize: 11,
+                  fontWeight: 600,
+                  color,
+                  marginTop: 2,
+                  display: 'inline-block',
+                }}
+              >
+                {subject.shortTitle} · {subject.paper}
+              </span>
+            </div>
+          </div>
+
+          {/* ── Stat Pills Row ── */}
           <div
-            className="flex items-center justify-center gap-2 mb-5"
-            style={{ animation: 'tds-cardIn 0.3s ease 0.1s both' }}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 8,
+              padding: '0 20px',
+              marginBottom: 16,
+              animation: 'tds-cardIn 0.3s ease 0.1s both',
+            }}
           >
             {/* Difficulty */}
             <div
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full"
               style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 6,
+                padding: '6px 12px',
+                borderRadius: 99,
                 background: 'rgba(255,255,255,0.04)',
                 border: '1px solid rgba(255,255,255,0.06)',
               }}
             >
-              <span className="flex gap-0.5">
+              <span style={{ display: 'flex', gap: 2 }}>
                 {[1, 2, 3].map((d) => (
                   <span
                     key={d}
-                    className="inline-block rounded-full"
                     style={{
+                      display: 'inline-block',
                       width: 6,
                       height: 6,
+                      borderRadius: '50%',
                       background: d <= diffLevel ? diffColor : 'rgba(255,255,255,0.12)',
                     }}
                   />
                 ))}
               </span>
-              <span className="text-[11px] font-semibold" style={{ color: diffColor }}>
+              <span style={{ fontSize: 11, fontWeight: 600, color: diffColor }}>
                 {diffLabel}
               </span>
             </div>
 
             {/* PYQ Frequency */}
             <div
-              className="flex items-center gap-1 px-3 py-1.5 rounded-full"
               style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 4,
+                padding: '6px 12px',
+                borderRadius: 99,
                 background: 'rgba(255,255,255,0.04)',
                 border: '1px solid rgba(255,255,255,0.06)',
               }}
             >
-              <svg
-                width="11"
-                height="11"
-                viewBox="0 0 24 24"
-                fill={freqColor}
-                opacity={0.85}
-              >
+              <svg width="11" height="11" viewBox="0 0 24 24" fill={freqColor} opacity={0.85}>
                 <path d="M12 2C10.5 6 6 8.5 6 13c0 3.5 2.5 7 6 7s6-3.5 6-7c0-4.5-4.5-7-6-11z" />
               </svg>
-              <span className="text-[11px] font-semibold" style={{ color: freqColor }}>
+              <span style={{ fontSize: 11, fontWeight: 600, color: freqColor }}>
                 {freqLabel}
               </span>
             </div>
@@ -329,41 +342,36 @@ export default function TopicDetailSheet({
             {/* Focus badge */}
             {isFocusArea && (
               <div
-                className="flex items-center gap-1 px-3 py-1.5 rounded-full"
                 style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 4,
+                  padding: '6px 12px',
+                  borderRadius: 99,
                   background: 'rgba(249,115,22,0.10)',
                   border: '1px solid rgba(249,115,22,0.25)',
                 }}
               >
                 <span style={{ fontSize: 10, lineHeight: 1 }}>{'\uD83C\uDFAF'}</span>
-                <span className="text-[11px] font-bold" style={{ color: '#f97316' }}>
+                <span style={{ fontSize: 11, fontWeight: 700, color: '#f97316' }}>
                   FOCUS
                 </span>
               </div>
             )}
           </div>
 
-          {/* ── STUDY NOTES SECTION ── */}
-          <div style={{ animation: 'tds-cardIn 0.35s ease 0.15s both' }}>
-            <div className="flex items-center gap-2 mb-3">
-              <span style={{ fontSize: 16 }}>{'\uD83D\uDCD6'}</span>
-              <h3
-                className="text-[14px] font-bold"
-                style={{ color: 'rgba(255,255,255,0.85)' }}
-              >
-                Study Notes
-              </h3>
-            </div>
+          {/* ── Study Notes Section ── */}
+          <div style={{ padding: '0 20px', animation: 'tds-cardIn 0.35s ease 0.15s both' }}>
 
             {/* Loading skeleton */}
             {notesLoading && (
-              <div className="flex flex-col gap-3 mb-5">
-                {[1, 2, 3].map((i) => (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 20 }}>
+                {[48, 32, 32, 24].map((h, i) => (
                   <div
                     key={i}
-                    className="rounded-xl"
                     style={{
-                      height: i === 1 ? 60 : 40,
+                      height: h,
+                      borderRadius: 12,
                       background: 'rgba(255,255,255,0.04)',
                       animation: `tds-shimmer 1.5s ease-in-out infinite ${i * 0.2}s`,
                     }}
@@ -375,130 +383,144 @@ export default function TopicDetailSheet({
             {/* Notes loaded successfully */}
             {!notesLoading && notes && (
               <>
-                {/* Summary */}
+                {/* Summary Card */}
                 <div
-                  className="rounded-2xl p-4 mb-4"
                   style={{
-                    background: 'rgba(255,255,255,0.04)',
-                    backdropFilter: 'blur(12px)',
-                    WebkitBackdropFilter: 'blur(12px)',
+                    padding: 16,
+                    borderRadius: 16,
+                    background: 'rgba(255,255,255,0.03)',
                     border: '1px solid rgba(255,255,255,0.06)',
+                    marginBottom: 20,
                   }}
                 >
-                  <p
-                    className="text-[14px] leading-[1.7]"
-                    style={{ color: 'rgba(255,255,255,0.75)' }}
-                  >
+                  <p style={{ fontSize: 14, lineHeight: 1.75, color: 'rgba(255,255,255,0.78)', margin: 0 }}>
                     {notes.summary}
                   </p>
                 </div>
 
                 {/* Key Points */}
                 {notes.keyPoints.length > 0 && (
-                  <div className="mb-4">
-                    <p
-                      className="text-[14px] font-bold mb-3"
-                      style={{ color: 'rgba(255,255,255,0.85)' }}
+                  <div style={{ marginBottom: 20 }}>
+                    <h3
+                      style={{
+                        fontSize: 15,
+                        fontWeight: 700,
+                        color: 'rgba(255,255,255,0.88)',
+                        margin: '0 0 12px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 8,
+                      }}
                     >
-                      {'\uD83D\uDCCC'} Key Points
-                    </p>
-                    <div className="flex flex-col gap-2">
+                      <span style={{ fontSize: 16 }}>{'\uD83D\uDCCC'}</span> Key Points
+                    </h3>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                       {notes.keyPoints.map((point, idx) => (
                         <div
                           key={idx}
-                          className="flex items-start gap-3 p-3 rounded-xl"
                           style={{
-                            background: 'rgba(255,255,255,0.03)',
-                            borderLeft: `2px solid ${color}40`,
-                            border: '1px solid rgba(255,255,255,0.04)',
-                            borderLeftWidth: 2,
-                            borderLeftColor: `${color}40`,
+                            display: 'flex',
+                            gap: 12,
+                            padding: '14px 16px',
+                            borderRadius: 14,
+                            background: 'rgba(255,255,255,0.025)',
+                            borderLeft: `3px solid ${color}60`,
                             animation: `tds-cardIn 0.3s ease ${0.2 + idx * 0.06}s both`,
                           }}
                         >
                           <span
-                            className="flex-shrink-0 flex items-center justify-center rounded-full text-[11px] font-bold"
                             style={{
-                              width: 22,
-                              height: 22,
-                              background: `${color}18`,
+                              width: 24,
+                              height: 24,
+                              borderRadius: 8,
+                              flexShrink: 0,
+                              background: `${color}15`,
                               color: `${color}cc`,
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              fontSize: 12,
+                              fontWeight: 800,
                               marginTop: 1,
                             }}
                           >
                             {idx + 1}
                           </span>
-                          <span
-                            className="text-[13px] leading-relaxed"
-                            style={{ color: 'rgba(255,255,255,0.75)' }}
-                          >
+                          <p style={{ fontSize: 13, lineHeight: 1.65, color: 'rgba(255,255,255,0.72)', margin: 0 }}>
                             {point}
-                          </span>
+                          </p>
                         </div>
                       ))}
                     </div>
                   </div>
                 )}
 
-                {/* Important Facts */}
+                {/* Quick Facts */}
                 {notes.importantFacts.length > 0 && (
-                  <div className="mb-4">
-                    <p
-                      className="text-[14px] font-bold mb-3"
-                      style={{ color: 'rgba(255,255,255,0.85)' }}
+                  <div style={{ marginBottom: 20 }}>
+                    <h3
+                      style={{
+                        fontSize: 15,
+                        fontWeight: 700,
+                        color: 'rgba(255,255,255,0.88)',
+                        margin: '0 0 12px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 8,
+                      }}
                     >
-                      {'\u26A1'} Quick Facts
-                    </p>
-                    <div className="flex flex-col gap-2">
+                      <span style={{ fontSize: 16 }}>{'\u26A1'}</span> Quick Facts
+                    </h3>
+                    <div
+                      style={{
+                        padding: 16,
+                        borderRadius: 14,
+                        background: 'rgba(255,255,255,0.025)',
+                        border: '1px solid rgba(255,255,255,0.05)',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: 10,
+                      }}
+                    >
                       {notes.importantFacts.map((fact, idx) => (
-                        <div key={idx} className="flex items-start gap-2.5">
+                        <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
                           <span
-                            className="flex-shrink-0 mt-[7px] rounded-full"
                             style={{
                               width: 6,
                               height: 6,
+                              borderRadius: '50%',
+                              flexShrink: 0,
                               background: color,
+                              marginTop: 7,
                             }}
                           />
-                          <span
-                            className="text-[12px] leading-relaxed"
-                            style={{ color: 'rgba(255,255,255,0.65)' }}
-                          >
+                          <p style={{ fontSize: 13, lineHeight: 1.6, color: 'rgba(255,255,255,0.68)', margin: 0 }}>
                             {fact}
-                          </span>
+                          </p>
                         </div>
                       ))}
                     </div>
                   </div>
                 )}
 
-                {/* UPSC Relevance */}
+                {/* UPSC Relevance Card */}
                 {notes.upscRelevance && (
                   <div
-                    className="rounded-2xl p-4 mb-4"
                     style={{
-                      background: `${color}0F`,
-                      border: `1px solid ${color}26`,
-                      animation: 'tds-cardIn 0.35s ease 0.35s both',
+                      padding: 16,
+                      borderRadius: 14,
+                      marginBottom: 20,
+                      background: `${color}0A`,
+                      border: `1px solid ${color}20`,
                     }}
                   >
-                    <div className="flex items-start gap-2.5">
-                      <span
-                        style={{ fontSize: 14, lineHeight: 1, marginTop: 2 }}
-                      >
-                        {'\u2B50'}
-                      </span>
+                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
+                      <span style={{ fontSize: 15, marginTop: 1 }}>{'\uD83C\uDFAF'}</span>
                       <div>
-                        <p
-                          className="text-[12px] font-bold mb-1"
-                          style={{ color: `${color}cc` }}
-                        >
-                          UPSC Relevance
+                        <p style={{ fontSize: 12, fontWeight: 700, color: `${color}cc`, margin: '0 0 4px' }}>
+                          Why This Matters for UPSC
                         </p>
-                        <p
-                          className="text-[12px] leading-relaxed"
-                          style={{ color: 'rgba(255,255,255,0.65)' }}
-                        >
+                        <p style={{ fontSize: 13, lineHeight: 1.65, color: 'rgba(255,255,255,0.65)', margin: 0 }}>
                           {notes.upscRelevance}
                         </p>
                       </div>
@@ -508,60 +530,105 @@ export default function TopicDetailSheet({
 
                 {/* Connections */}
                 {notes.connections && (
-                  <p
-                    className="text-[11px] leading-relaxed mb-4"
-                    style={{ color: 'rgba(255,255,255,0.40)' }}
-                  >
-                    <span className="font-semibold" style={{ color: 'rgba(255,255,255,0.55)' }}>
-                      Connections:
-                    </span>{' '}
+                  <p style={{ fontSize: 12, lineHeight: 1.6, color: 'rgba(255,255,255,0.40)', marginBottom: 16, margin: '0 0 16px' }}>
+                    <span style={{ fontWeight: 600, color: 'rgba(255,255,255,0.55)' }}>Related Topics: </span>
                     {notes.connections}
                   </p>
                 )}
+
+                {/* Wikipedia Link */}
+                <a
+                  href={`https://en.wikipedia.org/wiki/${encodeURIComponent(topic.title.replace(/ /g, '_'))}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 10,
+                    padding: '12px 16px',
+                    borderRadius: 14,
+                    marginBottom: 16,
+                    background: 'rgba(255,255,255,0.025)',
+                    border: '1px solid rgba(255,255,255,0.06)',
+                    textDecoration: 'none',
+                  }}
+                >
+                  <span style={{ fontSize: 18 }}>{'\uD83D\uDCDA'}</span>
+                  <div style={{ flex: 1 }}>
+                    <p style={{ fontSize: 13, fontWeight: 600, color: '#818cf8', margin: 0 }}>
+                      Read more on Wikipedia
+                    </p>
+                    <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', margin: '2px 0 0' }}>
+                      Free, open-source reference
+                    </p>
+                  </div>
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="#818cf8"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    opacity={0.5}
+                  >
+                    <path d="M6 4l4 4-4 4" />
+                  </svg>
+                </a>
               </>
             )}
 
-            {/* Fallback: API failed, show concepts as Key Areas to Cover */}
+            {/* Fallback: API failed, show concepts */}
             {!notesLoading && !notes && (
-              <div className="mb-4">
-                <p
-                  className="text-[13px] font-semibold mb-3"
-                  style={{ color: 'rgba(255,255,255,0.60)' }}
+              <div style={{ marginBottom: 20 }}>
+                <h3
+                  style={{
+                    fontSize: 15,
+                    fontWeight: 700,
+                    color: 'rgba(255,255,255,0.88)',
+                    margin: '0 0 12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 8,
+                  }}
                 >
-                  Key Areas to Cover
-                </p>
-                <div className="grid grid-cols-2 gap-2">
+                  <span style={{ fontSize: 16 }}>{'\uD83D\uDCD6'}</span> Key Areas to Cover
+                </h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                   {topic.concepts.map((concept, idx) => (
                     <div
                       key={concept}
-                      className="flex items-start gap-2.5 p-3 rounded-2xl"
                       style={{
-                        background: 'rgba(255,255,255,0.04)',
-                        backdropFilter: 'blur(12px)',
-                        WebkitBackdropFilter: 'blur(12px)',
-                        border: '1px solid rgba(255,255,255,0.06)',
-                        borderLeft: `2px solid ${color}50`,
-                        animation: `tds-cardIn 0.3s ease ${0.2 + idx * 0.04}s both`,
+                        display: 'flex',
+                        gap: 12,
+                        padding: '14px 16px',
+                        borderRadius: 14,
+                        background: 'rgba(255,255,255,0.025)',
+                        borderLeft: `3px solid ${color}60`,
+                        animation: `tds-cardIn 0.3s ease ${0.2 + idx * 0.06}s both`,
                       }}
                     >
                       <span
-                        className="flex-shrink-0 flex items-center justify-center rounded-full text-[10px] font-bold"
                         style={{
-                          width: 20,
-                          height: 20,
-                          background: `${color}18`,
+                          width: 24,
+                          height: 24,
+                          borderRadius: 8,
+                          flexShrink: 0,
+                          background: `${color}15`,
                           color: `${color}cc`,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          fontSize: 12,
+                          fontWeight: 800,
                           marginTop: 1,
                         }}
                       >
                         {idx + 1}
                       </span>
-                      <span
-                        className="text-[12px] font-medium leading-snug"
-                        style={{ color: 'rgba(255,255,255,0.75)' }}
-                      >
+                      <p style={{ fontSize: 13, lineHeight: 1.65, color: 'rgba(255,255,255,0.72)', margin: 0 }}>
                         {concept}
-                      </span>
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -569,171 +636,208 @@ export default function TopicDetailSheet({
             )}
           </div>
 
-          {/* Map Connection */}
+          {/* ── Map Card ── */}
           {topic.mapQuery && (
-            <button
-              onClick={onOpenMap}
-              className="w-full rounded-2xl p-4 mb-4 text-left transition-all active:scale-[0.98]"
-              style={{
-                background: 'rgba(129,140,248,0.06)',
-                border: '1px solid rgba(129,140,248,0.15)',
-                animation: 'tds-cardIn 0.35s ease 0.35s both',
-              }}
-            >
-              <div className="flex items-center gap-2.5">
-                <span style={{ fontSize: 20 }}>{'\uD83D\uDDFA\uFE0F'}</span>
-                <div className="flex-1 min-w-0">
-                  <p className="text-[13px] font-semibold" style={{ color: '#818cf8' }}>
-                    Visualize on Map
-                  </p>
-                  <p
-                    className="text-[11px] mt-0.5 truncate"
-                    style={{ color: 'rgba(129,140,248,0.5)' }}
-                  >
-                    {topic.mapQuery}
-                  </p>
-                </div>
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  stroke="#818cf8"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  opacity={0.6}
-                >
-                  <path d="M6 4l4 4-4 4" />
-                </svg>
-              </div>
-            </button>
-          )}
-
-          {/* Crown Progress Section */}
-          {hasProgress && (
-            <div
-              className="rounded-2xl p-4 mb-5"
-              style={{
-                background: 'rgba(255,255,255,0.04)',
-                backdropFilter: 'blur(20px)',
-                WebkitBackdropFilter: 'blur(20px)',
-                border: '1px solid rgba(255,255,255,0.06)',
-                animation: 'tds-cardIn 0.35s ease 0.3s both',
-              }}
-            >
-              <p
-                className="text-[11px] font-semibold uppercase tracking-wider mb-3"
-                style={{ color: 'rgba(255,255,255,0.30)' }}
+            <div style={{ padding: '0 20px' }}>
+              <button
+                onClick={onOpenMap}
+                style={{
+                  width: '100%',
+                  borderRadius: 16,
+                  padding: 16,
+                  marginBottom: 16,
+                  textAlign: 'left' as const,
+                  background: 'rgba(129,140,248,0.06)',
+                  border: '1px solid rgba(129,140,248,0.15)',
+                  cursor: 'pointer',
+                  animation: 'tds-cardIn 0.35s ease 0.35s both',
+                }}
               >
-                Your Progress
-              </p>
-              <div className="flex items-center gap-4">
-                {/* Crown ring */}
-                <div className="flex-shrink-0 relative">
-                  <svg
-                    width={ringSize}
-                    height={ringSize}
-                    style={{ transform: 'rotate(-90deg)' }}
-                  >
-                    <circle
-                      cx={ringSize / 2}
-                      cy={ringSize / 2}
-                      r={ringRadius}
-                      fill="none"
-                      stroke="rgba(255,255,255,0.06)"
-                      strokeWidth={ringStroke}
-                    />
-                    <circle
-                      cx={ringSize / 2}
-                      cy={ringSize / 2}
-                      r={ringRadius}
-                      fill="none"
-                      stroke={CROWN_COLORS[crown]}
-                      strokeWidth={ringStroke}
-                      strokeLinecap="round"
-                      strokeDasharray={ringCircumference}
-                      strokeDashoffset={crown >= 5 ? 0 : ringOffset}
-                    />
-                  </svg>
-                  <span
-                    className="absolute inset-0 flex items-center justify-center text-[14px]"
-                    style={{ lineHeight: 1 }}
-                  >
-                    {'\uD83D\uDC51'}
-                  </span>
-                </div>
-
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between mb-1">
-                    <span
-                      className="text-[14px] font-bold"
-                      style={{ color: CROWN_COLORS[crown] }}
-                    >
-                      Level {crown}/5
-                    </span>
-                    <span
-                      className="text-[13px] font-semibold"
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <span style={{ fontSize: 20 }}>{'\uD83D\uDDFA\uFE0F'}</span>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <p style={{ fontSize: 13, fontWeight: 600, color: '#818cf8', margin: 0 }}>
+                      Visualize on Map
+                    </p>
+                    <p
                       style={{
-                        color:
-                          accuracy >= 70
-                            ? '#34d399'
-                            : accuracy >= 40
-                              ? '#fbbf24'
-                              : '#f87171',
+                        fontSize: 11,
+                        color: 'rgba(129,140,248,0.5)',
+                        margin: '4px 0 0',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        whiteSpace: 'nowrap' as const,
                       }}
                     >
-                      {accuracy}% accuracy
+                      {topic.mapQuery}
+                    </p>
+                  </div>
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="#818cf8"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    opacity={0.6}
+                  >
+                    <path d="M6 4l4 4-4 4" />
+                  </svg>
+                </div>
+              </button>
+            </div>
+          )}
+
+          {/* ── Crown Progress Section ── */}
+          {hasProgress && (
+            <div style={{ padding: '0 20px' }}>
+              <div
+                style={{
+                  borderRadius: 16,
+                  padding: 16,
+                  marginBottom: 20,
+                  background: 'rgba(255,255,255,0.04)',
+                  border: '1px solid rgba(255,255,255,0.06)',
+                  animation: 'tds-cardIn 0.35s ease 0.3s both',
+                }}
+              >
+                <p
+                  style={{
+                    fontSize: 11,
+                    fontWeight: 600,
+                    textTransform: 'uppercase' as const,
+                    letterSpacing: '0.05em',
+                    color: 'rgba(255,255,255,0.30)',
+                    margin: '0 0 12px',
+                  }}
+                >
+                  Your Progress
+                </p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                  {/* Crown ring */}
+                  <div style={{ flexShrink: 0, position: 'relative' as const, width: ringSize, height: ringSize }}>
+                    <svg width={ringSize} height={ringSize} style={{ transform: 'rotate(-90deg)' }}>
+                      <circle
+                        cx={ringSize / 2}
+                        cy={ringSize / 2}
+                        r={ringRadius}
+                        fill="none"
+                        stroke="rgba(255,255,255,0.06)"
+                        strokeWidth={ringStroke}
+                      />
+                      <circle
+                        cx={ringSize / 2}
+                        cy={ringSize / 2}
+                        r={ringRadius}
+                        fill="none"
+                        stroke={CROWN_COLORS[crown]}
+                        strokeWidth={ringStroke}
+                        strokeLinecap="round"
+                        strokeDasharray={ringCircumference}
+                        strokeDashoffset={crown >= 5 ? 0 : ringOffset}
+                      />
+                    </svg>
+                    <span
+                      style={{
+                        position: 'absolute' as const,
+                        inset: 0,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: 14,
+                        lineHeight: 1,
+                      }}
+                    >
+                      {'\uD83D\uDC51'}
                     </span>
                   </div>
 
-                  {crown < 5 && (
-                    <div
-                      className="h-2 rounded-full overflow-hidden mb-1.5"
-                      style={{ background: 'rgba(255,255,255,0.06)' }}
-                    >
-                      <div
-                        className="h-full rounded-full transition-all duration-500"
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
+                      <span style={{ fontSize: 14, fontWeight: 700, color: CROWN_COLORS[crown] }}>
+                        Level {crown}/5
+                      </span>
+                      <span
                         style={{
-                          width: `${progressPct}%`,
-                          background: `linear-gradient(90deg, ${CROWN_COLORS[crown]}, ${CROWN_COLORS[nextCrown]})`,
-                          boxShadow: `0 0 8px ${CROWN_COLORS[crown]}40`,
+                          fontSize: 13,
+                          fontWeight: 600,
+                          color:
+                            accuracy >= 70
+                              ? '#34d399'
+                              : accuracy >= 40
+                                ? '#fbbf24'
+                                : '#f87171',
                         }}
-                      />
+                      >
+                        {accuracy}% accuracy
+                      </span>
                     </div>
-                  )}
 
-                  <p className="text-[11px]" style={{ color: 'rgba(255,255,255,0.35)' }}>
-                    {crown >= 5
-                      ? 'Legendary mastery achieved'
-                      : `${progress.questionsAnswered} questions answered`}
-                  </p>
+                    {crown < 5 && (
+                      <div
+                        style={{
+                          height: 8,
+                          borderRadius: 99,
+                          overflow: 'hidden',
+                          marginBottom: 6,
+                          background: 'rgba(255,255,255,0.06)',
+                        }}
+                      >
+                        <div
+                          style={{
+                            height: '100%',
+                            borderRadius: 99,
+                            width: `${progressPct}%`,
+                            background: `linear-gradient(90deg, ${CROWN_COLORS[crown]}, ${CROWN_COLORS[nextCrown]})`,
+                            boxShadow: `0 0 8px ${CROWN_COLORS[crown]}40`,
+                            transition: 'width 0.5s ease',
+                          }}
+                        />
+                      </div>
+                    )}
+
+                    <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', margin: 0 }}>
+                      {crown >= 5
+                        ? 'Legendary mastery achieved'
+                        : `${progress.questionsAnswered} questions answered`}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           )}
         </div>
 
-        {/* Sticky Bottom CTA */}
+        {/* ── Sticky Bottom CTA ── */}
         <div
-          className="px-5 pt-3"
           style={{
+            padding: '12px 20px',
             borderTop: '1px solid rgba(255,255,255,0.06)',
             paddingBottom: 'max(20px, env(safe-area-inset-bottom))',
           }}
         >
           <button
             onClick={onStartPractice}
-            className="w-full flex items-center justify-center gap-2 text-[15px] font-extrabold tracking-wide transition-all active:scale-[0.97]"
             style={{
+              width: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 8,
               height: 56,
               borderRadius: 16,
+              fontSize: 15,
+              fontWeight: 800,
+              letterSpacing: '0.02em',
+              cursor: 'pointer',
+              border: buttonIsOutline
+                ? '1.5px solid rgba(255,255,255,0.12)'
+                : `1px solid ${color}40`,
               color: buttonIsOutline ? 'rgba(255,255,255,0.55)' : '#fff',
               background: buttonIsOutline
                 ? 'transparent'
                 : `linear-gradient(135deg, ${color}cc, ${color})`,
-              border: buttonIsOutline
-                ? '1.5px solid rgba(255,255,255,0.12)'
-                : `1px solid ${color}40`,
               boxShadow: buttonIsOutline ? 'none' : `0 4px 24px ${color}35`,
             }}
           >

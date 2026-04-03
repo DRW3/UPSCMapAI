@@ -306,7 +306,7 @@ function TopicCard({ node, onTap, isFirstAvailable }: {
         return { label: null, borderColor: 'rgba(255,255,255,0.04)', dotColor: 'rgba(255,255,255,0.12)' }
       case 'available':
         return {
-          label: isFirstAvailable ? 'Start' : 'Start',
+          label: isFirstAvailable ? 'Up Next — Tap to Start' : 'Start',
           labelIcon: '\u2192',
           borderColor: `rgba(${rgb},0.30)`,
           dotColor: subject.color,
@@ -397,9 +397,27 @@ function TopicCard({ node, onTap, isFirstAvailable }: {
             : 'rgba(255,255,255,0.03)',
           backdropFilter: state !== 'locked' ? 'blur(20px)' : undefined,
           WebkitBackdropFilter: state !== 'locked' ? 'blur(20px)' : undefined,
-          border: `1.5px solid ${stateConfig.borderColor}`,
+          border: state === 'available'
+            ? `2px solid rgba(${rgb},0.45)`
+            : state === 'started'
+              ? `2px solid rgba(${rgb},0.30)`
+              : `1.5px solid ${stateConfig.borderColor}`,
+          borderLeft: state === 'available'
+            ? `4px solid ${subject.color}`
+            : state === 'started'
+              ? `4px solid rgba(${rgb},0.50)`
+              : state === 'completed'
+                ? '4px solid rgba(34,211,153,0.50)'
+                : undefined,
           opacity: state === 'locked' ? 0.30 : 1,
           filter: state === 'locked' ? 'grayscale(0.8)' : 'none',
+          boxShadow: state === 'available' && isFirstAvailable
+            ? `0 0 20px rgba(${rgb},0.15), inset 0 1px 0 rgba(255,255,255,0.06)`
+            : state === 'available'
+              ? `0 0 12px rgba(${rgb},0.10), inset 0 1px 0 rgba(255,255,255,0.04)`
+              : state === 'completed'
+                ? '0 0 8px rgba(34,211,153,0.08)'
+                : 'none',
           cursor: isInteractive ? 'pointer' : 'default',
           transition: 'all 200ms ease-out',
           position: 'relative',
@@ -420,15 +438,20 @@ function TopicCard({ node, onTap, isFirstAvailable }: {
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10, marginBottom: 8 }}>
           {/* Icon circle */}
           <div style={{
-            width: 36, height: 36, borderRadius: 10,
+            width: 40, height: 40, borderRadius: 12,
             background: state === 'locked'
               ? 'rgba(255,255,255,0.03)'
-              : `rgba(${rgb},0.12)`,
+              : state === 'available'
+                ? `rgba(${rgb},0.18)`
+                : `rgba(${rgb},0.12)`,
             border: state === 'locked'
               ? '1px solid rgba(255,255,255,0.04)'
-              : `1px solid rgba(${rgb},0.15)`,
+              : state === 'available'
+                ? `1.5px solid rgba(${rgb},0.30)`
+                : `1px solid rgba(${rgb},0.15)`,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 18, flexShrink: 0,
+            fontSize: 20, flexShrink: 0,
+            boxShadow: state === 'available' ? `0 0 12px rgba(${rgb},0.15)` : 'none',
           }}>
             {state === 'locked' ? '🔒' : topic.icon}
           </div>
@@ -456,16 +479,24 @@ function TopicCard({ node, onTap, isFirstAvailable }: {
             {stateConfig.label && state !== 'locked' && (
               <span style={{
                 fontSize: 11,
-                fontWeight: 600,
+                fontWeight: 700,
                 color: state === 'completed'
                   ? CROWN_COLORS[crown as CrownLevel]
                   : state === 'available'
                     ? subject.color
                     : 'rgba(255,255,255,0.50)',
-                marginTop: 2,
+                marginTop: 3,
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: 3,
+                gap: 4,
+                ...(state === 'available' && isFirstAvailable ? {
+                  background: `rgba(${rgb},0.12)`,
+                  padding: '2px 10px',
+                  borderRadius: 8,
+                  fontSize: 10,
+                  letterSpacing: '0.05em',
+                  textTransform: 'uppercase' as const,
+                } : {}),
               }}>
                 {state === 'completed' && (
                   <svg width={11} height={11} viewBox="0 0 24 24" fill="none" stroke="#34d399" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: 1 }}>
