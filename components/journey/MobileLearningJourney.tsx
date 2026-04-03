@@ -15,6 +15,9 @@ import {
   DAILY_GOALS,
   PROFILE_STORAGE_KEY,
   checkAchievements,
+  MAX_HEARTS,
+  FREE_TOPIC_LIMIT,
+  HEART_REFILL_MS,
 } from '@/components/journey/types'
 import JourneyPath from '@/components/journey/JourneyPath'
 import PracticeSheet from '@/components/journey/PracticeSheet'
@@ -26,6 +29,7 @@ import DailyGoalModal from '@/components/journey/DailyGoalModal'
 import AchievementToast from '@/components/journey/AchievementToast'
 import OnboardingFlow, { hasCompletedOnboarding } from '@/components/journey/OnboardingFlow'
 import CelebrationOverlay from '@/components/journey/CelebrationOverlay'
+import ProPaywall from '@/components/journey/ProPaywall'
 
 // ── Date helpers (local timezone, not UTC) ───────────────────────────────────
 
@@ -89,14 +93,13 @@ function saveJourneyProgress(p: JourneyProgress) {
   try { localStorage.setItem(STORAGE_KEY, JSON.stringify(p)) } catch {}
 }
 
-// ── Compute topic availability ────────────────────────────────────────────────
+// ── Compute topic availability (all topics open, no sequential locking) ──────
 
 function computeTopicStates(
   subjects: LearningSubject[],
   progress: JourneyProgress
 ): Record<string, TopicProgress> {
   const result: Record<string, TopicProgress> = {}
-  let prevDone = true
 
   for (const subject of subjects) {
     for (const unit of subject.units) {
@@ -104,17 +107,10 @@ function computeTopicStates(
         const existing = progress.topics[topic.id]
         if (existing && (existing.state === 'completed' || existing.state === 'started')) {
           result[topic.id] = existing
-          prevDone = existing.state === 'completed'
-        } else if (prevDone) {
-          result[topic.id] = {
-            ...(existing || DEFAULT_TOPIC_PROGRESS),
-            state: 'available',
-          }
-          prevDone = false
         } else {
           result[topic.id] = {
             ...(existing || DEFAULT_TOPIC_PROGRESS),
-            state: 'locked',
+            state: 'available',
           }
         }
       }
@@ -124,16 +120,14 @@ function computeTopicStates(
   return result
 }
 
-// ── Hearts refill logic ───────────────────────────────────────────────────────
-
-const HEART_REFILL_MS = 30 * 60 * 1000
+// ── Hearts refill logic (1 heart per hour, max 10) ──────────────────────────
 
 function computeHearts(progress: JourneyProgress): number {
-  if (progress.hearts >= 5) return 5
+  if (progress.hearts >= MAX_HEARTS) return MAX_HEARTS
   if (!progress.heartsLastRefill) return progress.hearts
   const elapsed = Date.now() - new Date(progress.heartsLastRefill).getTime()
   const refilled = Math.floor(elapsed / HEART_REFILL_MS)
-  return Math.min(5, progress.hearts + refilled)
+  return Math.min(MAX_HEARTS, progress.hearts + refilled)
 }
 
 // ── Streak logic ──────────────────────────────────────────────────────────────
@@ -226,6 +220,9 @@ export function MobileLearningJourney() {
   // Track newly unlocked topic for JourneyPath animation
   const [newlyUnlockedId, setNewlyUnlockedId] = useState<string | null>(null)
 
+  // PadhAI Pro paywall
+  const [paywallReason, setPaywallReason] = useState<'topics' | 'hearts' | null>(null)
+
   const [mounted, setMounted] = useState(false)
 
   // Load progress on mount
@@ -270,13 +267,43 @@ export function MobileLearningJourney() {
   // Current hearts
   const hearts = useMemo(() => computeHearts(progress), [progress])
 
+  // ── Free-topic gating ──────────────────────────────────────────────────────
+
+  const canOpenTopic = useCallback((topicId: string): boolean => {
+    if (progress.isPro) return true
+    const state = topicStates[topicId]
+    // Already started/completed topics are always accessible
+    if (state && (state.state === 'completed' || state.state === 'started')) return true
+    // Already in free opened list
+    if (progress.freeTopicsOpened.includes(topicId)) return true
+    // Under the free limit
+    if (progress.freeTopicsOpened.length < FREE_TOPIC_LIMIT) return true
+    return false
+  }, [progress.isPro, progress.freeTopicsOpened, topicStates])
+
+  const trackFreeOpen = useCallback((topicId: string) => {
+    if (progress.isPro) return
+    if (progress.freeTopicsOpened.includes(topicId)) return
+    const state = topicStates[topicId]
+    if (state && (state.state === 'completed' || state.state === 'started')) return
+    setProgress(prev => ({
+      ...prev,
+      freeTopicsOpened: [...prev.freeTopicsOpened, topicId],
+    }))
+  }, [progress.isPro, progress.freeTopicsOpened, topicStates])
+
   // ── Handlers ────────────────────────────────────────────────────────────────
 
   const handleNodeTap = useCallback((topicId: string, topic: LearningTopic, subject: LearningSubject) => {
-    const state = topicStates[topicId]
-    if (!state || state.state === 'locked') return
+    // Check free-topic limit
+    if (!canOpenTopic(topicId)) {
+      setPaywallReason('topics')
+      return
+    }
 
-    if (state.state === 'available') {
+    const state = topicStates[topicId]
+    if (state && state.state === 'available') {
+      trackFreeOpen(topicId)
       setProgress(prev => ({
         ...prev,
         topics: {
@@ -291,13 +318,17 @@ export function MobileLearningJourney() {
     }
 
     setDetailTarget({ topic, subject })
-  }, [topicStates])
+  }, [topicStates, canOpenTopic, trackFreeOpen])
 
   const handleStartPractice = useCallback((topicId: string, topic: LearningTopic, subject: LearningSubject) => {
-    const state = topicStates[topicId]
-    if (!state || state.state === 'locked') return
+    if (!canOpenTopic(topicId)) {
+      setPaywallReason('topics')
+      return
+    }
 
-    if (state.state === 'available') {
+    const state = topicStates[topicId]
+    if (state && state.state === 'available') {
+      trackFreeOpen(topicId)
       setProgress(prev => ({
         ...prev,
         topics: {
@@ -313,7 +344,7 @@ export function MobileLearningJourney() {
 
     setDetailTarget(null)
     setPracticeTarget({ topic, subject })
-  }, [topicStates])
+  }, [topicStates, canOpenTopic, trackFreeOpen])
 
   const handleDetailStartPractice = useCallback(() => {
     if (!detailTarget) return
@@ -552,8 +583,14 @@ export function MobileLearningJourney() {
     setProgress(prev => ({
       ...prev,
       hearts: Math.max(0, prev.hearts - 1),
-      heartsLastRefill: prev.hearts >= 5 ? new Date().toISOString() : (prev.heartsLastRefill || new Date().toISOString()),
+      heartsLastRefill: prev.hearts >= MAX_HEARTS ? new Date().toISOString() : (prev.heartsLastRefill || new Date().toISOString()),
     }))
+  }, [])
+
+  const handleUpgradePro = useCallback(() => {
+    setPaywallReason(null)
+    // For now, just toggle Pro on (no real payment integration yet)
+    setProgress(prev => ({ ...prev, isPro: true, hearts: MAX_HEARTS }))
   }, [])
 
   const handleTabChange = useCallback((tab: TabId) => {
@@ -823,6 +860,8 @@ export function MobileLearningJourney() {
               profile={profile}
               studyCalendar={progress.studyCalendar}
               newlyUnlockedId={newlyUnlockedId ?? undefined}
+              isPro={progress.isPro}
+              freeTopicIds={progress.freeTopicsOpened}
             />
           </div>
         )}
@@ -880,6 +919,7 @@ export function MobileLearningJourney() {
           onHeartLost={handleHeartLost}
           onNextTopic={handleNextTopic}
           nextTopicName={findNextTopic(practiceTarget.topic.id)?.topic.title}
+          onUpgradePro={() => setPaywallReason('hearts')}
         />
       )}
 
@@ -908,6 +948,15 @@ export function MobileLearningJourney() {
           nextTopicIcon={celebrationData.nextTopicIcon}
           subjectColor={celebrationData.subjectColor}
           onDismiss={handleCelebrationDismiss}
+        />
+      )}
+
+      {/* PadhAI Pro Paywall */}
+      {paywallReason && (
+        <ProPaywall
+          reason={paywallReason}
+          onDismiss={() => setPaywallReason(null)}
+          onUpgrade={handleUpgradePro}
         />
       )}
 

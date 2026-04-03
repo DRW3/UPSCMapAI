@@ -21,6 +21,8 @@ export interface JourneyPathProps {
   profile: UserProfile | null
   studyCalendar?: StudyDay[]
   newlyUnlockedId?: string
+  isPro?: boolean
+  freeTopicIds?: string[]  // topic IDs the user has opened for free
 }
 
 interface FlatTopicNode {
@@ -311,24 +313,28 @@ function UnitHeader({ data }: { data: UnitHeaderData }) {
 // TopicCard (the core card-based design)
 // ---------------------------------------------------------------------------
 
-function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked }: {
+function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked, needsPro }: {
   node: FlatTopicNode
   onTap: () => void
   isFirstAvailable: boolean
   isNewlyUnlocked?: boolean
+  needsPro?: boolean
 }) {
   const { topic, subject, state, progress: tp, globalIndex } = node
   const crown = tp.crownLevel
   const rgb = hexToRgb(subject.color)
-  const isInteractive = state !== 'locked'
-
   const difficultyDots = Array.from({ length: 3 }, (_, i) => i < topic.difficulty)
   const conceptsToShow = topic.concepts.slice(0, 4)
 
   const stateConfig = (() => {
     switch (state) {
       case 'locked':
-        return { label: null, borderColor: 'rgba(255,255,255,0.04)', dotColor: 'rgba(255,255,255,0.12)' }
+        return {
+          label: needsPro ? 'PRO' : 'Start',
+          labelIcon: needsPro ? null : '\u2192',
+          borderColor: needsPro ? 'rgba(139,92,246,0.20)' : `rgba(${rgb},0.30)`,
+          dotColor: needsPro ? 'rgba(139,92,246,0.5)' : subject.color,
+        }
       case 'available':
         return {
           label: isFirstAvailable ? 'Up Next — Tap to Start' : 'Start',
@@ -353,7 +359,7 @@ function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked }: {
     }
   })()
 
-  const showPyqBadge = topic.pyqFrequency === 'high' && state !== 'locked'
+  const showPyqBadge = topic.pyqFrequency === 'high'
   const progressPct = state === 'started' && crown > 0 ? (crown / 5) * 100 : 0
 
   // Path dot vertical connector is rendered by the parent; here we render the card
@@ -382,13 +388,17 @@ function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked }: {
           zIndex: 2,
           boxShadow: isNewlyUnlocked && state === 'available'
             ? `0 0 14px 6px rgba(${rgb},0.6)`
-            : state === 'available' && isFirstAvailable
+            : (state === 'available' || state === 'locked') && isFirstAvailable
               ? `0 0 8px 3px rgba(${rgb},0.5)`
               : state === 'available'
                 ? `0 0 6px 2px rgba(${rgb},0.3)`
-                : state === 'completed'
-                  ? '0 0 6px 2px rgba(34,211,153,0.3)'
-                  : 'none',
+                : state === 'locked' && needsPro
+                  ? `0 0 4px 1px rgba(139,92,246,0.3)`
+                  : state === 'locked'
+                    ? `0 0 4px 1px rgba(${rgb},0.2)`
+                    : state === 'completed'
+                      ? '0 0 6px 2px rgba(34,211,153,0.3)'
+                      : 'none',
           animation: isNewlyUnlocked && state === 'available'
             ? 'jp-pulse 1.5s ease-in-out infinite'
             : state === 'available' && isFirstAvailable
@@ -411,27 +421,29 @@ function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked }: {
             ? `linear-gradient(90deg, rgba(${rgb},0.4), rgba(${rgb},0.1))`
             : state === 'started'
               ? `linear-gradient(90deg, rgba(${rgb},0.3), rgba(${rgb},0.08))`
-              : 'rgba(255,255,255,0.04)',
+              : state === 'locked' && needsPro
+                ? `linear-gradient(90deg, rgba(139,92,246,0.2), rgba(139,92,246,0.05))`
+                : state === 'locked'
+                  ? `linear-gradient(90deg, rgba(${rgb},0.2), rgba(${rgb},0.05))`
+                  : 'rgba(255,255,255,0.04)',
       }} />
 
       {/* Card body */}
       <div
-        role={isInteractive ? 'button' : undefined}
-        tabIndex={isInteractive ? 0 : undefined}
-        aria-label={`${topic.title}${state === 'locked' ? ' (locked)' : ''}`}
-        onClick={isInteractive ? onTap : undefined}
-        onKeyDown={isInteractive ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onTap() } } : undefined}
-        className={isInteractive ? 'active:scale-[0.98]' : ''}
+        role="button"
+        tabIndex={0}
+        aria-label={`${topic.title}${needsPro ? ' (PRO)' : ''}`}
+        onClick={onTap}
+        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onTap() } }}
+        className="active:scale-[0.98]"
         style={{
           flex: 1,
           minWidth: 0,
           padding: '12px 14px',
           borderRadius: 16,
-          background: state === 'locked'
-            ? 'rgba(255,255,255,0.015)'
-            : 'rgba(255,255,255,0.03)',
-          backdropFilter: state !== 'locked' ? 'blur(20px)' : undefined,
-          WebkitBackdropFilter: state !== 'locked' ? 'blur(20px)' : undefined,
+          background: 'rgba(255,255,255,0.03)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
           border: state === 'available'
             ? `2px solid rgba(${rgb},0.45)`
             : state === 'started'
@@ -443,17 +455,23 @@ function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked }: {
               ? `4px solid rgba(${rgb},0.50)`
               : state === 'completed'
                 ? '4px solid rgba(34,211,153,0.50)'
-                : undefined,
-          opacity: state === 'locked' ? 0.30 : 1,
-          filter: state === 'locked' ? 'grayscale(0.8)' : 'none',
+                : state === 'locked' && needsPro
+                  ? '4px solid rgba(139,92,246,0.30)'
+                  : state === 'locked'
+                    ? `4px solid rgba(${rgb},0.30)`
+                    : undefined,
+          opacity: needsPro ? 0.7 : 1,
+          filter: 'none',
           boxShadow: state === 'available' && isFirstAvailable
             ? `0 0 20px rgba(${rgb},0.15), inset 0 1px 0 rgba(255,255,255,0.06)`
             : state === 'available'
               ? `0 0 12px rgba(${rgb},0.10), inset 0 1px 0 rgba(255,255,255,0.04)`
               : state === 'completed'
                 ? '0 0 8px rgba(34,211,153,0.08)'
-                : 'none',
-          cursor: isInteractive ? 'pointer' : 'default',
+                : state === 'locked'
+                  ? `inset 0 1px 0 rgba(255,255,255,0.03)`
+                  : 'none',
+          cursor: 'pointer',
           transition: 'all 300ms cubic-bezier(0.16, 1, 0.3, 1)',
           position: 'relative',
           overflow: 'hidden',
@@ -478,12 +496,16 @@ function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked }: {
           <div style={{
             width: 40, height: 40, borderRadius: 12,
             background: state === 'locked'
-              ? 'rgba(255,255,255,0.03)'
+              ? needsPro
+                ? 'rgba(139,92,246,0.10)'
+                : `rgba(${rgb},0.12)`
               : state === 'available'
                 ? `rgba(${rgb},0.18)`
                 : `rgba(${rgb},0.12)`,
             border: state === 'locked'
-              ? '1px solid rgba(255,255,255,0.04)'
+              ? needsPro
+                ? '1px solid rgba(139,92,246,0.15)'
+                : `1px solid rgba(${rgb},0.15)`
               : state === 'available'
                 ? `1.5px solid rgba(${rgb},0.30)`
                 : `1px solid rgba(${rgb},0.15)`,
@@ -491,7 +513,7 @@ function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked }: {
             fontSize: 20, flexShrink: 0,
             boxShadow: state === 'available' ? `0 0 12px rgba(${rgb},0.15)` : 'none',
           }}>
-            {state === 'locked' ? '🔒' : topic.icon}
+            {topic.icon}
           </div>
 
           {/* Title + subtitle area */}
@@ -499,7 +521,7 @@ function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked }: {
             <div style={{
               fontSize: 14, fontWeight: 600,
               color: state === 'locked'
-                ? 'rgba(255,255,255,0.25)'
+                ? 'rgba(255,255,255,0.75)'
                 : state === 'completed'
                   ? 'rgba(255,255,255,0.75)'
                   : 'rgba(255,255,255,0.92)',
@@ -514,7 +536,7 @@ function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked }: {
             </div>
 
             {/* State label */}
-            {stateConfig.label && state !== 'locked' && (
+            {stateConfig.label && (
               <span style={{
                 fontSize: 11,
                 fontWeight: 700,
@@ -522,7 +544,11 @@ function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked }: {
                   ? CROWN_COLORS[crown as CrownLevel]
                   : state === 'available'
                     ? subject.color
-                    : 'rgba(255,255,255,0.50)',
+                    : state === 'locked' && needsPro
+                      ? '#a78bfa'
+                      : state === 'locked'
+                        ? subject.color
+                        : 'rgba(255,255,255,0.50)',
                 marginTop: 3,
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -570,7 +596,7 @@ function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked }: {
         </div>
 
         {/* Bottom row: Tags, difficulty, PYQ */}
-        {state !== 'locked' && (
+        {(
           <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 6, marginBottom: conceptsToShow.length > 0 ? 8 : 0 }}>
             {/* Subject tag */}
             <span style={{
@@ -613,7 +639,7 @@ function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked }: {
         )}
 
         {/* Concepts as small tags */}
-        {state !== 'locked' && conceptsToShow.length > 0 && (
+        {conceptsToShow.length > 0 && (
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
             {conceptsToShow.map((c, i) => (
               <span key={i} style={{
@@ -670,6 +696,26 @@ function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked }: {
             pointerEvents: 'none', zIndex: 5,
           }} />
         )}
+
+        {/* PRO badge */}
+        {needsPro && (
+          <div style={{
+            position: 'absolute',
+            top: 8,
+            right: 8,
+            padding: '3px 8px',
+            borderRadius: 6,
+            background: 'linear-gradient(135deg, rgba(99,102,241,0.25), rgba(139,92,246,0.25))',
+            border: '1px solid rgba(139,92,246,0.3)',
+            fontSize: 9,
+            fontWeight: 800,
+            letterSpacing: '0.08em',
+            color: '#a78bfa',
+            zIndex: 5,
+          }}>
+            PRO
+          </div>
+        )}
       </div>
     </div>
   )
@@ -687,6 +733,8 @@ export default function JourneyPath({
   onSubjectChange,
   profile,
   newlyUnlockedId,
+  isPro,
+  freeTopicIds,
 }: JourneyPathProps) {
   const scrollRef = useRef<HTMLDivElement>(null)
   const firstAvailableRef = useRef<HTMLDivElement>(null)
@@ -838,6 +886,7 @@ export default function JourneyPath({
             // Filled segment: vertical line between previous completed node and this node
             const showFilledSegment = prevTopicNode !== null && prevWasCompleted
             const isNewlyUnlocked = node.topic.id === newlyUnlockedId
+            const nodeNeedsPro = !isPro && node.state !== 'completed' && node.state !== 'started' && !(freeTopicIds || []).includes(node.topic.id) && (freeTopicIds || []).length >= 2
 
             const el = (
               <div
@@ -866,6 +915,7 @@ export default function JourneyPath({
                   onTap={() => handleTap(node)}
                   isFirstAvailable={node.isFirstAvailable}
                   isNewlyUnlocked={isNewlyUnlocked}
+                  needsPro={nodeNeedsPro}
                 />
               </div>
             )

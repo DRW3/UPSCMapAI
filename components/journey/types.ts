@@ -147,6 +147,9 @@ export interface JourneyProgress {
   perfectScores: number            // total perfect practice sessions
   // Study calendar
   studyCalendar: StudyDay[]        // last 90 days max
+  // PadhAI Pro
+  isPro: boolean
+  freeTopicsOpened: string[]  // topic IDs opened for free (max 2 for non-Pro)
 }
 
 export const DEFAULT_PROGRESS: JourneyProgress = {
@@ -154,7 +157,7 @@ export const DEFAULT_PROGRESS: JourneyProgress = {
   totalXp: 0,
   streak: 0,
   lastStudyDate: null,
-  hearts: 5,
+  hearts: 10,
   heartsLastRefill: null,
   gems: 0,
   dailyGoalTier: 'regular',
@@ -166,6 +169,8 @@ export const DEFAULT_PROGRESS: JourneyProgress = {
   achievements: [],
   perfectScores: 0,
   studyCalendar: [],
+  isPro: false,
+  freeTopicsOpened: [],
 }
 
 export const DEFAULT_TOPIC_PROGRESS: TopicProgress = {
@@ -179,6 +184,9 @@ export const DEFAULT_TOPIC_PROGRESS: TopicProgress = {
 
 // Crown progression
 export const QUESTIONS_PER_CROWN = 5     // correct answers needed to level up
+export const MAX_HEARTS = 10
+export const FREE_TOPIC_LIMIT = 2
+export const HEART_REFILL_MS = 60 * 60 * 1000  // 1 hour per heart
 
 // Crown colors by level
 export const CROWN_COLORS: Record<CrownLevel, string> = {

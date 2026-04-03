@@ -40,6 +40,7 @@ interface PracticeSheetProps {
   onHeartLost: () => void
   onNextTopic?: () => void
   nextTopicName?: string
+  onUpgradePro?: () => void
 }
 
 // ── Component ───────────────────────────────────────────────────────────────────
@@ -54,6 +55,7 @@ export default function PracticeSheet({
   onHeartLost,
   onNextTopic,
   nextTopicName,
+  onUpgradePro,
 }: PracticeSheetProps) {
   // Sheet state
   const [sheetVisible, setSheetVisible] = useState(false)
@@ -494,21 +496,19 @@ export default function PracticeSheet({
             )}
 
             {/* Hearts */}
-            <div className="flex items-center gap-1">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <span
-                  key={i}
-                  className="text-[16px]"
-                  style={{
-                    opacity: i < localHearts ? 1 : 0.2,
-                    filter: i < localHearts ? 'none' : 'grayscale(1)',
-                    animation:
-                      i === localHearts && shakeWrong ? 'ps-heartPulse 0.4s ease' : 'none',
-                  }}
-                >
-                  {i < localHearts ? '❤️' : '🖤'}
-                </span>
-              ))}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+              <span style={{ fontSize: 16 }}>❤️</span>
+              <span
+                style={{
+                  fontSize: 14,
+                  fontWeight: 700,
+                  color: localHearts <= 2 ? '#ef4444' : localHearts <= 5 ? '#fbbf24' : 'rgba(255,255,255,0.8)',
+                  fontVariantNumeric: 'tabular-nums',
+                  animation: shakeWrong ? 'ps-heartPulse 0.4s ease' : 'none',
+                }}
+              >
+                {localHearts}
+              </span>
             </div>
           </div>
 
@@ -563,7 +563,7 @@ export default function PracticeSheet({
           ) : pyqs.length === 0 ? (
             <EmptyState topic={topic} subject={subject} onClose={handleDismiss} />
           ) : localHearts <= 0 && !done ? (
-            <NoHeartsScreen onClose={handleDismiss} />
+            <NoHeartsScreen onClose={handleDismiss} onUpgradePro={onUpgradePro} />
           ) : done ? (
             <ScoreScreen
               score={score}
@@ -925,11 +925,11 @@ function EmptyState({
   )
 }
 
-function NoHeartsScreen({ onClose }: { onClose: () => void }) {
-  const [timeLeft, setTimeLeft] = useState('30:00')
+function NoHeartsScreen({ onClose, onUpgradePro }: { onClose: () => void; onUpgradePro?: () => void }) {
+  const [timeLeft, setTimeLeft] = useState('60:00')
 
   useEffect(() => {
-    let seconds = 30 * 60 // 30 minutes
+    let seconds = 60 * 60 // 60 minutes
     const interval = setInterval(() => {
       seconds -= 1
       if (seconds <= 0) {
@@ -951,7 +951,7 @@ function NoHeartsScreen({ onClose }: { onClose: () => void }) {
       </div>
       <div>
         <p className="text-[20px] font-bold text-white/90">No hearts left!</p>
-        <p className="text-[14px] text-white/40 mt-2">Hearts refill 1 every 30 minutes</p>
+        <p className="text-[14px] text-white/40 mt-2">Hearts refill 1 every hour</p>
       </div>
       <div
         className="flex items-center gap-2 px-5 py-3 rounded-2xl mt-1"
@@ -961,12 +961,24 @@ function NoHeartsScreen({ onClose }: { onClose: () => void }) {
         <span className="text-[15px] font-bold tabular-nums text-red-400">{timeLeft}</span>
         <span className="text-[12px] text-white/30 ml-1">until next heart</span>
       </div>
+      {onUpgradePro && (
+        <button
+          onClick={onUpgradePro}
+          className="w-full max-w-[280px] py-4 rounded-2xl text-[15px] font-extrabold text-white tracking-wide transition-all hover:scale-[1.01] active:scale-[0.97]"
+          style={{
+            background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+            boxShadow: '0 4px 24px rgba(99,102,241,0.35)',
+          }}
+        >
+          Get PadhAI Pro — Unlimited ❤️
+        </button>
+      )}
       <button
         onClick={onClose}
         className="mt-4 px-8 py-3.5 rounded-2xl text-[14px] font-bold text-white/70 transition-all hover:text-white/90 active:scale-[0.97]"
         style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}
       >
-        Close
+        {onUpgradePro ? 'Wait for Hearts' : 'Close'}
       </button>
     </div>
   )
