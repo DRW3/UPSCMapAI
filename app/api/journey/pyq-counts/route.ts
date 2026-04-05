@@ -12,14 +12,24 @@ export async function GET(req: NextRequest) {
     const supabase = createServerClient()
     const yearParam = req.nextUrl.searchParams.get('year')
 
-    // Fetch all PYQs with their tags
-    const { data, error } = await supabase
-      .from('upsc_pyqs')
-      .select('id, tags, year')
-      .not('options', 'is', null)
-      .not('answer', 'is', null)
+    // Fetch ALL PYQs with their tags (paginate past Supabase 1000-row default)
+    let allData: { id: number; tags: string[]; year: number }[] = []
+    let from = 0
+    while (true) {
+      const { data: page, error: pageErr } = await supabase
+        .from('upsc_pyqs')
+        .select('id, tags, year')
+        .not('options', 'is', null)
+        .not('answer', 'is', null)
+        .range(from, from + 999)
+      if (pageErr || !page || page.length === 0) break
+      allData.push(...page)
+      if (page.length < 1000) break
+      from += 1000
+    }
 
-    if (error || !data) {
+    const data = allData
+    if (!data || data.length === 0) {
       return NextResponse.json({ counts: {}, yearCounts: {} })
     }
 
@@ -53,21 +63,28 @@ export async function GET(req: NextRequest) {
         }
       }
     } else {
-      // Fallback: keyword-based counting (legacy)
-      for (const [topicId, mapping] of Object.entries(TOPIC_KEYWORD_MAP)) {
-        const { dbSubjects, keywords } = mapping
-        let count = 0
+      // Fallback: keyword-based counting (legacy — needs question+subject fields)
+      const { data: fullData } = await supabase
+        .from('upsc_pyqs')
+        .select('id, question, subject, year')
+        .not('options', 'is', null)
+        .not('answer', 'is', null)
+        .limit(5000)
 
-        for (const pyq of data as { id: number; tags: string[]; year: number; question?: string; subject?: string }[]) {
-          if (yearParam && pyq.year !== parseInt(yearParam)) continue
-          if (!dbSubjects.includes(pyq.subject || '')) continue
-          const qLower = (pyq.question || '').toLowerCase()
-          if (keywords.some(kw => qLower.includes(kw.toLowerCase()))) {
-            count++
+      if (fullData) {
+        for (const [topicId, mapping] of Object.entries(TOPIC_KEYWORD_MAP)) {
+          const { dbSubjects, keywords } = mapping
+          let count = 0
+          for (const pyq of fullData) {
+            if (yearParam && pyq.year !== parseInt(yearParam)) continue
+            if (!dbSubjects.includes(pyq.subject || '')) continue
+            const qLower = (pyq.question || '').toLowerCase()
+            if (keywords.some(kw => qLower.includes(kw.toLowerCase()))) {
+              count++
+            }
           }
+          counts[topicId] = count
         }
-
-        counts[topicId] = count
       }
     }
 
