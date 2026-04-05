@@ -65,15 +65,16 @@ function PYQPractice({
   const [revealed, setRevealed] = useState(false)
   const [score, setScore] = useState({ correct: 0, total: 0 })
   const [done, setDone] = useState(false)
+  const [fetchKey, setFetchKey] = useState(0)
 
   useEffect(() => {
     setLoading(true)
     const keywords = topic.concepts.slice(0, 4).join(',')
-    fetch(`/api/journey/pyqs?subject=${subject.id}&topic=${topic.id}&keywords=${encodeURIComponent(keywords)}&limit=5`)
+    fetch(`/api/journey/pyqs?subject=${subject.id}&topic=${topic.id}&keywords=${encodeURIComponent(keywords)}&limit=5&_t=${Date.now()}`)
       .then(r => r.json())
       .then(d => { setPyqs(d.pyqs || []); setLoading(false) })
       .catch(() => setLoading(false))
-  }, [topic.id, subject.id, topic.concepts])
+  }, [topic.id, subject.id, topic.concepts, fetchKey])
 
   const current = pyqs[currentIdx]
   const isCorrect = revealed && selected === current?.answer
@@ -164,15 +165,23 @@ function PYQPractice({
             <div className="flex flex-col items-center justify-center py-16 gap-4 text-center">
               <span className="text-4xl">📭</span>
               <p className="text-[14px] text-white/60 font-medium">No PYQs found for this topic yet</p>
-              <p className="text-[12px] text-white/30">Try the map to explore related questions</p>
-              <Link
-                href={`/map?q=${encodeURIComponent(topic.mapQuery)}`}
-                onClick={onComplete}
-                className="mt-2 px-5 py-2.5 rounded-xl text-[12px] font-semibold text-white transition-all hover:scale-[1.02]"
-                style={{ background: `linear-gradient(135deg, ${subject.color}, ${subject.color}bb)` }}
-              >
-                Open on Map →
-              </Link>
+              <p className="text-[12px] text-white/30">Mark complete and move on, or explore on the map</p>
+              <div className="flex gap-3 mt-2">
+                <button
+                  onClick={onComplete}
+                  className="px-5 py-2.5 rounded-xl text-[12px] font-semibold text-white transition-all hover:scale-[1.02]"
+                  style={{ background: `linear-gradient(135deg, ${subject.color}, ${subject.color}bb)` }}
+                >
+                  Mark Complete →
+                </button>
+                <Link
+                  href={`/map?q=${encodeURIComponent(topic.mapQuery)}`}
+                  className="px-5 py-2.5 rounded-xl text-[12px] font-semibold text-white/70 transition-all hover:text-white/90"
+                  style={{ background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.1)' }}
+                >
+                  Open on Map
+                </Link>
+              </div>
             </div>
           ) : done ? (
             /* Score screen */
@@ -191,22 +200,39 @@ function PYQPractice({
                       : 'Review the topic and try again!'}
                 </p>
               </div>
-              <div className="flex gap-3 mt-2">
+              <div className="flex flex-col gap-2.5 mt-2 w-full max-w-xs">
+                {/* Primary: Try again with new questions */}
                 <button
-                  onClick={() => { setCurrentIdx(0); setSelected(null); setRevealed(false); setScore({ correct: 0, total: 0 }); setDone(false) }}
-                  className="px-5 py-2.5 rounded-xl text-[12px] font-semibold text-white/70 transition-all hover:text-white/90"
-                  style={{ background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.1)' }}
-                >
-                  Retry
-                </button>
-                <Link
-                  href={`/map?q=${encodeURIComponent(topic.mapQuery)}`}
-                  onClick={onComplete}
-                  className="px-5 py-2.5 rounded-xl text-[12px] font-semibold text-white transition-all hover:scale-[1.02]"
+                  onClick={() => {
+                    setCurrentIdx(0)
+                    setSelected(null)
+                    setRevealed(false)
+                    setScore({ correct: 0, total: 0 })
+                    setDone(false)
+                    setFetchKey(k => k + 1)
+                  }}
+                  className="w-full px-5 py-3 rounded-xl text-[13px] font-semibold text-white transition-all hover:scale-[1.02] active:scale-[0.98]"
                   style={{ background: `linear-gradient(135deg, ${subject.color}, ${subject.color}bb)` }}
                 >
-                  Study on Map →
-                </Link>
+                  Try Again — New Questions ↻
+                </button>
+                {/* Secondary row */}
+                <div className="flex gap-2.5">
+                  <button
+                    onClick={() => { setCurrentIdx(0); setSelected(null); setRevealed(false); setScore({ correct: 0, total: 0 }); setDone(false) }}
+                    className="flex-1 px-4 py-2.5 rounded-xl text-[12px] font-semibold text-white/70 transition-all hover:text-white/90"
+                    style={{ background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.1)' }}
+                  >
+                    Retry Same
+                  </button>
+                  <button
+                    onClick={onComplete}
+                    className="flex-1 px-4 py-2.5 rounded-xl text-[12px] font-semibold text-white/70 transition-all hover:text-white/90"
+                    style={{ background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.1)' }}
+                  >
+                    Done ✓
+                  </button>
+                </div>
               </div>
             </div>
           ) : (
