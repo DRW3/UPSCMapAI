@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
     const yearParam = req.nextUrl.searchParams.get('year')
 
     // Fetch ALL PYQs with their tags (paginate past Supabase 1000-row default)
-    let allData: { id: number; tags: string[]; year: number }[] = []
+    const allData: { id: number; tags: string[]; year: number }[] = []
     let from = 0
     while (true) {
       const { data: page, error: pageErr } = await supabase
