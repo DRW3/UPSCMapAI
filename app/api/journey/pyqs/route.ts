@@ -79,6 +79,237 @@ const TOPIC_DISPLAY_NAMES: Record<string, string> = {
   'isro-space':                'ISRO and Space Technology',
   'ai-biotech':                'AI and Biotechnology',
   'defense-tech':              'Defense Technology',
+
+  // ── New Topics ─────────────────────────────────────────────────────────
+  'ajivika-charvaka': 'Ajivika, Charvaka & Other Heterodox Sects',
+  'sangam-age': 'Sangam Age — Tamil Polity, Literature & Trade',
+  'harsha-pushyabhuti': 'Harshavardhana & Post-Gupta Period',
+  'vakatakas': 'Vakatakas',
+  'rashtrakutas': 'Rashtrakutas — Ellora & Deccan Power',
+  'ancient-coinage': 'Ancient Indian Coinage',
+  'ancient-inscriptions': 'Ancient Indian Inscriptions & Epigraphy',
+  'sultanate-administration': 'Delhi Sultanate Administration & Revenue System',
+  'sultanate-architecture': 'Indo-Islamic Architecture — Delhi Sultanate',
+  'sher-shah-suri': 'Sher Shah Suri — Administration & Legacy',
+  'mughal-administration': 'Mughal Administration — Mansabdari, Jagirdari & Revenue',
+  'sikhism-gurus': 'Rise of Sikhism — Guru Nanak to Guru Gobind Singh',
+  'provincial-dynasties': 'Provincial Dynasties — Ahoms, Kakatiyas, Hoysalas, Gajapatis',
+  'medieval-society-economy': 'Medieval Indian Society, Trade & Economy',
+  'medieval-literature': 'Medieval Indian Languages & Literature',
+  'deccan-sultanates-detail': 'Deccan Sultanates — Bijapur, Golconda, Ahmadnagar, Bidar, Berar',
+  'anglo-mysore-wars': 'Anglo-Mysore Wars — Hyder Ali & Tipu Sultan',
+  'anglo-maratha-wars': 'Anglo-Maratha Wars',
+  'anglo-sikh-wars': 'Anglo-Sikh Wars & Punjab Under British',
+  'british-land-revenue': 'British Land Revenue Systems — Permanent Settlement, Ryotwari, Mahalwari',
+  'south-west-reforms': 'Reform Movements in South & West India',
+  'peasant-tribal-movements': 'Peasant & Tribal Movements',
+  'working-class-movements': 'Trade Union & Working Class Movements',
+  'left-wing-politics': 'Left Wing in Indian Politics — CSP, CPI, Peasant Movements',
+  'communalism-two-nation': 'Communalism & Two-Nation Theory — Muslim League, Hindu Mahasabha',
+  'press-education-national': 'Role of Press & Education in National Movement',
+  'women-freedom-struggle': 'Women in the Freedom Struggle',
+  'nehru-era': 'Consolidation After Independence — Nehru Era',
+  'princely-states-integration': 'Integration of Princely States — Sardar Patel & VP Menon',
+  'states-reorganization': 'States Reorganization — SRC & Linguistic States',
+  'land-reforms-post-47': 'Land Reforms After Independence',
+  'five-year-plans-history': 'Five Year Plans — From Planning Commission to NITI Aayog',
+  'green-white-revolution': 'Green Revolution, White Revolution & Agricultural Transformation',
+  'foreign-policy-nam': 'India\'s Foreign Policy — NAM, Panchsheel, Bandung',
+  'indo-pak-wars': 'Indo-Pak Wars — 1947, 1965, 1971 & Bangladesh Liberation',
+  'indo-china-1962': 'Indo-China War 1962 & Sino-Indian Relations',
+  'emergency-1975': 'Emergency 1975-77 — Causes, Events & Aftermath',
+  'liberalization-1991': 'Liberalization 1991 — LPG Reforms',
+  'nuclear-tests': 'India\'s Nuclear Journey — Pokhran I & II',
+  'kashmir-issue-evolution': 'Kashmir Issue — Evolution from 1947 to Present',
+  'northeast-insurgency': 'Northeast India — Insurgency, Accords & Integration',
+  'punjab-crisis': 'Punjab Crisis — Akali Movement, Operation Bluestar',
+  'mandal-commission': 'Mandal Commission & Social Justice Movements',
+  'coalition-era': 'Coalition Era Politics — 1989 Onwards',
+  'renaissance-reformation': 'Renaissance, Reformation & Enlightenment',
+  'american-revolution': 'American Revolution & US Constitution',
+  'french-revolution': 'French Revolution — Causes, Course & Legacy',
+  'industrial-revolution': 'Industrial Revolution — Origins, Phases & Social Impact',
+  'nationalism-europe': 'Nationalism in Europe — German & Italian Unification',
+  'imperialism-colonialism': 'Imperialism & Colonialism — Scramble for Africa & Asia',
+  'world-war-1': 'World War I — Causes, Course & Treaty of Versailles',
+  'russian-revolution': 'Russian Revolution 1917 — Bolshevism & Soviet State',
+  'fascism-nazism': 'Rise of Fascism & Nazism — Italy & Germany',
+  'world-war-2': 'World War II — Causes, Course & Consequences',
+  'cold-war': 'Cold War — Origins, Proxy Wars, Detente & End',
+  'decolonization': 'Decolonization of Asia & Africa',
+  'chinese-revolution': 'Chinese Revolution — Sun Yat-sen to Mao',
+  'arab-israeli-conflict': 'Creation of Israel & Arab-Israeli Conflicts',
+  'ussr-collapse': 'Collapse of USSR & End of Cold War',
+  'political-philosophies': 'Political Philosophies — Communism, Capitalism, Socialism, Fascism',
+  'globalization-world-order': 'Globalization & Post-Cold War World Order',
+  'national-boundaries-redrawing': 'Redrawing of National Boundaries — Post-War to Present',
+  'trans-himalayan': 'Trans-Himalayan Zone — Karakoram, Ladakh, Zaskar',
+  'lakes-india': 'Lakes of India — Natural & Artificial',
+  'cyclones-india': 'Tropical Cyclones — Indian Ocean, Track & Impact',
+  'irrigation-india': 'Irrigation Systems — Types, Projects & Water Disputes',
+  'coastal-plains': 'Coastal Plains & Ports of India',
+  'thar-desert': 'Thar Desert & Arid Zone',
+  'earth-interior': 'Interior of the Earth — Crust, Mantle, Core',
+  'plate-tectonics': 'Plate Tectonics & Volcanism',
+  'rocks-minerals': 'Rocks & Minerals — Types & Rock Cycle',
+  'geomorphology': 'Geomorphology — Weathering, Erosion & Landforms',
+  'atmosphere-structure': 'Atmosphere — Composition, Structure & Heat Budget',
+  'pressure-winds': 'Pressure Belts, Winds & Atmospheric Circulation',
+  'precipitation-types': 'Precipitation, Fronts & Air Masses',
+  'oceanography': 'Oceans — Relief, Temperature, Salinity',
+  'tides': 'Tides — Types, Causes & Significance',
+  'world-rivers-lakes': 'World Major Rivers & Lakes',
+  'world-deserts': 'World Major Deserts — Hot & Cold',
+  'industrial-location': 'Industrial Location Factors & Global Patterns',
+  'world-agriculture': 'World Agriculture — Types, Patterns & Food Production',
+  'world-population': 'World Population — Distribution, Growth & Migration',
+  'indian-society-features': 'Salient Features of Indian Society — Diversity & Pluralism',
+  'regionalism': 'Regionalism — Sub-Nationalism, Demand for States',
+  'secularism-india': 'Secularism — Indian vs Western Model',
+  'globalization-society': 'Effects of Globalization on Indian Society',
+  'social-empowerment': 'Social Empowerment — Dalits, Tribals, Minorities, Disabled, Elderly',
+  'education-society': 'Role of Education in Society & Empowerment',
+  'indian-diaspora': 'Indian Diaspora — Role, Policies & Soft Power',
+  'folk-music-dance': 'Folk Music & Dance of India',
+  'indian-theatre': 'Indian Theatre & Performing Arts',
+  'puppetry-traditions': 'Indian Puppetry & Shadow Theatre',
+  'buddhist-jain-architecture': 'Buddhist & Jain Architecture',
+  'indo-islamic-architecture': 'Indo-Islamic Architecture — Sultanate to Provincial Styles',
+  'colonial-architecture': 'Colonial & Modern Indian Architecture',
+  'unesco-heritage-india': 'UNESCO World Heritage Sites in India',
+  'handicrafts-textiles': 'Indian Handicrafts, Textiles & GI Tags',
+  'festivals-india': 'Indian Festivals — Regional, Religious & National',
+  'martial-arts-india': 'Indian Martial Arts & Sports Heritage',
+  'languages-scripts': 'Indian Languages, Scripts & Classical Languages',
+  'indian-literature-modern': 'Indian Literature — Ancient to Modern',
+  'fairs-melas': 'Important Fairs, Melas & Cultural Events',
+  'preamble': 'Preamble — Philosophy & Significance',
+  'right-freedom-religion': 'Right to Freedom of Religion — Articles 25-28',
+  'cultural-educational-rights': 'Cultural & Educational Rights — Articles 29-30',
+  'parliamentary-committees': 'Parliamentary Committees — Standing, Financial & Ad Hoc',
+  'legislative-process': 'Legislative Process — Bills, Types & Passage',
+  'subordinate-courts': 'Subordinate Courts & Tribunals',
+  'inter-state-relations': 'Inter-State Relations — Water Disputes, Zonal Councils',
+  'emergency-provisions': 'Emergency Provisions — Articles 352, 356, 360',
+  'special-provisions-states': 'Special Provisions for States — Art 370, 371 & Schedules V, VI',
+  'constitutional-bodies': 'Constitutional Bodies — EC, UPSC, FC, CAG, AG',
+  'statutory-regulatory-bodies': 'Statutory & Regulatory Bodies — NHRC, NCW, SEBI, TRAI, CCI, etc.',
+  'representation-peoples-act': 'Representation of People\'s Act & Electoral Reforms',
+  'comparative-constitutions': 'Comparison with Other Constitutions — US, UK, France, etc.',
+  'pressure-groups': 'Pressure Groups & Civil Society in Indian Polity',
+  'government-schemes': 'Major Government Policies & Schemes for Development',
+  'welfare-vulnerable': 'Welfare Schemes for Vulnerable Sections',
+  'health-education-governance': 'Health, Education & HRD Governance',
+  'india-foreign-policy': 'India\'s Foreign Policy — Principles & Evolution',
+  'india-indian-ocean': 'India in Indian Ocean Region — IORA, Maritime Strategy',
+  'india-africa': 'India-Africa Relations',
+  'india-central-west-asia': 'India & Central Asia, West Asia, Latin America',
+  'diaspora-policy': 'Indian Diaspora — Policy & Global Role',
+  'developed-developing-impact': 'Impact of Developed & Developing Countries\' Policies on India',
+  'international-treaties': 'Key International Treaties & Agreements',
+  'india-global-commons': 'India & Global Commons — Arctic, Antarctica, Space, Cyber, Deep Sea',
+  'national-income': 'National Income — GDP, GNP, NDP, NNP & Measurement',
+  'government-budgeting': 'Government Budgeting — Process, Receipts & Expenditure',
+  'taxation-system': 'Taxation — Direct, Indirect, GST Structure',
+  'food-processing': 'Food Processing & Related Industries',
+  'land-reforms-economy': 'Land Reforms in India — History & Contemporary Issues',
+  'animal-husbandry-fisheries': 'Animal Husbandry, Dairy & Fisheries',
+  'irrigation-economy': 'Irrigation & Water Resources Economics',
+  'liberalization-economy': 'Economic Liberalization — LPG & Industrial Policy Changes',
+  'msme-industry': 'Industrial Growth — MSMEs, Make in India & PLI',
+  'investment-models': 'Investment Models — PPP, BOT, VGF, HAM',
+  'insurance-pension': 'Insurance & Pension Sector',
+  'capital-markets': 'Capital Markets — SEBI, Stock Exchanges & Bonds',
+  'general-physics': 'General Science — Physics Basics',
+  'general-chemistry': 'General Science — Chemistry Basics',
+  'general-biology': 'General Science — Biology & Human Physiology',
+  'health-diseases': 'Health, Diseases & Public Health',
+  'it-computers': 'IT, Computers & Digital Technology',
+  'robotics-automation': 'Robotics, Automation & Industry 4.0',
+  'ipr-patents': 'Intellectual Property Rights — Patents, GI Tags, TRIPS',
+  'indians-in-science': 'Achievements of Indians in Science & Technology',
+  'agricultural-science': 'Agricultural Science & Technology',
+  'space-applications': 'Space Technology Applications — Remote Sensing, GPS, Weather',
+  'emerging-tech-latest': 'Emerging Technologies — 5G, IoT, 3D Printing, Drones',
+  'eia-process': 'Environmental Impact Assessment — Process & Issues',
+  'environment-laws': 'Environmental Laws & Institutions — EPA, WPA, NGT',
+  'ecology-fundamentals': 'Ecology Fundamentals — Food Chain, Pyramids, Cycles',
+  'ecosystem-types': 'Ecosystem Types — Terrestrial, Aquatic, Marine',
+  'species-conservation': 'Species Conservation — IUCN, Red List, Schedules',
+  'indian-flora-fauna': 'Indian Flora & Fauna — Endemic & Endangered Species',
+  'waste-management': 'Waste Management — Solid, Plastic, E-Waste, Biomedical',
+  'sustainable-development': 'Sustainable Development — SDGs, Circular Economy',
+  'carbon-markets': 'Carbon Markets & Climate Finance',
+  'external-state-actors': 'Role of State & Non-State Actors in Internal Security',
+  'development-extremism-link': 'Linkages Between Development & Spread of Extremism',
+  'media-social-security': 'Role of Media & Social Networking in Security Challenges',
+  'money-laundering': 'Money Laundering — PMLA, FATF, Black Money',
+  'organized-crime': 'Organized Crime — Drug Trafficking, Human Trafficking, Arms',
+  'security-forces': 'Security Forces & Agencies — BSF, CRPF, CISF, ITBP, NSG & Mandates',
+  'ethics-human-interface': 'Ethics & Human Interface — Essence, Determinants, Consequences',
+  'emotional-intelligence': 'Emotional Intelligence — Concepts & Applications in Governance',
+  'ethics-private-public': 'Ethics in Private & Public Relationships',
+  'human-values': 'Human Values — Role of Family, Society & Education',
+  'ethics-dimensions': 'Dimensions of Ethics — Personal, Professional, Applied',
+  'ethical-dilemmas-govt': 'Ethical Concerns & Dilemmas in Government & Private Institutions',
+  'laws-rules-conscience': 'Laws, Rules, Regulations & Conscience as Ethical Guidance',
+  'probity-governance': 'Probity in Governance — Philosophical Basis',
+  'codes-ethics-conduct': 'Codes of Ethics & Codes of Conduct in Governance',
+  'work-culture-delivery': 'Work Culture & Quality of Service Delivery',
+  'ethical-intl-relations': 'Ethical Issues in International Relations & Funding',
+  'corporate-governance': 'Corporate Governance — Principles, Scandals & Reforms',
+  'public-funds-ethics': 'Utilization of Public Funds — Ethical Dimensions',
+  'great-leaders-lessons': 'Lessons from Lives of Great Leaders & Reformers',
+  // ── CSAT — Reading Comprehension ─────────────────────────────────────────
+  'passage-comprehension': 'Passage Analysis & Inference — Main Idea, Tone, Purpose',
+  'critical-reading': 'Critical Reading & Evaluation — Arguments, Assumptions, Bias',
+  'para-jumbles-summary': 'Para Jumbles & Précis Writing — Ordering, Summarization',
+  // ── CSAT — Logical Reasoning ───────────────────────────────────────────
+  'syllogisms': 'Syllogisms & Venn Diagrams — All/Some/No Statements',
+  'statement-assumption': 'Statement & Assumption — Implicit, Explicit, Negation Method',
+  'statement-conclusion': 'Statement & Conclusion / Arguments — Strong vs Weak',
+  'coding-decoding': 'Coding-Decoding — Letter, Number, Symbol Coding',
+  'blood-relations': 'Blood Relations — Family Tree, Generation Mapping',
+  'direction-sense': 'Direction Sense & Distance — Cardinal Directions, Displacement',
+  'seating-arrangement': 'Seating Arrangement & Puzzles — Linear, Circular, Floor',
+  'logical-sequence': 'Logical Sequence & Order — Ranking, Alphabetical, Dictionary',
+  // ── CSAT — Analytical Ability ──────────────────────────────────────────
+  'number-series': 'Number Series & Patterns — AP, GP, Mixed Series',
+  'letter-series': 'Letter & Alphanumeric Series — Gaps, Reverse Alphabet',
+  'analogies-classification': 'Analogies & Classification — Odd One Out, Relationships',
+  'pattern-recognition': 'Figure & Pattern Recognition — Mirror, Water Image, Embedded',
+  'paper-folding-dice': 'Paper Folding, Cutting & Dice — Opposite Faces, Cube Painting',
+  // ── CSAT — Data Interpretation ─────────────────────────────────────────
+  'bar-line-graphs': 'Bar & Line Graphs — Stacked, Grouped, Trends',
+  'pie-charts': 'Pie Charts & Percentages — Degree, Sector Comparison',
+  'tables-data': 'Tables & Data Analysis — Row-Column, Multi-Table',
+  'data-sufficiency': 'Data Sufficiency — Statement Analysis, Minimum Data Needed',
+  // ── CSAT — Basic Numeracy ──────────────────────────────────────────────
+  'number-system': 'Number System & Divisibility — HCF, LCM, Remainder Theorem',
+  'percentage-ratio': 'Percentage, Ratio & Proportion — Successive, Partnership',
+  'average-mixture': 'Averages, Mixtures & Alligation — Weighted Average, Dilution',
+  'time-speed-distance': 'Time, Speed & Distance — Boats, Trains, Circular Track',
+  'time-work': 'Time & Work — Pipes, Cisterns, Efficiency',
+  'profit-loss-interest': 'Profit, Loss & Interest — Markup, Discount, SI/CI',
+  'probability-combinatorics': 'Probability & Basic Combinatorics — PnC, Counting Principle',
+  'geometry-mensuration': 'Geometry & Mensuration — Triangles, Circles, Volume',
+  // ── CSAT — Decision Making ─────────────────────────────────────────────
+  'administrative-decisions': 'Administrative Decision Making — Stakeholder, Prioritization',
+  'problem-identification': 'Problem Identification & Solution — Root Cause, Lateral Thinking',
+  'essay-technique': 'Essay Writing Technique — Structure, Introduction, Conclusion',
+  'essay-philosophical': 'Philosophical & Abstract Essay Themes',
+  'essay-social': 'Social Issues Essay Themes',
+  'essay-political': 'Political & Governance Essay Themes',
+  'essay-science-env': 'Science, Technology & Environment Essay Themes',
+  'essay-economy': 'Economy & Development Essay Themes',
+  'govt-schemes-current': 'Government Schemes & Policies — Current Database',
+  'acts-bills-current': 'Important Acts, Bills & Ordinances — Recent',
+  'international-events': 'International Events, Summits & Exercises',
+  'awards-appointments': 'Awards, Appointments & Sports Events',
+  'science-news': 'Science & Technology in News',
+  'economic-events': 'Economic Events — Budget, RBI, Trade',
+  'reports-indices': 'Important Reports & Global Indices',
+  'places-in-news': 'Places in News — Conflicts, Disasters, Diplomacy',
 }
 
 const SUBJECT_MAP: Record<string, string> = {
@@ -119,72 +350,57 @@ interface DbPYQ {
 async function fetchFromSupabase(
   topicId: string,
   subjectId: string,
-  limit: number
+  limit: number,
+  year?: number
 ): Promise<DbPYQ[]> {
   const supabase = createServerClient()
   const mapping = TOPIC_KEYWORD_MAP[topicId]
+  const SELECT_FIELDS = 'id, year, question, options, answer, explanation, subject, topic, difficulty, source, tags'
 
-  if (!mapping) {
-    // No keyword mapping — try a broad subject query
-    const dbSubjects = subjectIdToDbSubjects(subjectId)
-    const { data } = await supabase
-      .from('upsc_pyqs')
-      .select('id, year, question, options, answer, explanation, subject, topic, difficulty, source')
-      .in('subject', dbSubjects)
-      .not('options', 'is', null)
-      .not('answer', 'is', null)
-      .limit(limit * 3)
+  // ── Strategy 1: Tag-based query (precise, preferred) ────────────────────
+  const topicTag = `topic:${topicId}`
 
-    if (data && data.length > 0) {
-      return shuffleAndPick(data as DbPYQ[], limit)
-    }
-    return []
-  }
-
-  // Build keyword search: use ilike for each keyword with OR
-  const keywords = mapping.keywords
-  const dbSubjects = mapping.dbSubjects
-
-  // Strategy 1: Full-text search on question field with subject filter
-  const keywordPattern = keywords.slice(0, 8).map(k => `%${k}%`)
-
-  let query = supabase
+  let tagQuery = supabase
     .from('upsc_pyqs')
-    .select('id, year, question, options, answer, explanation, subject, topic, difficulty, source')
-    .in('subject', dbSubjects)
+    .select(SELECT_FIELDS)
+    .contains('tags', [topicTag])
     .not('options', 'is', null)
     .not('answer', 'is', null)
 
-  // Build OR filter for keywords
-  const orConditions = keywordPattern.map(pat => `question.ilike.${pat}`).join(',')
-  query = query.or(orConditions)
-
-  const { data, error } = await query.limit(limit * 4)
-
-  if (error) {
-    console.error('Supabase query error:', error.message)
-    return []
+  if (year) {
+    tagQuery = tagQuery.eq('year', year)
   }
 
-  if (data && data.length >= 3) {
-    return shuffleAndPick(data as DbPYQ[], limit)
+  const { data: tagData } = await tagQuery.limit(limit * 4)
+
+  if (tagData && tagData.length >= 3) {
+    return shuffleAndPick(tagData as DbPYQ[], limit)
   }
 
-  // Strategy 2: Fallback subjects if not enough results
-  if (mapping.fallbackSubjects && mapping.fallbackSubjects.length > 0) {
-    const fallbackQuery = supabase
+  // ── Strategy 2: Keyword fallback (for untagged data) ────────────────────
+  if (mapping) {
+    const keywords = mapping.keywords
+    const dbSubjects = mapping.dbSubjects
+    const keywordPattern = keywords.slice(0, 8).map(k => `%${k}%`)
+
+    let kwQuery = supabase
       .from('upsc_pyqs')
-      .select('id, year, question, options, answer, explanation, subject, topic, difficulty, source')
-      .in('subject', mapping.fallbackSubjects)
+      .select(SELECT_FIELDS)
+      .in('subject', dbSubjects)
       .not('options', 'is', null)
       .not('answer', 'is', null)
-      .or(orConditions)
-      .limit(limit * 3)
 
-    const { data: fallbackData } = await fallbackQuery
+    if (year) {
+      kwQuery = kwQuery.eq('year', year)
+    }
 
-    const combined = [...(data || []), ...(fallbackData || [])]
-    // Dedupe by ID
+    const orConditions = keywordPattern.map(pat => `question.ilike.${pat}`).join(',')
+    kwQuery = kwQuery.or(orConditions)
+
+    const { data: kwData } = await kwQuery.limit(limit * 4)
+
+    // Merge tag results + keyword results, deduped
+    const combined = [...(tagData || []), ...(kwData || [])]
     const seen = new Set<number>()
     const unique = combined.filter(q => {
       if (seen.has(q.id)) return false
@@ -195,25 +411,46 @@ async function fetchFromSupabase(
     if (unique.length >= 3) {
       return shuffleAndPick(unique as DbPYQ[], limit)
     }
-  }
 
-  // Strategy 3: Broader subject-only query (no keyword filter)
-  if ((data?.length || 0) < 3) {
-    const broadQuery = supabase
-      .from('upsc_pyqs')
-      .select('id, year, question, options, answer, explanation, subject, topic, difficulty, source')
-      .in('subject', dbSubjects)
-      .not('options', 'is', null)
-      .not('answer', 'is', null)
-      .limit(limit * 3)
+    // Strategy 3: Broader subject-only (no keyword filter, no year filter)
+    if (unique.length < 3) {
+      const { data: broadData } = await supabase
+        .from('upsc_pyqs')
+        .select(SELECT_FIELDS)
+        .in('subject', dbSubjects)
+        .not('options', 'is', null)
+        .not('answer', 'is', null)
+        .limit(limit * 3)
 
-    const { data: broadData } = await broadQuery
-    if (broadData && broadData.length > 0) {
-      return shuffleAndPick(broadData as DbPYQ[], limit)
+      if (broadData && broadData.length > 0) {
+        const all = [...unique, ...broadData]
+        const seen2 = new Set<number>()
+        const unique2 = all.filter(q => {
+          if (seen2.has(q.id)) return false
+          seen2.add(q.id)
+          return true
+        })
+        return shuffleAndPick(unique2 as DbPYQ[], limit)
+      }
     }
+
+    return unique.length > 0 ? shuffleAndPick(unique as DbPYQ[], limit) : []
   }
 
-  return data ? shuffleAndPick(data as DbPYQ[], limit) : []
+  // No mapping — try broad subject query
+  const dbSubjects = subjectIdToDbSubjects(subjectId)
+  const { data } = await supabase
+    .from('upsc_pyqs')
+    .select(SELECT_FIELDS)
+    .in('subject', dbSubjects)
+    .not('options', 'is', null)
+    .not('answer', 'is', null)
+    .limit(limit * 3)
+
+  if (data && data.length > 0) {
+    return shuffleAndPick(data as DbPYQ[], limit)
+  }
+  return []
 }
 
 function subjectIdToDbSubjects(subjectId: string): string[] {
@@ -339,10 +576,12 @@ export async function GET(req: NextRequest) {
   const subjectId = searchParams.get('subject') || ''
   const topicId = searchParams.get('topic') || ''
   const limit = Math.min(parseInt(searchParams.get('limit') || '5'), 10)
+  const yearParam = searchParams.get('year')
+  const year = yearParam ? parseInt(yearParam) : undefined
 
   try {
-    // Try Supabase first
-    const dbQuestions = await fetchFromSupabase(topicId, subjectId, limit)
+    // Try Supabase first (tag-based + keyword fallback)
+    const dbQuestions = await fetchFromSupabase(topicId, subjectId, limit, year)
 
     if (dbQuestions.length >= 3) {
       // Normalize DB format to match frontend expectations
