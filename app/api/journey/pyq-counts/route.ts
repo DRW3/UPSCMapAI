@@ -3,9 +3,7 @@ import { createServerClient } from '@/lib/supabase/server'
 import { TOPIC_KEYWORD_MAP } from '@/data/topic-keyword-map'
 
 export const runtime = 'nodejs'
-
-// Cache for 1 hour
-export const revalidate = 3600
+export const dynamic = 'force-dynamic'
 
 export async function GET(req: NextRequest) {
   try {
