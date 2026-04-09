@@ -30,7 +30,7 @@ export interface EnrichedTopicEntry {
   subject: LearningSubject
 }
 
-export type TabId = 'home' | 'live' | 'path' | 'profile'
+export type TabId = 'home' | 'live' | 'path' | 'practice' | 'profile'
 
 export type PaywallReason = 'topics' | 'hearts' | null
 

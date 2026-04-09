@@ -15,7 +15,7 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { id: 'home',     label: 'Today',    hint: 'Mentor & next step',    icon: '🏠', color: '#a78bfa' },
   { id: 'path',     label: 'Syllabus', hint: '280+ topics',           icon: '🪜', color: '#67e8f9' },
-  { id: 'live',     label: 'Practice', hint: '3000+ PYQs',            icon: '🎯', color: '#fb923c' },
+  { id: 'practice', label: 'Practice', hint: '3000+ PYQs',            icon: '🎯', color: '#fb923c' },
   { id: 'profile',  label: 'Profile',  hint: 'Stats & heatmap',       icon: '👤', color: '#f9a8d4' },
   { id: 'map',      label: 'Maps',     hint: 'Interactive maps',      icon: '🗺️', color: '#34d399' },
 ]
