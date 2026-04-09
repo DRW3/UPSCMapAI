@@ -56,13 +56,13 @@ function formatDaysRemaining(days: number): string {
   if (days === 0) return 'Exam imminent'
   if (days < 30) return `${days} days`
   const months = Math.floor(days / 30)
-  const remainDays = days % 30
   if (months >= 12) {
     const years = Math.floor(months / 12)
     const remMonths = months % 12
-    return remMonths > 0 ? `~${years}y ${remMonths}m` : `~${years} year${years > 1 ? 's' : ''}`
+    if (remMonths === 0) return `${years} ${years === 1 ? 'year' : 'years'}`
+    return `${years} ${years === 1 ? 'year' : 'years'}, ${remMonths} ${remMonths === 1 ? 'month' : 'months'}`
   }
-  return remainDays > 0 ? `${months}m ${remainDays}d` : `${months} month${months > 1 ? 's' : ''}`
+  return `${months} ${months === 1 ? 'month' : 'months'}`
 }
 
 // ── Keyframes ──────────────────────────────────────────────────────────────────
@@ -136,6 +136,60 @@ const KEYFRAMES = `
   0% { transform: scale(0); }
   60% { transform: scale(1.3); }
   100% { transform: scale(1); }
+}
+@property --ob-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes ob-orbRotate {
+  to { --ob-angle: 360deg; }
+}
+@keyframes ob-orbBreathe {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.50;
+    filter: blur(38px) hue-rotate(0deg);
+  }
+  50% {
+    transform: scale(1.10) rotate(180deg);
+    opacity: 0.75;
+    filter: blur(44px) hue-rotate(30deg);
+  }
+}
+/* ── Sentient AI core animations ─────────────────────────────────── */
+@keyframes ob-ringSpin {
+  to { transform: rotate(360deg); }
+}
+@keyframes ob-ringSpinReverse {
+  to { transform: rotate(-360deg); }
+}
+@keyframes ob-corePulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 12px rgba(167,139,250,0.55));
+  }
+  50% {
+    transform: scale(1.04);
+    filter: drop-shadow(0 0 22px rgba(167,139,250,0.85));
+  }
+}
+@keyframes ob-nodeBlink {
+  0%, 100% { opacity: 0.45; }
+  50%      { opacity: 1; }
+}
+@keyframes ob-edgeFlow {
+  0%   { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -16; }
+}
+@keyframes ob-hudScan {
+  0%, 100% { transform: translateY(0); opacity: 0; }
+  10%      { opacity: 0.55; }
+  50%      { transform: translateY(150px); opacity: 0.55; }
+  90%      { opacity: 0; }
+}
+@keyframes ob-orbitParticle {
+  to { transform: rotate(360deg); }
 }
 `
 
@@ -245,93 +299,278 @@ function SubjectPill({ subject, selected, disabled, onToggle }: {
 // Step 1: Welcome + Name
 function WelcomeStep({ name, onNameChange }: { name: string; onNameChange: (v: string) => void }) {
   const inputRef = useRef<HTMLInputElement>(null)
+  const firstName = name.trim().split(' ')[0]
 
+  // Auto-focus after intro animation; delay scrollIntoView so the keyboard
+  // animation finishes before iOS measures.
   useEffect(() => {
-    const timer = setTimeout(() => inputRef.current?.focus(), 600)
-    return () => clearTimeout(timer)
+    const focusTimer = setTimeout(() => inputRef.current?.focus(), 650)
+    return () => clearTimeout(focusTimer)
+  }, [])
+
+  const handleFocus = useCallback(() => {
+    setTimeout(() => {
+      inputRef.current?.scrollIntoView({ block: 'center', behavior: 'smooth' })
+    }, 320)
   }, [])
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
-      {/* Animated map illustration */}
+      {/* ── Hero: breathing conic-gradient orb behind logo ─────────────── */}
       <div style={{
-        position: 'relative', width: 120, height: 120, marginBottom: 32,
-        animation: 'ob-popIn 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards',
+        position: 'relative',
+        width: 'clamp(140px, 38vw, 180px)',
+        height: 'clamp(140px, 38vw, 180px)',
+        marginBottom: 28, marginTop: 4,
+        animation: 'ob-popIn 0.7s cubic-bezier(0.34,1.56,0.64,1) forwards',
       }}>
+        {/* Outer breathing conic-gradient halo */}
         <div style={{
-          width: 100, height: 100, borderRadius: 28, margin: '10px auto',
-          background: 'linear-gradient(135deg, rgba(99,102,241,0.14), rgba(139,92,246,0.08))',
-          border: '1.5px solid rgba(99,102,241,0.25)',
+          position: 'absolute', inset: -26, borderRadius: '50%',
+          background: 'conic-gradient(from 0deg, #6366f1, #ec4899, #f59e0b, #06b6d4, #6366f1)',
+          filter: 'blur(38px)',
+          opacity: 0.55,
+          animation: 'ob-orbBreathe 7s ease-in-out infinite',
+        }} />
+        {/* Inner glass disc */}
+        <div style={{
+          position: 'absolute', inset: 0,
+          borderRadius: '50%',
+          background: 'radial-gradient(circle at 35% 30%, rgba(167,139,250,0.18) 0%, rgba(15,15,28,0.92) 60%, rgba(8,8,16,0.98) 100%)',
+          border: '1.5px solid rgba(167,139,250,0.28)',
+          boxShadow: '0 12px 60px rgba(99,102,241,0.25), inset 0 1px 0 rgba(255,255,255,0.08)',
+          backdropFilter: 'blur(12px)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          boxShadow: '0 8px 40px rgba(99,102,241,0.15)',
-          animation: 'ob-breathe 3s ease-in-out infinite',
+          overflow: 'hidden',
         }}>
-          <span style={{ fontSize: 52, lineHeight: 1 }}>🗺️</span>
+          {/* Inner rotating conic shimmer */}
+          <div style={{
+            position: 'absolute', inset: '8%', borderRadius: '50%',
+            background: 'conic-gradient(from var(--ob-angle, 0deg), transparent, rgba(167,139,250,0.10), transparent 30%)',
+            animation: 'ob-orbRotate 6s linear infinite',
+          }} />
+          {/* ── AI Study Guide icon ──────────────────────────────────
+              The Ashoka Chakra — the 24-spoke wheel of dharma at the
+              centre of India's national flag and the visual signature
+              of the Indian Republic and the Civil Services — re-imagined
+              as the skeleton of an AI. 24 spokes converge from the rim
+              into a glowing intelligence at the hub: the entire
+              syllabus flowing inward into the model. The whole wheel
+              rotates slowly forward, the way the Chakra has always
+              represented continuous progress. Every element is
+              load-bearing:
+                • 24 spokes  = Chakra of Dharma — UPSC, India, the
+                               syllabus arriving at the AI
+                • Outer ring = the boundary of the syllabus
+                • Tip nodes  = neural-net feel along the rim
+                • Bright core = the AI insight at the centre of the wheel
+                • Slow rotation = the aspirant's preparation, always moving forward
+              Two colours total: cyan (#6EE7FF) + violet (#8B5CF6).
+              Four animations: ringSpin, edgeFlow, nodeBlink, corePulse. */}
+          <svg
+            viewBox="0 0 100 100"
+            width="86%"
+            height="86%"
+            fill="none"
+            style={{
+              position: 'relative', zIndex: 1,
+              overflow: 'visible',
+              filter: 'drop-shadow(0 0 26px rgba(110,231,255,0.42))',
+            }}
+          >
+            <defs>
+              {/* Shared cyan → violet stroke gradient */}
+              <linearGradient id="ob-edu-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%"  stopColor="#6EE7FF" />
+                <stop offset="100%" stopColor="#8B5CF6" />
+              </linearGradient>
+              {/* Central AI core radial gradient */}
+              <radialGradient id="ob-edu-core" cx="50%" cy="50%" r="50%">
+                <stop offset="0%"  stopColor="#ffffff" stopOpacity="1" />
+                <stop offset="55%" stopColor="#6EE7FF" stopOpacity="0.95" />
+                <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0.85" />
+              </radialGradient>
+            </defs>
+
+            {/* ── The wheel: outer rim, inner hub, 24 spokes, 24 tip
+                 nodes. The whole group rotates as one rigid wheel —
+                 the Chakra's traditional reading of "dharma in
+                 continuous motion" — at 36s per revolution, calm
+                 but unmistakable. ── */}
+            <g style={{
+              transformOrigin: '50px 50px',
+              animation: 'ob-ringSpin 36s linear infinite',
+            }}>
+              {/* Outer rim — the boundary of the syllabus */}
+              <circle cx="50" cy="50" r="40"
+                stroke="url(#ob-edu-grad)" strokeWidth="1.4" />
+              {/* Faint inner halo ring, just inside the rim */}
+              <circle cx="50" cy="50" r="37"
+                stroke="url(#ob-edu-grad)" strokeWidth="0.5" opacity="0.35" />
+              {/* Inner hub — the small central ring the spokes meet */}
+              <circle cx="50" cy="50" r="9.5"
+                stroke="url(#ob-edu-grad)" strokeWidth="1" opacity="0.85" />
+
+              {/* 24 spokes — drawn rim → hub so the dashed flow
+                  appears to travel inward, syllabus knowledge
+                  arriving at the AI core. */}
+              {Array.from({ length: 24 }, (_, i) => {
+                const a = (i * 15 * Math.PI) / 180
+                const c = Math.cos(a)
+                const s = Math.sin(a)
+                return (
+                  <line
+                    key={`ob-chakra-spoke-${i}`}
+                    x1={50 + 38 * c} y1={50 + 38 * s}
+                    x2={50 + 9.5 * c} y2={50 + 9.5 * s}
+                    stroke="url(#ob-edu-grad)"
+                    strokeWidth="0.75"
+                    strokeLinecap="round"
+                    strokeDasharray="2 3"
+                    opacity="0.82"
+                    style={{ animation: 'ob-edgeFlow 2.4s linear infinite' }}
+                  />
+                )
+              })}
+
+              {/* 24 tip nodes at the rim — subtle cyan dots, each
+                  staggered into a slow blinking wave so the wheel
+                  reads as a neural net as well as a chakra. */}
+              {Array.from({ length: 24 }, (_, i) => {
+                const a = (i * 15 * Math.PI) / 180
+                const cx = 50 + 40 * Math.cos(a)
+                const cy = 50 + 40 * Math.sin(a)
+                return (
+                  <circle
+                    key={`ob-chakra-tip-${i}`}
+                    cx={cx} cy={cy} r="0.95"
+                    fill="#6EE7FF"
+                    style={{
+                      filter: 'drop-shadow(0 0 3px rgba(110,231,255,0.95))',
+                      animation: `ob-nodeBlink 3.6s ease-in-out ${(i % 6) * 0.18}s infinite`,
+                    }}
+                  />
+                )
+              })}
+            </g>
+
+            {/* ── Central AI core — the "insight" at the hub of the
+                 Chakra. Soft halo + bright core dot, 2.4s heartbeat
+                 pulse. Sits outside the rotating wheel so the eye has
+                 a stable focal point in the centre. ── */}
+            <g style={{
+              transformOrigin: '50px 50px',
+              animation: 'ob-corePulse 2.4s ease-in-out infinite',
+            }}>
+              <circle cx="50" cy="50" r="7"
+                fill="url(#ob-edu-core)" opacity="0.55" />
+              <circle cx="50" cy="50" r="3.2" fill="#ffffff"
+                style={{ filter: 'drop-shadow(0 0 8px rgba(110,231,255,0.98))' }} />
+            </g>
+          </svg>
         </div>
-        {/* Floating markers */}
-        {[
-          { emoji: '📍', x: 8, y: 2, delay: 0.3 },
-          { emoji: '🏛️', x: 92, y: 12, delay: 0.5 },
-          { emoji: '✨', x: 2, y: 88, delay: 0.7 },
-        ].map(m => (
-          <span key={m.emoji} style={{
-            position: 'absolute', fontSize: 16, left: m.x, top: m.y,
-            opacity: 0, animation: `ob-popIn 0.5s ease ${m.delay}s forwards`,
-          }}>
-            {m.emoji}
-          </span>
-        ))}
+        {/* (Minimal composition — the Ashoka Chakra reimagined as
+            an AI brain reads as the only visual element.) */}
       </div>
 
+      {/* ── Headline ─────────────────────────────────────────────────── */}
       <h1 style={{
-        fontSize: 28, fontWeight: 800, color: 'rgba(255,255,255,0.95)',
-        textAlign: 'center', margin: 0, lineHeight: 1.25,
-        letterSpacing: '-0.02em',
-        opacity: 0, animation: 'ob-slideUp 0.5s ease 0.2s forwards',
+        fontSize: 'clamp(26px, 7vw, 32px)', fontWeight: 800,
+        color: 'rgba(255,255,255,0.97)',
+        textAlign: 'center', margin: 0, lineHeight: 1.18,
+        letterSpacing: '-0.025em',
+        opacity: 0, animation: 'ob-slideUp 0.55s ease 0.2s forwards',
       }}>
-        Welcome to PadhAI UPSC
+        Welcome to{' '}
+        <span style={{
+          display: 'inline-block',
+          background: 'linear-gradient(180deg, #ffffff 0%, #c4b5fd 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
+          paddingBottom: '0.08em',
+          fontWeight: 900,
+          letterSpacing: '-0.02em',
+        }}>PadhAI</span>
       </h1>
 
+      {/* ── Subtitle: simple plain English, morphs as user types ─────── */}
       <p style={{
-        fontSize: 15, color: 'rgba(255,255,255,0.45)',
-        textAlign: 'center', margin: '12px 0 0', lineHeight: 1.6,
-        maxWidth: 300,
-        opacity: 0, animation: 'ob-slideUp 0.5s ease 0.35s forwards',
+        fontSize: 16, fontWeight: 500,
+        color: firstName ? 'rgba(196,181,253,0.95)' : 'rgba(255,255,255,0.78)',
+        textAlign: 'center', margin: '14px 0 0', lineHeight: 1.5,
+        maxWidth: 320, padding: '0 12px',
+        letterSpacing: '-0.005em',
+        transition: 'color 300ms ease',
+        opacity: 0, animation: 'ob-slideUp 0.55s ease 0.32s forwards',
+        minHeight: 48,
       }}>
-        Your personalized journey through the entire UPSC syllabus starts here.
+        {firstName
+          ? `Hi ${firstName}! Let's start your UPSC journey.`
+          : 'Your AI study guide for the UPSC exam.'}
       </p>
 
-      {/* Name input */}
+      {/* ── Name input ───────────────────────────────────────────────── */}
       <div style={{
-        marginTop: 40, width: '100%', maxWidth: 280,
-        opacity: 0, animation: 'ob-slideUp 0.5s ease 0.5s forwards',
+        marginTop: 32, width: '100%', maxWidth: 320,
+        opacity: 0, animation: 'ob-slideUp 0.55s ease 0.45s forwards',
       }}>
-        <label style={{
-          display: 'block', fontSize: 13, fontWeight: 600,
-          color: 'rgba(255,255,255,0.4)', marginBottom: 16, textAlign: 'center',
-          letterSpacing: '0.04em',
-        }}>
+        <label
+          htmlFor="ob-name-input"
+          style={{
+            display: 'block', fontSize: 12, fontWeight: 700,
+            color: 'rgba(167,139,250,0.85)', marginBottom: 14, textAlign: 'center',
+            letterSpacing: '0.12em', textTransform: 'uppercase',
+          }}
+        >
           What should we call you?
         </label>
-        <input
-          ref={inputRef}
-          type="text"
-          value={name}
-          onChange={e => onNameChange(e.target.value)}
-          placeholder="Your first name"
-          maxLength={24}
-          style={{
-            width: '100%', background: 'transparent',
-            border: 'none', borderBottom: '2px solid rgba(99,102,241,0.35)',
-            outline: 'none', color: 'rgba(255,255,255,0.92)',
-            fontSize: 24, fontWeight: 700, textAlign: 'center',
-            padding: '8px 0 12px', letterSpacing: '-0.01em',
-            caretColor: '#818cf8',
-            transition: 'border-color 300ms',
-          }}
-          onFocus={e => { e.currentTarget.style.borderBottomColor = '#818cf8' }}
-          onBlur={e => { e.currentTarget.style.borderBottomColor = 'rgba(99,102,241,0.35)' }}
-        />
+        <div style={{ position: 'relative' }}>
+          <input
+            ref={inputRef}
+            id="ob-name-input"
+            type="text"
+            value={name}
+            onChange={e => onNameChange(e.target.value)}
+            onFocus={handleFocus}
+            placeholder="Your first name"
+            maxLength={24}
+            autoComplete="given-name"
+            autoCapitalize="words"
+            enterKeyHint="next"
+            style={{
+              width: '100%', background: 'rgba(255,255,255,0.025)',
+              border: '1.5px solid rgba(167,139,250,0.30)',
+              borderRadius: 16, outline: 'none',
+              color: 'rgba(255,255,255,0.97)',
+              fontSize: 22, fontWeight: 700, textAlign: 'center',
+              padding: '16px 20px', letterSpacing: '-0.015em',
+              caretColor: '#a78bfa',
+              transition: 'all 250ms ease',
+              boxShadow: '0 4px 24px rgba(99,102,241,0.08), inset 0 1px 0 rgba(255,255,255,0.04)',
+              WebkitAppearance: 'none',
+            }}
+            onBlur={e => {
+              e.currentTarget.style.borderColor = 'rgba(167,139,250,0.30)'
+              e.currentTarget.style.boxShadow = '0 4px 24px rgba(99,102,241,0.08), inset 0 1px 0 rgba(255,255,255,0.04)'
+            }}
+            onFocusCapture={e => {
+              e.currentTarget.style.borderColor = 'rgba(167,139,250,0.65)'
+              e.currentTarget.style.boxShadow = '0 4px 32px rgba(167,139,250,0.20), inset 0 1px 0 rgba(255,255,255,0.06)'
+            }}
+          />
+          {/* Animated underline accent */}
+          <div style={{
+            position: 'absolute', bottom: -2, left: '50%', transform: 'translateX(-50%)',
+            width: firstName ? '60%' : '0%',
+            height: 2, borderRadius: 2,
+            background: 'linear-gradient(90deg, #a78bfa, #ec4899, #06b6d4)',
+            backgroundSize: '200% 100%',
+            transition: 'width 400ms cubic-bezier(0.34,1.56,0.64,1)',
+            animation: firstName ? 'ob-shimmer 2s linear infinite' : 'none',
+            pointerEvents: 'none',
+          }} />
+        </div>
       </div>
     </div>
   )
@@ -372,13 +611,20 @@ function ExamYearStep({ selected, onSelect }: { selected: ExamYear; onSelect: (y
           const days = daysUntilExam(year)
           const isActive = year === selected
           const isPast = days === 0
+          const months = Math.floor(days / 30)
+          // Visual urgency: green (>18mo) → yellow (6-18mo) → orange (3-6mo) → red (<3mo)
+          const urgencyColor = isPast ? 'rgba(255,255,255,0.2)'
+            : months > 18 ? '#34d399'
+            : months > 6 ? '#fbbf24'
+            : months > 3 ? '#fb923c'
+            : '#f87171'
           return (
             <button
               key={year}
               onClick={() => onSelect(year)}
               style={{
                 display: 'flex', flexDirection: 'column', alignItems: 'center',
-                padding: '20px 12px', borderRadius: 20,
+                padding: '20px 14px 16px', borderRadius: 20,
                 background: isActive
                   ? 'rgba(99,102,241,0.12)'
                   : 'rgba(255,255,255,0.025)',
@@ -393,8 +639,11 @@ function ExamYearStep({ selected, onSelect }: { selected: ExamYear; onSelect: (y
                 opacity: 0,
                 animation: `ob-scaleIn 0.4s ease ${0.2 + i * 0.08}s forwards`,
                 WebkitTapHighlightColor: 'transparent',
+                position: 'relative',
+                overflow: 'hidden',
               }}
             >
+              {/* Year */}
               <span style={{
                 fontSize: 28, fontWeight: 800,
                 color: isActive ? '#a5b4fc' : 'rgba(255,255,255,0.7)',
@@ -402,18 +651,32 @@ function ExamYearStep({ selected, onSelect }: { selected: ExamYear; onSelect: (y
               }}>
                 {year}
               </span>
+
+              {/* Time remaining — clear, readable */}
               <span style={{
-                fontSize: 11, fontWeight: 600, marginTop: 6,
-                color: isActive
-                  ? 'rgba(165,180,252,0.7)'
-                  : 'rgba(255,255,255,0.3)',
+                fontSize: 12, fontWeight: 600, marginTop: 8,
+                color: isActive ? urgencyColor : 'rgba(255,255,255,0.35)',
                 transition: 'color 200ms',
+                lineHeight: 1.3, textAlign: 'center',
               }}>
-                {isPast ? 'Already passed' : `${formatDaysRemaining(days)} away`}
+                {isPast ? 'Already passed' : formatDaysRemaining(days)}
               </span>
+
+              {/* Days count */}
+              {!isPast && (
+                <span style={{
+                  fontSize: 10, fontWeight: 500, marginTop: 3,
+                  color: 'rgba(255,255,255,0.25)',
+                }}>
+                  {days.toLocaleString()} days
+                </span>
+              )}
+
+              {/* Selected indicator */}
               {isActive && (
                 <div style={{
-                  width: 6, height: 6, borderRadius: 3, marginTop: 8,
+                  position: 'absolute', bottom: 0, left: '20%', right: '20%',
+                  height: 3, borderRadius: '3px 3px 0 0',
                   background: '#818cf8',
                   animation: 'ob-popIn 0.3s ease forwards',
                 }} />
@@ -786,7 +1049,7 @@ function SummaryStep({ profile }: { profile: UserProfile }) {
               UPSC CSE {profile.examYear}
             </div>
             <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginTop: 1 }}>
-              {days > 0 ? `${days} days remaining` : 'Exam period'}
+              {days > 0 ? `${formatDaysRemaining(days)} (${days.toLocaleString()} days)` : 'Exam period'}
             </div>
           </div>
         </div>
@@ -1031,6 +1294,27 @@ export default function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
     if (e.key === 'Enter' && canProceed) goNext()
   }, [canProceed, goNext])
 
+  // Track soft-keyboard offset for iOS Safari (visualViewport) so the bottom CTA
+  // floats above the keyboard. Android handles this via interactiveWidget meta + dvh.
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const vv = window.visualViewport
+    if (!vv) return
+    const root = document.documentElement
+    const update = () => {
+      const offset = Math.max(0, window.innerHeight - vv.height - vv.offsetTop)
+      root.style.setProperty('--ob-kb-offset', `${offset}px`)
+    }
+    update()
+    vv.addEventListener('resize', update)
+    vv.addEventListener('scroll', update)
+    return () => {
+      vv.removeEventListener('resize', update)
+      vv.removeEventListener('scroll', update)
+      root.style.removeProperty('--ob-kb-offset')
+    }
+  }, [])
+
   // ── Render ─────────────────────────────────────────────────────────────────
 
   return (
@@ -1040,6 +1324,7 @@ export default function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
       onTouchEnd={handleTouchEnd}
       style={{
         position: 'fixed', inset: 0, zIndex: 200,
+        height: '100dvh', // dynamic viewport — shrinks when keyboard opens
         background: BG_COLOR,
         display: 'flex', flexDirection: 'column',
         overflow: 'hidden',
@@ -1117,13 +1402,17 @@ export default function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
         </div>
       </div>
 
-      {/* Step content with slide transition */}
+      {/* Step content with slide transition.
+          NOTE: justify-content removed in favor of `margin: auto 0` on each step's
+          inner container — this centers content when there's room AND lets it
+          scroll from the top when the keyboard squeezes the viewport. */}
       <div
         onKeyDown={step === 0 ? handleNameKeyDown : undefined}
         style={{
-          flex: 1, display: 'flex', flexDirection: 'column',
-          alignItems: 'center', justifyContent: 'center',
-          padding: '0 24px',
+          flex: 1, minHeight: 0,
+          display: 'flex', flexDirection: 'column',
+          alignItems: 'stretch',
+          padding: '8px 24px 8px',
           position: 'relative', zIndex: 1,
           opacity: transitioning ? 0 : 1,
           transform: transitioning
@@ -1132,56 +1421,69 @@ export default function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
           transition: 'opacity 280ms ease, transform 280ms ease',
           overflowY: 'auto',
           overflowX: 'hidden',
+          overscrollBehavior: 'contain',
+          WebkitOverflowScrolling: 'touch',
           scrollbarWidth: 'none',
         }}
       >
-        {step === 0 && (
-          <WelcomeStep name={name} onNameChange={setName} />
-        )}
-        {step === 1 && (
-          <ExamYearStep selected={examYear} onSelect={setExamYear} />
-        )}
-        {step === 2 && (
-          <PrepStageStep selected={prepStage} onSelect={setPrepStage} />
-        )}
-        {step === 3 && (
-          <SubjectSelectStep
-            title="Which subjects are you confident in?"
-            subtitle="Pick 2-4 subjects you feel good about"
-            icon="💪"
-            selected={strongSubjects}
-            onToggle={toggleStrong}
-            disabledIds={weakSet}
-            minCount={2}
-            maxCount={4}
-          />
-        )}
-        {step === 4 && (
-          <SubjectSelectStep
-            title="Which subjects do you want to improve?"
-            subtitle="We'll prioritize these in your practice"
-            icon="🎯"
-            selected={weakSubjects}
-            onToggle={toggleWeak}
-            disabledIds={strongSet}
-            minCount={2}
-            maxCount={4}
-          />
-        )}
-        {step === 5 && (
-          <DailyGoalStep selected={dailyGoalTier} onSelect={setDailyGoalTier} />
-        )}
-        {step === 6 && (
-          <SummaryStep profile={profile} />
-        )}
+        {/* margin:auto wrapper centers vertically when there's room AND
+            allows top-anchored scrolling when the keyboard squeezes */}
+        <div style={{
+          margin: 'auto 0', width: '100%',
+          display: 'flex', flexDirection: 'column', alignItems: 'center',
+          paddingTop: 16, paddingBottom: 16,
+        }}>
+          {step === 0 && (
+            <WelcomeStep name={name} onNameChange={setName} />
+          )}
+          {step === 1 && (
+            <ExamYearStep selected={examYear} onSelect={setExamYear} />
+          )}
+          {step === 2 && (
+            <PrepStageStep selected={prepStage} onSelect={setPrepStage} />
+          )}
+          {step === 3 && (
+            <SubjectSelectStep
+              title="Which subjects are you confident in?"
+              subtitle="Pick 2-4 subjects you feel good about"
+              icon="💪"
+              selected={strongSubjects}
+              onToggle={toggleStrong}
+              disabledIds={weakSet}
+              minCount={2}
+              maxCount={4}
+            />
+          )}
+          {step === 4 && (
+            <SubjectSelectStep
+              title="Which subjects do you want to improve?"
+              subtitle="We'll prioritize these in your practice"
+              icon="🎯"
+              selected={weakSubjects}
+              onToggle={toggleWeak}
+              disabledIds={strongSet}
+              minCount={2}
+              maxCount={4}
+            />
+          )}
+          {step === 5 && (
+            <DailyGoalStep selected={dailyGoalTier} onSelect={setDailyGoalTier} />
+          )}
+          {step === 6 && (
+            <SummaryStep profile={profile} />
+          )}
+        </div>
       </div>
 
-      {/* Bottom: CTA Button */}
+      {/* Bottom: CTA Button — keyboard-aware padding so it always floats
+          above the soft keyboard on iOS + Android. */}
       <div style={{
-        padding: '16px 24px',
-        paddingBottom: 'max(24px, env(safe-area-inset-bottom, 0px))',
+        padding: '14px 24px',
+        paddingBottom: 'max(20px, env(safe-area-inset-bottom, 0px), env(keyboard-inset-height, 0px), var(--ob-kb-offset, 0px))',
         display: 'flex', flexDirection: 'column', alignItems: 'center',
         position: 'relative', zIndex: 10,
+        background: 'linear-gradient(180deg, transparent, rgba(5,5,16,0.9) 30%, #050510)',
+        transition: 'padding-bottom 180ms ease-out',
       }}>
         <button
           onClick={goNext}

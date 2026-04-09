@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback, useMemo } from 'react'
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react'
 import { UPSC_SYLLABUS, type LearningTopic, type LearningSubject } from '@/data/syllabus'
 import {
   type JourneyProgress,
@@ -18,14 +18,19 @@ import {
   MAX_HEARTS,
   FREE_TOPIC_LIMIT,
   HEART_REFILL_MS,
+  MAX_SEEN_IDS_PER_TOPIC,
 } from '@/components/journey/types'
 import JourneyPath from '@/components/journey/JourneyPath'
 import PracticeSheet from '@/components/journey/PracticeSheet'
 import HomeTab from '@/components/journey/HomeTab'
+// Live tab disabled — re-enable by uncommenting this import, the tab-bar
+// entry, and the render branch below. The component file and the
+// /api/news/hindu-today route are still in the repo, untouched.
+// import LiveTab from '@/components/journey/LiveTab'
 import TopicDetailSheet from '@/components/journey/TopicDetailSheet'
-import PracticeTab from '@/components/journey/PracticeTab'
 import ProfileTab from '@/components/journey/ProfileTab'
 import DailyGoalModal from '@/components/journey/DailyGoalModal'
+import DailyGoalCelebration from '@/components/journey/DailyGoalCelebration'
 import AchievementToast from '@/components/journey/AchievementToast'
 import OnboardingFlow, { hasCompletedOnboarding } from '@/components/journey/OnboardingFlow'
 import CelebrationOverlay from '@/components/journey/CelebrationOverlay'
@@ -174,7 +179,7 @@ function buildEnrichedStates(
 
 // ── Tab type ─────────────────────────────────────────────────────────────────
 
-type TabId = 'home' | 'path' | 'practice' | 'profile'
+type TabId = 'home' | 'live' | 'path' | 'profile'
 
 // ── Main Component ────────────────────────────────────────────────────────────
 
@@ -182,6 +187,7 @@ export function MobileLearningJourney() {
   const [progress, setProgress] = useState<JourneyProgress>(DEFAULT_PROGRESS)
   const [activeSubjectId, setActiveSubjectId] = useState<string | null>(null)
   const [activeTab, setActiveTab] = useState<TabId>('home')
+  const [tabTransition, setTabTransition] = useState(false)
 
   // Topic detail sheet
   const [detailTarget, setDetailTarget] = useState<{
@@ -222,9 +228,49 @@ export function MobileLearningJourney() {
 
   // PadhAI Pro paywall
   const [paywallReason, setPaywallReason] = useState<'topics' | 'hearts' | null>(null)
+  // Topic the user was trying to open when the paywall fired — so we can
+  // drop them right back into it after they upgrade (or were practicing it
+  // when hearts ran out).
+  const [pendingTopicTarget, setPendingTopicTarget] = useState<{
+    topic: LearningTopic
+    subject: LearningSubject
+    intent: 'detail' | 'practice'
+  } | null>(null)
+  // Tracks whether the user actually completed an upgrade in the most recent
+  // paywall session (vs just dismissing). Used by the dismiss handler to
+  // decide whether to auto-resume the blocked screen.
+  const [didUpgradeInPaywall, setDidUpgradeInPaywall] = useState(false)
 
   // Real PYQ counts from database
   const [pyqCounts, setPyqCounts] = useState<Record<string, number>>({})
+
+  // Daily-goal celebration overlay — fires once per day the moment the user
+  // hits both the read AND practice targets. Detected by a useEffect that
+  // watches today's counts; once-per-day guard via localStorage.
+  const [goalCelebrationOpen, setGoalCelebrationOpen] = useState(false)
+  const goalCelebrationSnapshotRef = useRef<{
+    streak: number
+    topicsRead: number
+    practiceDone: number
+    readTarget: number
+    practiceTarget: number
+  } | null>(null)
+  // Tracks whether the goal was already met on the previous render so we
+  // only fire the celebration on the rising edge (not-met → met).
+  const goalMetPrevRef = useRef<boolean | null>(null)
+
+  // Tracks the topic the user just finished practicing every available
+  // question for. Set in handlePracticeComplete on the round that pushes
+  // the seen-IDs count up to the topic's full PYQ pool, consumed once by
+  // handleNextTopic to fire the topic-complete celebration. Anything else
+  // (closing the sheet, switching topics) resets it via subsequent rounds.
+  // Stored in a ref (not state) so the value is synchronously available
+  // across the deferred onFinish → setTimeout(onNextTopic) chain that the
+  // score-screen CTA uses.
+  const justCompletedTopicRef = useRef<string | null>(null)
+
+  // AI-generated daily mentor tip
+  const [dailyTip, setDailyTip] = useState<string | null>(null)
 
   const [mounted, setMounted] = useState(false)
 
@@ -270,6 +316,99 @@ export function MobileLearningJourney() {
     if (mounted) saveJourneyProgress(progress)
   }, [progress, mounted])
 
+  // ── Daily-goal completion detector ──────────────────────────────────────
+  // Watches today's read/practice counts and the active goal tier. The
+  // moment the user crosses BOTH targets in a single render (rising edge),
+  // we open the celebration overlay — but only if it has not already fired
+  // for this calendar day (localStorage guard) and only if no full-screen
+  // sheet is currently in the way (we queue it via state and the existing
+  // effect will fire it once the sheet closes).
+  useEffect(() => {
+    if (!mounted) return
+    const todayDate = getLocalDate()
+    if (progress.todayDate !== todayDate) {
+      // Day rolled over since last check; counters will reset.
+      goalMetPrevRef.current = false
+      return
+    }
+    const cfg = DAILY_GOALS[progress.dailyGoalTier || 'regular']
+    const isMet = (progress.todayTopicsRead || 0) >= cfg.readTarget &&
+                  (progress.todayTopicsPracticed || 0) >= cfg.practiceTarget
+
+    // First run after mount: snapshot whatever the current state is so we
+    // never fire on app load (only on a real not-met → met transition).
+    if (goalMetPrevRef.current === null) {
+      goalMetPrevRef.current = isMet
+      return
+    }
+
+    // Rising edge: not-met → met
+    if (isMet && !goalMetPrevRef.current) {
+      // Once-per-day guard via localStorage so a refresh won't re-fire.
+      try {
+        const lastFired = localStorage.getItem('upsc-goal-celebrated-date')
+        if (lastFired === todayDate) {
+          goalMetPrevRef.current = true
+          return
+        }
+        localStorage.setItem('upsc-goal-celebrated-date', todayDate)
+      } catch {}
+
+      // The practice path may have already bumped goalStreakDays + marked
+      // today's calendar as goalMet. The read paths do NOT — so we need to
+      // detect which case we're in and bump the streak ourselves if the
+      // calendar hasn't been marked yet for today.
+      const todayCalendarEntry = (progress.studyCalendar || []).find(d => d.date === todayDate)
+      const alreadyMarked = !!todayCalendarEntry?.goalMet
+      const effectiveStreak = alreadyMarked
+        ? Math.max(1, progress.goalStreakDays || 0)
+        : (progress.goalStreakDays || 0) + 1
+
+      if (!alreadyMarked) {
+        // Commit the streak bump + calendar mark for read-driven completions.
+        setProgress(prev => {
+          const calendar = [...(prev.studyCalendar || [])]
+          const existing = calendar.find(d => d.date === todayDate)
+          if (existing) {
+            existing.goalMet = true
+          } else {
+            calendar.push({
+              date: todayDate,
+              questionsAnswered: 0,
+              correctAnswers: 0,
+              goalMet: true,
+            })
+          }
+          return {
+            ...prev,
+            studyCalendar: calendar,
+            goalStreakDays: (prev.goalStreakDays || 0) + 1,
+          }
+        })
+      }
+
+      // Snapshot frozen at the moment of completion so the overlay shows
+      // a consistent picture even if the user keeps studying after.
+      goalCelebrationSnapshotRef.current = {
+        streak: effectiveStreak,
+        topicsRead: progress.todayTopicsRead || 0,
+        practiceDone: progress.todayTopicsPracticed || 0,
+        readTarget: cfg.readTarget,
+        practiceTarget: cfg.practiceTarget,
+      }
+      setGoalCelebrationOpen(true)
+    }
+    goalMetPrevRef.current = isMet
+  }, [
+    mounted,
+    progress.todayTopicsRead,
+    progress.todayTopicsPracticed,
+    progress.todayDate,
+    progress.dailyGoalTier,
+    progress.goalStreakDays,
+    progress.studyCalendar,
+  ])
+
   // Computed topic states
   const topicStates = useMemo(
     () => computeTopicStates(UPSC_SYLLABUS, progress),
@@ -282,8 +421,281 @@ export function MobileLearningJourney() {
     [topicStates]
   )
 
+  // ── Continue target — single source of truth ──────────────────────────────
+  // Computed once here, then used BOTH for the HomeTab CTA (passed as a
+  // prop) AND for the daily-tip API call (so the mentor's recommendation
+  // always names the exact same topic the button opens).
+  //
+  // Priority order:
+  //   1. Most-recently-practiced started topic (returning user)
+  //   2. First available topic in the user's chosen weak subject
+  //      (welcome state — respects what they picked at onboarding)
+  //   3. First available topic in overall syllabus order (fallback)
+  //   4. null (everything completed)
+  const continueTarget = useMemo(() => {
+    type Entry = { state: NodeState; topic: LearningTopic; subject: LearningSubject }
+    const focusIds = profile?.weakSubjects ?? []
+    const focusSet = new Set(focusIds)
+    const hasFocus = focusSet.size > 0
+
+    const findMostRecentStarted = (filterByFocus: boolean): Entry | null => {
+      let best: Entry | null = null
+      let bestDate = ''
+      for (const sub of UPSC_SYLLABUS) {
+        if (filterByFocus && !focusSet.has(sub.id)) continue
+        for (const u of sub.units) {
+          for (const t of u.topics) {
+            const entry = enrichedTopicStates[t.id]
+            if (!entry || entry.state !== 'started') continue
+            const tp = progress.topics[t.id]
+            const lastPrac = tp?.lastPracticed || ''
+            if (!best || lastPrac > bestDate) {
+              best = entry
+              bestDate = lastPrac
+            }
+          }
+        }
+      }
+      return best
+    }
+
+    // Priority 1: most recent IN-PROGRESS topic that ALSO belongs to one
+    // of the user's currently picked focus subjects. This is the smart
+    // case — if the user changes their focus subjects, the next-step
+    // card jumps to a topic from the new focus set, EVEN IF they had
+    // a different topic in progress before. Without this filter the
+    // CTA gets stuck on whatever the user last touched and never
+    // reflects the focus change the user just made.
+    if (hasFocus) {
+      const inFocus = findMostRecentStarted(true)
+      if (inFocus) return inFocus
+    }
+
+    // Priority 2: first AVAILABLE topic inside the user's focus subjects,
+    // walked in the exact order the user picked them at onboarding /
+    // updated via the Change Focus panel. So their first pick gets the
+    // next-step slot if they haven't started anything in focus yet.
+    if (hasFocus) {
+      for (const focusId of focusIds) {
+        const focusSub = UPSC_SYLLABUS.find(s => s.id === focusId)
+        if (!focusSub) continue
+        for (const u of focusSub.units) {
+          for (const t of u.topics) {
+            const entry = enrichedTopicStates[t.id]
+            if (entry && entry.state === 'available') return entry
+          }
+        }
+      }
+    }
+
+    // Priority 3: most recent in-progress topic ANYWHERE — fallback for
+    // users who've started topics outside their focus subjects. Better
+    // than dropping them on a brand-new available topic.
+    const anyStarted = findMostRecentStarted(false)
+    if (anyStarted) return anyStarted
+
+    // Priority 4: first available in raw syllabus order
+    for (const sub of UPSC_SYLLABUS) {
+      for (const u of sub.units) {
+        for (const t of u.topics) {
+          const entry = enrichedTopicStates[t.id]
+          if (entry && entry.state === 'available') return entry
+        }
+      }
+    }
+    return null
+  }, [enrichedTopicStates, progress.topics, profile])
+
+  // Fetch AI mentor tip — uses enrichedTopicStates to match the "Your Next Step" card exactly
+  useEffect(() => {
+    if (!mounted || activeTab !== 'home') return
+    setDailyTip(null)
+    const abort = new AbortController()
+
+    const completed = Object.values(progress.topics).filter(t => t.state === 'completed').length
+    const started = Object.values(progress.topics).filter(t => t.state === 'started' || t.state === 'completed').length
+    const totalQuestionsAnswered = Object.values(progress.topics).reduce((s, t) => s + (t.questionsAnswered || 0), 0)
+    const total = UPSC_SYLLABUS.reduce((s, sub) => s + sub.units.reduce((s2, u) => s2 + u.topics.length, 0), 0)
+    const h = new Date().getHours()
+    const time = h < 12 ? 'morning' : h < 17 ? 'afternoon' : h < 21 ? 'evening' : 'night'
+    const goalCfg = DAILY_GOALS[progress.dailyGoalTier || 'regular']
+
+    const resolveNames = (ids: string[]) => ids
+      .map(id => UPSC_SYLLABUS.find(s => s.id === id)?.shortTitle)
+      .filter(Boolean).join(', ')
+
+    let weakName = '', weakAcc = ''
+    if (profile?.weakSubjects?.length) {
+      const s = UPSC_SYLLABUS.find(sub => sub.id === profile.weakSubjects[0])
+      if (s) {
+        weakName = s.shortTitle
+        let correct = 0, answered = 0
+        for (const u of s.units) for (const t of u.topics) {
+          const tp = progress.topics[t.id]
+          if (tp) { correct += tp.correctAnswers; answered += tp.questionsAnswered }
+        }
+        if (answered > 0) weakAcc = String(Math.round((correct / answered) * 100))
+      }
+    }
+
+    // SINGLE source of truth: use the parent-computed continueTarget. This
+    // is the EXACT same value passed to HomeTab as a prop, so the mentor's
+    // sentence and the "Your Next Step" CTA can never disagree.
+    const nextTopicName = continueTarget?.topic.title || ''
+    const nextTopicSubject = continueTarget?.subject.shortTitle || ''
+    const ctaLabel = nextTopicName
+      ? (continueTarget?.state === 'started' ? `Continue ${nextTopicName}` : `Start ${nextTopicName}`)
+      : 'Begin'
+
+    let pace = 'just_starting'
+    if (profile?.examYear) {
+      const daysLeft = Math.ceil((new Date(profile.examYear, 4, 25).getTime() - Date.now()) / 86400000)
+      if (daysLeft > 0 && total > 0) {
+        const tpw = Math.ceil(((total - completed) / daysLeft) * 7 * 10) / 10
+        pace = tpw <= 3 ? 'ahead' : tpw <= 6 ? 'on_track' : 'needs_acceleration'
+      }
+    }
+
+    // ── Today's micro-stats (from the study calendar entry for today) ──
+    // Falls back to zero if the user hasn't practiced today yet, which is
+    // a meaningful signal in itself.
+    const todayKey = getLocalDate()
+    const todayCal = (progress.studyCalendar || []).find(d => d.date === todayKey)
+    const todayQa = todayCal?.questionsAnswered || 0
+    const todayCorrect = todayCal?.correctAnswers || 0
+    const todayAcc = todayQa > 0 ? Math.round((todayCorrect / todayQa) * 100) : 0
+
+    // ── Last-7-days momentum ──────────────────────────────────────────
+    // Distinct days the user touched the app and total questions answered
+    // in that window. Drives the "you studied 5 of the last 7 days" signal.
+    let weekDays = 0
+    let weekQa = 0
+    {
+      const cutoffMs = Date.now() - 7 * 86400000
+      for (const d of progress.studyCalendar || []) {
+        const t = new Date(d.date).getTime()
+        if (Number.isFinite(t) && t >= cutoffMs && (d.questionsAnswered || 0) > 0) {
+          weekDays += 1
+          weekQa += d.questionsAnswered || 0
+        }
+      }
+    }
+
+    // ── Next topic specifics (only if the user has touched it before) ──
+    // Lets the server suggest "your last try on X was 55% — re-read first"
+    // or "you're 2 correct from Crown 3 on X". Resolved by topic title
+    // since that's what we already pass to the API.
+    let ntAnswered = 0, ntCorrect = 0, ntAcc = 0, ntCrown = 0, ntToCrown = 0
+    let nextTopicId = ''
+    if (nextTopicName) {
+      // Find the topic by title (we already iterated to pick it above).
+      for (const sub of UPSC_SYLLABUS) {
+        let hit = false
+        for (const u of sub.units) {
+          for (const t of u.topics) {
+            if (t.title === nextTopicName) { nextTopicId = t.id; hit = true; break }
+          }
+          if (hit) break
+        }
+        if (hit) break
+      }
+      if (nextTopicId) {
+        const tp = progress.topics[nextTopicId]
+        if (tp) {
+          ntAnswered = tp.questionsAnswered || 0
+          ntCorrect = tp.correctAnswers || 0
+          ntAcc = ntAnswered > 0 ? Math.round((ntCorrect / ntAnswered) * 100) : 0
+          ntCrown = tp.crownLevel || 0
+          // Crown jumps every QUESTIONS_PER_CROWN correct answers.
+          if (ntCrown < 5) {
+            const need = (ntCrown + 1) * QUESTIONS_PER_CROWN
+            ntToCrown = Math.max(0, need - ntCorrect)
+          }
+        }
+      }
+    }
+
+    // ── Subject accuracy (across the full subject of the next topic) ──
+    // Powers the "your Polity is at 78%" signal. Uses the next topic's
+    // subject so it stays aligned with the action button.
+    let subAnswered = 0, subCorrect = 0, subAcc = 0
+    if (nextTopicSubject) {
+      const sub = UPSC_SYLLABUS.find(s => s.shortTitle === nextTopicSubject)
+      if (sub) {
+        for (const u of sub.units) for (const t of u.topics) {
+          const tp = progress.topics[t.id]
+          if (tp) { subAnswered += tp.questionsAnswered || 0; subCorrect += tp.correctAnswers || 0 }
+        }
+        if (subAnswered > 0) subAcc = Math.round((subCorrect / subAnswered) * 100)
+      }
+    }
+
+    const params = new URLSearchParams({
+      name: profile?.name?.split(' ')[0] || '',
+      done: String(completed),
+      started: String(started),
+      qa: String(totalQuestionsAnswered),
+      total: String(total),
+      ...(profile?.examYear ? { days: String(Math.ceil((new Date(profile.examYear, 4, 25).getTime() - Date.now()) / 86400000)) } : {}),
+      streak: String(progress.streak || 0),
+      pace,
+      weak: weakName,
+      weakAcc,
+      strong: profile?.strongSubjects?.length ? resolveNames(profile.strongSubjects) : '',
+      nextTopic: nextTopicName,
+      nextSubject: nextTopicSubject,
+      cta: ctaLabel,
+      time,
+      stage: profile?.prepStage || '',
+      gr: `${progress.todayTopicsRead || 0}/${goalCfg.readTarget}`,
+      gp: `${progress.todayTopicsPracticed || 0}/${goalCfg.practiceTarget}`,
+      // ── New, precise metrics powering the priority cascade ──
+      todayQa: String(todayQa),
+      todayCorrect: String(todayCorrect),
+      todayAcc: String(todayAcc),
+      weekDays: String(weekDays),
+      weekQa: String(weekQa),
+      ntAnswered: String(ntAnswered),
+      ntCorrect: String(ntCorrect),
+      ntAcc: String(ntAcc),
+      ntCrown: String(ntCrown),
+      ntToCrown: String(ntToCrown),
+      subAnswered: String(subAnswered),
+      subAcc: String(subAcc),
+    })
+    fetch(`/api/journey/daily-tip?${params}`, { signal: abort.signal })
+      .then(r => r.json())
+      .then(d => { if (d.tip) setDailyTip(d.tip) })
+      .catch(() => {})
+    return () => abort.abort()
+  }, [mounted, profile, activeTab, progress, enrichedTopicStates, continueTarget]) // eslint-disable-line react-hooks/exhaustive-deps
+
   // Current hearts
   const hearts = useMemo(() => computeHearts(progress), [progress])
+
+  // ── Restore notes view when returning from map via back button ─────────────
+  useEffect(() => {
+    if (!mounted) return
+    try {
+      const saved = sessionStorage.getItem('upsc-map-return')
+      if (!saved) return
+      sessionStorage.removeItem('upsc-map-return')
+      const { topicId, subjectId } = JSON.parse(saved)
+      // Find the topic and subject in syllabus
+      for (const subject of UPSC_SYLLABUS) {
+        if (subject.id !== subjectId) continue
+        for (const unit of subject.units) {
+          for (const topic of unit.topics) {
+            if (topic.id === topicId) {
+              setDetailTarget({ topic, subject })
+              setActiveTab('path')
+              return
+            }
+          }
+        }
+      }
+    } catch {}
+  }, [mounted])
 
   // ── Free-topic gating ──────────────────────────────────────────────────────
 
@@ -315,6 +727,7 @@ export function MobileLearningJourney() {
   const handleNodeTap = useCallback((topicId: string, topic: LearningTopic, subject: LearningSubject) => {
     // Check free-topic limit
     if (!canOpenTopic(topicId)) {
+      setPendingTopicTarget({ topic, subject, intent: 'detail' })
       setPaywallReason('topics')
       return
     }
@@ -340,6 +753,7 @@ export function MobileLearningJourney() {
 
   const handleStartPractice = useCallback((topicId: string, topic: LearningTopic, subject: LearningSubject) => {
     if (!canOpenTopic(topicId)) {
+      setPendingTopicTarget({ topic, subject, intent: 'practice' })
       setPaywallReason('topics')
       return
     }
@@ -369,42 +783,74 @@ export function MobileLearningJourney() {
     handleStartPractice(detailTarget.topic.id, detailTarget.topic, detailTarget.subject)
   }, [detailTarget, handleStartPractice])
 
-  const handleOpenMap = useCallback(() => {
-    if (detailTarget) {
-      window.location.href = `/map?q=${encodeURIComponent(detailTarget.topic.mapQuery)}`
-    }
+  const handleOpenMap = useCallback((context?: string) => {
+    if (!detailTarget) return
+    // Save state so the back button returns to this exact notes view
+    try {
+      sessionStorage.setItem('upsc-map-return', JSON.stringify({
+        topicId: detailTarget.topic.id,
+        subjectId: detailTarget.subject.id,
+      }))
+    } catch {}
+
+    // If the CTA came from a specific spot in the notes (e.g. a Key
+    // Concept bullet about "Bhakra Nangal Dam on the Sutlej"), build a
+    // focused prompt anchored on THAT exact sentence so the map plots
+    // only the places mentioned there. Otherwise fall back to the
+    // topic's general mapQuery (used by the big "Study on Map" button
+    // at the top of the notes).
+    const trimmed = context?.trim() ?? ''
+    const query = trimmed.length > 0
+      ? `Mark on the map the specific UPSC-relevant places, rivers, dams, sites, landmarks or regions mentioned in this note: "${trimmed}". Context — topic: ${detailTarget.topic.title} (${detailTarget.subject.shortTitle}). Only plot the features mentioned above; do not plot a broad overview.`
+      : detailTarget.topic.mapQuery
+
+    window.location.href = `/map?q=${encodeURIComponent(query)}`
   }, [detailTarget])
-
-  // Quick mix: pick a random practiced topic
-  const handleStartQuickMix = useCallback(() => {
-    const practiced = Object.entries(topicStates)
-      .filter(([, tp]) => tp.state === 'started' || tp.state === 'completed')
-    if (practiced.length === 0) return
-
-    const [topicId] = practiced[Math.floor(Math.random() * practiced.length)]
-    for (const subject of UPSC_SYLLABUS) {
-      for (const unit of subject.units) {
-        for (const topic of unit.topics) {
-          if (topic.id === topicId) {
-            setPracticeTarget({ topic, subject })
-            return
-          }
-        }
-      }
-    }
-  }, [topicStates])
 
   // Handle practice complete
   const handlePracticeComplete = useCallback((result: {
     correct: number
     total: number
     newCrownLevel: CrownLevel
+    keepOpen?: boolean
+    seenIds?: number[]
+    newWrongIds?: number[]
+    resolvedWrongIds?: number[]
   }) => {
     if (!practiceTarget) return
     const { topic } = practiceTarget
     const today = new Date().toISOString()
     const todayDate = getLocalDate()
     const isPerfect = result.correct === result.total && result.total > 0
+
+    // ── Topic-completion check (drives the celebration overlay) ──────────
+    // We arm `justCompletedTopicRef` ONLY on the round that pushes the
+    // user's per-topic seen-IDs count from "below the DB pool" up to
+    // "covers the entire DB pool". Any further rounds on a topic that's
+    // already complete won't re-fire the celebration.
+    //
+    // Computed BEFORE setProgress so we have a synchronous answer ready
+    // for the score-screen CTA's deferred handleNextTopic call. We read
+    // `progress` and `pyqCounts` from closure — both are snapshots from
+    // the last render and are correct because this is the first commit
+    // for the round in flight.
+    //
+    // Intermediate rounds (Try Again with New / Practice More — flagged
+    // with keepOpen) never fire celebration even if they incidentally
+    // hit the threshold; the user is still mid-session, the celebration
+    // belongs to the moment they navigate away.
+    {
+      const existingForCheck = progress.topics[topic.id] || DEFAULT_TOPIC_PROGRESS
+      const prevSeen = existingForCheck.seenQuestionIds || []
+      const incomingSeen = (result.seenIds || []).filter(n => Number.isFinite(n) && n > 0)
+      const known = new Set(prevSeen)
+      const additions = incomingSeen.filter(id => !known.has(id))
+      const dbCount = pyqCounts[topic.id] || 0
+      const wasComplete = dbCount > 0 && prevSeen.length >= dbCount
+      const willBeComplete = dbCount > 0 && (prevSeen.length + additions.length) >= dbCount
+      const justCompleted = !wasComplete && willBeComplete && !result.keepOpen
+      justCompletedTopicRef.current = justCompleted ? topic.id : null
+    }
 
     setProgress(prev => {
       const existing = prev.topics[topic.id] || DEFAULT_TOPIC_PROGRESS
@@ -467,6 +913,38 @@ export function MobileLearningJourney() {
 
       const newPerfects = (prev.perfectScores || 0) + (isPerfect ? 1 : 0)
 
+      // Merge incoming seen-question IDs with the topic's existing
+      // persisted set, dedupe, and cap to MAX_SEEN_IDS_PER_TOPIC. We append
+      // to the END so the cap acts as an LRU (oldest IDs roll off first).
+      const incomingSeen = (result.seenIds || []).filter(n => Number.isFinite(n) && n > 0)
+      const prevSeen = existing.seenQuestionIds || []
+      let mergedSeen = prevSeen
+      if (incomingSeen.length > 0) {
+        const known = new Set(prevSeen)
+        const additions = incomingSeen.filter(id => !known.has(id))
+        if (additions.length > 0) {
+          mergedSeen = [...prevSeen, ...additions]
+          if (mergedSeen.length > MAX_SEEN_IDS_PER_TOPIC) {
+            mergedSeen = mergedSeen.slice(mergedSeen.length - MAX_SEEN_IDS_PER_TOPIC)
+          }
+        }
+      }
+
+      // Merge wrong-question IDs: add new ones, remove resolved ones.
+      const incomingNewWrong = (result.newWrongIds || []).filter(n => Number.isFinite(n) && n > 0)
+      const incomingResolved = (result.resolvedWrongIds || []).filter(n => Number.isFinite(n) && n > 0)
+      const prevWrong = existing.wrongQuestionIds || []
+      let mergedWrong = prevWrong
+      if (incomingNewWrong.length > 0 || incomingResolved.length > 0) {
+        const wrongSet = new Set(prevWrong)
+        for (const id of incomingNewWrong) wrongSet.add(id)
+        for (const id of incomingResolved) wrongSet.delete(id)
+        mergedWrong = Array.from(wrongSet)
+        if (mergedWrong.length > MAX_SEEN_IDS_PER_TOPIC) {
+          mergedWrong = mergedWrong.slice(mergedWrong.length - MAX_SEEN_IDS_PER_TOPIC)
+        }
+      }
+
       const updated: JourneyProgress = {
         ...prev,
         topics: {
@@ -478,6 +956,8 @@ export function MobileLearningJourney() {
             questionsAnswered: newAnswered,
             correctAnswers: newCorrect,
             lastPracticed: today,
+            seenQuestionIds: mergedSeen,
+            wrongQuestionIds: mergedWrong,
           },
         },
         totalXp: prev.totalXp,
@@ -507,8 +987,10 @@ export function MobileLearningJourney() {
       return updated
     })
 
-    setPracticeTarget(null)
-  }, [practiceTarget])
+    if (!result.keepOpen) {
+      setPracticeTarget(null)
+    }
+  }, [practiceTarget, progress, pyqCounts])
 
   // Find next sequential topic in syllabus (regardless of state — it will unlock after completion)
   const findNextTopic = useCallback((currentTopicId: string | undefined): { topic: LearningTopic; subject: LearningSubject } | null => {
@@ -527,20 +1009,49 @@ export function MobileLearningJourney() {
     return null
   }, [])
 
-  // Find and open next available topic after practice — with celebration overlay
+  // Find and open the next topic after practice.
+  //
+  // Two distinct outcomes:
+  //
+  //   A. Topic-complete celebration overlay
+  //      Fires only when the user just finished the LAST available
+  //      question for the current topic this round (the
+  //      `justCompletedTopicRef` was armed by handlePracticeComplete).
+  //      The overlay congratulates them and then routes them into the
+  //      next topic's notes via handleCelebrationDismiss.
+  //
+  //   B. Direct navigation to the next topic's notes
+  //      Default for every other call. Closes the practice sheet, marks
+  //      the next topic as 'started' (so it shows up in today's read
+  //      count), and immediately opens its TopicDetailSheet — which is
+  //      "the note" the CTA label refers to. No animation, no path-tab
+  //      detour, no glow. The user picked "Continue to <next>"; we just
+  //      take them there.
   const handleNextTopic = useCallback(() => {
     const completedTitle = practiceTarget?.topic.title || 'Topic'
     const currentTopicId = practiceTarget?.topic.id
     const subjectColor = practiceTarget?.subject.color || '#6366f1'
 
-    // Close practice sheet
+    // Read + clear the completion flag synchronously. One-shot: even if
+    // the user re-enters and finishes another round on the same topic
+    // later (a no-op for completion), we won't fire the overlay twice.
+    const isFullyCompleted =
+      !!currentTopicId && justCompletedTopicRef.current === currentTopicId
+    justCompletedTopicRef.current = null
+
+    // Close the practice sheet first — both branches need it gone.
     setPracticeTarget(null)
 
-    // Find next topic
     const next = findNextTopic(currentTopicId)
 
-    if (next) {
-      // Show celebration overlay
+    // No next topic at all (end of syllabus) — bounce back to the path.
+    if (!next) {
+      setActiveTab('path')
+      return
+    }
+
+    if (isFullyCompleted) {
+      // ── Branch A: celebration overlay ────────────────────────────────
       setCelebrationData({
         completedTopicTitle: completedTitle,
         nextTopicTitle: next.topic.title,
@@ -549,12 +1060,33 @@ export function MobileLearningJourney() {
         nextTopic: next.topic,
         nextSubject: next.subject,
       })
-      // Set newly unlocked for path animation
       setNewlyUnlockedId(next.topic.id)
-    } else {
-      // No next topic — just go to path
-      setActiveTab('path')
+      return
     }
+
+    // ── Branch B: direct navigation to the next topic's notes ───────
+    // Mark the next topic as 'started' if it isn't already, so today's
+    // read counter ticks up the same way it would if the user opened
+    // the topic from the syllabus path. Functional update so we read
+    // the latest progress at commit time, not the closure snapshot.
+    setProgress(prev => {
+      const existing = prev.topics[next.topic.id]
+      const alreadyOpened = existing && (existing.state === 'started' || existing.state === 'completed')
+      if (alreadyOpened) return prev
+      return {
+        ...prev,
+        topics: {
+          ...prev.topics,
+          [next.topic.id]: {
+            ...(existing || DEFAULT_TOPIC_PROGRESS),
+            state: 'started' as const,
+          },
+        },
+        todayTopicsRead: (prev.todayTopicsRead || 0) + 1,
+      }
+    })
+    // Open the next topic's notes — exactly what the CTA label promises.
+    setDetailTarget({ topic: next.topic, subject: next.subject })
   }, [practiceTarget, findNextTopic])
 
   // Handle celebration overlay dismiss → transition to next topic
@@ -598,18 +1130,89 @@ export function MobileLearningJourney() {
   }, [celebrationData])
 
   const handleHeartLost = useCallback(() => {
-    setProgress(prev => ({
-      ...prev,
-      hearts: Math.max(0, prev.hearts - 1),
-      heartsLastRefill: prev.hearts >= MAX_HEARTS ? new Date().toISOString() : (prev.heartsLastRefill || new Date().toISOString()),
-    }))
+    setProgress(prev => {
+      // Pro users have unlimited hearts — never decrement.
+      if (prev.isPro) return prev
+      return {
+        ...prev,
+        hearts: Math.max(0, prev.hearts - 1),
+        heartsLastRefill: prev.hearts >= MAX_HEARTS ? new Date().toISOString() : (prev.heartsLastRefill || new Date().toISOString()),
+      }
+    })
+  }, [])
+
+  // Called by PracticeSheet when the user taps "Restart All Questions" on
+  // the topic-complete celebration. Wipes seenQuestionIds for that topic so
+  // the entire DB pool becomes available again.
+  const handleResetTopicSeenIds = useCallback((topicId: string) => {
+    setProgress(prev => {
+      const existing = prev.topics[topicId]
+      if (!existing) return prev
+      return {
+        ...prev,
+        topics: {
+          ...prev.topics,
+          [topicId]: { ...existing, seenQuestionIds: [] },
+        },
+      }
+    })
   }, [])
 
   const handleUpgradePro = useCallback(() => {
-    setPaywallReason(null)
-    // For now, just toggle Pro on (no real payment integration yet)
+    // Activate Pro immediately. The ProPaywall component shows its own
+    // success state and self-dismisses after ~1.6s, so we do NOT clear
+    // paywallReason here. We mark didUpgradeInPaywall so handlePaywallDismiss
+    // can decide whether to auto-resume the screen the user was on.
     setProgress(prev => ({ ...prev, isPro: true, hearts: MAX_HEARTS }))
+    setDidUpgradeInPaywall(true)
   }, [])
+
+  // Called when the ProPaywall fully dismisses (either after a successful
+  // upgrade or after the user tapped "Maybe Later" / dragged it away). If the
+  // user upgraded, we put them right back into whatever they were trying to
+  // do — opening the blocked topic, or letting them keep practicing.
+  const handlePaywallDismiss = useCallback(() => {
+    const reason = paywallReason
+    const pending = pendingTopicTarget
+    const upgraded = didUpgradeInPaywall
+
+    setPaywallReason(null)
+    setPendingTopicTarget(null)
+    setDidUpgradeInPaywall(false)
+
+    if (!upgraded) return
+
+    if (reason === 'topics' && pending) {
+      // Mark the topic as started (it was blocked before, so it's certainly
+      // not in `started`/`completed`) and open the appropriate sheet.
+      setProgress(prev => {
+        const existing = prev.topics[pending.topic.id]
+        const alreadyOpened = existing && (existing.state === 'started' || existing.state === 'completed')
+        if (alreadyOpened) return prev
+        return {
+          ...prev,
+          topics: {
+            ...prev.topics,
+            [pending.topic.id]: {
+              ...(existing || DEFAULT_TOPIC_PROGRESS),
+              state: 'started' as const,
+            },
+          },
+          todayTopicsRead: (prev.todayTopicsRead || 0) + 1,
+        }
+      })
+
+      if (pending.intent === 'practice') {
+        setDetailTarget(null)
+        setPracticeTarget({ topic: pending.topic, subject: pending.subject })
+      } else {
+        setDetailTarget({ topic: pending.topic, subject: pending.subject })
+      }
+    }
+    // For reason === 'hearts': the PracticeSheet was already mounted behind
+    // the paywall and stays mounted. Its internal `isPro`/`hearts` sync
+    // effect will lift the No-Hearts screen automatically.
+  }, [paywallReason, pendingTopicTarget, didUpgradeInPaywall])
 
   const handleTabChange = useCallback((tab: TabId) => {
     // Don't switch tabs while overlays are open
@@ -630,6 +1233,7 @@ export function MobileLearningJourney() {
     setProgress(prev => ({ ...prev, dailyGoalTier: userProfile.dailyGoalTier }))
     try { localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(userProfile)) } catch {}
     setShowOnboarding(false)
+    setActiveTab('home')
   }, [])
 
   const handleProfileUpdate = useCallback((updatedProfile: UserProfile) => {
@@ -741,76 +1345,59 @@ export function MobileLearningJourney() {
 
             <div style={{ flex: 1 }} />
 
-            {/* Daily Goal Ring */}
+            {/* Profile */}
             <button
-              onClick={() => setGoalModalOpen(true)}
+              onClick={() => handleTabChange(activeTab === 'profile' ? 'home' : 'profile')}
               style={{
-                width: 28, height: 28, position: 'relative',
-                background: 'none', border: 'none', cursor: 'pointer', padding: 0,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-              }}
-            >
-              {(() => {
-                const goalCfg = DAILY_GOALS[progress.dailyGoalTier]
-                const readPct = goalCfg.readTarget > 0 ? Math.min(100, ((progress.todayTopicsRead || 0) / goalCfg.readTarget) * 100) : 100
-                const practicePct = goalCfg.practiceTarget > 0 ? Math.min(100, ((progress.todayTopicsPracticed || 0) / goalCfg.practiceTarget) * 100) : 100
-                const pct = Math.round((readPct + practicePct) / 2)
-                const goalMet = readPct >= 100 && practicePct >= 100
-                const r = 11, circ = 2 * Math.PI * r
-                return (
-                  <>
-                    <svg width="28" height="28" viewBox="0 0 28 28" style={{ position: 'absolute', inset: 0 }}>
-                      <circle cx="14" cy="14" r={r} fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="2.5" />
-                      <circle cx="14" cy="14" r={r} fill="none"
-                        stroke={goalMet ? '#34d399' : `hsl(${240 + (pct / 100) * 120}, 80%, 65%)`}
-                        strokeWidth="2.5" strokeLinecap="round"
-                        strokeDasharray={circ} strokeDashoffset={circ - (circ * pct) / 100}
-                        style={{ transform: 'rotate(-90deg)', transformOrigin: 'center', transition: 'stroke-dashoffset 500ms ease-out' }}
-                      />
-                    </svg>
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" style={{ position: 'relative' }}>
-                      {goalMet
-                        ? <path d="M5 13l4 4L19 7" stroke="#34d399" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-                        : <path d="M13 2L4 14h7l-2 8 9-12h-7l2-8z" fill="#FBBF24" />}
-                    </svg>
-                  </>
-                )
-              })()}
-            </button>
-
-            {/* Map link */}
-            <a
-              href="/map"
-              style={{
-                width: 32, height: 32, borderRadius: 10,
+                width: 32, height: 32, borderRadius: '50%',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 flexShrink: 0,
-                background: 'rgba(99,102,241,0.15)',
-                border: '1px solid rgba(99,102,241,0.3)',
+                background: activeTab === 'profile'
+                  ? 'rgba(99,102,241,0.25)'
+                  : 'rgba(255,255,255,0.06)',
+                border: activeTab === 'profile'
+                  ? '1.5px solid rgba(99,102,241,0.5)'
+                  : '1.5px solid rgba(255,255,255,0.10)',
+                cursor: 'pointer',
+                transition: 'all 200ms ease',
+                padding: 0,
+                WebkitTapHighlightColor: 'transparent',
               }}
             >
-              <svg width="14" height="14" viewBox="0 0 15 15" fill="none" stroke="#a5b4fc" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M1 3.5l4-2 5 2 4-2V12L10 14 5 12 1 14V3.5z" />
-              </svg>
-            </a>
+              {profile?.name ? (
+                <span style={{
+                  fontSize: 13, fontWeight: 700, lineHeight: 1,
+                  color: activeTab === 'profile' ? '#a5b4fc' : 'rgba(255,255,255,0.6)',
+                }}>
+                  {profile.name.charAt(0).toUpperCase()}
+                </span>
+              ) : (
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke={activeTab === 'profile' ? '#a5b4fc' : 'rgba(255,255,255,0.5)'}
+                  strokeWidth="2" strokeLinecap="round"
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+              )}
+            </button>
           </div>
 
           {/* Row 2: Segmented tab control */}
           <div style={{
-            height: 38,
-            background: 'rgba(10,10,20,0.65)',
-            backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)',
-            border: '1px solid rgba(255,255,255,0.06)',
-            borderRadius: 12,
+            height: 44,
+            background: 'rgba(8,8,18,0.80)',
+            backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)',
+            border: '1px solid rgba(255,255,255,0.08)',
+            borderRadius: 14,
             display: 'flex', alignItems: 'center',
-            padding: 3,
-            gap: 2,
+            padding: 4,
+            gap: 4,
           }}>
             {([
-              { id: 'home' as TabId, label: 'Home', icon: '🏠' },
-              { id: 'path' as TabId, label: 'Path', icon: '📍' },
-              { id: 'practice' as TabId, label: 'Practice', icon: '⚡' },
-              { id: 'profile' as TabId, label: 'You', icon: '👤' },
+              { id: 'home' as TabId, label: 'Today', icon: '📋' },
+              // { id: 'live' as TabId, label: 'Live', icon: '📰' }, // disabled — see import comment above
+              { id: 'path' as TabId, label: 'Syllabus', icon: '📍' },
             ]).map(tab => {
               const isActive = activeTab === tab.id
               return (
@@ -819,22 +1406,25 @@ export function MobileLearningJourney() {
                   onClick={() => handleTabChange(tab.id)}
                   style={{
                     flex: 1,
-                    height: 32,
-                    borderRadius: 9,
-                    border: 'none',
+                    height: 36,
+                    borderRadius: 10,
+                    border: isActive ? '1px solid rgba(99,102,241,0.35)' : '1px solid transparent',
                     cursor: 'pointer',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4,
-                    fontSize: 11, fontWeight: 600,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
+                    fontSize: 13, fontWeight: isActive ? 700 : 600,
                     background: isActive
-                      ? 'rgba(99,102,241,0.2)'
+                      ? 'linear-gradient(135deg, rgba(99,102,241,0.22), rgba(139,92,246,0.14))'
                       : 'transparent',
-                    color: isActive ? '#a5b4fc' : 'rgba(255,255,255,0.35)',
-                    transition: 'all 200ms ease',
+                    color: isActive ? '#c7d2fe' : 'rgba(255,255,255,0.40)',
+                    transition: 'all 250ms cubic-bezier(0.22,1,0.36,1)',
                     WebkitTapHighlightColor: 'transparent',
-                    boxShadow: isActive ? '0 0 12px rgba(99,102,241,0.15)' : 'none',
+                    boxShadow: isActive
+                      ? '0 2px 12px rgba(99,102,241,0.20), inset 0 1px 0 rgba(255,255,255,0.06)'
+                      : 'none',
+                    letterSpacing: isActive ? '0.01em' : '0',
                   }}
                 >
-                  <span style={{ fontSize: 12, lineHeight: 1 }}>{tab.icon}</span>
+                  <span style={{ fontSize: 14, lineHeight: 1 }}>{tab.icon}</span>
                   {tab.label}
                 </button>
               )
@@ -845,7 +1435,7 @@ export function MobileLearningJourney() {
 
       {/* Main Content Area */}
       <div style={{
-        marginTop: 'calc(env(safe-area-inset-top, 0px) + 96px)',
+        marginTop: 'calc(env(safe-area-inset-top, 0px) + 110px)',
         flex: 1,
         minHeight: 0,
         display: 'flex',
@@ -853,19 +1443,38 @@ export function MobileLearningJourney() {
         overflow: 'hidden',
         position: 'relative',
         zIndex: 1,
+        opacity: tabTransition ? 0 : 1,
+        transform: tabTransition ? 'scale(0.97) translateY(8px)' : 'scale(1) translateY(0)',
+        transition: 'opacity 300ms ease, transform 300ms ease',
       }}>
         {activeTab === 'home' && (
-          <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}>
+          <div data-home-scroll="1" style={{ flex: 1, minHeight: 0, overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}>
             <HomeTab
               progress={progress}
               subjects={UPSC_SYLLABUS}
               topicStates={enrichedTopicStates}
               onTopicTap={handleNodeTap}
-              onNavigateToPath={() => setActiveTab('path')}
+              onNavigateToPath={(focusSubjectId) => {
+                setTabTransition(true)
+                setTimeout(() => {
+                  if (focusSubjectId) setActiveSubjectId(focusSubjectId)
+                  setActiveTab('path')
+                  setTimeout(() => setTabTransition(false), 50)
+                }, 300)
+              }}
               profile={profile}
+              dailyTip={dailyTip}
+              continueTarget={continueTarget}
+              onChangeGoal={() => setGoalModalOpen(true)}
+              onProfileUpdate={handleProfileUpdate}
             />
           </div>
         )}
+
+        {/* Live tab disabled — re-enable by uncommenting the import,
+            tab-bar entry, and this render branch:
+            {activeTab === 'live' && <LiveTab />}
+        */}
 
         {activeTab === 'path' && (
           <div style={{ flex: 1, minHeight: 0 }}>
@@ -881,20 +1490,6 @@ export function MobileLearningJourney() {
               isPro={progress.isPro}
               freeTopicIds={progress.freeTopicsOpened}
               pyqCounts={pyqCounts}
-            />
-          </div>
-        )}
-
-        {activeTab === 'practice' && (
-          <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}>
-            <PracticeTab
-              progress={progress}
-              subjects={UPSC_SYLLABUS}
-              topicStates={enrichedTopicStates}
-              onTopicSelect={handleNodeTap}
-              onStartQuickMix={handleStartQuickMix}
-              onNavigateToPath={() => setActiveTab('path')}
-              profile={profile}
             />
           </div>
         )}
@@ -919,6 +1514,7 @@ export function MobileLearningJourney() {
           topic={detailTarget.topic}
           subject={detailTarget.subject}
           progress={topicStates[detailTarget.topic.id] || DEFAULT_TOPIC_PROGRESS}
+          dbQuestionCount={pyqCounts[detailTarget.topic.id] || 0}
           onClose={() => setDetailTarget(null)}
           onStartPractice={handleDetailStartPractice}
           onOpenMap={handleOpenMap}
@@ -933,12 +1529,32 @@ export function MobileLearningJourney() {
           subject={practiceTarget.subject}
           progress={topicStates[practiceTarget.topic.id] || DEFAULT_TOPIC_PROGRESS}
           hearts={hearts}
+          isPro={progress.isPro}
+          seenQuestionIds={topicStates[practiceTarget.topic.id]?.seenQuestionIds || []}
+          wrongQuestionIds={topicStates[practiceTarget.topic.id]?.wrongQuestionIds || []}
+          topicDbCount={pyqCounts[practiceTarget.topic.id] || 0}
+          onResetSeenIds={handleResetTopicSeenIds}
           onClose={() => setPracticeTarget(null)}
           onComplete={handlePracticeComplete}
           onHeartLost={handleHeartLost}
           onNextTopic={handleNextTopic}
           nextTopicName={findNextTopic(practiceTarget.topic.id)?.topic.title}
-          onUpgradePro={() => setPaywallReason('hearts')}
+          onUpgradePro={() => {
+            // Remember which topic the user was practicing so we don't lose
+            // their place when the paywall closes.
+            setPendingTopicTarget({
+              topic: practiceTarget.topic,
+              subject: practiceTarget.subject,
+              intent: 'practice',
+            })
+            setPaywallReason('hearts')
+          }}
+          onReviseNotes={() => {
+            // Close practice and open topic notes for the same topic
+            const t = practiceTarget
+            setPracticeTarget(null)
+            setTimeout(() => setDetailTarget({ topic: t.topic, subject: t.subject }), 200)
+          }}
         />
       )}
 
@@ -974,8 +1590,22 @@ export function MobileLearningJourney() {
       {paywallReason && (
         <ProPaywall
           reason={paywallReason}
-          onDismiss={() => setPaywallReason(null)}
+          onDismiss={handlePaywallDismiss}
           onUpgrade={handleUpgradePro}
+        />
+      )}
+
+      {/* Daily-goal completion celebration — fires once per day on the
+          rising edge from "goal not met" to "goal met". */}
+      {goalCelebrationOpen && goalCelebrationSnapshotRef.current && (
+        <DailyGoalCelebration
+          streakDays={goalCelebrationSnapshotRef.current.streak}
+          topicsRead={goalCelebrationSnapshotRef.current.topicsRead}
+          practiceDone={goalCelebrationSnapshotRef.current.practiceDone}
+          readTarget={goalCelebrationSnapshotRef.current.readTarget}
+          practiceTarget={goalCelebrationSnapshotRef.current.practiceTarget}
+          firstName={profile?.name?.split(' ')[0] || null}
+          onDismiss={() => setGoalCelebrationOpen(false)}
         />
       )}
 

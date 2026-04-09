@@ -20,6 +20,7 @@ const FEATURES = [
 export default function ProPaywall({ reason, onDismiss, onUpgrade }: ProPaywallProps) {
   const [visible, setVisible] = useState(false)
   const [dismissing, setDismissing] = useState(false)
+  const [activated, setActivated] = useState(false)
 
   // Drag-to-dismiss refs
   const dragStartY = useRef(0)
@@ -29,6 +30,25 @@ export default function ProPaywall({ reason, onDismiss, onUpgrade }: ProPaywallP
 
   // Stagger features in
   const [visibleFeatures, setVisibleFeatures] = useState(0)
+
+  // Activation handler — show success state, then run parent upgrade
+  const handleActivate = useCallback(() => {
+    if (activated) return
+    setActivated(true)
+    // Run parent state update immediately so isPro flips, but keep the modal
+    // visible for ~1.6s to show the success confirmation.
+    onUpgrade()
+  }, [activated, onUpgrade])
+
+  // Auto-dismiss success state after a beat
+  useEffect(() => {
+    if (!activated) return
+    const t = setTimeout(() => {
+      setDismissing(true)
+      setTimeout(onDismiss, 350)
+    }, 1700)
+    return () => clearTimeout(t)
+  }, [activated, onDismiss])
 
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 20)
@@ -174,7 +194,90 @@ export default function ProPaywall({ reason, onDismiss, onUpgrade }: ProPaywallP
           />
         </div>
 
-        {/* Content */}
+        {/* ── Success state — shown after user taps Start Free Trial ─────── */}
+        {activated && (
+          <div
+            style={{
+              padding: '40px 28px 56px',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              textAlign: 'center',
+              animation: 'pw-trialBadgePop 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+            }}
+          >
+            {/* Animated success ring */}
+            <div
+              style={{
+                position: 'relative',
+                width: 96, height: 96, marginBottom: 24,
+              }}
+            >
+              {/* Glow halo */}
+              <div
+                style={{
+                  position: 'absolute', inset: -20, borderRadius: '50%',
+                  background: 'radial-gradient(circle, rgba(34,197,94,0.35), transparent 70%)',
+                  filter: 'blur(20px)',
+                  animation: 'pw-badgePulse 2s ease-in-out infinite',
+                }}
+              />
+              {/* Solid green disc */}
+              <div
+                style={{
+                  position: 'absolute', inset: 0, borderRadius: '50%',
+                  background: 'linear-gradient(135deg, #22c55e, #16a34a)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  boxShadow: '0 12px 40px rgba(34,197,94,0.45)',
+                }}
+              >
+                <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12l5 5L20 7" style={{ animation: 'ps-checkmark 0.5s ease 0.15s both' }} />
+                </svg>
+              </div>
+            </div>
+
+            <div
+              style={{
+                fontSize: 22, fontWeight: 800, color: '#fff',
+                letterSpacing: '-0.02em', marginBottom: 6,
+              }}
+            >
+              PadhAI Pro is Active
+            </div>
+            <div
+              style={{
+                fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.5,
+                maxWidth: 260,
+              }}
+            >
+              Your 7-day free trial has started. All topics and unlimited hearts are unlocked.
+            </div>
+
+            {/* Tiny chips for what just unlocked */}
+            <div style={{ display: 'flex', gap: 8, marginTop: 18, flexWrap: 'wrap', justifyContent: 'center' }}>
+              {['280+ topics', 'Unlimited hearts', 'AI explanations'].map((label, i) => (
+                <div
+                  key={i}
+                  style={{
+                    fontSize: 11, fontWeight: 700, padding: '6px 11px', borderRadius: 12,
+                    background: 'rgba(34,197,94,0.12)',
+                    border: '1px solid rgba(34,197,94,0.30)',
+                    color: '#86efac',
+                    letterSpacing: '0.02em',
+                    opacity: 0,
+                    animation: `pw-featureIn 0.4s ease ${0.3 + i * 0.1}s forwards`,
+                  }}
+                >
+                  {label}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Content — hidden during success state */}
+        {!activated && (
         <div style={{ padding: '8px 24px 24px' }}>
           {/* Pro badge */}
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
@@ -317,7 +420,12 @@ export default function ProPaywall({ reason, onDismiss, onUpgrade }: ProPaywallP
 
           {/* CTA Button */}
           <button
-            onClick={onUpgrade}
+            type="button"
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              handleActivate()
+            }}
             style={{
               width: '100%',
               height: 56,
@@ -332,9 +440,11 @@ export default function ProPaywall({ reason, onDismiss, onUpgrade }: ProPaywallP
               position: 'relative',
               overflow: 'hidden',
               marginBottom: 12,
+              WebkitTapHighlightColor: 'transparent',
             }}
           >
-            {/* Shimmer overlay */}
+            {/* Shimmer overlay — must NOT intercept taps, otherwise the button
+                becomes unclickable on iOS Safari. */}
             <div
               style={{
                 position: 'absolute',
@@ -343,13 +453,15 @@ export default function ProPaywall({ reason, onDismiss, onUpgrade }: ProPaywallP
                   'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%)',
                 backgroundSize: '200% 100%',
                 animation: 'pw-shimmer 2.5s linear infinite',
+                pointerEvents: 'none',
               }}
             />
-            <span style={{ position: 'relative', zIndex: 1 }}>Start Free Trial</span>
+            <span style={{ position: 'relative', zIndex: 1, pointerEvents: 'none' }}>Start Free Trial</span>
           </button>
 
           {/* Maybe Later */}
           <button
+            type="button"
             onClick={handleDismiss}
             style={{
               width: '100%',
@@ -360,11 +472,13 @@ export default function ProPaywall({ reason, onDismiss, onUpgrade }: ProPaywallP
               cursor: 'pointer',
               padding: '10px 0',
               fontWeight: 500,
+              WebkitTapHighlightColor: 'transparent',
             }}
           >
             Maybe Later
           </button>
         </div>
+        )}
       </div>
     </>
   )

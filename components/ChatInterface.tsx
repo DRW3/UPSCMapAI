@@ -823,8 +823,20 @@ function ChatInterfaceInner() {
     <>
       {/* ── Back button — always visible, above everything ────────────────── */}
       <button
-        onClick={() => router.push('/')}
-        aria-label="Back to home"
+        onClick={() => {
+          // If the user came here from a "Visualize on Map" CTA inside a
+          // journey topic's notes, MobileLearningJourney has stashed the
+          // origin topic in sessionStorage under 'upsc-map-return'. Send
+          // them back to /journey so the restore effect there can re-open
+          // the exact notes view they were reading. Otherwise the user
+          // arrived at /map directly and should land on the home page.
+          let returnTo = '/'
+          try {
+            if (sessionStorage.getItem('upsc-map-return')) returnTo = '/journey'
+          } catch {}
+          router.push(returnTo)
+        }}
+        aria-label="Back"
         style={{
           ...backBtnStyle,
           position: 'fixed',

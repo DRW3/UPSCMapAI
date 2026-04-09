@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import { UPSC_SYLLABUS, TOTAL_TOPICS } from '@/data/syllabus'
+import { UPSC_SYLLABUS } from '@/data/syllabus'
 import type { LearningSubject } from '@/data/syllabus'
 import {
   type JourneyProgress,
@@ -40,7 +40,6 @@ const ELEVATED = { ...ELEVATED_STYLE } as const
 // ── Component ───────────────────────────────────────────────────────────────────
 
 export default function ProfileTab({ progress, subjects, onDailyGoalClick, profile, onProfileUpdate, onResetJourney }: ProfileTabProps) {
-  const [showAllAchievements, setShowAllAchievements] = useState(false)
   const [editMode, setEditMode] = useState(false)
   const [editName, setEditName] = useState(profile?.name || '')
   const [editExamYear, setEditExamYear] = useState<number>(profile?.examYear || 2026)
@@ -48,6 +47,17 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick, profi
   const [editWeakSubjects, setEditWeakSubjects] = useState<string[]>(profile?.weakSubjects || [])
   const [editStrongSubjects, setEditStrongSubjects] = useState<string[]>(profile?.strongSubjects || [])
   const [showResetConfirm, setShowResetConfirm] = useState(false)
+
+  // ── Inline edit modes for the Focus Areas / Strengths cards in SECTION 4
+  // Each card has its own edit toggle so the user can change focus or
+  // strengths in-place without going through the Settings → Edit Profile flow.
+  const [editingFocusInline, setEditingFocusInline] = useState(false)
+  const [editingStrengthsInline, setEditingStrengthsInline] = useState(false)
+  const [draftWeakSubjects, setDraftWeakSubjects] = useState<string[]>(profile?.weakSubjects || [])
+  const [draftStrongSubjects, setDraftStrongSubjects] = useState<string[]>(profile?.strongSubjects || [])
+
+  // ── Achievement detail modal
+  const [selectedAchievementId, setSelectedAchievementId] = useState<string | null>(null)
 
   const syllabus = subjects.length > 0 ? subjects : UPSC_SYLLABUS
 
@@ -63,32 +73,6 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick, profi
 
   const level = getLevel(stats.totalAnswered)
   const questionsInLevel = getQuestionsInLevel(stats.totalAnswered)
-
-  // Subject progress
-  const subjectProgress = useMemo(() => {
-    return syllabus.map(subject => {
-      const allTopics = subject.units.flatMap(u => u.topics)
-      const completed = allTopics.filter(t => (progress.topics[t.id] || DEFAULT_TOPIC_PROGRESS).state === 'completed').length
-      return {
-        id: subject.id, title: subject.shortTitle, icon: subject.icon, color: subject.color,
-        total: allTopics.length, completed,
-        pct: allTopics.length > 0 ? Math.round((completed / allTopics.length) * 100) : 0,
-      }
-    })
-  }, [syllabus, progress.topics])
-
-  // Study heatmap (last 30 days)
-  const calendarDays = useMemo(() => {
-    const days: Array<{ date: string; questions: number }> = []
-    const calMap = new Map(progress.studyCalendar?.map(d => [d.date, d]) || [])
-    for (let i = 29; i >= 0; i--) {
-      const d = new Date(Date.now() - i * 86400000)
-      const dateStr = getLocalDate(d)
-      const entry = calMap.get(dateStr)
-      days.push({ date: dateStr, questions: entry?.questionsAnswered || 0 })
-    }
-    return days
-  }, [progress.studyCalendar])
 
   // Journey Timeline
   const journeyTimeline = useMemo(() => {
@@ -166,17 +150,11 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick, profi
     return { score, color, statusMsg }
   }, [progress.topics, syllabus])
 
-  // Achievements
+  // Achievements — always show all, no slicing or "View All" toggle.
   const unlockedIds = new Set(progress.achievements?.map(a => a.id) || [])
-  const displayAchievements = showAllAchievements ? ACHIEVEMENTS : ACHIEVEMENTS.slice(0, 8)
-
-  const heatColors = [
-    'rgba(255,255,255,0.03)',
-    'rgba(99,102,241,0.15)',
-    'rgba(99,102,241,0.30)',
-    'rgba(99,102,241,0.50)',
-    'rgba(99,102,241,0.75)',
-  ]
+  const unlockedAtMap = new Map(
+    (progress.achievements || []).map(a => [a.id, a.unlockedAt] as const),
+  )
 
   return (
     <div style={{ padding: '16px 16px 100px', display: 'flex', flexDirection: 'column', gap: 20 }}>
@@ -352,16 +330,157 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick, profi
         </p>
       </div>
 
-      {/* ── SECTION 4: Your Focus ── */}
-      {profile && (profile.weakSubjects.length > 0 || profile.strongSubjects.length > 0) && (() => {
+      {/* ── SECTION 4: Your Focus & Strengths ──
+          Each subsection (Focus Areas / Strengths) has its own inline Edit
+          button so the user can change them in-place without going through
+          a separate Edit Profile flow. Always rendered (even when empty)
+          so the user has somewhere to ADD subjects from. */}
+      {profile && onProfileUpdate && (() => {
         const syllabusMap = new Map(syllabus.map(s => [s.id, s]))
         const focusSubjects = profile.weakSubjects.map(id => syllabusMap.get(id)).filter(Boolean) as LearningSubject[]
         const strongSubjects = profile.strongSubjects.map(id => syllabusMap.get(id)).filter(Boolean) as LearningSubject[]
+
+        // Save handlers — commit drafts to the parent and exit edit mode.
+        const saveFocus = () => {
+          onProfileUpdate({ ...profile, weakSubjects: draftWeakSubjects, strongSubjects: draftStrongSubjects })
+          setEditingFocusInline(false)
+        }
+        const saveStrengths = () => {
+          onProfileUpdate({ ...profile, weakSubjects: draftWeakSubjects, strongSubjects: draftStrongSubjects })
+          setEditingStrengthsInline(false)
+        }
+
+        // Reusable section-header row with title + Edit/Done button
+        const sectionHeader = (
+          title: string,
+          isEditing: boolean,
+          onStart: () => void,
+          onSave: () => void,
+          onCancel: () => void,
+          headerColor: string,
+        ) => (
+          <div style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            marginBottom: 10,
+          }}>
+            <p style={{ fontSize: 14, fontWeight: 700, color: headerColor, margin: 0 }}>{title}</p>
+            {isEditing ? (
+              <div style={{ display: 'flex', gap: 6 }}>
+                <button
+                  type="button"
+                  onClick={onCancel}
+                  style={{
+                    background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)',
+                    cursor: 'pointer', padding: '5px 11px', borderRadius: 9,
+                    fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.55)',
+                    letterSpacing: '0.04em', textTransform: 'uppercase',
+                    WebkitTapHighlightColor: 'transparent',
+                  }}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  onClick={onSave}
+                  style={{
+                    background: 'linear-gradient(135deg, #6366f1, #8b5cf6)', border: 'none',
+                    cursor: 'pointer', padding: '5px 12px', borderRadius: 9,
+                    fontSize: 11, fontWeight: 800, color: '#fff',
+                    letterSpacing: '0.04em', textTransform: 'uppercase',
+                    boxShadow: '0 3px 12px rgba(99,102,241,0.4)',
+                    WebkitTapHighlightColor: 'transparent',
+                  }}
+                >
+                  Save
+                </button>
+              </div>
+            ) : (
+              <button
+                type="button"
+                onClick={onStart}
+                style={{
+                  background: 'rgba(99,102,241,0.10)',
+                  border: '1px solid rgba(99,102,241,0.22)',
+                  cursor: 'pointer', padding: '5px 11px', borderRadius: 9,
+                  fontSize: 10, fontWeight: 700, color: '#a5b4fc',
+                  letterSpacing: '0.06em', textTransform: 'uppercase',
+                  display: 'flex', alignItems: 'center', gap: 4,
+                  WebkitTapHighlightColor: 'transparent',
+                }}
+              >
+                <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4z" />
+                </svg>
+                Edit
+              </button>
+            )}
+          </div>
+        )
+
         return (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            {focusSubjects.length > 0 && (
-              <div>
-                <p style={{ fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.85)', marginBottom: 10 }}>Focus Areas</p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+
+            {/* ── Focus Areas card ─────────────────────────────────────── */}
+            <div>
+              {sectionHeader(
+                'Focus Areas',
+                editingFocusInline,
+                () => {
+                  // Snapshot current profile into the drafts before entering
+                  // edit mode so cancel can revert cleanly.
+                  setDraftWeakSubjects([...profile.weakSubjects])
+                  setDraftStrongSubjects([...profile.strongSubjects])
+                  setEditingFocusInline(true)
+                  setEditingStrengthsInline(false)
+                },
+                saveFocus,
+                () => setEditingFocusInline(false),
+                'rgba(255,255,255,0.85)',
+              )}
+              {editingFocusInline ? (
+                <div style={{ ...GLASS, padding: 14 }}>
+                  <p style={{
+                    fontSize: 11, color: 'rgba(255,255,255,0.45)',
+                    margin: '0 0 10px', lineHeight: 1.4,
+                  }}>
+                    Tap subjects you want to focus on. They&apos;ll be prioritised in your Up Next list.
+                  </p>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                    {syllabus.map(s => {
+                      const isWeak = draftWeakSubjects.includes(s.id)
+                      return (
+                        <button
+                          key={s.id}
+                          type="button"
+                          onClick={() => {
+                            if (isWeak) {
+                              setDraftWeakSubjects(draftWeakSubjects.filter(id => id !== s.id))
+                            } else {
+                              setDraftWeakSubjects([...draftWeakSubjects, s.id])
+                              // A subject can't be both focus and strength.
+                              setDraftStrongSubjects(draftStrongSubjects.filter(id => id !== s.id))
+                            }
+                          }}
+                          style={{
+                            display: 'inline-flex', alignItems: 'center', gap: 4,
+                            padding: '6px 11px', borderRadius: 9999,
+                            fontSize: 11, fontWeight: 600,
+                            background: isWeak ? `${s.color}18` : 'rgba(255,255,255,0.03)',
+                            border: isWeak ? `1.5px solid ${s.color}60` : '1px solid rgba(255,255,255,0.08)',
+                            color: isWeak ? s.color : 'rgba(255,255,255,0.55)',
+                            cursor: 'pointer',
+                            WebkitTapHighlightColor: 'transparent',
+                            transition: 'all 150ms ease',
+                          }}
+                        >
+                          <span>{s.icon}</span>
+                          <span>{s.shortTitle}</span>
+                        </button>
+                      )
+                    })}
+                  </div>
+                </div>
+              ) : focusSubjects.length > 0 ? (
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
                   {focusSubjects.map(s => (
                     <div
@@ -379,11 +498,75 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick, profi
                     </div>
                   ))}
                 </div>
-              </div>
-            )}
-            {strongSubjects.length > 0 && (
-              <div>
-                <p style={{ fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.50)', marginBottom: 10 }}>Strengths</p>
+              ) : (
+                <div style={{
+                  ...GLASS, padding: '14px 16px',
+                  fontSize: 12, color: 'rgba(255,255,255,0.40)',
+                  textAlign: 'center',
+                }}>
+                  No focus areas yet. Tap Edit to add subjects you want to prioritise.
+                </div>
+              )}
+            </div>
+
+            {/* ── Strengths card ────────────────────────────────────────── */}
+            <div>
+              {sectionHeader(
+                'Strengths',
+                editingStrengthsInline,
+                () => {
+                  setDraftWeakSubjects([...profile.weakSubjects])
+                  setDraftStrongSubjects([...profile.strongSubjects])
+                  setEditingStrengthsInline(true)
+                  setEditingFocusInline(false)
+                },
+                saveStrengths,
+                () => setEditingStrengthsInline(false),
+                'rgba(255,255,255,0.50)',
+              )}
+              {editingStrengthsInline ? (
+                <div style={{ ...GLASS, padding: 14 }}>
+                  <p style={{
+                    fontSize: 11, color: 'rgba(255,255,255,0.45)',
+                    margin: '0 0 10px', lineHeight: 1.4,
+                  }}>
+                    Tap subjects you&apos;re already strong in. We&apos;ll keep them light in your daily plan.
+                  </p>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                    {syllabus.map(s => {
+                      const isStrong = draftStrongSubjects.includes(s.id)
+                      return (
+                        <button
+                          key={s.id}
+                          type="button"
+                          onClick={() => {
+                            if (isStrong) {
+                              setDraftStrongSubjects(draftStrongSubjects.filter(id => id !== s.id))
+                            } else {
+                              setDraftStrongSubjects([...draftStrongSubjects, s.id])
+                              setDraftWeakSubjects(draftWeakSubjects.filter(id => id !== s.id))
+                            }
+                          }}
+                          style={{
+                            display: 'inline-flex', alignItems: 'center', gap: 4,
+                            padding: '6px 11px', borderRadius: 9999,
+                            fontSize: 11, fontWeight: 600,
+                            background: isStrong ? 'rgba(255,255,255,0.10)' : 'rgba(255,255,255,0.03)',
+                            border: isStrong ? '1.5px solid rgba(255,255,255,0.30)' : '1px solid rgba(255,255,255,0.08)',
+                            color: isStrong ? 'rgba(255,255,255,0.92)' : 'rgba(255,255,255,0.55)',
+                            cursor: 'pointer',
+                            WebkitTapHighlightColor: 'transparent',
+                            transition: 'all 150ms ease',
+                          }}
+                        >
+                          <span>{s.icon}</span>
+                          <span>{s.shortTitle}</span>
+                        </button>
+                      )
+                    })}
+                  </div>
+                </div>
+              ) : strongSubjects.length > 0 ? (
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
                   {strongSubjects.map(s => (
                     <div
@@ -400,19 +583,19 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick, profi
                     </div>
                   ))}
                 </div>
-              </div>
-            )}
+              ) : (
+                <div style={{
+                  ...GLASS, padding: '14px 16px',
+                  fontSize: 12, color: 'rgba(255,255,255,0.40)',
+                  textAlign: 'center',
+                }}>
+                  No strengths set. Tap Edit to mark subjects you&apos;re comfortable with.
+                </div>
+              )}
+            </div>
           </div>
         )
       })()}
-
-      {/* ── SECTION 5: Bento Grid 2x2 ── */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-        <BentoCard icon="\uD83D\uDD25" value={progress.streak} label="streak" glow="rgba(249,115,22,0.12)" />
-        <BentoCard icon="\uD83D\uDCCA" value={`${stats.accuracy}%`} label="accuracy" glow="rgba(99,102,241,0.12)" />
-        <BentoCard icon="\uD83D\uDCDA" value={stats.completedTopics} label="topics" glow="rgba(139,92,246,0.12)" />
-        <BentoCard icon="\uD83D\uDC8E" value={progress.gems} label="gems" glow="rgba(34,211,238,0.12)" />
-      </div>
 
       {/* ── SECTION 6: Daily Goal ── */}
       {(() => {
@@ -480,105 +663,10 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick, profi
         )
       })()}
 
-      {/* ── SECTION 7: Subject Progress ── */}
-      <div>
-        <p style={{ fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.85)', marginBottom: 10 }}>Subjects</p>
-        <div style={{ ...GLASS, padding: 16, display: 'flex', flexDirection: 'column', gap: 14 }}>
-          {subjectProgress.map(s => (
-            <div key={s.id}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 6 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <span style={{ fontSize: 14 }}>{s.icon}</span>
-                  <span style={{ fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.70)' }}>{s.title}</span>
-                </div>
-                <span style={{ fontSize: 11, fontWeight: 600, color: s.color }}>
-                  {s.completed}/{s.total} <span style={{ color: 'rgba(255,255,255,0.25)', fontWeight: 400 }}>{s.pct}%</span>
-                </span>
-              </div>
-              <div style={{ height: 6, borderRadius: 9999, overflow: 'hidden', background: 'rgba(255,255,255,0.05)' }}>
-                <div style={{
-                  height: '100%', borderRadius: 9999, width: `${s.pct}%`,
-                  background: `linear-gradient(90deg, ${s.color}, ${s.color}88)`,
-                  boxShadow: s.pct > 0 ? `0 0 8px ${s.color}30` : 'none',
-                  transition: 'width 0.5s ease',
-                }} />
-              </div>
-            </div>
-          ))}
-          {/* Overall */}
-          <div style={{ paddingTop: 12, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-              <span style={{ fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.55)' }}>Total Syllabus</span>
-              <span style={{ fontSize: 12, fontWeight: 700, color: 'rgba(255,255,255,0.70)' }}>
-                {stats.completedTopics}/{TOTAL_TOPICS}{' '}
-                <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.25)' }}>
-                  ({TOTAL_TOPICS > 0 ? Math.round((stats.completedTopics / TOTAL_TOPICS) * 100) : 0}%)
-                </span>
-              </span>
-            </div>
-            <div style={{ height: 8, borderRadius: 9999, overflow: 'hidden', background: 'rgba(255,255,255,0.05)' }}>
-              <div style={{
-                height: '100%', borderRadius: 9999,
-                width: `${(stats.completedTopics / Math.max(1, TOTAL_TOPICS)) * 100}%`,
-                background: 'linear-gradient(90deg, #6366f1, #8b5cf6)',
-                transition: 'width 0.7s ease',
-              }} />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ── SECTION 8: Study Activity Heatmap ── */}
-      <div>
-        <p style={{ fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.85)', marginBottom: 10 }}>Study Activity</p>
-        <div style={{ ...GLASS, padding: 16 }}>
-          {/* Day labels */}
-          <div style={{ display: 'flex', gap: 3, marginBottom: 6 }}>
-            {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((d, i) => (
-              <span key={i} style={{ width: 'calc((100% - 18px) / 7)', fontSize: 9, color: 'rgba(255,255,255,0.20)', textAlign: 'center', fontWeight: 500 }}>
-                {d}
-              </span>
-            ))}
-          </div>
-          {/* Grid */}
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
-            {(() => {
-              const firstDay = new Date(calendarDays[0]?.date || Date.now())
-              const dow = (firstDay.getDay() + 6) % 7
-              return Array.from({ length: dow }, (_, i) => (
-                <div key={`off-${i}`} style={{ width: 'calc((100% - 18px) / 7)', aspectRatio: '1', borderRadius: 4 }} />
-              ))
-            })()}
-            {calendarDays.map(day => {
-              const intensity = day.questions === 0 ? 0 : day.questions <= 3 ? 1 : day.questions <= 6 ? 2 : day.questions <= 10 ? 3 : 4
-              const isToday = day.date === getLocalDate()
-              return (
-                <div
-                  key={day.date}
-                  title={`${day.date}: ${day.questions} questions`}
-                  style={{
-                    width: 'calc((100% - 18px) / 7)', aspectRatio: '1', borderRadius: 4,
-                    background: heatColors[intensity],
-                    border: isToday ? '1.5px solid rgba(255,255,255,0.5)' : '1px solid transparent',
-                    boxShadow: isToday ? '0 0 6px rgba(255,255,255,0.1)' : 'none',
-                    transition: 'background 0.2s',
-                  }}
-                />
-              )
-            })}
-          </div>
-          {/* Legend */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 4, marginTop: 10 }}>
-            <span style={{ fontSize: 9, color: 'rgba(255,255,255,0.20)' }}>Less</span>
-            {heatColors.map((c, i) => (
-              <div key={i} style={{ width: 10, height: 10, borderRadius: 3, background: c }} />
-            ))}
-            <span style={{ fontSize: 9, color: 'rgba(255,255,255,0.20)' }}>More</span>
-          </div>
-        </div>
-      </div>
-
-      {/* ── SECTION 9: Achievements ── */}
+      {/* ── SECTION 9: Achievements ──
+          Every badge is rendered (no "View All" hide), every badge is
+          clickable (locked OR unlocked), and tapping opens a detail
+          modal that explains how to unlock it (or when it was earned). */}
       <div>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
           <p style={{ fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.85)', margin: 0 }}>Achievements</p>
@@ -588,47 +676,48 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick, profi
         </div>
         <div style={{ ...GLASS, padding: 16 }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10 }}>
-            {displayAchievements.map(ach => {
+            {ACHIEVEMENTS.map(ach => {
               const unlocked = unlockedIds.has(ach.id)
               return (
-                <div
+                <button
                   key={ach.id}
+                  type="button"
+                  onClick={() => setSelectedAchievementId(ach.id)}
+                  aria-label={`${ach.title} — ${unlocked ? 'unlocked' : 'locked'}. Tap for details.`}
                   style={{
                     display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6,
                     padding: '12px 4px', borderRadius: 16,
                     background: unlocked ? 'rgba(99,102,241,0.10)' : 'rgba(255,255,255,0.02)',
-                    border: `1px solid ${unlocked ? 'rgba(99,102,241,0.20)' : 'rgba(255,255,255,0.04)'}`,
-                    opacity: unlocked ? 1 : 0.3,
+                    border: `1px solid ${unlocked ? 'rgba(99,102,241,0.22)' : 'rgba(255,255,255,0.06)'}`,
+                    cursor: 'pointer',
+                    transition: 'transform 150ms ease, background 150ms ease',
+                    WebkitTapHighlightColor: 'transparent',
                   }}
+                  onPointerDown={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(0.94)' }}
+                  onPointerUp={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)' }}
+                  onPointerCancel={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)' }}
                 >
                   <span style={{
                     fontSize: 22,
-                    filter: unlocked ? 'none' : 'grayscale(1) brightness(0.4)',
-                    opacity: unlocked ? 1 : 0.3,
+                    filter: unlocked ? 'none' : 'grayscale(1) brightness(0.5)',
+                    opacity: unlocked ? 1 : 0.45,
                   }}>
                     {ach.icon}
                   </span>
-                  {unlocked && (
-                    <span style={{ fontSize: 9, fontWeight: 600, color: 'rgba(255,255,255,0.50)', textAlign: 'center', lineHeight: 1.2 }}>
-                      {ach.title}
-                    </span>
-                  )}
-                </div>
+                  <span style={{
+                    fontSize: 9, fontWeight: 600,
+                    color: unlocked ? 'rgba(255,255,255,0.65)' : 'rgba(255,255,255,0.35)',
+                    textAlign: 'center', lineHeight: 1.2,
+                    overflow: 'hidden', textOverflow: 'ellipsis',
+                    display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical',
+                    minHeight: 22,
+                  }}>
+                    {ach.title}
+                  </span>
+                </button>
               )
             })}
           </div>
-          {ACHIEVEMENTS.length > 8 && (
-            <button
-              onClick={() => setShowAllAchievements(v => !v)}
-              style={{
-                display: 'block', width: '100%', marginTop: 12, padding: '10px 0',
-                background: 'none', border: 'none', cursor: 'pointer',
-                fontSize: 12, fontWeight: 600, color: '#818cf8', textAlign: 'center',
-              }}
-            >
-              {showAllAchievements ? 'Show Less' : 'View All \u2192'}
-            </button>
-          )}
         </div>
       </div>
 
@@ -724,71 +813,8 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick, profi
                 </div>
               </div>
 
-              {/* Focus Areas */}
-              <div>
-                <label style={{ fontSize: 11, fontWeight: 600, color: 'rgba(255,255,255,0.35)', display: 'block', marginBottom: 6 }}>Focus Areas (weak subjects)</label>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                  {syllabus.map(s => {
-                    const isWeak = editWeakSubjects.includes(s.id)
-                    return (
-                      <button
-                        key={s.id}
-                        onClick={() => {
-                          if (isWeak) {
-                            setEditWeakSubjects(editWeakSubjects.filter(id => id !== s.id))
-                          } else {
-                            setEditWeakSubjects([...editWeakSubjects, s.id])
-                            setEditStrongSubjects(editStrongSubjects.filter(id => id !== s.id))
-                          }
-                        }}
-                        style={{
-                          display: 'inline-flex', alignItems: 'center', gap: 4,
-                          padding: '6px 10px', borderRadius: 9999, fontSize: 11, fontWeight: 600,
-                          background: isWeak ? `${s.color}15` : 'rgba(255,255,255,0.03)',
-                          border: isWeak ? `1px solid ${s.color}50` : '1px solid rgba(255,255,255,0.06)',
-                          color: isWeak ? s.color : 'rgba(255,255,255,0.45)',
-                          cursor: 'pointer',
-                        }}
-                      >
-                        {s.icon} {s.shortTitle}
-                      </button>
-                    )
-                  })}
-                </div>
-              </div>
-
-              {/* Strengths */}
-              <div>
-                <label style={{ fontSize: 11, fontWeight: 600, color: 'rgba(255,255,255,0.35)', display: 'block', marginBottom: 6 }}>Strengths (strong subjects)</label>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                  {syllabus.map(s => {
-                    const isStrong = editStrongSubjects.includes(s.id)
-                    return (
-                      <button
-                        key={s.id}
-                        onClick={() => {
-                          if (isStrong) {
-                            setEditStrongSubjects(editStrongSubjects.filter(id => id !== s.id))
-                          } else {
-                            setEditStrongSubjects([...editStrongSubjects, s.id])
-                            setEditWeakSubjects(editWeakSubjects.filter(id => id !== s.id))
-                          }
-                        }}
-                        style={{
-                          display: 'inline-flex', alignItems: 'center', gap: 4,
-                          padding: '6px 10px', borderRadius: 9999, fontSize: 11, fontWeight: 600,
-                          background: isStrong ? 'rgba(255,255,255,0.10)' : 'rgba(255,255,255,0.03)',
-                          border: isStrong ? '1px solid rgba(255,255,255,0.25)' : '1px solid rgba(255,255,255,0.06)',
-                          color: isStrong ? 'rgba(255,255,255,0.75)' : 'rgba(255,255,255,0.45)',
-                          cursor: 'pointer',
-                        }}
-                      >
-                        {s.icon} {s.shortTitle}
-                      </button>
-                    )
-                  })}
-                </div>
-              </div>
+              {/* Focus Areas + Strengths editing moved to their own cards
+                  in SECTION 4 above — see "Focus Areas" and "Strengths". */}
 
               {/* Save / Cancel */}
               <div style={{ display: 'flex', gap: 10, marginTop: 4 }}>
@@ -853,7 +879,7 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick, profi
                 Reset all progress?
               </p>
               <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.40)', margin: '0 0 12px' }}>
-                This will clear your progress, crowns, streaks, and achievements. This cannot be undone.
+                This will clear your progress, knowledge levels, streaks, and achievements. This cannot be undone.
               </p>
               <div style={{ display: 'flex', gap: 10 }}>
                 <button
@@ -881,23 +907,156 @@ export default function ProfileTab({ progress, subjects, onDailyGoalClick, profi
           )}
         </div>
       </div>
+
+      {/* ── Achievement detail modal ─────────────────────────────────────
+          Opens when the user taps any badge (locked or unlocked). Shows
+          the icon, title, description ("how to unlock") and lock state.
+          For unlocked badges, also shows the date earned. */}
+      {selectedAchievementId && (() => {
+        const ach = ACHIEVEMENTS.find(a => a.id === selectedAchievementId)
+        if (!ach) return null
+        const unlocked = unlockedIds.has(ach.id)
+        const earnedAt = unlockedAtMap.get(ach.id)
+        const earnedDate = earnedAt
+          ? new Date(earnedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+          : null
+        const close = () => setSelectedAchievementId(null)
+        return (
+          <>
+            <style>{`
+              @keyframes prof-ach-fadeIn { from { opacity: 0 } to { opacity: 1 } }
+              @keyframes prof-ach-cardIn {
+                0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.86); }
+                60%  { transform: translate(-50%, -50%) scale(1.02); }
+                100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+              }
+            `}</style>
+            <div
+              onClick={close}
+              style={{
+                position: 'fixed', inset: 0, zIndex: 250,
+                background: 'rgba(2, 4, 12, 0.78)',
+                backdropFilter: 'blur(14px)',
+                WebkitBackdropFilter: 'blur(14px)',
+                animation: 'prof-ach-fadeIn 0.3s ease forwards',
+              }}
+            />
+            <div
+              onClick={(e) => e.stopPropagation()}
+              style={{
+                position: 'fixed', top: '50%', left: '50%', zIndex: 251,
+                width: 'min(340px, calc(100vw - 32px))',
+                padding: '28px 24px 22px',
+                borderRadius: 24,
+                background: 'linear-gradient(180deg, rgba(20, 18, 32, 0.98) 0%, rgba(10, 10, 18, 0.99) 100%)',
+                border: unlocked
+                  ? '1px solid rgba(99,102,241,0.45)'
+                  : '1px solid rgba(255,255,255,0.10)',
+                boxShadow: unlocked
+                  ? '0 30px 80px rgba(0, 0, 0, 0.65), 0 0 80px rgba(99,102,241,0.30), inset 0 1px 0 rgba(255,255,255,0.06)'
+                  : '0 30px 80px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255,255,255,0.04)',
+                transform: 'translate(-50%, -50%)',
+                animation: 'prof-ach-cardIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
+              }}
+            >
+              {/* Big icon */}
+              <div style={{
+                textAlign: 'center',
+                fontSize: 64,
+                lineHeight: 1,
+                marginBottom: 14,
+                filter: unlocked ? 'none' : 'grayscale(1) brightness(0.6)',
+                opacity: unlocked ? 1 : 0.55,
+              }}>
+                {ach.icon}
+              </div>
+
+              {/* Status pill */}
+              <div style={{
+                display: 'flex', justifyContent: 'center', marginBottom: 12,
+              }}>
+                <div style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 5,
+                  padding: '4px 11px', borderRadius: 9999,
+                  background: unlocked ? 'rgba(34,197,94,0.14)' : 'rgba(255,255,255,0.06)',
+                  border: unlocked ? '1px solid rgba(34,197,94,0.32)' : '1px solid rgba(255,255,255,0.10)',
+                  fontSize: 9.5, fontWeight: 800, letterSpacing: '0.08em',
+                  color: unlocked ? '#34d399' : 'rgba(255,255,255,0.50)',
+                  textTransform: 'uppercase',
+                }}>
+                  {unlocked ? (
+                    <>
+                      <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12l5 5L20 7" />
+                      </svg>
+                      Unlocked
+                    </>
+                  ) : (
+                    <>
+                      <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="5" y="11" width="14" height="10" rx="2" />
+                        <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+                      </svg>
+                      Locked
+                    </>
+                  )}
+                </div>
+              </div>
+
+              {/* Title */}
+              <div style={{
+                fontSize: 20, fontWeight: 800, color: 'rgba(255,255,255,0.95)',
+                textAlign: 'center', letterSpacing: '-0.015em', lineHeight: 1.25,
+                marginBottom: 8,
+              }}>
+                {ach.title}
+              </div>
+
+              {/* "How to unlock" / description */}
+              <div style={{
+                fontSize: 13, color: 'rgba(255,255,255,0.62)',
+                textAlign: 'center', lineHeight: 1.5,
+                marginBottom: 14, padding: '0 4px',
+              }}>
+                {unlocked ? ach.description : `How to unlock: ${ach.description}.`}
+              </div>
+
+              {/* Earned date footer */}
+              {unlocked && earnedDate && (
+                <div style={{
+                  fontSize: 10, fontWeight: 700, letterSpacing: '0.08em',
+                  color: 'rgba(255,255,255,0.35)', textAlign: 'center',
+                  textTransform: 'uppercase', marginBottom: 16,
+                }}>
+                  Earned · {earnedDate}
+                </div>
+              )}
+
+              {/* Close */}
+              <button
+                type="button"
+                onClick={close}
+                style={{
+                  width: '100%', height: 46, borderRadius: 14,
+                  background: unlocked
+                    ? 'linear-gradient(135deg, #6366f1, #8b5cf6)'
+                    : 'rgba(255,255,255,0.06)',
+                  color: unlocked ? '#fff' : 'rgba(255,255,255,0.78)',
+                  fontSize: 13.5, fontWeight: 800,
+                  letterSpacing: '0.04em',
+                  cursor: 'pointer',
+                  boxShadow: unlocked ? '0 6px 22px rgba(99,102,241,0.35)' : 'none',
+                  border: unlocked ? 'none' : '1px solid rgba(255,255,255,0.10)',
+                  WebkitTapHighlightColor: 'transparent',
+                }}
+              >
+                {unlocked ? 'NICE' : 'GOT IT'}
+              </button>
+            </div>
+          </>
+        )
+      })()}
     </div>
   )
 }
 
-// ── Sub-components ──────────────────────────────────────────────────────────────
-
-function BentoCard({ icon, value, label, glow }: { icon: string; value: number | string; label: string; glow: string }) {
-  return (
-    <div style={{
-      padding: '18px 12px', borderRadius: 20, textAlign: 'center',
-      background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)',
-      backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)',
-      boxShadow: `0 4px 24px ${glow}`,
-    }}>
-      <span style={{ fontSize: 20 }}>{icon}</span>
-      <p style={{ fontSize: 24, fontWeight: 800, color: 'rgba(255,255,255,0.92)', margin: '6px 0 0' }}>{value}</p>
-      <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.30)', margin: '2px 0 0' }}>{label}</p>
-    </div>
-  )
-}

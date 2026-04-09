@@ -10,6 +10,18 @@ export interface TopicProgress {
   questionsAnswered: number
   correctAnswers: number
   lastPracticed: string | null  // ISO date
+  // Database PYQ IDs the user has been shown for this topic. Used by the
+  // "Try Again with New Questions" CTA so the user only ever sees fresh
+  // material from the DB. Capped to MAX_SEEN_IDS_PER_TOPIC. Only DB-sourced
+  // IDs are tracked — AI-generated PYQs use timestamp-based IDs that aren't
+  // stable across sessions.
+  seenQuestionIds?: number[]
+  // Database PYQ IDs the user has answered INCORRECTLY for this topic.
+  // Persists across sessions so the "Practice only Wrong Questions" CTA
+  // on the topic-complete celebration can replay every wrong they have
+  // ever made on this topic. IDs are removed when the user later gets
+  // the same question right (spaced-repetition style).
+  wrongQuestionIds?: number[]
 }
 
 // ── Daily Goal ────────────────────────────────────────────────────────────────
@@ -66,13 +78,16 @@ export const ACHIEVEMENTS: AchievementDef[] = [
   { id: 'streak-7',         title: 'One Week Strong',    description: 'Maintain a 7-day study streak',                    icon: '🗓️', category: 'streak' },
   { id: 'streak-14',        title: 'Fortnight Focus',    description: 'Maintain a 14-day study streak',                   icon: '💪', category: 'streak' },
   { id: 'streak-30',        title: 'Monthly Mastery',    description: 'Maintain a 30-day study streak',                   icon: '🏆', category: 'streak' },
-  { id: 'streak-100',       title: 'Unstoppable',        description: 'Maintain a 100-day study streak',                  icon: '👑', category: 'streak' },
-  // Mastery
-  { id: 'first-crown',      title: 'First Crown',        description: 'Reach Crown Level 1 on any topic',                icon: '👑', category: 'mastery' },
-  { id: 'crown-3',          title: 'Rising Master',      description: 'Reach Crown Level 3 on any topic',                icon: '🌟', category: 'mastery' },
-  { id: 'crown-5',          title: 'Legendary',          description: 'Reach Crown Level 5 (Legendary) on any topic',    icon: '💎', category: 'mastery' },
-  { id: 'five-crowns',      title: 'Crown Collector',    description: 'Have 5 topics at Crown Level 3+',                 icon: '🏅', category: 'mastery' },
-  { id: 'ten-crowns',       title: 'Crown Hoarder',      description: 'Have 10 topics at Crown Level 3+',                icon: '🎖️', category: 'mastery' },
+  { id: 'streak-100',       title: 'Unstoppable',        description: 'Maintain a 100-day study streak',                  icon: '🚀', category: 'streak' },
+  // Mastery (internal IDs kept as `crown-*` for backwards compatibility
+  // with existing user achievement records — only the user-visible
+  // titles, descriptions, and icons changed when we dropped the crown
+  // metaphor in favor of "Knowledge Level".)
+  { id: 'first-crown',      title: 'First Level Up',     description: 'Reach Knowledge Level 1 on any topic',             icon: '✨', category: 'mastery' },
+  { id: 'crown-3',          title: 'Rising Master',      description: 'Reach Knowledge Level 3 on any topic',             icon: '🌟', category: 'mastery' },
+  { id: 'crown-5',          title: 'Legendary',          description: 'Reach Knowledge Level 5 on any topic',             icon: '💎', category: 'mastery' },
+  { id: 'five-crowns',      title: 'Knowledge Collector', description: 'Have 5 topics at Knowledge Level 3 or higher',     icon: '🏅', category: 'mastery' },
+  { id: 'ten-crowns',       title: 'Knowledge Hoarder',  description: 'Have 10 topics at Knowledge Level 3 or higher',    icon: '🎖️', category: 'mastery' },
   // Performance
   { id: 'first-perfect',    title: 'Flawless',           description: 'Get a perfect score on a practice session',        icon: '✨', category: 'performance' },
   { id: 'five-perfects',    title: 'Perfectionist',      description: 'Get 5 perfect scores',                            icon: '🎯', category: 'performance' },
@@ -180,6 +195,7 @@ export const DEFAULT_TOPIC_PROGRESS: TopicProgress = {
   questionsAnswered: 0,
   correctAnswers: 0,
   lastPracticed: null,
+  seenQuestionIds: [],
 }
 
 // Crown progression
@@ -187,6 +203,10 @@ export const QUESTIONS_PER_CROWN = 5     // correct answers needed to level up
 export const MAX_HEARTS = 10
 export const FREE_TOPIC_LIMIT = 2
 export const HEART_REFILL_MS = 60 * 60 * 1000  // 1 hour per heart
+// Cap on persisted "seen" question IDs per topic. Keeps localStorage tiny
+// while still covering more questions than most users will ever see for one
+// topic (typical pool ≤ 50 PYQs/topic).
+export const MAX_SEEN_IDS_PER_TOPIC = 500
 
 // Crown colors by level
 export const CROWN_COLORS: Record<CrownLevel, string> = {

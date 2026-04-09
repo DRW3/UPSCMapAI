@@ -345,7 +345,7 @@ export default function PracticeTab({ progress, subjects, topicStates, onTopicSe
         onTap={() => onTopicSelect(t.topic.id, t.topic, t.subject)}
         rightContent={
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 }}>
-            <span style={{ fontSize: 12, fontWeight: 700, color: accColor }}>{Math.round(t.accuracy)}%</span>
+            <span style={{ fontSize: 11, fontWeight: 700, color: accColor }}>{Math.round(t.accuracy)}% acc</span>
             {t.tp.questionsAnswered >= 3 && (
               <span style={{ fontSize: 13, fontWeight: 600, color: ti.color }}>{ti.symbol}</span>
             )}

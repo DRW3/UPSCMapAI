@@ -357,7 +357,7 @@ function UnitHeader({ data }: { data: UnitHeaderData }) {
           background: `rgba(${rgb},0.08)`,
           padding: '3px 10px', borderRadius: 9999, fontWeight: 600,
         }}>
-          {completedCount}/{totalCount} {pct > 0 && `(${pct}%)`}
+          {completedCount}/{totalCount} done{pct > 0 && ` \u00B7 ${pct}% complete`}
         </span>
       </div>
     </div>
@@ -404,23 +404,46 @@ function ProgressRing({ size, stroke, progress, color, rgb, animate }: {
 // TopicCard (redesigned -- futuristic glass card)
 // ---------------------------------------------------------------------------
 
-function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked, needsPro, dbQuestionCount }: {
+function TopicCard({
+  node,
+  onTap,
+  isFirstAvailable: _isFirstAvailable,
+  isNewlyUnlocked,
+  needsPro,
+  dbQuestionCount,
+  profile,
+}: {
   node: FlatTopicNode
   onTap: () => void
   isFirstAvailable: boolean
   isNewlyUnlocked?: boolean
   needsPro?: boolean
   dbQuestionCount?: number
+  profile?: UserProfile | null
 }) {
+  // The "first available" / UP NEXT signal has been removed in favour of
+  // Focus / Strong pills (see below) which the user finds more meaningful
+  // for UPSC prep. The prop is still in the call signature so the parent
+  // doesn't have to change, but the value is intentionally unused.
+  void _isFirstAvailable
   const { topic, subject, state, progress: tp, globalIndex } = node
   const crown = tp.crownLevel
   const rgb = hexToRgb(subject.color)
-  const conceptsToShow = topic.concepts.slice(0, 3)
+  // Show ALL concepts as readable pills — they wrap onto multiple
+  // lines below the progress bar instead of getting truncated to
+  // the first three with a "+N" badge.
 
   // PYQ data
   const dbCount = dbQuestionCount ?? 0
-  const answered = tp.questionsAnswered || 0
-  const pyqPct = dbCount > 0 ? Math.min(answered / dbCount, 1) : 0
+  // Unique PYQs the user has actually been shown — drives the X/Y display.
+  // tp.questionsAnswered is CUMULATIVE (counts re-attempts on the same Q),
+  // which is wrong here because it can grow past dbCount. seenQuestionIds
+  // is the deduped set of DB IDs the user has seen.
+  const seenCount = (tp.seenQuestionIds?.length) || 0
+  // Cap to dbCount so the display can never read e.g. "21/17".
+  const seenCapped = dbCount > 0 ? Math.min(seenCount, dbCount) : seenCount
+  const isAllSeen = dbCount > 0 && seenCount >= dbCount
+  const pyqPct = dbCount > 0 ? Math.min(seenCapped / dbCount, 1) : 0
   const crownPct = crown / 5
 
   // Difficulty label
@@ -430,7 +453,24 @@ function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked, needsPro, d
   // State-dependent config
   const dotColor = state === 'completed' ? '#34d399' : needsPro ? 'rgba(139,92,246,0.5)' : subject.color
   const isActive = state === 'available' || state === 'started'
-  const isUpNext = state === 'available' && isFirstAvailable
+
+  // ── Focus / Strong status ───────────────────────────────────────────────
+  // Hopeful at-a-glance read on which topics need revision and which the
+  // aspirant is scoring well on. "Focus" fires when the user picked this
+  // subject as a weak area at onboarding OR when practice accuracy has
+  // dropped below 30% (with a 5-attempt floor so the badge can't trip on
+  // a single wrong answer). "Strong" fires at >=80% accuracy, same floor.
+  // Completed topics keep their crown badge and are excluded from both.
+  const accuracy = tp.questionsAnswered > 0 ? tp.correctAnswers / tp.questionsAnswered : null
+  const subjectIsWeak = !!profile?.weakSubjects?.includes(subject.id)
+  const isStrong = state !== 'completed'
+    && tp.questionsAnswered >= 5
+    && accuracy !== null
+    && accuracy >= 0.80
+  const isFocusArea = state !== 'completed' && !isStrong && (
+    subjectIsWeak ||
+    (tp.questionsAnswered >= 5 && accuracy !== null && accuracy < 0.30)
+  )
 
   // Icon ring progress: for completed/started show crown progress, otherwise show PYQ progress
   const ringProgress = state === 'completed' ? 1 : state === 'started' ? crownPct : pyqPct
@@ -439,13 +479,11 @@ function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked, needsPro, d
   // Card background gradient based on state
   const cardBg = state === 'completed'
     ? `linear-gradient(135deg, rgba(34,211,153,0.04) 0%, rgba(255,255,255,0.02) 100%)`
-    : isUpNext
-      ? `linear-gradient(135deg, rgba(${rgb},0.06) 0%, rgba(255,255,255,0.02) 100%)`
-      : isActive
-        ? `linear-gradient(135deg, rgba(${rgb},0.03) 0%, rgba(255,255,255,0.02) 100%)`
-        : needsPro
-          ? 'linear-gradient(135deg, rgba(139,92,246,0.03) 0%, rgba(255,255,255,0.015) 100%)'
-          : 'rgba(255,255,255,0.025)'
+    : isActive
+      ? `linear-gradient(135deg, rgba(${rgb},0.03) 0%, rgba(255,255,255,0.02) 100%)`
+      : needsPro
+        ? 'linear-gradient(135deg, rgba(139,92,246,0.03) 0%, rgba(255,255,255,0.015) 100%)'
+        : 'rgba(255,255,255,0.025)'
 
   return (
     <div
@@ -469,13 +507,11 @@ function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked, needsPro, d
         flexShrink: 0, position: 'relative', zIndex: 2,
         boxShadow: isNewlyUnlocked && state === 'available'
           ? `0 0 14px 6px rgba(${rgb},0.6)`
-          : isUpNext ? `0 0 8px 3px rgba(${rgb},0.5)`
           : state === 'available' ? `0 0 6px 2px rgba(${rgb},0.3)`
           : state === 'completed' ? '0 0 6px 2px rgba(34,211,153,0.3)'
           : needsPro ? `0 0 4px 1px rgba(139,92,246,0.3)`
           : `0 0 4px 1px rgba(${rgb},0.2)`,
         animation: isNewlyUnlocked && state === 'available' ? 'jp-pulse 1.5s ease-in-out infinite'
-          : isUpNext ? 'jp-pulse 2s ease-in-out infinite'
           : state === 'available' ? 'jp-pulse 3s ease-in-out infinite'
           : undefined,
         transition: 'all 300ms ease-out',
@@ -508,39 +544,31 @@ function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked, needsPro, d
           background: cardBg,
           backdropFilter: 'blur(24px)',
           WebkitBackdropFilter: 'blur(24px)',
-          border: isUpNext
-            ? `1.5px solid rgba(${rgb},0.35)`
-            : state === 'available'
-              ? `1.5px solid rgba(${rgb},0.25)`
-              : state === 'started'
-                ? `1.5px solid rgba(${rgb},0.20)`
-                : state === 'completed'
-                  ? '1.5px solid rgba(34,211,153,0.15)'
-                  : needsPro
-                    ? '1.5px solid rgba(139,92,246,0.12)'
-                    : `1.5px solid rgba(255,255,255,0.06)`,
-          opacity: needsPro ? 0.65 : 1,
-          boxShadow: isUpNext
-            ? `0 4px 24px rgba(${rgb},0.12), 0 1px 0 rgba(255,255,255,0.06) inset`
-            : state === 'available'
-              ? `0 2px 16px rgba(${rgb},0.08), 0 1px 0 rgba(255,255,255,0.04) inset`
+          border: state === 'available'
+            ? `1.5px solid rgba(${rgb},0.25)`
+            : state === 'started'
+              ? `1.5px solid rgba(${rgb},0.20)`
               : state === 'completed'
-                ? '0 2px 12px rgba(34,211,153,0.06), 0 1px 0 rgba(255,255,255,0.04) inset'
-                : '0 1px 0 rgba(255,255,255,0.03) inset',
+                ? '1.5px solid rgba(34,211,153,0.15)'
+                : needsPro
+                  ? '1.5px solid rgba(139,92,246,0.12)'
+                  : `1.5px solid rgba(255,255,255,0.06)`,
+          opacity: needsPro ? 0.65 : 1,
+          boxShadow: state === 'available'
+            ? `0 2px 16px rgba(${rgb},0.08), 0 1px 0 rgba(255,255,255,0.04) inset`
+            : state === 'completed'
+              ? '0 2px 12px rgba(34,211,153,0.06), 0 1px 0 rgba(255,255,255,0.04) inset'
+              : '0 1px 0 rgba(255,255,255,0.03) inset',
           cursor: 'pointer',
           transition: 'all 300ms cubic-bezier(0.16, 1, 0.3, 1)',
           position: 'relative',
           overflow: 'hidden',
           userSelect: 'none',
           WebkitTapHighlightColor: 'transparent',
-          ...(state === 'available' ? {
+          ...(state === 'available' && isNewlyUnlocked ? {
             ['--pulse-rgb' as string]: rgb,
             ['--glow-rgb' as string]: rgb,
-            animation: isNewlyUnlocked
-              ? 'jp-unlockGlow 2s ease-in-out 0.8s infinite'
-              : isUpNext
-                ? 'jp-borderPulse 2.5s ease-in-out infinite'
-                : undefined,
+            animation: 'jp-unlockGlow 2s ease-in-out 0.8s infinite',
           } : {}),
         }}
       >
@@ -571,14 +599,13 @@ function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked, needsPro, d
           {/* Icon with progress ring */}
           <div style={{
             width: 44, height: 44, position: 'relative', flexShrink: 0,
-            animation: isUpNext ? 'jp-float 3s ease-in-out infinite' : undefined,
           }}>
             <ProgressRing
               size={44} stroke={2.5}
               progress={ringProgress}
               color={ringColor}
               rgb={state === 'completed' ? '34,211,153' : rgb}
-              animate={isUpNext}
+              animate={false}
             />
             <div style={{
               position: 'absolute', inset: 3,
@@ -636,37 +663,80 @@ function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked, needsPro, d
             </div>
           </div>
 
-          {/* Right side: Crown badge OR state CTA */}
-          {crown > 0 ? (
-            <div style={{
-              width: 30, height: 30, borderRadius: 10,
-              background: `linear-gradient(135deg, ${CROWN_COLORS[crown as CrownLevel]}, ${CROWN_COLORS[crown as CrownLevel]}cc)`,
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 12, fontWeight: 800, color: '#fff',
-              flexShrink: 0,
-              boxShadow: `0 2px 10px ${CROWN_COLORS[crown as CrownLevel]}44, 0 0 0 2px rgba(255,255,255,0.06) inset`,
-              ...(crown === 5 ? {
-                backgroundImage: 'linear-gradient(135deg, #f472b6, #c084fc, #818cf8, #f472b6)',
-                backgroundSize: '300% 300%',
-                animation: 'jp-shimmer 3s linear infinite',
-              } : {}),
-            }}>
-              {crown === 5 ? '\u2605' : crown}
+          {/* Right side: Strong / Focus pill OR Knowledge Level OR state CTA.
+              Strong / Focus take priority for non-completed topics so the
+              aspirant sees the encouraging signal first. Completed topics
+              keep their crown badge — that's the success state. */}
+          {isStrong ? (
+            <div
+              aria-label="Strong topic — accuracy above 80%"
+              style={{
+                display: 'flex', alignItems: 'center', gap: 4,
+                padding: '4px 9px 4px 7px', borderRadius: 999,
+                background: 'linear-gradient(135deg, rgba(52,211,153,0.18), rgba(34,197,94,0.12))',
+                border: '1px solid rgba(52,211,153,0.35)',
+                color: '#6ee7b7',
+                flexShrink: 0,
+                boxShadow: '0 1px 8px rgba(52,211,153,0.20), inset 0 1px 0 rgba(255,255,255,0.08)',
+              }}
+            >
+              <svg width="10" height="10" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8.5l3.2 3.2L13 5" stroke="#6ee7b7" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span style={{
+                fontSize: 10, fontWeight: 800, letterSpacing: '0.04em',
+                textTransform: 'uppercase', lineHeight: 1,
+              }}>Strong</span>
             </div>
-          ) : isUpNext ? (
-            <div style={{
-              padding: '5px 12px',
-              borderRadius: 10,
-              background: `linear-gradient(135deg, rgba(${rgb},0.20), rgba(${rgb},0.10))`,
-              border: `1px solid rgba(${rgb},0.25)`,
-              fontSize: 10, fontWeight: 700,
-              color: subject.color,
-              letterSpacing: '0.04em',
-              textTransform: 'uppercase',
-              flexShrink: 0,
-              animation: 'jp-ctaPulse 2s ease-in-out infinite',
-            }}>
-              UP NEXT
+          ) : isFocusArea ? (
+            <div
+              aria-label="Focus area — worth revisiting"
+              style={{
+                display: 'flex', alignItems: 'center', gap: 4,
+                padding: '4px 9px 4px 7px', borderRadius: 999,
+                background: 'linear-gradient(135deg, rgba(251,191,36,0.18), rgba(245,158,11,0.10))',
+                border: '1px solid rgba(251,191,36,0.35)',
+                color: '#fcd34d',
+                flexShrink: 0,
+                boxShadow: '0 1px 8px rgba(251,191,36,0.18), inset 0 1px 0 rgba(255,255,255,0.08)',
+              }}
+            >
+              <svg width="10" height="10" viewBox="0 0 16 16" fill="none">
+                <circle cx="8" cy="8" r="6.2" stroke="#fcd34d" strokeWidth="1.8" />
+                <circle cx="8" cy="8" r="2" fill="#fcd34d" />
+              </svg>
+              <span style={{
+                fontSize: 10, fontWeight: 800, letterSpacing: '0.04em',
+                textTransform: 'uppercase', lineHeight: 1,
+              }}>Focus</span>
+            </div>
+          ) : crown > 0 ? (
+            <div
+              aria-label={`Knowledge Level ${crown} of 5`}
+              style={{
+                display: 'flex', alignItems: 'center', gap: 4,
+                padding: '4px 8px', borderRadius: 9,
+                background: `linear-gradient(135deg, ${CROWN_COLORS[crown as CrownLevel]}, ${CROWN_COLORS[crown as CrownLevel]}cc)`,
+                color: '#fff',
+                flexShrink: 0,
+                boxShadow: `0 2px 10px ${CROWN_COLORS[crown as CrownLevel]}44, 0 0 0 2px rgba(255,255,255,0.06) inset`,
+                ...(crown === 5 ? {
+                  backgroundImage: 'linear-gradient(135deg, #f472b6, #c084fc, #818cf8, #f472b6)',
+                  backgroundSize: '300% 300%',
+                  animation: 'jp-shimmer 3s linear infinite',
+                } : {}),
+              }}
+            >
+              <span style={{
+                fontSize: 8, fontWeight: 800, letterSpacing: '0.06em',
+                opacity: 0.85, textTransform: 'uppercase',
+              }}>LV</span>
+              <span style={{
+                fontSize: 12, fontWeight: 800, lineHeight: 1,
+                fontVariantNumeric: 'tabular-nums',
+              }}>
+                {crown === 5 ? '\u2605' : `${crown}/5`}
+              </span>
             </div>
           ) : state === 'started' ? (
             <svg width={20} height={20} viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0, opacity: 0.5 }}>
@@ -693,7 +763,7 @@ function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked, needsPro, d
         </div>
 
         {/* -- Row 2: PYQ progress bar + concepts -- */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
           {/* PYQ mini progress section */}
           <div style={{ flex: 1, minWidth: 0 }}>
             {/* Progress bar track */}
@@ -701,58 +771,54 @@ function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked, needsPro, d
               height: 4, borderRadius: 4,
               background: 'rgba(255,255,255,0.06)',
               overflow: 'hidden',
-              marginBottom: 5,
+              marginBottom: 8,
             }}>
               <div style={{
                 height: '100%',
                 width: dbCount === 0 ? '0%' : `${pyqPct * 100}%`,
                 background: dbCount === 0
                   ? 'transparent'
-                  : answered >= dbCount
+                  : isAllSeen
                     ? 'linear-gradient(90deg, #34d399, #22c55e)'
-                    : answered > 0
+                    : seenCount > 0
                       ? `linear-gradient(90deg, ${subject.color}, rgba(${rgb},0.6))`
                       : 'transparent',
                 borderRadius: 4,
                 transition: 'width 600ms cubic-bezier(0.16,1,0.3,1)',
-                boxShadow: answered > 0 && dbCount > 0
-                  ? answered >= dbCount
+                boxShadow: seenCount > 0 && dbCount > 0
+                  ? isAllSeen
                     ? '0 0 8px rgba(34,211,153,0.4)'
                     : `0 0 6px rgba(${rgb},0.3)`
                   : 'none',
               }} />
             </div>
 
-            {/* Concepts inline */}
-            <div style={{ display: 'flex', gap: 4, flexWrap: 'nowrap', overflow: 'hidden' }}>
-              {conceptsToShow.map((c, i) => (
+            {/* Concept pills — ALL concepts, wrapping freely. Tinted
+                with the subject colour so the eye links them back to
+                the topic, and large enough to actually read. */}
+            <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
+              {topic.concepts.map((c, i) => (
                 <span key={i} style={{
-                  fontSize: 9, fontWeight: 500,
-                  color: 'rgba(255,255,255,0.35)',
-                  background: 'rgba(255,255,255,0.03)',
-                  border: '1px solid rgba(255,255,255,0.04)',
-                  padding: '1px 6px',
-                  borderRadius: 5,
+                  fontSize: 11, fontWeight: 600,
+                  color: `rgba(${rgb},0.92)`,
+                  background: `rgba(${rgb},0.08)`,
+                  border: `1px solid rgba(${rgb},0.18)`,
+                  padding: '3px 9px',
+                  borderRadius: 999,
                   whiteSpace: 'nowrap',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  maxWidth: 80,
+                  letterSpacing: '0.005em',
+                  lineHeight: 1.4,
                 }}>
                   {c}
                 </span>
               ))}
-              {topic.concepts.length > 3 && (
-                <span style={{
-                  fontSize: 9, color: 'rgba(255,255,255,0.20)',
-                  padding: '1px 3px', whiteSpace: 'nowrap',
-                }}>
-                  +{topic.concepts.length - 3}
-                </span>
-              )}
             </div>
           </div>
 
-          {/* PYQ count badge */}
+          {/* PYQ count badge — always shows X/Y format so the user can read
+              "0/17", "5/17", "17/17" without ambiguity. The big number is
+              the unique PYQs the user has actually been shown (not the
+              cumulative re-attempt count). */}
           <div style={{
             display: 'flex', flexDirection: 'column', alignItems: 'flex-end',
             flexShrink: 0, gap: 1,
@@ -761,29 +827,25 @@ function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked, needsPro, d
               fontSize: 13, fontWeight: 700, letterSpacing: '-0.02em',
               color: dbCount === 0
                 ? 'rgba(255,255,255,0.20)'
-                : answered >= dbCount
+                : isAllSeen
                   ? '#34d399'
-                  : answered > 0
+                  : seenCount > 0
                     ? 'rgba(255,255,255,0.75)'
                     : 'rgba(255,255,255,0.50)',
+              fontVariantNumeric: 'tabular-nums',
             }}>
-              {dbCount === 0
-                ? '0'
-                : answered >= dbCount
-                  ? `${dbCount}`
-                  : `${answered}/${dbCount}`
-              }
+              {dbCount === 0 ? '0' : `${seenCapped}/${dbCount}`}
             </span>
             <span style={{
               fontSize: 9, fontWeight: 500, letterSpacing: '0.03em',
               color: dbCount === 0
                 ? 'rgba(255,255,255,0.15)'
-                : answered >= dbCount
+                : isAllSeen
                   ? 'rgba(34,211,153,0.7)'
                   : 'rgba(255,255,255,0.30)',
               textTransform: 'uppercase',
             }}>
-              {dbCount === 0 ? 'No PYQs' : answered >= dbCount ? 'Done' : 'PYQs'}
+              {dbCount === 0 ? 'No PYQs' : isAllSeen ? 'PYQs done' : 'PYQs'}
             </span>
           </div>
         </div>
@@ -813,16 +875,6 @@ function TopicCard({ node, onTap, isFirstAvailable, isNewlyUnlocked, needsPro, d
               transition: 'width 500ms ease-out',
             }} />
           </div>
-        )}
-
-        {/* -- Scan line animation for up-next card -- */}
-        {isUpNext && !isNewlyUnlocked && (
-          <div style={{
-            position: 'absolute', top: 0, bottom: 0, width: '30%',
-            background: `linear-gradient(90deg, transparent, rgba(${rgb},0.04), transparent)`,
-            animation: 'jp-scanline 4s ease-in-out infinite',
-            pointerEvents: 'none', zIndex: 3,
-          }} />
         )}
 
         {/* -- Shimmer overlay for newly unlocked -- */}
@@ -1036,17 +1088,31 @@ function SubjectAccordionHeader({ stats, isExpanded, onToggle }: {
         gap: 12,
         padding: '14px 14px',
         borderRadius: 16,
-        background: isExpanded
-          ? `linear-gradient(135deg, rgba(${rgb},0.08) 0%, rgba(${rgb},0.02) 100%)`
-          : 'rgba(255,255,255,0.025)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
+        // When expanded the header is position:sticky and pinned to the
+        // top of the scroll container while topics scroll past below it.
+        // The expanded background MUST be FULLY opaque or topic cards
+        // bleed through. Two separate properties (backgroundColor +
+        // backgroundImage) are more reliable in React inline styles than
+        // the comma-separated multi-background shorthand. Backdrop-filter
+        // is intentionally OFF when expanded — it does nothing on an
+        // opaque background and creates a stacking context that has
+        // bitten us with see-through behaviour in the past.
+        backgroundColor: isExpanded ? '#0a0a14' : 'rgba(255,255,255,0.025)',
+        backgroundImage: isExpanded
+          ? `linear-gradient(135deg, rgba(${rgb},0.16) 0%, rgba(${rgb},0.06) 100%)`
+          : 'none',
+        backdropFilter: isExpanded ? 'none' : 'blur(20px)',
+        WebkitBackdropFilter: isExpanded ? 'none' : 'blur(20px)',
         border: isExpanded
           ? `1px solid rgba(${rgb},0.25)`
           : '1px solid rgba(255,255,255,0.05)',
         cursor: 'pointer',
         transition: 'all 250ms cubic-bezier(0.16,1,0.3,1)',
-        marginBottom: isExpanded ? 8 : 4,
+        // When expanded, the parent wrapper provides bottom spacing
+        // (paddingBottom: 8) so the sticky bounding box covers the gap.
+        // Putting marginBottom on the header itself would leave a
+        // transparent strip below it that scrolling content can show through.
+        marginBottom: isExpanded ? 0 : 4,
         position: 'relative',
         overflow: 'hidden',
         userSelect: 'none',
@@ -1124,11 +1190,11 @@ function SubjectAccordionHeader({ stats, isExpanded, onToggle }: {
 
       {/* Percentage */}
       <span style={{
-        fontSize: 12, fontWeight: 700,
+        fontSize: 11, fontWeight: 700,
         color: pctDisplay === 100 ? '#34d399' : `rgba(${rgb},0.7)`,
         marginRight: 4,
       }}>
-        {pctDisplay}%
+        {pctDisplay === 100 ? 'Done' : `${pctDisplay}% done`}
       </span>
 
       {/* Chevron */}
@@ -1402,13 +1468,13 @@ export default function JourneyPath({
   activeSubjectId,
   onNodeTap,
   onSubjectChange: _onSubjectChange,
-  profile: _profile,
+  profile,
   newlyUnlockedId,
   isPro,
   freeTopicIds,
   pyqCounts,
 }: JourneyPathProps) {
-  void _onSubjectChange; void _profile
+  void _onSubjectChange
   const scrollRef = useRef<HTMLDivElement>(null)
   const firstAvailableRef = useRef<HTMLDivElement>(null)
   const newlyUnlockedRef = useRef<HTMLDivElement>(null)
@@ -1575,13 +1641,21 @@ export default function JourneyPath({
 
           return (
             <div key={ss.subject.id} style={{ marginBottom: isExpanded ? 12 : 2 }}>
-              {/* Accordion header — sticky when expanded so it stays visible */}
+              {/* Accordion header — sticky when expanded so it stays visible.
+                  The wrapper carries an opaque dark background so the
+                  marginBottom gap below the header can't reveal scrolling
+                  content through it (the SubjectAccordionHeader has its own
+                  marginBottom inside its style object). */}
               <div
                 ref={(el) => { accordionRefs.current[ss.subject.id] = el }}
                 style={isExpanded ? {
                   position: 'sticky',
                   top: 0,
                   zIndex: 10,
+                  background: '#050510',
+                  paddingTop: 4,
+                  paddingBottom: 8,
+                  marginTop: -4,
                 } : undefined}
               >
                 <SubjectAccordionHeader
@@ -1663,6 +1737,7 @@ export default function JourneyPath({
                             isNewlyUnlocked={isNewlyUnlocked}
                             needsPro={nodeNeedsPro}
                             dbQuestionCount={pyqCounts?.[node.topic.id] ?? 0}
+                            profile={profile}
                           />
                         </div>
                       )

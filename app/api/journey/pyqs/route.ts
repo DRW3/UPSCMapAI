@@ -7,7 +7,6 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@/lib/supabase/server'
-import { TOPIC_KEYWORD_MAP } from '@/data/topic-keyword-map'
 import Groq from 'groq-sdk'
 
 export const runtime = 'nodejs'
@@ -347,132 +346,102 @@ interface DbPYQ {
   source: string
 }
 
+// ── Result of a Supabase fetch ─────────────────────────────────────────────
+// `exhausted` is true when the topic has DB questions but the user has seen
+// every single valid one (post-isValidQuestion filter). Frontend uses this
+// to fire the "all PYQs done" celebration.
+interface SupabaseFetchResult {
+  questions: DbPYQ[]
+  exhausted: boolean
+  totalDbAvailable: number   // unfiltered count of valid questions for this topic
+}
+
+// Fetch the topic's DB pool — STRICTLY topic-tagged questions only.
+// We deliberately do NOT fall back to keyword/subject queries here, because
+// those drag in questions from sibling topics (e.g. an "Akbar" question
+// when the user is practicing "Mauryan Empire") which destroys the user's
+// trust in the topic filter. Every question in the DB has been precision-
+// tagged by the Groq tagger pipeline, so the tag query is authoritative.
+//
+// For topics that genuinely have no tagged questions in the DB, the GET
+// handler falls through to AI generation (which is constrained to the
+// requested topic by prompt) — that's a much better fallback than wrong-
+// topic content.
+//
+// All exclusion happens in JS (no fragile PostgREST `.not('id', 'in', ...)`).
 async function fetchFromSupabase(
   topicId: string,
-  subjectId: string,
+  _subjectId: string,
   limit: number,
-  year?: number
-): Promise<DbPYQ[]> {
+  year: number | undefined,
+  excludeIds: number[],
+): Promise<SupabaseFetchResult> {
   const supabase = createServerClient()
-  const mapping = TOPIC_KEYWORD_MAP[topicId]
   const SELECT_FIELDS = 'id, year, question, options, answer, explanation, subject, topic, difficulty, source, tags'
+  const excludeSet = new Set(excludeIds.filter(n => Number.isFinite(n) && n > 0))
+  const POOL_LIMIT = 500
 
-  // ── Strategy 1: Tag-based query (precise, preferred) ────────────────────
+  // Strict tag-based query — the ONLY source of truth for topic membership.
   const topicTag = `topic:${topicId}`
-
   let tagQuery = supabase
     .from('upsc_pyqs')
     .select(SELECT_FIELDS)
     .contains('tags', [topicTag])
     .not('options', 'is', null)
     .not('answer', 'is', null)
+  if (year) tagQuery = tagQuery.eq('year', year)
+  const { data: tagData } = await tagQuery.limit(POOL_LIMIT)
+  const rawRows = (tagData || []) as DbPYQ[]
 
-  if (year) {
-    tagQuery = tagQuery.eq('year', year)
+  // Defense-in-depth: even though `.contains('tags', [topicTag])` should be
+  // strict, double-check each row's tags array on the server side. Drop any
+  // row whose tags somehow do NOT contain our exact topic tag.
+  const topicScopedRows = rawRows.filter(r => {
+    const tags = (r as DbPYQ & { tags?: unknown }).tags
+    if (!Array.isArray(tags)) return false
+    return tags.some(t => typeof t === 'string' && t === topicTag)
+  })
+
+  // Sanitize: drop dupes, drop invalid, separate seen vs fresh.
+  const seenIds = new Set<number>()
+  const allValid: DbPYQ[] = []
+  const fresh: DbPYQ[] = []
+  for (const row of topicScopedRows) {
+    if (seenIds.has(row.id)) continue
+    seenIds.add(row.id)
+    if (!isValidQuestion(row)) continue
+    allValid.push(row)
+    if (!excludeSet.has(row.id)) fresh.push(row)
   }
 
-  const { data: tagData } = await tagQuery.limit(limit * 4)
-
-  if (tagData && tagData.length >= 3) {
-    return shuffleAndPick(tagData as DbPYQ[], limit)
-  }
-
-  // ── Strategy 2: Keyword fallback (for untagged data) ────────────────────
-  if (mapping) {
-    const keywords = mapping.keywords
-    const dbSubjects = mapping.dbSubjects
-    const keywordPattern = keywords.slice(0, 8).map(k => `%${k}%`)
-
-    let kwQuery = supabase
-      .from('upsc_pyqs')
-      .select(SELECT_FIELDS)
-      .in('subject', dbSubjects)
-      .not('options', 'is', null)
-      .not('answer', 'is', null)
-
-    if (year) {
-      kwQuery = kwQuery.eq('year', year)
+  // Happy path: fresh items available — return up to `limit`.
+  if (fresh.length > 0) {
+    return {
+      questions: shuffleAndPick(fresh, limit),
+      exhausted: false,
+      totalDbAvailable: allValid.length,
     }
-
-    const orConditions = keywordPattern.map(pat => `question.ilike.${pat}`).join(',')
-    kwQuery = kwQuery.or(orConditions)
-
-    const { data: kwData } = await kwQuery.limit(limit * 4)
-
-    // Merge tag results + keyword results, deduped
-    const combined = [...(tagData || []), ...(kwData || [])]
-    const seen = new Set<number>()
-    const unique = combined.filter(q => {
-      if (seen.has(q.id)) return false
-      seen.add(q.id)
-      return true
-    })
-
-    if (unique.length >= 3) {
-      return shuffleAndPick(unique as DbPYQ[], limit)
-    }
-
-    // Strategy 3: Broader subject-only (no keyword filter, no year filter)
-    if (unique.length < 3) {
-      const { data: broadData } = await supabase
-        .from('upsc_pyqs')
-        .select(SELECT_FIELDS)
-        .in('subject', dbSubjects)
-        .not('options', 'is', null)
-        .not('answer', 'is', null)
-        .limit(limit * 3)
-
-      if (broadData && broadData.length > 0) {
-        const all = [...unique, ...broadData]
-        const seen2 = new Set<number>()
-        const unique2 = all.filter(q => {
-          if (seen2.has(q.id)) return false
-          seen2.add(q.id)
-          return true
-        })
-        return shuffleAndPick(unique2 as DbPYQ[], limit)
-      }
-    }
-
-    return unique.length > 0 ? shuffleAndPick(unique as DbPYQ[], limit) : []
   }
 
-  // No mapping — try broad subject query
-  const dbSubjects = subjectIdToDbSubjects(subjectId)
-  const { data } = await supabase
-    .from('upsc_pyqs')
-    .select(SELECT_FIELDS)
-    .in('subject', dbSubjects)
-    .not('options', 'is', null)
-    .not('answer', 'is', null)
-    .limit(limit * 3)
-
-  if (data && data.length > 0) {
-    return shuffleAndPick(data as DbPYQ[], limit)
+  // No fresh items left. Three distinct empty states:
+  //  - allValid > 0 AND excludeSet covers them all → EXHAUSTED
+  //    (the user has actually seen every tagged question)
+  //  - allValid > 0 BUT excludeSet is empty/partial → not exhausted
+  //    (something weird; should never happen since fresh would be > 0)
+  //  - allValid === 0 → topic has zero tagged questions in the DB at all
+  //    (caller falls back to AI generation)
+  //
+  // Belt-and-suspenders: require BOTH allValid > 0 AND excludeSet has at
+  // least as many entries as allValid (i.e. the user has seen every
+  // single one). This guarantees `exhausted: true` only fires when the
+  // user has truly attempted every tagged question for the topic.
+  const everyValidIdSeen = allValid.length > 0 &&
+    allValid.every(q => excludeSet.has(q.id))
+  return {
+    questions: [],
+    exhausted: everyValidIdSeen,
+    totalDbAvailable: allValid.length,
   }
-  return []
-}
-
-function subjectIdToDbSubjects(subjectId: string): string[] {
-  const map: Record<string, string[]> = {
-    'ancient-history':   ['history'],
-    'medieval-history':  ['history'],
-    'modern-history':    ['history'],
-    'world-history':     ['history'],
-    'post-independence': ['history'],
-    'geography':         ['geography'],
-    'polity':            ['polity'],
-    'economy':           ['economy'],
-    'environment':       ['environment'],
-    'science-tech':      ['science'],
-    'society':           ['history', 'art_culture'],
-    'ethics':            ['polity'],
-    'csat':              ['general'],
-    'essay':             ['general'],
-    'current-affairs':   ['current_affairs'],
-    'general-science':   ['science'],
-  }
-  return map[subjectId] || ['general']
 }
 
 function isValidQuestion(q: DbPYQ): boolean {
@@ -512,16 +481,15 @@ async function generateWithAI(
   const topicName = TOPIC_DISPLAY_NAMES[topicId] || topicId.replace(/-/g, ' ')
   const subjectName = SUBJECT_MAP[subjectId] || subjectId.replace(/-/g, ' ')
 
-  const response = await getGroq().chat.completions.create({
-    model: 'llama-3.1-8b-instant',
-    messages: [
-      {
-        role: 'system',
-        content: 'You are a UPSC exam question paper setter. Generate authentic UPSC Prelims-style MCQs. Return only valid JSON.',
-      },
-      {
-        role: 'user',
-        content: `Generate ${limit} realistic UPSC Prelims MCQs about "${topicName}" (subject: ${subjectName}).
+  const MODELS = ['llama-3.1-8b-instant', 'llama-3.3-70b-versatile']
+  const messages = [
+    {
+      role: 'system' as const,
+      content: 'You are a UPSC exam question paper setter. Generate authentic UPSC Prelims-style MCQs. Return only valid JSON.',
+    },
+    {
+      role: 'user' as const,
+      content: `Generate ${limit} realistic UPSC Prelims MCQs about "${topicName}" (subject: ${subjectName}).
 
 Return a JSON array:
 [
@@ -542,13 +510,29 @@ Rules:
 - All 4 options should be plausible
 - Cover different aspects of the topic
 - Return ONLY the JSON array`,
-      },
-    ],
-    temperature: 0.7,
-    max_tokens: 2000,
-  })
+    },
+  ]
 
-  const text = response.choices[0]?.message?.content?.trim() || '[]'
+  let text = '[]'
+  for (const model of MODELS) {
+    try {
+      const response = await getGroq().chat.completions.create({
+        model,
+        messages,
+        temperature: 0.7,
+        max_tokens: 2000,
+      })
+      text = response.choices[0]?.message?.content?.trim() || '[]'
+      break
+    } catch (modelErr: unknown) {
+      const err = modelErr as { status?: number; message?: string }
+      if (err.status === 429 || (err.message && err.message.includes('429'))) {
+        console.warn(`PYQs: ${model} rate-limited, trying next model...`)
+        continue
+      }
+      throw modelErr
+    }
+  }
   const jsonMatch = text.match(/\[[\s\S]*\]/)
   if (!jsonMatch) return []
 
@@ -575,80 +559,125 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
   const subjectId = searchParams.get('subject') || ''
   const topicId = searchParams.get('topic') || ''
-  const limit = Math.min(parseInt(searchParams.get('limit') || '5'), 10)
+  const limit = Math.min(parseInt(searchParams.get('limit') || '5'), 20)
   const yearParam = searchParams.get('year')
   const year = yearParam ? parseInt(yearParam) : undefined
+  // Comma-separated list of question IDs to skip — used by the
+  // "Try Again with New Questions" CTA in PracticeSheet.
+  const excludeRaw = searchParams.get('excludeIds') || ''
+  const excludeIds = excludeRaw
+    ? excludeRaw
+        .split(',')
+        .map(s => parseInt(s, 10))
+        .filter(n => Number.isFinite(n) && n > 0)
+    : []
+  // Comma-separated list of SPECIFIC question IDs to fetch. When set,
+  // bypasses the topic-tag query entirely and returns those exact rows.
+  // Used by the "Practice only Wrong Questions" CTA on the topic-complete
+  // celebration to replay every question the user has ever answered wrong
+  // for this topic, across all sessions.
+  const idsRaw = searchParams.get('ids') || ''
+  const onlyIds = idsRaw
+    ? idsRaw
+        .split(',')
+        .map(s => parseInt(s, 10))
+        .filter(n => Number.isFinite(n) && n > 0)
+    : []
 
-  try {
-    // Try Supabase first (tag-based + keyword fallback)
-    const dbQuestions = await fetchFromSupabase(topicId, subjectId, limit, year)
-
-    if (dbQuestions.length >= 3) {
-      // Normalize DB format to match frontend expectations
-      const pyqs = dbQuestions.map(q => {
-        // Extract correct answer from options.correct if answer field is missing
-        let answer = q.answer
-        if (!answer && q.options && 'correct' in q.options) {
-          answer = q.options.correct as string
-        }
-
-        return {
-          id: q.id,
-          year: q.year || 2023,
-          question: q.question,
-          options: q.options ? { a: q.options.a, b: q.options.b, c: q.options.c, d: q.options.d } : null,
-          answer,
-          explanation: q.explanation,
-          subject: q.subject,
-          topic: q.topic,
-          difficulty: q.difficulty || 'medium',
-          source: q.source || 'database',
-        }
-      })
-
-      return NextResponse.json({ pyqs })
+  // Helper to normalize a DbPYQ to the response shape the frontend expects.
+  const toResponse = (q: DbPYQ) => {
+    let answer = q.answer
+    if (!answer && q.options && 'correct' in q.options) {
+      answer = q.options.correct as string
     }
-
-    // Fallback to AI generation
-    const aiQuestions = await generateWithAI(topicId, subjectId, limit)
-
-    // Combine DB + AI if DB had some results
-    const combined = [...dbQuestions, ...aiQuestions].slice(0, limit)
-    const pyqs = combined.map(q => ({
+    return {
       id: q.id,
       year: q.year || 2023,
       question: q.question,
       options: q.options ? { a: q.options.a, b: q.options.b, c: q.options.c, d: q.options.d } : null,
-      answer: q.answer,
+      answer,
       explanation: q.explanation,
-      subject: q.subject || subjectId,
-      topic: q.topic || topicId,
+      subject: q.subject,
+      topic: q.topic,
       difficulty: q.difficulty || 'medium',
-      source: q.source || 'ai-generated',
-    }))
+      source: q.source || 'database',
+    }
+  }
 
-    return NextResponse.json({ pyqs })
+  // ── Fast path: fetch specific question IDs (Practice Wrong Questions) ──
+  if (onlyIds.length > 0) {
+    try {
+      const supabase = createServerClient()
+      const SELECT_FIELDS = 'id, year, question, options, answer, explanation, subject, topic, difficulty, source, tags'
+      const { data } = await supabase
+        .from('upsc_pyqs')
+        .select(SELECT_FIELDS)
+        .in('id', onlyIds)
+        .not('options', 'is', null)
+        .not('answer', 'is', null)
+        .limit(Math.min(50, onlyIds.length))
+      const rows = ((data || []) as DbPYQ[]).filter(isValidQuestion)
+      // Preserve a stable response shape so the client can normalize.
+      return NextResponse.json({
+        pyqs: rows.map(toResponse),
+        exhausted: false,
+        totalDbAvailable: rows.length,
+        seenCount: 0,
+      })
+    } catch (err) {
+      console.error('Wrong-replay fetch failed:', err)
+      return NextResponse.json({ pyqs: [], exhausted: false, totalDbAvailable: 0, seenCount: 0 })
+    }
+  }
+
+  try {
+    const dbResult = await fetchFromSupabase(topicId, subjectId, limit, year, excludeIds)
+
+    // Happy path: enough fresh DB questions to fill the round.
+    if (dbResult.questions.length >= 3) {
+      return NextResponse.json({
+        pyqs: dbResult.questions.map(toResponse),
+        exhausted: false,
+        totalDbAvailable: dbResult.totalDbAvailable,
+        seenCount: excludeIds.length,
+      })
+    }
+
+    // EXHAUSTED: topic has DB questions but the user has seen them all.
+    // Surface the explicit signal so the frontend can fire the celebration
+    // overlay instead of silently falling back to AI generation.
+    if (dbResult.exhausted) {
+      return NextResponse.json({
+        pyqs: [],
+        exhausted: true,
+        totalDbAvailable: dbResult.totalDbAvailable,
+        seenCount: excludeIds.length,
+      })
+    }
+
+    // Otherwise — DB is thin (< 3 questions for this topic, ever) — top up
+    // with AI to give the user something to practice.
+    const aiQuestions = await generateWithAI(topicId, subjectId, limit - dbResult.questions.length)
+    const combined = [...dbResult.questions, ...aiQuestions].slice(0, limit)
+    return NextResponse.json({
+      pyqs: combined.map(toResponse),
+      exhausted: false,
+      totalDbAvailable: dbResult.totalDbAvailable,
+      seenCount: excludeIds.length,
+    })
   } catch (err) {
     console.error('PYQ fetch failed:', err)
-
-    // Last resort: try AI only
+    // Last resort: AI only
     try {
       const aiQuestions = await generateWithAI(topicId, subjectId, limit)
-      const pyqs = aiQuestions.map(q => ({
-        id: q.id,
-        year: q.year || 2023,
-        question: q.question,
-        options: q.options,
-        answer: q.answer,
-        explanation: q.explanation,
-        subject: q.subject || subjectId,
-        topic: q.topic || topicId,
-        difficulty: q.difficulty || 'medium',
-        source: 'ai-generated',
-      }))
-      return NextResponse.json({ pyqs })
+      return NextResponse.json({
+        pyqs: aiQuestions.map(toResponse),
+        exhausted: false,
+        totalDbAvailable: 0,
+        seenCount: excludeIds.length,
+      })
     } catch {
-      return NextResponse.json({ pyqs: [] })
+      return NextResponse.json({ pyqs: [], exhausted: false, totalDbAvailable: 0, seenCount: excludeIds.length })
     }
   }
 }
