@@ -7,6 +7,7 @@ import { DesktopTopBar } from './shell/DesktopTopBar'
 import { DesktopNavRail } from './shell/DesktopNavRail'
 import { DesktopMentorDock } from './shell/DesktopMentorDock'
 import { DesktopStatusBar } from './shell/DesktopStatusBar'
+import { DesktopTodayPane } from './panes/DesktopTodayPane'
 
 export function DesktopLearningJourney() {
   const state = useJourneyState()
@@ -27,11 +28,15 @@ export function DesktopLearningJourney() {
     </div>
   )
 
+  const centerPane =
+    state.activeTab === 'home' ? <DesktopTodayPane state={state} /> :
+    placeholderPane
+
   return (
     <DesktopShell
       topBar={<DesktopTopBar state={state} onOpenCommandPalette={() => _setPaletteOpen(true)} />}
       navRail={<DesktopNavRail state={state} />}
-      centerPane={placeholderPane}
+      centerPane={centerPane}
       mentorDock={<DesktopMentorDock state={state} />}
       statusBar={<DesktopStatusBar state={state} />}
     />
