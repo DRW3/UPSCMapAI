@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo, useState, useEffect } from 'react'
-import type { JourneyStateValue } from '@/components/journey/hooks/useJourneyState'
+import type { JourneyStateValue, EnrichedTopicEntry } from '@/components/journey/hooks/useJourneyState'
 import { DAILY_GOALS } from '@/components/journey/types'
 import { UPSC_SYLLABUS, type LearningSubject } from '@/data/syllabus'
 import { HoloFrame } from '@/components/journey/desktop/chrome/HoloFrame'
@@ -50,6 +50,11 @@ export function DesktopTodayPane({ state }: DesktopTodayPaneProps) {
   const subjects = UPSC_SYLLABUS
 
   const firstName = profile?.name ? profile.name.split(' ')[0] : null
+
+  const greeting = useMemo(() => getGreeting(), [])
+  const dateLabel = useMemo(() =>
+    new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }),
+  [])
 
   // ── Up-next topics (inline, mirrors HomeTab logic) ──────────────────────────
   const upNextTopics = useMemo(() => {
@@ -120,7 +125,7 @@ export function DesktopTodayPane({ state }: DesktopTodayPaneProps) {
             letterSpacing: '-0.02em',
             lineHeight: 1.2,
           }}>
-            {getGreeting()}{firstName ? `, ${firstName}` : ''}
+            {greeting}{firstName ? `, ${firstName}` : ''}
           </div>
           <div style={{
             fontSize: 13,
@@ -128,7 +133,7 @@ export function DesktopTodayPane({ state }: DesktopTodayPaneProps) {
             marginTop: 5,
             letterSpacing: '0.01em',
           }}>
-            {new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
+            {dateLabel}
           </div>
         </div>
 
@@ -441,27 +446,21 @@ function DesktopFocusSubjects({ state, subjects }: DesktopFocusSubjectsProps) {
   }
 
   return (
-    <div style={{
-      position: 'relative',
-      borderRadius: 18,
-      padding: 1.5,
-      background: 'conic-gradient(from var(--dj-angle, 0deg), rgba(99,102,241,0.55), rgba(56,189,248,0.55), rgba(168,85,247,0.55), rgba(244,114,182,0.45), rgba(99,102,241,0.55))',
-      animation: 'dj-rotate 8s linear infinite',
-    }}>
+    <HoloFrame
+      radius={18}
+      thickness={1.5}
+      padding="14px 16px 16px"
+      gradient="conic-gradient(from var(--dj-angle, 0deg), rgba(99,102,241,0.55), rgba(56,189,248,0.55), rgba(168,85,247,0.55), rgba(244,114,182,0.45), rgba(99,102,241,0.55))"
+      innerBackground="#0a0a14"
+      speed={8}
+    >
+      {/* Scan line */}
       <div style={{
-        background: '#0a0a14',
-        borderRadius: 16.5,
-        padding: '14px 16px 16px',
-        position: 'relative',
-        overflow: 'hidden',
-      }}>
-        {/* Scan line */}
-        <div style={{
-          position: 'absolute', top: 0, bottom: 0, left: 0, width: '40%',
-          background: 'linear-gradient(90deg, transparent, rgba(129,140,248,0.07), transparent)',
-          animation: 'dj-scanX 5s ease-in-out infinite',
-          pointerEvents: 'none', zIndex: 1,
-        }} />
+        position: 'absolute', top: 0, bottom: 0, left: 0, width: '40%',
+        background: 'linear-gradient(90deg, transparent, rgba(129,140,248,0.07), transparent)',
+        animation: 'dj-scanX 5s ease-in-out infinite',
+        pointerEvents: 'none', zIndex: 1,
+      }} />
 
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, position: 'relative', zIndex: 2 }}>
@@ -662,15 +661,14 @@ function DesktopFocusSubjects({ state, subjects }: DesktopFocusSubjectsProps) {
             </button>
           </div>
         )}
-      </div>
-    </div>
+    </HoloFrame>
   )
 }
 
 // ── DesktopUpNextList ──────────────────────────────────────────────────────────
 
 interface DesktopUpNextListProps {
-  upNextTopics: Array<{ state: string; topic: { id: string; title: string }; subject: { id: string; color: string; icon: string; shortTitle: string } }>
+  upNextTopics: EnrichedTopicEntry[]
   state: JourneyStateValue
 }
 
@@ -705,8 +703,8 @@ function DesktopUpNextList({ upNextTopics, state }: DesktopUpNextListProps) {
                 key={topic.id}
                 onClick={() => state.handleNodeTap(
                   topic.id,
-                  topic as Parameters<typeof state.handleNodeTap>[1],
-                  subject as Parameters<typeof state.handleNodeTap>[2],
+                  topic,
+                  subject,
                 )}
                 style={{
                   display: 'flex', alignItems: 'center', gap: 10,
@@ -791,9 +789,6 @@ function DesktopHeatmapTeaser({ progress }: { progress: JourneyStateValue['progr
     return m || 1
   }, [days, calendarMap])
 
-  // Build week labels (Mon-Sun) — 7 columns
-  const weekLabels = ['M', 'T', 'W', 'T', 'F', 'S', 'S']
-
   return (
     <div style={{
       background: 'rgba(255,255,255,0.04)',
@@ -812,22 +807,6 @@ function DesktopHeatmapTeaser({ progress }: { progress: JourneyStateValue['progr
         <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.25)', letterSpacing: '0.04em' }}>
           last 4 weeks
         </div>
-      </div>
-
-      {/* Day-of-week labels */}
-      <div style={{
-        display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 4, marginBottom: 4,
-      }}>
-        {weekLabels.map((l, i) => (
-          <div key={i} style={{
-            textAlign: 'center',
-            fontSize: 9, fontWeight: 700,
-            color: 'rgba(255,255,255,0.22)',
-            letterSpacing: '0.04em',
-          }}>
-            {l}
-          </div>
-        ))}
       </div>
 
       {/* 7 × 4 grid */}
