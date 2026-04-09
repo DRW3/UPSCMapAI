@@ -24,7 +24,6 @@ import { useJourneyState, type TabId } from './hooks/useJourneyState'
 // ── Main Component ────────────────────────────────────────────────────────────
 
 export function MobileLearningJourney() {
-  const s = useJourneyState()
   const {
     progress, profile, mounted, showOnboarding,
     activeTab, setActiveTab, tabTransition, setTabTransition,
@@ -41,8 +40,7 @@ export function MobileLearningJourney() {
     handleHeartLost, handleResetTopicSeenIds, handleUpgradePro, handlePaywallDismiss,
     findNextTopic,
     goalCelebrationSnapshotRef,
-  } = s
-  void s
+  } = useJourneyState()
 
   // ── Loading state ──────────────────────────────────────────────────────────
 

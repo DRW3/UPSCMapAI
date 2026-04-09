@@ -30,7 +30,7 @@ export interface EnrichedTopicEntry {
   subject: LearningSubject
 }
 
-export type TabId = 'home' | 'live' | 'path' | 'practice' | 'profile'
+export type TabId = 'home' | 'live' | 'path' | 'profile'
 
 export type PaywallReason = 'topics' | 'hearts' | null
 
@@ -268,13 +268,11 @@ function resetDailyIfNeeded(progress: JourneyProgress): JourneyProgress {
 
 // ── Enriched topic state (includes topic + subject refs for HomeTab/PracticeTab)
 
-type EnrichedTopicState = { state: NodeState; topic: LearningTopic; subject: LearningSubject }
-
 function buildEnrichedStates(
   subjects: LearningSubject[],
   topicStates: Record<string, TopicProgress>,
-): Record<string, EnrichedTopicState> {
-  const result: Record<string, EnrichedTopicState> = {}
+): Record<string, EnrichedTopicEntry> {
+  const result: Record<string, EnrichedTopicEntry> = {}
   for (const subject of subjects) {
     for (const unit of subject.units) {
       for (const topic of unit.topics) {
