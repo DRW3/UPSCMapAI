@@ -50,7 +50,9 @@ export interface JourneyStateValue {
   enrichedTopicStates: Record<string, EnrichedTopicEntry>
   continueTarget: EnrichedTopicEntry | null
   pyqCounts: Record<string, number>
+  setPyqCounts: Dispatch<SetStateAction<Record<string, number>>>
   dailyTip: string | null
+  setDailyTip: Dispatch<SetStateAction<string | null>>
 
   // ── Modal / overlay queue ────────────────────────────────────
   detailTarget: { topic: LearningTopic; subject: LearningSubject } | null
