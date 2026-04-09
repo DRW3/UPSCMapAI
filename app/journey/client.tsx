@@ -1,87 +1,32 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
+import { useDeviceClass } from '@/components/journey/hooks/useDeviceClass'
 
-// Lazy-load to avoid SSR issues with localStorage
 const MobileLearningJourney = dynamic(
   () => import('@/components/journey/MobileLearningJourney').then(m => ({ default: m.MobileLearningJourney })),
   { ssr: false, loading: () => <Loading /> }
 )
 
+// Desktop shell — phase 3 replaces this with the real DesktopLearningJourney.
+// Keeping the phone-frame wrapper as the placeholder so phase 1 doesn't ship
+// a regression.
+const DesktopLearningJourney = dynamic(
+  () => import('@/components/journey/desktop/DesktopLearningJourney').then(m => ({ default: m.DesktopLearningJourney })),
+  { ssr: false, loading: () => <Loading /> }
+)
+
 function Loading() {
   return (
-    <div className="flex items-center justify-center" style={{ height: '100dvh', background: '#080810' }}>
+    <div className="flex items-center justify-center" style={{ height: '100dvh', background: '#050510' }}>
       <div className="w-10 h-10 rounded-full border-2 border-indigo-500/30 border-t-indigo-500 animate-spin" />
     </div>
   )
 }
 
 export function JourneyClient() {
-  const [isMobile, setIsMobile] = useState<boolean | null>(null)
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768)
-    check()
-    window.addEventListener('resize', check)
-    return () => window.removeEventListener('resize', check)
-  }, [])
-
-  if (isMobile === null) return <Loading />
-
-  if (isMobile) {
-    return <MobileLearningJourney />
-  }
-
-  // Desktop: render the same journey UI in a phone-frame container
-  // This ensures consistent v2 progress, crowns, achievements, etc.
-  return (
-    <div
-      className="min-h-screen flex flex-col items-center"
-      style={{ background: 'linear-gradient(180deg, #080810 0%, #0a0a14 50%, #080810 100%)' }}
-    >
-      {/* Desktop chrome header */}
-      <nav
-        className="sticky top-0 z-40 flex items-center gap-4 px-6 h-14 w-full"
-        style={{ background: 'rgba(8,8,16,0.88)', backdropFilter: 'blur(12px)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}
-      >
-        <a href="/" className="flex items-center gap-1.5 text-white/50 hover:text-white/80 transition-colors text-[12px]">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-            <path d="M9 2L4 7l5 5" />
-          </svg>
-          Home
-        </a>
-        <div className="w-px h-4 bg-white/10" />
-        <div className="flex items-center gap-2">
-          <span className="text-base">🎯</span>
-          <span className="text-[13px] font-semibold text-white/85">Learning Journey</span>
-        </div>
-        <div className="flex-1" />
-        <a
-          href="/map"
-          className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-[12px] font-semibold text-white transition-all hover:scale-[1.02]"
-          style={{ background: 'rgba(99,102,241,0.18)', border: '1px solid rgba(99,102,241,0.3)', color: '#a5b4fc' }}
-        >
-          Open Map
-        </a>
-      </nav>
-
-      {/* Phone-frame container for the learning journey */}
-      <div className="flex-1 w-full flex justify-center py-6">
-        <div
-          className="relative overflow-hidden"
-          style={{
-            width: 420,
-            maxWidth: '100%',
-            height: 'calc(100vh - 80px)',
-            borderRadius: 32,
-            border: '1px solid rgba(255,255,255,0.08)',
-            boxShadow: '0 0 80px rgba(99,102,241,0.08), 0 0 2px rgba(255,255,255,0.1)',
-          }}
-        >
-          <MobileLearningJourney />
-        </div>
-      </div>
-    </div>
-  )
+  const deviceClass = useDeviceClass()
+  if (deviceClass === null) return <Loading />
+  if (deviceClass === 'mobile') return <MobileLearningJourney />
+  return <DesktopLearningJourney />
 }
