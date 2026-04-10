@@ -24,6 +24,8 @@ interface TopicDetailSheetProps {
   onClose: () => void
   onStartPractice: () => void
   onOpenMap: (context?: string) => void
+  /** 'desktop' renders a 540px right-side slide-in panel; 'mobile' (default) is the bottom sheet */
+  variant?: 'mobile' | 'desktop'
 }
 
 interface StudyNotes {
@@ -65,7 +67,9 @@ export default function TopicDetailSheet({
   onClose,
   onStartPractice,
   onOpenMap,
+  variant = 'mobile',
 }: TopicDetailSheetProps) {
+  const isDesktop = variant === 'desktop'
   const [visible, setVisible] = useState(false)
   const [dismissing, setDismissing] = useState(false)
 
@@ -597,9 +601,9 @@ export default function TopicDetailSheet({
           position: 'fixed',
           inset: 0,
           zIndex: 70,
-          background: 'rgba(0,0,0,0.55)',
-          backdropFilter: 'blur(6px)',
-          WebkitBackdropFilter: 'blur(6px)',
+          background: isDesktop ? 'rgba(2,4,12,0.55)' : 'rgba(0,0,0,0.55)',
+          backdropFilter: isDesktop ? 'blur(8px)' : 'blur(6px)',
+          WebkitBackdropFilter: isDesktop ? 'blur(8px)' : 'blur(6px)',
           animation: dismissing
             ? 'tds-fadeOut 0.3s ease forwards'
             : 'tds-fadeIn 0.2s ease forwards',
@@ -609,43 +613,67 @@ export default function TopicDetailSheet({
       {/* Sheet */}
       <div
         onClick={(e) => e.stopPropagation()}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
+        onTouchStart={isDesktop ? undefined : handleTouchStart}
+        onTouchMove={isDesktop ? undefined : handleTouchMove}
+        onTouchEnd={isDesktop ? undefined : handleTouchEnd}
         style={{
           position: 'fixed',
-          bottom: 0,
-          left: 0,
-          right: 0,
+          ...(isDesktop
+            ? {
+                top: 0,
+                right: 0,
+                bottom: 0,
+                width: 'min(540px, 90vw)',
+                borderLeft: '1.5px solid rgba(167,139,250,0.30)',
+                boxShadow: '-30px 0 80px rgba(0,0,0,0.55)',
+                borderRadius: 0,
+              }
+            : {
+                bottom: 0,
+                left: 0,
+                right: 0,
+                maxHeight: '92vh',
+                borderRadius: '24px 24px 0 0',
+                borderBottom: 'none',
+                boxShadow: '0 -8px 40px rgba(0,0,0,0.5)',
+              }),
           zIndex: 71,
           display: 'flex',
           flexDirection: 'column',
-          maxHeight: '92vh',
-          borderRadius: '24px 24px 0 0',
           background: 'rgba(10,10,20,0.97)',
           backdropFilter: 'blur(32px)',
           WebkitBackdropFilter: 'blur(32px)',
-          border: '1px solid rgba(255,255,255,0.08)',
-          borderBottom: 'none',
-          boxShadow: '0 -8px 40px rgba(0,0,0,0.5)',
-          transform:
-            visible && !dismissing
-              ? `translateY(${dragTranslate}px)`
-              : 'translateY(100%)',
-          transition: isDragging.current
-            ? 'none'
-            : 'transform 0.35s cubic-bezier(0.16,1,0.3,1)',
-          animation: dismissing
-            ? 'tds-slideDown 0.35s ease forwards'
-            : visible && dragTranslate === 0
-              ? 'tds-slideUp 0.35s cubic-bezier(0.16,1,0.3,1) forwards'
-              : 'none',
+          border: isDesktop ? '1.5px solid rgba(167,139,250,0.30)' : '1px solid rgba(255,255,255,0.08)',
+          ...(isDesktop
+            ? {
+                animation: dismissing
+                  ? 'dj-panelSlideOut 0.3s ease forwards'
+                  : visible
+                    ? 'dj-panelSlideIn 0.4s cubic-bezier(0.16,1,0.3,1) forwards'
+                    : 'none',
+              }
+            : {
+                transform:
+                  visible && !dismissing
+                    ? `translateY(${dragTranslate}px)`
+                    : 'translateY(100%)',
+                transition: isDragging.current
+                  ? 'none'
+                  : 'transform 0.35s cubic-bezier(0.16,1,0.3,1)',
+                animation: dismissing
+                  ? 'tds-slideDown 0.35s ease forwards'
+                  : visible && dragTranslate === 0
+                    ? 'tds-slideUp 0.35s cubic-bezier(0.16,1,0.3,1) forwards'
+                    : 'none',
+              }),
         }}
       >
-        {/* 1. Drag handle */}
-        <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 12, paddingBottom: 4 }}>
-          <div style={{ width: 40, height: 4, borderRadius: 99, background: 'rgba(255,255,255,0.2)' }} />
-        </div>
+        {/* 1. Drag handle — mobile only */}
+        {!isDesktop && (
+          <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 12, paddingBottom: 4 }}>
+            <div style={{ width: 40, height: 4, borderRadius: 99, background: 'rgba(255,255,255,0.2)' }} />
+          </div>
+        )}
 
         {/* Scrollable content. `overflowX: 'hidden'` is critical: it
             prevents the sheet from ever scrolling sideways. Without

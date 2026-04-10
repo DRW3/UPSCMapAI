@@ -19,6 +19,11 @@ const PracticeSheet = dynamic(
   { ssr: false }
 )
 
+const TopicDetailSheet = dynamic(
+  () => import('@/components/journey/TopicDetailSheet'),
+  { ssr: false }
+)
+
 export function DesktopLearningJourney() {
   const state = useJourneyState()
   const [_paletteOpen, _setPaletteOpen] = useState(false)
@@ -104,6 +109,20 @@ export function DesktopLearningJourney() {
             />
           </div>
         </div>
+      )}
+
+      {state.detailTarget && (
+        <TopicDetailSheet
+          topic={state.detailTarget.topic}
+          subject={state.detailTarget.subject}
+          progress={state.progress.topics[state.detailTarget.topic.id] ?? DEFAULT_TOPIC_PROGRESS}
+          dbQuestionCount={state.pyqCounts[state.detailTarget.topic.id] ?? 0}
+          onClose={() => state.setDetailTarget(null)}
+          onStartPractice={state.handleDetailStartPractice}
+          onOpenMap={state.handleOpenMap}
+          profile={state.profile}
+          variant="desktop"
+        />
       )}
     </>
   )
