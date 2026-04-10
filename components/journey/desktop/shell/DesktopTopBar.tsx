@@ -26,112 +26,113 @@ export function DesktopTopBar({ state, onOpenCommandPalette }: Props) {
         WebkitBackdropFilter: 'blur(20px)',
       }}
     >
-      {/* Brand orb */}
-      <div style={{
-        position: 'relative',
-        width: 36, height: 36,
-        marginRight: 12,
-      }}>
+      {/* LEFT — brand */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
+        {/* Brand orb */}
         <div style={{
-          position: 'absolute', inset: 0, borderRadius: 12,
-          background: 'conic-gradient(from var(--dj-angle, 0deg), #6366f1, #67e8f9, #a78bfa, #f472b6, #6366f1)',
-          animation: 'dj-rotate 10s linear infinite',
-          padding: 1.5,
+          position: 'relative',
+          width: 36, height: 36,
         }}>
           <div style={{
-            width: '100%', height: '100%', borderRadius: 11,
-            background: '#050510',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            position: 'absolute', inset: 0, borderRadius: 12,
+            background: 'conic-gradient(from var(--dj-angle, 0deg), #6366f1, #67e8f9, #a78bfa, #f472b6, #6366f1)',
+            animation: 'dj-rotate 10s linear infinite',
+            padding: 1.5,
           }}>
-            <span style={{
-              background: 'linear-gradient(135deg, #c4b5fd, #67e8f9)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              fontWeight: 900, fontSize: 14,
-            }}>P</span>
+            <div style={{
+              width: '100%', height: '100%', borderRadius: 11,
+              background: '#050510',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}>
+              <span style={{
+                background: 'linear-gradient(135deg, #c4b5fd, #67e8f9)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                fontWeight: 900, fontSize: 14,
+              }}>P</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Brand label */}
+        <div>
+          <div style={{ fontSize: 13, fontWeight: 800, color: '#fff', lineHeight: 1.1 }}>
+            PadhAI UPSC
           </div>
         </div>
       </div>
 
-      {/* Brand label */}
-      <div>
-        <div style={{ fontSize: 13, fontWeight: 800, color: '#fff', lineHeight: 1.1 }}>
-          PadhAI UPSC
+      {/* CENTER — search bar (flex: 1, centered) */}
+      <div style={{ flex: 1, display: 'flex', justifyContent: 'center', padding: '0 24px' }}>
+        <div
+          onClick={onOpenCommandPalette}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onOpenCommandPalette() } }}
+          style={{
+            display: 'flex', alignItems: 'center', gap: 10,
+            width: '100%',
+            maxWidth: 520,
+            padding: '9px 16px',
+            borderRadius: 14,
+            background: 'rgba(167,139,250,0.06)',
+            border: '1.5px solid rgba(167,139,250,0.25)',
+            cursor: 'text',
+            transition: 'all 200ms',
+          }}
+          aria-label="Search topics and subjects"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(167,139,250,0.65)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="11" cy="11" r="7" />
+            <path d="M21 21l-4.35-4.35" />
+          </svg>
+          <span style={{
+            fontSize: 13, fontWeight: 500,
+            color: 'rgba(255,255,255,0.35)',
+            flex: 1,
+          }}>
+            Search topics, subjects...
+          </span>
         </div>
       </div>
 
-      <div style={{ flex: 1 }} />
-
-      {/* Search bar — opens command palette on click */}
-      <div
-        onClick={onOpenCommandPalette}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onOpenCommandPalette() } }}
-        style={{
-          display: 'flex', alignItems: 'center', gap: 10,
-          flex: 1,
-          maxWidth: 480,
-          padding: '9px 16px',
-          borderRadius: 14,
-          background: 'rgba(167,139,250,0.06)',
-          border: '1.5px solid rgba(167,139,250,0.25)',
-          cursor: 'text',
-          transition: 'all 200ms',
-          marginLeft: 24,
-          marginRight: 14,
-        }}
-        aria-label="Search topics and subjects"
-      >
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(167,139,250,0.65)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="11" cy="11" r="7" />
-          <path d="M21 21l-4.35-4.35" />
-        </svg>
-        <span style={{
-          fontSize: 13, fontWeight: 500,
-          color: 'rgba(255,255,255,0.35)',
-          flex: 1,
-        }}>
-          Search topics, subjects...
-        </span>
-      </div>
-
-      {/* Stats */}
-      {(progress.streak || 0) > 0 && (
+      {/* RIGHT — stats */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
+        {(progress.streak || 0) > 0 && (
+          <div style={{
+            display: 'flex', alignItems: 'center', gap: 5,
+            padding: '6px 12px',
+            borderRadius: 10,
+            background: 'rgba(249,115,22,0.10)',
+            border: '1px solid rgba(249,115,22,0.30)',
+            color: '#fb923c',
+            fontSize: 12, fontWeight: 800,
+          }}>
+            🔥 {progress.streak}
+          </div>
+        )}
         <div style={{
           display: 'flex', alignItems: 'center', gap: 5,
           padding: '6px 12px',
           borderRadius: 10,
-          background: 'rgba(249,115,22,0.10)',
-          border: '1px solid rgba(249,115,22,0.30)',
-          color: '#fb923c',
+          background: 'rgba(99,102,241,0.10)',
+          border: '1px solid rgba(99,102,241,0.30)',
+          color: '#a5b4fc',
           fontSize: 12, fontWeight: 800,
-          marginRight: 8,
         }}>
-          🔥 {progress.streak}
+          ⚡ Lv {level}
         </div>
-      )}
-      <div style={{
-        display: 'flex', alignItems: 'center', gap: 5,
-        padding: '6px 12px',
-        borderRadius: 10,
-        background: 'rgba(99,102,241,0.10)',
-        border: '1px solid rgba(99,102,241,0.30)',
-        color: '#a5b4fc',
-        fontSize: 12, fontWeight: 800,
-      }}>
-        ⚡ Lv {level}
-      </div>
 
-      {firstName && (
-        <div style={{
-          marginLeft: 14,
-          fontSize: 12, fontWeight: 700,
-          color: 'rgba(255,255,255,0.65)',
-        }}>
-          Hi, {firstName}
-        </div>
-      )}
+        {firstName && (
+          <div style={{
+            marginLeft: 6,
+            fontSize: 12, fontWeight: 700,
+            color: 'rgba(255,255,255,0.65)',
+          }}>
+            Hi, {firstName}
+          </div>
+        )}
+      </div>
     </div>
   )
 }
