@@ -58,15 +58,6 @@ export function DesktopTopBar({ state, onOpenCommandPalette }: Props) {
         <div style={{ fontSize: 13, fontWeight: 800, color: '#fff', lineHeight: 1.1 }}>
           PadhAI UPSC
         </div>
-        <div style={{
-          fontSize: 10, fontWeight: 600,
-          background: 'linear-gradient(90deg, #c4b5fd, #67e8f9, #f9a8d4)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          marginTop: 1,
-        }}>
-          Learning Journey · Desktop
-        </div>
       </div>
 
       <div style={{ flex: 1 }} />

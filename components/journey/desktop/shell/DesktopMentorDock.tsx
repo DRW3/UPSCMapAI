@@ -3,12 +3,19 @@
 
 import type { JourneyStateValue } from '@/components/journey/hooks/useJourneyState'
 
+const TAB_HINTS: Record<string, string> = {
+  home: "Start your next topic or change your focus subjects to adjust your plan.",
+  path: "Tap any topic to open study notes. Green topics are done, amber ones need focus.",
+  practice: "Your weakest topics are shown first. Pick one to practice real PYQs.",
+  profile: "Track your journey — stats, streaks, and subject progress all in one place.",
+}
+
 interface Props {
   state: JourneyStateValue
 }
 
 export function DesktopMentorDock({ state }: Props) {
-  const { dailyTip, progress, continueTarget } = state
+  const { dailyTip, progress, continueTarget, activeTab } = state
   const totalAnswered = Object.values(progress.topics).reduce((s, t) => s + (t.questionsAnswered || 0), 0)
   const totalCorrect = Object.values(progress.topics).reduce((s, t) => s + (t.correctAnswers || 0), 0)
   const acc = totalAnswered > 0 ? Math.round((totalCorrect / totalAnswered) * 100) : 0
@@ -26,68 +33,73 @@ export function DesktopMentorDock({ state }: Props) {
         overflow: 'hidden',
       }}
     >
-      {/* AI orb */}
+      {/* Compact AI orb + label row */}
       <div style={{
-        position: 'relative',
-        width: '100%',
-        height: 180,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        display: 'flex', alignItems: 'center', gap: 14,
+        marginBottom: 8,
       }}>
-        {/* Outer rotating ring */}
+        {/* Mini orb — 56px */}
         <div style={{
-          position: 'absolute',
-          width: 160, height: 160, borderRadius: '50%',
-          background: 'conic-gradient(from var(--dj-angle, 0deg), #6366f1, #67e8f9, #a78bfa, #f472b6, #6366f1)',
-          animation: 'dj-rotate 10s linear infinite',
-          padding: 2,
+          position: 'relative',
+          width: 56, height: 56,
+          flexShrink: 0,
         }}>
-          <div style={{ width: '100%', height: '100%', borderRadius: '50%', background: '#050510' }} />
+          {/* Outer rotating ring */}
+          <div style={{
+            position: 'absolute', inset: 0, borderRadius: '50%',
+            background: 'conic-gradient(from var(--dj-angle, 0deg), #6366f1, #67e8f9, #a78bfa, #f472b6, #6366f1)',
+            animation: 'dj-rotate 10s linear infinite',
+            padding: 1.5,
+          }}>
+            <div style={{ width: '100%', height: '100%', borderRadius: '50%', background: '#050510' }} />
+          </div>
+          {/* Core */}
+          <div style={{
+            position: 'absolute', inset: '14%', borderRadius: '50%',
+            background: 'radial-gradient(circle at 35% 30%, #e0e7ff 0%, #818cf8 35%, #4338ca 80%, #1e1b4b 100%)',
+            boxShadow: '0 0 20px rgba(99,102,241,0.50)',
+            animation: 'dj-corePulse 2.2s ease-in-out infinite',
+          }} />
+          {/* Bright center */}
+          <div style={{
+            position: 'absolute', inset: '36%', borderRadius: '50%',
+            background: '#fff',
+            boxShadow: '0 0 10px rgba(255,255,255,0.95)',
+          }} />
         </div>
-        {/* Inner glowing core */}
-        <div style={{
-          position: 'absolute',
-          width: 110, height: 110, borderRadius: '50%',
-          background: 'radial-gradient(circle at 35% 30%, #e0e7ff 0%, #818cf8 35%, #4338ca 80%, #1e1b4b 100%)',
-          boxShadow: '0 0 50px rgba(99,102,241,0.55), inset 0 0 24px rgba(255,255,255,0.10)',
-          animation: 'dj-corePulse 2.2s ease-in-out infinite',
-        }} />
-        {/* Bright center */}
-        <div style={{
-          position: 'absolute',
-          width: 28, height: 28, borderRadius: '50%',
-          background: '#fff',
-          boxShadow: '0 0 18px rgba(255,255,255,0.95), 0 0 36px rgba(199,210,254,0.65)',
-          animation: 'dj-corePulse 1.4s ease-in-out infinite',
-        }} />
-        {/* Twin satellites — counter-rotating */}
-        <div style={{
-          position: 'absolute', width: 130, height: 130,
-          animation: 'dj-rotate 14s linear infinite reverse',
-        }}>
+
+        {/* Label */}
+        <div>
           <div style={{
-            position: 'absolute', top: -3, left: '50%', transform: 'translateX(-50%)',
-            width: 5, height: 5, borderRadius: '50%',
-            background: '#67e8f9',
-            boxShadow: '0 0 8px rgba(103,232,249,1)',
-          }} />
+            fontSize: 13, fontWeight: 800,
+            background: 'linear-gradient(135deg, #c4b5fd, #67e8f9)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            lineHeight: 1.2,
+          }}>
+            Your AI Mentor
+          </div>
           <div style={{
-            position: 'absolute', bottom: -3, left: '50%', transform: 'translateX(-50%)',
-            width: 5, height: 5, borderRadius: '50%',
-            background: '#f9a8d4',
-            boxShadow: '0 0 8px rgba(249,168,212,1)',
-          }} />
+            fontSize: 10, fontWeight: 600,
+            color: 'rgba(255,255,255,0.40)',
+            marginTop: 2,
+          }}>
+            Always here to guide you
+          </div>
         </div>
       </div>
 
-      {/* Section label */}
+      {/* Screen-contextual hint — changes per tab */}
       <div style={{
-        fontSize: 9, fontWeight: 800,
-        color: 'rgba(167,139,250,0.55)',
-        letterSpacing: '0.14em',
-        textTransform: 'uppercase',
-        textAlign: 'center',
+        fontSize: 12, lineHeight: 1.55,
+        color: 'rgba(255,255,255,0.65)',
+        padding: '10px 14px',
+        borderRadius: 12,
+        background: 'rgba(99,102,241,0.06)',
+        border: '1px solid rgba(99,102,241,0.15)',
+        marginBottom: 10,
       }}>
-        Your AI Mentor
+        {TAB_HINTS[activeTab] ?? TAB_HINTS.home}
       </div>
 
       {/* Daily tip — typewriter not needed; just show the text */}

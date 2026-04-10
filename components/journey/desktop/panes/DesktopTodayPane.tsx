@@ -25,20 +25,6 @@ function getGreeting(): string {
   return 'Late night grind'
 }
 
-// Compute the last 28 calendar dates (YYYY-MM-DD), oldest first
-function getLast28Days(): string[] {
-  const days: string[] = []
-  const now = new Date()
-  for (let i = 27; i >= 0; i--) {
-    const d = new Date(now)
-    d.setDate(d.getDate() - i)
-    days.push(
-      `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
-    )
-  }
-  return days
-}
-
 // ── DesktopTodayPane ───────────────────────────────────────────────────────────
 
 interface DesktopTodayPaneProps {
@@ -151,9 +137,6 @@ export function DesktopTodayPane({ state }: DesktopTodayPaneProps) {
 
         {/* Up Next */}
         <DesktopUpNextList upNextTopics={upNextTopics} state={state} />
-
-        {/* Heatmap */}
-        <DesktopHeatmapTeaser progress={progress} />
       </div>
     </div>
   )
@@ -764,96 +747,3 @@ function DesktopUpNextList({ upNextTopics, state }: DesktopUpNextListProps) {
   )
 }
 
-// ── DesktopHeatmapTeaser ───────────────────────────────────────────────────────
-// 7-col × 4-row = 28 cells representing the last 28 days.
-
-function DesktopHeatmapTeaser({ progress }: { progress: JourneyStateValue['progress'] }) {
-  const days = useMemo(() => getLast28Days(), [])
-
-  // Build a lookup from calendar array
-  const calendarMap = useMemo(() => {
-    const map: Record<string, number> = {}
-    for (const entry of progress.studyCalendar) {
-      map[entry.date] = entry.questionsAnswered
-    }
-    return map
-  }, [progress.studyCalendar])
-
-  // Compute max for normalization
-  const maxQ = useMemo(() => {
-    let m = 0
-    for (const d of days) {
-      const q = calendarMap[d] ?? 0
-      if (q > m) m = q
-    }
-    return m || 1
-  }, [days, calendarMap])
-
-  return (
-    <div style={{
-      background: 'rgba(255,255,255,0.04)',
-      border: '1px solid rgba(255,255,255,0.07)',
-      borderRadius: 18,
-      padding: '16px 18px',
-    }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
-        <div style={{
-          fontSize: 12, fontWeight: 800,
-          color: 'rgba(255,255,255,0.55)',
-          letterSpacing: '0.07em', textTransform: 'uppercase',
-        }}>
-          28-Day Activity
-        </div>
-        <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.25)', letterSpacing: '0.04em' }}>
-          last 4 weeks
-        </div>
-      </div>
-
-      {/* 7 × 4 grid */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(7, 1fr)',
-        gap: 4,
-      }}>
-        {days.map(date => {
-          const q = calendarMap[date] ?? 0
-          const intensity = q > 0 ? Math.min(1, q / maxQ) : 0
-          const bg = q > 0
-            ? `rgba(167,139,250, ${(0.20 + intensity * 0.65).toFixed(3)})`
-            : 'rgba(255,255,255,0.04)'
-          return (
-            <div
-              key={date}
-              title={`${date}: ${q} question${q !== 1 ? 's' : ''}`}
-              style={{
-                aspectRatio: '1',
-                borderRadius: 4,
-                background: bg,
-                boxShadow: q > 0 ? `0 0 ${Math.round(4 + intensity * 8)}px rgba(167,139,250,${(intensity * 0.4).toFixed(2)})` : 'none',
-                transition: 'background 300ms ease',
-                cursor: 'default',
-              }}
-            />
-          )
-        })}
-      </div>
-
-      {/* Legend */}
-      <div style={{
-        display: 'flex', alignItems: 'center', gap: 5, marginTop: 10,
-        justifyContent: 'flex-end',
-      }}>
-        <span style={{ fontSize: 9, color: 'rgba(255,255,255,0.22)' }}>less</span>
-        {[0, 0.25, 0.5, 0.75, 1].map(v => (
-          <div key={v} style={{
-            width: 10, height: 10, borderRadius: 3,
-            background: v === 0
-              ? 'rgba(255,255,255,0.04)'
-              : `rgba(167,139,250,${(0.20 + v * 0.65).toFixed(3)})`,
-          }} />
-        ))}
-        <span style={{ fontSize: 9, color: 'rgba(255,255,255,0.22)' }}>more</span>
-      </div>
-    </div>
-  )
-}
