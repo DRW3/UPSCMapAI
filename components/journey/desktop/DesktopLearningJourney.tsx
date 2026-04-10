@@ -12,6 +12,7 @@ import { DesktopStatusBar } from './shell/DesktopStatusBar'
 import { DesktopTodayPane } from './panes/DesktopTodayPane'
 import { DesktopPathPane } from './panes/DesktopPathPane'
 import { DesktopPracticePane } from './panes/DesktopPracticePane'
+import { DesktopProfilePane } from './panes/DesktopProfilePane'
 
 const PracticeSheet = dynamic(
   () => import('@/components/journey/PracticeSheet').then(m => ({ default: m.default })),
@@ -41,6 +42,7 @@ export function DesktopLearningJourney() {
     state.activeTab === 'home' ? <DesktopTodayPane state={state} /> :
     state.activeTab === 'path' ? <DesktopPathPane state={state} /> :
     state.activeTab === 'practice' ? <DesktopPracticePane state={state} /> :
+    state.activeTab === 'profile' ? <DesktopProfilePane state={state} /> :
     placeholderPane
 
   return (
