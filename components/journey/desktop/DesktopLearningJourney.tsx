@@ -1,9 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import dynamic from 'next/dynamic'
 import { useJourneyState } from '@/components/journey/hooks/useJourneyState'
-import { DEFAULT_TOPIC_PROGRESS } from '@/components/journey/types'
 import { DesktopShell } from './shell/DesktopShell'
 import { DesktopTopBar } from './shell/DesktopTopBar'
 import { DesktopNavRail } from './shell/DesktopNavRail'
@@ -13,17 +11,9 @@ import { DesktopTodayPane } from './panes/DesktopTodayPane'
 import { DesktopPathPane } from './panes/DesktopPathPane'
 import { DesktopPracticePane } from './panes/DesktopPracticePane'
 import { DesktopProfilePane } from './panes/DesktopProfilePane'
+import { DesktopNotesView } from './panes/DesktopNotesView'
+import { DesktopPracticeView } from './panes/DesktopPracticeView'
 import CommandPalette from './chrome/CommandPalette'
-
-const PracticeSheet = dynamic(
-  () => import('@/components/journey/PracticeSheet').then(m => ({ default: m.default })),
-  { ssr: false }
-)
-
-const TopicDetailSheet = dynamic(
-  () => import('@/components/journey/TopicDetailSheet'),
-  { ssr: false }
-)
 
 export function DesktopLearningJourney() {
   const state = useJourneyState()
@@ -69,16 +59,26 @@ export function DesktopLearningJourney() {
     </div>
   )
 
+  // Notes and Practice take over the entire center pane when active (inline, no overlay).
+  // Otherwise, fall through to the active tab pane.
+  // Key changes on the discriminator so React remounts and triggers dj-fadeUp.
+  const paneKey =
+    state.practiceTarget ? `practice-${state.practiceTarget.topic.id}` :
+    state.detailTarget ? `notes-${state.detailTarget.topic.id}` :
+    state.activeTab
+
   const rawCenterPane =
+    state.practiceTarget ? <DesktopPracticeView state={state} /> :
+    state.detailTarget ? <DesktopNotesView state={state} /> :
     state.activeTab === 'home' ? <DesktopTodayPane state={state} /> :
     state.activeTab === 'path' ? <DesktopPathPane state={state} /> :
     state.activeTab === 'practice' ? <DesktopPracticePane state={state} /> :
     state.activeTab === 'profile' ? <DesktopProfilePane state={state} /> :
     placeholderPane
 
-  // Keyed so React remounts on tab switch — triggers dj-fadeUp entrance
+  // Keyed so React remounts on pane switch — triggers dj-fadeUp entrance
   const centerPane = (
-    <div key={state.activeTab} style={{ animation: 'dj-fadeUp 380ms cubic-bezier(0.16,1,0.3,1) both' }}>
+    <div key={paneKey} style={{ height: '100%', animation: 'dj-fadeUp 380ms cubic-bezier(0.16,1,0.3,1) both' }}>
       {rawCenterPane}
     </div>
   )
@@ -93,76 +93,11 @@ export function DesktopLearningJourney() {
         statusBar={<DesktopStatusBar state={state} />}
       />
 
-      {state.practiceTarget && (
-        <div style={{
-          position: 'fixed', inset: 0, zIndex: 60,
-          background: 'rgba(2,4,12,0.78)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          padding: 32,
-        }}>
-          <div style={{
-            width: '100%', maxWidth: 760,
-            maxHeight: 'calc(100vh - 64px)',
-            borderRadius: 24,
-            overflow: 'hidden',
-            border: '1.5px solid rgba(167,139,250,0.30)',
-            boxShadow: '0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06) inset',
-          }}>
-            <PracticeSheet
-              topic={state.practiceTarget.topic}
-              subject={state.practiceTarget.subject}
-              progress={state.progress.topics[state.practiceTarget.topic.id] || DEFAULT_TOPIC_PROGRESS}
-              hearts={state.hearts}
-              isPro={state.progress.isPro}
-              seenQuestionIds={state.progress.topics[state.practiceTarget.topic.id]?.seenQuestionIds || []}
-              wrongQuestionIds={state.progress.topics[state.practiceTarget.topic.id]?.wrongQuestionIds || []}
-              topicDbCount={state.pyqCounts[state.practiceTarget.topic.id] || 0}
-              onResetSeenIds={state.handleResetTopicSeenIds}
-              onClose={() => state.setPracticeTarget(null)}
-              onComplete={state.handlePracticeComplete}
-              onHeartLost={state.handleHeartLost}
-              onNextTopic={state.handleNextTopic}
-              nextTopicName={state.findNextTopic(state.practiceTarget.topic.id)?.topic.title}
-              onUpgradePro={() => {
-                const t = state.practiceTarget!
-                state.setPendingTopicTarget({
-                  topic: t.topic,
-                  subject: t.subject,
-                  intent: 'practice',
-                })
-                state.setPaywallReason('hearts')
-              }}
-              onReviseNotes={() => {
-                const t = state.practiceTarget!
-                state.setPracticeTarget(null)
-                setTimeout(() => state.setDetailTarget({ topic: t.topic, subject: t.subject }), 200)
-              }}
-            />
-          </div>
-        </div>
-      )}
-
       <CommandPalette
         open={paletteOpen}
         onClose={() => setPaletteOpen(false)}
         state={state}
       />
-
-      {state.detailTarget && (
-        <TopicDetailSheet
-          topic={state.detailTarget.topic}
-          subject={state.detailTarget.subject}
-          progress={state.progress.topics[state.detailTarget.topic.id] ?? DEFAULT_TOPIC_PROGRESS}
-          dbQuestionCount={state.pyqCounts[state.detailTarget.topic.id] ?? 0}
-          onClose={() => state.setDetailTarget(null)}
-          onStartPractice={state.handleDetailStartPractice}
-          onOpenMap={state.handleOpenMap}
-          profile={state.profile}
-          variant="desktop"
-        />
-      )}
     </>
   )
 }

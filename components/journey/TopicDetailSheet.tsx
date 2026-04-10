@@ -24,8 +24,8 @@ interface TopicDetailSheetProps {
   onClose: () => void
   onStartPractice: () => void
   onOpenMap: (context?: string) => void
-  /** 'desktop' renders a 540px right-side slide-in panel; 'mobile' (default) is the bottom sheet */
-  variant?: 'mobile' | 'desktop'
+  /** 'desktop' renders a 540px right-side slide-in panel; 'mobile' (default) is the bottom sheet; 'inline' renders as a normal flow element (no backdrop, no fixed positioning) */
+  variant?: 'mobile' | 'desktop' | 'inline'
 }
 
 interface StudyNotes {
@@ -70,6 +70,7 @@ export default function TopicDetailSheet({
   variant = 'mobile',
 }: TopicDetailSheetProps) {
   const isDesktop = variant === 'desktop'
+  const isInline = variant === 'inline'
   const [visible, setVisible] = useState(false)
   const [dismissing, setDismissing] = useState(false)
 
@@ -594,82 +595,95 @@ export default function TopicDetailSheet({
         }
       `}</style>
 
-      {/* Backdrop */}
-      <div
-        onClick={handleDismiss}
-        style={{
-          position: 'fixed',
-          inset: 0,
-          zIndex: 70,
-          background: isDesktop ? 'rgba(2,4,12,0.55)' : 'rgba(0,0,0,0.55)',
-          backdropFilter: isDesktop ? 'blur(8px)' : 'blur(6px)',
-          WebkitBackdropFilter: isDesktop ? 'blur(8px)' : 'blur(6px)',
-          animation: dismissing
-            ? 'tds-fadeOut 0.3s ease forwards'
-            : 'tds-fadeIn 0.2s ease forwards',
-        }}
-      />
+      {/* Backdrop — not rendered for inline variant (the component IS the pane content) */}
+      {!isInline && (
+        <div
+          onClick={handleDismiss}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 70,
+            background: isDesktop ? 'rgba(2,4,12,0.55)' : 'rgba(0,0,0,0.55)',
+            backdropFilter: isDesktop ? 'blur(8px)' : 'blur(6px)',
+            WebkitBackdropFilter: isDesktop ? 'blur(8px)' : 'blur(6px)',
+            animation: dismissing
+              ? 'tds-fadeOut 0.3s ease forwards'
+              : 'tds-fadeIn 0.2s ease forwards',
+          }}
+        />
+      )}
 
       {/* Sheet */}
       <div
         onClick={(e) => e.stopPropagation()}
-        onTouchStart={isDesktop ? undefined : handleTouchStart}
-        onTouchMove={isDesktop ? undefined : handleTouchMove}
-        onTouchEnd={isDesktop ? undefined : handleTouchEnd}
+        onTouchStart={isDesktop || isInline ? undefined : handleTouchStart}
+        onTouchMove={isDesktop || isInline ? undefined : handleTouchMove}
+        onTouchEnd={isDesktop || isInline ? undefined : handleTouchEnd}
         style={{
-          position: 'fixed',
-          ...(isDesktop
+          ...(isInline
             ? {
-                top: 0,
-                right: 0,
-                bottom: 0,
-                width: 'min(540px, 90vw)',
-                borderLeft: '1.5px solid rgba(167,139,250,0.30)',
-                boxShadow: '-30px 0 80px rgba(0,0,0,0.55)',
+                position: 'relative',
+                width: '100%',
+                height: '100%',
                 borderRadius: 0,
               }
             : {
-                bottom: 0,
-                left: 0,
-                right: 0,
-                maxHeight: '92vh',
-                borderRadius: '24px 24px 0 0',
-                borderBottom: 'none',
-                boxShadow: '0 -8px 40px rgba(0,0,0,0.5)',
+                position: 'fixed',
+                ...(isDesktop
+                  ? {
+                      top: 0,
+                      right: 0,
+                      bottom: 0,
+                      width: 'min(540px, 90vw)',
+                      borderLeft: '1.5px solid rgba(167,139,250,0.30)',
+                      boxShadow: '-30px 0 80px rgba(0,0,0,0.55)',
+                      borderRadius: 0,
+                    }
+                  : {
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      maxHeight: '92vh',
+                      borderRadius: '24px 24px 0 0',
+                      borderBottom: 'none',
+                      boxShadow: '0 -8px 40px rgba(0,0,0,0.5)',
+                    }),
+                zIndex: 71,
               }),
-          zIndex: 71,
           display: 'flex',
           flexDirection: 'column',
           background: 'rgba(10,10,20,0.97)',
           backdropFilter: 'blur(32px)',
           WebkitBackdropFilter: 'blur(32px)',
-          border: isDesktop ? '1.5px solid rgba(167,139,250,0.30)' : '1px solid rgba(255,255,255,0.08)',
-          ...(isDesktop
-            ? {
-                animation: dismissing
-                  ? 'dj-panelSlideOut 0.3s ease forwards'
-                  : visible
-                    ? 'dj-panelSlideIn 0.4s cubic-bezier(0.16,1,0.3,1) forwards'
-                    : 'none',
-              }
-            : {
-                transform:
-                  visible && !dismissing
-                    ? `translateY(${dragTranslate}px)`
-                    : 'translateY(100%)',
-                transition: isDragging.current
-                  ? 'none'
-                  : 'transform 0.35s cubic-bezier(0.16,1,0.3,1)',
-                animation: dismissing
-                  ? 'tds-slideDown 0.35s ease forwards'
-                  : visible && dragTranslate === 0
-                    ? 'tds-slideUp 0.35s cubic-bezier(0.16,1,0.3,1) forwards'
-                    : 'none',
-              }),
+          border: isInline ? 'none' : isDesktop ? '1.5px solid rgba(167,139,250,0.30)' : '1px solid rgba(255,255,255,0.08)',
+          ...(isInline
+            ? {}
+            : isDesktop
+              ? {
+                  animation: dismissing
+                    ? 'dj-panelSlideOut 0.3s ease forwards'
+                    : visible
+                      ? 'dj-panelSlideIn 0.4s cubic-bezier(0.16,1,0.3,1) forwards'
+                      : 'none',
+                }
+              : {
+                  transform:
+                    visible && !dismissing
+                      ? `translateY(${dragTranslate}px)`
+                      : 'translateY(100%)',
+                  transition: isDragging.current
+                    ? 'none'
+                    : 'transform 0.35s cubic-bezier(0.16,1,0.3,1)',
+                  animation: dismissing
+                    ? 'tds-slideDown 0.35s ease forwards'
+                    : visible && dragTranslate === 0
+                      ? 'tds-slideUp 0.35s cubic-bezier(0.16,1,0.3,1) forwards'
+                      : 'none',
+                }),
         }}
       >
         {/* 1. Drag handle — mobile only */}
-        {!isDesktop && (
+        {!isDesktop && !isInline && (
           <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 12, paddingBottom: 4 }}>
             <div style={{ width: 40, height: 4, borderRadius: 99, background: 'rgba(255,255,255,0.2)' }} />
           </div>
