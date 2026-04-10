@@ -13,9 +13,10 @@ const TAB_HINTS: Record<string, string> = {
 
 interface Props {
   state: JourneyStateValue
+  inline?: boolean
 }
 
-export function DesktopMentorDock({ state }: Props) {
+export function DesktopMentorDock({ state, inline }: Props) {
   const { dailyTip, progress, continueTarget, activeTab, profile } = state
   const totalAnswered = Object.values(progress.topics).reduce((s, t) => s + (t.questionsAnswered || 0), 0)
   const totalCorrect = Object.values(progress.topics).reduce((s, t) => s + (t.correctAnswers || 0), 0)
@@ -71,7 +72,7 @@ export function DesktopMentorDock({ state }: Props) {
   return (
     <aside
       style={{
-        height: '100%',
+        height: inline ? 'auto' : '100%',
         padding: '24px 18px',
         borderLeft: '1px solid rgba(167,139,250,0.08)',
         background: 'rgba(5,5,16,0.55)',

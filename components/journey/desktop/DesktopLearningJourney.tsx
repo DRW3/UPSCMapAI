@@ -79,6 +79,7 @@ export function DesktopLearningJourney() {
         centerPane={centerPane}
         mentorDock={<DesktopMentorDock state={state} />}
         statusBar={<DesktopStatusBar state={state} />}
+        hideMentorDock={state.activeTab === 'home'}
       />
 
       <CommandPalette

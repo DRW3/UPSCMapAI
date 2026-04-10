@@ -5,6 +5,7 @@ import type { JourneyStateValue, EnrichedTopicEntry } from '@/components/journey
 import { DAILY_GOALS } from '@/components/journey/types'
 import { UPSC_SYLLABUS, type LearningSubject } from '@/data/syllabus'
 import { HoloFrame } from '@/components/journey/desktop/chrome/HoloFrame'
+import { DesktopMentorDock } from '../shell/DesktopMentorDock'
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
 
@@ -121,6 +122,21 @@ export function DesktopTodayPane({ state }: DesktopTodayPaneProps) {
           }}>
             {dateLabel}
           </div>
+        </div>
+
+        {/* Inline AI Mentor — only on Today tab */}
+        <div style={{
+          marginBottom: 18,
+          borderRadius: 20,
+          border: '1px solid rgba(167,139,250,0.15)',
+          background: 'rgba(5,5,16,0.55)',
+          backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
+          overflow: 'hidden',
+          maxHeight: 480,
+          animation: 'dj-fadeUp 500ms cubic-bezier(0.16,1,0.3,1) 0.1s both',
+        }}>
+          <DesktopMentorDock state={state} inline />
         </div>
 
         {/* Continue Card */}
