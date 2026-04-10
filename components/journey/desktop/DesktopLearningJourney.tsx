@@ -19,19 +19,7 @@ export function DesktopLearningJourney() {
   const state = useJourneyState()
   const [paletteOpen, setPaletteOpen] = useState(false)
 
-  // ── Global Cmd+K / Ctrl+K shortcut ──────────────────────────
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault()
-        setPaletteOpen(prev => !prev)
-      }
-    }
-    window.addEventListener('keydown', handler)
-    return () => window.removeEventListener('keydown', handler)
-  }, [])
-
-  // ── Tab number shortcuts (1/2/3/4) ──────────────────────────
+// ── Tab number shortcuts (1/2/3/4) ──────────────────────────
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if ((e.target as HTMLElement)?.matches('input, textarea, [contenteditable]')) return
