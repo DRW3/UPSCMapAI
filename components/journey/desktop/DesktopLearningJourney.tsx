@@ -8,6 +8,7 @@ import { DesktopNavRail } from './shell/DesktopNavRail'
 import { DesktopMentorDock } from './shell/DesktopMentorDock'
 import { DesktopStatusBar } from './shell/DesktopStatusBar'
 import { DesktopTodayPane } from './panes/DesktopTodayPane'
+import { DesktopPathPane } from './panes/DesktopPathPane'
 
 export function DesktopLearningJourney() {
   const state = useJourneyState()
@@ -30,6 +31,7 @@ export function DesktopLearningJourney() {
 
   const centerPane =
     state.activeTab === 'home' ? <DesktopTodayPane state={state} /> :
+    state.activeTab === 'path' ? <DesktopPathPane state={state} /> :
     placeholderPane
 
   return (
