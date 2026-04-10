@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { useJourneyState } from '@/components/journey/hooks/useJourneyState'
 import { DEFAULT_TOPIC_PROGRESS } from '@/components/journey/types'
@@ -13,6 +13,7 @@ import { DesktopTodayPane } from './panes/DesktopTodayPane'
 import { DesktopPathPane } from './panes/DesktopPathPane'
 import { DesktopPracticePane } from './panes/DesktopPracticePane'
 import { DesktopProfilePane } from './panes/DesktopProfilePane'
+import CommandPalette from './chrome/CommandPalette'
 
 const PracticeSheet = dynamic(
   () => import('@/components/journey/PracticeSheet').then(m => ({ default: m.default })),
@@ -26,8 +27,33 @@ const TopicDetailSheet = dynamic(
 
 export function DesktopLearningJourney() {
   const state = useJourneyState()
-  const [_paletteOpen, _setPaletteOpen] = useState(false)
-  void _paletteOpen
+  const [paletteOpen, setPaletteOpen] = useState(false)
+
+  // ── Global Cmd+K / Ctrl+K shortcut ──────────────────────────
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault()
+        setPaletteOpen(prev => !prev)
+      }
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [])
+
+  // ── Tab number shortcuts (1/2/3/4) ──────────────────────────
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.target as HTMLElement)?.matches('input, textarea, [contenteditable]')) return
+      if (e.metaKey || e.ctrlKey || e.altKey) return
+      if (e.key === '1') { e.preventDefault(); state.setActiveTab('home') }
+      if (e.key === '2') { e.preventDefault(); state.setActiveTab('path') }
+      if (e.key === '3') { e.preventDefault(); state.setActiveTab('practice') }
+      if (e.key === '4') { e.preventDefault(); state.setActiveTab('profile') }
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [state])
 
   // Phase 3 placeholder — center pane shows the active tab name only.
   // Phases 4-7 replace this with real DesktopTodayPane / DesktopPathPane / etc.
@@ -43,17 +69,24 @@ export function DesktopLearningJourney() {
     </div>
   )
 
-  const centerPane =
+  const rawCenterPane =
     state.activeTab === 'home' ? <DesktopTodayPane state={state} /> :
     state.activeTab === 'path' ? <DesktopPathPane state={state} /> :
     state.activeTab === 'practice' ? <DesktopPracticePane state={state} /> :
     state.activeTab === 'profile' ? <DesktopProfilePane state={state} /> :
     placeholderPane
 
+  // Keyed so React remounts on tab switch — triggers dj-fadeUp entrance
+  const centerPane = (
+    <div key={state.activeTab} style={{ animation: 'dj-fadeUp 380ms cubic-bezier(0.16,1,0.3,1) both' }}>
+      {rawCenterPane}
+    </div>
+  )
+
   return (
     <>
       <DesktopShell
-        topBar={<DesktopTopBar state={state} onOpenCommandPalette={() => _setPaletteOpen(true)} />}
+        topBar={<DesktopTopBar state={state} onOpenCommandPalette={() => setPaletteOpen(true)} />}
         navRail={<DesktopNavRail state={state} />}
         centerPane={centerPane}
         mentorDock={<DesktopMentorDock state={state} />}
@@ -110,6 +143,12 @@ export function DesktopLearningJourney() {
           </div>
         </div>
       )}
+
+      <CommandPalette
+        open={paletteOpen}
+        onClose={() => setPaletteOpen(false)}
+        state={state}
+      />
 
       {state.detailTarget && (
         <TopicDetailSheet
