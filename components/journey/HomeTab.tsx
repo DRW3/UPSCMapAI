@@ -281,7 +281,25 @@ function FocusAreaPanel({
           )}
           <div style={{ flex: 1 }} />
           <button
-            onClick={() => editing ? cancel() : setEditing(true)}
+            onClick={(e) => {
+              if (editing) { cancel() } else {
+                setEditing(true)
+                // After the editor opens and React renders the subject chips,
+                // scroll the expanded panel into view so the options don't go
+                // off-screen below the fold.
+                const btn = e.currentTarget
+                requestAnimationFrame(() => {
+                  requestAnimationFrame(() => {
+                    // Scroll the parent card (the FocusAreaPanel wrapper) so
+                    // the bottom of the expanded panel is visible.
+                    const card = btn.closest('[data-focus-panel]')
+                    if (card) {
+                      card.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+                    }
+                  })
+                })
+              }
+            }}
             aria-label={editing ? 'Close focus picker' : 'Change focus subjects'}
             style={{
               display: 'flex', alignItems: 'center', gap: 6,
@@ -1322,7 +1340,7 @@ export default function HomeTab({
       )}
 
       {/* ═══ 5b. AI FOCUS CALIBRATION — sits right above the insight line ═══ */}
-      <div style={{
+      <div data-focus-panel style={{
         animation: `homeGlowIn 500ms ease-out ${nextDelay()}ms both`,
       }}>
         <FocusAreaPanel
