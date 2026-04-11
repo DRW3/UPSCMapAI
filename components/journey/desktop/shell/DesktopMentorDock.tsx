@@ -159,63 +159,101 @@ export function DesktopMentorDock({ state, inline }: Props) {
         </div>
       )}
 
-      {/* Chat messages area */}
-      <div
-        ref={chatContainerRef}
-        style={{
-          flex: '0 1 auto',
-          maxHeight: 'min(340px, 40vh)',
-          overflowY: 'auto',
-          display: 'flex', flexDirection: 'column', gap: 10,
-          padding: '8px 4px',
-        }}>
-        {messages.length === 0 && !dailyTip && (
+      {/* Chat bubble with animated border — inspired by mobile MentorsSuggestion */}
+      {(() => {
+        const isThinking = sending || (messages.length === 0 && !dailyTip)
+        return (
           <div style={{
-            display: 'flex', alignItems: 'center', gap: 8,
-            color: 'rgba(255,255,255,0.40)',
-            fontSize: 12,
-            padding: '10px 14px',
+            position: 'relative',
+            borderRadius: 18,
+            padding: 1.5,
+            background: 'conic-gradient(from var(--dj-angle, 0deg), #6366f1, #ec4899, #06b6d4, #a78bfa, #6366f1)',
+            animation: `dj-rotate 8s linear infinite${isThinking ? ', dj-pulse 1.6s ease-in-out infinite' : ''}`,
+            flex: '0 1 auto',
+            maxHeight: 'min(340px, 40vh)',
           }}>
+            {/* Outer glow */}
             <div style={{
-              width: 12, height: 12, borderRadius: '50%',
-              border: '2px solid rgba(167,139,250,0.20)',
-              borderTopColor: '#a78bfa',
-              animation: 'dj-rotate 0.8s linear infinite',
-              flexShrink: 0,
+              position: 'absolute', inset: -6, borderRadius: 24,
+              background: 'radial-gradient(ellipse at center, rgba(99,102,241,0.18), transparent 70%)',
+              filter: 'blur(12px)', pointerEvents: 'none', zIndex: -1,
+              opacity: isThinking ? 0.9 : 0.4,
+              transition: 'opacity 600ms ease',
             }} />
-            Mentor is thinking…
+
+            {/* Inner card */}
+            <div
+              ref={chatContainerRef}
+              style={{
+                position: 'relative',
+                background: 'linear-gradient(180deg, rgba(10,10,16,0.97) 0%, rgba(6,6,12,0.99) 100%)',
+                borderRadius: 16.5,
+                padding: '12px 14px',
+                overflowY: 'auto',
+                maxHeight: '100%',
+                display: 'flex', flexDirection: 'column', gap: 10,
+              }}
+            >
+              {/* Scan line when thinking */}
+              {isThinking && (
+                <div style={{
+                  position: 'absolute', top: 0, bottom: 0, width: '40%',
+                  background: 'linear-gradient(90deg, transparent, rgba(99,102,241,0.08), transparent)',
+                  animation: 'dj-scanX 3s ease-in-out infinite',
+                  pointerEvents: 'none', zIndex: 1,
+                }} />
+              )}
+
+              {messages.length === 0 && !dailyTip && (
+                <div style={{
+                  display: 'flex', alignItems: 'center', gap: 8,
+                  color: 'rgba(255,255,255,0.40)',
+                  fontSize: 12,
+                  padding: '10px 14px',
+                }}>
+                  <div style={{
+                    width: 12, height: 12, borderRadius: '50%',
+                    border: '2px solid rgba(167,139,250,0.20)',
+                    borderTopColor: '#a78bfa',
+                    animation: 'dj-rotate 0.8s linear infinite',
+                    flexShrink: 0,
+                  }} />
+                  Mentor is thinking…
+                </div>
+              )}
+              {messages.map((msg, i) => (
+                <div key={i} style={{
+                  padding: '10px 14px',
+                  borderRadius: msg.role === 'user' ? '14px 14px 4px 14px' : '14px 14px 14px 4px',
+                  background: msg.role === 'user'
+                    ? 'rgba(99,102,241,0.15)'
+                    : 'rgba(255,255,255,0.03)',
+                  border: msg.role === 'user'
+                    ? '1px solid rgba(99,102,241,0.30)'
+                    : '1px solid rgba(255,255,255,0.06)',
+                  alignSelf: msg.role === 'user' ? 'flex-end' : 'flex-start',
+                  maxWidth: '92%',
+                  fontSize: 12.5, lineHeight: 1.55,
+                  color: msg.role === 'user' ? 'rgba(255,255,255,0.90)' : 'rgba(255,255,255,0.75)',
+                }}>
+                  {msg.role === 'mentor' && (
+                    <div style={{
+                      fontSize: 9, fontWeight: 800,
+                      color: '#a78bfa',
+                      letterSpacing: '0.08em',
+                      textTransform: 'uppercase',
+                      marginBottom: 4,
+                    }}>
+                      AI Mentor
+                    </div>
+                  )}
+                  {msg.text}
+                </div>
+              ))}
+            </div>
           </div>
-        )}
-        {messages.map((msg, i) => (
-          <div key={i} style={{
-            padding: '10px 14px',
-            borderRadius: msg.role === 'user' ? '14px 14px 4px 14px' : '14px 14px 14px 4px',
-            background: msg.role === 'user'
-              ? 'rgba(99,102,241,0.15)'
-              : 'rgba(255,255,255,0.03)',
-            border: msg.role === 'user'
-              ? '1px solid rgba(99,102,241,0.30)'
-              : '1px solid rgba(255,255,255,0.06)',
-            alignSelf: msg.role === 'user' ? 'flex-end' : 'flex-start',
-            maxWidth: '92%',
-            fontSize: 12.5, lineHeight: 1.55,
-            color: msg.role === 'user' ? 'rgba(255,255,255,0.90)' : 'rgba(255,255,255,0.75)',
-          }}>
-            {msg.role === 'mentor' && (
-              <div style={{
-                fontSize: 9, fontWeight: 800,
-                color: '#a78bfa',
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-                marginBottom: 4,
-              }}>
-                AI Mentor
-              </div>
-            )}
-            {msg.text}
-          </div>
-        ))}
-      </div>
+        )
+      })()}
 
       {/* Chat input */}
       <div style={{
