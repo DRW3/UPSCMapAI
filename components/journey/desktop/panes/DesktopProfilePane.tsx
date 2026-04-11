@@ -43,14 +43,15 @@ function SectionHeader({ label }: { label: string }) {
 // ── IdentityCard ───────────────────────────────────────────────────────────────
 
 interface IdentityCardProps {
-  profile: NonNullable<JourneyStateValue['profile']>
+  profile: { name?: string; examYear?: number; prepStage?: string; dailyGoalTier?: string; strongSubjects?: string[]; weakSubjects?: string[]; onboardedAt?: string }
   level: number
   onReset: () => void
 }
 
 function IdentityCard({ profile, level, onReset }: IdentityCardProps) {
   const initial = (profile.name || 'U').charAt(0).toUpperCase()
-  const prepConfig = PREP_STAGE_CONFIG[profile.prepStage] ?? { icon: '📚', label: profile.prepStage ?? 'Student', description: '' }
+  const stage = (profile.prepStage ?? 'beginner') as keyof typeof PREP_STAGE_CONFIG
+  const prepConfig = PREP_STAGE_CONFIG[stage] ?? { icon: '📚', label: 'Student', description: '' }
 
   function handleReset() {
     if (window.confirm('Reset all progress? This cannot be undone.')) {
@@ -519,15 +520,10 @@ interface Props {
 export function DesktopProfilePane({ state }: Props) {
   const { profile, progress, enrichedTopicStates, handleResetJourney } = state
 
-  if (!profile) {
-    return (
-      <div style={{ padding: 40, textAlign: 'center', color: 'rgba(255,255,255,0.5)', fontSize: 14 }}>
-        Loading profile...
-      </div>
-    )
-  }
-
-  // Compute stats
+  // Use inline fallbacks so the pane always renders — profile may be null
+  // for a brief moment during tab transitions but state.profile is
+  // loaded from localStorage in the parent hook's mount effect.
+  const safeProfile = profile ?? { name: '', examYear: 2026 as const, prepStage: 'beginner' as const, dailyGoalTier: 'regular' as const, strongSubjects: [], weakSubjects: [], onboardedAt: '' }
   const totalAnswered = Object.values(progress.topics).reduce((s, t) => s + (t.questionsAnswered || 0), 0)
   const totalCorrect = Object.values(progress.topics).reduce((s, t) => s + (t.correctAnswers || 0), 0)
   const acc = totalAnswered > 0 ? Math.round((totalCorrect / totalAnswered) * 100) : 0
@@ -541,7 +537,7 @@ export function DesktopProfilePane({ state }: Props) {
     }}>
       {/* Identity card — full width at the top */}
       <div style={{ marginBottom: 20 }}>
-        <IdentityCard profile={profile} level={level} onReset={handleResetJourney} />
+        <IdentityCard profile={safeProfile} level={level} onReset={handleResetJourney} />
       </div>
 
       {/* Stats grid — 4 cards in a row */}
