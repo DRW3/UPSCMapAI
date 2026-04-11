@@ -1405,13 +1405,15 @@ export default function HomeTab({
         />
       </div>
 
-      {/* ═══ 6. INSIGHT — one line ═══ */}
+      {/* ═══ 6. FOOTER — trust line ═══ */}
       <div style={{
-        fontSize: 12, color: 'rgba(255,255,255,0.35)', lineHeight: 1.5,
-        padding: '8px 2px',
+        fontSize: 11, color: 'rgba(255,255,255,0.28)', lineHeight: 1.5,
+        padding: '14px 2px 4px',
+        textAlign: 'center',
         animation: `homeGlowIn 500ms ease-out ${nextDelay()}ms both`,
+        letterSpacing: '0.01em',
       }}>
-        {motivationalInsight.emoji} {motivationalInsight.text}
+        Made with ❤️ by Top UPSC Mentors & AI
       </div>
     </div>
   )
