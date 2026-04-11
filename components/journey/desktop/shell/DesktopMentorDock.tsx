@@ -69,7 +69,6 @@ export function DesktopMentorDock({ state, inline }: Props) {
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
         display: 'flex', flexDirection: 'column', gap: 16,
-        overflow: 'hidden',
       }}
     >
       {/* Compact AI orb + label row */}
@@ -131,7 +130,9 @@ export function DesktopMentorDock({ state, inline }: Props) {
 
       {/* Chat messages area */}
       <div style={{
-        flex: 1, minHeight: 0, overflowY: 'auto',
+        flex: '0 1 auto',
+        maxHeight: 'min(340px, 40vh)',
+        overflowY: 'auto',
         display: 'flex', flexDirection: 'column', gap: 10,
         padding: '8px 4px',
       }}>

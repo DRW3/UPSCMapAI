@@ -123,15 +123,36 @@ export function DesktopTopBar({ state, onOpenCommandPalette }: Props) {
           ⚡ Lv {level}
         </div>
 
-        {firstName && (
+        {/* Profile button — navigates to profile tab */}
+        <button
+          onClick={() => state.setActiveTab('profile')}
+          style={{
+            display: 'flex', alignItems: 'center', gap: 8,
+            marginLeft: 10,
+            padding: '5px 12px 5px 6px',
+            borderRadius: 999,
+            background: state.activeTab === 'profile' ? 'rgba(167,139,250,0.12)' : 'rgba(255,255,255,0.04)',
+            border: state.activeTab === 'profile' ? '1px solid rgba(167,139,250,0.30)' : '1px solid rgba(255,255,255,0.08)',
+            cursor: 'pointer',
+            transition: 'all 200ms',
+          }}
+        >
+          {/* Avatar circle */}
           <div style={{
-            marginLeft: 6,
-            fontSize: 12, fontWeight: 700,
-            color: 'rgba(255,255,255,0.65)',
+            width: 26, height: 26, borderRadius: '50%',
+            background: 'linear-gradient(135deg, #6366f1, #a78bfa)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: 11, fontWeight: 800, color: '#fff',
           }}>
-            Hi, {firstName}
+            {(firstName || 'U').charAt(0).toUpperCase()}
           </div>
-        )}
+          <span style={{
+            fontSize: 12, fontWeight: 700,
+            color: state.activeTab === 'profile' ? '#c4b5fd' : 'rgba(255,255,255,0.65)',
+          }}>
+            {firstName || 'Profile'}
+          </span>
+        </button>
       </div>
     </div>
   )
