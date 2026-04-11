@@ -54,7 +54,7 @@ function IdentityCard({ profile, level, onReset }: IdentityCardProps) {
   const prepConfig = PREP_STAGE_CONFIG[stage] ?? { icon: '📚', label: 'Student', description: '' }
 
   function handleReset() {
-    if (window.confirm('Reset all progress? This cannot be undone.')) {
+    if (window.confirm('This will erase ALL your progress, streaks, and profile data. You will need to set up your profile again from scratch.\n\nAre you sure?')) {
       onReset()
     }
   }
@@ -135,7 +135,7 @@ function IdentityCard({ profile, level, onReset }: IdentityCardProps) {
           </span>
         </div>
 
-        {/* Level pill + buttons row */}
+        {/* Level pill + Reset button row */}
         <div style={{
           display: 'flex', alignItems: 'center', gap: 8,
         }}>
@@ -156,25 +156,6 @@ function IdentityCard({ profile, level, onReset }: IdentityCardProps) {
           }}>
             ⚡ Level {level}
           </div>
-
-          {/* Edit button */}
-          <button
-            onClick={() => {/* no-op: edit modal in future phase */}}
-            style={{
-              padding: '6px 12px',
-              borderRadius: 10,
-              background: 'rgba(167,139,250,0.12)',
-              border: '1px solid rgba(167,139,250,0.25)',
-              color: '#c4b5fd',
-              fontSize: 11,
-              fontWeight: 700,
-              cursor: 'pointer',
-              letterSpacing: '0.02em',
-              transition: 'background 0.15s',
-            }}
-          >
-            Edit
-          </button>
 
           {/* Reset button */}
           <button

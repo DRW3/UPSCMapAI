@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import dynamic from 'next/dynamic'
 import { useJourneyState } from '@/components/journey/hooks/useJourneyState'
 import { DesktopShell } from './shell/DesktopShell'
 import { DesktopTopBar } from './shell/DesktopTopBar'
@@ -14,6 +15,11 @@ import { DesktopProfilePane } from './panes/DesktopProfilePane'
 import { DesktopNotesView } from './panes/DesktopNotesView'
 import { DesktopPracticeView } from './panes/DesktopPracticeView'
 import CommandPalette from './chrome/CommandPalette'
+
+const OnboardingFlow = dynamic(
+  () => import('@/components/journey/OnboardingFlow'),
+  { ssr: false }
+)
 
 export function DesktopLearningJourney() {
   const state = useJourneyState()
@@ -32,6 +38,12 @@ export function DesktopLearningJourney() {
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
   }, [state])
+
+  // If the user reset their journey or hasn't onboarded yet, show the
+  // onboarding flow full-screen (same behavior as mobile).
+  if (state.showOnboarding) {
+    return <OnboardingFlow onComplete={state.handleOnboardingComplete} />
+  }
 
   // Phase 3 placeholder — center pane shows the active tab name only.
   // Phases 4-7 replace this with real DesktopTodayPane / DesktopPathPane / etc.
