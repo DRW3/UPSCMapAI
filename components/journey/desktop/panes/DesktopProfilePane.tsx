@@ -60,21 +60,18 @@ function IdentityCard({ profile, level, onReset }: IdentityCardProps) {
 
   return (
     <div style={{
-      background: 'rgba(255,255,255,0.04)',
-      border: '1px solid rgba(255,255,255,0.08)',
+      display: 'flex', alignItems: 'center', gap: 20,
+      padding: '24px 22px',
       borderRadius: 20,
-      padding: '28px 22px',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      gap: 14,
+      background: 'rgba(255,255,255,0.025)',
+      border: '1px solid rgba(255,255,255,0.06)',
     }}>
-      {/* Avatar orb */}
-      <div style={{ position: 'relative', width: 96, height: 96 }}>
+      {/* Avatar orb on the left (80px) */}
+      <div style={{ position: 'relative', width: 80, height: 80, flexShrink: 0 }}>
         <div style={{
           position: 'absolute',
           inset: 0,
-          borderRadius: 28,
+          borderRadius: 24,
           background: 'conic-gradient(from var(--dj-angle, 0deg), #6366f1, #67e8f9, #a78bfa, #f472b6, #6366f1)',
           animation: 'dj-rotate 12s linear infinite',
           padding: 2.5,
@@ -82,7 +79,7 @@ function IdentityCard({ profile, level, onReset }: IdentityCardProps) {
           <div style={{
             width: '100%',
             height: '100%',
-            borderRadius: 26,
+            borderRadius: 22,
             background: '#0a0a1e',
             display: 'flex',
             alignItems: 'center',
@@ -93,7 +90,7 @@ function IdentityCard({ profile, level, onReset }: IdentityCardProps) {
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               fontWeight: 900,
-              fontSize: 38,
+              fontSize: 32,
               lineHeight: 1,
             }}>
               {initial}
@@ -102,95 +99,102 @@ function IdentityCard({ profile, level, onReset }: IdentityCardProps) {
         </div>
       </div>
 
-      {/* Name */}
+      {/* Name, exam year, level, buttons on the right */}
       <div style={{
-        fontSize: 18, fontWeight: 800, color: '#fff',
-        textAlign: 'center', lineHeight: 1.2,
+        display: 'flex', flexDirection: 'column', gap: 10,
+        flex: 1, minWidth: 0,
       }}>
-        {profile.name || 'Aspirant'}
-      </div>
-
-      {/* Exam year + prep stage */}
-      <div style={{
-        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4,
-      }}>
+        {/* Name */}
         <div style={{
-          fontSize: 12, color: 'rgba(255,255,255,0.55)',
-          fontWeight: 600,
+          fontSize: 16, fontWeight: 800, color: '#fff',
+          lineHeight: 1.2,
         }}>
-          UPSC {profile.examYear}
+          {profile.name || 'Aspirant'}
         </div>
+
+        {/* Exam year + prep stage */}
         <div style={{
-          fontSize: 12, color: 'rgba(255,255,255,0.42)',
+          display: 'flex', alignItems: 'center', gap: 8,
+          fontSize: 11,
         }}>
-          {prepConfig.icon} {prepConfig.label}
+          <span style={{
+            color: 'rgba(255,255,255,0.55)',
+            fontWeight: 600,
+          }}>
+            UPSC {profile.examYear}
+          </span>
+          <span style={{
+            width: 1, height: 14,
+            background: 'rgba(255,255,255,0.15)',
+          }} />
+          <span style={{
+            color: 'rgba(255,255,255,0.42)',
+          }}>
+            {prepConfig.icon} {prepConfig.label}
+          </span>
+        </div>
+
+        {/* Level pill + buttons row */}
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: 8,
+        }}>
+          {/* Level pill */}
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 5,
+            padding: '5px 12px',
+            borderRadius: 16,
+            background: 'rgba(99,102,241,0.18)',
+            border: '1px solid rgba(99,102,241,0.35)',
+            fontSize: 11,
+            fontWeight: 700,
+            color: '#a5b4fc',
+            letterSpacing: '0.02em',
+            flexShrink: 0,
+          }}>
+            ⚡ Level {level}
+          </div>
+
+          {/* Edit button */}
+          <button
+            onClick={() => {/* no-op: edit modal in future phase */}}
+            style={{
+              padding: '6px 12px',
+              borderRadius: 10,
+              background: 'rgba(167,139,250,0.12)',
+              border: '1px solid rgba(167,139,250,0.25)',
+              color: '#c4b5fd',
+              fontSize: 11,
+              fontWeight: 700,
+              cursor: 'pointer',
+              letterSpacing: '0.02em',
+              transition: 'background 0.15s',
+            }}
+          >
+            Edit
+          </button>
+
+          {/* Reset button */}
+          <button
+            onClick={handleReset}
+            style={{
+              padding: '6px 12px',
+              borderRadius: 10,
+              background: 'rgba(244,63,94,0.10)',
+              border: '1px solid rgba(244,63,94,0.20)',
+              color: 'rgba(244,114,128,0.65)',
+              fontSize: 11,
+              fontWeight: 700,
+              cursor: 'pointer',
+              letterSpacing: '0.02em',
+              transition: 'background 0.15s',
+            }}
+          >
+            Reset
+          </button>
         </div>
       </div>
-
-      {/* Level pill */}
-      <div style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: 5,
-        padding: '5px 12px',
-        borderRadius: 20,
-        background: 'rgba(99,102,241,0.18)',
-        border: '1px solid rgba(99,102,241,0.35)',
-        fontSize: 12,
-        fontWeight: 700,
-        color: '#a5b4fc',
-        letterSpacing: '0.02em',
-      }}>
-        ⚡ Level {level}
-      </div>
-
-      {/* Divider */}
-      <div style={{
-        width: '100%',
-        height: 1,
-        background: 'rgba(255,255,255,0.06)',
-        margin: '4px 0',
-      }} />
-
-      {/* Edit profile button */}
-      <button
-        onClick={() => {/* no-op: edit modal in future phase */}}
-        style={{
-          width: '100%',
-          padding: '9px 0',
-          borderRadius: 12,
-          background: 'rgba(167,139,250,0.12)',
-          border: '1px solid rgba(167,139,250,0.25)',
-          color: '#c4b5fd',
-          fontSize: 13,
-          fontWeight: 700,
-          cursor: 'pointer',
-          letterSpacing: '0.02em',
-          transition: 'background 0.15s',
-        }}
-      >
-        Edit Profile
-      </button>
-
-      {/* Reset journey button */}
-      <button
-        onClick={handleReset}
-        style={{
-          width: '100%',
-          padding: '9px 0',
-          borderRadius: 12,
-          background: 'rgba(244,63,94,0.10)',
-          border: '1px solid rgba(244,63,94,0.20)',
-          color: 'rgba(244,114,128,0.65)',
-          fontSize: 13,
-          fontWeight: 700,
-          cursor: 'pointer',
-          letterSpacing: '0.02em',
-          transition: 'background 0.15s',
-        }}
-      >
-        Reset Journey
-      </button>
     </div>
   )
 }
@@ -526,16 +530,19 @@ export function DesktopProfilePane({ state }: Props) {
   return (
     <div style={{
       display: 'grid',
-      gridTemplateColumns: '280px 1.2fr 1fr',
-      gap: 22,
+      gridTemplateColumns: '1fr 1fr',
+      gap: 20,
       animation: 'dj-fadeUp 500ms cubic-bezier(0.16,1,0.3,1) both',
       alignItems: 'start',
     }}>
-      {/* COL 1 — Identity */}
-      <IdentityCard profile={profile} level={level} onReset={handleResetJourney} />
+      {/* COL 1 — Identity + Subject progress */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+        <IdentityCard profile={profile} level={level} onReset={handleResetJourney} />
+        <SubjectProgressList enrichedTopicStates={enrichedTopicStates} />
+      </div>
 
-      {/* COL 2 — Stats + Heatmap */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+      {/* COL 2 — Stats + Heatmap + Recent activity */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
         <StatsGrid
           completed={completed}
           acc={acc}
@@ -543,11 +550,6 @@ export function DesktopProfilePane({ state }: Props) {
           streak={progress.streak ?? 0}
         />
         <Heatmap studyCalendar={progress.studyCalendar} />
-      </div>
-
-      {/* COL 3 — Subject progress + Recent activity */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
-        <SubjectProgressList enrichedTopicStates={enrichedTopicStates} />
         <RecentMilestones studyCalendar={progress.studyCalendar} />
       </div>
     </div>

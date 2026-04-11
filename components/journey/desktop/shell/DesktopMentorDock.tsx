@@ -4,20 +4,13 @@
 import { useState, useEffect, useRef } from 'react'
 import type { JourneyStateValue } from '@/components/journey/hooks/useJourneyState'
 
-const TAB_HINTS: Record<string, string> = {
-  home: "Start your next topic or change your focus subjects to adjust your plan.",
-  path: "Tap any topic to open study notes. Green topics are done, amber ones need focus.",
-  practice: "Your weakest topics are shown first. Pick one to practice real PYQs.",
-  profile: "Track your journey — stats, streaks, and subject progress all in one place.",
-}
-
 interface Props {
   state: JourneyStateValue
   inline?: boolean
 }
 
 export function DesktopMentorDock({ state, inline }: Props) {
-  const { dailyTip, progress, continueTarget, activeTab, profile } = state
+  const { dailyTip, progress, profile } = state
   const totalAnswered = Object.values(progress.topics).reduce((s, t) => s + (t.questionsAnswered || 0), 0)
   const totalCorrect = Object.values(progress.topics).reduce((s, t) => s + (t.correctAnswers || 0), 0)
   const acc = totalAnswered > 0 ? Math.round((totalCorrect / totalAnswered) * 100) : 0
@@ -52,9 +45,6 @@ export function DesktopMentorDock({ state, inline }: Props) {
         body: JSON.stringify({
           question: userMsg,
           context: {
-            tab: activeTab,
-            topicTitle: continueTarget?.topic?.title ?? '',
-            subjectTitle: continueTarget?.subject?.shortTitle ?? '',
             streak: progress.streak ?? 0,
             name: profile?.name?.split(' ')[0] ?? '',
           },
@@ -137,19 +127,6 @@ export function DesktopMentorDock({ state, inline }: Props) {
             Always here to guide you
           </div>
         </div>
-      </div>
-
-      {/* Screen-contextual hint — changes per tab */}
-      <div style={{
-        fontSize: 12, lineHeight: 1.55,
-        color: 'rgba(255,255,255,0.65)',
-        padding: '10px 14px',
-        borderRadius: 12,
-        background: 'rgba(99,102,241,0.06)',
-        border: '1px solid rgba(99,102,241,0.15)',
-        flexShrink: 0,
-      }}>
-        {TAB_HINTS[activeTab] ?? TAB_HINTS.home}
       </div>
 
       {/* Chat messages area */}
@@ -277,20 +254,6 @@ export function DesktopMentorDock({ state, inline }: Props) {
           </div>
         ))}
       </div>
-
-      {/* Optional: continue target — shows next step in the dock */}
-      {continueTarget && (
-        <div style={{
-          fontSize: 11, color: 'rgba(255,255,255,0.42)',
-          padding: '8px 12px',
-          borderRadius: 10,
-          background: 'rgba(99,102,241,0.04)',
-          border: '1px dashed rgba(99,102,241,0.20)',
-          flexShrink: 0,
-        }}>
-          Next: <span style={{ color: '#c4b5fd', fontWeight: 700 }}>{continueTarget.topic.title}</span>
-        </div>
-      )}
     </aside>
   )
 }
