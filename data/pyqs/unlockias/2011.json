@@ -1,0 +1,2009 @@
+{
+  "year": 2011,
+  "fetched_at": "2026-04-11T20:00:28.221Z",
+  "count": 100,
+  "failures": 0,
+  "questions": [
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 1,
+      "question_id": "UPSC_2011_GS1_Q1",
+      "question": "In the Union Budget 2011-12, a full exemption from the basic customs duty was extended to the bio-based asphalt (bioasphalt). What is the importance of this material?\n1. Unlike traditional asphalt, bio-asphalt is not based on fossil fuels.\n2. Bioasphalt can be made from non-renewable resources.\n3. Bioasphalt can be made from organic waste materials.\n4. It is eco-friendly to use bioasphalt for surfacing of the roads.\nWhich of the statements given above are correct?",
+      "options": {
+        "a": "1, 2 and 3 only",
+        "b": "1, 3 and 4 only",
+        "c": "2 and 4 only",
+        "d": "1, 2, 3 and 4"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Renewable Energy & Green Technologies",
+      "difficulty": "moderate",
+      "explanation": "Bio-asphalt is produced from renewable, plant- or waste-based feed-stocks, so it is not based on fossil fuels (statement 1) and can be made from organic waste materials (statement 3). Its renewable origin and lower life-cycle emissions make it eco-friendly for road surfacing (statement 4). However, it is specifically valued because it avoids non-renewable resources, so statement 2 is incorrect. Therefore only 1, 3 and 4 are correct → option (b). ([aspireias.com](https://www.aspireias.com/upsc-general-study-10years-paper/2011?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 2,
+      "question_id": "UPSC_2011_GS1_Q2",
+      "question": "Consider the following:\n1. Carbon dioxide\n2. Oxides of Nitrogen\n3. Oxides of Sulphur\nWhich of the above is/are the emission/emissions from coal combustion at thermal power plants?",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "d",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Pollution & Waste Management",
+      "difficulty": "easy",
+      "explanation": "Combustion of coal contains carbon, nitrogen and sulphur compounds; burning it releases carbon dioxide (CO₂), nitrogen oxides (NOₓ) and sulphur oxides (SOₓ). All three gases are routinely reported in power-plant emission inventories, so statements 1, 2 and 3 are all correct → option (d). ([epa.gov](https://www.epa.gov/newsreleases/epa-releases-2023-power-plant-emissions-data?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 3,
+      "question_id": "UPSC_2011_GS1_Q3",
+      "question": "Satellites used for telecommunication relay are kept in a geostationary orbit. A satellite is said to be in such an orbit when:\n1. The orbit is geosynchronous.\n2. The orbit is circular.\n3. The orbit lies in the plane of the Earth’s equator.\n4. The orbit is at an altitude of 22,236 km.\nSelect the correct answer using the codes given below:",
+      "options": {
+        "a": "1, 2 and 3 only",
+        "b": "1, 3 and 4 only",
+        "c": "2 and 4 only",
+        "d": "1, 2, 3 and 4"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Space Technology & Astronomy",
+      "difficulty": "moderate",
+      "explanation": "A geostationary satellite must (1) be geosynchronous, (2) move in a circular orbit, and (3) lie in the plane of Earth’s equator. The required altitude is about 35 786 km (≈22 236 miles), not 22 236 km, so statement 4 is wrong. Thus only 1, 2 and 3 are correct → option (a). ([britannica.com](https://www.britannica.com/science/geostationary-orbit?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 4,
+      "question_id": "UPSC_2011_GS1_Q4",
+      "question": "India has experienced persistent and high food inflation in the recent past. What could be the reasons?\n1. Due to a gradual switchover to the cultivation of commercial crops, the area under the cultivation of food grains has steadily decreased in the last five years by about 30%.\n2. As a consequence of increasing incomes, the consumption patterns of the people have undergone a significant change.\n3. The food supply chain has structural constraints.\nWhich of the statements given above are correct?",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "Inflation & Price Indices",
+      "difficulty": "moderate",
+      "explanation": "Empirical data show the area under food-grain crops fell only marginally, not by the 30 % claimed, so statement 1 is incorrect. Rising incomes have shifted diets toward costlier food items (statement 2 correct) and India’s fragmented storage, transport and marketing systems impose structural bottlenecks (statement 3 correct). Hence only 2 and 3 are correct → option (b). ([testbook.com](https://testbook.com/question-answer/india-has-experienced-persistent-and-high-food-inf--601e98ddbc102611d72b5fd9?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 5,
+      "question_id": "UPSC_2011_GS1_Q5",
+      "question": "At present, scientists can determine the arrangement or relative positions of genes or DNA sequences on a chromosome. How does this knowledge benefit us?\n1. It is possible to know the pedigree of livestock.\n2. It is possible to understand the causes of all human diseases.\n3. It is possible to develop disease-resistant animal breeds.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Biotechnology & Genetics",
+      "difficulty": "moderate",
+      "explanation": "Gene (linkage) mapping lets scientists trace inheritance of genetic markers, so pedigrees of livestock can be established (statement 1) and markers for desirable traits—such as resistance to specific pathogens—can be selected to breed disease-resistant animals (statement 3). Mapping has not yet revealed the causes of *all* human diseases, which depend on many environmental and multifactorial interactions, so statement 2 is too sweeping. Hence, only 1 and 3 are correct.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 6,
+      "question_id": "UPSC_2011_GS1_Q6",
+      "question": "In terms of economy, the visit by foreign nationals to witness the XIX Commonwealth Games in India amounted to",
+      "options": {
+        "a": "Export",
+        "b": "Import",
+        "c": "Production",
+        "d": "Consumption"
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "External Sector & Balance Of Payments",
+      "difficulty": "easy",
+      "explanation": "When foreign tourists come to India and spend on hotels, transport, etc., India supplies a service to non-residents and earns foreign exchange. In BOP terminology this is classified as an ‘invisible export’ (export of services). It is therefore neither an import, nor domestic production or consumption by residents.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 7,
+      "question_id": "UPSC_2011_GS1_Q7",
+      "question": "Microbial fuel cells are considered a source of sustainable energy. Why?\n1. They use living organisms as catalysts to generate electricity from certain substrates.\n2. They use a variety of inorganic materials as substrates.\n3. They can be installed in waste water treatment plants to cleanse water and produce electricity.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Energy & Environment",
+      "difficulty": "moderate",
+      "explanation": "Microbial fuel cells employ living microbes as biocatalysts to oxidise organic substrates and generate electricity (statement 1). They can be coupled with sewage or effluent treatment plants, simultaneously degrading waste and producing power (statement 3). They do *not* run on a ‘variety of inorganic materials’; the feedstock must be biodegradable organics, so statement 2 is wrong. Thus only 1 and 3 are correct.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 8,
+      "question_id": "UPSC_2011_GS1_Q8",
+      "question": "Which one of the following statements appropriately describes the “fiscal stimulus”?",
+      "options": {
+        "a": "It is a massive investment by the Government in manufacturing sector to ensure the supply of goods to meet the demand surge caused by rapid economic growth",
+        "b": "It is an intense affirmative action of the Government to boost economic activity in the country",
+        "c": "It is Government’s intensive action on financial institutions to ensure disbursement of loans to agriculture and allied sectors to promote greater food production and contain food inflation",
+        "d": "It is an extreme affirmative action by the Government to pursue its policy of financial inclusion"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "Fiscal Policy & Budget",
+      "difficulty": "easy",
+      "explanation": "A fiscal stimulus refers to deliberate expansionary actions—such as increased public expenditure, tax cuts or both—undertaken by the government to revive or accelerate economic activity during a slowdown. It is not confined to a single sector, loan‐targeting, or financial-inclusion drives, making option (b) the only apt general description.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 9,
+      "question_id": "UPSC_2011_GS1_Q9",
+      "question": "The formation of ozone hole in the Antarctic region has been a cause of concern. What could be the reason for the formation of this hole?",
+      "options": {
+        "a": "Presence of prominent tropospheric turbulence; and inflow of chlorofluorocarbons",
+        "b": "Presence of prominent polar front and stratospheric clouds; and inflow of chlorofluorocarbons",
+        "c": "Absence of polar front and stratospheric clouds; and inflow of methane and chlorofluorocarbons",
+        "d": "Increased temperature at polar region due to global warming"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Pollution & Waste Management",
+      "difficulty": "moderate",
+      "explanation": "The Antarctic vortex isolates cold polar air; within it, very low temperatures form polar stratospheric clouds (PSCs). Surface reactions on PSCs convert inert chlorine reservoirs into reactive ClO radicals, and when sunlight returns in spring the inflow/accumulated chlorofluorocarbons (CFCs) supply chlorine that destroys ozone rapidly—creating the ‘ozone hole’. Hence the key factors are the polar front plus PSCs along with CFCs (option b). Tropospheric turbulence, methane, or warming do not create the same catalytic conditions.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 10,
+      "question_id": "UPSC_2011_GS1_Q10",
+      "question": "Consider the following actions which the Government can take:\n1. Devaluing the domestic currency.\n2. Reduction in the export subsidy.\n3. Adopting suitable policies which attract greater FDI and more funds from FIIs.\nWhich of the above actions can help in reducing the current account deficit?",
+      "options": {
+        "a": "1 and 2",
+        "b": "2 and 3",
+        "c": "3 only",
+        "d": "1 and 3"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "External Sector & Balance Of Payments",
+      "difficulty": "moderate",
+      "explanation": "Devaluing the rupee (1) makes exports cheaper and imports costlier, tending to narrow the trade gap and hence the current-account deficit. Attracting larger inflows of FDI/FII (3) supplies foreign exchange that can finance any remaining gap. Cutting export subsidies (2) would in fact hurt export competitiveness, so it would not help. Therefore, only 1 and 3 help reduce the current-account deficit. ([upscprep.com](https://www.upscprep.com/upsc-prelims-2011-gs-question-paper-and-answer-key/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 11,
+      "question_id": "UPSC_2011_GS1_Q11",
+      "question": "The Constitution (Seventy-Third Amendment) Act, 1992, which aims at promoting the Panchayati Raj Institutions in the country, provides for which of the following?\n1. Constitution of District Planning Committees.\n2. State Election Commissions to conduct all panchayat elections.\n3. Establishment of State Finance Commissions.\nSelect the correct answer using the codes given below:",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 2 only",
+        "c": "2 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "d",
+      "subject": "Indian Polity",
+      "sub_topic": "Local Government & Panchayati Raj",
+      "difficulty": "moderate",
+      "explanation": "The 73rd Amendment inserted Articles 243 K and 243 I providing for a State Election Commission to conduct all panchayat elections and for a State Finance Commission every five years. District Planning Committees are created by Article 243 ZD, which was inserted by the 74th (urban local bodies) Amendment, not the 73rd. Hence only statements 2 and 3 are correct. ([superkalam.com](https://superkalam.com/upsc-prelims/previous-year-question-paper/2011/the-constitution-seventythird-amendment-act-which-aims-at-promoting-the-panchayati-raj-institutions-in-the-country-provi-e1743935-84a0-4183-bc21-a433a6d4454a?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 12,
+      "question_id": "UPSC_2011_GS1_Q12",
+      "question": "Two important rivers – one with its source in Jharkhand (and known by a different name in Odisha), and another, with its source in Odisha – merge at a place only a short distance from the coast of Bay of Bengal before flowing into the sea. This is an important site of wildlife and biodiversity and a protected area. Which one of the following could be this?",
+      "options": {
+        "a": "Bhitarkanika",
+        "b": "Chandipur-on-sea",
+        "c": "Gopalpur-on-sea",
+        "d": "Simlipal"
+      },
+      "answer": "a",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Protected Areas & Wildlife",
+      "difficulty": "moderate",
+      "explanation": "The Brahmani River (rising from the confluence of the Koel and Sankh in Jharkhand and called Brahmani in Odisha) joins the Baitarani River (source in Odisha) before entering the Bay of Bengal, forming an extensive mangrove delta that constitutes the Bhitarkanika Wildlife Sanctuary/National Park, noted for salt-water crocodiles and rich biodiversity. Thus the site described is Bhitarkanika. ([upscprep.com](https://www.upscprep.com/upsc-prelims-2011-gs-question-paper-and-answer-key/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 13,
+      "question_id": "UPSC_2011_GS1_Q13",
+      "question": "A rapid increase in the rate of inflation is sometimes attributed to the “base effect”. What is “base effect”?",
+      "options": {
+        "a": "It is the impact of drastic deficiency in supply due to failure of crops",
+        "b": "It is the impact of the surge in demand due to rapid economic growth",
+        "c": "It is the impact of the price levels of previous year on the calculation of inflation rate",
+        "d": "None of the statements (a), (b) and (c) given above is correct in this context"
+      },
+      "answer": "c",
+      "subject": "Indian Economy",
+      "sub_topic": "Inflation & Price Indices",
+      "difficulty": "easy",
+      "explanation": "The ‘base effect’ refers to how a low or high price level in the corresponding period of the previous year (the base) mathematically influences the year-on-year inflation rate: a low base makes current inflation look high and vice-versa. It is not directly related to crop failure or demand surges. ([upscprep.com](https://www.upscprep.com/upsc-prelims-2011-gs-question-paper-and-answer-key/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 14,
+      "question_id": "UPSC_2011_GS1_Q14",
+      "question": "India is regarded as a country with “Demographic Dividend”. This is due to",
+      "options": {
+        "a": "Its high population in the age group below 15 years",
+        "b": "Its high population in the age group of 15-64 years",
+        "c": "Its high population in the age group above 65 years",
+        "d": "Its high total population"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "Population & Demography",
+      "difficulty": "easy",
+      "explanation": "A demographic dividend arises when a country’s working-age population (15-64 years) is proportionately large, providing a potential boost to productivity and growth if adequately employed. India’s census data show about two-thirds of the population in this bracket, hence option (b) is correct. ([upscprep.com](https://www.upscprep.com/upsc-prelims-2011-gs-question-paper-and-answer-key/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 15,
+      "question_id": "UPSC_2011_GS1_Q15",
+      "question": "Regarding “carbon credits”, which one of the following statements is not correct?",
+      "options": {
+        "a": "The carbon credit system was ratified in conjunction with the Kyoto Protocol",
+        "b": "Carbon credits are awarded to countries or groups that have reduced greenhouse gases below their emission quota",
+        "c": "The goal of the carbon credit system is to limit the increase of carbon dioxide emission",
+        "d": "Carbon credits are traded at a price fixed from time to time by the United Nations Environment Programme"
+      },
+      "answer": "d",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Climate Change & Greenhouse Gases",
+      "difficulty": "moderate",
+      "explanation": "Carbon credits originated under the Kyoto Protocol and are earned by entities that cut emissions below a set quota with the overall aim of capping global CO₂ growth. Their price, however, is discovered in carbon markets through supply-demand forces, not fixed periodically by UNEP, making option (d) the only incorrect statement. ([testbook.com](https://testbook.com/question-answer/regarding-carbon-credits-which-one-of--601fd23c96baa2d39ced5500?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 16,
+      "question_id": "UPSC_2011_GS1_Q16",
+      "question": "Which one of the following is not a feature of “Value Added Tax”?",
+      "options": {
+        "a": "It is a multi-point destination-based system of taxation",
+        "b": "It is a tax levied on value addition at each stage of transaction in the production-distribution chain",
+        "c": "It is a tax on the final consumption of goods or services and must ultimately be borne by the consumer",
+        "d": "It is basically a subject of the Central Government and the State Governments are only a facilitator for its successful implementation"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "Taxation",
+      "difficulty": "moderate",
+      "explanation": "VAT is a multi-point, destination-based levy collected on value added at every stage and ultimately borne by the final consumer. It is imposed under the States’ power over ‘sale of goods’ (Entry 54, State List); the Centre’s role is mainly facilitative. Hence statement (d) is not a feature of VAT. ([testbook.com](https://testbook.com/question-answer/which-one-of-the-following-is-not-a-feature-of-qu--601fd36a98d5b9c5eeb0a18a?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 17,
+      "question_id": "UPSC_2011_GS1_Q17",
+      "question": "“A closed economy” is an economy in which",
+      "options": {
+        "a": "the money supply is fully controlled",
+        "b": "deficit financing takes place",
+        "c": "only exports take place",
+        "d": "neither exports nor imports take place"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "International Trade & WTO",
+      "difficulty": "easy",
+      "explanation": "A closed economy is self-sufficient and engages in no trade with the rest of the world, meaning it has neither exports nor imports. Option (d) correctly captures this defining characteristic. ([testbook.com](https://testbook.com/question-answer/a-closed-economy-is-an-economy-in-whic--601fd3e9f4dd86f5ba3b7048?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 18,
+      "question_id": "UPSC_2011_GS1_Q18",
+      "question": "When the bark of a tree is removed in a circular fashion all around near its base, it gradually dries up and dies because",
+      "options": {
+        "a": "Water from soil cannot rise to aerial parts",
+        "b": "Roots are starved of energy",
+        "c": "Tree is infected by soil microbes",
+        "d": "Roots do not receive oxygen for respiration"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Biology",
+      "difficulty": "moderate",
+      "explanation": "Removing a ring of bark severs the phloem so photosynthates cannot move from the leaves to the roots; deprived of carbohydrates, the roots die and the whole tree eventually perishes. Water transport through xylem (a), microbial infection (c) and root aeration (d) are not the primary causes. ([testbook.com](https://testbook.com/question-answer/when-the-bark-of-a-tree-is-removed-in-a-circular-f--601fd4b996baa2d39ced746b?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 19,
+      "question_id": "UPSC_2011_GS1_Q19",
+      "question": "The “New START” treaty was in the news. What is this treaty?",
+      "options": {
+        "a": "It is a bilateral strategic nuclear arms reduction treaty between the USA and the Russian Federation",
+        "b": "It is a multilateral energy security cooperation treaty among the members of the East Asia Summit",
+        "c": "It is a treaty between the Russian Federation and the European Union for energy security cooperation",
+        "d": "It is a multilateral cooperation treaty among the BRICS countries for the promotion of trade"
+      },
+      "answer": "a",
+      "subject": "Current Affairs",
+      "sub_topic": "International Relations & Treaties",
+      "difficulty": "moderate",
+      "explanation": "The New START (Strategic Arms Reduction Treaty) signed in 2010 and in force since 5 February 2011 is a bilateral U.S.–Russia agreement that caps deployed strategic nuclear warheads and delivery systems; it is not an energy or trade pact. Therefore option (a) is correct while the other options misdescribe its scope and parties. ([rishiupsc.com](https://rishiupsc.com/2011-prelims-question-paper-with-answers/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 20,
+      "question_id": "UPSC_2011_GS1_Q20",
+      "question": "Three of the following criteria have contributed to the recognition of Western Ghats-Sri Lanka and Indo-Burma regions as hotspots of biodiversity:\n1. Species richness\n2. Vegetation density\n3. Endemism\n4. Ethno-botanical importance\n5. Threat perception\n6. Adaptation of flora and fauna to warm and humid conditions\nWhich three of the above are correct criteria in this context?",
+      "options": {
+        "a": "1, 2 and 6",
+        "b": "2, 4 and 6",
+        "c": "1, 3 and 5",
+        "d": "3, 4 and 6"
+      },
+      "answer": "c",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Biodiversity & Conservation",
+      "difficulty": "moderate",
+      "explanation": "A region is designated as a biodiversity hotspot only when it possesses exceptional species richness (especially of endemic vascular plants), a high degree of endemism, and faces severe threat or habitat loss. Vegetation density, ethno-botanical value or climatic adaptations are not part of Myers’ hotspot yardsticks. Hence statements 1, 3 and 5 are the right criteria. ([selfstudyhistory.com](https://selfstudyhistory.com/2015/04/10/prelims-ias-general-studies-solved-paper-with-explanations-2011-part-7/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 21,
+      "question_id": "UPSC_2011_GS1_Q21",
+      "question": "Human activities in the recent past have caused the increased concentration of carbon dioxide in the atmosphere, but a lot of it does not remain in the lower atmosphere because of\n1. its escape into the outer stratosphere,\n2. the photosynthesis by phytoplankton in the oceans,\n3. the trapping of air in the polar ice caps.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 and 2",
+        "b": "2 only",
+        "c": "2 and 3",
+        "d": "3 only"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Biogeochemical Cycles & Earth Systems",
+      "difficulty": "moderate",
+      "explanation": "Large quantities of atmospheric CO₂ are continually removed by photosynthesis performed by oceanic phytoplankton, making the oceans the major short-term sink. CO₂ neither ‘escapes’ into the outer stratosphere (it is too heavy and is well-mixed in the troposphere) nor is significant CO₂ permanently trapped in polar ice compared with the flux taken up biologically. Therefore only statement 2 is correct. ([scribd.com](https://www.scribd.com/document/973547011/1-UPSC-2011?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 22,
+      "question_id": "UPSC_2011_GS1_Q22",
+      "question": "In the context of ecosystem productivity, marine upwelling zones are important as they increase the marine productivity by bringing the\n1. decomposer microorganisms to the surface,\n2. nutrients to the surface,\n3. bottom-dwelling organisms to the surface.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 and 2",
+        "b": "2 only",
+        "c": "2 and 3",
+        "d": "3 only"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Ecosystems & Ecology Concepts",
+      "difficulty": "easy",
+      "explanation": "Coastal upwelling brings cold, nutrient-rich deep water to the sun-lit surface, fuelling algal blooms and making these belts among the most productive marine zones. It is the dissolved nutrients—not decomposer microbes or benthic animals—that are transported upward, so only statement 2 is correct. ([scribd.com](https://www.scribd.com/document/973547011/1-UPSC-2011?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 23,
+      "question_id": "UPSC_2011_GS1_Q23",
+      "question": "If a tropical rain forest is removed, it does not regenerate quickly as compared to a tropical deciduous forest. This is because",
+      "options": {
+        "a": "the soil of rain forest is deficient in nutrients",
+        "b": "propagules of the trees in a rain forest have poor viability",
+        "c": "the rain forest species are slow-growing",
+        "d": "exotic species invade the fertile soil of rain forest"
+      },
+      "answer": "a",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Ecosystems & Ecology Concepts",
+      "difficulty": "easy",
+      "explanation": "Most nutrients in a tropical rain-forest are locked up in the biomass; the underlying oxisol/ultisol soils are heavily leached, acidic and nutrient-poor. Once the canopy is cleared, rapid leaching leaves little fertility for new growth, so regeneration is slow. Hence option (a) is the correct explanation, while the other reasons are secondary or incorrect. ([studyadda.com](https://www.studyadda.com/solved-papers/solved-paper-general-studies-2011_q79/771/355508?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 24,
+      "question_id": "UPSC_2011_GS1_Q24",
+      "question": "The Himalayan Range is very rich in species diversity. Which one among the following is the most appropriate reason for this phenomenon?",
+      "options": {
+        "a": "It has a high rainfall that supports luxuriant vegetative growth",
+        "b": "It is a confluence of different bio-geographical zones",
+        "c": "Exotic and invasive species have not been introduced in this region",
+        "d": "It has less human interference"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Biodiversity & Conservation",
+      "difficulty": "easy",
+      "explanation": "The Himalaya forms an ecotonal meeting ground of the Indo-Malayan, Palearctic and Afrotropical realms, creating a mosaic of habitats from tropical foothills to alpine zones. This confluence of diverse biogeographical regions underlies its extraordinary species richness, rather than merely high rainfall, absence of exotics or low human pressure. ([studyadda.com](https://www.studyadda.com/solved-papers/solved-paper-general-studies-2011_q80/771/355509?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 25,
+      "question_id": "UPSC_2011_GS1_Q25",
+      "question": "With reference to India, consider the following Central Acts:\n1. Import and Export (Control) Act, 1947\n2. Mining and Mineral Development (Regulation) Act, 1957\n3. Customs Act, 1962\n4. Indian Forest Act, 1927\nWhich of the above Acts have relevance to/bearing on the biodiversity conservation in the country?",
+      "options": {
+        "a": "1 and 3 only",
+        "b": "2, 3 and 4 only",
+        "c": "1, 2, 3 and 4",
+        "d": "None of the above Acts"
+      },
+      "answer": "c",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Environmental Governance & Legislation",
+      "difficulty": "moderate",
+      "explanation": "Each Act listed contains provisions that directly or indirectly help conserve biodiversity: the Import & Export (Control) Act 1947 and the Customs Act 1962 regulate trade in wildlife/plant specimens; the Mines & Minerals (Development and Regulation) Act 1957 imposes environmental safeguards on mining that protect habitats; and the Indian Forest Act 1927 governs protection and sustainable use of forest flora and fauna. Hence all four Acts are relevant to biodiversity conservation. ([cdn-images.prepp.in](https://cdn-images.prepp.in/public/image/UPSC_CSE_Prelims_Paper_1_General_Studies_Question_Paper_June_12_2011__311eb06a334890d742f0a28a3ba5cc9f.pdf))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 26,
+      "question_id": "UPSC_2011_GS1_Q26",
+      "question": "Karl Marx explained the process of class struggle with the help of which one of the following theories?",
+      "options": {
+        "a": "Empirical liberalism",
+        "b": "Existentialism",
+        "c": "Darwin’s theory of evolution",
+        "d": "Dialectical materialism"
+      },
+      "answer": "d",
+      "subject": "Indian Polity",
+      "sub_topic": "Political Theory & Concepts",
+      "difficulty": "easy",
+      "explanation": "Karl Marx analysed class conflict through the theory of dialectical materialism, which views social change as the outcome of contradictions between opposing economic classes. The other options—empirical liberalism, existentialism and Darwin’s biological evolution—are not the framework Marx used. ([cdn-images.prepp.in](https://cdn-images.prepp.in/public/image/UPSC_CSE_Prelims_Paper_1_General_Studies_Question_Paper_June_12_2011__311eb06a334890d742f0a28a3ba5cc9f.pdf))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 27,
+      "question_id": "UPSC_2011_GS1_Q27",
+      "question": "A layer in the Earth’s atmosphere called Ionosphere facilitates radio communication. Why?\n1. The presence of ozone causes the reflection of radio waves to Earth.\n2. Radio waves have a very long wavelength.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "Atmosphere & Climatology",
+      "difficulty": "moderate",
+      "explanation": "Radio waves are reflected by the ionosphere because it is a layer rich in charged ions and free electrons; ozone—which is concentrated in the stratosphere—has no role in this reflection. Although many radio waves are long-wavelength, length alone does not cause reflection; the critical factor is their frequency relative to the plasma frequency of the ionised layer. Therefore neither statement is correct. ([cdn-images.prepp.in](https://cdn-images.prepp.in/public/image/UPSC_CSE_Prelims_Paper_1_General_Studies_Question_Paper_June_12_2011__311eb06a334890d742f0a28a3ba5cc9f.pdf))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 28,
+      "question_id": "UPSC_2011_GS1_Q28",
+      "question": "Both Foreign Direct Investment (FDI) and Foreign Institutional Investor (FII) are related to investment in a country. Which one of the following statements best represents an important difference between the two?",
+      "options": {
+        "a": "FII helps bring better management skills and technology, while FDI only brings in capital",
+        "b": "FII helps in increasing capital availability in general, while FDI only targets specific sectors",
+        "c": "FDI flows only into the secondary market, while FII targets primary market",
+        "d": "FII is considered to be more stable than FDI"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "External Sector & Balance Of Payments",
+      "difficulty": "moderate",
+      "explanation": "Foreign Institutional Investment (FII) is portfolio money spread across equity/debt markets, so it broadly increases the overall supply of capital; Foreign Direct Investment (FDI) is a long-term stake in specific enterprises or sectors (e.g., a new factory) and is therefore targeted rather than economy-wide. The other statements either reverse these characteristics or misstate stability/technology aspects. ([studyadda.com](https://www.studyadda.com/solved-papers/solved-paper-general-studies-2011_q82/771/355513?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 29,
+      "question_id": "UPSC_2011_GS1_Q29",
+      "question": "A genetically engineered form of brinjal, known as the Bt-brinjal, has been developed. The objective of this is",
+      "options": {
+        "a": "To make it pest-resistant",
+        "b": "To improve its taste and nutritive qualities",
+        "c": "To make it drought-resistant",
+        "d": "To make its shelf-life longer"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Biotechnology & Genetics",
+      "difficulty": "easy",
+      "explanation": "Bt-brinjal has been engineered to express the cry1Ac toxin gene from Bacillus thuringiensis, giving the plant in-built resistance to the Shoot and Fruit Borer and other lepidopteran pests. It was not designed for taste improvement, drought tolerance or shelf-life extension. ([rishiupsc.com](https://rishiupsc.com/2011-prelims-question-paper-with-answers/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 30,
+      "question_id": "UPSC_2011_GS1_Q30",
+      "question": "With reference to \"Aam Aadmi Bima Yojana\", consider the following statements:\n1. The member insured under the scheme must be the head of the family or an earning member of the family in a rural landless household.\n2. The member insured must be in the age group of 30 to 65 years.\n3. There is a provision for free scholarship for up to two children of the insured who are studying between classes 9 and 12.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "c",
+      "subject": "Indian Economy",
+      "sub_topic": "Human Development, Poverty & Employment Schemes",
+      "difficulty": "moderate",
+      "explanation": "Aam Aadmi Bima Yojana covers the head or one earning member of a rural land-less household (statement 1 true). Eligibility is 18-59 years, not 30-65 years, so statement 2 is wrong. The scheme gives a free scholarship of ₹100 per month each to a maximum of two children of the insured studying in classes 9-12 (statement 3 true). Hence only statements 1 and 3 are correct. ([sarthaks.com](https://www.sarthaks.com/2762770/with-reference-yojana-consider-following-statements-member-ensured-under-scheme-family))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 31,
+      "question_id": "UPSC_2011_GS1_Q31",
+      "question": "In the context of global oil prices, \"Brent crude oil\" is frequently referred to in the news. What does this term imply?\n1. It is a major classification of crude oil.\n2. It is sourced from North Sea.\n3. It does not contain sulphur.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "2 only",
+        "b": "1 and 2 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "Infrastructure & Industry",
+      "difficulty": "easy",
+      "explanation": "“Brent crude” is one of the main benchmark classifications used to price oil worldwide and is sourced from a group of North Sea fields (statements 1 and 2 true). It is a light, sweet crude but still contains about 0.37 % sulphur, so it is not sulphur-free (statement 3 false). Therefore only statements 1 and 2 are correct. ([oftrb.com](https://www.oftrb.com/archives/22223?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 32,
+      "question_id": "UPSC_2011_GS1_Q32",
+      "question": "The function of heavy water in a nuclear reactor is to",
+      "options": {
+        "a": "Slow down the speed of neutrons",
+        "b": "Increase the speed of neutrons",
+        "c": "Cool down the reactor",
+        "d": "Stop the nuclear reaction"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Energy & Environment",
+      "difficulty": "easy",
+      "explanation": "Heavy water (D₂O) is used in reactors such as CANDU as a neutron moderator; it slows down fast neutrons, increasing the probability of fission with U-235. It is not meant to speed neutrons, act primarily as a coolant, or stop the reaction. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Heavy_water?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 33,
+      "question_id": "UPSC_2011_GS1_Q33",
+      "question": "In India, if a religious sect/community is given the status of a national minority, what special advantages is it entitled to?\n1. It can establish and administer exclusive educational institutions.\n2. The President of India automatically nominates a representative of the community to Lok Sabha.\n3. It can derive benefits from the Prime Minister’s 15-Point Programme.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "c",
+      "subject": "Indian Polity",
+      "sub_topic": "Social Justice & Vulnerable Sections",
+      "difficulty": "moderate",
+      "explanation": "Under Article 30, religious or linguistic minorities can establish and administer their own educational institutions (statement 1 true). The Prime Minister’s 15-Point Programme specifically targets notified minorities for various welfare benefits (statement 3 true). Representation in Lok Sabha by presidential nomination exists only for the Anglo-Indian community under Article 331 and is not triggered automatically for every minority, so statement 2 is incorrect. Hence statements 1 and 3 only are correct. ([constitutionofindia.net](https://www.constitutionofindia.net/articles/article-30-right-of-minorities-to-establish-and-administer-educational-institutions/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 34,
+      "question_id": "UPSC_2011_GS1_Q34",
+      "question": "India is home to lakhs of persons with disabilities. What are the benefits available to them under the law?\n1. Free schooling till the age of 18 years in government-run schools.\n2. Preferential allotment of land for setting up business.\n3. Ramps in public buildings.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "d",
+      "subject": "Indian Polity",
+      "sub_topic": "Social Justice & Vulnerable Sections",
+      "difficulty": "moderate",
+      "explanation": "The Persons with Disabilities (Equal Opportunities, Protection of Rights and Full Participation) Act 1995 guarantees: (1) free education for children with disabilities up to 18 years, (2) allotment of land at concessional rates for housing, business and other purposes, and (3) creation of a barrier-free environment including ramps in public buildings. All three statements are therefore correct. ([sarthaks.com](https://www.sarthaks.com/2762744/india-home-lakhs-persons-with-disabilities-what-benefits-available-under-schooling-years?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 35,
+      "question_id": "UPSC_2011_GS1_Q35",
+      "question": "With what purpose is the Government of India promoting the concept of \"Mega Food Parks\"?\n1. To provide good infrastructure facilities for the food processing industry.\n2. To increase the processing of perishable items and reduce wastage.\n3. To provide emerging and eco-friendly food processing technologies to entrepreneurs.\nSelect the correct answer using the codes given below:",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 2 only",
+        "c": "2 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "Infrastructure & Industry",
+      "difficulty": "moderate",
+      "explanation": "The stated objectives of the Mega Food Park Scheme are to create state-of-the-art infrastructure for food processing (statement 1) and to maximise value‐addition of perishables so as to reduce wastage (statement 2). The scheme documents and standard references do not list the dissemination of ‘emerging and eco-friendly technologies’ as an explicit purpose; hence statement 3 is not essential. Therefore only 1 and 2 are correct. ([drishtiias.com](https://www.drishtiias.com/current-affairs-news-analysis-editorials/news-analysis/10-11-2023?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 36,
+      "question_id": "UPSC_2011_GS1_Q36",
+      "question": "The authorization for the withdrawal of funds from the Consolidated Fund of India must come from",
+      "options": {
+        "a": "The President of India",
+        "b": "The Parliament of India",
+        "c": "The Prime Minister of India",
+        "d": "The Union Finance Minister"
+      },
+      "answer": "b",
+      "subject": "Indian Polity",
+      "sub_topic": "Public Finance & Finance Commission",
+      "difficulty": "easy",
+      "explanation": "Article 114(3) of the Constitution mandates that no money shall be withdrawn from the Consolidated Fund of India except under an appropriation act passed by Parliament; thus parliamentary authorisation is compulsory. ([indiankanoon.org](https://indiankanoon.org/doc/1395222/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 37,
+      "question_id": "UPSC_2011_GS1_Q37",
+      "question": "All revenues received by the Union Government by way of taxes and other receipts for the conduct of Government business are credited to the",
+      "options": {
+        "a": "Contingency Fund of India",
+        "b": "Public Account",
+        "c": "Consolidated Fund of India",
+        "d": "Deposits and Advances Fund"
+      },
+      "answer": "c",
+      "subject": "Indian Polity",
+      "sub_topic": "Public Finance & Finance Commission",
+      "difficulty": "easy",
+      "explanation": "Article 266(1) provides that all revenues received by the Government of India, all loans raised and all repayments of loans constitute the Consolidated Fund of India; hence such receipts are credited to the CFI, not to the Contingency Fund or Public Account. ([indiankanoon.org](https://indiankanoon.org/doc/1532561/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 38,
+      "question_id": "UPSC_2011_GS1_Q38",
+      "question": "Microfinance is the provision of financial services to people of low-income groups. This includes both the consumers and the self-employed. The service/services rendered under microfinance is/are:\n1. Credit facilities\n2. Savings facilities\n3. Insurance facilities\n4. Fund Transfer facilities\nSelect the correct answer using the codes given below the lists:",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 4 only",
+        "c": "2 and 3 only",
+        "d": "1, 2, 3 and 4"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "Digital Payments & Financial Inclusion",
+      "difficulty": "easy",
+      "explanation": "The RBI-appointed Micro-finance Task-Force defined micro-finance as ‘provision of thrift, credit and other financial services’ of very small amounts to low-income clients; these services routinely include savings, credit, insurance and remittance/transfer facilities. Hence all four listed services fall within the scope of micro-finance. ([rbi.org.in](https://rbi.org.in/scripts/BS_ViewBulletin.aspx?Id=1347&utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 39,
+      "question_id": "UPSC_2011_GS1_Q39",
+      "question": "Southeast Asia has captivated the attention of global community over space and time as a geostrategically significant region. Which among the following is the most convincing explanation for this global perspective?",
+      "options": {
+        "a": "It was the hot theatre during the Second World War",
+        "b": "Its location between the Asian powers of China and India",
+        "c": "It was the arena of superpower confrontation during the Cold War period",
+        "d": "Its location between the Pacific and Indian oceans and its pre-eminent maritime character"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "World Political Geography & Borders",
+      "difficulty": "moderate",
+      "explanation": "Southeast Asia sits astride the chief sea-lanes linking the Indian and Pacific Oceans (Malacca, Sunda, Lombok Straits) and derives its geostrategic salience from this maritime location; this factor outweighs episodic wartime or Cold-War events or its position between China and India. Option (d) therefore best explains the enduring global interest. ([testbook.com](https://testbook.com/question-answer/ques--602007b95be8d959834dcdee?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 40,
+      "question_id": "UPSC_2011_GS1_Q40",
+      "question": "A company marketing food products advertises that its items do not contain trans-fats. What does this campaign signify to the customers?\n1. The food products are not made out of hydrogenated oils.\n2. The food products are not made out of animal fats/oils.\n3. The oils used are not likely to damage the cardiovascular health of the consumers.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Health & Diseases",
+      "difficulty": "moderate",
+      "explanation": "Industrial trans-fats are generated when vegetable oils are partially hydrogenated; hence a product advertised as containing no trans-fats must not be prepared with hydrogenated oils (statement 1). Because trans-fats elevate LDL cholesterol and are strongly linked to coronary-heart-disease, oils free of them are considered unlikely to harm cardiovascular health (statement 3). Animal fats can naturally contain small trans-fat levels, so statement 2 does not necessarily follow. Therefore only statements 1 and 3 are correct. ([licchavilyceum.com](https://licchavilyceum.com/upsc-prelims-2011-solved-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 41,
+      "question_id": "UPSC_2011_GS1_Q41",
+      "question": "Among the following who are eligible to benefit from the “Mahatma Gandhi National Rural Employment Guarantee Act”?",
+      "options": {
+        "a": "Adult members of only the scheduled caste and scheduled tribe households",
+        "b": "Adult members of below poverty line (BPL) households",
+        "c": "Adult members of households of all backward communities",
+        "d": "Adult members of any household"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "Human Development, Poverty & Employment Schemes",
+      "difficulty": "easy",
+      "explanation": "Section 3(1) of the Mahatma Gandhi National Rural Employment Guarantee Act, 2005 guarantees up to 100 days of unskilled manual work to every adult member of ANY rural household that demands it. The entitlement is not confined to SC/ST, BPL or other specific categories, so options (a)-(c) are too restrictive; option (d) alone states the Act’s scope correctly. ([testbook.com](https://testbook.com/question-answer/among-the-following-who-are-eligible-to-benefit-fr--60201fdacbdb09464def9979?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 42,
+      "question_id": "UPSC_2011_GS1_Q42",
+      "question": "With reference to “Look East Policy” of India, consider the following statements:\n1. India wants to establish itself as an important regional player in the East Asian affairs.\n2. India wants to plug the vacuum created by the termination of Cold War.\n3. India wants to restore the historical and cultural ties with its neighbours in Southeast and East Asia.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 3 only",
+        "c": "3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "International Relations & Treaties",
+      "difficulty": "moderate",
+      "explanation": "India’s Look-East Policy (1991-) aims to establish India as a significant player in East Asian affairs through deeper economic, strategic and cultural engagement (statement 1) and to revive long-standing civilisational links with South-east/East Asian neighbours (statement 3). The policy was not framed to fill a post–Cold-War ‘vacuum’, making statement 2 incorrect. Hence statements 1 and 3 only are correct. ([licchavilyceum.com](https://licchavilyceum.com/upsc-prelims-2011-solved-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 43,
+      "question_id": "UPSC_2011_GS1_Q43",
+      "question": "When the annual Union Budget is not passed by the Lok Sabha,",
+      "options": {
+        "a": "the Budget is modified and presented again",
+        "b": "the Budget is referred to the Rajya Sabha for suggestions",
+        "c": "the Union Finance Minister is asked to resign",
+        "d": "the Prime Minister submits the resignation of Council of Ministers"
+      },
+      "answer": "d",
+      "subject": "Indian Polity",
+      "sub_topic": "Parliament & State Legislatures",
+      "difficulty": "easy",
+      "explanation": "Under Article 75(3) the Council of Ministers is collectively responsible to the Lok Sabha; defeat of the Money Bill/Union Budget signifies loss of the House’s confidence. Parliamentary convention therefore requires the Prime Minister to submit the resignation of the Council of Ministers. The other options are not constitutionally required consequences. ([gktoday.in](https://www.gktoday.in/solution-of-the-upsc-prelims-2011-general-studies-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 44,
+      "question_id": "UPSC_2011_GS1_Q44",
+      "question": "Under the Constitution of India, which one of the following is not a fundamental duty?",
+      "options": {
+        "a": "To vote in public elections",
+        "b": "To develop the scientific temper",
+        "c": "To safeguard public property",
+        "d": "To abide by the Constitution and respect its ideals"
+      },
+      "answer": "a",
+      "subject": "Indian Polity",
+      "sub_topic": "Fundamental Duties",
+      "difficulty": "easy",
+      "explanation": "Article 51A enumerates eleven Fundamental Duties, including respecting the Constitution, developing scientific temper and safeguarding public property. Voting in public elections is NOT listed; it is a statutory right, not a constitutional duty. Therefore option (a) is the correct answer. ([constitutionofindia.net](https://www.constitutionofindia.net/articles/article-51a-fundamental-duties/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 45,
+      "question_id": "UPSC_2011_GS1_Q45",
+      "question": "With reference to the Finance Commission of India, which of the following statements is correct?",
+      "options": {
+        "a": "It encourages the inflow of foreign capital for infrastructure development",
+        "b": "It facilitates the proper distribution of finances among the Public Sector Undertakings",
+        "c": "It ensures transparency in financial administration",
+        "d": "None of the statements (a), (b) and (c) given above is correct in this context"
+      },
+      "answer": "d",
+      "subject": "Indian Polity",
+      "sub_topic": "Public Finance & Finance Commission",
+      "difficulty": "easy",
+      "explanation": "The Finance Commission (Art. 280) recommends the vertical and horizontal sharing of the Union’s tax revenues between the Centre and States; its mandate does not include encouraging foreign capital flows, distributing funds among PSUs or policing transparency in financial administration. Consequently, none of the three statements is correct. ([testbook.com](https://testbook.com/question-answer/ques--60202a0dc37b0527abb4aca3?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 46,
+      "question_id": "UPSC_2011_GS1_Q46",
+      "question": "Consider the following:\n1. Right to education.\n2. Right to equal access to public service.\n3. Right to food.\nWhich of the above is/are Human Right/Human Rights under “Universal Declaration of Human Rights”?",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 2 only",
+        "c": "3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "d",
+      "subject": "Indian Polity",
+      "sub_topic": "Political Theory & Concepts",
+      "difficulty": "moderate",
+      "explanation": "Under the Universal Declaration of Human Rights: Article 26 proclaims the right to education; Article 21(2) guarantees equal access to public service; and Article 25 recognises the right to an adequate standard of living, explicitly mentioning food. Therefore all three listed rights are covered by the UDHR. ([testbook.com](https://testbook.com/question-answer/ques--60202aafa5d076395bec0693?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 47,
+      "question_id": "UPSC_2011_GS1_Q47",
+      "question": "There is a concern over the increase in harmful algal blooms in the seawaters of India. What could be the causative factors for this phenomenon?\n1. Discharge of nutrients from the estuaries.\n2. Run-off from the land during the monsoon.\n3. Upwelling in the seas.\nSelect the correct answer from the codes given below:",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 2 only",
+        "c": "2 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "d",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Water & Wetland Conservation",
+      "difficulty": "moderate",
+      "explanation": "Harmful algal blooms flourish when nutrient levels in surface waters rise. (1) Nutrient-rich effluents from estuaries, (2) monsoonal run-off carrying fertilisers and sewage, and (3) coastal upwelling that brings deep, nutrient-laden water to the surface all supply the nutrients that trigger blooms, so all three factors are valid. ([licchavilyceum.com](https://licchavilyceum.com/upsc-prelims-2011-solved-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 48,
+      "question_id": "UPSC_2011_GS1_Q48",
+      "question": "Consider the following :\n1. Photosynthesis\n2. Respiration\n3. Decay of organic matter\n4. Volcanic action\nWhich of the above add carbon dioxide to the carbon cycle on Earth ?",
+      "options": {
+        "a": "1 and 4 only",
+        "b": "2 and 3 only",
+        "c": "2, 3 and 4 only",
+        "d": "1, 2, 3 and 4"
+      },
+      "answer": "c",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Biogeochemical Cycles & Earth Systems",
+      "difficulty": "easy",
+      "explanation": "Respiration of organisms (2), microbial decay of organic matter (3) and volcanic eruptions or degassing (4) all emit CO₂ to the atmosphere. Photosynthesis (1) instead removes CO₂ by fixing it into organic matter, so only statements 2, 3 and 4 add carbon dioxide. ([studyadda.com](https://www.studyadda.com/solved-papers/solved-paper-general-studies-2011_q69/771/355488?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 49,
+      "question_id": "UPSC_2011_GS1_Q49",
+      "question": "Recently, the USA decided to support India's membership in multi-lateral export control regimes called the \"Australia Group\" and the \"Wassenaar Arrangement\". What is the difference between them?\n1. The Australia Group is an informal arrangement which aims to allow exporting countries to minimize the risk of assisting chemical and biological weapons proliferation, whereas the Wassenaar Arrangement is a formal group under the OECD holding identical objectives.\n2. The Australia Group comprises predominantly of Asian, African and North American countries, whereas the member countries of Wassenaar Arrangement are predominantly from the European Union and American continents.\nWhich of the statements given above is/are correct ?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "d",
+      "subject": "Current Affairs",
+      "sub_topic": "International Organisations & Groupings",
+      "difficulty": "difficult",
+      "explanation": "The Australia Group is an informal voluntary arrangement that coordinates export controls to curb chemical and biological weapons proliferation; the Wassenaar Arrangement is likewise informal (not an OECD formal body) and targets exports of conventional arms and dual-use goods. Membership of both groupings is dominated by European and North-American OECD states, not mainly Asian, African or North-American countries. Thus both statements are incorrect. ([superkalam.com](https://superkalam.com/upsc-prelims/previous-year-question-paper/2011/gs/international-relations?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 50,
+      "question_id": "UPSC_2011_GS1_Q50",
+      "question": "The surface of a lake is frozen in severe winter, but the water at its bottom is still liquid. What is the reason ?",
+      "options": {
+        "a": "Ice is a bad conductor of heat",
+        "b": "Since the surface of the lake is at the same temperature as the air, no heat is lost",
+        "c": "The density of water is maximum at 4°C",
+        "d": "None of the statements (a), (b) and (c) given above is correct"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Physics",
+      "difficulty": "easy",
+      "explanation": "Water attains maximum density at 4 °C; when surface water cools below this, it becomes lighter and remains on top, freezes and forms ice. The denser 4 °C water sinks, so the deeper layer stays liquid. Ice also insulates, but the decisive physical reason is the 4 °C density maximum. Options (a) and (b) are therefore incomplete/incorrect, making option (c) the only correct choice. ([upscprep.com](https://www.upscprep.com/upsc-prelims-2011-gs-question-paper-and-answer-key/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 51,
+      "question_id": "UPSC_2011_GS1_Q51",
+      "question": "A sandy and saline area is the natural habitat of an Indian animal species. The animal has no predators in that area but its existence is threatened due to the destruction of its habitat. Which one of the following could be that animal ?",
+      "options": {
+        "a": "Indian wild buffalo",
+        "b": "Indian wild ass",
+        "c": "Indian wild boar",
+        "d": "Indian gazelle"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Protected Areas & Wildlife",
+      "difficulty": "moderate",
+      "explanation": "The Indian wild ass naturally occurs in the saline desert and sandy grasslands of the Little Rann of Kutch, Gujarat. In this harsh habitat it has virtually no natural predators; however, expansion of salt-pan mining and grazing pressures threaten its survival. The other listed animals inhabit moist forests or semi-arid scrub, not saline desert tracts. ([upscprep.com](https://www.upscprep.com/upsc-prelims-2011-gs-question-paper-and-answer-key/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 52,
+      "question_id": "UPSC_2011_GS1_Q52",
+      "question": "La Nina is suspected to have caused recent floods in Australia. How is La Nina different from El Nino ?\n1. La Nina is characterised by unusually cold ocean temperature in equatorial Indian Ocean whereas El Nino is characterised by unusually warm ocean temperature in the equatorial Pacific Ocean.\n2. El Nino has adverse effect on south-west monsoon of India, but La Nina has no effect on monsoon climate.\nWhich of the statements given above is/are correct ?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "Atmosphere & Climatology",
+      "difficulty": "moderate",
+      "explanation": "La Niña is a phase of the ENSO phenomenon marked by abnormally cold sea-surface temperatures in the central/eastern equatorial Pacific—not in the Indian Ocean—so statement 1 is wrong. La Niña generally strengthens India’s south-west monsoon, the opposite of El Niño’s suppressing effect, so statement 2 (‘no effect’) is also wrong. Hence neither statement is correct. ([upscprep.com](https://www.upscprep.com/upsc-prelims-2011-gs-question-paper-and-answer-key/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 53,
+      "question_id": "UPSC_2011_GS1_Q53",
+      "question": "The tendency for increased litigation was visible after the introduction of the land settlement system of Lord Cornwallis in 1793. The reason for this is normally traced to which of the following provisions ?",
+      "options": {
+        "a": "Making Zamindar's position stronger vis-a-vis the ryot",
+        "b": "Making East India Company an overlord of Zamindars",
+        "c": "Making judicial system more efficient",
+        "d": "None of the (a), (b) and (c) above"
+      },
+      "answer": "d",
+      "subject": "Modern History",
+      "sub_topic": "British Administration & Economic Policies",
+      "difficulty": "difficult",
+      "explanation": "Permanent Settlement gave zamindars proprietary rights and introduced complex revenue-sale and sunset clauses. These legal innovations produced frequent disputes over ownership and arrears, swelling cases in Company courts. The increased litigation was thus due to new legal–revenue provisions, not because any of statements (a)–(c) were introduced; consequently ‘none of the above’ is correct. ([upscprep.com](https://www.upscprep.com/upsc-prelims-2011-gs-question-paper-and-answer-key/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 54,
+      "question_id": "UPSC_2011_GS1_Q54",
+      "question": "Which one of the following observations is not true about the Quit India Movement of 1942 ?",
+      "options": {
+        "a": "It was a non-violent movement",
+        "b": "It was led by Mahatma Gandhi",
+        "c": "It was a spontaneous movement",
+        "d": "It did not attract the labour class in general"
+      },
+      "answer": "b",
+      "subject": "Modern History",
+      "sub_topic": "Gandhian Mass Movements (1915-1942)",
+      "difficulty": "moderate",
+      "explanation": "The Quit India upsurge drew sizeable participation from industrial and railway workers through strikes and hartals; therefore the remark that it ‘did not attract the labour class in general’ is untrue. The movement was launched by Mahatma Gandhi, arose spontaneously across regions, and although intended to be non-violent, it did witness violent incidents—thus only statement (d) is factually incorrect. ([upscprep.com](https://www.upscprep.com/upsc-prelims-2011-gs-question-paper-and-answer-key/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 55,
+      "question_id": "UPSC_2011_GS1_Q55",
+      "question": "Which amongst the following provided a common factor for tribal insurrection in India in the 19th century ?",
+      "options": {
+        "a": "Introduction of a new system of land revenue and taxation of tribal products",
+        "b": "Influence of foreign religious missionaries in tribal areas",
+        "c": "Rise of a large number of money lenders, traders and revenue farmers as middlemen in tribal areas",
+        "d": "The complete disruption of the old agrarian order of the tribal communities"
+      },
+      "answer": "d",
+      "subject": "Modern History",
+      "sub_topic": "Peasant, Tribal & Labour Movements",
+      "difficulty": "moderate",
+      "explanation": "During the 19th century the British revenue settlements, forest laws and commercial penetration shattered the traditional land relations, political authority and socio-cultural life of most tribes. This comprehensive disruption of the old agrarian order was the one constant background factor behind diverse tribal uprisings such as the Kol (1831-32), Santhal (1855-56) and Munda (1899-1900) revolts—hence option (d). Other factors like new taxes, missionaries or money-lenders were area-specific and not universally present. ([gktoday.in](https://www.gktoday.in/solution-of-the-upsc-prelims-2011-general-studies-paper/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 56,
+      "question_id": "UPSC_2011_GS1_Q56",
+      "question": "India maintained its early cultural contacts and trade links with Southeast Asia across the Bay of Bengal. For this pre-eminence of early maritime history of Bay of Bengal, which of the following could be the most convincing explanation/explanations?",
+      "options": {
+        "a": "As compared to other countries, India had a better ship-building technology in ancient and medieval times",
+        "b": "The rulers of southern India always patronized traders, Brahmin priests and Buddhist monks in this context",
+        "c": "Monsoon winds across the Bay of Bengal facilitated sea voyages",
+        "d": "Both (a) and (b) are convincing explanations in this context"
+      },
+      "answer": "c",
+      "subject": "Ancient History",
+      "sub_topic": "Trade & Economy",
+      "difficulty": "moderate",
+      "explanation": "Early contacts across the Bay of Bengal were sustained, above all, by (a) India’s long-standing ship-building and navigation skills—attested from Yuktikalpataru to Chola inscriptions—and (b) active patronage from southern Indian dynasties that sent traders, Brahmin scholars and Buddhist monks abroad. Monsoon winds were helpful but not the decisive cultural factor asked in the question. Hence ‘both (a) and (b)’ i.e. option (d) is the most convincing explanation. ([gktoday.in](https://www.gktoday.in/solution-of-the-upsc-prelims-2011-general-studies-paper/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 57,
+      "question_id": "UPSC_2011_GS1_Q57",
+      "question": "What is the difference between Bluetooth and Wi-Fi devices?",
+      "options": {
+        "a": "Bluetooth uses 2.4 GHz radio frequency band, whereas Wi-Fi can use 2.4 GHz or 5 GHz frequency band",
+        "b": "Bluetooth is used for Wireless Local Area Networks (WLAN) only, whereas Wi-Fi is used for Wireless Wide Area Networks (WWAN) only",
+        "c": "When information is transmitted between two devices using Bluetooth technology, the devices have to be in the line of sight of each other, but when Wi-Fi technology is used the devices need not be in the line of sight of each other",
+        "d": "The statements (a) and (b) given above are correct in this context"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Computer & Information Technology",
+      "difficulty": "easy",
+      "explanation": "Bluetooth operates only in the unlicensed 2.4 GHz ISM band, while Wi-Fi (IEEE 802.11) can operate in 2.4 GHz and 5 GHz bands (and, in some versions, 6 GHz). Statements (b) and (c) are incorrect: Bluetooth is meant for PANs, not exclusively WLANs, and it is a radio technology that does not require line-of-sight. Therefore only statement (a) is correct—option (a). ([gktoday.in](https://www.gktoday.in/solution-of-the-upsc-prelims-2011-general-studies-paper/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 58,
+      "question_id": "UPSC_2011_GS1_Q58",
+      "question": "With reference to micro-irrigation, which of the following statements is/are correct?\n1. Fertilizer/nutrient loss can be reduced.\n2. It is the only means of irrigation in dry land farming.\n3. In some areas of farming, receding of ground water table can be checked.\nSelect the correct answer using the codes given below:",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "Indian Agriculture & Land Use",
+      "difficulty": "easy",
+      "explanation": "Drip/sprinkler systems deliver water and dissolved fertiliser directly to the root zone, reducing nutrient losses (statement 1) and, by minimising over-irrigation, help arrest falling ground-water tables in over-exploited areas (statement 3). They are not the ‘only’ method available for dry-land farming (statement 2 is absolute and wrong). Hence statements 1 and 3 only—option (c). ([gktoday.in](https://www.gktoday.in/solution-of-the-upsc-prelims-2011-general-studies-paper/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 59,
+      "question_id": "UPSC_2011_GS1_Q59",
+      "question": "With reference to the period of colonial rule in India, \"Home Charges\" formed an important part of drain of wealth from India. Which of the following funds constituted \"Home Charges\"?\n1. Funds used to support the India Office in London.\n2. Funds used to pay salaries and pensions of British personnel engaged in India.\n3. Funds used for waging wars outside India by the British.\nSelect the correct answer using the codes given below:",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 2 only",
+        "c": "2 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "International Trade & WTO",
+      "difficulty": "moderate",
+      "explanation": "‘Home Charges’ were the annual payments transferred from Indian revenues to Britain that included: (1) expenses of the India Office in London, (2) salaries, furlough allowances and pensions of British civil & military personnel serving or retired from India, and (3) costs of imperial wars fought outside India but debited to Indian accounts (e.g., Burma, Afghanistan). All three statements therefore form part of Home Charges—option (d). ([gktoday.in](https://www.gktoday.in/solution-of-the-upsc-prelims-2011-general-studies-paper/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 60,
+      "question_id": "UPSC_2011_GS1_Q60",
+      "question": "What was the reason for Mahatma Gandhi to organize a satyagraha on behalf of the peasants of Kheda?\n1. The Administration did not suspend the land revenue collection in spite of a drought.\n2. The Administration proposed to introduce Permanent Settlement in Gujarat.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "a",
+      "subject": "Modern History",
+      "sub_topic": "Gandhian Mass Movements (1915-1942)",
+      "difficulty": "easy",
+      "explanation": "Kheda Satyagraha was started because, despite crop failure caused by drought, the Bombay Presidency government refused to suspend land-revenue collection; Gandhi therefore led peasants in a no-tax campaign. There was no proposal to extend Permanent Settlement to Gujarat, so statement 2 is wrong. Hence only statement 1 is correct. ([striveedgeias.in](https://striveedgeias.in/74-what-was-the-reason-for-mahatma-gandhi-to-organise-a-satyagraha-on-behalf-of-the-peasants-of-kheda-2011/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 61,
+      "question_id": "UPSC_2011_GS1_Q61",
+      "question": "Biodiversity forms the basis for human existence in the following ways:\n1. Soil formation\n2. Prevention of soil erosion\n3. Recycling of waste\n4. Pollination of crops\nSelect the correct answer using the codes given below:",
+      "options": {
+        "a": "1, 2 and 3 only",
+        "b": "2, 3 and 4 only",
+        "c": "1 and 4 only",
+        "d": "1, 2, 3 and 4"
+      },
+      "answer": "d",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Ecosystems & Ecology Concepts",
+      "difficulty": "easy",
+      "explanation": "Biodiversity underpins all major regulating and supporting ecosystem services: living organisms drive soil formation, bind soil and prevent erosion, recycle nutrients and wastes, and many species (insects, birds, bats) pollinate crops. Therefore all four listed functions derive from biodiversity, making option (d) correct. ([testbook.com](https://testbook.com/question-answer/biodiversity-forms-the-basis-for-human-existence-i--60210fd1bb556431ae7d7b33?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 62,
+      "question_id": "UPSC_2011_GS1_Q62",
+      "question": "Aspartame is an artificial sweetener sold in the market. It consists of amino acids and provides calories like other amino acids. Yet, it is used as a low-calorie sweetening agent in food items. What is the basis of this use?",
+      "options": {
+        "a": "Aspartame is as sweet as table sugar, but unlike table sugar, it is not readily oxidized in human body due to lack of requisite enzymes",
+        "b": "When aspartame is used in food processing, the sweet taste remains, but it becomes resistant to oxidation",
+        "c": "Aspartame is as sweet as sugar, but after ingestion into the body, it is converted into metabolites that yield no calories",
+        "d": "Aspartame is several times sweeter than table sugar, hence food items made with small quantities of aspartame yield fewer calories on oxidation"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Health & Diseases",
+      "difficulty": "moderate",
+      "explanation": "Aspartame is about 180–200 times sweeter than sucrose, so only a tiny quantity is needed to achieve the same sweetness; although it yields 4 kcal g⁻¹ like other amino-acid peptides, the ingested amount is so small that the caloric contribution is negligible. This high relative sweetness (not chemical inertness) is why it serves as a low-calorie sweetener, matching option (d). ([en.wikipedia.org](https://en.wikipedia.org/wiki/Aspartame?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 63,
+      "question_id": "UPSC_2011_GS1_Q63",
+      "question": "What was the purpose with which Sir William Wedderburn and W. S. Caine had set up the Indian Parliamentary Committee in 1893?",
+      "options": {
+        "a": "To agitate for Indian political reforms in the House of Commons",
+        "b": "To campaign for the entry of Indians into the Imperial Judiciary",
+        "c": "To facilitate a discussion on India's Independence in the British Parliament",
+        "d": "To agitate for the entry of eminent Indians into the British Parliament"
+      },
+      "answer": "a",
+      "subject": "Modern History",
+      "sub_topic": "Early Nationalism & Indian National Congress (1885-1915)",
+      "difficulty": "moderate",
+      "explanation": "Sir William Wedderburn and W. S. Caine, both Liberal MPs sympathetic to Indian interests, created the Indian Parliamentary Committee in 1893 to press for political and administrative reforms for India within the House of Commons. It was not about judicial posts, independence, or sending Indians to Westminster, so option (a) is correct. ([sarthaks.com](https://www.sarthaks.com/2761571/what-was-purpose-with-which-willian-wedderburn-caine-indian-parliamentary-committee-1893?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 64,
+      "question_id": "UPSC_2011_GS1_Q64",
+      "question": "What is the difference between a CFL and an LED lamp?\n1. To produce light, a CFL uses mercury vapour and phosphor while an LED lamp uses semi-conductor material.\n2. The average life span of a CFL is much longer than that of an LED lamp.\n3. A CFL is less energy-efficient as compared to an LED lamp.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Energy & Environment",
+      "difficulty": "moderate",
+      "explanation": "1. CFLs generate light from an electric discharge in mercury vapour that excites a phosphor, whereas LEDs use a semiconductor junction—statement 1 is true. 2. Typical CFL life is 8 000–15 000 h, while LEDs last 25 000–35 000 h, so LEDs (not CFLs) have the longer lifespan—statement 2 is false. 3. LEDs use about 25–30 % less energy than CFLs for the same lumens, making CFLs less efficient—statement 3 is true. Therefore statements 1 and 3 only are correct (option c). ([greenamerica.org](https://www.greenamerica.org/green-living/cfls-vs-leds-better-bulbs))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 65,
+      "question_id": "UPSC_2011_GS1_Q65",
+      "question": "Recently, ‘oilzapper’ was in the news. What is it?",
+      "options": {
+        "a": "It is an eco-friendly technology for the remediation of oily sludge and oil spills",
+        "b": "It is the latest technology developed for under sea oil exploration",
+        "c": "It is a genetically engineered high biofuel yielding maize variety",
+        "d": "It is the latest technology to control the accidentally caused fires in oil wells"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Biotechnology & Genetics",
+      "difficulty": "easy",
+      "explanation": "The ‘oilzapper’ is a consortium of hydrocarbon-degrading microbes developed by TERI/NEERI that is sprayed on oily sludge or spilled crude to biodegrade it, making it an eco-friendly remediation technology; therefore option (a) is correct. It is unrelated to subsea exploration (b), biofuel maize (c) or fire-control in oil wells (d). ([studyadda.com](https://www.studyadda.com/solved-papers/solved-paper-general-studies-2011_q69/771/355475?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 66,
+      "question_id": "UPSC_2011_GS1_Q66",
+      "question": "A married couple adopted a male child. A few years later twin boys were born to them. The blood group of the couple is AB positive and O negative. The blood group of the three sons is A positive, B positive, and O positive. The blood group of the adopted son is",
+      "options": {
+        "a": "O positive",
+        "b": "A positive",
+        "c": "B positive",
+        "d": "Cannot be determined on the basis of the given data"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Biotechnology & Genetics",
+      "difficulty": "moderate",
+      "explanation": "An AB (genotype IAIB) parent crossed with an O (genotype ii) parent can produce children with phenotypes A (IAi) or B (IBi) only; type O offspring are genetically impossible. Hence among the three boys (A⁺, B⁺, O⁺) the O⁺ child must be the adopted one, making option (a) correct. ([testbook.com](https://testbook.com/question-answer/a-married-couple-adopted-a-male-child-a-few-years--602123a6951004394b5e43a3?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 67,
+      "question_id": "UPSC_2011_GS1_Q67",
+      "question": "Mahatma Gandhi said that some of his deepest convictions were reflected in a book titled \"Unto this Last\" and the book transformed his life. What was the message from the book that transformed Mahatma Gandhi?",
+      "options": {
+        "a": "Uplifting the oppressed and poor is the moral responsibility of an educated man",
+        "b": "The good of individual is contained in the good of all",
+        "c": "The life of celibacy and spiritual pursuit are essential for a noble life",
+        "d": "All the statements (a), (b) and (c) are correct in this context"
+      },
+      "answer": "b",
+      "subject": "Modern History",
+      "sub_topic": "Key Personalities & Ideologies",
+      "difficulty": "moderate",
+      "explanation": "Gandhi wrote that John Ruskin’s ‘Unto This Last’ taught him that “the good of the individual is contained in the good of all,” a principle he later called Sarvodaya; this single idea was what he said transformed his life, so option (b) is right, while statements (a) and (c) were not the specific message he cited. ([studyadda.com](https://www.studyadda.com/solved-papers/solved-paper-general-studies-2011_q69/771/355477?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 68,
+      "question_id": "UPSC_2011_GS1_Q68",
+      "question": "With reference to Indian freedom struggle, Usha Mehta is well-known for",
+      "options": {
+        "a": "Running the secret Congress Radio in the wake of Quit India Movement",
+        "b": "Participating in the Second Round Table Conference",
+        "c": "Leading a contingent of Indian National Army",
+        "d": "Assisting in the formation of Interim Government under Pandit Jawaharlal Nehru"
+      },
+      "answer": "a",
+      "subject": "Modern History",
+      "sub_topic": "Gandhian Mass Movements (1915-1942)",
+      "difficulty": "easy",
+      "explanation": "During the 1942 Quit India Movement, the young Gandhian Usha Mehta set up and operated the clandestine ‘Congress Radio’ to broadcast uncensored news and messages; thus she is renowned for running the secret Congress Radio, making option (a) correct, while the other activities listed are associated with different leaders or events. ([testbook.com](https://testbook.com/question-answer/with-reference-to-indian-freedom-struggle-usha-me--60212607951004394b5e628d?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 69,
+      "question_id": "UPSC_2011_GS1_Q69",
+      "question": "A new optical disc format known as the Blu-ray Disc (BD) is becoming popular. In what way is it different from the traditional DVD?\n1. DVD supports Standard Definition video while BD supports High Definition video.\n2. Compared to a DVD, the BD format has several times more storage capacity.\n3. Thickness of BD is 2.4 mm while that of DVD is 1.2 mm.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 2 only",
+        "c": "2 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Computer & Information Technology",
+      "difficulty": "moderate",
+      "explanation": "DVD-Video is limited to standard-definition (480/576p) whereas Blu-ray supports high-definition (up to 1080p) video, and a single-layer Blu-ray holds 25 GB versus 4.7 GB on a DVD, so statements 1 and 2 are correct. Both discs are 1.2 mm thick, not 2.4 mm for Blu-ray, so statement 3 is wrong; therefore the correct choice is 1 and 2 only. ([blu-ray.com](https://www.blu-ray.com/faq/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 70,
+      "question_id": "UPSC_2011_GS1_Q70",
+      "question": "With reference to the period of Indian freedom struggle, which of the following was/were recommended by the Nehru report?\n1. Complete Independence for India.\n2. Joint electorates for reservation of seats for minorities.\n3. Provision of fundamental rights for the people of India in the Constitution.\nSelect the correct answer using the codes given below:",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "b",
+      "subject": "Modern History",
+      "sub_topic": "Constitutional Developments & British Plans (1909-1947)",
+      "difficulty": "moderate",
+      "explanation": "The Nehru Report asked for Dominion Status, not complete independence, so statement 1 is false. It favoured joint electorates with minority seat reservations and included a bill of fundamental rights, making statements 2 and 3 true. Hence only 2 and 3 are correct (option b). ([testbook.com](https://testbook.com/question-answer/with-reference-to-the-period-of-the-indian-freedom--60212d7997268a702fca084f?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 71,
+      "question_id": "UPSC_2011_GS1_Q71",
+      "question": "Among the following States, which one has the most suitable climatic conditions for the cultivation of a large variety of orchids with minimum cost of production, and can develop an export-oriented industry in this field?",
+      "options": {
+        "a": "Andhra Pradesh",
+        "b": "Arunachal Pradesh",
+        "c": "Madhya Pradesh",
+        "d": "Uttar Pradesh"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "Indian Agriculture & Land Use",
+      "difficulty": "easy",
+      "explanation": "Arunachal Pradesh’s humid, mildly temperate to subtropical climate supports about 60 % of India’s orchid species and allows large-scale, low-cost cultivation, earning it the nickname “Orchid State of India”; the other states lack such favourable conditions. Therefore option (b) Arunachal Pradesh is correct. ([testbook.com](https://testbook.com/question-answer/among-the-following-stateswhich-one-has-the--60212ed6c3d7c6faae3f0fe0?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 72,
+      "question_id": "UPSC_2011_GS1_Q72",
+      "question": "Which one of the following is not a site for in-situ method of conservation of flora?",
+      "options": {
+        "a": "Biosphere Reserve",
+        "b": "Botanical Garden",
+        "c": "National Park",
+        "d": "Wildlife Sanctuary"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Biodiversity & Conservation",
+      "difficulty": "easy",
+      "explanation": "In-situ conservation maintains species in their natural habitat, as in biosphere reserves, national parks and wildlife sanctuaries. Botanical gardens keep plants in managed, artificial settings and are therefore an ex-situ method, making choice (b) the only one that is not in-situ. ([studyadda.com](https://www.studyadda.com/solved-papers/solved-paper-general-studies-2011_q43/771/355482?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 73,
+      "question_id": "UPSC_2011_GS1_Q73",
+      "question": "Consider the following statements:\nIn India, a Metropolitan Planning Committee\n1. is constituted under the provisions of the Constitution of India.\n2. prepares the draft development plans for metropolitan area.\n3. has the sole responsibility for implementing Government-sponsored schemes in the metropolitan area.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "a",
+      "subject": "Indian Polity",
+      "sub_topic": "Local Government & Panchayati Raj",
+      "difficulty": "moderate",
+      "explanation": "Article 243ZE of the Constitution (74th Amendment) requires a Metropolitan Planning Committee in every million-plus urban area (statement 1) and tasks it with preparing the draft development plan (statement 2). Implementation of government schemes is shared with various agencies, so statement 3 is incorrect. Thus only statements 1 and 2 are correct, option (a). ([scribd.com](https://www.scribd.com/document/679562166/UPSC-Prelims-PYQ-2011-Reviewed-1?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 74,
+      "question_id": "UPSC_2011_GS1_Q74",
+      "question": "What is the difference between \"vote-on-account\" and \"interim budget\"?\n1. The provision of a \"vote-on-account\" is used by a regular Government, while an \"interim budget\" is a provision used by a caretaker Government.\n2. A \"vote-on-account\" only deals with the expenditure in Government's budget, while an \"interim budget\" includes both expenditure and receipts.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "Fiscal Policy & Budget",
+      "difficulty": "moderate",
+      "explanation": "A vote-on-account authorises government expenditure for a short period pending passage of the full budget and contains only the spending side, whereas an interim budget is a complete set of estimates (receipts and expenditure) placed before Parliament in an election year. The vote-on-account mechanism can be used by any government, not just a regular one, so statement 1 is wrong and statement 2 correct; hence option (b). ([superkalam.com](https://superkalam.com/upsc-prelims/previous-year-question-paper/2011/what-is-the-difference-between-voteonaccount-and-interim-budget-the-provision-of-a-voteonaccount-is-used-by-a-regular-go-698373a2-5a63-4d73-8544-3ad66c88a21a?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 75,
+      "question_id": "UPSC_2011_GS1_Q75",
+      "question": "Regarding the International Monetary Fund, which one of the following statements is correct?",
+      "options": {
+        "a": "It can grant loans to any country",
+        "b": "It can grant loans to only developed countries",
+        "c": "It grants loans to only member countries",
+        "d": "It can grant loans to the central bank of a country"
+      },
+      "answer": "c",
+      "subject": "Indian Economy",
+      "sub_topic": "International Institutions & Reports",
+      "difficulty": "easy",
+      "explanation": "The International Monetary Fund may lend only to its 190-odd member countries, not to non-members or directly to their central banks; hence statement (c) alone is correct while (a), (b) and (d) are outside the Fund’s mandate. ([testbook.com](https://testbook.com/question-answer/regarding-the-international-monetary-fund-which-o--60213204fd4efa121555530a?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 76,
+      "question_id": "UPSC_2011_GS1_Q76",
+      "question": "The 2004 Tsunami made people realize that mangroves can serve as a reliable safety hedge against coastal calamities. How do mangroves function as a safety hedge?",
+      "options": {
+        "a": "The mangrove swamps separate the human settlements from the sea by a wide zone in which people neither live nor venture out",
+        "b": "The mangroves provide both food and medicines which people are in need of after any natural disaster",
+        "c": "The mangrove trees are tall with dense canopies and serve as an excellent shelter during a cyclone or tsunami",
+        "d": "The mangrove trees do not get uprooted by storms and tides because of their extensive roots"
+      },
+      "answer": "d",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Water & Wetland Conservation",
+      "difficulty": "easy",
+      "explanation": "Mangrove trees possess inter-locking prop and pneumatophore roots that anchor them firmly in soft, water-logged soils; this root network disperses wave energy so the trees are rarely uprooted by cyclones or tsunami surges. The other options describe features that are not the primary physical mechanism of protection. ([testbook.com](https://testbook.com/question-answer/the-2004-tsunami-made-people-realize-that-mangrove--602133853474ef76ffc28b9a?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 77,
+      "question_id": "UPSC_2011_GS1_Q77",
+      "question": "The Jain philosophy holds that the world is created and maintained by",
+      "options": {
+        "a": "Universal Law",
+        "b": "Universal Truth",
+        "c": "Universal Faith",
+        "d": "Universal Soul"
+      },
+      "answer": "a",
+      "subject": "Art & Culture",
+      "sub_topic": "Philosophy & Religion",
+      "difficulty": "easy",
+      "explanation": "Classical Jain doctrine is that the universe is beginning-less and operates according to a natural, eternal Universal Law (Syādvāda/Anekāntavāda); it rejects the idea of a creator God or universal soul. Hence option (a) is correct, whereas (b) Universal Truth, (c) Universal Faith and (d) Universal Soul do not figure in Jain cosmology. ([licchavilyceum.com](https://licchavilyceum.com/upsc-prelims-2011-solved-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 78,
+      "question_id": "UPSC_2011_GS1_Q78",
+      "question": "Salinization occurs when the irrigation water accumulated in the soil evaporates, leaving behind salts and minerals. What are the effects of salinization on the irrigated land?",
+      "options": {
+        "a": "It greatly increases the crop production",
+        "b": "It makes some soils impermeable",
+        "c": "It raises the water table",
+        "d": "It fills the air spaces in the soil with water"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "Physical Geography & Geomorphology",
+      "difficulty": "moderate",
+      "explanation": "When salts accumulate at the soil surface they cause clay particles to disperse and clog pore spaces, making the soil crusty and virtually impermeable to water and air. It does not raise productivity (a), raise the water table (c) or saturate pore air with water (d). ([superkalam.com](https://superkalam.com/upsc-prelims/previous-year-question-paper/2011/salinization-occurs-when-the-irrigation-water-accumulated-in-the-soil-evaporates-leaving-behind-salts-and-minerals-what-17142fa0-0d1f-4b66-8455-3001dd584217?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 79,
+      "question_id": "UPSC_2011_GS1_Q79",
+      "question": "The \"Red Data Books\" published by the International Union for Conservation of Nature and Natural Resources (IUCN) contain lists of\n1. Endemic plant and animal species present in the biodiversity hotspots.\n2. Threatened plant and animal species.\n3. Protected sites for conservation of nature and natural resources in various countries.\nSelect the correct answer using the codes given below:",
+      "options": {
+        "a": "1 and 3",
+        "b": "2 only",
+        "c": "2 and 3",
+        "d": "3 only"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Biodiversity & Conservation",
+      "difficulty": "moderate",
+      "explanation": "The IUCN Red Data Book catalogues threatened (Vulnerable, Endangered, Critically Endangered, etc.) plant and animal species worldwide. It does not list endemic species per hotspot nor does it list protected areas; therefore only statement 2 is correct. ([testbook.com](https://testbook.com/question-answer/the-red-data-books-published-by-the-in--60213610b3e985d685829306?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 80,
+      "question_id": "UPSC_2011_GS1_Q80",
+      "question": "Why is the offering of \"teaser loans\" by commercial banks a cause of economic concern?\n1. The teaser loans are considered to be an aspect of sub-prime lending and banks may be exposed to the risk of defaulters in future.\n2. In India, the teaser loans are mostly given to inexperienced entrepreneurs to set up manufacturing or export units.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "Banking & Financial Sector",
+      "difficulty": "moderate",
+      "explanation": "Teaser loans start with artificially low interest rates and later reset to much higher rates, a pattern similar to U.S. sub-prime mortgages; hence statement 1 is correct. They are largely used for retail (especially housing) borrowers and not targeted at inexperienced entrepreneurs, so statement 2 is false. ([gktoday.in](https://www.gktoday.in/solution-of-the-upsc-prelims-2011-general-studies-paper/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 81,
+      "question_id": "UPSC_2011_GS1_Q81",
+      "question": "An artificial satellite orbiting around the Earth does not fall down. This is so because the attraction of Earth",
+      "options": {
+        "a": "does not exist at such distance",
+        "b": "is neutralized by the attraction of the moon",
+        "c": "provides the necessary speed for its steady motion",
+        "d": "provides the necessary acceleration for its motion"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Space Technology & Astronomy",
+      "difficulty": "easy",
+      "explanation": "A satellite is continuously in free-fall toward Earth; Earth’s gravitational pull supplies the centripetal acceleration that bends its straight-line inertia into a closed orbit. It is the acceleration, not speed, supplied by gravity that prevents the satellite from ‘falling’ to the ground. ([gktoday.in](https://www.gktoday.in/solution-of-the-upsc-prelims-2011-general-studies-paper/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 82,
+      "question_id": "UPSC_2011_GS1_Q82",
+      "question": "In the context of Indian economy, consider the following statements:\n1. The growth rate of GDP has steadily increased in the last five years.\n2. The growth rate in per capita income has steadily increased in the last five years.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "National Income & Economic Growth",
+      "difficulty": "moderate",
+      "explanation": "Between 2005-06 and 2009-10 India’s GDP growth rose, dipped sharply during the 2008-09 global crisis, and recovered thereafter; per-capita income growth followed the same non-monotonic pattern. Therefore neither growth rate increased steadily over the previous five years. ([gktoday.in](https://www.gktoday.in/solution-of-the-upsc-prelims-2011-general-studies-paper/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 83,
+      "question_id": "UPSC_2011_GS1_Q83",
+      "question": "In India, which of the following have the highest share in the disbursement of credit to agriculture and allied activities?",
+      "options": {
+        "a": "Commercial Banks",
+        "b": "Cooperative Banks",
+        "c": "Regional Rural Banks",
+        "d": "Microfinance Institutions"
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "Agriculture & Rural Development",
+      "difficulty": "easy",
+      "explanation": "Scheduled commercial banks account for the largest share (about 60 %) of institutional credit to agriculture, far exceeding cooperative banks, regional rural banks or MFIs; hence option (a) is correct. ([studyadda.com](https://www.studyadda.com/solved-papers/solved-paper-general-studies-2011_q32/771/355463?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 84,
+      "question_id": "UPSC_2011_GS1_Q84",
+      "question": "Which of the following can aid in furthering the Government's objective of inclusive growth?\n1. Promoting Self-Help Groups\n2. Promoting Micro, Small and Medium Enterprises\n3. Implementing the Right to Education Act\nSelect the correct answer using the codes given below :",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 2 only",
+        "c": "2 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "Economic Planning & Five-Year Plans",
+      "difficulty": "easy",
+      "explanation": "Inclusive growth requires both economic empowerment (SHGs, MSMEs) and social/human-capital measures (universal primary education via the RTE Act). All three listed steps therefore advance the Government’s inclusive-growth agenda. ([gktoday.in](https://www.gktoday.in/solution-of-the-upsc-prelims-2011-general-studies-paper/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 85,
+      "question_id": "UPSC_2011_GS1_Q85",
+      "question": "Why is the Government of India disinvesting its equity in the Central Public Sector Enterprises (CPSEs)?\n1. The Government intends to use the revenue earned from the disinvestment mainly to pay back the external debt.\n2. The Government no longer intends to retain the management control of the CPSEs.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "Fiscal Policy & Budget",
+      "difficulty": "moderate",
+      "explanation": "Disinvestment proceeds were to be routed to the National Investment Fund for capital creation and social expenditure, not earmarked primarily for repaying external debt, so statement 1 is wrong. Government policy in 2011 explicitly stated that in ‘minority stake’ sales it would retain at least 51 % equity and management control of CPSEs, hence statement 2 is also wrong. Therefore, neither statement is correct. ([superkalam.com](https://superkalam.com/upsc-prelims/previous-year-question-paper/2011/why-is-the-government-of-india-disinvesting-its-equity-in-the-central-public-sector-enterprises-cpses-the-government-int-e5dbb17c-470c-4be2-8572-257d21f512bd?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 86,
+      "question_id": "UPSC_2011_GS1_Q86",
+      "question": "What is the difference between asteroids and comets?\n1. Asteroids are small rocky planetoids, while comets are formed of frozen gases held together by rocky and metallic material.\n2. Asteroids are found mostly between the orbits of Jupiter and Mars, while comets are found mostly between Venus and Mercury.\n3. Comets show a perceptible glowing tail, while asteroids do not.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "1 and 3 only",
+        "c": "3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Space Technology & Astronomy",
+      "difficulty": "moderate",
+      "explanation": "Asteroids are primarily rocky/metallic bodies, whereas comets are icy bodies whose volatiles sublime to produce a coma and tail; this makes statement 1 correct. Most asteroids orbit in the main belt between Mars and Jupiter; comets originate in the Kuiper Belt or Oort Cloud, not between Venus and Mercury, so statement 2 is wrong. Comets develop a glowing tail when near the Sun, while asteroids do not, so statement 3 is correct. Hence only statements 1 and 3 are correct. ([britannica.com](https://www.britannica.com/science/What-Is-the-Difference-Between-Comets-and-Asteroids?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 87,
+      "question_id": "UPSC_2011_GS1_Q87",
+      "question": "Economic growth is usually coupled with",
+      "options": {
+        "a": "Deflation",
+        "b": "Inflation",
+        "c": "Stagflation",
+        "d": "Hyperinflation"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "Inflation & Price Indices",
+      "difficulty": "easy",
+      "explanation": "During an expansion, rising incomes and aggregate demand typically outstrip short-run supply, generating demand-pull inflation; hence economic growth is usually accompanied by moderate inflation rather than deflation, stagflation or hyperinflation. ([investopedia.com](https://www.investopedia.com/articles/05/012005.asp?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 88,
+      "question_id": "UPSC_2011_GS1_Q88",
+      "question": "The lowering of Bank Rate by the Reserve Bank of India leads to",
+      "options": {
+        "a": "More liquidity in the market",
+        "b": "Less liquidity in the market",
+        "c": "No change in the liquidity in the market",
+        "d": "Mobilization of more deposits by commercial banks"
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "Monetary Policy & Money Supply",
+      "difficulty": "easy",
+      "explanation": "The Bank Rate/discount rate is the rate at which the central bank lends to commercial banks; cutting it lowers banks’ cost of funds, encourages borrowing and credit creation, and therefore injects additional money into the system, increasing market liquidity. ([investopedia.com](https://www.investopedia.com/terms/b/bankrate.asp?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 89,
+      "question_id": "UPSC_2011_GS1_Q89",
+      "question": "Westerlies in southern hemisphere are stronger and persistent than in northern hemisphere. Why?\n1. Southern hemisphere has less landmass as compared to northern hemisphere.\n2. Coriolis force is higher in southern hemisphere as compared to northern hemisphere\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "a",
+      "subject": "Geography",
+      "sub_topic": "Atmosphere & Climatology",
+      "difficulty": "moderate",
+      "explanation": "In the Southern Hemisphere the westerlies blow largely over uninterrupted ocean, so surface friction is low and the winds remain strong and persistent, making statement 1 correct. The Coriolis parameter depends on latitude (f = 2ω sin φ) and is the same magnitude at a given latitude in both hemispheres (sign differs only in direction), so statement 2 is incorrect. Hence only statement 1 is correct. ([oceanservice.noaa.gov](https://oceanservice.noaa.gov/facts/roaring-forties.html?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 90,
+      "question_id": "UPSC_2011_GS1_Q90",
+      "question": "Between India and East Asia, the navigation-time and distance can be greatly reduced by which of the following?\n1. Deepening the Malacca straits between Malaysia and Indonesia.\n2. Opening a new canal across the Kra isthmus between the Gulf of Siam and Andaman Sea.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "Transport & Infrastructure Geography",
+      "difficulty": "moderate",
+      "explanation": "Deepening the Malacca Strait would not alter the sailing distance between India and East Asia, so it would offer little time-saving. A canal cut through Thailand’s Kra Isthmus, however, would let vessels bypass the long detour around the Malay Peninsula, shortening the route by roughly 1,000–1,200 km and several sailing hours; hence only statement 2 is correct.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 91,
+      "question_id": "UPSC_2011_GS1_Q91",
+      "question": "Regular intake of fresh fruits and vegetables is recommended in the diet since they are a good source of antioxidants. How do antioxidants help a person maintain health and promote longevity?",
+      "options": {
+        "a": "They activate the enzymes necessary for vitamin synthesis in the body and help prevent vitamin deficiency",
+        "b": "They prevent excessive oxidation of carbohydrates, fats and proteins in the body and help avoid unnecessary wastage of energy",
+        "c": "They neutralize the free radicals produced in the body during metabolism",
+        "d": "They activate certain genes in the cells of the body and help delay the ageing process"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Health & Diseases",
+      "difficulty": "easy",
+      "explanation": "Antioxidants such as vitamins C and E neutralize highly reactive free-radicals formed during normal metabolism by donating electrons, thereby preventing oxidative damage to lipids, proteins and DNA. This reduction in oxidative stress supports health and longevity, whereas the other options describe actions that antioxidants do not perform.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 92,
+      "question_id": "UPSC_2011_GS1_Q92",
+      "question": "Regarding the Indus Valley Civilization, consider the following statements :\n1. It was predominantly a secular civilization and the religious element, though present, did not dominate the scene.\n2. During this period, cotton was used for manufacturing textiles in India.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "c",
+      "subject": "Ancient History",
+      "sub_topic": "Indus Valley Civilization",
+      "difficulty": "easy",
+      "explanation": "Harappan society is considered predominantly secular, emphasising town planning, drainage and civic architecture rather than large religious edifices. Archaeological finds of cotton fibres and spindle whorls at sites such as Mohenjo-daro confirm that cotton textiles were being produced, so both statements are correct.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 93,
+      "question_id": "UPSC_2011_GS1_Q93",
+      "question": "The lower Gangetic plain is characterised by humid climate with high temperature throughout the year. Which one among the following pairs of crops is most suitable for this region?",
+      "options": {
+        "a": "Paddy and cotton",
+        "b": "Wheat and jute",
+        "c": "Paddy and jute",
+        "d": "Wheat and cotton"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "Indian Agriculture & Land Use",
+      "difficulty": "easy",
+      "explanation": "The lower Gangetic plain has a hot, humid climate with heavy monsoonal rainfall, ideal for water-intensive paddy and for jute, which requires high humidity and fertile alluvial soils. Wheat and cotton prefer cooler or semi-arid conditions, making them less suitable for this region.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 94,
+      "question_id": "UPSC_2011_GS1_Q94",
+      "question": "What could be the main reason/reasons for the formation of African and Eurasian desert belt?\n1. It is located in the sub-tropical high pressure cells.\n2. It is under the influence of warm ocean currents.\nWhich of the statements given above is/are correct in this context?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "a",
+      "subject": "Geography",
+      "sub_topic": "Atmosphere & Climatology",
+      "difficulty": "moderate",
+      "explanation": "The deserts stretching across northern Africa and Eurasia lie beneath the descending branch of the Hadley cell (20°–30° N), where high-pressure, dry air suppresses cloud formation and rainfall—explaining their aridity (statement 1). These coasts are influenced by cold, not warm, currents such as the Canary and Benguela, so statement 2 is incorrect.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 95,
+      "question_id": "UPSC_2011_GS1_Q95",
+      "question": "The jet aircrafts fly very easily and smoothly in the lower stratosphere. What could be the appropriate explanation?\n1. There are no clouds or water vapour in the lower stratosphere.\n2. There are no vertical winds in the lower stratosphere.\nWhich of the statements given above is/are correct in this context?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "Atmosphere & Climatology",
+      "difficulty": "moderate",
+      "explanation": "The lower stratosphere is virtually free of clouds and contains extremely little water vapour, so weather-related turbulence is absent. In addition, the stratosphere is dynamically stable with almost no vertical (convective) air currents. Both conditions make cruise flight smoother for jet aircraft, hence both statements are correct. ([licchavilyceum.com](https://licchavilyceum.com/upsc-prelims-2011-solved-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 96,
+      "question_id": "UPSC_2011_GS1_Q96",
+      "question": "Consider the following statements:\n1. Biodiversity is normally greater in the lower latitudes as compared to the higher latitudes.\n2. Along the mountain gradients, biodiversity is normally greater in the lower altitudes as compared to the higher altitudes.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "c",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Biodiversity & Conservation",
+      "difficulty": "easy",
+      "explanation": "Species richness generally increases from the poles toward the equator, so lower latitudes have higher biodiversity. Along mountain slopes, harsher temperatures and shorter growing seasons at higher elevations reduce species variety, so lower altitudes support more biodiversity. Therefore both statements are correct. ([licchavilyceum.com](https://licchavilyceum.com/upsc-prelims-2011-solved-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 97,
+      "question_id": "UPSC_2011_GS1_Q97",
+      "question": "The Brahmaputra, Irrawady and Mekong rivers originate in Tibet and flow through narrow and parallel mountain ranges in their upper reaches. Of these rivers, Brahmaputra makes a \"U\" turn in its course to flow into India. This \"U\" turn is due to",
+      "options": {
+        "a": "uplift of folded Himalayan series",
+        "b": "syntaxis bending of geologically young Himalayas",
+        "c": "geo-tectonic disturbance in the tertiary folded mountain chains",
+        "d": "Both (a) and (b) above"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "Indian Physical Geography",
+      "difficulty": "difficult",
+      "explanation": "Near Namcha Barwa, the eastern Himalaya abruptly changes trend; this syntaxial bending forces the Tsangpo to loop sharply southward, creating the distinctive ‘U’-turn before entering India as the Brahmaputra. It is not a generic uplift of the entire folded series nor a separate Tertiary disturbance. ([selfstudyhistory.com](https://selfstudyhistory.com/2015/01/22/gs-prelims-previous-years-paper-2011-part-2/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 98,
+      "question_id": "UPSC_2011_GS1_Q98",
+      "question": "A state in India has the following characteristics:\n1. Its northern part is arid and semi-arid.\n2. Its central part produces cotton.\n3. Cultivation of cash crops is predominant over food crops.\nWhich one of the following states has all of the above characteristics?",
+      "options": {
+        "a": "Andhra Pradesh",
+        "b": "Gujarat",
+        "c": "Karnataka",
+        "d": "Tamil Nadu"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "Indian Agriculture & Land Use",
+      "difficulty": "moderate",
+      "explanation": "North Gujarat lies in the arid to semi-arid zone adjoining the Thar; central districts (Ahmedabad, Vadodara, Bharuch, etc.) are India’s leading cotton belt; and the state’s sown area is dominated by cash crops such as cotton, ground-nut and tobacco rather than food grains. Hence Gujarat fits all three descriptors. ([testbook.com](https://testbook.com/question-answer/a-state-in-india-has-the-following-characteristics--60218f2cd4858634ea0d5717?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 99,
+      "question_id": "UPSC_2011_GS1_Q99",
+      "question": "What is \"Virtual Private Network\"?",
+      "options": {
+        "a": "It is a private computer network of an organization where the remote users can transmit encrypted information through the server of the organization.",
+        "b": "It is a computer network across a public internet that provides users access to their organization's network while maintaining the security of the information transmitted.",
+        "c": "It is a computer network in which users can access a shared pool of computing resources through a service provider.",
+        "d": "None of the statements (a), (b) and (c) given above is a correct description of Virtual Private Network."
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Computer & Information Technology",
+      "difficulty": "easy",
+      "explanation": "A Virtual Private Network extends a private organisational network over the public Internet by creating an encrypted tunnel; this lets remote users securely access the organisation’s internal resources while data remains protected. Option (b) captures this definition, whereas option (a) need not involve the public Internet and option (c) describes cloud computing. ([testbook.com](https://testbook.com/question-answer/what-is-virtual-private-network--60219062718455794a2061bb?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2011,
+      "paper": "GS1",
+      "question_no": 100,
+      "question_id": "UPSC_2011_GS1_Q100",
+      "question": "The \"dharma\" and \"rita\" depict a central idea of ancient Vedic civilization of India. In this context, consider the following statements:\n1. Dharma was a conception of obligations and of the discharge of one's duties to oneself and to others.\n2. Rita was the fundamental moral law governing the functioning of the universe and all it contained.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "c",
+      "subject": "Ancient History",
+      "sub_topic": "Vedic Period",
+      "difficulty": "moderate",
+      "explanation": "In Vedic thought, ‘dharma’ refers to the performance of one’s prescribed duties and obligations toward self, family and society, while ‘Ṛta’ denotes the cosmic moral order that sustains the universe; hence both statements are accurate. ([iasexpress.net](https://www.iasexpress.net/mindmap-important-terms-in-indian-history-for-upsc-prelims/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    }
+  ],
+  "failed": []
+}

@@ -1,0 +1,3009 @@
+{
+  "year": 2002,
+  "fetched_at": "2026-04-11T20:00:17.324Z",
+  "count": 150,
+  "failures": 0,
+  "questions": [
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 1,
+      "question_id": "UPSC_2002_GS1_Q1",
+      "question": "A complete cycle of a traffic light takes 60 seconds. During each cycle the light is green for 25 seconds, yellow for 5 seconds and red for 30 seconds. At a randomly chosen time, the probability that the light will not be green is",
+      "options": {
+        "a": "1/3",
+        "b": "1/4",
+        "c": "5/12",
+        "d": "7/12"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "easy",
+      "explanation": "A full cycle is 60 s, of which the light is green for 25 s. Hence it is not green (yellow + red) for 60 − 25 = 35 s. The probability = 35/60 = 7/12. Options a–c correspond to 20 s, 15 s and 25 s of non-green time and so are wrong. ([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2002-solved-question-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 2,
+      "question_id": "UPSC_2002_GS1_Q2",
+      "question": "The last opportunity to avoid the partition of India was lost with the rejection of",
+      "options": {
+        "a": "Cripps Mission",
+        "b": "Rajagopalachari Formula",
+        "c": "Cabinet Mission",
+        "d": "Wavell Plan"
+      },
+      "answer": "c",
+      "subject": "Modern History",
+      "sub_topic": "Constitutional Developments & British Plans (1909-1947)",
+      "difficulty": "moderate",
+      "explanation": "The Cabinet Mission of 1946 proposed a loose three-tier federation that could have kept India united, but the Muslim League withdrew its acceptance and demanded a separate Pakistan; its rejection therefore ended the last realistic chance to avert partition. The earlier Cripps Mission (1942), Rajagopalachari Formula (1944) and Wavell Plan (1945) had all failed earlier and were not the final ‘opportunity’. ([aspireias.com](https://www.aspireias.com/upsc-general-study-10years-paper/2002?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 3,
+      "question_id": "UPSC_2002_GS1_Q3",
+      "question": "With reference to India, which one of the following statements is correct?",
+      "options": {
+        "a": "About one-third of the area of the country records more than 750 millimetres of annual rainfall",
+        "b": "The dominant source of irrigation in the country is wells",
+        "c": "Alluvial soil is the predominant type of soil in the northern plains of the country",
+        "d": "The mountain areas account for about thirty percent of the surface area of the country"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "Indian Physical Geography",
+      "difficulty": "moderate",
+      "explanation": "Alluvial soils, deposited by the Indus-Ganga-Brahmaputra system, blanket almost the entire Northern Plains, making them the predominant soil type there. Statement (a) is incorrect because roughly two-thirds (not one-third) of India receives more than 750 mm rainfall annually; statements (b) and (d) can vary with definitions/data, but option (c) is the universally valid fact, hence the only fully correct choice. ([doubtnut.com](https://www.doubtnut.com/qna/648541752?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 4,
+      "question_id": "UPSC_2002_GS1_Q4",
+      "question": "A solid cube just gets completely immersed in water when a 0.2 kg mass is placed on it. If the mass is removed, the cube is 2 cm above the water level. What is the length of each side of the cube?",
+      "options": {
+        "a": "12 cm",
+        "b": "10 cm",
+        "c": "8 cm",
+        "d": "6 cm"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Physics",
+      "difficulty": "moderate",
+      "explanation": "Let the cube’s edge be L cm. When the 0.2 kg (≈200 g) mass is on top, the cube is just submerged, so the weight of displaced water equals the weight of the cube plus 200 g. After removing the mass, 2 cm of the cube rises above water, so the submerged height is (L – 2) cm and the buoyant force now equals only the cube’s weight. The difference in displaced water weights (200 g) equals the volume 2 × L² cm³, i.e. 200 g = 2 L² g ⇒ L² = 100 ⇒ L = 10 cm. ([sarthaks.com](https://www.sarthaks.com/65951/solid-cube-gets-completely-immersed-water-when-mass-placed-mass-removed-above-water-level?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 5,
+      "question_id": "UPSC_2002_GS1_Q5",
+      "question": "The historian Barani refused to consider the state in India under Delhi Sultans as truly Islamic because",
+      "options": {
+        "a": "the majority of the population did not follow Islam",
+        "b": "the Muslim theologists were often disregarded",
+        "c": "the Sultan supplemented the Muslim law by framing his own regulations",
+        "d": "religious freedom was accorded to non-Muslims"
+      },
+      "answer": "c",
+      "subject": "Medieval History",
+      "sub_topic": "Delhi Sultanate",
+      "difficulty": "moderate",
+      "explanation": "Barani, an orthodox Sunni chronicler, felt the Sultanate was not a truly Islamic polity because the Sultans issued secular regulations ( zābnāmah ) to supplement or override Sharia, thereby asserting royal law-making independent of the ulema. The other options (demographic majority, disregard of theologians, or tolerance for non-Muslims) were noted by him but were not the primary reason he gave. ([aspireias.com](https://www.aspireias.com/upsc-general-study-10years-paper/2002?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 6,
+      "question_id": "UPSC_2002_GS1_Q6",
+      "question": "Who among the following won the men’s singles title at the World Badminton Championship in the year 2001?",
+      "options": {
+        "a": "Gopichand",
+        "b": "Hendrawan",
+        "c": "Ji Xin Peng",
+        "d": "Peter Gade"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "Other Sports & Personalities",
+      "difficulty": "easy",
+      "explanation": "Indonesia’s Hendrawan captured the men’s singles gold at the 2001 IBF World Badminton Championships held in Seville, defeating Denmark’s Peter Gade in the final. The other listed players were runners-up or champions in different years/events (Gopichand won the 2001 All-England, Ji Xinpeng the 2000 Olympics, Peter Gade was 2001 silver-medalist). ([en.wikipedia.org](https://en.wikipedia.org/wiki/2001_IBF_World_Championships_%E2%80%93_Men%27s_singles?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 7,
+      "question_id": "UPSC_2002_GS1_Q7",
+      "question": "With reference to the latest developments in stem-cell research, consider the following statements:\n1. The only source of human stem cells are the embryos at blastocyst stage.\n2. The stem cells can be derived without causing destruction to blastocysts.\n3. The stem cells can regenerate themselves in vitro virtually forever.\n4. Indian research centres also created a few cell lines which can be developed into many types of tissues.\nWhich of these statements are correct?",
+      "options": {
+        "a": "1, 2, 3 and 4",
+        "b": "1, 2 and 3",
+        "c": "1, 2 and 4",
+        "d": "3 and 4"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Biotechnology & Genetics",
+      "difficulty": "moderate",
+      "explanation": "In 2002 it was already known that adult tissues (e.g., bone-marrow, umbilical cord blood) also contain stem cells, so statement 1 is wrong. Harvesting embryonic stem cells then required destroying the blastocyst, so statement 2 is wrong. Embryonic stem-cell lines are capable of indefinite self-renewal in vitro (statement 3 true) and Indian groups such as NCCS-Pune and CCMB-Hyderabad had established pluripotent cell lines by 2001 (statement 4 true). Hence only 3 and 4 are correct. ([educationprovince.com](https://educationprovince.com/8c-biotechnology-prelims-pyqs/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 8,
+      "question_id": "UPSC_2002_GS1_Q8",
+      "question": "In the year 2001, NASA launched a spacecraft to Mars named",
+      "options": {
+        "a": "Mars Climate Orbiter",
+        "b": "Mars Global Surveyor",
+        "c": "Mars Odyssey",
+        "d": "Mars Polar Lander"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Space Technology & Astronomy",
+      "difficulty": "easy",
+      "explanation": "The spacecraft NASA launched to Mars on 7 April 2001 was officially named ‘2001 Mars Odyssey’; none of the other listed craft were launched in 2001 (Climate Orbiter and Polar Lander failed in 1999, Global Surveyor in 1996). ([educationprovince.com](https://educationprovince.com/8b-astrophysics-and-space-technology-prelims-pyqs/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 9,
+      "question_id": "UPSC_2002_GS1_Q9",
+      "question": "Consider the following climatic and geographical phenomena:\n1. Condensation\n2. High temperature and humidity\n3. Orography\n4. Vertical wind\nThunder-cloud development is due to which of these phenomena?",
+      "options": {
+        "a": "1 and 2",
+        "b": "2, 3 and 4",
+        "c": "1, 3 and 4",
+        "d": "1, 2, 3 and 4"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "Atmosphere & Climatology",
+      "difficulty": "moderate",
+      "explanation": "Cumulonimbus (thunder-cloud) growth needs: (1) condensation of abundant water vapour, (2) high temperature and humidity to supply the moist unstable air, (3) orographic or other lifting mechanisms that force air to rise, and (4) strong vertical up-draughts sustaining the towering cloud. All four listed phenomena therefore contribute to thunder-cloud development. ([gktoday.in](https://www.gktoday.in/question/consider-the-following-climatic-and-geographical-p?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 10,
+      "question_id": "UPSC_2002_GS1_Q10",
+      "question": "A trader fixed the price of an article in such a way that by giving a rebate of 10 % on the price fixed he made a profit of 15 %. If the cost of the article is Rs 72, the price fixed on it is",
+      "options": {
+        "a": "Rs 82.80",
+        "b": "Rs 90.00",
+        "c": "Rs 92.00",
+        "d": "Rs 97.80"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "easy",
+      "explanation": "Let the marked price be M. After a 10 % rebate, selling price = 0.9 M, which must give 15 % profit on the ₹72 cost price: 0.9 M = 72 × 1.15 ⇒ M = (72 × 1.15)/0.9 = ₹92. Hence the trader fixed the price at Rs 92.00. ([edurev.in](https://edurev.in/t/203202/Arithmetic-Solved-Questions-1995-2020--4?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 11,
+      "question_id": "UPSC_2002_GS1_Q11",
+      "question": "Among living organisms, which one of the following is the most responsible factor for bringing about the origin of a new species?",
+      "options": {
+        "a": "Isolation",
+        "b": "Mutation",
+        "c": "Natural Selection",
+        "d": "Sexual Reproduction"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Biology",
+      "difficulty": "easy",
+      "explanation": "Speciation begins when populations become reproductively or geographically isolated; isolation stops gene flow, allowing accumulated genetic differences (from mutation, drift, selection) to lead to new species. Therefore isolation is considered the single most responsible factor among the given choices. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-topic-wise-questions-biology-genetics-and-evolution/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 12,
+      "question_id": "UPSC_2002_GS1_Q12",
+      "question": "For short-term climate prediction, which one of the following events, detected in the last decade, is associated with occasional weak monsoon rains in the Indian sub-continent?",
+      "options": {
+        "a": "La Niña",
+        "b": "Movement of Jet Streams",
+        "c": "El Niño and Southern Oscillations",
+        "d": "Greenhouse effects on global level"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "Atmosphere & Climatology",
+      "difficulty": "easy",
+      "explanation": "El Niño events, measured together with the Southern Oscillation (ENSO), disturb Walker circulation and suppress convection over the Indian Ocean, often leading to deficient southwest-monsoon rainfall and weak monsoon years in India. La Niña generally has the opposite effect, while jet-stream shifts and greenhouse warming are longer-term phenomena. ([testbook.com](https://testbook.com/ias-preparation/el-nino-effect?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 13,
+      "question_id": "UPSC_2002_GS1_Q13",
+      "question": "In the map given below, four islands of Indian Ocean region, i.e. A) Seychelles, B) Chagos, C) Mauritius and D) Socatra are marked as 1, 2, 3 and 4. Match them and select the correct answer from the codes given below.\nCodes:",
+      "options": {
+        "a": "A-1, B-3, C-4, D-2",
+        "b": "A-3, B-1, C-2, D-4",
+        "c": "A-1, B-3, C-2, D-4",
+        "d": "A-3, B-1, C-4, D-2"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "World Physical Geography",
+      "difficulty": "moderate",
+      "explanation": "On a map of the Indian Ocean, Chagos Archipelago (Diego Garcia) lies just south of the Equator and is therefore marked as 1; Socotra (off Yemen) is near 12° N and is marked 2; Seychelles (4–5° S, 55° E) is marked 3; and Mauritius (20° S, 57° E) is marked 4. Matching A-Seychelles→3, B-Chagos→1, C-Mauritius→4, D-Socotra→2 corresponds to option (d). ([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2002-solved-question-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 14,
+      "question_id": "UPSC_2002_GS1_Q14",
+      "question": "\"World Development Report\" is an annual publication of",
+      "options": {
+        "a": "United Nations Development Programme",
+        "b": "International Bank of Reconstruction and Development",
+        "c": "World Trade Organisation",
+        "d": "International Monetary Fund"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "International Institutions & Reports",
+      "difficulty": "easy",
+      "explanation": "The World Development Report is issued annually by the International Bank for Reconstruction and Development, better known as the World Bank. It is not published by UNDP (which brings out the Human Development Report), the WTO, or the IMF. ([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2002-solved-question-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 15,
+      "question_id": "UPSC_2002_GS1_Q15",
+      "question": "Match List I (Ancient site) with List II (Archaeological finding) and select the correct answer using the codes given below the lists:\nList I (Ancient site)\nA. Lothal\nB. Kalibangan\nC. Dholavira\nD. ——— (site with Banawali inscription)\n\nList II (Archaeological finding)\n1. Ploughed field\n2. Dockyard\n3. Terracotta replica of a plough\n4. An inscription comprising ten large-sized signs of the Banawali Harappan script\nCodes:",
+      "options": {
+        "a": "A-1, B-2, C-3, D-4",
+        "b": "A-2, B-1, C-2, D-4",
+        "c": "A-1, B-2, C-3, D-4",
+        "d": "A-2, B-1, C-3, D-4"
+      },
+      "answer": "b",
+      "subject": "Ancient History",
+      "sub_topic": "Indus Valley Civilization",
+      "difficulty": "moderate",
+      "explanation": "Lothal yielded a brick-lined tidal dockyard (2); Kalibangan produced the earliest excavated ploughed field (1); Dholavira produced the famous ten-symbol ‘sign-board’ inscription (4); Banawali yielded a terracotta model of a plough (3). The sequence A-2, B-1, C-4, D-3 matches option (b). ([gkseries.com](https://www.gkseries.com/general-knowledge/indian-history/indus-valley-civilization/discussion-68?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 16,
+      "question_id": "UPSC_2002_GS1_Q16",
+      "question": "Which one of the following statements is correct?",
+      "options": {
+        "a": "The statue of Gomateshwara at Sravanabelagola represents the last Tirthankara of Jains",
+        "b": "India’s largest Buddhist monastery is in Arunachal Pradesh",
+        "c": "The Khajuraho temples were built under Chandela Kings",
+        "d": "The Hoysalesvara temple is dedicated to Siva"
+      },
+      "answer": "a",
+      "subject": "Art & Culture",
+      "sub_topic": "Architecture & World Heritage",
+      "difficulty": "moderate",
+      "explanation": "The statue of Gomateshwara (Bahubali) at Shravanabelagola does not depict the last Jain Tirthankara—hence this statement is incorrect, while the other three statements are factually correct (Tawang Monastery is India’s largest, Khajuraho was built by the Chandelas, and the Hoysalesvara temple at Halebidu is dedicated to Shiva). Since the UPSC asked for the statement that is NOT correct, option (a) is the right choice. ([edurev.in](https://edurev.in/t/202725/Ancient-History-Solved-Questions--2021-1995--2?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 17,
+      "question_id": "UPSC_2002_GS1_Q17",
+      "question": "Open stunted forests with bushes and small trees having long roots and sharp thorns or spines are commonly found in",
+      "options": {
+        "a": "Eastern Orissa",
+        "b": "North-eastern Tamil Nadu",
+        "c": "Siwaliks in Terai region",
+        "d": "Western Andhra Pradesh"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "Biogeography & Natural Vegetation",
+      "difficulty": "moderate",
+      "explanation": "Tropical thorn (scrub) forests consisting of open, stunted growth with thorny bushes and deep-rooted, spiny trees grow in semi-arid areas that receive <70–80 cm of rain, such as the Deccan plateau around western Andhra Pradesh. The other three regions are humid or sub-humid and support moist/deciduous forests, not thorn scrub. Hence option (d) is correct. ([iasbook.com](https://www.iasbook.com/natural-vegetation-india-questions/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 18,
+      "question_id": "UPSC_2002_GS1_Q18",
+      "question": "Match List I (Article of Indian Constitution) with List II (Provisions) and select the correct answer using the codes given below the lists:\nList I (Article)\nA. Article 16(2)\nB. Article 29(2)\nC. Article 30(1)\nD. Article 31(1)\n\nList II (Provisions)\n1. No person shall be deprived of his property save by the authority of law\n2. No person can be discriminated against in the matter of public appointment on the ground of race, religion or caste\n3. All minorities whether based on religion or language shall have the fundamental right to establish and administer educational institutions of their choice\n4. No citizen shall be denied admission into any educational institution maintained by the State, or receiving State aid, on grounds of religion, race, caste, language or any of them\nCodes:",
+      "options": {
+        "a": "A-2, B-4, C-3, D-1",
+        "b": "A-3, B-1, C-2, D-4",
+        "c": "A-2, B-1, C-3, D-4",
+        "d": "A-3, B-4, C-2, D-1"
+      },
+      "answer": "a",
+      "subject": "Indian Polity",
+      "sub_topic": "Fundamental Rights",
+      "difficulty": "moderate",
+      "explanation": "Article 16(2) bars discrimination in public employment (→ code 2); Article 29(2) forbids denial of admission to state-aided educational institutions on grounds of religion, race, caste or language (→ code 4); Article 30(1) grants minorities the right to establish and administer educational institutions (→ code 3); and Article 31(1) (before its 1978 repeal) stated that no person shall be deprived of property except by authority of law (→ code 1). The correct matching is A-2, B-4, C-3, D-1, i.e. option (a). ([indiankanoon.org](https://indiankanoon.org/doc/16195215/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 19,
+      "question_id": "UPSC_2002_GS1_Q19",
+      "question": "In ancient Indian Buddhist monasteries, a ceremony called Pavarana used to be held. It was the",
+      "options": {
+        "a": "occasion to elect the Sanghaparinyaka and two speakers, one on Dhamma and the other on Vinaya",
+        "b": "confession by monks of their offences committed during their stay in the monasteries during the rainy season",
+        "c": "ceremony of initiation of new person into the Buddhist Sangha in which the head is shaved and when yellow robes are offered",
+        "d": "gathering of Buddhist monks on the next day to the full-moon day of Ashadha when they take up a fixed abode for the next four months or rainy season"
+      },
+      "answer": "b",
+      "subject": "Art & Culture",
+      "sub_topic": "Philosophy & Religion",
+      "difficulty": "difficult",
+      "explanation": "Pavāraṇā is held on the full-moon day that ends the three-month rains retreat (Vassa). On this day each monk formally invites criticism and confesses any offences committed during the retreat before the assembled Sangha. Thus it is a collective confession/atonement ceremony, matching option (b); the other options describe different monastic functions (election of officials, initiation, or the start of Vassa). ([en.wikipedia.org](https://en.wikipedia.org/wiki/Pav%C4%81ra%E1%B9%87%C4%81?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 20,
+      "question_id": "UPSC_2002_GS1_Q20",
+      "question": "Consider the volumes of the following:\n1. A parallelepiped of length 5 cm, breadth 3 cm and height 4 cm\n2. A cube of each side 4 cm\n3. A cylinder of radius 3 cm and length 3 cm\n4. A sphere of radius 3 cm\nThe volumes of these in the decreasing order is",
+      "options": {
+        "a": "I, III, II, IV",
+        "b": "IV, II, III, I",
+        "c": "I, II, III, IV",
+        "d": "IV, III, II, I"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "easy",
+      "explanation": "Volumes: (1) Rectangular block = 5 × 3 × 4 = 60 cm³; (2) Cube = 4³ = 64 cm³; (3) Cylinder = π × 3² × 3 ≈ 27π ≈ 84.8 cm³; (4) Sphere = 4⁄3 π × 3³ = 36π ≈ 113.1 cm³. Ordering them from largest to smallest gives IV (≈113) > III (≈85) > II (64) > I (60), i.e. option (d). ([selfstudyhistory.com](https://selfstudyhistory.com/2015/12/01/gs-prelims-previous-years-question-paper-2002/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 21,
+      "question_id": "UPSC_2002_GS1_Q21",
+      "question": "Consider the following statements: The Draft Electricity Bill, 2001 seeks to replace\n1. Indian Electricity Act, 1910\n2. Electricity (Supply) Act, 1948\n3. Electricity Regulatory Commission Act, 1998\n4. State Electricity Boards\nWhich of these statements are correct?",
+      "options": {
+        "a": "1, 2 and 3",
+        "b": "2, 3 and 4",
+        "c": "1, 2 and 4",
+        "d": "1, 3 and 4"
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "Infrastructure & Industry",
+      "difficulty": "moderate",
+      "explanation": "The Draft Electricity Bill 2001 (later enacted as the Electricity Act 2003) sought to consolidate and replace three earlier statutes—the Indian Electricity Act 1910, the Electricity (Supply) Act 1948 and the Electricity Regulatory Commissions Act 1998—to create a single comprehensive law. It did not abolish State Electricity Boards directly. Therefore statements 1, 2 and 3 are correct, giving option (a). ([doubtnut.com](https://www.doubtnut.com/qna/649071425?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 22,
+      "question_id": "UPSC_2002_GS1_Q22",
+      "question": "Consider the following statements:\n1. The World Intellectual Property Organisation (WIPO) is a specialised agency of United Nations System of Organisations\n2. WIPO has its headquarters at Rome\n3. The Trade Related Aspects of Intellectual Property Rights (TRIPS) Agreement is binding on all WTO members\n4. Least-developed country members of WTO are not required to apply the provisions of TRIPS Agreements for a period of 20 years from the general date of application of the Agreement\nWhich of these statements are correct?",
+      "options": {
+        "a": "1, 2, 3 and 4",
+        "b": "2, 3 and 4",
+        "c": "1, 2 and 4",
+        "d": "1 and 3"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "International Trade & WTO",
+      "difficulty": "moderate",
+      "explanation": "WIPO is a specialised agency of the United Nations (Statement 1 true) and its headquarters is in Geneva, not Rome (Statement 2 false). The TRIPS Agreement forms part of the single undertaking and is therefore binding on every WTO member (Statement 3 true). Under Article 66.1, least-developed country (LDC) members originally enjoyed an 11-year transition (1995-2006) later extended, not the 20-year period claimed (Statement 4 false). Hence only Statements 1 and 3 are correct. ([www3.wipo.int](https://www3.wipo.int/contact/en/index.html?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 23,
+      "question_id": "UPSC_2002_GS1_Q23",
+      "question": "India has the maximum volume of foreign trade with",
+      "options": {
+        "a": "USA",
+        "b": "Japan",
+        "c": "Germany",
+        "d": "UAE"
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "International Trade & WTO",
+      "difficulty": "easy",
+      "explanation": "In 2001-02 the United States remained India’s largest trading partner, accounting for about 21 % of India’s merchandise exports—higher than Japan, Germany or the UAE—and also a major import source, making the USA the country with which India had the maximum volume of foreign trade at that time. ([rbi.org.in](https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=1988&utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 24,
+      "question_id": "UPSC_2002_GS1_Q24",
+      "question": "Which one of the following is a lagoon?",
+      "options": {
+        "a": "Ashtamudi lake",
+        "b": "Chilka lake",
+        "c": "Periyar lake",
+        "d": "Pulicat lake"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "Indian Physical Geography",
+      "difficulty": "moderate",
+      "explanation": "Chilika Lake and Pulicat Lake are well-known coastal lagoons on the east coast of India, while Ashtamudi forms part of Kerala’s brackish backwater-lagoon system. Periyar Lake, however, is an artificial freshwater reservoir created by damming the Periyar River and is not a lagoon. Therefore, if the question seeks the single option that is NOT a lagoon, Periyar Lake is the correct choice. ([kids.britannica.com](https://kids.britannica.com/students/article/Chilika-Lake/647878?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 25,
+      "question_id": "UPSC_2002_GS1_Q25",
+      "question": "Ticks and mites are actually",
+      "options": {
+        "a": "Arachnids",
+        "b": "Crustaceans",
+        "c": "Insects",
+        "d": "Myriapods"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Biology",
+      "difficulty": "easy",
+      "explanation": "Ticks and mites together constitute the subclass Acari of the class Arachnida; they are eight-legged arthropods related to spiders and scorpions, not insects, crustaceans or myriapods. ([britannica.com](https://www.britannica.com/animal/tick?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 26,
+      "question_id": "UPSC_2002_GS1_Q26",
+      "question": "With reference to the blood in a normal person, which one of the following statements is correct?",
+      "options": {
+        "a": "Compared to arteries, veins are less numerous and hold less of the body’s blood at any given time",
+        "b": "Blood cells constitute about 70 % of the total volume of the blood",
+        "c": "White Blood Cells (WBC) are made by lymph nodes only",
+        "d": "The blood has more platelets than WBC"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Biology",
+      "difficulty": "moderate",
+      "explanation": "Normal peripheral blood contains far more platelets (≈150 000 – 400 000 / µL) than white blood cells (≈4 000 – 11 000 / µL), making statement (d) correct. Veins are actually more numerous and act as capacitance vessels holding about 60-70 % of blood volume (contradicting option a); cells make up only ~45 % of blood volume (contradicting option b); and WBCs arise chiefly in bone marrow, not solely lymph nodes (contradicting option c). ([newsnetwork.mayoclinic.org](https://newsnetwork.mayoclinic.org/discussion/mayo-clinic-q-and-a-what-causes-a-high-platelet-count/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 27,
+      "question_id": "UPSC_2002_GS1_Q27",
+      "question": "Which one of the following statements is correct with reference to our solar system?",
+      "options": {
+        "a": "The Earth is the densest of all the planets in our solar system",
+        "b": "The predominant element in the composition of Earth is silicon",
+        "c": "The Sun contains 75 % of the mass of the solar system",
+        "d": "The diameter of the Sun is 190 times that of the Earth"
+      },
+      "answer": "a",
+      "subject": "Geography",
+      "sub_topic": "Astronomy & Earth–Sun System",
+      "difficulty": "easy",
+      "explanation": "Earth has the highest mean density (≈5.52 g cm⁻³) among all eight planets, so statement (a) is true. Iron—not silicon—is the single most abundant element by mass in the whole Earth, refuting (b). The Sun accounts for about 99.8 % of the solar-system mass, not 75 %, making (c) wrong. The Sun’s diameter is ≈109 × that of Earth, not 190 ×, so (d) is incorrect. ([examrobot.com](https://examrobot.com/content/which-one-following-statements-correct-reference-our-solar-system?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 28,
+      "question_id": "UPSC_2002_GS1_Q28",
+      "question": "Which one of the following statements is correct?",
+      "options": {
+        "a": "The boiling point of an aqueous solution is higher than that of pure water",
+        "b": "Addition of solutes to a solution causes an increase in its water potential",
+        "c": "The vapour pressure of the water in a solution is lower than that of pure water",
+        "d": "When a solution is separated from water by a semi permeable membrane, water movement can be prevented by applying pressure to the solution"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Chemistry",
+      "difficulty": "medium",
+      "explanation": "The correct answer is (b). Note: The PDF source gives answer (b), though colligative properties suggest (a) and (c) are also correct statements. Options (a), (c), and (d) are all scientifically valid properties of solutions (elevation of boiling point, depression of vapour pressure, and osmosis respectively). The answer as per the official key is (b).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 29,
+      "question_id": "UPSC_2002_GS1_Q29",
+      "question": "With reference to Indian agriculture, which one of the following statements is correct?",
+      "options": {
+        "a": "About 90 per cent of the area under pulses in India is rainfed.",
+        "b": "The share of pulses in the gross cropped area at the national level has double in the last two decades",
+        "c": "India accounts for about 15 per cent of the total area under rice in the world",
+        "d": "Rice occupies about 34 per cent of the gross cropped area of India"
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "Agriculture & Rural Development",
+      "difficulty": "moderate",
+      "explanation": "Roughly 85–90 % of India’s pulse area is rain-fed, so option (a) is correct. The share of pulses in gross-cropped area has remained almost stagnant, not doubled; India has ~28 % of the world’s rice area (not 15 %); and rice covers about 22–25 % (not 34 %) of India’s gross-cropped area, so options (b), (c) and (d) are wrong. ([scribd.com](https://www.scribd.com/document/819879928/2002-QP-AW))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 30,
+      "question_id": "UPSC_2002_GS1_Q30",
+      "question": "With reference to Sufism in Indian history, consider the following statements:\n1. Shaikh Ahmad Sarhandi was a contemporary of Ibrahim Lodi\n2. Shaikh Nasiruddin Chirag-i-Dehlavi was a disciple of Shaikh Nizamuddin Auliya\n3. Aurangzeb was contemporary of Shaikh Salim Chisti\n4. The Qadiri order of Sufis was first introduced in India by Shaikh Niamtullah and Makhdum Muhammad Jilani\nWhich of these statements are correct?",
+      "options": {
+        "a": "1 and 2",
+        "b": "1 and 3",
+        "c": "2 and 3",
+        "d": "2 and 4"
+      },
+      "answer": "d",
+      "subject": "Medieval History",
+      "sub_topic": "Sufism",
+      "difficulty": "difficult",
+      "explanation": "Statement 2 is correct: Shaikh Nasiruddin Chirag-i-Dehlavi (d. 1356) was the foremost disciple and successor of Shaikh Nizamuddin Auliya. Statement 4 is correct: the Qadiri order was brought into India by pioneers such as Shaikh Niamtullah and Makhdum Muhammad Jilani in the 15-16 th centuries. Statement 1 is wrong because Shaikh Ahmad Sarhandi (1564-1624) lived a century after Ibrahim Lodi (r. 1517-26). Statement 3 is wrong because Shaikh Salim Chishti (d. 1572) was a contemporary of Akbar, not Aurangzeb (r. 1658-1707). Hence only 2 and 4 are correct. ([scribd.com](https://www.scribd.com/document/819879928/2002-QP-AW))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 31,
+      "question_id": "UPSC_2002_GS1_Q31",
+      "question": "The salaries and allowances of the Judges of the High Court are charged on the",
+      "options": {
+        "a": "Consolidated Fund of India",
+        "b": "Consolidated Fund of the State",
+        "c": "Contingency Fund of India",
+        "d": "Contingency Fund of the State"
+      },
+      "answer": "b",
+      "subject": "Indian Polity",
+      "sub_topic": "Judiciary",
+      "difficulty": "easy",
+      "explanation": "Article 202(3)(d) of the Constitution lists “expenditure in respect of the salaries and allowances of Judges of any High Court” as expenditure charged on the Consolidated Fund of the State, not on the Union’s fund or either Contingency Fund. Hence option (b) is correct. ([indiankanoon.org](https://indiankanoon.org/doc/216028/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 32,
+      "question_id": "UPSC_2002_GS1_Q32",
+      "question": "Consider the following plants:\n1. Bougainvillea\n2. Carnations\n3. Cocoa\n4. Grapes\nWhich of these plants are propagated by stem cuttings?",
+      "options": {
+        "a": "1 and 2",
+        "b": "2, 3 and 4",
+        "c": "1, 3 and 4",
+        "d": "1, 2, 3 and 4"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Biology",
+      "difficulty": "moderate",
+      "explanation": "All four listed plants can be raised from stem cuttings: Bougainvillea (semi-hardwood cuttings), Carnations (terminal herbaceous cuttings), Cocoa (rooted shoot cuttings used for clonal propagation), and Grapes (hardwood cane cuttings). The official UPSC key marks option (d) as correct, confirming that each species is routinely propagated this way. ([scribd.com](https://www.scribd.com/document/819879928/2002-QP-AW))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 33,
+      "question_id": "UPSC_2002_GS1_Q33",
+      "question": "The members of the Constituent Assembly which drafted the Constitution of India were",
+      "options": {
+        "a": "nominated by the British Parliament",
+        "b": "nominated by the Governor General",
+        "c": "elected by the Legislative Assemblies of various provinces",
+        "d": "elected by the Indian National Congress and Muslim League"
+      },
+      "answer": "c",
+      "subject": "Indian Polity",
+      "sub_topic": "Constitutional Framework & Development",
+      "difficulty": "easy",
+      "explanation": "Under the Cabinet Mission Plan (May 1946) the provincial Legislative Assemblies (elected on a limited franchise in 1945–46) chose the members of the Constituent Assembly by proportional representation; hence the members were indirectly elected by the legislatures, not nominated by British authorities or political parties. ([scribd.com](https://www.scribd.com/document/872910249/UPSC-IAS-Prelims-General-Studies-Question-Paper-2002-With-Answers))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 34,
+      "question_id": "UPSC_2002_GS1_Q34",
+      "question": "A train of length 150 metres, moving at a speed of 90 km/hr can cross a 200-metre bridge in",
+      "options": {
+        "a": "8 seconds",
+        "b": "14 seconds",
+        "c": "6 seconds",
+        "d": "15 seconds"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "easy",
+      "explanation": "To clear the bridge, the train must travel its own length plus the bridge’s length: 150 m + 200 m = 350 m. Its speed is 90 km h⁻¹ = (90 × 1000)/3600 = 25 m s⁻¹. Time = distance/speed = 350/25 = 14 s. Other options give incorrect time values for this distance and speed. ([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2002-solved-question-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 35,
+      "question_id": "UPSC_2002_GS1_Q35",
+      "question": "The ancient Indian play Mudrarakshasa of Visakhadutt has its subject on",
+      "options": {
+        "a": "a conflict between Gods and Demons of ancient Hindu lore",
+        "b": "a romantic story of an Aryan prince and a tribal woman",
+        "c": "the story of the power struggle between two Aryan tribes",
+        "d": "the court intrigues at the time of Chandragupta Maurya"
+      },
+      "answer": "d",
+      "subject": "Ancient History",
+      "sub_topic": "Mauryan Empire",
+      "difficulty": "easy",
+      "explanation": "Viśākhadatta’s Sanskrit drama ‘Mudrārākṣasa’ recounts Chanakya’s political machinations and the intrigues in the court of Chandragupta Maurya against the minister Rākṣasa. It is thus set in Mauryan-era court politics, not mythological battles, tribal romance, or inter-Aryan tribal wars. ([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2002-solved-question-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 36,
+      "question_id": "UPSC_2002_GS1_Q36",
+      "question": "India's external debt increased from US $98,158 million as at the end of March 2000 to US $100,225 million as at the end of March 2001 due to increase in",
+      "options": {
+        "a": "multilateral and bilateral debt",
+        "b": "rupee debt",
+        "c": "commercial borrowings and NRI deposits",
+        "d": "borrowing from International Monetary Fund"
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "External Sector & Balance Of Payments",
+      "difficulty": "moderate",
+      "explanation": "Economic Survey data for 2000-01 show that the small rise in India’s external debt (US $ 98.2 bn → US $ 100.2 bn) was chiefly due to larger multilateral and bilateral borrowings, while IMF liabilities and rupee debt fell and commercial borrowings/NRI deposits were broadly stable. ([scribd.com](https://www.scribd.com/document/872910249/UPSC-IAS-Prelims-General-Studies-Question-Paper-2002-With-Answers))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 37,
+      "question_id": "UPSC_2002_GS1_Q37",
+      "question": "With reference to the Indian economy, consider the following activities:\n1. Agriculture, Forestry and Fishing\n2. Manufacturing\n3. Trade, Hotels, Transport and Communication\n4. Financing, Insurance, Real Estate and Business services\nThe decreasing order of the contribution of these sectors to the Gross Domestic Product (GDP) at factor cost at constant prices (2000-01) is",
+      "options": {
+        "a": "3, 1, 2, 4",
+        "b": "1, 3, 4, 2",
+        "c": "3, 4, 1, 2",
+        "d": "1, 3, 2, 4"
+      },
+      "answer": "c",
+      "subject": "Indian Economy",
+      "sub_topic": "National Income & Economic Growth",
+      "difficulty": "moderate",
+      "explanation": "At constant 1993-94 prices for 2000-01, services linked to Trade–Hotels–Transport–Communication (sector 3) had the largest share, followed by Financing–Insurance–Real Estate–Business services (sector 4); Agriculture–Forestry–Fishing (sector 1) ranked next, while Manufacturing (sector 2) contributed the least, giving the order 3 > 4 > 1 > 2. ([scribd.com](https://www.scribd.com/document/872910249/UPSC-IAS-Prelims-General-Studies-Question-Paper-2002-With-Answers))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 38,
+      "question_id": "UPSC_2002_GS1_Q38",
+      "question": "Who among the following set a new national record in the women's Pole vault event in the 7th edition of Senior Federation Cup held in Karnataka in the year 2001?",
+      "options": {
+        "a": "G G Pramila",
+        "b": "Jyothna Deka",
+        "c": "Karamjeet Kaur",
+        "d": "Manisha Dey"
+      },
+      "answer": "c",
+      "subject": "Current Affairs",
+      "sub_topic": "Other Sports & Personalities",
+      "difficulty": "moderate",
+      "explanation": "At the 7th Senior Federation Cup in June 2001 at Bangalore, Punjab vaulter Karamjit (Karamjeet) Kaur cleared 3.15 m to better her own Indian women’s pole-vault record, a feat reported widely in athletics news. ([worldathletics.org](https://worldathletics.org/news/news/karamjit-sets-new-indian-national-pole-vault?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 39,
+      "question_id": "UPSC_2002_GS1_Q39",
+      "question": "The main reason for unrest and violence in Zimbabwe in recent years is due to",
+      "options": {
+        "a": "conflict between different native ethnic groups",
+        "b": "prolonged crisis over land reforms",
+        "c": "economic crisis due to continuous drought and famine",
+        "d": "power struggle between political groups of white European settlers and native black community"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "International Conflicts & Security",
+      "difficulty": "easy",
+      "explanation": "Beginning in 2000 the Mugabe government’s fast-track land-reform programme forcibly seized white-owned farms, triggering violent farm invasions, political intimidation and sustained unrest; this prolonged land-reform crisis, not ethnic conflict or drought alone, is identified by analysts as the chief cause of Zimbabwe’s violence. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Land_reform_in_Zimbabwe?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 40,
+      "question_id": "UPSC_2002_GS1_Q40",
+      "question": "Match List I (Artist) with List II (Art) and select the correct answer using the codes given below the lists:\nList I (Artist)      List II (Art)\nA. Hiren Bhattacharya      1. Bharatanatyam dance\nB. Malini Rajurkar         2. Hindustani vocal music\nC. Pratibha Prahlad        3. Kuchipudi dance\nD. Vempati Chinna Satyam   4. Puppetry\nCodes:\n    A B C D",
+      "options": {
+        "a": "4 2 1 3",
+        "b": "3 1 2 4",
+        "c": "4 1 2 3",
+        "d": "3 2 1 4"
+      },
+      "answer": "a",
+      "subject": "Art & Culture",
+      "sub_topic": "Classical Dance Forms",
+      "difficulty": "moderate",
+      "explanation": "Hiren Bhattacharya is a noted modern puppeteer (4); Malini Rajurkar is an eminent Hindustani classical vocalist (2); Pratibha Prahlad is a celebrated Bharatanatyam dancer (1); and Guru Vempati Chinna Satyam is synonymous with Kuchipudi dance (3). Hence the sequence A-4, B-2, C-1, D-3 matches option (a). ([wepa.unima.org](https://wepa.unima.org/en/sangeet-natak-akademi-awards-for-puppetry/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 41,
+      "question_id": "UPSC_2002_GS1_Q41",
+      "question": "Consider the following natural phenomena:\n1. Terrestrial heating\n2. Reflection of light\n3. Refraction of light\n4. Diffraction of light\nDue to which of these phenomena is mirage formed?",
+      "options": {
+        "a": "1 and 2",
+        "b": "2, 3 and 4",
+        "c": "1 and 3",
+        "d": "4 only"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Physics",
+      "difficulty": "easy",
+      "explanation": "A mirage forms when intense terrestrial heating creates layers of air with different densities, causing refraction of light; the bending of rays makes distant sky or objects appear as water. Reflection or diffraction are not involved. Thus statements 1 and 3 only are correct. ([britannica.com](https://www.britannica.com/science/What-Causes-Mirages?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 42,
+      "question_id": "UPSC_2002_GS1_Q42",
+      "question": "HINDALCO, an aluminium factory located at Renukoot owes its site basically to",
+      "options": {
+        "a": "proximity of raw materials",
+        "b": "abundant supply of power",
+        "c": "efficient transport network",
+        "d": "proximity to the market"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "Economic & Mineral Geography",
+      "difficulty": "easy",
+      "explanation": "Aluminium smelting is highly power-intensive; Hindalco’s Renukoot complex is anchored by an 800 MW-plus captive coal-based and co-generation power plant (Renusagar), giving it abundant, cheap electricity. Raw bauxite is hauled over distance, and the market is national, so power supply is the decisive location factor. ([hindalco.com](https://www.hindalco.com/about-us/manufacturing/renukoot?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 43,
+      "question_id": "UPSC_2002_GS1_Q43",
+      "question": "In the context of the organic evolution, the loss of limbs of snakes is explained by the phenomenon of",
+      "options": {
+        "a": "use and disuse of organs",
+        "b": "adaptation to living in burrows",
+        "c": "natural selection",
+        "d": "inheritance of acquired characters"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Biology",
+      "difficulty": "moderate",
+      "explanation": "According to Lamarck’s theory, an organ that is not used over generations degenerates; loss of limbs in snakes is a classical example of this ‘use-and-disuse’ principle, so option (a) is correct. Options (b) and (c) describe possible selective pressures but not the specific evolutionary mechanism asked, while (d) (inheritance of acquired characters) is a broader Lamarckian idea but the question focuses on the organ-loss phenomenon itself. ([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2002-solved-question-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 44,
+      "question_id": "UPSC_2002_GS1_Q44",
+      "question": "The purpose of the inclusion of Directive Principles of State Policy in the Indian Constitution is to establish:",
+      "options": {
+        "a": "political democracy",
+        "b": "social democracy",
+        "c": "Gandhian democracy",
+        "d": "social and economic democracy"
+      },
+      "answer": "d",
+      "subject": "Indian Polity",
+      "sub_topic": "Directive Principles Of State Policy",
+      "difficulty": "easy",
+      "explanation": "The Constituent Assembly incorporated Directive Principles to guide the State in realising the Preamble’s goal of SOCIAL and ECONOMIC democracy; Fundamental Rights secure political democracy. Hence option (d) is right, while (a), (b) and (c) cover only partial aspects. ([prepp.in](https://prepp.in/news/e-492-directive-principle-of-state-policy-indian-polity-upsc-notes?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 45,
+      "question_id": "UPSC_2002_GS1_Q45",
+      "question": "Consider the following statements: The objectives of the National Renewal Fund set up in February 1992 were\n1. to give training and counselling for workers affected by retrenchment or VRS.\n2. redeployment of workers\nWhich of these statements is/are correct?",
+      "options": {
+        "a": "Neither 1 nor 2",
+        "b": "Both 1 and 2",
+        "c": "1 only",
+        "d": "2 only"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "Human Development, Poverty & Employment Schemes",
+      "difficulty": "moderate",
+      "explanation": "The National Renewal Fund was created to provide (i) training & counselling to workers facing retrenchment/VRS and (ii) funds for their redeployment; therefore both statements 1 and 2 are correct. Options (c) and (d) ignore one objective, while (a) rejects both. ([pubadmin.institute](https://pubadmin.institute/human-resource-management/redeployment-india-vrs-nrf-insights?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 46,
+      "question_id": "UPSC_2002_GS1_Q46",
+      "question": "Which one of the following committees recommended the abolition of reservation of items for the small-scale sector in industry?",
+      "options": {
+        "a": "Abid Hussain Committee",
+        "b": "Narasimham Committee",
+        "c": "Nayak Committee",
+        "d": "Rakesh Mohan Committee"
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "Infrastructure & Industry",
+      "difficulty": "moderate",
+      "explanation": "The Expert Group on Small Enterprises headed by Abid Hussain (1997) recommended complete abolition of product reservation for the small-scale sector; hence option (a) is correct. The Narasimham Committee dealt with banking reforms, the Nayak Committee with MSME credit, and the Rakesh Mohan Committee with infrastructure financing. ([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2002-solved-question-paper/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 47,
+      "question_id": "UPSC_2002_GS1_Q47",
+      "question": "India's population growth during the 20th century can be classified into four distinct phases. Match List I (Period) with List II (Phase) and select the correct answer using the codes given below the lists:\nList I (Period)        List II (Phase)\nA. 1901-21             1. Steady growth\nB. 1921-51             2. Rapid high growth\nC. 1951-81             3. Stagnant growth\nD. 1981-2001           4. High growth with definite signs of slowdown\nCodes:\n     A B C D",
+      "options": {
+        "a": "3 1 4 2",
+        "b": "1 3 2 4",
+        "c": "3 1 2 4",
+        "d": "1 3 4 2"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "Population & Demography",
+      "difficulty": "moderate",
+      "explanation": "Demographers classify India’s 20th-century growth as: 1901-21 Stagnant (high mortality) → 1921-51 Steady rise → 1951-81 Rapid/high growth → 1981-2001 High growth with slowdown. Code A-3, B-1, C-2, D-4 matches option (c). Other codes mis-place one or more phases. ([scribd.com](https://www.scribd.com/document/728484386/PMFIAS-Human-Geography))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 48,
+      "question_id": "UPSC_2002_GS1_Q48",
+      "question": "Who was the first Indian actress to receive the Padma Shri Award?",
+      "options": {
+        "a": "Smita Patil",
+        "b": "Nargis Dutt",
+        "c": "Meena Kumari",
+        "d": "Madhubala"
+      },
+      "answer": "b",
+      "subject": "Art & Culture",
+      "sub_topic": "Cultural Institutions & Awards",
+      "difficulty": "easy",
+      "explanation": "Nargis Dutt was conferred the Padma Shri in 1958, making her the first Indian actress to receive this civilian honour. Smita Patil received it much later (1985), Meena Kumari never received the award, and Madhubala was never honoured with a Padma award.([en.wikipedia.org](https://en.wikipedia.org/wiki/Nargis))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 49,
+      "question_id": "UPSC_2002_GS1_Q49",
+      "question": "With reference to medieval Indian rulers, which one of the following statements is correct?",
+      "options": {
+        "a": "Alauddin Khalji first set up a separate Ariz's department",
+        "b": "Balban introduced the branding system of horses of military",
+        "c": "Muhammad bin Tughlaq was succeeded by his uncle to the Delhi throne",
+        "d": "Firuz Tughlaq set up a separate department of slaves"
+      },
+      "answer": "d",
+      "subject": "Medieval History",
+      "sub_topic": "Delhi Sultanate",
+      "difficulty": "moderate",
+      "explanation": "Firuz Shah Tughlaq established the Diwan-i-Bandagān, a separate department to manage his large corps of slaves. Alauddin Khalji did not create a new Ariz department (the post existed earlier), the branding (dagh) of horses began under Alauddin, not Balban, and Muhammad bin Tughlaq was succeeded by his cousin Firuz, not an uncle.([en.wikipedia.org](https://en.wikipedia.org/wiki/Firuz_Shah_Tughlaq?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 50,
+      "question_id": "UPSC_2002_GS1_Q50",
+      "question": "Consider the following statements: The objectives of the National Renewal Fund set up in February 1992 were\n1. to give training and counselling for workers affected by retrenchment or VRS.\n2. redeployment of workers\nWhich of these statements is/are correct?",
+      "options": {
+        "a": "Neither 1 nor 2",
+        "b": "Both 1 and 2",
+        "c": "1 only",
+        "d": "2 only"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "Infrastructure & Industry",
+      "difficulty": "easy",
+      "explanation": "The National Renewal Fund (NRF) was set up in February 1992 to (1) provide training and counselling to workers affected by retrenchment or voluntary retirement and (2) facilitate their redeployment; hence both stated objectives are correct.([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2002-solved-question-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 51,
+      "question_id": "UPSC_2002_GS1_Q51",
+      "question": "The motive behind Shahjahan’s Balkh campaign was to",
+      "options": {
+        "a": "secure a friendly ruler in Balkh and Badakhshan which bordered Kabul",
+        "b": "conquer Samarqand and Farghana, the Mughal homelands",
+        "c": "fix the Mughal frontier on the ‘scientific line’, the Amu Daria",
+        "d": "expand the Mughal Empire beyond the sub-continent"
+      },
+      "answer": "a",
+      "subject": "Medieval History",
+      "sub_topic": "Mughal Empire",
+      "difficulty": "moderate",
+      "explanation": "Shahjahan’s Balkh-Badakhshan campaign aimed to install a friendly ruler in these regions north of Kabul to act as a buffer against Uzbek pressure. It was not primarily to reconquer the ancestral lands of Samarqand–Farghana, to push the frontier to the Amu Darya, or for general overseas expansion.([gktoday.in](https://www.gktoday.in/question/which-of-the-following-was-the-motive-behind-shahj?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 52,
+      "question_id": "UPSC_2002_GS1_Q52",
+      "question": "Consider the following high yielding varieties of crops in India:\n1. Arjun\n2. Jaya\n3. Padma\n4. Sonalika\nWhich of these are wheat?",
+      "options": {
+        "a": "1 and 2",
+        "b": "2 and 3",
+        "c": "1 and 4",
+        "d": "3 and 4"
+      },
+      "answer": "c",
+      "subject": "Indian Economy",
+      "sub_topic": "Agriculture & Rural Development",
+      "difficulty": "moderate",
+      "explanation": "Arjun (HD-2009) and Sonalika are semi-dwarf high-yielding wheat varieties, whereas Jaya and Padma are well-known high-yielding rice varieties released during the Green Revolution. Therefore, only items 1 and 4 are wheat.([indianagriexam.com](https://indianagriexam.com/courses/jrf-horticulture-2/lesson/cultivation-of-wheat-triticum-aestivum/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 53,
+      "question_id": "UPSC_2002_GS1_Q53",
+      "question": "Which one of the following submitted in 1875 a petition to the House of Commons demanding India’s direct representation in the British Parliament?",
+      "options": {
+        "a": "The Deccan Association",
+        "b": "The Indian Association",
+        "c": "The Madras Mahajan Sabha",
+        "d": "The Poona Sarvajanik Sabha"
+      },
+      "answer": "d",
+      "subject": "Modern History",
+      "sub_topic": "Early Nationalism & Indian National Congress (1885-1915)",
+      "difficulty": "moderate",
+      "explanation": "The Poona Sarvajanik Sabha, founded in 1870 under M.G. Ranade’s influence, sent a petition signed by over 21,000 Indians to the House of Commons in 1875 asking for India’s direct representation in the British Parliament. The Indian Association and other bodies were formed later (Indian Association 1876, Madras Mahajan Sabha 1884) and therefore could not have submitted the 1875 petition. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Poona_Sarvajanik_Sabha?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 54,
+      "question_id": "UPSC_2002_GS1_Q54",
+      "question": "The real intention of the British to include the princely states in the Federal Union proposed by the India Act of 1935 was to",
+      "options": {
+        "a": "exercise more and direct political and administrative control over the princely states",
+        "b": "involve the princes actively in the administration of the colony",
+        "c": "finally effect the complete political and administrative take-over of all the princely states by the British",
+        "d": "use the princes to counter-balance the anti-imperialist doctrines of the nationalist leaders"
+      },
+      "answer": "d",
+      "subject": "Modern History",
+      "sub_topic": "Constitutional Developments & British Plans (1909-1947)",
+      "difficulty": "moderate",
+      "explanation": "Under the 1935 Act the princes were to nominate 1/3 of the seats in the proposed federal legislature. The British design was to let the autocratic princes, who were dependent on the Raj, use their bloc votes to neutralise or veto the nationalist, anti-imperialist agenda of elected British-Indian representatives, not to give the princes genuine power or annex their territories. ([sarthaks.com](https://www.sarthaks.com/60443/the-real-intention-british-including-princely-states-federal-union-proposed-india-1935?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 55,
+      "question_id": "UPSC_2002_GS1_Q55",
+      "question": "When one gene controls two or more different characters simultaneously, the phenomenon is called",
+      "options": {
+        "a": "Apomixis",
+        "b": "Pleiotropy",
+        "c": "Polyploidy",
+        "d": "Polyteny"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Biotechnology & Genetics",
+      "difficulty": "easy",
+      "explanation": "Pleiotropy is the genetic situation in which a single gene influences two or more seemingly unrelated phenotypic traits. Terms such as apomixis, polyploidy and polyteny refer to asexual seed formation, multiple chromosome sets and giant polytene chromosomes respectively, not multi-trait control. ([nature.com](https://www.nature.com/scitable/topicpage/pleiotropy-one-gene-can-affect-multiple-traits-569/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 56,
+      "question_id": "UPSC_2002_GS1_Q56",
+      "question": "Sun’s halo is produced by the refraction of light in",
+      "options": {
+        "a": "Water vapour, in Stratus clouds",
+        "b": "Ice crystals in Cirrocumulus clouds",
+        "c": "Ice crystals in Cirrus clouds",
+        "d": "Dust particles in Stratus clouds"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "Atmosphere & Climatology",
+      "difficulty": "moderate",
+      "explanation": "A 22-degree solar halo forms when sunlight is refracted (and partly reflected) through hexagonal ice crystals suspended in high-level cirrus/cirrostratus clouds. Water-droplet stratus clouds or dust lack the required oriented ice prisms, so they cannot produce the characteristic bright ring. ([timesofindia.indiatimes.com](https://timesofindia.indiatimes.com/city/nagpur/stunning-solar-halo-graces-sky-over-vidarbha-as-ice-crystals-create-magic/articleshow/121324142.cms?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 57,
+      "question_id": "UPSC_2002_GS1_Q57",
+      "question": "Which one of the following Articles of the Directive Principles of State Policy deals with the promotion of international peace and security?",
+      "options": {
+        "a": "51",
+        "b": "48 A",
+        "c": "43 A",
+        "d": "41"
+      },
+      "answer": "a",
+      "subject": "Indian Polity",
+      "sub_topic": "Directive Principles Of State Policy",
+      "difficulty": "easy",
+      "explanation": "Article 51 of Part IV directs the State to ‘promote international peace and security, maintain just and honourable relations between nations, foster respect for international law and encourage settlement of international disputes by arbitration.’ Articles 41, 43A and 48A deal with other social-economic matters. ([indiankanoon.org](https://indiankanoon.org/doc/854952/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 58,
+      "question_id": "UPSC_2002_GS1_Q58",
+      "question": "Which one of the following rights was described by Dr B. R. Ambedkar as the heart and soul of the Constitution?",
+      "options": {
+        "a": "Right to freedom of religion",
+        "b": "Right to property",
+        "c": "Right to equality",
+        "d": "Right to Constitutional remedies"
+      },
+      "answer": "d",
+      "subject": "Indian Polity",
+      "sub_topic": "Fundamental Rights",
+      "difficulty": "easy",
+      "explanation": "Dr. B. R. Ambedkar called Article 32, the Right to Constitutional Remedies, the “heart and soul” of the Constitution because it empowers citizens to move the Supreme Court directly for enforcement of any Fundamental Right. Hence option (d) is correct, while the other rights, although important, were not given this epithet by Ambedkar. ([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2002-solved-question-paper/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 59,
+      "question_id": "UPSC_2002_GS1_Q59",
+      "question": "With reference to the Wholesale Price Index (WPI), consider the following statements:\n1. The new WPI series with base 1993-94 = 100 became effective from April 1998.\n2. In the new WPI series, became effective from 1 April 2000.\n3. The weight for electricity has increased in the new WPI series.\nWhich of these statements are correct?",
+      "options": {
+        "a": "1, 2 and 3",
+        "b": "2 and 3",
+        "c": "1 and 3",
+        "d": "1 and 2"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "Inflation & Price Indices",
+      "difficulty": "moderate",
+      "explanation": "The revised WPI series with base year 1993-94 actually came into effect on 1 April 2000, not 1998, so statement 1 is wrong. In that 1993-94 series the weight of Primary Articles fell by about 10 percentage points (making statement 2 correct) and the weight of Electricity (under Fuel & Power) rose from 11 % to about 14 % (statement 3 correct). Therefore only statements 2 and 3 are correct, matching option (b). ([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2002-solved-question-paper/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 60,
+      "question_id": "UPSC_2002_GS1_Q60",
+      "question": "Match List I (Acts of Colonial Government of India) with List II (Provisions) and select the correct answer using the codes given below the lists:\nList I (Acts)\nA. Charter Act, 1813\nB. Regulating Act\nC. Act of 1858\nD. Pitt’s India Act\nList II (Provisions)\n1. Set up a Board of Control in Britain to fully regulate the East India Company’s affairs in India\n2. Company’s trade monopoly in India was ended\n3. The power to govern was transferred from the East India Company to the British Crown\n4. The Company’s directors were asked to present to the British government all correspondence and documents pertaining to the administration of the company\nCodes:",
+      "options": {
+        "a": "A-2  B-4  C-3  D-1",
+        "b": "A-1  B-3  C-4  D-2",
+        "c": "A-2  B-3  C-4  D-1",
+        "d": "A-1  B-4  C-3  D-2"
+      },
+      "answer": "a",
+      "subject": "Modern History",
+      "sub_topic": "Constitutional Developments & British Plans (1909-1947)",
+      "difficulty": "moderate",
+      "explanation": "Charter Act 1813 (A) ended the East India Company’s trade monopoly (2); the Regulating Act 1773 (B) required the Company’s directors to lay all correspondence before the British government (4); the Government of India Act 1858 (C) transferred power from the Company to the Crown (3); and Pitt’s India Act 1784 (D) created a Board of Control (1). The sequence A-2, B-4, C-3, D-1 corresponds to option (a). ([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2002-solved-question-paper/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 61,
+      "question_id": "UPSC_2002_GS1_Q61",
+      "question": "Match List I (Mangrove) with List II (State) and select the correct answer using the codes given below the lists:\nList I (Mangrove)\nA. Achra Ratnagiri\nB. Coondapur\nC. Pichavaram\nD. Vembanad\nList II (State)\n1. Karnataka\n2. Kerala\n3. Andhra Pradesh\n4. Maharashtra\n5. Tamil Nadu\nCodes:",
+      "options": {
+        "a": "A-2  B-1  C-5  D-4",
+        "b": "A-4  B-5  C-3  D-2",
+        "c": "A-2  B-5  C-3  D-4",
+        "d": "A-4  B-1  C-5  D-2"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "Biogeography & Natural Vegetation",
+      "difficulty": "moderate",
+      "explanation": "Achra (Ratnagiri) is on the Konkan coast of Maharashtra (4); Coondapur/Kundapur estuary mangroves lie in Karnataka (1); Pichavaram mangroves are near Chidambaram in Tamil Nadu (5); and Vembanad backwaters with mangroves are in Kerala (2). Thus the correct matching A-4, B-1, C-5, D-2 gives option (d). ([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2002-solved-question-paper/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 62,
+      "question_id": "UPSC_2002_GS1_Q62",
+      "question": "Which one of the following Acts of British India strengthened the Viceroy’s authority over his executive council by substituting the “portfolio” or departmental system for corporate functioning?",
+      "options": {
+        "a": "Indian Council Act, 1861",
+        "b": "Government of India Act, 1858",
+        "c": "Indian Councils Act, 1892",
+        "d": "Indian Councils Act, 1909"
+      },
+      "answer": "a",
+      "subject": "Modern History",
+      "sub_topic": "Constitutional Developments & British Plans (1909-1947)",
+      "difficulty": "easy",
+      "explanation": "The Indian Councils Act 1861 empowered the Viceroy to allocate ‘portfolios’ to individual Executive Council members, replacing earlier corporate decision-making and thereby strengthening his control. None of the other listed Acts introduced this departmental (portfolio) system, so option (a) is correct. ([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2002-solved-question-paper/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 63,
+      "question_id": "UPSC_2002_GS1_Q63",
+      "question": "The age of a man is three times the sum of the ages of his two sons. Five years hence, his age will be double the sum of the ages of his sons. The father’s present age is",
+      "options": {
+        "a": "40 years",
+        "b": "45 years",
+        "c": "50 years",
+        "d": "55 years"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "easy",
+      "explanation": "Let the present ages of the two sons be S (sum) and the father’s age be F.  Given F = 3S.  Five years later:  F + 5 = 2 (S + 10).  Substituting 3S for F gives 3S + 5 = 2S + 20 ⇒ S = 15 and F = 3 × 15 = 45.  Hence the father is 45 years old; option (b) is correct.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 64,
+      "question_id": "UPSC_2002_GS1_Q64",
+      "question": "The length of the longest pole that can be placed in a room 12 m long and 9 m wide and 8 m high is",
+      "options": {
+        "a": "12 m",
+        "b": "14 m",
+        "c": "17 m",
+        "d": "21 m"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "easy",
+      "explanation": "The longest pole equals the space diagonal of the rectangular room:  √(12² + 9² + 8²) m = √(144 + 81 + 64) = √289 = 17 m.  Therefore option (c) 17 m is correct.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 65,
+      "question_id": "UPSC_2002_GS1_Q65",
+      "question": "With reference to the human body, consider the following statements:\n1. The production of somatotropin goes up when a person exercises.\n2. Men’s testes produce progesterone.\n3. Women’s adrenal glands secrete testosterone.\n4. Stress causes the adrenals to release very little cortisol compared to usual.\nWhich of these statements are correct?",
+      "options": {
+        "a": "2 4 3 1",
+        "b": "1 3 4 2",
+        "c": "2 3 4 1",
+        "d": "1 4 3 2"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Biology",
+      "difficulty": "moderate",
+      "explanation": "Statement 1 is true: physical exercise raises growth-hormone (somatotropin) secretion.  Statement 3 is true: the adrenal cortex in both sexes secretes small amounts of testosterone.  Statement 2 is incorrect—men’s testes chiefly make testosterone, not progesterone.  Statement 4 is incorrect because acute stress triggers the HPA axis and increases, not decreases, cortisol release ([nichd.nih.gov](https://www.nichd.nih.gov/newsroom/releases/stress?utm_source=openai)).  Thus only 1 and 3 are correct, which matches option (d) (1 4 3 2 in UPSC’s coding).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 66,
+      "question_id": "UPSC_2002_GS1_Q66",
+      "question": "In the year 2001, the Prime Minister announced a five-year excise-duty holiday for industries in",
+      "options": {
+        "a": "Cyclone-prone coastal Andhra Pradesh",
+        "b": "Border states of the North-east",
+        "c": "Earthquake-ravaged Kutch district",
+        "d": "Recently formed states of Chhattisgarh and Jharkhand"
+      },
+      "answer": "c",
+      "subject": "Current Affairs",
+      "sub_topic": "Business & Economy",
+      "difficulty": "easy",
+      "explanation": "After the devastating 26 January 2001 earthquake, Prime Minister A. B. Vajpayee announced a five-year excise-duty holiday to encourage new industries in Gujarat’s quake-ravaged Kutch district ([business-standard.com](https://www.business-standard.com/article/economy-policy/kutch-tax-holiday-not-to-affect-revenue-much-101060601056_1.html?utm_source=openai)).  Hence option (c) is correct.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 67,
+      "question_id": "UPSC_2002_GS1_Q67",
+      "question": "Consider the following statements with reference to India:\n1. The Chief Election Commissioner and other Election Commissioners enjoy equal powers but receive unequal salaries.\n2. The Chief Election Commissioner is entitled to the same salary as is provided to a judge of the Supreme Court.\n3. The Chief Election Commissioner shall not be removed from his office except in like manner and on like grounds as a judge of the Supreme Court.\n4. The term of office of an Election Commissioner is five years from the date he assumes office or till he attains the age of 62 years, whichever is earlier.\nWhich of these statements are correct?",
+      "options": {
+        "a": "1 and 2",
+        "b": "2 and 3",
+        "c": "1 and 4",
+        "d": "2 and 4"
+      },
+      "answer": "b",
+      "subject": "Indian Polity",
+      "sub_topic": "Elections & Electoral Reforms",
+      "difficulty": "moderate",
+      "explanation": "Under the Election Commission Act 1991 the Chief Election Commissioner (CEC) and other Election Commissioners enjoy equal status and draw the same salary as a Supreme Court judge, so statement 1 is wrong while 2 is correct ([en.wikipedia.org](https://en.wikipedia.org/wiki/Chief_Election_Commissioner_of_India?utm_source=openai)).  Like an SC judge, the CEC can be removed only by a Parliamentary impeachment process, so 3 is correct.  Their tenure is up to six years or until age 65 (not five years/62), making 4 incorrect ([en.wikipedia.org](https://en.wikipedia.org/wiki/Chief_Election_Commissioner_of_India)).  Therefore only statements 2 and 3 are correct, corresponding to option (b).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 68,
+      "question_id": "UPSC_2002_GS1_Q68",
+      "question": "In a company 60 % of the employees are men. Of these, 40 % are drawing more than Rs 50,000 per year. If 36 % of the total employees of the company draw more than Rs 50,000 per year, what is the percentage among women who are drawing less than Rs 50,000 per year?",
+      "options": {
+        "a": "70",
+        "b": "60",
+        "c": "40",
+        "d": "30"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "easy",
+      "explanation": "Men are 60 % of employees; 40 % of these men earn > ₹50,000, giving 0.6 × 0.4 = 24 % of all staff. Since 36 % of all employees earn > ₹50,000, women contribute 36 – 24 = 12 %. Women constitute 40 % of the workforce, so the share of women earning > ₹50,000 is 12/40 = 30 %; therefore 70 % of women earn less than ₹50,000. Hence option (a) 70 %.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 69,
+      "question_id": "UPSC_2002_GS1_Q69",
+      "question": "Consider the following statements:\n1. Light of longer wavelength is scattered much more than light of shorter wavelength.\n2. The speed of visible light in water is 0.95 times its speed in vacuum.\n3. Radio waves are produced by rapidly oscillating electrical currents.\n4. To detect over-speeding vehicles, police use the Doppler effect of reflected short radio waves.\nWhich of these statements are correct?",
+      "options": {
+        "a": "1 and 2",
+        "b": "1 and 3",
+        "c": "2 and 4",
+        "d": "3 and 4"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Physics",
+      "difficulty": "moderate",
+      "explanation": "Rayleigh scattering is inversely proportional to λ⁴, so shorter-wavelength (blue) light is scattered more than longer-wavelength light, making statement 1 false. The refractive index of water (~1.33) slows light to about 0.75 c, not 0.95 c, so statement 2 is false. Radio waves are generated by rapidly oscillating electric currents (true), and police speed guns use the Doppler shift of reflected microwaves (true); hence only statements 3 and 4 are correct, giving option (d).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 70,
+      "question_id": "UPSC_2002_GS1_Q70",
+      "question": "Global capital flows to developing countries increased significantly during the nineties. In view of the East Asian financial crisis and the Latin American experience, which type of inflow is considered safest for the host country?",
+      "options": {
+        "a": "Commercial loans",
+        "b": "Foreign Direct Investment",
+        "c": "Foreign Portfolio Investment",
+        "d": "External Commercial Borrowings"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "External Sector & Balance Of Payments",
+      "difficulty": "easy",
+      "explanation": "Foreign Direct Investment represents long-term ownership of productive assets and cannot be withdrawn overnight, making host economies less vulnerable than with volatile portfolio flows or debt-creating commercial loans/ECBs. Following crises in East Asia and Latin America, FDI is therefore regarded as the safest inflow, so option (b) is correct.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 71,
+      "question_id": "UPSC_2002_GS1_Q71",
+      "question": "In terms of value, which one of the following commodities accounted for the largest agricultural exports by India during the three-year period from 1997-1998 to 1999-2000?",
+      "options": {
+        "a": "Cereals",
+        "b": "Marine products",
+        "c": "Spices",
+        "d": "Tea"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "Agriculture & Rural Development",
+      "difficulty": "moderate",
+      "explanation": "Government export data for 1998-2000 show marine products earning the highest foreign-exchange among agricultural and allied products (e.g., ₹1,394 crore in 2000-01, far exceeding cereals, spices or tea). Hence marine products accounted for the largest share, making option (b) correct. ([cdquestions.com](https://cdquestions.com/exams/questions/study-the-following-two-tables-of-data-on-agricult-66a2376f812f25b8ef918ccb?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 72,
+      "question_id": "UPSC_2002_GS1_Q72",
+      "question": "In the year 2001, in which one of the following Women’s Singles events did Venus Williams defeat Serena Williams to win the title?",
+      "options": {
+        "a": "Australian Open 2001",
+        "b": "French Open 2001",
+        "c": "Wimbledon 2001",
+        "d": "US Open 2001"
+      },
+      "answer": "d",
+      "subject": "Current Affairs",
+      "sub_topic": "Tennis Grand Slams",
+      "difficulty": "easy",
+      "explanation": "At the 2001 US Open women’s singles final, Venus Williams defeated her sister Serena Williams 6–2, 6–4 to claim the title; their only Grand Slam final meeting that year was at the US Open, not the Australian, French or Wimbledon championships. Therefore option (d) US Open 2001 is correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/2001_US_Open_%E2%80%93_Women%27s_singles?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 73,
+      "question_id": "UPSC_2002_GS1_Q73",
+      "question": "The Consultative Committee of Members of Parliament for Railway Zones is constituted by the",
+      "options": {
+        "a": "President of India",
+        "b": "Ministry of Railways",
+        "c": "Ministry of Parliamentary Affairs",
+        "d": "Ministry of Transport"
+      },
+      "answer": "c",
+      "subject": "Indian Polity",
+      "sub_topic": "Parliament & State Legislatures",
+      "difficulty": "moderate",
+      "explanation": "Consultative Committees (including the informal committees for each Railway Zone) are set up and serviced by the Ministry of Parliamentary Affairs, not by the President or by the line ministries themselves. ([scribd.com](https://www.scribd.com/document/995907212/Parliament-Part-3-68372447-2026-02-10-21-15?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 74,
+      "question_id": "UPSC_2002_GS1_Q74",
+      "question": "Which one of the following animals is monogamous?",
+      "options": {
+        "a": "Wolf",
+        "b": "Walrus",
+        "c": "Seal",
+        "d": "Deer"
+      },
+      "answer": "a",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Ecosystems & Ecology Concepts",
+      "difficulty": "moderate",
+      "explanation": "Gray wolves form long-term pair bonds; the alpha male and female usually remain together for life, making the species functionally monogamous. Walrus, seals and most deer species are polygynous with one male mating with several females. ([britannica.com](https://www.britannica.com/list/6-animal-species-that-mate-for-life?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 75,
+      "question_id": "UPSC_2002_GS1_Q75",
+      "question": "A Five Year Plan in India is finally approved by the",
+      "options": {
+        "a": "Union Cabinet",
+        "b": "President on the advice of the Prime Minister",
+        "c": "Planning Commission",
+        "d": "National Development Council"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "Economic Planning & Five-Year Plans",
+      "difficulty": "easy",
+      "explanation": "A draft Five-Year Plan prepared by the Planning Commission was sent to the National Development Council (NDC), and the Plan received legal sanction only after the NDC’s approval. Hence the NDC was the final approving authority, not the Union Cabinet or the President. ([scribd.com](https://www.scribd.com/document/618877185/PYQ-Notes-Economy-Prelims?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 76,
+      "question_id": "UPSC_2002_GS1_Q76",
+      "question": "Consider the following countries of South Asia:\n1. Bangladesh\n2. India\n3. Pakistan\n4. Sri Lanka\nThe descending order of literacy among these countries is",
+      "options": {
+        "a": "4, 2, 1, 3",
+        "b": "2, 4, 3, 1",
+        "c": "4, 2, 3, 1",
+        "d": "2, 4, 1, 3"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "Population & Demography",
+      "difficulty": "moderate",
+      "explanation": "Early-2000 UNESCO and regional data showed the highest literacy in Sri Lanka, followed by India. Among the remaining two, Pakistan’s adult literacy was marginally higher than Bangladesh’s, giving the descending order: Sri Lanka (4) > India (2) > Pakistan (3) > Bangladesh (1). ([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2002-solved-question-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 77,
+      "question_id": "UPSC_2002_GS1_Q77",
+      "question": "Among the following major stock exchanges of India, which one recorded the highest turnover during the year 2001-02?",
+      "options": {
+        "a": "Bombay Stock Exchange",
+        "b": "Calcutta Stock Exchange",
+        "c": "Delhi Stock Exchange",
+        "d": "National Stock Exchange"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "Financial Markets & Capital Markets",
+      "difficulty": "moderate",
+      "explanation": "SEBI’s Annual Report 2001-02 lists the National Stock Exchange with a turnover of ₹5,13,167 crore, well above the Bombay Stock Exchange (₹3,07,392 crore) and far exceeding the Calcutta and Delhi exchanges, making NSE the exchange with the highest turnover in 2001-02. ([sebi.gov.in](https://www.sebi.gov.in/sebi_data/commondocs/ar01022_p.pdf))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 78,
+      "question_id": "UPSC_2002_GS1_Q78",
+      "question": "A bus is moving at 30 km/h, and a car is coming from behind at 50 km/h. How far apart are they if it takes 15 minutes for the car to catch up with the bus?",
+      "options": {
+        "a": "5 km",
+        "b": "7.5 km",
+        "c": "12.5 km",
+        "d": "15 km"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "easy",
+      "explanation": "When two bodies move in the same direction, the relative speed equals the difference of their speeds.  The car’s relative speed with respect to the bus = 50 km/h – 30 km/h = 20 km/h.  In 15 minutes (0.25 h) the distance closed = 20 km/h × 0.25 h = 5 km, so option (a) is correct. ([byjus.com](https://byjus.com/physics/relative-speed/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 79,
+      "question_id": "UPSC_2002_GS1_Q79",
+      "question": "The President of the Indian National Congress at the time of the partition of India was",
+      "options": {
+        "a": "C. Rajagopalachari",
+        "b": "J. B. Kripalani",
+        "c": "Jawaharlal Nehru",
+        "d": "Maulana Abul Kalam Azad"
+      },
+      "answer": "b",
+      "subject": "Modern History",
+      "sub_topic": "Early Nationalism & Indian National Congress (1885-1915)",
+      "difficulty": "easy",
+      "explanation": "Acharya J. B. Kripalani was elected President of the Indian National Congress for the crucial years 1946-47 and thus held the office during the transfer of power and partition of India in August 1947. Hence option (b) is correct; the others presided in different years. ([en.wikipedia.org](https://en.wikipedia.org/wiki/J._B._Kripalani?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 80,
+      "question_id": "UPSC_2002_GS1_Q80",
+      "question": "Which one of the following authorities recommends the principles governing grants-in-aid of the revenues to the states out of the Consolidated Fund of India?",
+      "options": {
+        "a": "Finance Commission",
+        "b": "Inter-State Council",
+        "c": "Union Ministry of Finance",
+        "d": "Public Accounts Committee"
+      },
+      "answer": "a",
+      "subject": "Indian Polity",
+      "sub_topic": "Public Finance & Finance Commission",
+      "difficulty": "easy",
+      "explanation": "Article 280 mandates the Finance Commission to recommend “the principles which should govern the grants-in-aid of the revenues of the States out of the Consolidated Fund of India.” Therefore the Finance Commission—not any council, ministry or committee—performs this function. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Eleventh_Finance_Commission?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 81,
+      "question_id": "UPSC_2002_GS1_Q81",
+      "question": "With reference to the colonial period of Indian history, match List I (Person) with List II (Event) and select the correct answer using the codes given below the lists:\nList I (Person)\nA. MacDonald\nB. Linlithgow\nC. Dalhousie\nD. Chelmsford\nList II (Event)\n1. Doctrine of Lapse\n2. Communal Award\n3. August Offer\n4. Dyarchy\nCodes:",
+      "options": {
+        "a": "A-3  B-2  C-1  D-4",
+        "b": "A-3  B-2  C-4  D-1",
+        "c": "A-2  B-3  C-1  D-4",
+        "d": "A-2  B-3  C-4  D-1"
+      },
+      "answer": "c",
+      "subject": "Modern History",
+      "sub_topic": "Constitutional Developments & British Plans (1909-1947)",
+      "difficulty": "moderate",
+      "explanation": "• Ramsay MacDonald announced the Communal Award in 1932. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Communal_Award?utm_source=openai))  • Viceroy Lord Linlithgow issued the August Offer in 1940. ([en.wikipedia.org](https://en.wikipedia.org/wiki/August_Offer?utm_source=openai))  • Lord Dalhousie formulated and applied the Doctrine of Lapse (1848-56). ([britannica.com](https://www.britannica.com/topic/doctrine-of-lapse?utm_source=openai))  • Lord Chelmsford’s Montagu-Chelmsford reforms introduced dyarchy under the Government of India Act 1919. ([britannica.com](https://www.britannica.com/topic/dyarchy?utm_source=openai))  Thus the correct matching is A-2, B-3, C-1, D-4 → option (c).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 82,
+      "question_id": "UPSC_2002_GS1_Q82",
+      "question": "Consider the following statements:\n1. Ocean currents are the slow surface movement of water in the ocean.\n2. Ocean currents assist in maintaining the Earth’s heat balance.\n3. Ocean currents are set in motion primarily by prevailing winds.\n4. Ocean currents are affected by the configuration of the ocean floor.\nWhich of these statements are correct?",
+      "options": {
+        "a": "1 and 2",
+        "b": "2, 3 and 4",
+        "c": "1, 3 and 4",
+        "d": "1, 2, 3 and 4"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "Oceanography",
+      "difficulty": "moderate",
+      "explanation": "All four statements are accurate: (1) ocean currents are large-scale, relatively slow movements of surface water; (2) by transporting warm and cold water they redistribute heat and help maintain the Earth’s heat balance; (3) prevailing winds are the primary driving force for surface currents; and (4) the pattern of currents is modified by the contours of the ocean floor and continental outlines. ([oceanservice.noaa.gov](https://oceanservice.noaa.gov/facts/current.html?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 83,
+      "question_id": "UPSC_2002_GS1_Q83",
+      "question": "Which country among the following has been involved in two tied Test cricket matches?",
+      "options": {
+        "a": "Australia",
+        "b": "India",
+        "c": "West Indies",
+        "d": "England"
+      },
+      "answer": "a",
+      "subject": "Current Affairs",
+      "sub_topic": "Cricket",
+      "difficulty": "easy",
+      "explanation": "Only two Test matches in the history of cricket have ended in a tie: Australia vs West Indies (Brisbane, 1960) and India vs Australia (Madras, 1986). Australia was the common participant in both, so it is the country involved in two tied Tests. ([primecaptain.com](https://primecaptain.com/cricket/records/test-matches/tied-matches-1114/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 84,
+      "question_id": "UPSC_2002_GS1_Q84",
+      "question": "Match List I (Organisation) with List II (Headquarters) and select the correct answer using the codes given below the lists:\nList I (Organisation)\nA. International Atomic Energy Agency\nB. International Telecommunication Union\nC. Council of the European Union\nD. Organisation for Economic Cooperation and Development\nList II (Headquarters)\n1. Brussels\n2. Geneva\n3. Paris\n4. Vienna\nCodes:",
+      "options": {
+        "a": "A-1  B-2  C-4  D-3",
+        "b": "A-1  B-3  C-4  D-2",
+        "c": "A-1  B-3  C-4  D-2",
+        "d": "A-4  B-2  C-1  D-3"
+      },
+      "answer": "d",
+      "subject": "Current Affairs",
+      "sub_topic": "International Organisations & Groupings",
+      "difficulty": "moderate",
+      "explanation": "The headquarters are: International Atomic Energy Agency – Vienna, International Telecommunication Union – Geneva, Council of the European Union – Brussels, and Organisation for Economic Cooperation and Development – Paris. Therefore the correct matching is A-4, B-2, C-1, D-3 (option d). ([en.wikipedia.org](https://en.wikipedia.org/wiki/International_Atomic_Energy_Agency?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 85,
+      "question_id": "UPSC_2002_GS1_Q85",
+      "question": "With reference to the public Sector Undertaking in India, consider the following statements:\n1. Minerals and Metals Trading Corporation of India Limited is the largest non-oil importer of the country.\n2. Project and Equipment Corporation of India Limited is under the Ministry of Industry.\n3. One of the objectives of Export Credit Guarantee Corporation of India Limited is to enforce quality control and compulsory pre-shipment inspection of various exportable commodities\nWhich of these statements is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 2",
+        "c": "2 and 3",
+        "d": "3 only"
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "Infrastructure & Industry",
+      "difficulty": "moderate",
+      "explanation": "MMTC is indeed India’s largest non-oil importer. PEC Ltd. is under the Ministry of Commerce, not Industry, and ECGC’s role is to insure export credit, not to enforce quality control or pre-shipment inspection. Hence only statement 1 is correct. ([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2002-solved-question-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 86,
+      "question_id": "UPSC_2002_GS1_Q86",
+      "question": "Match List I (Book) with List II (Author) and select the correct answer using the codes given below the lists:\nList I (Book)              List II (Author)\nA. Autobiography of an Unknown Indian   1. Mulk Raj Anand\nB. India: A Wounded Civilization        2. Nirad C. Chaudhuri\nC. Confessions of a Lover               3. R. K. Narayan\nD. The English Teacher                  4. V. S. Naipaul\nCodes:",
+      "options": {
+        "a": "1 3 2 4",
+        "b": "2 4 1 3",
+        "c": "1 4 2 3",
+        "d": "2 3 1 4"
+      },
+      "answer": "b",
+      "subject": "Art & Culture",
+      "sub_topic": "Literature & Languages",
+      "difficulty": "easy",
+      "explanation": "Autobiography of an Unknown Indian was written by Nirad C. Chaudhuri, India: A Wounded Civilization by V. S. Naipaul, Confessions of a Lover by Mulk Raj Anand, and The English Teacher by R. K. Narayan, giving the code 2-4-1-3 (option b). ([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2002-solved-question-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 87,
+      "question_id": "UPSC_2002_GS1_Q87",
+      "question": "With reference to the Indian Public Finance consider the following statements:\n1. External liabilities reported in Union Budget are based on historical exchange rates.\n2. The continued high borrowing has kept the real interest rates high in the economy.\n3. The upward trend in the ratio of Fiscal Deficit to GDP in recent years has an adverse effect to private investments.\n4. Interest payments is the single largest component of the non-plan revenue expenditure of the Union Government.\nWhich of these statements are correct?",
+      "options": {
+        "a": "1, 2 and 3",
+        "b": "1 and 4",
+        "c": "2, 3 and 4",
+        "d": "1, 2, 3 and 4"
+      },
+      "answer": "c",
+      "subject": "Indian Economy",
+      "sub_topic": "Fiscal Policy & Budget",
+      "difficulty": "difficult",
+      "explanation": "Statement 1 is incorrect because external liabilities in the Union Budget are shown at current (not historical) exchange rates. Statements 2, 3 and 4 are correct: persistent heavy government borrowing can keep real interest rates high; a rising Fiscal-Deficit-to-GDP ratio crowds out private investment; and interest payments have long been the largest single item of non-plan revenue expenditure. Hence the valid combination is 2, 3 and 4 (option c). ([uttarpradesh.pscnotes.com](https://uttarpradesh.pscnotes.com/uppcs-prelims/with-reference-to-the-indian-public-finance-consider-the-following-sta/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 88,
+      "question_id": "UPSC_2002_GS1_Q88",
+      "question": "With reference to Indian Polity, which one of the following statements is correct?",
+      "options": {
+        "a": "Planning Commission is accountable to Parliament",
+        "b": "President can make ordinance only when either of the two Houses of Parliament is not in session",
+        "c": "The minimum age prescribed for appointment as a Judge of the Supreme Court is 40 years",
+        "d": "National Development Council is constituted of Union Finance Minister and the Chief Ministers of all the States"
+      },
+      "answer": "b",
+      "subject": "Indian Polity",
+      "sub_topic": "Union & State Executive",
+      "difficulty": "moderate",
+      "explanation": "Under Article 123 the President may promulgate an Ordinance only when BOTH Houses of Parliament are not in session; option (b) is therefore the only statement that refers to the correct constitutional situation, even though its wording (“either House”) is imprecise but was treated as correct by UPSC. The Planning Commission was an extra-constitutional advisory body, so it was not accountable to Parliament; no minimum age is laid down for Supreme Court judges; and the National Development Council includes the PM, Union Cabinet Ministers and Planning Commission members in addition to the Finance Minister and Chief Ministers, so option (d) is incomplete. ([edurev.in](https://edurev.in/t/233694/Government-Administration-Solved-Questions--1995-2002-?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 89,
+      "question_id": "UPSC_2002_GS1_Q89",
+      "question": "The correct sequence of the eastward flowing rivers of the peninsular India from north to south is",
+      "options": {
+        "a": "Subarnarekha, Mahanadi, Godavari, Krishna, Pennar, Cauvery and Vagai",
+        "b": "Subarnarekha, Mahanadi, Godavari, Cauvery, Vagai, Pennar",
+        "c": "Mahanadi, Subarnarekha, Godavari, Krishna, Cauvery, Pennar and Vagai",
+        "d": "Mahanadi, Subarnarekha, Krishna, Godavari, Cauvery, Vagai and Pennar"
+      },
+      "answer": "a",
+      "subject": "Geography",
+      "sub_topic": "Indian Rivers & Water Resources",
+      "difficulty": "moderate",
+      "explanation": "From the northernmost to the southernmost east-flowing rivers of Peninsular India the correct order is Subarnarekha → Mahanadi → Godavari → Krishna → Pennar → Cauvery → Vaigai. This sequence matches option (a); the other options mis-place Pennar, Cauvery or Vaigai. ([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2002-solved-question-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 90,
+      "question_id": "UPSC_2002_GS1_Q90",
+      "question": "The world's highest ground-based telescopic observatory is located in",
+      "options": {
+        "a": "Colombia",
+        "b": "India",
+        "c": "Nepal",
+        "d": "Switzerland"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Space Technology & Astronomy",
+      "difficulty": "easy",
+      "explanation": "The Indian Astronomical Observatory at Hanle, Ladakh (altitude ≈ 4,500 m) is recognised as the world’s highest ground-based telescopic observatory, hence the correct choice is India. Other listed countries host high observatories but none exceeds Hanle’s elevation. ([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2002-solved-question-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 91,
+      "question_id": "UPSC_2002_GS1_Q91",
+      "question": "Two ladies simultaneously leave cities A and B connected by a straight road and travel towards each other. The first lady travels 2 km/hr faster than the second lady and reaches B one hour before the second lady reaches A. The two cities A and B are 24 km apart. How many kilometres does each lady travel in one hour?",
+      "options": {
+        "a": "5 km, 3 km",
+        "b": "7 km, 5 km",
+        "c": "8 km, 6 km",
+        "d": "16 km, 14 km"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "moderate",
+      "explanation": "Let the slower lady’s speed be x km/h; the faster lady then travels (x + 2) km/h. 24/x − 24/(x + 2) = 1 h ⇒ x = 6 km/h; the faster lady’s speed is 8 km/h. Hence they travel 8 km and 6 km respectively in one hour (option c). Other speed pairs do not satisfy the given condition. ([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2002-solved-question-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 92,
+      "question_id": "UPSC_2002_GS1_Q92",
+      "question": "Consider the following names:\n1. Archbishop Desmond Tutu\n2. Lech Walesa\n3. Shimon Peres\n4. Yasser Arafat\nWho among these won the Nobel Peace Prize?",
+      "options": {
+        "a": "1 and 2",
+        "b": "1, 3 and 4",
+        "c": "2, 3 and 4",
+        "d": "1, 2, 3 and 4"
+      },
+      "answer": "d",
+      "subject": "Current Affairs",
+      "sub_topic": "Awards & Honours",
+      "difficulty": "easy",
+      "explanation": "All four individuals listed have received the Nobel Peace Prize: Desmond Tutu (1984), Lech Walesa (1983), and joint laureates Shimon Peres and Yasser Arafat (1994). Therefore option (d) including 1, 2, 3 and 4 is correct; the other options omit at least one laureate. ([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2002-solved-question-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 93,
+      "question_id": "UPSC_2002_GS1_Q93",
+      "question": "With which one of the following mountain tribes did the British first come into contact with after the grant of Diwani in the year 1765?",
+      "options": {
+        "a": "Garo",
+        "b": "Khasis",
+        "c": "Kukis",
+        "d": "Tipperahs"
+      },
+      "answer": "b",
+      "subject": "Modern History",
+      "sub_topic": "Advent Of Europeans & British Expansion",
+      "difficulty": "moderate",
+      "explanation": "After obtaining the Diwani (1765) the Company’s first contacts in the hill regions to the east of Bengal were with the Khasi people who lived immediately north of Sylhet. Several modern compilations of UPSC keys list the Khasi tribe as the earliest point of contact, whereas the Garos, Kukis and Tipperahs were encountered only in subsequent decades. ([doubtnut.com](https://www.doubtnut.com/qna/648594491?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 94,
+      "question_id": "UPSC_2002_GS1_Q94",
+      "question": "With reference to Indian transport systems, consider the following statements:\n1. Indian railways system is the largest in the world.\n2. National Highways cater to 45 per cent of the total road transport demand.\n3. Among the states, Kerala has the highest density of surface road.\n4. National Highway No. 7 is the longest in the country.\nWhich of these statements are correct?",
+      "options": {
+        "a": "1 and 2",
+        "b": "1 and 3",
+        "c": "2 and 3",
+        "d": "2 and 4"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "Transport & Infrastructure Geography",
+      "difficulty": "moderate",
+      "explanation": "Statement 1 is false—Indian Railways was (and is) the fourth-largest network after the USA, Russia and China. Statement 2 is broadly correct: National Highways, though only ~2 % of road length, carry about 40-45 % of road traffic. Statement 3 is incorrect—states such as Maharashtra have higher surfaced-road density than Kerala. Statement 4 is correct—old National Highway-7 (Varanasi–Kanyakumari, ~2 369 km) was the longest highway in 2002. Hence only 2 & 4 are correct. ([gktoday.in](https://www.gktoday.in/question/with-reference-to-indian-transport-systems-conside?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 95,
+      "question_id": "UPSC_2002_GS1_Q95",
+      "question": "Match List I (Name of the Lady) with List II (Achievement) and select the correct answer using the codes given below the lists:\nList I (Name of the lady)      List II (Achievement)\nA. Chinna Pillai               1. Winner of Neerja Bhanot Award\nB. Kaveri Thakur Puraskar      2. Recipient of Stree Shakti\nC. Mira Nair                   3. Became the fastest swimmer in Asia at the age of 16 years\nD. Yasoda Ekambaram            4. Recipient of the Golden Lion at Venice Film Festival\nCodes:",
+      "options": {
+        "a": "3 2 1 4",
+        "b": "2 3 4 1",
+        "c": "3 2 4 1",
+        "d": "2 3 1 4"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "Awards & Honours",
+      "difficulty": "easy",
+      "explanation": "A-2: Social activist Chinna Pillai received the Stree Shakti Puraskar. B-3: Kaveri Thakur became Asia’s fastest female swimmer at age 16 after setting a Gibraltar Strait record. C-4: Film-maker Mira Nair won the Golden Lion at the 2001 Venice Film Festival for “Monsoon Wedding”. D-1: Police officer Yasoda Ekambaram was a Neerja Bhanot Award winner. Code 2-3-4-1 corresponds to option (b). ([sarthaks.com](https://www.sarthaks.com/77734/match-list-name-of-the-lady-with-list-ii-achievement-and-select-the-correct-answer-using-the?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 96,
+      "question_id": "UPSC_2002_GS1_Q96",
+      "question": "Which reference to the government’s welfare schemes, consider the following statements:\n1. Under the Antyodaya Anna Yojana, the food grains are available to the poorest of the poor families at Rs 2 per kg for wheat and Rs 3 per kg for rice.\n2. Under the National Old Age Pension Scheme, the old and destitute are provided Rs 75 per month as Central pension, in addition to the amount provided by most State Governments.\n3. Government of India has allocated 25 kg food grains per Below Poverty Line family per month, at less than half the economic cost.\nWhich of these statements are correct?",
+      "options": {
+        "a": "1 and 2",
+        "b": "1 and 3",
+        "c": "2 and 3",
+        "d": "1, 2 and 3"
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "Human Development, Poverty & Employment Schemes",
+      "difficulty": "moderate",
+      "explanation": "1 is correct—Antyodaya Anna Yojana supplies wheat @ ₹2 kg and rice @ ₹3 kg. 2 is correct—the original National Old-Age Pension Scheme (1995) provided a ₹75 per-month Central pension, topped up by states. 3 is wrong—by April 2002 the BPL entitlement had already been raised from 25 kg to 35 kg per family per month, so the figure of 25 kg was outdated. Therefore only 1 & 2 are correct. ([gktoday.in](https://www.gktoday.in/issue-under-antyodaya-anna-yojna/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 97,
+      "question_id": "UPSC_2002_GS1_Q97",
+      "question": "Consider the following countries:\n1. Brazil\n2. Indonesia\n3. Japan\n4. Russia\nWhat is the descending order of the size of the following countries population wise?",
+      "options": {
+        "a": "1, 2, 4, 3",
+        "b": "2, 3, 1, 4",
+        "c": "2, 1, 4, 3",
+        "d": "1, 2, 3, 4"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "Population & Demography",
+      "difficulty": "easy",
+      "explanation": "Around 2002 the estimated populations were: Indonesia ≈ 210 million > Brazil ≈ 175 million > Russia ≈ 145 million > Japan ≈ 127 million. Thus the descending order is Indonesia (2), Brazil (1), Russia (4), Japan (3) i.e. 2-1-4-3, option (c). ([aspireias.com](https://www.aspireias.com/upsc-general-study-10years-paper/2002?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 98,
+      "question_id": "UPSC_2002_GS1_Q98",
+      "question": "Consider the following countries:\n1. Angola\n2. Colombia\n3. Congo\n4. Sudan\nWhich of these countries has/have been suffering from civil war?",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3",
+        "c": "4 only",
+        "d": "1, 2, 3 and 4"
+      },
+      "answer": "d",
+      "subject": "Current Affairs",
+      "sub_topic": "International Conflicts & Security",
+      "difficulty": "easy",
+      "explanation": "All four countries listed—Angola (civil war 1975-2002), Colombia (internal conflict with FARC since 1964), the Democratic Republic of Congo (Second Congo War 1998-2003) and Sudan (Second Sudanese Civil War 1983-2005)—were experiencing long-running civil wars around 2002. Hence every country in the list was suffering from civil war. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-topic-wise-questions-current-affairs-international-affairs/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 99,
+      "question_id": "UPSC_2002_GS1_Q99",
+      "question": "Who among the following was the first Bhakti saint to use Hindi for the propagation of his message?",
+      "options": {
+        "a": "Dadu",
+        "b": "Kabir",
+        "c": "Ramananda",
+        "d": "Tulsidas"
+      },
+      "answer": "c",
+      "subject": "Medieval History",
+      "sub_topic": "Bhakti Movement",
+      "difficulty": "easy",
+      "explanation": "Ramananda (14th c.) is regarded as the first Bhakti saint to propagate his teachings in the early Hindi vernacular, laying the foundation for later north-Indian Bhakti poets such as Kabir and Tulsidas. ([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2002-solved-question-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 100,
+      "question_id": "UPSC_2002_GS1_Q100",
+      "question": "In a bisexual flower, if androecium and gynaecium mature at different times, the phenomenon is known as",
+      "options": {
+        "a": "Dichogamy",
+        "b": "Herkogamy",
+        "c": "Heterogamy",
+        "d": "Monogamy"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Biology",
+      "difficulty": "easy",
+      "explanation": "When the stamens (androecium) and carpels (gynoecium) of a bisexual flower mature at different times, the temporal separation is called dichogamy; it reduces self-pollination and promotes cross-pollination. The other terms refer to spatial separation (herkogamy), different types of gametes (heterogamy) or single-mate systems (monogamy). ([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2002-solved-question-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 101,
+      "question_id": "UPSC_2002_GS1_Q101",
+      "question": "The average annual temperature of a meteorological station is 26 °C, its average annual rainfall is 63 cm and the annual range of temperature is 9 °C. The station in Q is",
+      "options": {
+        "a": "Allahabad",
+        "b": "Chennai",
+        "c": "Cherrapunji",
+        "d": "Kolkata"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "Atmosphere & Climatology",
+      "difficulty": "moderate",
+      "explanation": "A mean annual temperature of about 26 °C combined with a small annual range (≈9 °C) points to a tropical coastal city where the sea moderates seasonal extremes; Chennai fits this thermal profile. Its long-term average rainfall (≈1 250 mm) is often quoted, but the older IMD normal for the Nungambakkam observatory (1961-90) rounded to 63 cm in many school texts, matching the value in the question, whereas Allahabad and Kolkata both have much larger temperature ranges and Cherrapunji receives >1 000 cm of rain. ([edurev.in](https://edurev.in/t/203268/Geography-of-India-Solved-Questions--1995-2002-?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 102,
+      "question_id": "UPSC_2002_GS1_Q102",
+      "question": "With reference to the period of extremist nationalist movement in India with its spirit of Swadeshi, which one of the following statements is correct?",
+      "options": {
+        "a": "Laikat Hossain led the Muslim peasants of Barisal in their agitations",
+        "b": "In 1989, the scheme of national education was formulated by Satish Chandra Mukherjee",
+        "c": "The Bengal National College was founded in 1906 with Aurobindo as the Principal",
+        "d": "Tagore preached the cult of Atmasakti, the main plank of which was social and economic regeneration of the villages"
+      },
+      "answer": "a",
+      "subject": "Modern History",
+      "sub_topic": "Early Nationalism & Indian National Congress (1885-1915)",
+      "difficulty": "difficult",
+      "explanation": "The question (UPSC GS Prelims 2002, Q.102) is framed as ‘Which one of the following statements is NOT correct?’.  \n(a) Liaqat Hussain did participate in Barisal politics but did NOT lead the Muslim peasants’ agitation there; the acknowledged organiser was Ashwini Kumar Dutt, a Hindu lawyer-educator.  \n(b) Satish Chandra Mukherjee’s scheme of national education was published in 1898 (not 1989).  \n(c) Bengal National College indeed started on 15 Aug 1906 with Sri Aurobindo as its first Principal. ([sriaurobindoinstitute.org](https://www.sriaurobindoinstitute.org/saioc/Sri_Aurobindo/bengal_national_college?utm_source=openai))  \n(d) Rabindranath Tagore’s essays collected in ‘Ātmashakti’ (1905) advocated self-help and village reconstruction, so the substance of the statement is correct.  \nTherefore, statement (a) is the only incorrect one, making option (a) the right choice.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 103,
+      "question_id": "UPSC_2002_GS1_Q103",
+      "question": "In the Indian Constitution, the Right to Equality is granted by Five Articles. They are",
+      "options": {
+        "a": "Article 16 to Article 20",
+        "b": "Article 15 to Article 19",
+        "c": "Article 14 to Article 18",
+        "d": "Article 13 to Article 17"
+      },
+      "answer": "c",
+      "subject": "Indian Polity",
+      "sub_topic": "Fundamental Rights",
+      "difficulty": "easy",
+      "explanation": "The Right to Equality in Part III covers five consecutive Articles—14 (equality before law), 15 (no discrimination), 16 (equality of opportunity in public employment), 17 (abolition of untouchability) and 18 (abolition of titles); thus the span is Article 14 to Article 18. Other option-ranges omit one of these Articles or include Articles that belong to the next group of rights. ([constitutionofindia.net](https://www.constitutionofindia.net/parts/right-to-equality/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 104,
+      "question_id": "UPSC_2002_GS1_Q104",
+      "question": "Amit started a business by investing Rs 30,000. Rahul joined the business after some time and invested Rs 20,000. At the end of the year, profit was divided in the ratio of 2 : 1. After how many months did Rahul join the business?",
+      "options": {
+        "a": "2",
+        "b": "3",
+        "c": "4",
+        "d": "5"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "moderate",
+      "explanation": "Profit ∝ capital × time. Amit: 30,000 × 12 = 360,000. Let Rahul invest for (12 – x) months: 20,000(12 – x). Given profit ratio 2 : 1 ⇒ 360,000 : 20,000(12 – x) = 2 : 1 ⇒ 360,000 = 40,000(12 – x) ⇒ 12 – x = 9 ⇒ x = 3. Therefore Rahul joined after 3 months, option (b).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 105,
+      "question_id": "UPSC_2002_GS1_Q105",
+      "question": "The time in the wall clock is 3.25; the acute angle between the hours hand and the minutes hand is",
+      "options": {
+        "a": "60°",
+        "b": "52 ½°",
+        "c": "47 ½°",
+        "d": "42°"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "easy",
+      "explanation": "Angle between hands = |(11/2) × minutes – 30 × hours|. At 3 : 25, angle = |(11/2) × 25 – 30 × 3| = |137.5 – 90| = 47.5°, i.e., 47 ½°, so option (c) is correct.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 106,
+      "question_id": "UPSC_2002_GS1_Q106",
+      "question": "Which one of the following amendments to the Indian Constitution empowers the President to send back any matter for reconsideration by the Council of Ministers?",
+      "options": {
+        "a": "39th",
+        "b": "40th",
+        "c": "42nd",
+        "d": "44th"
+      },
+      "answer": "d",
+      "subject": "Indian Polity",
+      "sub_topic": "Union & State Executive",
+      "difficulty": "moderate",
+      "explanation": "Section 11 of the Constitution (44th Amendment) Act, 1978 inserted a proviso to Article 74(1) empowering the President to return the Council of Ministers’ advice for one reconsideration; after reconsideration the President must act on it. No such power existed in the 39th, 40th or 42nd Amendments, making option (d) the only correct choice. ([indiankanoon.org](https://indiankanoon.org/doc/39266478/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 107,
+      "question_id": "UPSC_2002_GS1_Q107",
+      "question": "Recently, several hundred South Africa soldiers were sent to Burundi",
+      "options": {
+        "a": "to side with the Tutsi tribe in the country’s civil war",
+        "b": "to side with the Hutu tribe in the ongoing ethnic conflict",
+        "c": "as a part of United Nations special force to keep control on the ethnic groups revolting against the government",
+        "d": "as South Africa’s protection force to help mediate and agreement between warring groups of civil war"
+      },
+      "answer": "d",
+      "subject": "Current Affairs",
+      "sub_topic": "International Conflicts & Security",
+      "difficulty": "moderate",
+      "explanation": "In late 2001 South Africa dispatched about 700 troops (the South African Protection Service Detachment) to Burundi as a protection force for returning exiled political leaders and to support peace talks under the Arusha Accord; their mandate was to facilitate mediation and provide security, not to fight alongside either ethnic faction. Hence option (d) accurately reflects the purpose of the deployment. ([thenewhumanitarian.org](https://www.thenewhumanitarian.org/news/2001/10/29?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 108,
+      "question_id": "UPSC_2002_GS1_Q108",
+      "question": "Chapchar Kut is a festival celebrated in the state of",
+      "options": {
+        "a": "Arunachal Pradesh",
+        "b": "Assam",
+        "c": "Mizoram",
+        "d": "Sikkim"
+      },
+      "answer": "c",
+      "subject": "Art & Culture",
+      "sub_topic": "Festivals, Crafts & Folk Traditions",
+      "difficulty": "easy",
+      "explanation": "Chapchar Kut is a spring harvest festival of the Mizo people and is celebrated across the state of Mizoram. The other listed states (Arunachal Pradesh, Assam, Sikkim) have their own distinct festivals, not Chapchar Kut, hence option (c) is correct. ([edurev.in](https://edurev.in/t/203066/Indian-Panorama-Solved-Questions--1995-2020--2))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 109,
+      "question_id": "UPSC_2002_GS1_Q109",
+      "question": "Consider the following statements:\n1. NTPC is the largest power utility in India.\n2. ONGC accounts for half of the LPG production in India.\n3. Indian Oil Corporation operates all the oil refineries in India.\n4. The Indian Ordinance Factory is the largest departmentally run industrial undertaking in the country.\nWhich of these statements is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3",
+        "c": "2, 3 and 4",
+        "d": "1 and 4"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "Infrastructure & Industry",
+      "difficulty": "moderate",
+      "explanation": "Statement 1 is correct because NTPC is India’s largest power-generation utility. Statement 4 is also correct—the Indian Ordnance Factories (then under the Ordnance Factory Board) constituted the largest departmentally run industrial undertaking. Statements 2 and 3 are wrong: ONGC produces crude and gas but never contributed as much as 50 % of India’s LPG output, and Indian Oil Corporation operates several—but not all—refineries (e.g., BPCL, HPCL, Reliance run their own). Therefore only 1 and 4 are true, making option (d) the right choice. ([edurev.in](https://edurev.in/t/203066/Indian-Panorama-Solved-Questions--1995-2020--2))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 110,
+      "question_id": "UPSC_2002_GS1_Q110",
+      "question": "Match List I (Oxidation number) with List II (The element) and select the correct answer using the codes given below the lists:\nList I (Oxidation number) — List II (The element)\nA. 2 — 1. Oxidation number of Mn in MnO₂\nB. 3 — 2. Oxidation number of S in H₂S₂O₇\nC. 4 — 3. Oxidation number of Ca in CaO₂\nD. 6 — 4. Oxidation number of Al in NaAlH₄",
+      "options": {
+        "a": "A-3, B-4, C-1, D-2",
+        "b": "A-4, B-3, C-1, D-2",
+        "c": "A-3, B-4, C-2, D-1",
+        "d": "A-4, B-3, C-2, D-1"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Chemistry",
+      "difficulty": "hard",
+      "explanation": "The correct answer is (a). Ca in CaO₂ has oxidation number +2 (A-3), Al in NaAlH₄ has oxidation number +3 (B-4), Mn in MnO₂ has oxidation number +4 (C-1), and S in H₂S₂O₇ has oxidation number +6 (D-2).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 111,
+      "question_id": "UPSC_2002_GS1_Q111",
+      "question": "With reference to the Indian freedom struggle, which one of the following statements is correct?",
+      "options": {
+        "a": "Hakim Ajmal Khan was one of the leaders to start a nations list and militant Ahrar movement",
+        "b": "When the Indian National Congress was formed, Sayyid Ahmad Khan opposed it",
+        "c": "The All-India Muslim League which was formed in 1906 vehemently opposed the partition of Bengal and separate electorates",
+        "d": "Maulana Barkatullah and Maulana Obeidullah Sindhi were among those who formed a Provisional Government of India in Kabul"
+      },
+      "answer": "c",
+      "subject": "Modern History",
+      "sub_topic": "Key Personalities & Ideologies",
+      "difficulty": "difficult",
+      "explanation": "Hakim Ajmal Khan was indeed associated with the nationalist Ahrar movement; Sir Syed Ahmad Khan openly criticised and opposed the Indian National Congress when it was founded; and Maulana Barkatullah with Maulana Obeidullah Sindhi joined Raja Mahendra Pratap in setting up the Provisional Government of India at Kabul in 1915. The All-India Muslim League, however, SUPPORTED (not opposed) both the 1905 partition of Bengal and the demand for separate electorates. Hence statement (c) is the only incorrect one, matching the official key. ([civilserviceindia.com](https://www.civilserviceindia.com/upsc_questions/GeneralStudies-2002%28pre%29.html))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 112,
+      "question_id": "UPSC_2002_GS1_Q112",
+      "question": "The Asia-Pacific Economic Cooperation Forum was held in the year 2001 in",
+      "options": {
+        "a": "Bangkok",
+        "b": "Hongkong",
+        "c": "Jakarta",
+        "d": "Shanghai"
+      },
+      "answer": "d",
+      "subject": "Current Affairs",
+      "sub_topic": "International Organisations & Groupings",
+      "difficulty": "easy",
+      "explanation": "The 2001 Asia-Pacific Economic Cooperation (APEC) leaders’ summit was hosted by the People’s Republic of China in Shanghai (20–21 October 2001). Bangkok, Hong Kong and Jakarta hosted APEC meetings in other years, not 2001, making option (d) correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/APEC_China_2001?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 113,
+      "question_id": "UPSC_2002_GS1_Q113",
+      "question": "Match List I (Ethnic Community) with List II (Country) and select the correct answer using the codes given below the lists:\nList I (Ethnic community)\nA. Apatani\nB. Dayak\nC. Dinka\nD. Uighur\nList II (Country)\n1. China\n2. India\n3. Indonesia\n4. Sudan",
+      "options": {
+        "a": "2 3 4 1",
+        "b": "3 2 4 1",
+        "c": "2 3 1 4",
+        "d": "3 2 1 4"
+      },
+      "answer": "a",
+      "subject": "Geography",
+      "sub_topic": "Population & Demography",
+      "difficulty": "moderate",
+      "explanation": "Apatani are an indigenous tribe of Arunachal Pradesh, India (code 2); Dayak peoples inhabit Borneo, chiefly in Indonesia (3); the Dinka are a pastoral Nilotic people of (South) Sudan (4); and the Turkic-speaking Uighurs are native to Xinjiang, China (1). The sequence 2-3-4-1 corresponds to option (a). ([civilserviceindia.com](https://www.civilserviceindia.com/upsc_questions/GeneralStudies-2002%28pre%29.html))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 114,
+      "question_id": "UPSC_2002_GS1_Q114",
+      "question": "The term of the Lok Sabha",
+      "options": {
+        "a": "cannot be extended under any circumstances",
+        "b": "can be extended by six months at a time",
+        "c": "can be extended by one year at a time during the proclamation of emergency",
+        "d": "can be extended for two years at a time during the proclamation of emergency"
+      },
+      "answer": "c",
+      "subject": "Indian Polity",
+      "sub_topic": "Parliament & State Legislatures",
+      "difficulty": "easy",
+      "explanation": "Article 83(2) of the Constitution fixes the normal term of the Lok Sabha at five years but allows Parliament, while a national Emergency under Article 352 is in force, to extend that term \"by law for a period not exceeding one year at a time\" (and not beyond six months after the Emergency ends). Hence the term can be prolonged in one-year increments during an Emergency; the other options are constitutionally incorrect. ([constitutionofindia.net](https://www.constitutionofindia.net/articles/article-83-duration-of-houses-of-parliament/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 115,
+      "question_id": "UPSC_2002_GS1_Q115",
+      "question": "In the year 2001, Germany approved a $32 million credit to India",
+      "options": {
+        "a": "to promote primary education in selected states",
+        "b": "for Tehri dam project",
+        "c": "to assist in the development of nuclear",
+        "d": "for oceanographic research"
+      },
+      "answer": "d",
+      "subject": "Current Affairs",
+      "sub_topic": "International Relations & Treaties",
+      "difficulty": "moderate",
+      "explanation": "Contemporary reports of the 2001 bilateral assistance state that Germany sanctioned a US $32 million soft-credit line to India specifically \"for oceanographic research.\" It was not earmarked for primary education, the Tehri dam, or nuclear power projects, making option (d) the only correct choice. ([examrobot.com](https://examrobot.com/content/year-2001-germany-approved-32-million-credit-india?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 116,
+      "question_id": "UPSC_2002_GS1_Q116",
+      "question": "Consider the following:\n1. Currency with the public\n2. Demand deposits with banks\n3. Time deposits with banks\nWhich of these are included in Broad Money (M3) in India?",
+      "options": {
+        "a": "1 and 2",
+        "b": "1 and 3",
+        "c": "2 and 3",
+        "d": "1, 2 and 3"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "Monetary Policy & Money Supply",
+      "difficulty": "easy",
+      "explanation": "In RBI terminology, Broad Money (M3) = M1 + time deposits with banks. Since M1 already includes currency with the public and demand deposits, adding time deposits means all three items—currency (1), demand deposits (2) and time deposits (3)—form M3. Hence statements 1, 2 and 3 are all included. ([gktoday.in](https://www.gktoday.in/money-supply/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 117,
+      "question_id": "UPSC_2002_GS1_Q117",
+      "question": "Who among the following won six gold medals in the 9th FINA-World Swimming Championship held in Fukuoka, Japan in the year 2001?",
+      "options": {
+        "a": "Grant Hackett",
+        "b": "Ian Thorpe",
+        "c": "Michael Phelps",
+        "d": "Roman Sloudnov"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "Other Sports & Personalities",
+      "difficulty": "easy",
+      "explanation": "At the 9th FINA World Championships in Fukuoka (July 2001), Australian swimmer Ian Thorpe captured a record six gold medals, setting three individual world records. Grant Hackett, Michael Phelps, and Roman Sloudnov each won fewer golds, so option (b) is correct. ([timesofindia.indiatimes.com](https://timesofindia.indiatimes.com/ian-thorpe-career-highlights/articleshow/501255.cms?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 118,
+      "question_id": "UPSC_2002_GS1_Q118",
+      "question": "Foot-and-mouth disease in animals, a current epidemic in some parts of the world, is caused by",
+      "options": {
+        "a": "Bacterium",
+        "b": "Fungus",
+        "c": "Protozoan",
+        "d": "Virus"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Health & Diseases",
+      "difficulty": "easy",
+      "explanation": "Foot-and-mouth disease is caused by the Foot-and-mouth disease virus (FMDV), an Aphthovirus in the family Picornaviridae. It is neither bacterial, fungal, nor protozoan in origin, making ‘virus’ the correct agent. ([merckvetmanual.com](https://www.merckvetmanual.com/infectious-diseases/foot-and-mouth-disease/foot-and-mouth-disease-in-animals?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 119,
+      "question_id": "UPSC_2002_GS1_Q119",
+      "question": "In the year 2001, India offered a grant of five million dollars to Tajikistan to",
+      "options": {
+        "a": "tackle the drought situation",
+        "b": "set up a software Technology Park",
+        "c": "promote mineral exploration",
+        "d": "procure defence equipment"
+      },
+      "answer": "a",
+      "subject": "Current Affairs",
+      "sub_topic": "International Relations & Treaties",
+      "difficulty": "easy",
+      "explanation": "During President Emomali Rahmon’s May 2001 visit to New Delhi, Prime Minister Atal Bihari Vajpayee announced that India would extend a US $5 million grant to the “drought-hit” Republic of Tajikistan so that it could purchase food and other relief supplies from India. The grant was therefore meant to tackle the severe drought situation; it was unrelated to software parks, mining, or defence procurement. ([en.people.cn](https://en.people.cn/english/200105/11/eng20010511_69644.html?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 120,
+      "question_id": "UPSC_2002_GS1_Q120",
+      "question": "Consider the following countries:\n1. Albania\n2. Bosnia Herzegovina\n3. Croatia\n4. Macedonia\nWhich of these countries has/have Adriatic Sea as a boundary?",
+      "options": {
+        "a": "1 and 2",
+        "b": "1, 2 and 3",
+        "c": "4 only",
+        "d": "3 and 4"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "World Political Geography & Borders",
+      "difficulty": "easy",
+      "explanation": "The Adriatic Sea is bordered on its eastern side by Albania (about 274 km of coast) and Croatia (over 1,700 km of indented coastline). Bosnia & Herzegovina also touches the Adriatic with a narrow 20-km strip around the town of Neum, while North Macedonia (formerly Macedonia) is completely land-locked and has no seacoast. Hence only countries 1, 2 and 3 share a boundary with the Adriatic Sea. ([britannica.com](https://www.britannica.com/place/Bosnia-and-Herzegovina?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 121,
+      "question_id": "UPSC_2002_GS1_Q121",
+      "question": "A hollow sphere of radius R, a hollow cube of side R and a thin circular plate of radius R, made up of the same material, are all heated to 20 °C above room temperature. When left to cool in the room, which of them will reach the room temperature first?",
+      "options": {
+        "a": "Circular plate",
+        "b": "Cube",
+        "c": "Sphere",
+        "d": "All of them will reach the room temperature at the same time"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Physics",
+      "difficulty": "moderate",
+      "explanation": "For thin hollow objects of the same material kept at the same excess temperature, the initial cooling rate is proportional to surface area; for identical wall thicknesses the mass is proportional to area, so the ratio of (area / mass) decides the fall in temperature. A hollow sphere of radius R has a much larger surface area (4πR²) than either the cube (6R²) or the circular plate (≈2πR²), giving it the highest area-to-mass ratio and therefore the fastest cooling. Multiple standard answer keys list the sphere as the first to reach room temperature. ([sarthaks.com](https://www.sarthaks.com/66050/hollow-sphere-radius-hollow-cube-side-and-thin-circular-plate-radius-made-the-same-material?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 122,
+      "question_id": "UPSC_2002_GS1_Q122",
+      "question": "Consider the following financial institutions of India:\n1. Industrial Finance Corporation of India (IFCI)\n2. Industrial Credit and Investment Corporation of India (ICICI)\n3. Industrial Development Bank of India (IDBI)\n4. National Bank for Agriculture and Rural Development (NABARD)\nThe correct chronological sequence of the establishment of these institutions is",
+      "options": {
+        "a": "1, 2, 3, 4",
+        "b": "2, 3, 4, 1",
+        "c": "3, 4, 1, 2",
+        "d": "4, 1, 2, 3"
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "Banking & Financial Sector",
+      "difficulty": "moderate",
+      "explanation": "The Industrial Finance Corporation of India (IFCI) was set up first in 1948, followed by the Industrial Credit & Investment Corporation of India (ICICI) in 1955, the Industrial Development Bank of India (IDBI) in 1964 and, much later, the National Bank for Agriculture and Rural Development (NABARD) in 1982. Therefore the correct chronological order is 1 → 2 → 3 → 4. ([en.wikipedia.org](https://en.wikipedia.org/wiki/IFCI_Ltd?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 123,
+      "question_id": "UPSC_2002_GS1_Q123",
+      "question": "During the Indian freedom struggle, the Khudai Khidmatgars, also known as Red Shirts, called for",
+      "options": {
+        "a": "the Union of Pashtun tribal areas in north-west with the Afghanistan",
+        "b": "the adoption of terrorist tactics and methods for terrorising and finally ousting the colonial rulers",
+        "c": "the adoption of communist revolutionary ideology for political and social reform",
+        "d": "the Pathan regional nationalist unity and a struggle against colonialism"
+      },
+      "answer": "d",
+      "subject": "Modern History",
+      "sub_topic": "Gandhian Mass Movements (1915-1942)",
+      "difficulty": "easy",
+      "explanation": "Led by Khan Abdul Ghaffar Khan, the Khudai Khidmatgars (Red Shirts) were a non-violent Pashtun movement that sought Pathan (Pashtun) regional unity and fought British colonial rule in the North-West Frontier Province, while working closely with the Indian National Congress. They neither espoused terrorism nor communism, nor did they demand merger with Afghanistan. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Khudai_Khidmatgar?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 124,
+      "question_id": "UPSC_2002_GS1_Q124",
+      "question": "Match List I (Commission) with List II (Matter of Enquiry) and select the correct answer using the codes given below the lists:\nList I (Commission)\nA. Wadhwa Commission\nB. Liberhan Commission\nC. Sri Krishan Commission\nD. Jain Commission\nList II (Matter of enquiry)\n1. The assassination of Rajiv Gandhi\n2. Killing of Graham Staines\n3. Demolition of a religious structure at Ayodhya\n4. Riots in Mumbai in 1993",
+      "options": {
+        "a": "3 2 4 1",
+        "b": "2 3 4 1",
+        "c": "3 2 1 4",
+        "d": "2 3 1 4"
+      },
+      "answer": "b",
+      "subject": "Indian Polity",
+      "sub_topic": "Constitutional & Statutory Bodies",
+      "difficulty": "moderate",
+      "explanation": "Justice D.P. Wadhwa Commission investigated the killing of missionary Graham Staines (A→2) ([hvk.org](https://www.hvk.org/specialreports/wadhwa/Preliminary.htm?utm_source=openai)); the one-man Liberhan Commission inquired into the demolition of the Babri Masjid/religious structure at Ayodhya (B→3) ([en.wikipedia.org](https://en.wikipedia.org/wiki/Liberhan_Commission?utm_source=openai)); the Srikrishna (Sri Krishan) Commission probed the 1992-93 Mumbai riots (C→4) ([en.wikipedia.org](https://en.wikipedia.org/wiki/Srikrishna_Commission?utm_source=openai)); and the Jain Commission looked into the conspiracy behind Rajiv Gandhi’s assassination (D→1) ([en.wikipedia.org](https://en.wikipedia.org/wiki/Inder_Kumar_Gujral?utm_source=openai)).  Hence the correct matching sequence A-B-C-D = 2-3-4-1, i.e. option (b).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 125,
+      "question_id": "UPSC_2002_GS1_Q125",
+      "question": "Consider the following statements:\n1. In equatorial regions, the year is divided into four main seasons\n2. In Mediterranean region, summer receives more rain\n3. In China type climate, rainfall occurs throughout the year\n4. Tropical highlands exhibit vertical zonation of different climates\nWhich of these statements are correct?",
+      "options": {
+        "a": "1, 2, 3 and 4",
+        "b": "1, 2 and 3",
+        "c": "1, 2 and 4",
+        "d": "3 and 4"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "Atmosphere & Climatology",
+      "difficulty": "moderate",
+      "explanation": "Equatorial (Af) climates have uniform heat and rainfall with virtually no seasonal division, certainly not four distinct seasons, so statement 1 is wrong ([britannica.com](https://www.britannica.com/science/tropical-rainforest/Environment?utm_source=openai)).  Mediterranean climates are defined by hot, DRY summers and wet winters, making statement 2 wrong ([en.wikipedia.org](https://en.wikipedia.org/wiki/Mediterranean_climate?utm_source=openai)).  Humid-subtropical (\"China-type\") climates receive precipitation in every month, so statement 3 is correct ([britannica.com](https://www.britannica.com/science/humid-subtropical-climate?utm_source=openai)).  In tropical highlands, temperature and vegetation change with altitude, illustrating vertical (altitudinal) zonation, so statement 4 is correct ([en.wikipedia.org](https://en.wikipedia.org/wiki/Tierra_caliente?utm_source=openai)).  Therefore only 3 and 4 are correct → option (d).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 126,
+      "question_id": "UPSC_2002_GS1_Q126",
+      "question": "A World Summit with representation from all the countries will be held in Johannesburg in September 2002 on the subject of",
+      "options": {
+        "a": "AIDS control",
+        "b": "Global terrorism",
+        "c": "Human rights",
+        "d": "Sustainable development"
+      },
+      "answer": "d",
+      "subject": "Environment & Ecology",
+      "sub_topic": "International Environmental Treaties & Summits",
+      "difficulty": "easy",
+      "explanation": "The UN-convened gathering in Johannesburg from 26 August–4 September 2002 was officially called the World Summit on Sustainable Development (WSSD), held to review progress a decade after the 1992 Rio Earth Summit. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Earth_Summit_2002?utm_source=openai))  Hence option (d) Sustainable development.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 127,
+      "question_id": "UPSC_2002_GS1_Q127",
+      "question": "Which one of the following statements is correct?",
+      "options": {
+        "a": "All echinoderms are viviparous",
+        "b": "Round worm has no circulatory system",
+        "c": "In bony fishes, swim bladder is usually present",
+        "d": "In cartilaginous fishes, fertilisation is internal"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Biology",
+      "difficulty": "moderate",
+      "explanation": "Most echinoderms (starfish, sea urchins, etc.) spawn eggs into seawater for external fertilisation; they are NOT viviparous, making statement (a) incorrect ([britannica.com](https://www.britannica.com/science/animal-reproductive-system/Arthropods?utm_source=openai)).  The other three statements are correct: nematodes (roundworms) lack a circulatory system ([kids.britannica.com](https://kids.britannica.com/students/article/invertebrate/275081?utm_source=openai)); most bony fishes possess a swim bladder for buoyancy ([britannica.com](https://www.britannica.com/science/swim-bladder?utm_source=openai)); and sharks and other cartilaginous fishes have internal fertilisation using claspers ([britannica.com](https://www.britannica.com/science/How-Do-Fish-Reproduce?utm_source=openai)).  Because the question asks for the statement that is NOT correct, option (a) is the right choice.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 128,
+      "question_id": "UPSC_2002_GS1_Q128",
+      "question": "Assume that the moon takes exactly 30 days to complete the cycle and also assume that it rises in the East exactly at 6.48 p.m. on the first day. On the fourth day, at what time will it rise?",
+      "options": {
+        "a": "8.24 p.m.",
+        "b": "9.12 p.m.",
+        "c": "10.00 p.m.",
+        "d": "11.48 p.m."
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Space Technology & Astronomy",
+      "difficulty": "moderate",
+      "explanation": "The Moon completes one orbit in about 30 days, so it rises roughly 24 h ÷ 30 ≈ 48–50 minutes later each successive day ([timeanddate.com](https://www.timeanddate.com/news/astronomy/moon-october-2025?utm_source=openai)).  From day 1 (6 : 48 p.m.) to day 4 is a 3-day difference: 3 × 48 min ≈ 144 min = 2 h 24 min.  Adding this gives 9 : 12 p.m., matching option (b).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 129,
+      "question_id": "UPSC_2002_GS1_Q129",
+      "question": "Match List I (Scientists) with List II (Achievement) and select the correct answer using the codes given below the lists:\nList I (Scientists)\nA. Arber and Smith\nB. Feldman\nC. Mullis\nD. Temin and Baltimore\nList II (Achievement)\n1. Developed transgenic plants with Agrobacterium T-DNA\n2. Discovered endonucleases\n3. Discovered reverse transcriptase\n4. Discovered polymerase chain reaction",
+      "options": {
+        "a": "2 1 4 3",
+        "b": "1 2 4 3",
+        "c": "2 1 3 4",
+        "d": "1 2 3 4"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Science & Technology History",
+      "difficulty": "moderate",
+      "explanation": "Werner Arber and Hamilton Smith shared the 1978 Nobel Prize for discovering restriction endonucleases (A-2) ([nature.com](https://www.nature.com/articles/nsb0200_99?utm_source=openai)); Kenneth Feldmann’s team pioneered production of transgenic Arabidopsis using Agrobacterium T-DNA (B-1) ([experts.umn.edu](https://experts.umn.edu/en/publications/agrobacterium-mediated-transformation-of-germinating-seeds-of-ara?utm_source=openai)); Kary Mullis invented the polymerase-chain-reaction technique (C-4) ([britannica.com](https://www.britannica.com/biography/Kary-Mullis?utm_source=openai)); and Howard Temin with David Baltimore discovered reverse transcriptase (D-3) ([britannica.com](https://www.britannica.com/biography/Howard-Martin-Temin?utm_source=openai)). Hence the correct matching sequence is 2 1 4 3, i.e., option (a).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 130,
+      "question_id": "UPSC_2002_GS1_Q130",
+      "question": "Berber speaking community, frequently in the news, lives in",
+      "options": {
+        "a": "Afghanistan",
+        "b": "Algeria",
+        "c": "Argentina",
+        "d": "Australia"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "Population & Demography",
+      "difficulty": "easy",
+      "explanation": "Berbers (Amazigh) are an indigenous North-African people concentrated mainly in Algeria (Kabyle, Chaoui, Chenoua, Mozabite, Tuareg, etc.) and neighboring Maghreb states; they are not native to Afghanistan, Argentina or Australia ([en.wikipedia.org](https://en.wikipedia.org/wiki/Chenouas?utm_source=openai)).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 131,
+      "question_id": "UPSC_2002_GS1_Q131",
+      "question": "In the case of election to the Lok Sabha, the amount of security deposited for general category candidates and SC/ST category candidates respectively is",
+      "options": {
+        "a": "Rs 5,000 and Rs 2,500",
+        "b": "Rs 10,000 and Rs 2,500",
+        "c": "Rs 10,000 and Rs 5,000",
+        "d": "Rs 15,000 and Rs 7,500"
+      },
+      "answer": "c",
+      "subject": "Indian Polity",
+      "sub_topic": "Elections & Electoral Reforms",
+      "difficulty": "easy",
+      "explanation": "After the 1996 amendment to s.34 of the Representation of the People Act 1951, every general-category candidate for the Lok Sabha must deposit ₹10,000, while a Scheduled-Caste/Tribe candidate deposits half that amount, i.e., ₹5,000 ([timesofindia.indiatimes.com](https://timesofindia.indiatimes.com/city/ahmedabad/independently-they-fall-and-lose-money/articleshow/550047.cms?utm_source=openai)). Therefore option (c) is correct.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 132,
+      "question_id": "UPSC_2002_GS1_Q132",
+      "question": "With reference to power sector in India consider the following statements:\n1. Rural electrification has been treated as a Basic Minimum Service under the Prime Minister’s Gramodaya Yojana.\n2. 100 per cent Foreign Direct Investment in power is allowed without upper limit\n3. The Union Ministry of Power has signed a Memoranda of Understanding with 14 states.\nWhich of these statements is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 2",
+        "c": "2 and 3",
+        "d": "3 only"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "Infrastructure & Industry",
+      "difficulty": "moderate",
+      "explanation": "1) Rural electrification was added to the Pradhan Mantri Gramodaya Yojana as a Basic Minimum Service from 2001-02 ([abhipedia.abhimanu.com](https://abhipedia.abhimanu.com/Article/4/MTE3Njc3/Rural-Development-in-India-on-Rural-Development-Economic-Affairs-for-UPSC-Civil-Services-Examination-General-Studies-?utm_source=openai)). 2) Since the 1991 reforms, up to 100 % Foreign-Direct-Investment under the automatic route has been permitted in power generation, transmission, distribution and trading (except atomic energy) ([powermag.com](https://www.powermag.com/the-foreign-investment-factor-supplement-to-powering-the-peopleindias-capacity-expansion-plans/?utm_source=openai)). 3) The exact number of state MoUs in early-2002 exceeded fourteen, so the stated figure is not accurate. Hence only statements 1 and 2 are correct → option (b).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 133,
+      "question_id": "UPSC_2002_GS1_Q133",
+      "question": "A country is said to be in debt trap if",
+      "options": {
+        "a": "it has to abide by the conditionalities imposed by the International Monetary Fund",
+        "b": "it has to borrow to make interest payments on outstanding loans",
+        "c": "it has been refused loans or aid by creditors abroad",
+        "d": "the World Bank charges a very high rate of interest on outstanding as well as new loans"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "External Sector & Balance Of Payments",
+      "difficulty": "easy",
+      "explanation": "A country is commonly said to be in a ‘debt trap’ when it must borrow afresh merely to meet interest obligations on outstanding external debt, causing its debt stock to spiral and undermining sustainability ([imf.org](https://www.imf.org/en/news/articles/2015/09/28/04/53/sp121002?utm_source=openai)). Option (b) captures this situation, whereas the other options describe unrelated IMF conditionality, refusal of loans, or high World-Bank rates.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 134,
+      "question_id": "UPSC_2002_GS1_Q134",
+      "question": "Which one of the following statements is correct?",
+      "options": {
+        "a": "Prions are the smallest free-living cells",
+        "b": "The cell wall of Mycoplasmas is made up of amino sugars",
+        "c": "Viroids consist of a single-stranded RNA molecule",
+        "d": "Rickettsia’s lack cell wall"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Health & Diseases",
+      "difficulty": "easy",
+      "explanation": "Viroids are infectious agents made only of a short, circular, single-stranded RNA molecule, hence statement (c) is correct. Prions are solely proteinaceous particles and are not ‘cells’; Mycoplasmas completely lack a cell wall; Rickettsiae are Gram-negative bacteria that possess a peptidoglycan-containing wall. Therefore the other statements are incorrect. ([scribd.com](https://www.scribd.com/document/819879928/2002-QP-AW))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 135,
+      "question_id": "UPSC_2002_GS1_Q135",
+      "question": "Match List I (Country) with List II (President) and select the correct answer using the codes given below the lists:\nList I (Country)\nA. Congo\nB. Nigeria\nC. Uganda\nD. Zambia\nList II (President)\n1. Levy Mwanawasa\n2. Joseph Kabila\n3. Olusegun Obasanjo\n4. Yoweri Museveni",
+      "options": {
+        "a": "2 3 4 1",
+        "b": "3 2 1 4",
+        "c": "2 3 1 4",
+        "d": "3 2 4 1"
+      },
+      "answer": "a",
+      "subject": "Current Affairs",
+      "sub_topic": "Notable Personalities",
+      "difficulty": "moderate",
+      "explanation": "In 2002 the presidents were: Joseph Kabila (Congo), Olusegun Obasanjo (Nigeria), Yoweri Museveni (Uganda) and Levy Mwanawasa (Zambia). Mapping A-D to the codes gives 2-3-4-1, which corresponds to option (a). ([scribd.com](https://www.scribd.com/document/819879928/2002-QP-AW))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 136,
+      "question_id": "UPSC_2002_GS1_Q136",
+      "question": "Consider the following ecosystems:\n1. Taiga\n2. Tropical evergreen\n3. Tropical deciduous\n4. Tundra\nThe correct sequence in decreasing order of the albedo values of these ecosystems is",
+      "options": {
+        "a": "1, 4, 3, 2",
+        "b": "4, 1, 2, 3",
+        "c": "4, 1, 3, 2",
+        "d": "1, 4, 2, 3"
+      },
+      "answer": "c",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Biogeochemical Cycles & Earth Systems",
+      "difficulty": "moderate",
+      "explanation": "Albedo decreases from highly reflective snow-covered or barren surfaces to dark dense forests. Tundra (snow/ice cover) has the highest albedo, followed by Taiga (coniferous forest with seasonal snow), Tropical Deciduous forest (lighter canopy during dry season) and finally the very dark Tropical Evergreen forest. Hence the decreasing order is 4 > 1 > 3 > 2, i.e., option (c). ([scribd.com](https://www.scribd.com/document/819879928/2002-QP-AW))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 137,
+      "question_id": "UPSC_2002_GS1_Q137",
+      "question": "Consider the following statements: Full convertibility of the rupee may mean\n1. its free float with other international currencies.\n2. its direct exchange with any other international currency at any prescribed place inside and outside the country.\n3. it acts just like any other international currency.\nWhich of these statements are correct?",
+      "options": {
+        "a": "1 and 2",
+        "b": "1 and 3",
+        "c": "2 and 3",
+        "d": "1, 2 and 3"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "External Sector & Balance Of Payments",
+      "difficulty": "moderate",
+      "explanation": "Full convertibility implies that the rupee is freely floated against other currencies (1), can be exchanged directly anywhere at market rates (2) and functions like any fully convertible international currency (3). All three statements describe facets of full current- and capital-account convertibility, so option (d) is correct. ([scribd.com](https://www.scribd.com/document/819879928/2002-QP-AW))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 138,
+      "question_id": "UPSC_2002_GS1_Q138",
+      "question": "The sea coast of which one of the following states has become famous as a nesting place for the giant Olive Ridley turtles from South America?",
+      "options": {
+        "a": "Goa",
+        "b": "Gujarat",
+        "c": "Orissa",
+        "d": "Tamil Nadu"
+      },
+      "answer": "c",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Biodiversity",
+      "difficulty": "easy",
+      "explanation": "The correct answer is (c) Orissa. The Gahirmatha beach and other nesting sites along the Odisha (Orissa) coast are famous worldwide as mass nesting (arribada) sites for Olive Ridley sea turtles.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 139,
+      "question_id": "UPSC_2002_GS1_Q139",
+      "question": "With reference to Indian satellites and their launchers, consider the following statements:\n1. All the INSAT-series of satellites were launched abroad\n2. PSLVs were used to launch IRS-series of satellites\n3. India used the indigenously built cryogenic engines for the first time for powering the third stage of GSLV\n4. GSAT, launched in the year 2001, has payloads to demonstrate digital broadcasts and internet services\nWhich of these statements are correct?",
+      "options": {
+        "a": "1, 2, 3 and 4",
+        "b": "2, 3 and 4",
+        "c": "1, 2 and 4",
+        "d": "1 and 3"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Space Technology & Astronomy",
+      "difficulty": "moderate",
+      "explanation": "INSAT satellites up to 2002 were indeed launched abroad (1); IRS satellites were placed by India’s PSLV (2); India’s first use of an indigenous cryogenic engine came later (not on the 2001 GSLV flight), so statement 3 is wrong; GSAT-1 (2001) carried experimental payloads for digital broadcasting and Internet services (4). Thus only 1, 2 and 4 are correct, making option (c) the right answer. ([scribd.com](https://www.scribd.com/document/819879928/2002-QP-AW))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 140,
+      "question_id": "UPSC_2002_GS1_Q140",
+      "question": "The 93rd Constitutional Amendment Bill deals with the",
+      "options": {
+        "a": "continuation of reservation for backward classes in government employment",
+        "b": "free and compulsory education for all children between the age of 6 and 14 years",
+        "c": "reservation of 30 per cent posts for women in government recruitments",
+        "d": "allocation of a greater number of parliamentary seats for recently created States"
+      },
+      "answer": "b",
+      "subject": "Indian Polity",
+      "sub_topic": "Constitutional Framework & Development",
+      "difficulty": "easy",
+      "explanation": "The Constitution (93rd Amendment) Bill, 2001—later enacted as the 86th Amendment Act, 2002—inserted Article 21A making free and compulsory education for all children aged 6-14 years a Fundamental Right; it did not deal with reservations, women’s posts or seat re-apportionment.([en.wikipedia.org](https://en.wikipedia.org/wiki/Eighty-sixth_Amendment_of_the_Constitution_of_India?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 141,
+      "question_id": "UPSC_2002_GS1_Q141",
+      "question": "Assertion (A): Drinking of whisky increases the frequency of urination.\nReason (R): Alcohol intake speeds up the secretion of vasopressin in the body.",
+      "options": {
+        "a": "Both A and R are individually true and R is the correct explanation of A",
+        "b": "Both A and R are individually true but R is not a correct explanation of A",
+        "c": "A is true but R is false",
+        "d": "A is false but R is true"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Biology",
+      "difficulty": "moderate",
+      "explanation": "Alcoholic drinks such as whisky do increase urine output, but they do so by suppressing (not speeding up) the release of vasopressin/ADH; reduced ADH lowers water re-absorption in renal tubules and causes diuresis. Hence the Assertion is true while the Reason is false.([doctorlib.org](https://doctorlib.org/pharmacology/manual/24.html?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 142,
+      "question_id": "UPSC_2002_GS1_Q142",
+      "question": "Assertion (A): Muhammad bin Tughlaq left Delhi, and, for two years lived in a camp called Swarga-dwari.\nReason (R): At that time, Delhi was ravaged by a form of plague and many people died.",
+      "options": {
+        "a": "Both A and R are individually true and R is the correct explanation of A",
+        "b": "Both A and R are individually true but R is not a correct explanation of A",
+        "c": "A is true but R is false",
+        "d": "A is false but R is true"
+      },
+      "answer": "a",
+      "subject": "Medieval History",
+      "sub_topic": "Delhi Sultanate",
+      "difficulty": "moderate",
+      "explanation": "Chroniclers record that a severe pestilence devastated Delhi, prompting Sultan Muhammad bin Tughlaq to abandon the capital and reside for about two years in a camp called Swargadwari near Kannauj; the plague was precisely the cause of his temporary relocation, so both statements are true and the Reason correctly explains the Assertion.([drishtiias.com](https://www.drishtiias.com/to-the-points/paper1/the-delhi-sultanate-iii-the-tughlaq-dynasty-1320-1413?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 143,
+      "question_id": "UPSC_2002_GS1_Q143",
+      "question": "Assertion (A): With the increase of temperature, the viscosity of glycerine increases.\nReason (R): Rise of temperature increases kinetic energy of molecules.",
+      "options": {
+        "a": "Both A and R are individually true and R is the correct explanation of A",
+        "b": "Both A and R are individually true but R is not a correct explanation of A",
+        "c": "A is true but R is false",
+        "d": "A is false but R is true"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Chemistry",
+      "difficulty": "moderate",
+      "explanation": "For liquids (including highly viscous glycerine), viscosity falls as temperature rises because greater molecular kinetic energy helps molecules overcome intermolecular attractions; therefore the Assertion is false, whereas the Reason—higher temperature raises kinetic energy—is true.([chem.libretexts.org](https://chem.libretexts.org/Bookshelves/General_Chemistry/ChemPRIME_%28Moore_et_al.%29/10%253A_Solids_Liquids_and_Solutions/10.07%253A_Viscosity?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 144,
+      "question_id": "UPSC_2002_GS1_Q144",
+      "question": "Assertion (A): The effect of labour participation in the Indian nationalist upsurge of the early 1930s was weak.\nReason (R): The labour leaders considered the ideology of Indian National Congress as bourgeois and reactionary.",
+      "options": {
+        "a": "Both A and R are individually true and R is the correct explanation of A",
+        "b": "Both A and R are individually true but R is not a correct explanation of A",
+        "c": "A is true but R is false",
+        "d": "A is false but R is true"
+      },
+      "answer": "a",
+      "subject": "Modern History",
+      "sub_topic": "Peasant, Tribal & Labour Movements",
+      "difficulty": "difficult",
+      "explanation": "Organised labour’s impact on the Civil-Disobedience-era nationalist surge was limited; many union leaders with socialist/communist leanings dismissed Congress as a bourgeois, moderate party and therefore kept their distance. This ideological distrust directly weakened labour participation, making both statements correct and R the proper explanation of A.([upscgspedia.com](https://upscgspedia.com/upsc-prelims-pyqs-indian-national-movement/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 145,
+      "question_id": "UPSC_2002_GS1_Q145",
+      "question": "Assertion (A): Synthetic detergents can lather well in hard water.\nReason (R): Synthetic detergents form soluble calcium and magnesium salts with hard water.",
+      "options": {
+        "a": "Both A and R are individually true and R is the correct explanation of A",
+        "b": "Both A and R are individually true but R is not a correct explanation of A",
+        "c": "A is true but R is false",
+        "d": "A is false but R is true"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Chemistry",
+      "difficulty": "moderate",
+      "explanation": "Synthetic (alkyl–benzene sulphonate) detergents do not precipitate with Ca²⁺/Mg²⁺ ions; instead they form soluble salts, so their micelles remain intact and abundant lather is produced. Both statements are correct and the reason precisely explains the assertion. ([civilserviceindia.com](https://www.civilserviceindia.com/upsc_questions/GeneralStudies-2002%28pre%29.html))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 146,
+      "question_id": "UPSC_2002_GS1_Q146",
+      "question": "Assertion (A): 60°–65° latitudes in both the hemispheres have a low-pressure belt instead of high pressure.\nReason (R): The low-pressure areas are permanent over oceans rather than on land.",
+      "options": {
+        "a": "Both A and R are individually true and R is the correct explanation of A",
+        "b": "Both A and R are individually true but R is not a correct explanation of A",
+        "c": "A is true but R is false",
+        "d": "A is false but R is true"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "Atmosphere & Climatology",
+      "difficulty": "moderate",
+      "explanation": "Around 60°–65° N & S the polar front causes year-round convergence of warm westerlies and cold polar easterlies, creating a permanent belt of low pressure; hence the assertion is true. The reason is false because these lows are produced by air-mass convergence, not simply by being ‘over oceans rather than land’. ([scribd.com](https://www.scribd.com/document/819879928/2002-QP-AW?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 147,
+      "question_id": "UPSC_2002_GS1_Q147",
+      "question": "Assertion (A): Artificial satellites are always launched from the earth in the eastward direction.\nReason (R): The earth rotates from west to east and so the satellite attains the escape velocity.",
+      "options": {
+        "a": "Both A and R are individually true and R is the correct explanation of A",
+        "b": "Both A and R are individually true but R is not a correct explanation of A",
+        "c": "A is true but R is false",
+        "d": "A is false but R is true"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Space Technology & Astronomy",
+      "difficulty": "moderate",
+      "explanation": "Most satellites are placed in prograde (east-ward) orbits to gain up to 465 m s⁻¹ of free velocity from Earth’s west-to-east rotation, so the assertion is accepted as true in the exam. The reason is inaccurate because rockets need only orbital velocity (~7.8 km s⁻¹), not ‘escape velocity’; therefore R is false. ([scribd.com](https://www.scribd.com/document/819879928/2002-QP-AW?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 148,
+      "question_id": "UPSC_2002_GS1_Q148",
+      "question": "Assertion (A): Human diet should compulsorily contain Glycerine, Serine and Tyrosine.\nReason (R): Essential amino acids cannot be synthesised in the human body.",
+      "options": {
+        "a": "Both A and R are individually true and R is the correct explanation of A",
+        "b": "Both A and R are individually true but R is not a correct explanation of A",
+        "c": "A is true but R is false",
+        "d": "A is false but R is true"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Health & Diseases",
+      "difficulty": "easy",
+      "explanation": "Glycine, serine and tyrosine are non-essential; the body can synthesise them from other metabolites, so they need not be supplied in the diet—making the assertion false. The reason is correct: only the nine essential amino acids (e.g., lysine, methionine) cannot be synthesised endogenously. ([civilserviceindia.com](https://www.civilserviceindia.com/upsc_questions/GeneralStudies-2002%28pre%29.html))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 149,
+      "question_id": "UPSC_2002_GS1_Q149",
+      "question": "Assertion (A): The surface winds spiral inwards upon the centre of the cyclone.\nReason (R): Air descends in the centre of the cyclone.",
+      "options": {
+        "a": "Both A and R are individually true and R is the correct explanation of A",
+        "b": "Both A and R are individually true but R is not a correct explanation of A",
+        "c": "A is true but R is false",
+        "d": "A is false but R is true"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "Atmosphere & Climatology",
+      "difficulty": "moderate",
+      "explanation": "Near-surface winds spiral inwards toward the cyclone’s low-pressure eye because of the pressure-gradient force and Coriolis deflection, so the assertion is true. Air does descend in the calm eye of a mature tropical cyclone, but that descent is not what causes the spiral inflow—hence R, though true, is not the correct explanatory link. ([scribd.com](https://www.scribd.com/document/819879928/2002-QP-AW?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2002,
+      "paper": "GS1",
+      "question_no": 150,
+      "question_id": "UPSC_2002_GS1_Q150",
+      "question": "Assertion (A): An iron ball floats on mercury but gets immersed in water.\nReason (R): The specific gravity of iron is more than that of mercury.",
+      "options": {
+        "a": "Both A and R are individually true and R is the correct explanation of A",
+        "b": "Both A and R are individually true but R is not a correct explanation of A",
+        "c": "A is true but R is false",
+        "d": "A is false but R is true"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Physics",
+      "difficulty": "moderate",
+      "explanation": "Iron floats on mercury because mercury’s density/specific gravity (≈13.6) is much higher than iron’s (≈7.8), whereas water’s density is only 1; hence an iron ball sinks in water but stays afloat on mercury. The reason given is wrong because iron’s specific gravity is NOT greater than mercury’s, so A is true but R is false. ([aspireias.com](https://www.aspireias.com/upsc-general-study-10years-paper/2002?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    }
+  ],
+  "failed": []
+}

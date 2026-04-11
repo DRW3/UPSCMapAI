@@ -1,0 +1,2949 @@
+{
+  "year": 2007,
+  "fetched_at": "2026-04-11T20:00:23.449Z",
+  "count": 147,
+  "failures": 0,
+  "questions": [
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 1,
+      "question_id": "UPSC_2007_GS1_Q1",
+      "question": "Match List-I with List-II and select the correct answer using the code given below the lists:\nList-I (Person)\nA. Bhajan Sopori\nB. Birju Maharaj\nC. Priyadarshini Govind\nD. T V Gopalkrishnan\n\nList-II (Known as)\n1. Bharatanatyam Dancer\n2. Exponent of Santoor\n3. Mridangam Maestro\n4. Kathak Dancer\n\nCodes:",
+      "options": {
+        "a": "A-2  B-1  C-4  D-3",
+        "b": "A-3  B-1  C-4  D-2",
+        "c": "A-2  B-4  C-1  D-3",
+        "d": "A-3  B-4  C-1  D-2"
+      },
+      "answer": "c",
+      "subject": "Art & Culture",
+      "sub_topic": "Classical Dance Forms",
+      "difficulty": "moderate",
+      "explanation": "Bhajan Sopori is a renowned Santoor exponent (A-2); Pt Birju Maharaj is India’s foremost Kathak dancer (B-4); Priyadarshini Govind is a leading Bharatanatyam dancer (C-1); and T. V. Gopalkrishnan is celebrated as a Mridangam maestro and Carnatic vocalist (D-3). Hence the correct code is 2-4-1-3. ([aspireias.com](https://www.aspireias.com/upsc-general-study-10years-paper/2007?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 2,
+      "question_id": "UPSC_2007_GS1_Q2",
+      "question": "Who among the following is considered as the inventor of the World Wide Web (WWW)?",
+      "options": {
+        "a": "Edward Kasner",
+        "b": "Bill Gates",
+        "c": "Tim Berners-Lee",
+        "d": "Vinod Bham"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Computer & Information Technology",
+      "difficulty": "easy",
+      "explanation": "Sir Tim Berners-Lee, a British computer scientist working at CERN in 1989, proposed and built the protocols (HTTP, HTML, URL) that became the World Wide Web; he is universally credited as its inventor. Options (a) Edward Kasner was a mathematician who coined the term ‘googol’, (b) Bill Gates co-founded Microsoft but did not invent the Web, and (d) Vinod Bham is not associated with its creation. ([wired.com](https://www.wired.com/1999/10/interview-with-the-webs-creator?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 3,
+      "question_id": "UPSC_2007_GS1_Q3",
+      "question": "Where are the headquarters of the Organization of Islamic Conference (OIC) located?",
+      "options": {
+        "a": "Dubai",
+        "b": "Jeddah",
+        "c": "Islamabad",
+        "d": "Ankara"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "International Organisations & Groupings",
+      "difficulty": "easy",
+      "explanation": "The Organisation of Islamic Cooperation (then called the Organisation of the Islamic Conference) has its General Secretariat headquarters in Jeddah, Saudi Arabia. Dubai (UAE), Islamabad (Pakistan) and Ankara (Türkiye) host other international bodies but are not the OIC’s seat. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Organisation_of_Islamic_Cooperation?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 4,
+      "question_id": "UPSC_2007_GS1_Q4",
+      "question": "Which one of the following is NOT a member of the Shanghai Cooperation Organization?",
+      "options": {
+        "a": "Russia",
+        "b": "Kazakhstan",
+        "c": "Ukraine",
+        "d": "Uzbekistan"
+      },
+      "answer": "c",
+      "subject": "Current Affairs",
+      "sub_topic": "International Organisations & Groupings",
+      "difficulty": "easy",
+      "explanation": "In 2007 the Shanghai Cooperation Organisation’s six members were China, Russia, Kazakhstan, Kyrgyzstan, Tajikistan and Uzbekistan; Ukraine has never been a member, making option (c) the lone non-member. ([dl1.en-us.nina.az](https://www.dl1.en-us.nina.az/Shanghai_Cooperation_Organisation.html?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 5,
+      "question_id": "UPSC_2007_GS1_Q5",
+      "question": "Who among the following wrote the book \"Ayodhya : 6 December 1992\"?",
+      "options": {
+        "a": "Chandra Shekar",
+        "b": "P. V. Narasimha Rao",
+        "c": "Jaswant Singh",
+        "d": "Arun Shourie"
+      },
+      "answer": "b",
+      "subject": "Art & Culture",
+      "sub_topic": "Literature & Languages",
+      "difficulty": "easy",
+      "explanation": "The book “Ayodhya: 6 December 1992” was written by former Prime Minister P. V. Narasimha Rao and published posthumously in 2006. Chandra Shekar, Jaswant Singh and Arun Shourie authored other political works but not this title. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Ayodhya_6_December_1992?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 6,
+      "question_id": "UPSC_2007_GS1_Q6",
+      "question": "Wangari Maathai, the Nobel Prize winner from Kenya, is known for her contribution to which one of the following?",
+      "options": {
+        "a": "Journalism",
+        "b": "International economics",
+        "c": "Sustainable development",
+        "d": "Child development"
+      },
+      "answer": "c",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Environmental Governance & Legislation",
+      "difficulty": "easy",
+      "explanation": "Kenyan environmentalist Wangari Maathai received the 2004 Nobel Peace Prize “for her contribution to sustainable development, democracy and peace,” principally through her Green Belt Movement that promoted large-scale tree planting and ecological conservation. The prize was not for journalism, economics, or child development. ([nobelprize.org](https://www.nobelprize.org/prizes/peace/2004/maathai/facts/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 7,
+      "question_id": "UPSC_2007_GS1_Q7",
+      "question": "How is Gabriel García well known?",
+      "options": {
+        "a": "Known for research in agriculture",
+        "b": "A renowned football coach",
+        "c": "A great writer who won the Nobel Prize for Literature",
+        "d": "Known for research in railway engineering"
+      },
+      "answer": "c",
+      "subject": "Art & Culture",
+      "sub_topic": "Literature & Languages",
+      "difficulty": "easy",
+      "explanation": "Gabriel García Márquez was a Colombian novelist who received the 1982 Nobel Prize for Literature; hence he is famous as a great writer. He was not an agricultural researcher, football coach, or railway-engineering researcher. ([en.wikipedia.org](https://en.wikipedia.org/wiki/1982_Nobel_Prize_in_Literature?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 8,
+      "question_id": "UPSC_2007_GS1_Q8",
+      "question": "Where was the first conference of the Pugwash Conference on Science and World Affairs held in the year 1957?",
+      "options": {
+        "a": "Minnowbrook (USA)",
+        "b": "Rhode Island (USA)",
+        "c": "Nova Scotia (Canada)",
+        "d": "Nagasaki (Japan)"
+      },
+      "answer": "c",
+      "subject": "Current Affairs",
+      "sub_topic": "International Relations & Treaties",
+      "difficulty": "moderate",
+      "explanation": "The inaugural Pugwash Conference on Science and World Affairs took place in July 1957 at Thinkers’ Lodge in the village of Pugwash, Nova Scotia, Canada. The other locations listed (Minnowbrook, Rhode Island, Nagasaki) have hosted different meetings but not the first Pugwash gathering. ([nobelprize.org](https://www.nobelprize.org/prizes/peace/1995/pugwash/history/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 9,
+      "question_id": "UPSC_2007_GS1_Q9",
+      "question": "The Pulitzer Prize is associated with which one of the following?",
+      "options": {
+        "a": "Environmental protection",
+        "b": "Civil aviation",
+        "c": "Journalism",
+        "d": "Olympic Games"
+      },
+      "answer": "c",
+      "subject": "Art & Culture",
+      "sub_topic": "Cultural Institutions & Awards",
+      "difficulty": "easy",
+      "explanation": "The Pulitzer Prize, instituted in 1917 by Columbia University, is best known for honoring excellence in newspaper and magazine journalism (along with letters, drama and music). It is unrelated to environmental prizes, civil-aviation awards, or the Olympic Games. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Pulitzer_Prize?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 10,
+      "question_id": "UPSC_2007_GS1_Q10",
+      "question": "Raghu Rai is well known for which one of the following areas?",
+      "options": {
+        "a": "Environment protection",
+        "b": "Olympic Games",
+        "c": "Journalism",
+        "d": "Civil aviation"
+      },
+      "answer": "c",
+      "subject": "Art & Culture",
+      "sub_topic": "Painting & Visual Arts",
+      "difficulty": "easy",
+      "explanation": "Raghu Rai is India’s celebrated photographer and photo-journalist, elected to Magnum Photos in 1977. He is not primarily known for environmental activism, Olympic sports, or aviation. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Raghu_Rai?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 11,
+      "question_id": "UPSC_2007_GS1_Q11",
+      "question": "Match List-I with List-II and select the correct answer using the code given below the lists:\nList-I (Eminent Person)\nA. Bhanu Bharti\nB. Mike Pandey\nC. Mohd. Zafar Khayyam\nD. Vinda Karandikar\n\nList-II (Known as)\n1. Music composer\n2. Poet and litterateur\n3. Theatre director\n4. Wildlife film-maker\n\nCodes:",
+      "options": {
+        "a": "A-1  B-4  C-3  D-2",
+        "b": "A-3  B-2  C-1  D-4",
+        "c": "A-2  B-3  C-4  D-1",
+        "d": "A-3  B-4  C-1  D-2"
+      },
+      "answer": "d",
+      "subject": "Art & Culture",
+      "sub_topic": "Cultural Institutions & Awards",
+      "difficulty": "moderate",
+      "explanation": "Bhanu Bharti is an award-winning theatre director (3) ([en.wikipedia.org](https://en.wikipedia.org/wiki/Bhanu_Bharti?utm_source=openai)); Mike Pandey is renowned as a wildlife film-maker (4) ([en.wikipedia.org](https://en.wikipedia.org/wiki/Mike_Pandey?utm_source=openai)); Mohammed (Zahur) Khayyam is a noted Hindi film music composer (1) ([en.wikipedia.org](https://en.wikipedia.org/wiki/Mohammed_Zahur_Khayyam?utm_source=openai)); and Vinda Karandikar is a distinguished Marathi poet and litterateur (2) ([en.wikipedia.org](https://en.wikipedia.org/wiki/Vinda_Karandikar?utm_source=openai)). This produces the sequence A-3 B-4 C-1 D-2, which corresponds to option (d); any other coding mismatches at least one pairing.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 12,
+      "question_id": "UPSC_2007_GS1_Q12",
+      "question": "Who wrote the book \"The Story of the Integration of Indian States\"?",
+      "options": {
+        "a": "B. N. Rau",
+        "b": "C. Rajagopalachari",
+        "c": "Krishna Menon",
+        "d": "V. P. Menon"
+      },
+      "answer": "d",
+      "subject": "Modern History",
+      "sub_topic": "Post-Independence India",
+      "difficulty": "easy",
+      "explanation": "V. P. Menon, the key bureaucrat who negotiated the accession of the princely states after 1947, authored the classic account “The Story of the Integration of Indian States”. None of the other personalities listed (B. N. Rau, C. Rajagopalachari, Krishna Menon) wrote this book. ([en.wikipedia.org](https://en.wikipedia.org/wiki/V._P._Menon?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 13,
+      "question_id": "UPSC_2007_GS1_Q13",
+      "question": "Match List-I with List-II and select the correct answer using the code given below the lists:\nList-I (Writer)\nA. V. S. Naipaul\nB. Salman Rushdie\nC. Paul Scott\nD. J. G. Farrell\n\nList-II (Book)\n1. The Siege of Krishnapur\n2. In a Free State\n3. Midnight's Children\n4. Staying On\n\nCodes:",
+      "options": {
+        "a": "A-2  B-4  C-1  D-3",
+        "b": "A-4  B-3  C-1  D-2",
+        "c": "A-3  B-1  C-2  D-4",
+        "d": "A-2  B-3  C-4  D-1"
+      },
+      "answer": "d",
+      "subject": "Art & Culture",
+      "sub_topic": "Cultural Institutions & Awards",
+      "difficulty": "moderate",
+      "explanation": "The correct pairing is: V. S. Naipaul—“In a Free State” (1971 Booker) ([en.wikipedia.org](https://en.wikipedia.org/wiki/In_a_Free_State?utm_source=openai)); Salman Rushdie—“Midnight’s Children” (1981 Booker) ([en.wikipedia.org](https://en.wikipedia.org/wiki/Midnight%27s_Children?utm_source=openai)); Paul Scott—“Staying On” (1977 Booker) ([en.wikipedia.org](https://en.wikipedia.org/wiki/Staying_On?utm_source=openai)); J. G. Farrell—“The Siege of Krishnapur” (1973 Booker) ([en.wikipedia.org](https://en.wikipedia.org/wiki/The_Siege_of_Krishnapur?utm_source=openai)). Option (d) lists this exact sequence; other options mis-match one or more authors to books.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 14,
+      "question_id": "UPSC_2007_GS1_Q14",
+      "question": "Consider the following statements:\n1. The series of international paper sizes is based on A0 size whose area is 0.5 m² (approx).\n2. The area of A4 size paper is 1⁄8th of the A0 size paper.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Materials & Engineering",
+      "difficulty": "moderate",
+      "explanation": "By ISO 216 definition the area of A0 is exactly 1 m², not 0.5 m², so Statement 1 is false. Each successive ‘A’ number halves the area, making A4 = 1⁄16 A0 rather than 1⁄8 A0, so Statement 2 is also false. Hence neither statement is correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/International_standard_paper_sizes?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 15,
+      "question_id": "UPSC_2007_GS1_Q15",
+      "question": "Which of the following countries signed the Tshwane Declaration in October 2006?",
+      "options": {
+        "a": "China and South Africa",
+        "b": "India and South Africa",
+        "c": "South Africa and Botswana",
+        "d": "Saudi Arabia and South Africa"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "International Relations & Treaties",
+      "difficulty": "moderate",
+      "explanation": "The Tshwane Declaration was signed in Pretoria (Tshwane) on 2 October 2006 by South African President Thabo Mbeki and Indian Prime Minister Manmohan Singh, deepening the strategic partnership between the two nations. No other country pair is associated with this declaration. ([gov.za](https://www.gov.za/news/t-mbeki-and-m-singh-tshwane-declaration-partnership-between-south-africa-and-india-02-oct-2006?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 16,
+      "question_id": "UPSC_2007_GS1_Q16",
+      "question": "Recently, the European Union and six other countries including India signed the International Thermonuclear Experimental Reactor (ITER) Project. Which one of the following was NOT a signatory to it?",
+      "options": {
+        "a": "Canada",
+        "b": "China",
+        "c": "Japan",
+        "d": "USA"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Energy & Environment",
+      "difficulty": "moderate",
+      "explanation": "The ITER Agreement signed in November 2006 had seven parties: Euratom (EU), United States, Russia, Japan, China, India and South Korea. Canada had withdrawn from the negotiations in 2003 and therefore was not a signatory, making option (a) correct. ([mofa.go.jp](https://www.mofa.go.jp/policy/s_tech/iter/what.html?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 17,
+      "question_id": "UPSC_2007_GS1_Q17",
+      "question": "Which one of the following Himalayan passes was reopened in the middle of the year 2006 to facilitate trade between India and China?",
+      "options": {
+        "a": "Chang La",
+        "b": "Jara La",
+        "c": "Nathu La",
+        "d": "Shipki La"
+      },
+      "answer": "c",
+      "subject": "Current Affairs",
+      "sub_topic": "International Relations & Treaties",
+      "difficulty": "easy",
+      "explanation": "The Nathu La pass on the Sikkim–Tibet border was formally reopened on 6 July 2006 after 44 years, reviving border trade between India and China. Chang La, Jara La and Shipki La were not reopened that year for this purpose. ([timesofindia.indiatimes.com](https://timesofindia.indiatimes.com/india/Nathu-La-reopens-for-trade-after-44-years/articleshow/1710090.cms?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 18,
+      "question_id": "UPSC_2007_GS1_Q18",
+      "question": "How is Steve Fossett known?",
+      "options": {
+        "a": "As a crocodile hunter",
+        "b": "For completing the longest non-stop flight around the globe",
+        "c": "For swimming across the Atlantic Ocean",
+        "d": "For climbing Mt. Everest without any co-climber"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "Notable Personalities",
+      "difficulty": "easy",
+      "explanation": "American adventurer Steve Fossett set the record for the longest solo, non-stop flight around the globe in the jet-powered Virgin Atlantic GlobalFlyer in February 2006, after first achieving the first solo non-stop circumnavigation in March 2005. He is not known for crocodile-hunting, Atlantic swimming, or Everest climbing without partners. ([wired.com](https://www.wired.com/2010/03/0303steve-fosset-flies-global-nonstop?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 19,
+      "question_id": "UPSC_2007_GS1_Q19",
+      "question": "Match List-I with List-II and select the correct answer using the code given below the lists:\nList-I (Person)\nA. Nancy Pelosi\nB. Margaret Chan\nC. Pascal Lamy\nD. Steve Ballmer\n\nList-II (Position/Organization)\n1. WTO\n2. Speaker, US House of Representatives\n3. WHO\n4. Microsoft\n\nCodes:",
+      "options": {
+        "a": "A-2  B-1  C-3  D-4",
+        "b": "A-3  B-1  C-2  D-4",
+        "c": "A-2  B-3  C-1  D-4",
+        "d": "A-4  B-1  C-3  D-2"
+      },
+      "answer": "c",
+      "subject": "Current Affairs",
+      "sub_topic": "Notable Personalities",
+      "difficulty": "moderate",
+      "explanation": "In 2007: Nancy Pelosi became Speaker of the U.S. House of Representatives; Dr Margaret Chan took office as Director-General of the WHO; Pascal Lamy was serving as Director-General of the WTO; and Steve Ballmer was CEO of Microsoft. Hence the correct matching is A-2, B-3, C-1, D-4. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Nancy_Pelosi?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 20,
+      "question_id": "UPSC_2007_GS1_Q20",
+      "question": "In which of the following cities is the Global Automotive Research Center being set up?",
+      "options": {
+        "a": "Chennai",
+        "b": "Hyderabad",
+        "c": "Pune",
+        "d": "Gurgaon"
+      },
+      "answer": "a",
+      "subject": "Current Affairs",
+      "sub_topic": "Indian Government Schemes & Initiatives",
+      "difficulty": "moderate",
+      "explanation": "The Global Automotive Research Centre (GARC), set up under the National Automotive Testing and R&D Infrastructure Project (NATRiP), is located at Oragadam near Chennai, Tamil Nadu. The other cities listed do not host this centre. ([garc.co.in](https://garc.co.in/global-automotive-research-center/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 21,
+      "question_id": "UPSC_2007_GS1_Q21",
+      "question": "Consider the following statements:\n1. Republicans won majority in the US House of Representatives election held in the year 2006.\n2. Republican Bobby Jindal won a seat in the US House of Representatives for the second time.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "International Relations & Treaties",
+      "difficulty": "moderate",
+      "explanation": "1. Incorrect—Democrats, not Republicans, captured the majority in the U.S. House of Representatives in the November 7 2006 elections. 2. Correct—Republican Bobby Jindal, first elected from Louisiana’s 1st District in 2004, was re-elected in 2006, securing a second term. Therefore only statement 2 is correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/2006_United_States_House_of_Representatives_elections?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 22,
+      "question_id": "UPSC_2007_GS1_Q22",
+      "question": "What is the broad area in which the Nobel Prize winners for the year 2006 in Physiology or Medicine worked to get the prize?",
+      "options": {
+        "a": "Prevention of weakening due to ageing",
+        "b": "Flow of genetic information",
+        "c": "Immunology and disease resistance",
+        "d": "Adult stem-cell research"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Science & Technology History",
+      "difficulty": "easy",
+      "explanation": "Andrew Z. Fire and Craig C. Mello received the 2006 Nobel Prize in Physiology/Medicine for discovering RNA interference—gene-silencing by double-stranded RNA—which the Nobel Committee described as “a fundamental mechanism for controlling the flow of genetic information.” Hence option (b) is correct; the discovery was not about ageing, immunology, or stem-cell work. ([nobelprize.org](https://www.nobelprize.org/prizes/medicine/2006/illustrated-information/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 23,
+      "question_id": "UPSC_2007_GS1_Q23",
+      "question": "Which one of the following countries is planning to construct a rival to the Panama Canal to link the Pacific and Atlantic Oceans?",
+      "options": {
+        "a": "Colombia",
+        "b": "Costa Rica",
+        "c": "Guatemala",
+        "d": "Nicaragua"
+      },
+      "answer": "d",
+      "subject": "Current Affairs",
+      "sub_topic": "International Relations & Treaties",
+      "difficulty": "moderate",
+      "explanation": "In late 2006 the Nicaraguan government unveiled a US $20 billion plan for a 170-mile inter-oceanic canal to compete with the Panama Canal. No comparable 2006 canal plan was announced by Colombia, Costa Rica or Guatemala, so the country in question is Nicaragua. ([theguardian.com](https://www.theguardian.com/environment/2006/oct/04/water.conservationandendangeredspecies?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 24,
+      "question_id": "UPSC_2007_GS1_Q24",
+      "question": "Consider the following statements:\n1. In the year 2006, India successfully tested a full-fledged cryogenic stage in rocketry.\n2. After USA, Russia and China, India is the only country to have acquired the capability for use of cryogenic stage in rocketry.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Space Technology & Astronomy",
+      "difficulty": "moderate",
+      "explanation": "1) ISRO successfully conducted a 50-second hot test of its indigenously developed cryogenic stage on 28 October 2006, validating statement 1. ([timesofindia.indiatimes.com](https://timesofindia.indiatimes.com/india/india-conducts-first-cryogenic-rocket-test/articleshow/205907.cms?utm_source=openai)) 2) Europe’s Ariane rockets (HM7B engine, in service since 1979) and Japan’s H-II rockets had long used cryogenic stages, so India was not the only nation after the USA, Russia and China with this capability, making statement 2 incorrect. ([en.wikipedia.org](https://en.wikipedia.org/wiki/HM7B?utm_source=openai)) Therefore only statement 1 is correct.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 25,
+      "question_id": "UPSC_2007_GS1_Q25",
+      "question": "With reference to the international meetings held in the year 2006, which of the following pairs is/are correctly matched?\n1. NAM Summit                : Havana\n2. APEC Meeting              : Bangkok\n3. EU–India Summit           : Helsinki\n4. UN Climate Change Conference : Geneva\nSelect the correct answer using the codes given below:",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 3 only",
+        "c": "1, 2 and 3",
+        "d": "2, 3 and 4"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "International Relations & Treaties",
+      "difficulty": "difficult",
+      "explanation": "Pair 1 is correct: the 14th NAM Summit was held in Havana, Cuba. ([pt.wikipedia.org](https://pt.wikipedia.org/wiki/Movimento_dos_Pa%C3%ADses_N%C3%A3o_Alinhados?utm_source=openai)) Pair 3 is correct: the 7th EU–India Summit took place in Helsinki on 13 Oct 2006. ([hindustantimes.com](https://www.hindustantimes.com/india/helsinki-summit-to-boost-eu-india-ties/story-WOhjiQmpHXjk4yRyqxLn7N.html?utm_source=openai)) Pair 2 is wrong because the 2006 APEC Leaders’ Meeting was in Hanoi, not Bangkok. ([en.wikipedia.org](https://en.wikipedia.org/wiki/APEC_Vietnam_2006)) Pair 4 is wrong because the 2006 UN Climate Change Conference (COP 12) was in Nairobi, not Geneva. ([en.wikipedia.org](https://en.wikipedia.org/wiki/2006_United_Nations_Climate_Change_Conference?utm_source=openai)) Hence only pairs 1 and 3 are correct.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 26,
+      "question_id": "UPSC_2007_GS1_Q26",
+      "question": "Match List-I with List-II and select the correct answer using the code given below the lists:\nList-I (Person)\nA. Vishwapati Trivedi\nB. Tulsi R. Tanti\nC. Shashi Ruia\nD. S. Bikachandani\n\nList-II (Company)\n1. Essar Group\n2. Info Edge India (which runs naukri.com)\n3. Indian Airlines\n4. Suzlon Energy\n\nCodes:",
+      "options": {
+        "a": "A-2  B-4  C-1  D-3",
+        "b": "A-3  B-1  C-4  D-2",
+        "c": "A-2  B-3  C-4  D-1",
+        "d": "A-3  B-4  C-1  D-2"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "Infrastructure & Industry",
+      "difficulty": "moderate",
+      "explanation": "Vishwapati Trivedi served as (Joint) Managing Director of Indian Airlines (‘Indian’). ([economictimes.indiatimes.com](https://economictimes.indiatimes.com/industry/transportation/airlines-/-aviation/thulasidas-named-cmd-of-air-india/articleshow/2083923.cms?utm_source=openai)) Tulsi R. Tanti founded and led Suzlon Energy. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Tulsi_Tanti?utm_source=openai)) Shashi Ruia co-founded the Essar Group. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Essar_Group?utm_source=openai)) Sanjeev (S.) Bikhchandani founded Info Edge India, operator of Naukri.com. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Sanjeev_Bikhchandani?utm_source=openai)) Option (d) (A-3, B-4, C-1, D-2) matches all four correct pairings, while the other options mis-match at least one.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 27,
+      "question_id": "UPSC_2007_GS1_Q27",
+      "question": "Consider the following statements:\n1. North Atlantic Co-operation Council (NACC) is the name of the new organization which has replaced the North Atlantic Treaty Organization (NATO).\n2. The United States of America and the United Kingdom became members of NATO when it was formed in 1949.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "International Organisations & Groupings",
+      "difficulty": "moderate",
+      "explanation": "The North Atlantic Cooperation Council (NACC) was created in 1991 as a consultative forum with former Warsaw-Pact states and was itself superseded by the Euro-Atlantic Partnership Council in 1997; it never replaced the North Atlantic Treaty Organization, which continues to exist. The United States and the United Kingdom were two of the twelve original signatories of the North Atlantic Treaty on 4 April 1949, making statement 2 correct and statement 1 incorrect. ([nato.int](https://www.nato.int/cps/en/natohq/topics_69344.htm?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 28,
+      "question_id": "UPSC_2007_GS1_Q28",
+      "question": "For which one of the following books did Kiran Desai win the Man Booker Prize 2006?",
+      "options": {
+        "a": "The Secret River",
+        "b": "In the Country of Men",
+        "c": "The Inheritance of Loss",
+        "d": "Mother's Milk"
+      },
+      "answer": "c",
+      "subject": "Art & Culture",
+      "sub_topic": "Cultural Institutions & Awards",
+      "difficulty": "easy",
+      "explanation": "Kiran Desai won the 2006 Man Booker Prize for her second novel, \"The Inheritance of Loss.\" The other listed titles—\"The Secret River,\" \"In the Country of Men,\" and \"Mother's Milk\"—were shortlisted books by other authors that year. ([en.wikipedia.org](https://en.wikipedia.org/wiki/2006_Man_Booker_Prize?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 29,
+      "question_id": "UPSC_2007_GS1_Q29",
+      "question": "Who among the following is Chile’s first woman President?",
+      "options": {
+        "a": "D. Ortega",
+        "b": "M. Bachelet",
+        "c": "E. Morales",
+        "d": "A. Garcia"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "Notable Personalities",
+      "difficulty": "easy",
+      "explanation": "Verónica Michelle Bachelet Jeria was elected on 15 January 2006 and sworn in on 11 March 2006 as Chile’s first woman President, making option (b) correct. The other names refer to leaders from different Latin American countries—Daniel Ortega (Nicaragua), Evo Morales (Bolivia), and Alan García (Peru). ([en.wikipedia.org](https://en.wikipedia.org/wiki/Michelle_Bachelet?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 30,
+      "question_id": "UPSC_2007_GS1_Q30",
+      "question": "What was the purpose of Operation Sukoon launched by the Government of India?",
+      "options": {
+        "a": "Helping Indonesia in its efforts to rehabilitate the victims of earthquake in that country",
+        "b": "Evacuating Indian nationals from Lebanon during the conflict in the Middle East",
+        "c": "Assisting United Nations in helping the civil-war victims in the Darfur region of North Africa",
+        "d": "Providing a relief package to farmers after a spate of suicides by farmers in Andhra Pradesh"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "International Relations & Treaties",
+      "difficulty": "moderate",
+      "explanation": "Operation Sukoon was launched by the Indian Navy in July 2006 to evacuate Indian, Sri Lankan, and Nepali nationals from Lebanon during the Israel-Hezbollah conflict. It had no connection with Indonesian earthquake relief, UN assistance in Darfur, or farmer-suicide relief packages in Andhra Pradesh. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Operation_Sukoon?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 31,
+      "question_id": "UPSC_2007_GS1_Q31",
+      "question": "Which one of the following pairs of countries joined the European Union in 2007?",
+      "options": {
+        "a": "Bulgaria and Romania",
+        "b": "Bulgaria and Belgium",
+        "c": "Romania and Slovenia",
+        "d": "Hungary and Croatia"
+      },
+      "answer": "a",
+      "subject": "Current Affairs",
+      "sub_topic": "International Organisations & Groupings",
+      "difficulty": "easy",
+      "explanation": "The European Union’s fifth enlargement took place on 1 January 2007, when Bulgaria and Romania formally joined as the 26th and 27th member states. Belgium is a founding member (1958), Slovenia and Hungary joined in 2004, and Croatia joined later in 2013, so the other option pairs are incorrect. ([ecb.europa.eu](https://www.ecb.europa.eu/press/pr/date/2007/html/pr070102_1.en.html?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 32,
+      "question_id": "UPSC_2007_GS1_Q32",
+      "question": "Which one of the following organizations won the CSIR Award for Science and Technology Innovations for Rural Development, 2006?",
+      "options": {
+        "a": "CLRI",
+        "b": "IARI",
+        "c": "NDDB",
+        "d": "NDRI"
+      },
+      "answer": "a",
+      "subject": "Current Affairs",
+      "sub_topic": "Awards & Honours",
+      "difficulty": "moderate",
+      "explanation": "The CSIR Award for Science & Technology Innovations for Rural Development for the year 2006 was presented to the Central Leather Research Institute (CLRI), Chennai; the Press Information Bureau photograph of 26 September 2006 shows the Prime Minister handing the award to CLRI. ([commons.wikimedia.org](https://commons.wikimedia.org/wiki/File%3AThe_Prime_Minister%2C_Dr._Manmohan_Singh_giving_away_the_CSIR_Award_for_S%26T_Innovations_for_Rural_Development%E2%80%93_2006_to_the_Central_Leather_Research_Institute_%28Chennai%29%2C_in_New_Delhi_on_September_26%2C_2006.jpg?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 33,
+      "question_id": "UPSC_2007_GS1_Q33",
+      "question": "Which of the following countries recently upgraded its defence agency to a full-fledged defence ministry?",
+      "options": {
+        "a": "Italy",
+        "b": "Japan",
+        "c": "Switzerland",
+        "d": "Poland"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "International Conflicts & Security",
+      "difficulty": "easy",
+      "explanation": "Japan formally upgraded its post-war Defence Agency to a full-fledged Ministry of Defense on 9 January 2007, following Diet approval in December 2006. ([china.org.cn](https://www.china.org.cn/international/world/2007-01/09/content_1195442.htm?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 34,
+      "question_id": "UPSC_2007_GS1_Q34",
+      "question": "Consider the following statements:\n1. China has observer status at the South Asian Association for Regional Cooperation.\n2. India has observer status at the Shanghai Cooperation Organization.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "c",
+      "subject": "Current Affairs",
+      "sub_topic": "International Organisations & Groupings",
+      "difficulty": "moderate",
+      "explanation": "China was accorded observer status in SAARC at the Dhaka summit in November 2005 (implemented 2006), while India—along with Iran and Pakistan—was granted observer status in the Shanghai Cooperation Organisation at the Astana summit in 2005; hence both statements are correct. ([china.org.cn](https://www.china.org.cn/english/international/148692.htm?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 35,
+      "question_id": "UPSC_2007_GS1_Q35",
+      "question": "In the latter half of the year 2006, in which one of the following countries did a military coup take place?",
+      "options": {
+        "a": "Cambodia",
+        "b": "Laos",
+        "c": "Thailand",
+        "d": "Vietnam"
+      },
+      "answer": "c",
+      "subject": "Current Affairs",
+      "sub_topic": "International Conflicts & Security",
+      "difficulty": "easy",
+      "explanation": "A military coup led by General Sonthi Boonyaratglin overthrew Thai Prime Minister Thaksin Shinawatra on 19 September 2006; no such coups occurred in Cambodia, Laos or Vietnam that year. ([en.wikipedia.org](https://en.wikipedia.org/wiki/2006_Thai_coup_d%27%C3%A9tat?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 36,
+      "question_id": "UPSC_2007_GS1_Q36",
+      "question": "Near the end of the year 2006, which one of the following countries was suspended from the Commonwealth after a military coup?",
+      "options": {
+        "a": "Kenya",
+        "b": "Myanmar",
+        "c": "Fiji",
+        "d": "Tanzania"
+      },
+      "answer": "c",
+      "subject": "Current Affairs",
+      "sub_topic": "International Organisations & Groupings",
+      "difficulty": "moderate",
+      "explanation": "After Commodore Frank Bainimarama’s coup on 5 December 2006, the Commonwealth Ministerial Action Group suspended Fiji from the Commonwealth on 8 December 2006; the other listed countries were not suspended at that time. ([abc.net.au](https://www.abc.net.au/news/2006-12-09/fiji-suspended-from-commonwealth/2149344?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 37,
+      "question_id": "UPSC_2007_GS1_Q37",
+      "question": "Who was Leander Paes’s partner when he won the Doubles Final in the US Open Tennis Tournament?",
+      "options": {
+        "a": "Max Mirnyi",
+        "b": "Martin Damm",
+        "c": "Bob Bryan",
+        "d": "Mike Bryan"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "Tennis Grand Slams",
+      "difficulty": "easy",
+      "explanation": "Leander Paes captured the 2006 US Open men’s doubles title partnering Czech player Martin Damm, defeating Björkman/Mirnyi in the final. Hence option (b) is correct, while Mirnyi and the Bryan brothers were on opposing sides in that event. ([en.wikipedia.org](https://en.wikipedia.org/wiki/2006_US_Open_%E2%80%93_Men%27s_doubles?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 38,
+      "question_id": "UPSC_2007_GS1_Q38",
+      "question": "Which of the following cities has been the venue of the Asian Games for the maximum number of times from the year 1951 to the year 2006?",
+      "options": {
+        "a": "Delhi",
+        "b": "Bangkok",
+        "c": "Tokyo",
+        "d": "Beijing"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "Other Sports & Personalities",
+      "difficulty": "moderate",
+      "explanation": "Bangkok has hosted the Asian Games four times (1966, 1970, 1978 and 1998), the highest frequency between 1951 and 2006. Delhi (1951, 1982) hosted twice, Tokyo once (1958) and Beijing once (1990). Therefore, option (b) Bangkok is correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Bangkok_Asian_Games?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 39,
+      "question_id": "UPSC_2007_GS1_Q39",
+      "question": "Who among the following bowlers have taken more than 500 wickets in Test cricket?\n1. Wasim Akram\n2. Richard Hadlee\n3. Glenn McGrath\n4. Courtney Walsh\nSelect the correct answer using the code given below:",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "3 and 4 only",
+        "c": "1, 2 and 3 only",
+        "d": "1, 2, 3 and 4"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "Cricket",
+      "difficulty": "moderate",
+      "explanation": "By 2007 only Glenn McGrath (563 wickets) and Courtney Walsh (519 wickets) had crossed the 500-wicket mark in Tests. Wasim Akram (414) and Richard Hadlee (431) were below that figure, so statements 3 and 4 only are correct, matching option (b). ([en.wikipedia.org](https://en.wikipedia.org/wiki/Wasim_Akram?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 40,
+      "question_id": "UPSC_2007_GS1_Q40",
+      "question": "Parimarajan Negi excelled in which one of the following games?",
+      "options": {
+        "a": "Billiards",
+        "b": "Swimming",
+        "c": "Chess",
+        "d": "Weight-lifting"
+      },
+      "answer": "c",
+      "subject": "Current Affairs",
+      "sub_topic": "Other Sports & Personalities",
+      "difficulty": "easy",
+      "explanation": "Parimarajan Negi is an Indian chess prodigy who became a Grandmaster at age 13; he is not associated with billiards, swimming or weight-lifting. Thus option (c) Chess is correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Parimarjan_Negi?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 41,
+      "question_id": "UPSC_2007_GS1_Q41",
+      "question": "Which one of the following pairs is NOT correctly matched?\n(a) T. S. Krishnamurthy : Former Chief Election Commissioner of India\n(b) K. C. Pant            : Chairman, Tenth Finance Commission of India\n(c) A. M. Khusro          : Former Chairman, Union Public Service Commission\n(d) R. C. Lahoti          : Former Chief Justice of India",
+      "options": {
+        "a": "T. S. Krishnamurthy – Former Chief Election Commissioner of India",
+        "b": "K. C. Pant – Chairman, Tenth Finance Commission of India",
+        "c": "A. M. Khusro – Former Chairman, Union Public Service Commission",
+        "d": "R. C. Lahoti – Former Chief Justice of India"
+      },
+      "answer": "c",
+      "subject": "Indian Polity",
+      "sub_topic": "Constitutional & Statutory Bodies",
+      "difficulty": "moderate",
+      "explanation": "T. S. Krishnamurthy did serve as Chief Election Commissioner, K. C. Pant chaired the 10th Finance Commission, and R. C. Lahoti was Chief Justice of India—all correctly matched. A. M. Khusro, however, chaired the 11th Finance Commission and was never Chairman of the UPSC, making pair (c) incorrectly matched. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Tenth_Finance_Commission?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 42,
+      "question_id": "UPSC_2007_GS1_Q42",
+      "question": "Consider the following statements:\n1. The Judges (Inquiry) Bill, 2006 contemplates establishing a Judicial Council which will receive complaints against judges of the Supreme Court including the Chief Justice of India, High Court Chief Justices and Judges.\n2. Under the Protection of Women from Domestic Violence Act, 2005, a woman can file a petition before a 1st Class Judicial Magistrate.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "b",
+      "subject": "Indian Polity",
+      "sub_topic": "Judiciary",
+      "difficulty": "moderate",
+      "explanation": "The Judges (Inquiry) Bill, 2006 proposed a National Judicial Council that could inquire into complaints against Supreme Court and High Court judges, but the Chief Justice of India was excluded from the list of judges who could be complained against; hence Statement 1 is incorrect. The Protection of Women from Domestic Violence Act, 2005 expressly permits an aggrieved woman to present her application before a Metropolitan Magistrate or a Judicial Magistrate of the First Class, so Statement 2 is correct. Therefore only Statement 2 is right. ([examrobot.com](https://examrobot.com/content/consider-following-statements-1-judges-inquiry-bill-2006-contemplates-establish-judicial?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 43,
+      "question_id": "UPSC_2007_GS1_Q43",
+      "question": "Consider the following statements:\n1. The mode of removal of a Judge of a High Court in India is the same as that of removal of a Judge of the Supreme Court.\n2. After retirement from office, a permanent Judge of a High Court cannot plead or act in any court or before any authority in India.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "a",
+      "subject": "Indian Polity",
+      "sub_topic": "Judiciary",
+      "difficulty": "moderate",
+      "explanation": "Both High Court and Supreme Court judges can be removed only by the President after an address by each House of Parliament supported by a special majority, so Statement 1 is correct. Article 220 permits a retired permanent High Court judge to practise in the Supreme Court or in other High Courts, so the blanket prohibition asserted in Statement 2 is wrong. Hence only Statement 1 is correct. ([examrobot.com](https://examrobot.com/content/consider-following-statements-1-mode-removal-judge-high-court-india-same-removal-judge))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 44,
+      "question_id": "UPSC_2007_GS1_Q44",
+      "question": "Which one of the following is the correct chronological order of the formation of the following as full States of the Indian Union?",
+      "options": {
+        "a": "Sikkim – Arunachal Pradesh – Nagaland – Haryana",
+        "b": "Nagaland – Haryana – Sikkim – Arunachal Pradesh",
+        "c": "Sikkim – Haryana – Nagaland – Arunachal Pradesh",
+        "d": "Nagaland – Arunachal Pradesh – Sikkim – Haryana"
+      },
+      "answer": "b",
+      "subject": "Indian Polity",
+      "sub_topic": "Federalism & Centre–State Relations",
+      "difficulty": "easy",
+      "explanation": "Nagaland became a State on 1 December 1963, Haryana on 1 November 1966, Sikkim on 16 May 1975 and Arunachal Pradesh on 20 February 1987. The chronological order is therefore Nagaland → Haryana → Sikkim → Arunachal Pradesh. ([examrobot.com](https://examrobot.com/content/which-one-following-correct-chronological-order-formation-following-full-states-indian-union?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 45,
+      "question_id": "UPSC_2007_GS1_Q45",
+      "question": "Who among the following have been the Union Finance Minister of India?\n1. V. P. Singh\n2. R. Venkataraman\n3. Y. B. Chavan\n4. Pranab Mukherjee\nSelect the correct answer using the code given below:",
+      "options": {
+        "a": "1, 2 and 3 only",
+        "b": "1, 3 and 4 only",
+        "c": "2 and 4 only",
+        "d": "1, 2, 3 and 4"
+      },
+      "answer": "d",
+      "subject": "Indian Polity",
+      "sub_topic": "Union & State Executive",
+      "difficulty": "easy",
+      "explanation": "All four individuals—V. P. Singh (1984-87), R. Venkataraman (1980-82), Y. B. Chavan (1970-74) and Pranab Mukherjee (1982-84 and 2009-12)—have served as Union Finance Minister; hence the correct code includes 1, 2, 3 and 4. ([examrobot.com](https://examrobot.com/content/who-among-following-have-been-union-finance-ministers-india-1-vp-singh-2-r-venkataraman-3-yb))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 46,
+      "question_id": "UPSC_2007_GS1_Q46",
+      "question": "Assertion (A): The Council of Ministers in the Union of India is collectively responsible both to the Lok Sabha and the Rajya Sabha.\nReason (R): The members of both the Lok Sabha and the Rajya Sabha are eligible to be the Ministers of the Union.",
+      "options": {
+        "a": "Both A and R are true and R is the correct explanation of A",
+        "b": "Both A and R are true but R is not the correct explanation of A",
+        "c": "A is true but R is false",
+        "d": "A is false but R is true"
+      },
+      "answer": "d",
+      "subject": "Indian Polity",
+      "sub_topic": "Union & State Executive",
+      "difficulty": "easy",
+      "explanation": "Under Article 75(3) the Council of Ministers is collectively responsible only to the Lok Sabha, so the Assertion is false. Members of either House can be appointed ministers (Article 75), making the Reason true. Consequently, Assertion A is false but Reason R is true. ([examrobot.com](https://examrobot.com/content/assertion-council-ministers-union-india-collectively-responsible-both-lok-sabha-and-rajya?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 47,
+      "question_id": "UPSC_2007_GS1_Q47",
+      "question": "Who was the Speaker of the First Lok Sabha?",
+      "options": {
+        "a": "Hukam Singh",
+        "b": "G. V. Mavalankar",
+        "c": "K. M. Munshi",
+        "d": "U. N. Dhebar"
+      },
+      "answer": "b",
+      "subject": "Indian Polity",
+      "sub_topic": "Parliament & State Legislatures",
+      "difficulty": "easy",
+      "explanation": "Ganesh Vasudev Mavalankar was elected on 15 May 1952 as the first Speaker of the 1st Lok Sabha and held the post until his death in 1956; none of the other persons listed ever served as the first Speaker. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Ganesh_Vasudev_Mavalankar?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 48,
+      "question_id": "UPSC_2007_GS1_Q48",
+      "question": "Consider the following statements:\n1. Jawaharlal Nehru was in his fourth term as the Prime Minister of India at the time of his death.\n2. Jawaharlal Nehru represented Rae Bareilly constituency as a member of Parliament.\n3. The first non-Congress Prime Minister of India assumed office in the year 1977.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "3 only",
+        "c": "1 only",
+        "d": "1 and 3"
+      },
+      "answer": "d",
+      "subject": "Indian Polity",
+      "sub_topic": "Union & State Executive",
+      "difficulty": "moderate",
+      "explanation": "Nehru headed four successive ministries (1947-52, 1952-57, 1957-62 and 1962-64) and died during his fourth term, so Statement 1 is correct. He was elected from Phulpur, not Rae Bareli, making Statement 2 incorrect. Morarji Desai of the Janata Party became the first non-Congress Prime Minister on 24 March 1977, so Statement 3 is correct; therefore only Statements 1 and 3 are correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Fourth_Nehru_ministry?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 49,
+      "question_id": "UPSC_2007_GS1_Q49",
+      "question": "Consider the following statements:\n1. The nationwide scheme of the National Child Labour Projects (NCLP) is run by the Union Ministry of Social Justice and Empowerment.\n2. Gurupadswamy Committee dealt with the issues of child labour.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "Indian Government Schemes & Initiatives",
+      "difficulty": "moderate",
+      "explanation": "The National Child Labour Project (NCLP) scheme is implemented by the Union Ministry of Labour & Employment, not the Ministry of Social Justice and Empowerment, so Statement 1 is false. The Gurupadswamy Committee (1979) was the first committee set up to study and recommend measures on child labour, so Statement 2 is true. Hence only Statement 2 is correct. ([labour.gov.in](https://labour.gov.in/en/childlabour/about-child-labour?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 50,
+      "question_id": "UPSC_2007_GS1_Q50",
+      "question": "Consider the following statements in respect of Financial Emergency under Article 360 of the Constitution of India:\n1. A proclamation of Financial Emergency issued shall cease to operate at the expiration of two months unless before the expiration of that period it has been approved by resolutions of both Houses of Parliament.\n2. If any proclamation of Financial Emergency is in operation, it is competent for the President of India to issue directions for the reduction of salaries and allowances of all or any class of persons serving in connection with the affairs of the Union, but excluding the judges of the Supreme Court and the High Courts.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "a",
+      "subject": "Indian Polity",
+      "sub_topic": "Emergency Provisions",
+      "difficulty": "moderate",
+      "explanation": "Article 360(2)(c) states that a Financial Emergency proclamation lapses after two months unless approved by both Houses, validating Statement 1. Article 360(4)(b) explicitly empowers the President to direct reduction of salaries ‘including the Judges of the Supreme Court and the High Courts’; the exclusion mentioned in Statement 2 is therefore wrong. Only Statement 1 is correct. ([constitutionofindia.net](https://www.constitutionofindia.net/articles/article-360-provisions-as-to-financial-emergency/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 51,
+      "question_id": "UPSC_2007_GS1_Q51",
+      "question": "Which of the Constitution Amendment Acts seeks that the size of the Council of Ministers at the Centre and in a State must not exceed 15 percent of the total number in the Lok Sabha and the total number of members of the Legislative Assembly of that State, respectively?",
+      "options": {
+        "a": "91st",
+        "b": "93rd",
+        "c": "95th",
+        "d": "97th"
+      },
+      "answer": "a",
+      "subject": "Indian Polity",
+      "sub_topic": "Constitutional Framework & Development",
+      "difficulty": "easy",
+      "explanation": "The Constitution (91st Amendment) Act, 2003 inserted Articles 75(1A) and 164(1A), capping the size of the Council of Ministers at both Union and State levels to 15 % of the strength of the Lok Sabha/State Legislative Assembly. None of the other listed amendments deal with this provision. ([drishtijudiciary.com](https://www.drishtijudiciary.com/ttp-constitution-of-india/91st-constitutional-amendment-act-2003?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 52,
+      "question_id": "UPSC_2007_GS1_Q52",
+      "question": "Consider the following statements:\n1. The Chairman of the Committee on Public Accounts is appointed by the Speaker of the Lok Sabha.\n2. The Committee on Public Accounts comprises members of the Lok Sabha, members of the Rajya Sabha, and a few eminent persons of the industry and trade.\nWhich of the statements given above are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "a",
+      "subject": "Indian Polity",
+      "sub_topic": "Parliament & State Legislatures",
+      "difficulty": "moderate",
+      "explanation": "The Public Accounts Committee (PAC) has 22 members – 15 from the Lok Sabha and 7 from the Rajya Sabha; no outsiders are included, so statement 2 is incorrect. Under Rule 308 of Lok Sabha Rules, the Speaker appoints the PAC’s chairperson (now conventionally from the Opposition), so statement 1 is correct. Hence only statement 1 is right. ([jagranjosh.com](https://www.jagranjosh.com/articles/ias-prelims-general-studies-solved-question-paper-2007-1307667428-1?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 53,
+      "question_id": "UPSC_2007_GS1_Q53",
+      "question": "Which one of the following was associated with Acharya Vinoba Bhave’s Bhoodan Movement at the beginning of the movement?",
+      "options": {
+        "a": "Udayagiri",
+        "b": "Rapur",
+        "c": "Pochampalli",
+        "d": "Venkatagiri"
+      },
+      "answer": "c",
+      "subject": "Modern History",
+      "sub_topic": "Post-Independence India",
+      "difficulty": "easy",
+      "explanation": "Acharya Vinoba Bhave launched the Bhoodan (land-gift) movement on 18 April 1951 at Pochampalli village (now in Telangana) when landlord V. Ramachandra Reddy donated 100 acres to landless peasants. Therefore Pochampalli was the place associated with the start of the movement. ([jagranjosh.com](https://www.jagranjosh.com/articles/ias-prelims-general-studies-solved-question-paper-2007-1307667428-1?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 54,
+      "question_id": "UPSC_2007_GS1_Q54",
+      "question": "Where is the famous Vijaya Vittala Temple having its 56 carved pillars emitting musical notes located?",
+      "options": {
+        "a": "Belur",
+        "b": "Bhadrachalam",
+        "c": "Hampi",
+        "d": "Srirangam"
+      },
+      "answer": "c",
+      "subject": "Art & Culture",
+      "sub_topic": "Architecture & World Heritage",
+      "difficulty": "easy",
+      "explanation": "The Vijaya Vittala (Vitthala) Temple renowned for its 56 ‘musical’ stone pillars is situated in the ruined city of Hampi, the capital of the Vijayanagara Empire in present-day Karnataka. Belur, Bhadrachalam and Srirangam have famous temples but not this musical-pillar shrine. ([jagranjosh.com](https://www.jagranjosh.com/articles/ias-prelims-general-studies-solved-question-paper-2007-1307667428-1?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 55,
+      "question_id": "UPSC_2007_GS1_Q55",
+      "question": "Assertion (A): According to the Wavell Plan, the number of Hindu and Muslim members in the Executive Council were to be equal.\nReason (R): Wavell thought that this arrangement would have avoided the partition of India.",
+      "options": {
+        "a": "Both A and R are true and R is the correct explanation of A",
+        "b": "Both A and R are true but R is not the correct explanation of A",
+        "c": "A is true but R is false",
+        "d": "A is false but R is true"
+      },
+      "answer": "c",
+      "subject": "Modern History",
+      "sub_topic": "Constitutional Developments & British Plans (1909-1947)",
+      "difficulty": "moderate",
+      "explanation": "The Wavell Plan proposed that the Viceroy’s Executive Council be ‘Indianised’ with parity between caste-Hindu and Muslim members, so the Assertion is true. However, Wavell’s aim was to break the constitutional deadlock, not specifically to ‘avoid partition’; the plan failed and partition still followed. Thus the Reason is false while the Assertion is true. ([jagranjosh.com](https://www.jagranjosh.com/articles/ias-prelims-general-studies-solved-question-paper-2007-1307667428-1?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 56,
+      "question_id": "UPSC_2007_GS1_Q56",
+      "question": "Which one of the following aroused a wave of popular indignation that led to the massacre by the British at Jallianwala Bagh?",
+      "options": {
+        "a": "The Arms Act",
+        "b": "The Public Safety Act",
+        "c": "The Rowlatt Act",
+        "d": "The Vernacular Press Act"
+      },
+      "answer": "c",
+      "subject": "Modern History",
+      "sub_topic": "Gandhian Mass Movements (1915-1942)",
+      "difficulty": "easy",
+      "explanation": "The Anarchical & Revolutionary Crimes Act, 1919—popularly called the Rowlatt Act—allowed detention without trial, sparking nationwide anger. Mass protests against this Act in Punjab led to the brutal firing on 13 April 1919 at Jallianwala Bagh, Amritsar. Hence the Rowlatt Act was the immediate trigger. ([jagranjosh.com](https://www.jagranjosh.com/articles/ias-prelims-general-studies-solved-question-paper-2007-1307667428-1?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 57,
+      "question_id": "UPSC_2007_GS1_Q57",
+      "question": "At which one of the following places did Mahatma Gandhi first start his Satyagraha in India?",
+      "options": {
+        "a": "Ahmedabad",
+        "b": "Bardoli",
+        "c": "Champaran",
+        "d": "Kheda"
+      },
+      "answer": "c",
+      "subject": "Modern History",
+      "sub_topic": "Gandhian Mass Movements (1915-1942)",
+      "difficulty": "easy",
+      "explanation": "Mahatma Gandhi’s first experiment with Satyagraha in India was the indigo-peasants’ movement at Champaran, Bihar, in 1917; Ahmedabad (1918), Kheda (1918) and Bardoli (1928) came later. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Champaran_District?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 58,
+      "question_id": "UPSC_2007_GS1_Q58",
+      "question": "Who among the following started the newspaper \"Shome Prakash\"?",
+      "options": {
+        "a": "Dayanand Saraswati",
+        "b": "Ishwar Chandra Vidyasagar",
+        "c": "Raja Rammohun Roy",
+        "d": "Surendranath Banerjee"
+      },
+      "answer": "b",
+      "subject": "Modern History",
+      "sub_topic": "Social & Religious Reform Movements",
+      "difficulty": "moderate",
+      "explanation": "The weekly ‘Shome Prakash’ (Som Prakash) was started in 1858-59 by the Bengali reformer Ishwar Chandra Vidyasagar under the editorship of Dwarakanath Vidyabhushan. It was not launched by Dayanand Saraswati, Raja Rammohun Roy or Surendranath Banerjee. ([sarthaks.com](https://www.sarthaks.com/2711445/who-started-the-newspaper-shom-prakash?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 59,
+      "question_id": "UPSC_2007_GS1_Q59",
+      "question": "The ruler of which one of the following States was removed from power by the British on the pretext of misgovernance?",
+      "options": {
+        "a": "Awadh",
+        "b": "Jhansi",
+        "c": "Nagpur",
+        "d": "Satara"
+      },
+      "answer": "a",
+      "subject": "Modern History",
+      "sub_topic": "Advent Of Europeans & British Expansion",
+      "difficulty": "moderate",
+      "explanation": "Nawab Wajid Ali Shah of Awadh was deposed and his state annexed in 1856 by Lord Dalhousie on the alleged ground of ‘misgovernance’. Jhansi and Nagpur were annexed under the Doctrine of Lapse, while Satara had already been taken in 1848. ([web.shriramias.in](https://web.shriramias.in/upsc-zone/political-causes-of-the-revolt-of-1857/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 60,
+      "question_id": "UPSC_2007_GS1_Q60",
+      "question": "Who among the following Europeans were the last to come to pre-independence India as traders?",
+      "options": {
+        "a": "Dutch",
+        "b": "English",
+        "c": "French",
+        "d": "Portuguese"
+      },
+      "answer": "c",
+      "subject": "Modern History",
+      "sub_topic": "Advent Of Europeans & British Expansion",
+      "difficulty": "easy",
+      "explanation": "Of the European powers listed, the French East India Company was the last to establish trading operations in India (chartered 1664), after the Portuguese (1498), English (1600) and Dutch (1602). Hence the French were the last to arrive as traders. ([doubtnut.com](https://www.doubtnut.com/qna/648594548?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 61,
+      "question_id": "UPSC_2007_GS1_Q61",
+      "question": "Consider the following statements:\n1. Robert Clive was the first Governor-General of Bengal.\n2. William Bentinck was the first Governor-General of India.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "b",
+      "subject": "Modern History",
+      "sub_topic": "British Administration & Economic Policies",
+      "difficulty": "moderate",
+      "explanation": "Statement 1 is incorrect: Warren Hastings, not Robert Clive, became the first Governor-General of Bengal in 1773. Statement 2 is correct: after the Charter Act 1833, Lord William Bentinck was styled the first Governor-General of India. Therefore only Statement 2 is true. ([iasbook.com](https://www.iasbook.com/governor-governor-general-viceroy-questions/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 62,
+      "question_id": "UPSC_2007_GS1_Q62",
+      "question": "Which one of the following was the first fort constructed by the British in India?",
+      "options": {
+        "a": "Fort William",
+        "b": "Fort St. George",
+        "c": "Fort St. David",
+        "d": "Fort St. Angelo"
+      },
+      "answer": "b",
+      "subject": "Modern History",
+      "sub_topic": "Advent Of Europeans & British Expansion",
+      "difficulty": "easy",
+      "explanation": "Fort St. George at Madras (founded 1639, completed 1644) was the first English/British fortress built in India; the other forts listed were constructed later or by other European powers. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Fort_St._George?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 63,
+      "question_id": "UPSC_2007_GS1_Q63",
+      "question": "The song ‘Amar Sonar Bangla’, written during the Swadeshi Movement of India, inspired the Liberation Struggle of Bangladesh and was adopted as the National Anthem of Bangladesh. Who wrote this song?",
+      "options": {
+        "a": "Rajni Kanta Sen",
+        "b": "Dwijendralal Ray",
+        "c": "Mukunda Das",
+        "d": "Rabindranath Tagore"
+      },
+      "answer": "d",
+      "subject": "Modern History",
+      "sub_topic": "Early Nationalism & Indian National Congress (1885-1915)",
+      "difficulty": "easy",
+      "explanation": "The patriotic song ‘Amar Sonar Bangla’ was composed by Rabindranath Tagore in 1905 during the anti-partition Swadeshi agitation; it later became Bangladesh’s national anthem. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Amar_Sonar_Bangla?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 64,
+      "question_id": "UPSC_2007_GS1_Q64",
+      "question": "The first Factory Act restricting the working hours of women and children and authorizing local governments to make necessary rules was adopted during whose time?",
+      "options": {
+        "a": "Lord Lytton",
+        "b": "Lord Bentinck",
+        "c": "Lord Ripon",
+        "d": "Lord Canning"
+      },
+      "answer": "c",
+      "subject": "Modern History",
+      "sub_topic": "British Administration & Economic Policies",
+      "difficulty": "moderate",
+      "explanation": "India’s first Factory Act (1881) – which limited working hours for women/children and empowered local authorities to frame rules – was enacted under Viceroy Lord Ripon (1880-84). ([britannica.com](https://www.britannica.com/topic/Bombay-Presidency-Association?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 65,
+      "question_id": "UPSC_2007_GS1_Q65",
+      "question": "Who among the following wrote the book \"Bahubivah\"?",
+      "options": {
+        "a": "Raja Rammohun Roy",
+        "b": "Ishwar Chandra Vidyasagar",
+        "c": "Pandita Rambai",
+        "d": "Rabindranath Tagore"
+      },
+      "answer": "b",
+      "subject": "Modern History",
+      "sub_topic": "Social & Religious Reform Movements",
+      "difficulty": "easy",
+      "explanation": "‘Bahubivah’ (1871), arguing against polygamy, was authored by the Bengali reformer Ishwar Chandra Vidyasagar; the other figures did not write this tract. ([mpaathshaala.com](https://www.mpaathshaala.com/who-wrote-the-book-bahubivah/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 66,
+      "question_id": "UPSC_2007_GS1_Q66",
+      "question": "In which one of the following districts have reserves of diamond-bearing kimberlite been discovered in the recent past?",
+      "options": {
+        "a": "Hoshangabad",
+        "b": "Raipur",
+        "c": "Sambalpur",
+        "d": "Warangal"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "Economic & Mineral Geography",
+      "difficulty": "moderate",
+      "explanation": "Extensive diamond-bearing kimberlite pipes were discovered in the Mainpur (South-Eastern Raipur) Kimberlite Field of Raipur district, Chhattisgarh, giving the district about 28 % of India’s diamond reserves; the other districts have no comparable recent finds. ([aspireias.com](https://www.aspireias.com/upsc-general-study-10years-paper/2007?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 67,
+      "question_id": "UPSC_2007_GS1_Q67",
+      "question": "Where is Copacabana Beach located?",
+      "options": {
+        "a": "Buenos Aires",
+        "b": "Hawaiian Islands",
+        "c": "Rio de Janeiro",
+        "d": "Valletta"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "World Physical Geography",
+      "difficulty": "easy",
+      "explanation": "Copacabana is a coastal district of Rio de Janeiro, Brazil, famous for its 4-km-long Copacabana Beach; none of the other locations listed (Buenos Aires, Hawaiian Islands, Valletta) contain a beach by this name. ([britannica.com](https://www.britannica.com/place/Copacabana?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 68,
+      "question_id": "UPSC_2007_GS1_Q68",
+      "question": "With reference to the steel industry in India in recent times, consider the following statements:\n1. Vizag Steel Plant (RINL) has been declared a Mini-Ratna.\n2. Merger of IISCO with SAIL has been completed.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "c",
+      "subject": "Indian Economy",
+      "sub_topic": "Infrastructure & Industry",
+      "difficulty": "moderate",
+      "explanation": "1. Rashtriya Ispat Nigam Ltd. (Vizag Steel Plant) was granted Mini-Ratna (Category-I) status in 2006, so statement 1 is true. ([business-standard.com](https://www.business-standard.com/article/companies/rinl-is-now-a-navratna-110111700070_1.html)) 2. The Indian Iron & Steel Company (IISCO) was formally amalgamated with Steel Authority of India Ltd. with effect from 16 February 2006, so statement 2 is also true. ([sail.co.in](https://sail.co.in/en/sail-news/iisco-amalgamated-sail)) Hence, both statements are correct.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 69,
+      "question_id": "UPSC_2007_GS1_Q69",
+      "question": "The Stilwell Road, built in the 1940s, which has recently been in news, connects which of the following?",
+      "options": {
+        "a": "Agartala in India and Yangon in Myanmar via Bangladesh",
+        "b": "Ledo in India and Kunming in China via Myanmar",
+        "c": "Kalimpong in India and Lhasa in Tibet via Bhutan",
+        "d": "Imphal in India and Bangkok in Thailand via Myanmar"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "Transport & Infrastructure Geography",
+      "difficulty": "moderate",
+      "explanation": "The Stilwell (Ledo) Road, constructed during World War II, starts at Ledo in Assam (India), traverses northern Myanmar, and joins the Burma Road to reach Kunming in Yunnan (China). Therefore option (b) accurately states the terminal points; the other options describe unrelated routes. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Ledo_Road?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 70,
+      "question_id": "UPSC_2007_GS1_Q70",
+      "question": "Which one of the following is also known as Top Slip?",
+      "options": {
+        "a": "Simlipal National Park",
+        "b": "Periyar Wildlife Sanctuary",
+        "c": "Manjira Wildlife Sanctuary",
+        "d": "Indira Gandhi Wildlife Sanctuary and National Park"
+      },
+      "answer": "d",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Protected Areas & Wildlife",
+      "difficulty": "easy",
+      "explanation": "“Top Slip” is the popular tourist zone on the northeast edge of Indira Gandhi Wildlife Sanctuary & National Park (also called Anamalai Tiger Reserve) in Tamil Nadu; hence option (d) is correct. The sanctuaries in options (a), (b), and (c) are in other states and are not known by this nickname. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Anamalai_Tiger_Reserve?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 71,
+      "question_id": "UPSC_2007_GS1_Q71",
+      "question": "Where are the Shevaroy Hills located?",
+      "options": {
+        "a": "Andhra Pradesh",
+        "b": "Karnataka",
+        "c": "Kerala",
+        "d": "Tamil Nadu"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "Indian Physical Geography",
+      "difficulty": "easy",
+      "explanation": "The Shevaroy (Servarayan) Hills form part of the Eastern Ghats near Salem and the hill-station Yercaud in the state of Tamil Nadu, making option (d) correct; the hills are not situated in Andhra Pradesh, Karnataka, or Kerala. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Servarayan_Hills?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 72,
+      "question_id": "UPSC_2007_GS1_Q72",
+      "question": "Which one of the following is the correct sequence in the decreasing order of production (in million tonnes) of the given food grains in India?",
+      "options": {
+        "a": "Wheat – Rice – Pulses – Coarse Cereals",
+        "b": "Rice – Wheat – Pulses – Coarse Cereals",
+        "c": "Wheat – Rice – Coarse Cereals – Pulses",
+        "d": "Rice – Wheat – Coarse Cereals – Pulses"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "Indian Agriculture & Land Use",
+      "difficulty": "moderate",
+      "explanation": "Government estimates for 2006-07 put output at about Rice 92.8 Mt, Wheat 74.9 Mt, Coarse Cereals 34.3 Mt and Pulses 14.2 Mt. Hence the descending order is Rice > Wheat > Coarse Cereals > Pulses, i.e. option (d). Other sequences place the lower-producing pulses or coarse cereals too high and are therefore incorrect. ([rediff.com](https://www.rediff.com/money/2007/jul/21food.htm?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 73,
+      "question_id": "UPSC_2007_GS1_Q73",
+      "question": "What is the average distance (approximate) between the Sun and the Earth?",
+      "options": {
+        "a": "70 × 10^5 km",
+        "b": "70 × 10^6 km",
+        "c": "70 × 10^7 km",
+        "d": "70 × 10^8 km"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "Astronomy & Earth–Sun System",
+      "difficulty": "easy",
+      "explanation": "One astronomical unit, the mean Sun-Earth distance, is about 149.6 million km, conventionally taken as 150 × 10⁶ km. Option (d) matches this value; the other options (7 ×10⁶ km, 7 ×10⁷ km, 7 ×10⁸ km) are orders of magnitude off. ([focusias.in](https://focusias.in/upsc-general-studies-prelims-paper-2009/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 74,
+      "question_id": "UPSC_2007_GS1_Q74",
+      "question": "Which one of the following cities does NOT have the same clock time as that of the other cities at any given instant?",
+      "options": {
+        "a": "London (UK)",
+        "b": "Lisbon (Portugal)",
+        "c": "Accra (Ghana)",
+        "d": "Addis Ababa (Ethiopia)"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "Astronomy & Earth–Sun System",
+      "difficulty": "moderate",
+      "explanation": "London (UK) and Lisbon (Portugal) keep Western European Time (UTC + 0) and shift together to UTC + 1 in summer; Accra (Ghana) stays on GMT (UTC + 0) all year. Addis Ababa (Ethiopia) uses East Africa Time (UTC + 3) and never coincides with the others, so it is the city that does NOT share the same clock time. ([en.wikipedia.org](https://en.wikipedia.org/wiki/UTC%2B00%3A00?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 75,
+      "question_id": "UPSC_2007_GS1_Q75",
+      "question": "Assertion (A): River Kalinadi is an east-flowing river in the southern part of India.\nReason (R): The Deccan Plateau is higher along its western edge and gently slopes towards the Bay of Bengal in the east.",
+      "options": {
+        "a": "Both A and R are true and R is the correct explanation of A",
+        "b": "Both A and R are true but R is not the correct explanation of A",
+        "c": "A is true but R is false",
+        "d": "A is false but R is true"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "Indian Rivers & Water Resources",
+      "difficulty": "moderate",
+      "explanation": "The Kali (Kalinadi) in Karnataka is a west-flowing river that rises in the Western Ghats and empties into the Arabian Sea, so Assertion is false. The Deccan Plateau is indeed higher along the Western Ghats and tilts gently eastwards toward the Bay of Bengal, so the Reason is true. Therefore option (d) is correct (A false, R true). ([karnataka.pscnotes.com](https://karnataka.pscnotes.com/geography-karnataka/rivers-and-drainage-system-of-karnataka/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 76,
+      "question_id": "UPSC_2007_GS1_Q76",
+      "question": "Assertion (A): There are no tea plantations in any African country.\nReason (R): Tea plants need fertile soil with high humus.",
+      "options": {
+        "a": "Both A and R are true and R is the correct explanation of A",
+        "b": "Both A and R are true but R is not the correct explanation of A",
+        "c": "A is true but R is false",
+        "d": "A is false but R is true"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "Indian Agriculture & Land Use",
+      "difficulty": "easy",
+      "explanation": "Africa has extensive tea estates—Kenya alone is one of the world’s top producers—so the Assertion is false. Tea does require deep, acidic, humus-rich, well-drained soils, making the Reason correct. Hence option (d) (A false, R true) is the valid choice. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Tea_production_in_Kenya?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 77,
+      "question_id": "UPSC_2007_GS1_Q77",
+      "question": "Which of the following National Highways passes through Maharashtra, Chhattisgarh and Orissa?",
+      "options": {
+        "a": "NH-4",
+        "b": "NH-5",
+        "c": "NH-6",
+        "d": "NH-7"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "Transport & Infrastructure Geography",
+      "difficulty": "moderate",
+      "explanation": "Old National Highway-6 (now mostly renumbered as NH-53) ran from Surat to Kolkata via Maharashtra, Chhattisgarh and Odisha, so it is the only highway in the list that passes through all three states. NH-4 (Mumbai–Chennai), NH-5 (Chennai–Kolkata coastal route) and NH-7 (Varanasi–Kanyakumari) do not cover this combination of states. ([en.wikipedia.org](https://en.wikipedia.org/wiki/National_Highway_6_%28India%2C_old_numbering%29?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 78,
+      "question_id": "UPSC_2007_GS1_Q78",
+      "question": "Consider the following statements :\n1. Balaghat is known for its diamond mines.\n2. Majhgawan is known for its manganese deposits.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "Economic & Mineral Geography",
+      "difficulty": "moderate",
+      "explanation": "Balaghat district in Madhya Pradesh is famous for manganese (about 80 % of India’s output) and copper, not diamonds; Majhgawan in Panna district hosts India’s only mechanised diamond mine, not manganese. Hence both statements are incorrect. ([balaghat.nic.in](https://balaghat.nic.in/en/economy/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 79,
+      "question_id": "UPSC_2007_GS1_Q79",
+      "question": "Which one of the following States of India has the lowest density of population?",
+      "options": {
+        "a": "Himachal Pradesh",
+        "b": "Meghalaya",
+        "c": "Arunachal Pradesh",
+        "d": "Sikkim"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "Population & Demography",
+      "difficulty": "easy",
+      "explanation": "According to the 2001 Census, population densities (persons / km²) were: Himachal Pradesh 109, Meghalaya 103, Sikkim 76 and Arunachal Pradesh 13. Arunachal Pradesh therefore has the lowest density among the four states listed. ([mapsofindia.com](https://www.mapsofindia.com/census2011/population-density.html?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 80,
+      "question_id": "UPSC_2007_GS1_Q80",
+      "question": "Match List-I with List-II and select the correct answer using the code given below the Lists :\nList-I (City)\nA. Bangkok\nB. Phnom-Penh\nC. Hanoi\nD. Yangon\nList-II (River)\n1. Irrawaddy\n2. Mekong\n3. Menam (Chao Phraya)\n4. Red River",
+      "options": {
+        "a": "A-3  B-2  C-4  D-1",
+        "b": "A-4  B-1  C-3  D-2",
+        "c": "A-3  B-1  C-4  D-2",
+        "d": "A-4  B-2  C-3  D-1"
+      },
+      "answer": "a",
+      "subject": "Geography",
+      "sub_topic": "World Physical Geography",
+      "difficulty": "moderate",
+      "explanation": "Bangkok stands on the Chao Phraya (Menam) River; Phnom-Penh lies on the Mekong; Hanoi is situated on the Red River; and Yangon is near the mouth of the Irrawaddy. Thus the correct matching is A-3, B-2, C-4, D-1, corresponding to option (a). ([en.wikipedia.org](https://en.wikipedia.org/wiki/Bangkok?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 81,
+      "question_id": "UPSC_2007_GS1_Q81",
+      "question": "Consider the following statements:\n1. Either of the two belts over the ocean at about 30°–35° N and S latitudes is known as Horse Latitude.\n2. Horse Latitudes are low-pressure belts.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "a",
+      "subject": "Geography",
+      "sub_topic": "Atmosphere & Climatology",
+      "difficulty": "moderate",
+      "explanation": "The Horse Latitudes are two subtropical belts over the oceans around 30°–35° N and S (statement 1 true). They are regions of descending air and therefore form subtropical HIGH-pressure (anticyclonic) zones, not low-pressure belts, making statement 2 false. ([britannica.com](https://www.britannica.com/science/horse-latitude?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 82,
+      "question_id": "UPSC_2007_GS1_Q82",
+      "question": "Which one among the following rivers originates at Amarkantak?",
+      "options": {
+        "a": "Damodar",
+        "b": "Mahanadi",
+        "c": "Narmada",
+        "d": "Tapi"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "Indian Rivers & Water Resources",
+      "difficulty": "easy",
+      "explanation": "The Narmada rises from the Narmada Kund on the Amarkantak Plateau in Madhya Pradesh, so option (c) is correct. Damodar starts in the Chota Nagpur plateau, Mahanadi at Sihawa, and Tapi near Betul in the Satpuras, none of which are at Amarkantak. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Narmada_River?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 83,
+      "question_id": "UPSC_2007_GS1_Q83",
+      "question": "Which one among the following rivers is the longest?",
+      "options": {
+        "a": "Amazon",
+        "b": "Amur",
+        "c": "Congo",
+        "d": "Lena"
+      },
+      "answer": "a",
+      "subject": "Geography",
+      "sub_topic": "World Physical Geography",
+      "difficulty": "easy",
+      "explanation": "The Amazon is about 6,400–7,000 km long, making it the world’s—and certainly this list’s—longest river ([britannica.com](https://www.britannica.com/story/how-long-is-the-amazon-river?utm_source=openai)). Congo is ~4,700 km ([timesofindia.indiatimes.com](https://timesofindia.indiatimes.com/life-style/travel/the-worlds-deepest-river-how-the-congo-reaches-depths-equal-to-a-70-storey-building/articleshow/125815816.cms?utm_source=openai)), Lena ~4,400 km ([britannica.com](https://www.britannica.com/place/Lena-River?utm_source=openai)) and Amur ~4,444 km ([en.wikipedia.org](https://en.wikipedia.org/wiki/Amur?utm_source=openai)), all clearly shorter than the Amazon.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 84,
+      "question_id": "UPSC_2007_GS1_Q84",
+      "question": "Which one among the following major cities is most eastward located?",
+      "options": {
+        "a": "Hyderabad",
+        "b": "Bhopal",
+        "c": "Lucknow",
+        "d": "Raipur"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "Indian Physical Geography",
+      "difficulty": "moderate",
+      "explanation": "Raipur lies at about 81°38′E ([geocords.com](https://www.geocords.com/place/raipur-chhattisgarh-india-157683/?utm_source=openai)), which is east of Lucknow (80°57′E) ([en.wikipedia.org](https://en.wikipedia.org/wiki/Lucknow)), Hyderabad (78°28′E) ([en.wikipedia.org](https://en.wikipedia.org/wiki/Geography_of_Hyderabad?utm_source=openai)) and Bhopal (77°25′E) ([coordinatesfinder.com](https://www.coordinatesfinder.com/coordinates/116422-bhopal?utm_source=openai)), making Raipur the most east-lying city among the four.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 85,
+      "question_id": "UPSC_2007_GS1_Q85",
+      "question": "Out of the Southern States – Andhra Pradesh, Karnataka, Kerala and Tamil Nadu – which shares boundaries with the maximum number of Indian States?",
+      "options": {
+        "a": "Andhra Pradesh only",
+        "b": "Karnataka only",
+        "c": "Each of Andhra Pradesh and Karnataka",
+        "d": "Each of Tamil Nadu and Kerala"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "Indian Political Geography & Borders",
+      "difficulty": "moderate",
+      "explanation": "Before Telangana’s creation, Andhra Pradesh touched Odisha, Chhattisgarh, Maharashtra, Karnataka and Tamil Nadu—five states ([en.wikipedia.org](https://en.wikipedia.org/wiki/Andhra_Pradesh?utm_source=openai)). Karnataka borders Maharashtra, Goa, Andhra Pradesh, Tamil Nadu and Kerala—also five ([en.wikipedia.org](https://en.wikipedia.org/wiki/Karnataka?utm_source=openai)). Tamil Nadu (3) and Kerala (2) adjoin fewer neighbours, so both Andhra Pradesh and Karnataka share the maximum, validating option (c).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 86,
+      "question_id": "UPSC_2007_GS1_Q86",
+      "question": "Match List-I with List-II and select the correct answer using the code given below the Lists :\nList-I (Aluminium Company)\nA. BALCO\nB. HINDALCO\nC. Indian Aluminium Company\nD. NALCO\nList-II (Location)\n1. Hirakud\n2. Korba\n3. Koraput\n4. Renukoot",
+      "options": {
+        "a": "A-3  B-1  C-4  D-2",
+        "b": "A-2  B-4  C-1  D-3",
+        "c": "A-3  B-4  C-1  D-2",
+        "d": "A-2  B-1  C-4  D-3"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "Infrastructure & Industry",
+      "difficulty": "moderate",
+      "explanation": "BALCO’s smelter–power complex is at Korba, Chhattisgarh ([balcoindia.com](https://www.balcoindia.com/discover-balco/about-company/?utm_source=openai)); HINDALCO’s original unit is at Renukoot, Uttar Pradesh ([hindalco.com](https://www.hindalco.com/about-us/manufacturing/renukoot?utm_source=openai)); the former Indian Aluminium Company plant operates at Hirakud, Odisha ([en.wikipedia.org](https://en.wikipedia.org/wiki/Hirakud?utm_source=openai)); and NALCO’s mine–refinery is in Koraput district, Odisha ([nalcoindia.com](https://nalcoindia.com/pre-rel/nalco-contributes-%E2%82%B910-10-crore-to-saheed-laxman-nayak-medical-college-hospital-koraput/?utm_source=openai)). Thus the correct matching is A-2, B-4, C-1, D-3, corresponding to option (b).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 87,
+      "question_id": "UPSC_2007_GS1_Q87",
+      "question": "Which of the following is located in the Bastar region?",
+      "options": {
+        "a": "Bandhavgarh National Park",
+        "b": "Dandeli Sanctuary",
+        "c": "Rajaji National Park",
+        "d": "Indravati National Park"
+      },
+      "answer": "d",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Protected Areas & Wildlife",
+      "difficulty": "easy",
+      "explanation": "Indravati National Park is situated in the Bastar region of southern Chhattisgarh; none of the other parks listed (Bandhavgarh in Madhya Pradesh, Dandeli in Karnataka and Rajaji in Uttarakhand) lie in Bastar. ([bastar.gov.in](https://bastar.gov.in/en/tourism/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 88,
+      "question_id": "UPSC_2007_GS1_Q88",
+      "question": "Through which one of the following Straits does a tunnel connect the United Kingdom and France?",
+      "options": {
+        "a": "Davis Strait",
+        "b": "Denmark Strait",
+        "c": "Strait of Dover",
+        "d": "Strait of Gibraltar"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "World Physical Geography",
+      "difficulty": "easy",
+      "explanation": "The Channel Tunnel (also called the ‘Chunnel’) linking Folkestone (UK) with Coquelles/Calais (France) runs beneath the English Channel at the Strait of Dover; none of the other straits listed separate the UK from France. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Channel_Tunnel?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 89,
+      "question_id": "UPSC_2007_GS1_Q89",
+      "question": "Consider the following statements:\n1. The annual range of temperature is greater in the Pacific Ocean than in the Atlantic Ocean.\n2. The annual range of temperature is greater in the Northern Hemisphere than in the Southern Hemisphere.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "Atmosphere & Climatology",
+      "difficulty": "moderate",
+      "explanation": "1 is incorrect because the huge expanse of the Pacific Ocean provides greater thermal buffering, so its sea-surface temperatures vary less seasonally than those of the narrower Atlantic. 2 is correct because the Northern Hemisphere has far more land area than the Southern; land heats and cools faster than water, producing a larger annual temperature range. ([oyc.yale.edu](https://oyc.yale.edu/geology-and-geophysics/gg-140/lecture-17?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 90,
+      "question_id": "UPSC_2007_GS1_Q90",
+      "question": "The largest coral reef in the world is found near the coast of which one of the following countries?",
+      "options": {
+        "a": "Australia",
+        "b": "Cuba",
+        "c": "Ghana",
+        "d": "Philippines"
+      },
+      "answer": "a",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Ecosystems & Ecology Concepts",
+      "difficulty": "easy",
+      "explanation": "The world’s largest coral system is the Great Barrier Reef, stretching for over 2,300 km off the north-east coast of Australia; no comparably large reef exists off Cuba, Ghana or the Philippines. ([whc.unesco.org](https://whc.unesco.org/en/list/154?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 91,
+      "question_id": "UPSC_2007_GS1_Q91",
+      "question": "In which State is the Guru Shikhar Peak located?",
+      "options": {
+        "a": "Rajasthan",
+        "b": "Gujarat",
+        "c": "Madhya Pradesh",
+        "d": "Maharashtra"
+      },
+      "answer": "a",
+      "subject": "Geography",
+      "sub_topic": "Indian Physical Geography",
+      "difficulty": "easy",
+      "explanation": "Guru Shikhar (1,722 m) is the highest peak of the Aravalli Range and lies near Mount Abu in the Sirohi district of Rajasthan; it is not located in Gujarat, Madhya Pradesh or Maharashtra. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Guru_Shikhar?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 92,
+      "question_id": "UPSC_2007_GS1_Q92",
+      "question": "Match List-I with List-II and select the correct answer using the code given below the Lists :\nList-I (Town)\nA. Betul\nB. Jagdalpur\nC. Jabalpur\nD. Ujjain\nList-II (River)\n1. Indravati\n2. Narmada\n3. Shipra\n4. Tapti",
+      "options": {
+        "a": "A-1  B-4  C-2  D-3",
+        "b": "A-4  B-1  C-2  D-3",
+        "c": "A-4  B-1  C-3  D-2",
+        "d": "A-1  B-4  C-3  D-2"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "Indian Rivers & Water Resources",
+      "difficulty": "moderate",
+      "explanation": "Tapti originates in Betul district (Multai), Indravati flows by Jagdalpur, Narmada passes through Jabalpur, and Ujjain is situated on the Shipra; therefore the pairing A-4, B-1, C-2, D-3 matches option (b). ([jagranjosh.com](https://www.jagranjosh.com/articles/ias-prelims-general-studies-solved-question-paper-2007-1307667428-1))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 93,
+      "question_id": "UPSC_2007_GS1_Q93",
+      "question": "Dalbergia species is associated with which one of the following?",
+      "options": {
+        "a": "Cashew-nut",
+        "b": "Coffee",
+        "c": "Tea",
+        "d": "Rosewood"
+      },
+      "answer": "d",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Sustainable Agriculture & Forestry",
+      "difficulty": "easy",
+      "explanation": "Dalbergia is the genus that yields commercial rosewoods such as Dalbergia latifolia and D. sissoo; it is not related to cashew, coffee or tea, so ‘Rosewood’ is the correct association. ([jagranjosh.com](https://www.jagranjosh.com/articles/ias-prelims-general-studies-solved-question-paper-2007-1307667428-1))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 94,
+      "question_id": "UPSC_2007_GS1_Q94",
+      "question": "Consider the following statements :\n1. In India, Red Panda is naturally found in the western Himalaya only.\n2. In India, Slow Loris lives in the dense forests of the North-East.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Protected Areas & Wildlife",
+      "difficulty": "moderate",
+      "explanation": "The Red Panda’s natural Indian range is the eastern Himalaya (Sikkim, West Bengal, Arunachal Pradesh), not the western Himalaya, making statement 1 false. The Bengal Slow Loris inhabits the dense evergreen forests of North-East India, so statement 2 is correct; hence only statement 2 is true. ([jagranjosh.com](https://www.jagranjosh.com/articles/ias-prelims-general-studies-solved-question-paper-2007-1307667428-1))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 95,
+      "question_id": "UPSC_2007_GS1_Q95",
+      "question": "Shahgarh area in Jaisalmer district of Rajasthan was in news in the year 2006 because of which one of the following?",
+      "options": {
+        "a": "Finding high-quality gas reserves",
+        "b": "Finding uranium deposit",
+        "c": "Finding zinc deposit",
+        "d": "Installation of wind-power units"
+      },
+      "answer": "a",
+      "subject": "Current Affairs",
+      "sub_topic": "Business & Economy",
+      "difficulty": "easy",
+      "explanation": "In 2006 the Shahgarh sector of Jaisalmer, Rajasthan, was reported for a new discovery of high-quality natural gas reserves, not uranium, zinc, or wind-power installations. ([jagranjosh.com](https://www.jagranjosh.com/articles/ias-prelims-general-studies-solved-question-paper-2007-1307667428-1))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 96,
+      "question_id": "UPSC_2007_GS1_Q96",
+      "question": "Basel II relates to which one of the following?",
+      "options": {
+        "a": "International standard for safety in civil aviation",
+        "b": "Measure against cyber crimes",
+        "c": "Measure against drug abuse by sportspersons",
+        "d": "International standards for measuring the adequacy of a bank’s capital"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "Banking & Financial Sector",
+      "difficulty": "easy",
+      "explanation": "Basel II is the second accord issued by the Basel Committee on Banking Supervision that prescribes international standards for measuring a bank’s capital adequacy in relation to its risk-weighted assets. ([jagranjosh.com](https://www.jagranjosh.com/articles/ias-prelims-general-studies-solved-question-paper-2007-1307667428-1))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 97,
+      "question_id": "UPSC_2007_GS1_Q97",
+      "question": "Which one of the following is the correct sequence in the decreasing order of contribution of different sectors to the Gross Domestic Product of India?",
+      "options": {
+        "a": "Service – Industry – Agriculture",
+        "b": "Service – Agriculture – Industry",
+        "c": "Industry – Service – Agriculture",
+        "d": "Industry – Agriculture – Service"
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "National Income & Economic Growth",
+      "difficulty": "easy",
+      "explanation": "For the mid-2000s the services sector contributed the largest share to India’s GDP (about 54%), followed by industry (~26%), and agriculture (~20%). Thus the correct descending order is Service – Industry – Agriculture; any option placing agriculture or industry ahead of services is inconsistent with national accounts data. ([federalreserve.gov](https://www.federalreserve.gov/pubs/ifdp/2007/913/ifdp913.htm))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 98,
+      "question_id": "UPSC_2007_GS1_Q98",
+      "question": "Consider the following statements:\n1. The repo rate is the rate at which other banks borrow from the Reserve Bank of India.\n2. A value of 1 for the Gini Coefficient in a country implies that there is perfectly equal income for everyone in its population.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "Monetary Policy & Money Supply",
+      "difficulty": "moderate",
+      "explanation": "1. The repo rate is defined by the RBI as the rate at which it lends short-term funds to commercial banks, i.e., banks borrow from the RBI at this rate—so Statement 1 is correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Reserve_Bank_of_India)) 2. The Gini coefficient ranges from 0 (perfect equality) to 1 (perfect inequality); therefore a value of 1 denotes complete inequality, not equality—so Statement 2 is wrong. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Gini_coefficient)) Hence only Statement 1 is correct.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 99,
+      "question_id": "UPSC_2007_GS1_Q99",
+      "question": "The National Housing Bank was set up in India as a wholly-owned subsidiary of which one of the following?",
+      "options": {
+        "a": "State Bank of India",
+        "b": "Reserve Bank of India",
+        "c": "ICICI Bank",
+        "d": "Life Insurance Corporation of India"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "Banking & Financial Sector",
+      "difficulty": "easy",
+      "explanation": "The National Housing Bank (NHB), created under the NHB Act 1987, was set up in July 1988 as a wholly-owned subsidiary of the Reserve Bank of India; the RBI held 100 % of its capital until the stake was transferred to the Government in 2019. ([realty.economictimes.indiatimes.com](https://realty.economictimes.indiatimes.com/news/industry/government-notifies-taking-over-of-national-housing-bank-from-rbi/69116319)) Therefore the parent body at the time of the question (2007) was the Reserve Bank of India.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 100,
+      "question_id": "UPSC_2007_GS1_Q100",
+      "question": "Tarapur Committee was associated with which one of the following?",
+      "options": {
+        "a": "Special Economic Zones",
+        "b": "Fuller capital account convertibility",
+        "c": "Foreign exchange reserves",
+        "d": "Effect of oil prices on the Indian economy"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "External Sector & Balance Of Payments",
+      "difficulty": "easy",
+      "explanation": "The S.S. Tarapore Committee (1997) was constituted by the RBI to lay down a road-map for full or ‘fuller’ capital account convertibility (CAC) of the rupee, recommending a phased approach toward CAC by 1999-2000. ​Other listed topics such as SEZs or oil prices were not the committee’s mandate. ([business-standard.com](https://www.business-standard.com/article/specials/tarapore-panel-favours-full-convertibility-by-2000-197060401016_1.html))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 101,
+      "question_id": "UPSC_2007_GS1_Q101",
+      "question": "Who among the following served as the Chief Economist of the International Monetary Fund?",
+      "options": {
+        "a": "Ashok Lahiri",
+        "b": "Sumantra Ghosal",
+        "c": "Saumitra Chaudhuri",
+        "d": "Raghuram Rajan"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "International Institutions & Reports",
+      "difficulty": "easy",
+      "explanation": "Indian economist Raghuram G. Rajan served as the 7th Chief Economist (Economic Counsellor and Director of Research) of the International Monetary Fund from September 2003 to January 2007. The other individuals named have not held that IMF post. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Raghuram_Rajan))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 102,
+      "question_id": "UPSC_2007_GS1_Q102",
+      "question": "Participatory Notes (PNs) are associated with which one of the following?",
+      "options": {
+        "a": "Consolidated Fund of India",
+        "b": "Foreign Institutional Investors",
+        "c": "United Nations Development Programme",
+        "d": "Kyoto Protocol"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "Financial Markets & Capital Markets",
+      "difficulty": "easy",
+      "explanation": "Participatory Notes (P-Notes) are offshore derivative instruments issued abroad by registered Foreign Institutional Investors (FIIs) to overseas clients who wish to invest in Indian securities without registering with SEBI. Hence they are directly linked to FIIs and have nothing to do with the Consolidated Fund, UNDP programmes or the Kyoto climate regime. ([scribd.com](https://www.scribd.com/document/818283438/2007-GS1-Set-A-Wth-Answers))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 103,
+      "question_id": "UPSC_2007_GS1_Q103",
+      "question": "Which one of the following is another name of RDX?",
+      "options": {
+        "a": "Cyanohydrin",
+        "b": "Dextran",
+        "c": "Cyclohexane",
+        "d": "Cyclonite"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Chemistry",
+      "difficulty": "easy",
+      "explanation": "RDX (Research Department Explosive) is the common name for cyclotrimethylenetrinitramine, which is also called Cyclonite (or Hexogen). It is not known as cyanohydrin, dextran (a polysaccharide) or cyclohexane (a simple hydrocarbon). ([scribd.com](https://www.scribd.com/document/818283438/2007-GS1-Set-A-Wth-Answers))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 104,
+      "question_id": "UPSC_2007_GS1_Q104",
+      "question": "Which one of the following non-metals is NOT a poor conductor of electricity?",
+      "options": {
+        "a": "Sulphur",
+        "b": "Selenium",
+        "c": "Bromide",
+        "d": "Phosphorus"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Electrical Conductivity of Non-metals",
+      "difficulty": "moderate",
+      "explanation": "Among the listed non-metals, selenium behaves as a semiconductor; its electrical conductivity increases on illumination or heating, so it is not a ‘poor’ conductor. Sulphur, bromine (listed as bromide) and phosphorus are all very poor conductors of electricity. ([scribd.com](https://www.scribd.com/document/818283438/2007-GS1-Set-A-Wth-Answers))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 105,
+      "question_id": "UPSC_2007_GS1_Q105",
+      "question": "Robert Webster is known for his work associated with which one of the following?",
+      "options": {
+        "a": "Cardiology",
+        "b": "Influenza virus",
+        "c": "HIV/AIDS",
+        "d": "Alzheimer"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Health & Diseases",
+      "difficulty": "easy",
+      "explanation": "Dr. Robert Gordon Webster is an internationally renowned virologist whose pioneering work on the ecology, genetics and pandemic potential of influenza A (particularly avian flu) earned him the nickname “Flu Hunter”. He is not known for cardiology, HIV/AIDS or Alzheimer research. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Robert_Webster_%28virologist%29?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 106,
+      "question_id": "UPSC_2007_GS1_Q106",
+      "question": "Consider the following statements :\n1. If magenta and yellow coloured circles intersect, the intersected area will have red colour.\n2. If cyan and magenta coloured circles intersect, the intersected area will have blue colour.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Physics",
+      "difficulty": "moderate",
+      "explanation": "In subtractive colour mixing used for printing, yellow pigment absorbs blue while magenta absorbs green; their overlap therefore reflects red. Cyan absorbs red while magenta absorbs green; their overlap reflects blue. Both statements are thus correct. ([rkm.com.au](https://www.rkm.com.au/ANIMATIONS/Animation-CMYK-subtractive-colour-mixing.html?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 107,
+      "question_id": "UPSC_2007_GS1_Q107",
+      "question": "Consider the following statements:\n1. A flute of smaller length gives waves of lower frequency.\n2. Sound travels in rocks in the form of longitudinal elastic waves only.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Physics",
+      "difficulty": "moderate",
+      "explanation": "A flute behaves like an open organ pipe in which frequency is inversely proportional to length, so a shorter flute produces HIGHER (not lower) frequency. In rocks, seismic energy propagates as both longitudinal (P-) and transverse (S-) elastic waves, not only longitudinal ones. Hence neither statement is correct. ([aspireias.com](https://www.aspireias.com/upsc-general-study-10years-paper/2007))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 108,
+      "question_id": "UPSC_2007_GS1_Q108",
+      "question": "Four wires of the same material and of the dimensions given below are stretched by equal loads separately. Which one of them will be elongated the maximum?",
+      "options": {
+        "a": "Wire of 1 m length and 2 mm diameter",
+        "b": "Wire of 2 m length and 2 mm diameter",
+        "c": "Wire of 3 m length and 1.5 mm diameter",
+        "d": "Wire of 1 m length and 1 mm diameter"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Physics",
+      "difficulty": "moderate",
+      "explanation": "Under the same load, extension ΔL ∝ (L)/(A E); with identical material the Young’s modulus E is constant, so the ratio L/Area decides. Calculating π(d/2)² for each wire shows the 3 m-long, 1.5 mm-diameter wire has the largest L/A and therefore the greatest elongation. ([aspireias.com](https://www.aspireias.com/upsc-general-study-10years-paper/2007))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 109,
+      "question_id": "UPSC_2007_GS1_Q109",
+      "question": "Which one of the following parts of the pitcher plant becomes modified into a pitcher?",
+      "options": {
+        "a": "Stem",
+        "b": "Leaf",
+        "c": "Stipule",
+        "d": "Petiole"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Biology",
+      "difficulty": "easy",
+      "explanation": "In Nepenthes (pitcher plant) the lamina of the LEAF is modified into a pitcher that traps insects; the leaf apex forms the lid, while the stem, petiole and stipule remain unmodified. ([aspireias.com](https://www.aspireias.com/upsc-general-study-10years-paper/2007))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 110,
+      "question_id": "UPSC_2007_GS1_Q110",
+      "question": "Assertion (A): A jet aircraft moving at Mach number equal to 1 travels faster at an altitude of 15 km than while moving at Mach number equal to 1 near sea level.\nReason (R): The velocity of sound depends on the temperature of the surrounding medium.",
+      "options": {
+        "a": "Both A and R are true and R is the correct explanation of A",
+        "b": "Both A and R are true but R is NOT the correct explanation of A",
+        "c": "A is true but R is false",
+        "d": "A is false but R is true"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Physics",
+      "difficulty": "moderate",
+      "explanation": "Reason is true: the local speed of sound v ∝ √T, so it decreases with lower temperature. At 15 km altitude the air is much colder, so Mach 1 equals a LOWER speed than at sea level; therefore a jet at Mach 1 is actually slower aloft, making the assertion false. Thus A is false while R is true. ([aspireias.com](https://www.aspireias.com/upsc-general-study-10years-paper/2007))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 111,
+      "question_id": "UPSC_2007_GS1_Q111",
+      "question": "In the human body, to which structure is the appendix attached?",
+      "options": {
+        "a": "The large intestine",
+        "b": "The small intestine",
+        "c": "The gall-bladder",
+        "d": "The stomach"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Biology",
+      "difficulty": "easy",
+      "explanation": "The vermiform appendix is a blind tubular projection from the caecum, the first part of the large intestine; it is not attached to the small intestine, stomach or gall-bladder. ([aspireias.com](https://www.aspireias.com/upsc-general-study-10years-paper/2007))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 112,
+      "question_id": "UPSC_2007_GS1_Q112",
+      "question": "Which one of the following types of glass can cut off ultraviolet rays?",
+      "options": {
+        "a": "Soda glass",
+        "b": "Pyrex glass",
+        "c": "Jena glass",
+        "d": "Crookes glass"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Materials & Engineering",
+      "difficulty": "moderate",
+      "explanation": "Crookes glass is doped with cerium and other rare-earth oxides that strongly absorb ultraviolet radiation, so it is used to block UV in protective eyewear. Soda, Pyrex and Jena glasses lack this high UV-absorption property and therefore cannot cut off ultraviolet rays. ([testbook.com](https://testbook.com/question-answer/which-of-the-following-types-of-glass-can-cut-off--618228cffa83bd34fcc3adcc?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 113,
+      "question_id": "UPSC_2007_GS1_Q113",
+      "question": "In the human body which one of the following hormones regulates blood calcium and phosphate?",
+      "options": {
+        "a": "Glucagon",
+        "b": "Growth hormone",
+        "c": "Parathyroid hormone",
+        "d": "Thyroxin"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Biology",
+      "difficulty": "easy",
+      "explanation": "Parathyroid hormone (PTH) from the parathyroid glands raises blood calcium and lowers phosphate by acting on bone, kidney and vitamin-D metabolism. Glucagon controls blood glucose, growth hormone affects growth and metabolism, and thyroxin mainly regulates basal metabolic rate, so none of them are the primary calcium-phosphate regulators. ([britannica.com](https://www.britannica.com/science/parathyroid-hormone?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 114,
+      "question_id": "UPSC_2007_GS1_Q114",
+      "question": "How do most insects respire?",
+      "options": {
+        "a": "Through skin",
+        "b": "Through gills",
+        "c": "By lungs",
+        "d": "By tracheal system"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Biology",
+      "difficulty": "easy",
+      "explanation": "Most insects breathe through a tracheal system—air enters spiracles and travels via branching tracheae directly to body tissues for gas exchange. They do not possess gills, true lungs, or a permeable skin sufficient for respiration. ([aspireias.com](https://www.aspireias.com/upsc-general-study-10years-paper/2007?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 115,
+      "question_id": "UPSC_2007_GS1_Q115",
+      "question": "Which one of the following parts of the human brain is the regulating centre for swallowing and vomiting?",
+      "options": {
+        "a": "Cerebellum",
+        "b": "Cerebrum",
+        "c": "Medulla oblongata",
+        "d": "Pons"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Biology",
+      "difficulty": "easy",
+      "explanation": "The medulla oblongata contains autonomic centres that coordinate reflexes such as swallowing and vomiting. The cerebellum chiefly manages balance, the cerebrum handles higher cognition, and the pons mainly relays signals and modulates breathing, so they are not the primary centres for these reflexes. ([askfilo.com](https://askfilo.com/biology-question-answers/vomiting-centre-is-located-in-the?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 116,
+      "question_id": "UPSC_2007_GS1_Q116",
+      "question": "Production of which one of the following is a function of the liver?",
+      "options": {
+        "a": "Lipase",
+        "b": "Urea",
+        "c": "Mucus",
+        "d": "Hydrochloric acid"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Biology",
+      "difficulty": "moderate",
+      "explanation": "Only the liver has the complete urea cycle, converting toxic ammonia to harmless urea that is later excreted by the kidneys. Lipase is produced chiefly by the pancreas, mucus by goblet cells, and hydrochloric acid by gastric parietal cells, not by the liver. ([ncbi.nlm.nih.gov](https://www.ncbi.nlm.nih.gov/books/NBK513323/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 117,
+      "question_id": "UPSC_2007_GS1_Q117",
+      "question": "Which of the following is not a digestive enzyme in the human system?",
+      "options": {
+        "a": "Trypsin",
+        "b": "Gastrin",
+        "c": "Ptyalin",
+        "d": "Pepsin"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Biology",
+      "difficulty": "easy",
+      "explanation": "Trypsin (pancreatic protease), ptyalin (salivary amylase) and pepsin (gastric protease) are all hydrolytic enzymes that chemically digest food. Gastrin, in contrast, is a gastrointestinal HORMONE that merely stimulates gastric acid and pepsin secretion and therefore is not itself a digestive enzyme. ([careerride.com](https://www.careerride.com/view/biology-mcqs-with-answers-part-vi-19657.aspx?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 118,
+      "question_id": "UPSC_2007_GS1_Q118",
+      "question": "Which of the following light types of light are strongly absorbed by plants:",
+      "options": {
+        "a": "Violet and Orange",
+        "b": "Blue and Red",
+        "c": "Indigo and Yellow",
+        "d": "Yellow and Violet"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Biology",
+      "difficulty": "easy",
+      "explanation": "Chlorophyll-a and chlorophyll-b have absorption peaks in the blue (≈430–450 nm) and red (≈640–680 nm) regions of the spectrum; these wavelengths are therefore most strongly absorbed and drive photosynthesis, whereas green and yellow light are reflected more. ([gkseries.com](https://www.gkseries.com/upsc-previous-years-solved-questions-and-answers/biology/discussion-23?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 119,
+      "question_id": "UPSC_2007_GS1_Q119",
+      "question": "In human beings, normally in which one of the following parts does the sperm fertilize the ovum?",
+      "options": {
+        "a": "Cervix",
+        "b": "Fallopian Tube",
+        "c": "Lower Part of Uterus",
+        "d": "Upper Part of Uterus"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Biology",
+      "difficulty": "easy",
+      "explanation": "In normal human reproduction the sperm meets and fertilizes the secondary oocyte in the ampullary region of the fallopian tube; the zygote then travels to the uterus for implantation. Cervix or uterine cavities are not physiological sites of fertilization. ([gkseries.com](https://www.gkseries.com/upsc-previous-years-solved-questions-and-answers/biology/discussion-71?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 120,
+      "question_id": "UPSC_2007_GS1_Q120",
+      "question": "Three identical vessels A, B and C are filled with water, mercury and kerosene respectively up to an equal height. The three vessels are provided with identical taps at the bottom of the vessels. If the three taps are opened simultaneously, then which vessel is emptied first?",
+      "options": {
+        "a": "Vessel B",
+        "b": "All the vessels A, B and C will be emptied simultaneously",
+        "c": "Vessel A",
+        "d": "Vessel C"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Physics",
+      "difficulty": "moderate",
+      "explanation": "For identical vessels and outlet taps, out-flow time depends on the liquid’s viscosity: lower-viscosity fluids encounter less internal resistance and discharge faster. Kerosene has the least viscosity among the three fluids, so vessel C empties first. Water (A) is intermediate, while mercury (B) is more viscous; therefore they take longer. ([aspireias.com](https://www.aspireias.com/upsc-general-study-10years-paper/2007?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 121,
+      "question_id": "UPSC_2007_GS1_Q121",
+      "question": "Which one of the following is called Philosopher’s wool?",
+      "options": {
+        "a": "Zinc Bromide",
+        "b": "Zinc Nitrate",
+        "c": "Zinc Oxide",
+        "d": "Zinc Chloride"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Chemistry",
+      "difficulty": "easy",
+      "explanation": "“Philosopher’s wool” is the fluffy white sublimation product obtained when metallic zinc is oxidised in air; chemically it is zinc oxide (ZnO). Other listed zinc salts do not bear this historical name. ([gkseries.com](https://www.gkseries.com/upsc-previous-years-solved-questions-and-answers/chemistry/discussion-34?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 122,
+      "question_id": "UPSC_2007_GS1_Q122",
+      "question": "Which one of the following does not contain silver?",
+      "options": {
+        "a": "Horn Silver",
+        "b": "German Silver",
+        "c": "Ruby Silver",
+        "d": "Lunar Caustic"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Chemistry",
+      "difficulty": "easy",
+      "explanation": "German Silver is an alloy of copper, zinc and nickel and contains no elemental silver, whereas Horn silver (AgCl), Ruby silver (pyrargyrite, Ag3SbS3) and Lunar caustic (AgNO3) are all true silver compounds. ([jagranjosh.com](https://www.jagranjosh.com/articles/ias-prelims-general-studies-solved-question-paper-2007-1307667428-1))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 123,
+      "question_id": "UPSC_2007_GS1_Q123",
+      "question": "Which of the following types is used by computed tomography employed for visualization of the internal structure of human body?",
+      "options": {
+        "a": "X-Ray",
+        "b": "South waves",
+        "c": "Magnetic resonance",
+        "d": "Radioisotopes"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Health & Diseases",
+      "difficulty": "easy",
+      "explanation": "Computed Tomography scanners rotate an X-ray beam around the patient and reconstruct the transmitted X-ray data into cross-sectional images; they do not use sound waves, MRI principles or radio-isotope emission. ([jagranjosh.com](https://www.jagranjosh.com/articles/ias-prelims-general-studies-solved-question-paper-2007-1307667428-1))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 124,
+      "question_id": "UPSC_2007_GS1_Q124",
+      "question": "Which on the following is the correct sequence in order of decreasing length of the three structural parts given below of small intestine in the human body?",
+      "options": {
+        "a": "Jejunum – Duodenum – Ileum",
+        "b": "Ileum – Duodenum – Jejunum",
+        "c": "Jejunum – Ileum – Duodenum",
+        "d": "Ileum – Jejunum – Duodenum"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Biology",
+      "difficulty": "moderate",
+      "explanation": "In the human small intestine the ileum is the longest segment (~3–3.5 m), the jejunum is intermediate (~2–2.5 m) and the duodenum is the shortest (~25 cm). Hence the decreasing length order is Ileum > Jejunum > Duodenum. ([jagranjosh.com](https://www.jagranjosh.com/articles/ias-prelims-general-studies-solved-question-paper-2007-1307667428-1))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 125,
+      "question_id": "UPSC_2007_GS1_Q125",
+      "question": "Consider the following statements:\n1. In November 2006, DRDO successfully conducted the interception test using Prithvi-II missile.\n2. Prithvi-II is a surface-to-surface missile and can be deployed to guard the metros against air attack.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Defence Technology",
+      "difficulty": "moderate",
+      "explanation": "On 27 Nov 2006 DRDO carried out India’s first ballistic-missile-defence interception in which an interceptor missile destroyed a Prithvi-II target, validating Statement 1. Prithvi-II itself is a liquid-fuel, surface-to-surface SRBM that can be configured as an endo-atmospheric interceptor to protect large cities, so Statement 2 is also correct. ([jagranjosh.com](https://www.jagranjosh.com/articles/ias-prelims-general-studies-solved-question-paper-2007-1307667428-1))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 126,
+      "question_id": "UPSC_2007_GS1_Q126",
+      "question": "NASA’s Deep Impact space mission was employed to take detailed pictures of which comet nucleus?",
+      "options": {
+        "a": "Halley’s comet",
+        "b": "Hale-Bopp",
+        "c": "Hyakutake",
+        "d": "Temple 1"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Space Technology & Astronomy",
+      "difficulty": "easy",
+      "explanation": "NASA’s Deep Impact mission (impact on 4 July 2005) released a copper impactor that struck comet 9P/Tempel 1, returning the first high-resolution images of a comet nucleus; it was not aimed at Halley, Hale-Bopp or Hyakutake. ([jagranjosh.com](https://www.jagranjosh.com/articles/ias-prelims-general-studies-solved-question-paper-2007-1307667428-1))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 127,
+      "question_id": "UPSC_2007_GS1_Q127",
+      "question": "MCA-21 is a major initiative taken up by the Government of India in which one of the following areas?",
+      "options": {
+        "a": "Foreign Direct Investment in India",
+        "b": "Attracting international tourism",
+        "c": "e-governance",
+        "d": "Modernization of Airports"
+      },
+      "answer": "c",
+      "subject": "Current Affairs",
+      "sub_topic": "Indian Government Schemes & Initiatives",
+      "difficulty": "easy",
+      "explanation": "MCA-21 is one of the National e-Governance Plan’s Mission-Mode Projects implemented by the Ministry of Corporate Affairs to enable electronic filing and other corporate services; hence it squarely belongs to the area of e-governance. ([edurev.in](https://edurev.in/t/203245/National-Solved-Questions--1995-2020--2?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 128,
+      "question_id": "UPSC_2007_GS1_Q128",
+      "question": "Match List-I with List-II and select the correct answer using the code given below the lists:\n\nList-I (Person)\nA. John C. Mather\nB. Michael Griffin\nC. Paul G. Allen\nD. Piers Sellers\n\nList-II (Known as)\n1. Co-founder of Microsoft\n2. Space walker\n3. Administrator of NASA\n4. Nobel Prize winner, 2006 in Physics\n\nCodes:",
+      "options": {
+        "a": "A-4  B-1  C-3  D-2",
+        "b": "A-2  B-3  C-1  D-4",
+        "c": "A-4  B-3  C-1  D-2",
+        "d": "A-2  B-1  C-3  D-4"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Science & Technology History",
+      "difficulty": "moderate",
+      "explanation": "John C. Mather shared the 2006 Nobel Prize in Physics (4); Michael Griffin served as NASA Administrator (3); Paul G. Allen was the co-founder of Microsoft (1); Piers Sellers was a NASA astronaut who performed spacewalks (2). The mapping A-4 B-3 C-1 D-2 corresponds to option (c). ([iasexamportal.com](https://iasexamportal.com/IAS/IAS-Prelims-Previous-Year-Paper-General-Studies-2007?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 129,
+      "question_id": "UPSC_2007_GS1_Q129",
+      "question": "Which one of the following pairs is not correctly matched?",
+      "options": {
+        "a": "Cosmic Background : Satellite Programme Explorer (COBE)",
+        "b": "Falcon : Under-sea cable system",
+        "c": "Discovery : Space shuttle",
+        "d": "Atlantis : Space station"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Space Technology & Astronomy",
+      "difficulty": "easy",
+      "explanation": "Cosmic Background Explorer (COBE) is a satellite, ‘Falcon’ is an under-sea cable system, and ‘Discovery’ is a Space Shuttle—these three pairs are correct. ‘Atlantis’ is also a Space Shuttle orbiter, not a space station, making pair (d) the incorrect match. ([jagranjosh.com](https://www.jagranjosh.com/articles/ias-prelims-general-studies-solved-question-paper-2007-1307667428-1?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 130,
+      "question_id": "UPSC_2007_GS1_Q130",
+      "question": "Match List-I with List-II and select the correct answer using the code given below the lists:\n\nList-I (Company)\nA. Chevron\nB. AT&T\nC. AMD\nD. Enercon GmbH\n\nList-II (Major Area/Product)\n1. Wind Energy\n2. Oil\n3. Telephone, Internet\n4. Micro-processor\n\nCodes:",
+      "options": {
+        "a": "A-2  B-1  C-4  D-3",
+        "b": "A-4  B-3  C-2  D-1",
+        "c": "A-2  B-3  C-4  D-1",
+        "d": "A-4  B-1  C-2  D-3"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Computer & Information Technology",
+      "difficulty": "moderate",
+      "explanation": "Chevron is a major oil company (2); AT&T is best known for telephone and Internet services (3); AMD designs micro-processors (4); Enercon GmbH manufactures wind-energy turbines (1). The sequence A-2 B-3 C-4 D-1 matches code (c). ([aspireias.com](https://www.aspireias.com/upsc-general-study-10years-paper/2007?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 131,
+      "question_id": "UPSC_2007_GS1_Q131",
+      "question": "Which one of the following pairs is not correctly matched?",
+      "options": {
+        "a": "Williams Dickson : Motion Picture Film",
+        "b": "Charles Babbage : Programmable Computer",
+        "c": "Nicholas Stern : Construction Technology",
+        "d": "Brian Greene : String Theory"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Science & Technology History",
+      "difficulty": "easy",
+      "explanation": "William Dickson helped create the first motion-picture film; Charles Babbage conceptualized the programmable computer; Brian Greene is famous for work on string theory. Nicholas Stern is an economist known for the ‘Stern Review’ on climate change, not construction technology, so option (c) is the mismatched pair. ([edurev.in](https://edurev.in/t/203141/World-Panorama-Solved-Questions--1995-2020--2?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 132,
+      "question_id": "UPSC_2007_GS1_Q132",
+      "question": "What is the Galileo project which has been in news recently?",
+      "options": {
+        "a": "An inter-country programme of missile shield developed by the United States of America",
+        "b": "A project developed by India with assistance from Canada",
+        "c": "An environmental protection project being developed by Japan",
+        "d": "A multi-satellite navigation project being developed by the European Union"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Space Technology & Astronomy",
+      "difficulty": "easy",
+      "explanation": "Galileo is the European Union’s global navigation satellite system (GNSS), a constellation of satellites being built to give Europe an independent, high-precision positioning service; it is not a missile shield, Indian-Canadian venture or Japanese environmental scheme. ([defence-industry-space.ec.europa.eu](https://defence-industry-space.ec.europa.eu/galileo-introduction-europes-global-satellite-based-navigation-system-2025-03-06_en?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 133,
+      "question_id": "UPSC_2007_GS1_Q133",
+      "question": "(Each small circle represents a different station) Refer to the figure showing a network between station A and station B. What is the maximum number of different paths that exist between station A and station B?",
+      "options": {
+        "a": "28",
+        "b": "31",
+        "c": "33",
+        "d": "35"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "moderate",
+      "explanation": "The diagram allows four distinct intermediate routes A→P/Q/R/S→B. Multiplying the independent choices of stations on each leg gives: via P = 3×3 = 9, via Q = 4×3 = 12, via R = 3×2 = 6, via S = 2×2 = 4. 9 + 12 + 6 + 4 = 31 different paths. ([edurev.in](https://edurev.in/t/203180/Arithmetic-Solved-Questions-1995-2020--3?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 134,
+      "question_id": "UPSC_2007_GS1_Q134",
+      "question": "In how many maximum different ways can 3 identical balls be placed in 12 squares (each ball is placed in the exact centre of a square) shown in the figure above such that they do not lie along the same straight line?",
+      "options": {
+        "a": "144",
+        "b": "200",
+        "c": "204",
+        "d": "216"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "moderate",
+      "explanation": "Without restriction, choose any 3 squares out of 12: C(12,3)=220. Subtract cases where the 3 chosen squares are collinear: 12 horizontal + 4 vertical + 4 diagonal = 20. Hence 220 − 20 = 200 non-collinear arrangements. ([edurev.in](https://edurev.in/t/203243/Permutation--Combination--Probability-Solved-Quest?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 135,
+      "question_id": "UPSC_2007_GS1_Q135",
+      "question": "In the figure shown above, what is the maximum number of different ways in which 8 identical balls can be placed in small triangles 1, 2, 3 and 4 such that each triangle contains at least one ball?",
+      "options": {
+        "a": "32",
+        "b": "35",
+        "c": "44",
+        "d": "56"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "easy",
+      "explanation": "Placing 8 identical balls in 4 distinct triangles with each triangle containing at least one ball is the number of positive integer solutions to x₁+x₂+x₃+x₄=8. Using the stars-and-bars formula, that is C(8-1,4-1)=C(7,3)=35 ways. ([jagranjosh.com](https://www.jagranjosh.com/articles/ias-prelims-general-studies-solved-question-paper-2007-1307667428-1?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 136,
+      "question_id": "UPSC_2007_GS1_Q136",
+      "question": "Amit has five friends: 3 girls and 2 boys. Amit’s wife also has five friends: 3 boys and 2 girls. In how many maximum different ways can they invite 2 boys and 2 girls such that two of them are Amit’s friends and two are his wife’s friends?",
+      "options": {
+        "a": "24",
+        "b": "38",
+        "c": "46",
+        "d": "48"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "moderate",
+      "explanation": "Let B and G denote boys and girls. Three disjoint cases satisfy “2 boys + 2 girls with 2 from Amit and 2 from his wife”: (i) 1 B & 1 G from each side: 2C1·3C1·3C1·2C1 = 36; (ii) Amit gives 2 G, wife 2 B: 3C2·3C2 = 9; (iii) Amit gives 2 B, wife 2 G: 2C2·2C2 = 1. Total = 36+9+1 = 46 ways. ([edurev.in](https://edurev.in/t/203243/Permutation--Combination--Probability-Solved-Quest?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 137,
+      "question_id": "UPSC_2007_GS1_Q137",
+      "question": "Five balls of different colours are to be placed in three different boxes such that any box contains at least one ball. What is the maximum number of different ways in which this can be done?",
+      "options": {
+        "a": "90",
+        "b": "120",
+        "c": "150",
+        "d": "180"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "moderate",
+      "explanation": "Placing 5 distinct balls into 3 distinct boxes with none empty is the count of onto (surjective) functions from 5 items to 3: 3^5 – C(3,1)·2^5 + C(3,2)·1^5 = 243 – 96 + 3 = 150. Hence option (c) 150; the other options under- or over-count by missing or mis-handling the inclusion-exclusion adjustment.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 138,
+      "question_id": "UPSC_2007_GS1_Q138",
+      "question": "All six letters of the name SACHIN are arranged to form different words without repeating any letter in any one word. The words so formed are then arranged as a dictionary. What will be the position of the word SACHIN in that sequence?",
+      "options": {
+        "a": "436",
+        "b": "590",
+        "c": "601",
+        "d": "751"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "moderate",
+      "explanation": "In dictionary order, words starting with A, C, H, I and N (5 letters) come before any word starting with S. Each first-letter block has 5! = 120 arrangements, giving 5 × 120 = 600 words before the S-block. Within the S-block, SACHIN is the very first because its subsequent letters (A–C–H–I–N) are each the earliest available. Thus SACHIN is at position 600 + 1 = 601, i.e. option (c).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 139,
+      "question_id": "UPSC_2007_GS1_Q139",
+      "question": "Three dice (each having six faces with each face showing one number from 1 to 6) are rolled. What is the number of possible outcomes such that at least one die shows the number 2?",
+      "options": {
+        "a": "36",
+        "b": "81",
+        "c": "91",
+        "d": "116"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "easy",
+      "explanation": "Total outcomes for three fair dice = 6^3 = 216. Outcomes with no 2 showing = 5^3 = 125 (choices 1,3,4,5,6 on each die). Therefore outcomes with at least one 2 = 216 – 125 = 91, giving option (c).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 140,
+      "question_id": "UPSC_2007_GS1_Q140",
+      "question": "Groups, each containing 3 boys, are to be formed out of 5 boys – A, B, C, D and E – such that no one group contains both C and D together. What is the maximum number of different groups?",
+      "options": {
+        "a": "5",
+        "b": "6",
+        "c": "7",
+        "d": "8"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "easy",
+      "explanation": "Unrestricted 3-boy groups from 5 boys = C(5,3) = 10. Groups that contain both C and D (forbidden) must choose the third boy from A, B, E → C(3,1)=3 such groups. Valid groups = 10 – 3 = 7, hence option (c).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 141,
+      "question_id": "UPSC_2007_GS1_Q141",
+      "question": "Six faces of a cube are numbered from 1 to 6, each face carrying one different number. Further,\n1. The face 2 is opposite to the face 6.\n2. The face 1 is opposite to the face 5.\n3. The face 3 is between the face 1 and face 5.\n4. The face 4 is adjacent to the face 2.\nWhich one of the following is correct?",
+      "options": {
+        "a": "The face 2 is adjacent to the face 3",
+        "b": "The face 6 is between the face 2 and the face 4",
+        "c": "The face 1 is between the face 5 and the face 6",
+        "d": "None of the above"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Logical Reasoning & Puzzles",
+      "difficulty": "moderate",
+      "explanation": "Faces 2 ↔ 6 and 1 ↔ 5 are opposite. Face 3 must be one of the four side faces adjacent to both 1 and 5. Since 2 is a side face (its opposite 6 is another side face), the only faces opposite 2 are 6; all other side faces—including face 3—are adjacent to 2. Hence statement (a) ‘Face 2 is adjacent to face 3’ is necessarily true, while (b) and (c) conflict with the fixed opposite pairs, making option (a) correct.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 142,
+      "question_id": "UPSC_2007_GS1_Q142",
+      "question": "Each of the 3 persons is to be given some identical items such that the product of the numbers of items received by each of the three persons is equal to 30. In how many maximum different ways can this distribution be done?",
+      "options": {
+        "a": "21",
+        "b": "24",
+        "c": "27",
+        "d": "33"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "moderate",
+      "explanation": "30 = 2 × 3 × 5 has three distinct prime factors.  Each prime can be assigned independently to any of the three persons; thus the number of ordered triplets (a, b, c) with a b c = 30 is 3³ = 27.  Hence option (c) 27 is the maximum number of different ways.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 143,
+      "question_id": "UPSC_2007_GS1_Q143",
+      "question": "Six equidistant vertical lines are drawn on a board. Six equidistant horizontal lines are also drawn on the board cutting the six vertical lines and the distance between any two consecutive horizontal lines is equal to that between any two consecutive vertical lines. What is the maximum number of squares thus formed?",
+      "options": {
+        "a": "37",
+        "b": "55",
+        "c": "126",
+        "d": "225"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "easy",
+      "explanation": "With 6 equally–spaced lines in each direction there are 5 × 5 small squares, i.e. an n = 5 grid.  The total number of squares of all sizes in an n × n grid is n(n+1)(2n+1)/6; substituting n = 5 gives 5 × 6 × 11 / 6 = 55 squares. ([geeksforgeeks.org](https://www.geeksforgeeks.org/program-to-find-number-of-squares-on-a-chessboard/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 144,
+      "question_id": "UPSC_2007_GS1_Q144",
+      "question": "A person has to completely put each of three liquids – 403 litres of petrol, 465 litres of diesel and 496 litres of mobile oil – in bottles of equal size without mixing any of the three types of liquids such that each bottle is completely filled. What is the least possible number of bottles required?",
+      "options": {
+        "a": "34",
+        "b": "44",
+        "c": "46",
+        "d": "None of the above"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "easy",
+      "explanation": "The largest possible bottle size is the HCF of 403 L, 465 L and 496 L, which is 31 L.  Total volume = 1364 L, so the least number of bottles is 1364 ÷ 31 = 44. ([bissoy.com](https://www.bissoy.com/mcq/501567?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 145,
+      "question_id": "UPSC_2007_GS1_Q145",
+      "question": "A and B can complete work together in 5 days. If A works at twice his speed and B at half of his speed, this work can be finished in 4 days. How many days would it take for A alone to complete the job?",
+      "options": {
+        "a": "10",
+        "b": "12",
+        "c": "15",
+        "d": "18"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "moderate",
+      "explanation": "Let A’s one-day work be a and B’s be b.  Given a + b = 1/5 and 2a + b/2 = 1/4.  Solving gives b = 1/10 and a = 1/10, so A alone finishes the work in 10 days. ([studocu.com](https://www.studocu.com/in/document/jawaharlal-nehru-technological-university-hyderabad/competitive-exams/21-for-upsc-exams/42072152?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 146,
+      "question_id": "UPSC_2007_GS1_Q146",
+      "question": "If all the numbers from 501 to 700 are written, what is the total number of times the digit 6 appears?",
+      "options": {
+        "a": "138",
+        "b": "139",
+        "c": "140",
+        "d": "141"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "moderate",
+      "explanation": "From 600–699 (100 numbers) the digit 6 appears 100 times in the hundreds place and 20 more times in tens/units, totaling 120.  From 501–599 it appears 10 times in tens and 10 in units, totaling 20.  700 has none.  Thus total = 120 + 20 = 140 occurrences. ([examrobot.com](https://examrobot.com/content/if-all-numbers-501-700-are-written-what-total-number-times-does-digit-6-appear?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2007,
+      "paper": "GS1",
+      "question_no": 147,
+      "question_id": "UPSC_2007_GS1_Q147",
+      "question": "Amit starts from a point A, walks to another point B and then returns from B to A by his car, taking a total time of 6 hours 45 minutes. If he had driven both ways in his car, he would have taken 2 hours less. How long would it take for him to walk both ways?",
+      "options": {
+        "a": "7 hours 45 minutes",
+        "b": "8 hours 45 minutes",
+        "c": "8 hours 30 minutes",
+        "d": "8 hours 45 minutes"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "moderate",
+      "explanation": "Let the one–way distance be d km, walking speed w km/h and car speed c km/h. Given d/w + d/c = 6.75 h and 2d/c = 4.75 h (car both ways). Hence d/c = 2.375 h and d/w = 6.75 – 2.375 = 4.375 h. Walking both ways takes 2d/w = 8.75 h = 8 h 45 min, i.e. option (d). ([jagranjosh.com](https://www.jagranjosh.com/articles/ias-prelims-general-studies-solved-question-paper-2007-1307667428-1?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    }
+  ],
+  "failed": []
+}

@@ -73,3 +73,6 @@ next-env.d.ts
 
 # env files with API keys
 .env.groq
+
+# UnlockIAS scraper raw HTML caches (parsed JSON in data/pyqs/unlockias/*.json is the source of truth)
+data/pyqs/unlockias/raw/

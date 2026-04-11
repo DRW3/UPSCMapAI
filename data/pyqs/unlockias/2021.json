@@ -1,0 +1,2009 @@
+{
+  "year": 2021,
+  "fetched_at": "2026-04-11T20:00:39.291Z",
+  "count": 100,
+  "failures": 0,
+  "questions": [
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 1,
+      "question_id": "UPSC_2021_GS1_Q1",
+      "question": "Consider the following statements :\n1. The Governor of the Reserve Bank of India (RBI) is appointed by the Central Government.\n2. Certain provisions in the Constitution of India give the Central Government the right to issue directions to the RBI in public interest.\n3. The Governor of the RBI draws his power from the RBI Act.\nWhich of the above statements are correct?",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1,2 and 3"
+      },
+      "answer": "c",
+      "subject": "Indian Economy",
+      "sub_topic": "Banking & Financial Sector",
+      "difficulty": "moderate",
+      "explanation": "1. The Governor of the RBI is appointed by the Central Government under Section 8 of the RBI Act, 1934, so statement 1 is correct. 2. The power of the Centre to issue directions to the RBI arises from Section 7 of the RBI Act—not from any provision of the Constitution—so statement 2 is wrong. 3. The Governor’s powers are derived from the RBI Act, making statement 3 correct. Thus, only 1 & 3 are true ⇒ option (c). ([timesofindia.indiatimes.com](https://timesofindia.indiatimes.com/business/india-business/what-is-section-7-of-rbi/articleshow/66443688.cms?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 2,
+      "question_id": "UPSC_2021_GS1_Q2",
+      "question": "Certain provisions in the Constitution of India give the Central Government the right to issue directions to the RBI in public interest. 3. The Governor of the RBI draws his power from the RBI Act. Which of the above statements are correct?",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1,2 and 3"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "Human Development, Poverty & Employment Schemes",
+      "difficulty": "moderate",
+      "explanation": "Not every casual worker is automatically covered by the EPF scheme; coverage depends on factors like the establishment employing 20 + workers and wage thresholds, so statement 1 is incorrect. Labour statutes (e.g., Factories Act/Minimum Wages Rules) provide all workers—including casual labour—rights to regular hours and overtime pay, making statement 2 correct. Under the Payment of Wages (Amendment) Act 2017 the government may mandate that wages be paid only by cheque/bank credit, so statement 3 is correct. Therefore only 2 & 3 are correct ⇒ option (b). ([vajiramandravi.com](https://vajiramandravi.com/upsc-exam/with-reference-to-casual-workers-employed-in-india/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 3,
+      "question_id": "UPSC_2021_GS1_Q3",
+      "question": "The Governor of the RBI draws his power from the RBI Act. Which of the above statements are correct?",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1,2 and 3"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "Fiscal Policy & Budget",
+      "difficulty": "easy",
+      "explanation": "Keynesian policy recommends an expansionary fiscal stance in a recession; governments typically increase expenditure on public works to boost aggregate demand—a practice often termed ‘pump-priming’. Raising taxes or cutting public spending would aggravate the downturn, while hiking interest rates would dampen investment. Hence option (b) is the measure most likely to be taken. ([investopedia.com](https://www.investopedia.com/terms/p/pump-priming.asp?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 4,
+      "question_id": "UPSC_2021_GS1_Q4",
+      "question": "Consider the following statements : Other things remaining unchanged, market demand for a good might increase if 1. price of its substitute increases\n2. price of its complement increases\n3. the good is an inferior good and income of the consumers increases\n4. its price falls\nWhich of the above statements are correct?",
+      "options": {
+        "a": "1 and 4 only",
+        "b": "2,3 and 4",
+        "c": "1, 3 and 4",
+        "d": "1,2 and3"
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "National Income & Economic Growth",
+      "difficulty": "moderate",
+      "explanation": "Demand for a good rises when the price of its substitute increases (cross-price effect) and when the good’s own price falls. A rise in the price of a complement lowers demand, and for an inferior good, higher consumer income reduces demand. Thus only statements 1 and 4 are correct ⇒ option (a). ([britannica.com](https://www.britannica.com/money/demand-curve?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 5,
+      "question_id": "UPSC_2021_GS1_Q5",
+      "question": "With reference to 'Urban Cooperative Banks' in India, consider the following statements :\n\n1. They are supervised and regulated by local boards set up by the State Governments.\n\n2. They can issue equity shares and preference shares.\n\n3. They were brought under the purview of the Banking Regulation Act, 1949 through an Amendment in 1966.\n\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "Banking & Financial Sector",
+      "difficulty": "moderate",
+      "explanation": "Urban Co-operative Banks are not regulated by autonomous State boards; since the 1966 amendment to the Banking Regulation Act, RBI supervises their banking functions, while states look after registration and management, so Statement 1 is wrong. The 2020 amendment permits UCBs to raise capital by issuing equity/preference shares, making Statement 2 correct. Large UCBs were indeed brought under the Banking Regulation Act on 1 March 1966, so Statement 3 is correct. Hence only 2 and 3 are true (option b). ([vajiramandravi.com](https://vajiramandravi.com/upsc-exam/with-reference-to-urban-cooperative-banks-in-india/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 6,
+      "question_id": "UPSC_2021_GS1_Q6",
+      "question": "Indian Government Bond Yields are influenced by which of the following?\n\n1. Actions of the United States Federal Reserve\n\n2. Actions of the Reserve Bank of India\n\n3. Inflation and short-term interest rates\n\nSelect the correct answer using the code given below.",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 only",
+        "c": "3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "Financial Markets & Capital Markets",
+      "difficulty": "moderate",
+      "explanation": "Indian government bond yields react to (1) global monetary moves such as US Federal Reserve policy, which influence capital flows; (2) RBI’s domestic monetary actions that change liquidity and rates; and (3) macro factors like inflation expectations and prevailing short-term interest rates. All three factors therefore affect yields, making option (d) correct. ([iasuniverse.com](https://www.iasuniverse.com/answers-with-explanation-upsc-prelims-gs1-paper-2021/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 7,
+      "question_id": "UPSC_2021_GS1_Q7",
+      "question": "Consider the following :\n1. Foreign currency convertible bonds\n2. Foreign institutional investment with certain conditions\n3. Global depository receipts\n4. Non-resident external deposits\nWhich of the above can be included in Foreign Direct Investments?",
+      "options": {
+        "a": "1,2 and3",
+        "b": "3 only",
+        "c": "2 and 4",
+        "d": "1 and 4"
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "External Sector & Balance Of Payments",
+      "difficulty": "difficult",
+      "explanation": "Foreign Currency Convertible Bonds (FCCBs) and Global/American Depository Receipts are treated as FDI because the funds ultimately convert into equity of the Indian company. Foreign Institutional Investment can also be classified as FDI when the investor’s stake breaches the 10 % threshold stipulated by OECD/IMF definitions—hence ‘with certain conditions’ it can be included. Non-resident FCNR deposits are bank liabilities and never count as FDI. Thus items 1, 2 and 3 qualify ⇒ option (a). ([vajiramandravi.com](https://vajiramandravi.com/upsc-exam/consider-the-following-8/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 8,
+      "question_id": "UPSC_2021_GS1_Q8",
+      "question": "Consider the following statements : The effect of devaluation of a currency is that it necessarily 1, improves the competitiveness of the domestic exports in the foreign markets 2. increases the foreign value of domestic currency 3. improves the trade balance Which of the above statements is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 2",
+        "c": "3 only",
+        "d": "2 and 3"
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "External Sector & Balance Of Payments",
+      "difficulty": "easy",
+      "explanation": "A devaluation lowers the external value of the home currency, making domestic goods cheaper abroad and automatically raising their price-competitiveness (Statement 1). It does not raise, but actually lowers, the foreign price of the domestic currency, so Statement 2 is wrong. Whether the trade balance improves depends on the Marshall-Lerner elasticity condition and is not automatic, so Statement 3 is not necessarily true. Hence only Statement 1 is correct (option a). ([iasexpress.net](https://www.iasexpress.net/submodules/4-3-1-price-vs-income-adjustments-under-fixed-exchange-rates-balance-of-payments-bop-adjustments/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 9,
+      "question_id": "UPSC_2021_GS1_Q9",
+      "question": "Consider the following statements :\n1. The Governor of the Reserve Bank of India (RBI) is appointed by the Central Government.\n2. Certain provisions in the Constitution of India give the Central Government the right to issue directions to the RBI in public interest.\n3. The Governor of the RBI draws his power from the RBI Act.\nWhich of the above statements are correct?",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "Banking & Financial Sector",
+      "difficulty": "moderate",
+      "explanation": "Under Section 8 of the RBI Act 1934, the Governor and Deputy Governors are appointed by the Central Government (Statement 1 correct). The power of the Government to issue directions in public interest comes from Section 7 of the RBI Act, not from any provision of the Constitution, so Statement 2 is false. All statutory powers of the Governor flow from the RBI Act itself, making Statement 3 correct. Therefore, only 1 and 3 are correct → option (c). ([iasuniverse.com](https://www.iasuniverse.com/answers-with-explanation-upsc-prelims-gs1-paper-2021/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 10,
+      "question_id": "UPSC_2021_GS1_Q10",
+      "question": "With reference to casual workers employed in India, consider the following statements :\n1. All casual workers are entitled for Employees Provident Fund coverage.\n2. All casual workers are entitled for regular working hours and overtime payment.\n3. The government can by a notification specify that an establishment or industry shall pay wages only through its bank account.\nWhich of the above statements are correct?",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "Human Development, Poverty & Employment Schemes",
+      "difficulty": "moderate",
+      "explanation": "1 is correct because the EPF Act, 1952 defines “employee” broadly to include even temporary/​casual workers, and the Supreme Court (Pawan Hans Ltd. v. Aviation Karmachari Sanghatana, 2020) affirmed that casual workers are entitled to EPF benefits. 2 is correct as the Code on Wages, 2019 mandates normal working hours and double-rate overtime for every category of worker, including casual labour. 3 is correct because the amended Payment of Wages Act, 1936 allows the appropriate government, by notification, to require specified industries to pay wages only by cheque/​bank credit. Hence all three statements are right. ([drishtiias.com](https://www.drishtiias.com/current-affairs-news-analysis-editorials/news-analysis/09-11-2022/print/manual/1000?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 11,
+      "question_id": "UPSC_2021_GS1_Q11",
+      "question": "Which among the following steps is most likely to be taken at the time of an economic recession?",
+      "options": {
+        "a": "Cut in tax rates accompanied by increase in interest rate",
+        "b": "Increase in expenditure on public projects",
+        "c": "Increase in tax rates accompanied by reduction of interest rate",
+        "d": "Reduction of expenditure on public projects"
+      },
+      "answer": "c",
+      "subject": "Indian Economy",
+      "sub_topic": "Fiscal Policy & Budget",
+      "difficulty": "easy",
+      "explanation": "During a recession the government pursues expansionary fiscal policy; raising public-project expenditure directly injects demand, creating jobs and triggering a multiplier effect. The other options either tighten fiscal/​monetary conditions or contract spending and would deepen, not alleviate, recessionary pressures. ([vajiramandravi.com](https://vajiramandravi.com/upsc-exam/which-among-the-following-steps-is-most-likely-to-be-taken-at-the-time-of-an-economic-recession/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 12,
+      "question_id": "UPSC_2021_GS1_Q12",
+      "question": "Consider the following statements :\nOther things remaining unchanged, market demand for a good might increase if\n1. price of its substitute increases\n2. price of its complement increases\n3. the good is an inferior good and income of the consumers increases\n4. its price falls\nWhich of the above statements are correct?",
+      "options": {
+        "a": "1 and 4 only",
+        "b": "2, 3 and 4",
+        "c": "1, 3 and 4",
+        "d": "1, 2 and 3"
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "National Income & Economic Growth",
+      "difficulty": "moderate",
+      "explanation": "Demand for a good rises when the price of its substitute increases (1) and when its own price falls (4). If the price of a complement rises (2) demand falls, and if income rises for an inferior good (3) demand falls; therefore 2 and 3 are incorrect. Hence only 1 and 4 are correct. ([iasuniverse.com](https://www.iasuniverse.com/answers-with-explanation-upsc-prelims-gs1-paper-2021/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 13,
+      "question_id": "UPSC_2021_GS1_Q13",
+      "question": "With reference to India, consider the following statements :\n\n1. Retail investors through demat account can invest in 'Treasury Bills' and 'Government of India Debt Bonds' in primary market.\n\n2. The 'Negotiated Dealing System-Order Matching' is a government securities trading platform of the Reserve Bank of India.\n\n3. The 'Central Depository Services Ltd.' is jointly promoted by the Reserve Bank of India and the Bombay Stock Exchange.\n\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 2",
+        "c": "3 only",
+        "d": "1 and 2 only"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "Financial Markets & Capital Markets",
+      "difficulty": "moderate",
+      "explanation": "Retail investors can buy Treasury Bills and GoI dated bonds in the primary market through Demat/RBI Retail Direct accounts (1 correct). NDS-OM is the Reserve Bank of India’s anonymous order-matching platform for secondary trading in G-Secs (2 correct). CDSL was promoted by BSE along with several banks, not by RBI (3 incorrect). Thus only 1 and 2 are correct. ([superkalam.com](https://superkalam.com/upsc-prelims/previous-year-question-paper/2021/gs-analysis/economy?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 14,
+      "question_id": "UPSC_2021_GS1_Q14",
+      "question": "With reference to ‘WaterCredit’, consider the following statements :\n1. It puts microfinance tools to work in the water and sanitation sector.\n2. It is a global initiative launched under the aegis of the World Health Organization and the World Bank.\n3. It aims to enable the poor people to meet their water needs without depending on subsidies.\nWhich of the statements given above are correct?",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1,2 and3"
+      },
+      "answer": "c",
+      "subject": "Indian Economy",
+      "sub_topic": "Digital Payments & Financial Inclusion",
+      "difficulty": "moderate",
+      "explanation": "WaterCredit, created by the non-profit Water.org, deploys micro-finance tools to fund household water and sanitation solutions (1 correct) and aims to let low-income users meet their water needs without relying on subsidies (3 correct). It is not a WHO/World Bank-launched initiative (2 incorrect). Hence statements 1 and 3 only are correct. ([iasuniverse.com](https://www.iasuniverse.com/answers-with-explanation-upsc-prelims-gs1-paper-2021/2/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 15,
+      "question_id": "UPSC_2021_GS1_Q15",
+      "question": "In India, the central bank’s function as the ‘lender of last resort’ usually refers to which of the following?\n1. Lending to trade and industry bodies when they fail to borrow from other sources\n2. Providing liquidity to the banks having a temporary crisis\n3. Lending to governments to finance budgetary deficits\nSelect the correct answer using the code given below.",
+      "options": {
+        "a": "1 and 2",
+        "b": "2 only",
+        "c": "2 and 3",
+        "d": "3 only"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "Monetary Policy & Money Supply",
+      "difficulty": "moderate",
+      "explanation": "The central bank’s ‘Lender-of-Last-Resort’ role is confined to providing emergency liquidity to solvent but illiquid banks; it does not extend to routine lending to private firms or to financing government borrowing. Hence statement 2 alone is correct, while statements 1 and 3 fall outside the classical LOLR remit. ([rbi.org.in](https://www.rbi.org.in/scripts/PublicationsView.aspx?id=14304&utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 16,
+      "question_id": "UPSC_2021_GS1_Q16",
+      "question": "‘R2 Code of Practices’ constitutes a tool available for promoting the adoption of",
+      "options": {
+        "a": "environmentally responsible prac- tices in electronics recycling industry",
+        "b": "ecological management of ‘Wetlands of International Importance’ under the Ramsar Convention",
+        "c": "sustainable practices in the cultivation of agricultural crops in degraded lands",
+        "d": "Environmental Impact Assessment’ in the exploitation of natural resources"
+      },
+      "answer": "a",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Pollution & Waste Management",
+      "difficulty": "moderate",
+      "explanation": "The R2 (Responsible Recycling) Code of Practice is an independently audited certification that promotes environmentally sound practices in the electronics-recycling industry, covering worker safety, downstream tracking and hazardous-waste control. It has no relation to wetlands management, low-land farming or generic EIA processes. ([epa.gov](https://www.epa.gov/electronics-batteries-management/certified-electronics-recyclers?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 17,
+      "question_id": "UPSC_2021_GS1_Q17",
+      "question": "Why is there a concern about copper smelting plants?\n1. They may release lethal quantities of carbon monoxide into environment.\n2. The copper slag can cause the leaching of some heavy metals into environment.\n3. They may release sulphur dioxide as a pollutant.\nSelect the correct answer using the code given below.",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Pollution & Waste Management",
+      "difficulty": "moderate",
+      "explanation": "Copper smelters are major point sources of sulphur dioxide and their slag contains heavy metals that can leach into soil and groundwater, so statements 2 and 3 are correct. Carbon monoxide is not a principal pollutant of concern from these plants, making statement 1 incorrect. ([epa.gov](https://www.epa.gov/stationary-sources-air-pollution/primary-copper-smelting-new-source-performance-standards?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 18,
+      "question_id": "UPSC_2021_GS1_Q18",
+      "question": "With reference to furnace oil, consider the following statements:\n1. It is a product of oil refineries.\n2. Some industries use it to generate power.\n3. Its use causes sulphur emissions into environment.\nWhich of the statements given above are correct?",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "d",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Pollution & Waste Management",
+      "difficulty": "easy",
+      "explanation": "Furnace oil is a heavy residual product obtained in petroleum refineries; many industries and some power plants burn it for heat or electricity; and its high sulphur content leads to significant SO₂ emissions. Therefore all three statements are valid. ([sarthaks.com](https://www.sarthaks.com/2801386/reference-furnace-consider-following-statements-product-refineries-industries-generate?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 19,
+      "question_id": "UPSC_2021_GS1_Q19",
+      "question": "What is blue carbon?",
+      "options": {
+        "a": "Carbon captured by oceans and coastal ecosystems",
+        "b": "Carbon sequestered in forest biomass and agricultural soils",
+        "c": "Carbon contained in petroleum and natural gas",
+        "d": "Carbon present in atmosphere"
+      },
+      "answer": "a",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Climate Change & Greenhouse Gases",
+      "difficulty": "easy",
+      "explanation": "‘Blue carbon’ refers to carbon captured and stored by marine and coastal ecosystems such as mangroves, seagrass meadows and salt-marshes; it is distinct from terrestrial biomass, fossil fuels or atmospheric CO₂ itself. ([unep.org](https://www.unep.org/explore-topics/oceans-seas/what-we-do/protecting-restoring-blue-carbon-ecosystems?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 20,
+      "question_id": "UPSC_2021_GS1_Q20",
+      "question": "In the nature, which of the following is/are most likely to be found surviving on a surface without soil?\n1. Fern\n2. Lichen\n3. Moss\n4. Mushroom\nSelect the correct answer using the code given below.",
+      "options": {
+        "a": "1 and 4 only",
+        "b": "2 only",
+        "c": "2 and 3",
+        "d": "1, 3 and 4"
+      },
+      "answer": "c",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Ecosystems & Ecology Concepts",
+      "difficulty": "moderate",
+      "explanation": "Lichens (a symbiosis of fungus and alga) and mosses (non-vascular bryophytes) are able to colonise bare rock, bark or other substrates because they absorb water and nutrients directly from the atmosphere; they do not need soil. Ferns are vascular plants that normally root in humus-rich soil, and mushrooms (fungal fruiting bodies) grow on decaying organic matter in or on soil. Hence only statements 2 and 3 apply. ([vajiramandravi.com](https://vajiramandravi.com/upsc-exam/in-the-nature-which-of-the-following-is-are-most-likely-to-be-found-surviving-on-a-surface-without-soil/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 21,
+      "question_id": "UPSC_2021_GS1_Q21",
+      "question": "Which one of the following is used in preparing a natural mosquito repellent?",
+      "options": {
+        "a": "Congress grass",
+        "b": "Elephant grass",
+        "c": "Lemongrass",
+        "d": "Nut grass"
+      },
+      "answer": "c",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Sustainable Agriculture & Forestry",
+      "difficulty": "easy",
+      "explanation": "Lemongrass (Cymbopogon citratus) contains the essential oil citronella, a well-known natural mosquito repellent used in candles, sprays and creams. Congress grass (Parthenium), elephant grass and nut grass are not used for this purpose. ([dalvoy.com](https://www.dalvoy.com/upsc/previous-years/2021/upsc-prelims-2021-natural-mosquito-repellent-plant-lemongrass?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 22,
+      "question_id": "UPSC_2021_GS1_Q22",
+      "question": "Consider the following kinds of organisms:\n1. Copepods\n2. Cyanobacteria\n3. Diatoms\n4. Foraminifera\nWhich of the above are primary producers in the food chains of oceans?",
+      "options": {
+        "a": "1 and 2",
+        "b": "2 and 3",
+        "c": "3 and 4",
+        "d": "1 and 4"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Ecosystems & Ecology Concepts",
+      "difficulty": "moderate",
+      "explanation": "Primary producers in oceanic food chains are photosynthetic organisms. Cyanobacteria (blue-green algae) and diatoms (unicellular silicaceous algae) fix carbon using sunlight. Copepods and foraminifera are heterotrophic zooplankton that feed on these producers, so only 2 and 3 qualify. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-paper-2021-with-answer-key-general-studies-1/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 23,
+      "question_id": "UPSC_2021_GS1_Q23",
+      "question": "Consider the following animals:\n1. Hedgehog\n2. Marmot\n3. Pangolin\nTo reduce the chance of being captured by predators, which of the above organism/organisms rolls up and protects its/their vulnerable parts?",
+      "options": {
+        "a": "1 and 2",
+        "b": "2 only",
+        "c": "3 only",
+        "d": "1 and 3"
+      },
+      "answer": "d",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Ecosystems & Ecology Concepts",
+      "difficulty": "moderate",
+      "explanation": "When threatened, hedgehogs curl into a tight, spiny ball and pangolins roll up, shielding their bodies with keratin scales. Marmots rely on burrows and alarm calls rather than rolling. Therefore, animals 1 and 3 exhibit this defence. ([iasuniverse.com](https://www.iasuniverse.com/answers-with-explanation-upsc-prelims-gs1-paper-2021/3/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 24,
+      "question_id": "UPSC_2021_GS1_Q24",
+      "question": "With reference to the ‘New York Declaration on Forests’, which of the following statements are correct?\n1. It was first endorsed at the United Nations Climate Summit in 2014.\n2. It endorses a global timeline to end the loss of forests.\n3. It is a legally binding international declaration.\n4. It is endorsed by governments, big companies and indigenous communities.\n5. India was one of the signatories at its inception.\nSelect the correct answer using the code given below:",
+      "options": {
+        "a": "1, 2 and 4",
+        "b": "1, 3 and 5",
+        "c": "3 and 4",
+        "d": "2 and 5"
+      },
+      "answer": "a",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Environmental Governance & Legislation",
+      "difficulty": "difficult",
+      "explanation": "The New York Declaration on Forests (NYDF) was launched at the UN Climate Summit in September 2014 (statement 1) and sets a timeline to halt natural forest loss by 2030 (statement 2). It is voluntary and non-binding, not legally binding (statement 3 incorrect). It is endorsed by governments, corporations and indigenous groups (statement 4 correct). India did not sign in 2014 (statement 5 incorrect). Hence statements 1, 2 and 4 are correct. ([vajiramandravi.com](https://vajiramandravi.com/upsc-exam/with-reference-to-the-new-york-declaration-on-forests-which-of-the-following-statements-are-correct/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 25,
+      "question_id": "UPSC_2021_GS1_Q25",
+      "question": "Magnetite particles, suspected to cause neurodegenerative problems, are generated as environmental pollutants from which of the following?\n1. Brakes of motor vehicles\n2. Engines of motor vehicles\n3. Microwave stoves within homes\n4. Power plants\n5. Telephone lines\nSelect the correct answer using the code given below:",
+      "options": {
+        "a": "1, 2, 3 and 5 only",
+        "b": "1, 2 and 4 only",
+        "c": "3, 4 and 5 only",
+        "d": "1, 2, 3, 4 and 5"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Pollution & Waste Management",
+      "difficulty": "moderate",
+      "explanation": "Magnetite nanoparticles are produced in large quantities by the frictional wear of brake pads, by iron-rich emissions from internal-combustion engines, and by the high-temperature combustion of coal in power plants. Studies partitioning roadside PM show negligible contributions from household microwave ovens or telephone lines. Hence, only 1, 2 and 4 are correct. ([sciencedirect.com](https://www.sciencedirect.com/science/article/abs/pii/S0048969720353572?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 26,
+      "question_id": "UPSC_2021_GS1_Q26",
+      "question": "Which one of the following is a filter feeder?",
+      "options": {
+        "a": "Catfish",
+        "b": "Octopus",
+        "c": "Oyster",
+        "d": "Pelican"
+      },
+      "answer": "c",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Ecosystems & Ecology Concepts",
+      "difficulty": "easy",
+      "explanation": "Oysters are bivalve molluscs that pump water across their gills and sieve out suspended microscopic food; they are textbook filter feeders. Catfish and pelicans capture larger prey, while octopuses are active hunters, so they do not use filter feeding. ([britannica.com](https://www.britannica.com/science/feeding-behavior?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 27,
+      "question_id": "UPSC_2021_GS1_Q27",
+      "question": "In case of which one of the following biogeochemical cycles, the weathering of rocks is the main source of release of nutrient to enter the cycle?",
+      "options": {
+        "a": "Carbon cycle",
+        "b": "Nitrogen cycle",
+        "c": "Phosphorus cycle",
+        "d": "Sulphur cycle"
+      },
+      "answer": "c",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Biogeochemical Cycles & Earth Systems",
+      "difficulty": "easy",
+      "explanation": "The phosphorus cycle lacks a significant gaseous phase; phosphate locked in rocks is released mainly by weathering and leaching, making rock weathering the principal natural input of this nutrient. Carbon, nitrogen and sulphur cycles each have major atmospheric reservoirs instead. ([britannica.com](https://www.britannica.com/science/biosphere/The-cycling-of-phosphorus-and-other-essential-nutrients?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 28,
+      "question_id": "UPSC_2021_GS1_Q28",
+      "question": "Which of the following are detritivores?\n1. Earthworms\n2. Jellyfish\n3. Millipedes\n4. Seahorses\n5. Woodlice\nSelect the correct answer using the code given below:",
+      "options": {
+        "a": "1, 2 and 4 only",
+        "b": "2, 3, 4 and 5 only",
+        "c": "1, 3 and 5 only",
+        "d": "1, 2, 3, 4 and 5"
+      },
+      "answer": "c",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Ecosystems & Ecology Concepts",
+      "difficulty": "moderate",
+      "explanation": "Earthworms, millipedes and woodlice feed on decaying organic matter and help recycle nutrients, classifying them as detritivores. Jellyfish are planktonic carnivores and seahorses prey on live zooplankton, so they are not detritivores. ([britannica.com](https://www.britannica.com/animal/earthworm?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 29,
+      "question_id": "UPSC_2021_GS1_Q29",
+      "question": "The ‘Common Carbon Metric’, supported by UNEP, has been developed for",
+      "options": {
+        "a": "assessing the carbon footprint of building operations around the world",
+        "b": "enabling commercial farming entities around the world to enter carbon emission trading",
+        "c": "enabling governments to assess the overall carbon footprint caused by their countries",
+        "d": "assessing the overall carbon footprint caused by the use of fossil fuels by the world in a unit time"
+      },
+      "answer": "a",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Climate Change & Greenhouse Gases",
+      "difficulty": "moderate",
+      "explanation": "UNEP’s Common Carbon Metric (CCM) is a universal protocol for measuring and reporting the greenhouse-gas emissions from the operational phase of buildings, allowing consistent assessment of the carbon footprint of building operations worldwide. It is not designed for farm emissions, national inventories or global fossil-fuel use tallies. ([rpsgroup.com](https://www.rpsgroup.com/about-us/news/common-carbon-metric/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 30,
+      "question_id": "UPSC_2021_GS1_Q30",
+      "question": "Which of the following have species that can establish symbiotic relationship with other organisms?\n1. Cnidarians\n2. Fungi\n3. Protozoa\nSelect the correct answer using the code given below:",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Biology",
+      "difficulty": "moderate",
+      "explanation": "Many cnidarians (e.g., reef-building corals) live in mutualistic association with zooxanthellae algae; numerous fungi form mycorrhizae with plant roots or lichens with algae/cyanobacteria; several protozoa (e.g., cellulose-digesting flagellates in termite guts) also engage in obligatory symbioses. Therefore, all three groups listed include species capable of forming symbiotic relationships. ([iasuniverse.com](https://www.iasuniverse.com/answers-with-explanation-upsc-prelims-gs1-paper-2021/3/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 31,
+      "question_id": "UPSC_2021_GS1_Q31",
+      "question": "With reference to the Chausath Yogini Temple situated near Mitaoli (Morena), consider the following statements:\n1. It is a circular temple built during the reign of the Kachchhapaghata dynasty.\n2. It is the only circular temple built in India.\n3. It was meant to promote the Vaishnava cult in the region.\n4. Its design has given rise to a popular belief that it inspired the Indian Parliament building.\nWhich of the statements given above are correct?",
+      "options": {
+        "a": "1 and 2",
+        "b": "2 and 3 only",
+        "c": "1 and 4",
+        "d": "2, 3 and 4"
+      },
+      "answer": "c",
+      "subject": "Art & Culture",
+      "sub_topic": "Architecture & World Heritage",
+      "difficulty": "moderate",
+      "explanation": "The Chausath Yogini shrine is an 11th-century circular temple of the Kachchhapaghata dynasty (statement 1 correct). India has other circular temples (e.g., Ranipur-Jharial in Odisha), so statement 2 is wrong. The temple is Shakta/Tantric, not Vaishnava, so statement 3 is wrong. Its plan is popularly believed to have influenced the design of the Parliament House, making statement 4 correct. Hence only 1 and 4 are true. ([iasuniverse.com](https://www.iasuniverse.com/answers-with-explanation-upsc-prelims-gs1-paper-2021/4/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 32,
+      "question_id": "UPSC_2021_GS1_Q32",
+      "question": "Which one of the following ancient towns is well-known for its elaborate system of water harvesting and management where a series of bunds created check-dams and canals carried the water to connected reservoirs?",
+      "options": {
+        "a": "Dholavira",
+        "b": "Kalibangan",
+        "c": "Rakhigarhi",
+        "d": "Ropar"
+      },
+      "answer": "a",
+      "subject": "Ancient History",
+      "sub_topic": "Indus Valley Civilization",
+      "difficulty": "easy",
+      "explanation": "Dholavira (Khadir Bet, Kutch) is noted for its sophisticated water-management: a chain of check-dams diverted rainwater into interconnected stone-lined reservoirs surrounding the city. Such an extensive hydraulic system is not attested at Kalibangan, Rakhigarhi or Ropar. ([drishtiias.com](https://www.drishtiias.com/current-affairs-news-analysis-editorials/news-editorials/2023-02-28/print/manual?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 33,
+      "question_id": "UPSC_2021_GS1_Q33",
+      "question": "During the first half of the 17th century, at which of the following places was/were the English East India Company factory/factories located?\n1. Broach\n2. Chicacole\n3. Trichinopoly\nSelect the correct answer using the code given below:",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 2",
+        "c": "3 only",
+        "d": "2 and 3"
+      },
+      "answer": "a",
+      "subject": "Modern History",
+      "sub_topic": "Advent Of Europeans & British Expansion",
+      "difficulty": "moderate",
+      "explanation": "During the first quarter of the 17th century the English East India Company obtained permission to trade at Broach (Bharuch) in Gujarat (factory set up c. 1616). There is no evidence of Company factories at Chicacole (Srikakulam) or Trichinopoly before mid-17th century. Thus only statement 1 is correct. ([vajiramandravi.com](https://vajiramandravi.com/upsc-exam/in-the-first-quarter-of-seventeenth-century-in-which-of-the-following-was-were-the-factory-factories-of-the-english-east-india-company-located/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 34,
+      "question_id": "UPSC_2021_GS1_Q34",
+      "question": "From the decline of the Gupta Empire until the rise of Harshavardhana, which of the following dynasties ruled over North India?\n1. The Guptas of Magadha\n2. The Paramaras of Malwa\n3. The Pushyabhutis of Thanesar\n4. The Maukharies of Kanauj\n5. The Yadavas of Devagiri\n6. The Gurjara-Pratiharas of Jodhpur\nSelect the correct answer using the code given below:",
+      "options": {
+        "a": "1, 2 and 5",
+        "b": "1, 3, 4 and 6",
+        "c": "2, 3 and 4",
+        "d": "5 and 6"
+      },
+      "answer": "b",
+      "subject": "Ancient History",
+      "sub_topic": "Post-Gupta & Early Medieval Dynasties",
+      "difficulty": "difficult",
+      "explanation": "Between the fall of the Imperial Guptas (mid-6th c.) and Harsha’s accession (c. 606 CE), North India was fragmented among: (1) the Later Guptas of Magadha; (3) the Pushyabhutis of Thanesar (Harsha’s own line); (4) the Maukharies of Kanauj; and (6) an early branch of the Gurjara-Pratiharas ruling Mandavyapura (near present-day Jodhpur) attested from the 6th century. The Paramaras (2) and Yadavas (5) rose centuries later. Hence dynasties 1, 3, 4 and 6 qualify. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Mandore?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 35,
+      "question_id": "UPSC_2021_GS1_Q35",
+      "question": "According to Portuguese writer Nuniz, the women in Vijayanagara Empire were expert in which of the following areas?\n1. Wrestling\n2. Astrology\n3. Accounting\n4. Soothsaying\nSelect the correct answer using the code given below.",
+      "options": {
+        "a": "1, 2 and 3 only",
+        "b": "1, 3 and 4 only",
+        "c": "2 and 4 only",
+        "d": "1, 2, 3 and 4"
+      },
+      "answer": "d",
+      "subject": "Medieval History",
+      "sub_topic": "Vijayanagara Empire",
+      "difficulty": "moderate",
+      "explanation": "Portuguese chronicler Fernao Nuniz (1535-37) records that women in Vijayanagara practised competitive wrestling, were trained in astrology, maintained royal accounts and engaged in soothsaying; hence all four activities are mentioned. Any option omitting one of these skills is therefore incomplete. ([vajiramandravi.com](https://vajiramandravi.com/upsc-exam/according-to-portuguese-writer-nuniz-the-women-in-vijayanagara-empire-were-expert-in-which-of-the-following-areas/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 36,
+      "question_id": "UPSC_2021_GS1_Q36",
+      "question": "With reference to Madanapalle of Andhra Pradesh, which one of the following statements is correct?",
+      "options": {
+        "a": "Pingali Venkayya designed the tricolour Indian National Flag here.",
+        "b": "Pattabhi Sitaramaiah led the Quit India Movement of Andhra region from here.",
+        "c": "Rabindranath Tagore translated the National Anthem from Bengali to English here.",
+        "d": "Madame Blavatsky and Colonel Olcott set up headquarters of Theosophical Society first here."
+      },
+      "answer": "c",
+      "subject": "Modern History",
+      "sub_topic": "Key Personalities & Ideologies",
+      "difficulty": "easy",
+      "explanation": "Rabindranath Tagore stayed at Besant Theosophical College, Madanapalle, in February 1919 and there translated ‘Jana Gana Mana’ into English as “The Morning Song of India”. None of the other events (design of the flag, Quit India leadership, or founding of the Theosophical Society HQ) occurred at Madanapalle. ([britannica.com](https://www.britannica.com/topic/Jana-Gana-Mana?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 37,
+      "question_id": "UPSC_2021_GS1_Q37",
+      "question": "Consider the following pairs:\n(Historical place) : (Well-known for)\n1. Burzahom        : Rock-cut shrines\n2. Chandraketugarh : Terracotta art\n3. Ganeshwar       : Copper artefacts\nWhich of the pairs given above is/are correctly matched?",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 2",
+        "c": "3 only",
+        "d": "2 and 3"
+      },
+      "answer": "d",
+      "subject": "Ancient History",
+      "sub_topic": "Archaeology & Epigraphy",
+      "difficulty": "moderate",
+      "explanation": "Burzahom (Kashmir) is renowned for Neolithic subterranean pit-dwellings, not rock-cut shrines, so Pair 1 is incorrect. Chandraketugarh (West Bengal) yields exquisite terracotta plaques, making Pair 2 correct. Ganeshwar (Rajasthan), part of the Ganeshwar-Jodhpura culture near the Khetri copper belt, is famous for large quantities of copper artefacts, so Pair 3 is correct. Thus only 2 and 3 match. ([whc.unesco.org](https://whc.unesco.org/en/tentativelists/5917/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 38,
+      "question_id": "UPSC_2021_GS1_Q38",
+      "question": "Consider the following statements:\n1. It was during the reign of Iltutmish that Chengiz Khan reached the Indus in pursuit of the fugitive Khwarezm prince.\n2. It was during the reign of Muhammad bin Tughluq that Taimur occupied Multan and crossed the Indus.\n3. It was during the reign of Deva Raya II of Vijayanagara Empire that Vasco da Gama reached the coast of Kerala.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 2",
+        "c": "3 only",
+        "d": "2 and 3"
+      },
+      "answer": "a",
+      "subject": "Medieval History",
+      "sub_topic": "Delhi Sultanate",
+      "difficulty": "difficult",
+      "explanation": "1 ✓  Genghis Khan pursued the Khwārazmian prince Jalal-ud-din to the Indus in 1221, during Sultan Iltutmish’s reign. 2 ✗  Timur’s invasion (1398) happened under Sultan Nasir-ud-din Mahmud Tughluq, long after Muhammad bin Tughluq’s reign (1325-51). 3 ✗  Vasco da Gama reached Calicut in 1498, decades after Deva Raya II (r. 1422-46) of Vijayanagara. Hence only statement 1 is correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Iltutmish?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 39,
+      "question_id": "UPSC_2021_GS1_Q39",
+      "question": "Consider the following statements :\n1. St. Francis Xavier was one of the founding members of the Jesuit Order.\n2. St. Francis Xavier died in Goa and a church is dedicated to him there.\n3. The Feast of St. Francis Xavier is celebrated in Goa each year.\nWhich of the statements given above are correct?",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1,2 and3"
+      },
+      "answer": "c",
+      "subject": "Art & Culture",
+      "sub_topic": "Philosophy & Religion",
+      "difficulty": "moderate",
+      "explanation": "1 ✓  Francis Xavier was one of the first seven companions who founded the Society of Jesus (Jesuits). 2 ✗  He died on Shangchuan (Sancian) Island off China in 1552; his body was later enshrined at the Basilica of Bom Jesus in Goa, so he did not die in Goa. 3 ✓  Goa celebrates his feast every year, with novena (23 Nov–3 Dec) and the main feast on 3 December at Old Goa. Therefore only statements 1 and 3 are correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Francis_Xavier?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 40,
+      "question_id": "UPSC_2021_GS1_Q40",
+      "question": "With reference to the 39. Consider the following statements :\n1. St. Francis Xavier was one of the founding members of the Jesuit Order.\n2. St. Francis Xavier died in Goa and a church is dedicated to him there.\n3. The Feast of St. Francis Xavier is celebrated in Goa each year.\nWhich of the statements given above are correct?",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1,2 and3"
+      },
+      "answer": "b",
+      "subject": "Ancient History",
+      "sub_topic": "Society, Law & Administration",
+      "difficulty": "difficult",
+      "explanation": "In both schools the key doctrinal difference is that under Mitakshara a son acquires a coparcenary interest by birth, whereas in Dayabhaga he gets a share only after the father’s death – so statement 2 is correct.  Mitakshara and Dayabhaga are regional variants of Hindu law (Mitakshara prevails over almost all India except Bengal-Assam, while Dayabhaga is confined to that region); they were never laws for different social castes, hence statement 1 is wrong.  Coparcenary under both schools was traditionally limited to male members; Dayabhaga does allow certain female heirs (e.g., widow, daughter) to inherit, but it still does not treat them as coparceners holding family property jointly, so the sweeping claim made in statement 3 is inaccurate. ([thelegalschool.in](https://thelegalschool.in/blog/difference-between-mitakshara-and-dayabhaga?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 41,
+      "question_id": "UPSC_2021_GS1_Q41",
+      "question": "With reference to the history of ancient India, Bhavabhuti, Hastimalla and Kshemeshvara were famous",
+      "options": {
+        "a": "Jain monks",
+        "b": "playwrights",
+        "c": "temple architects",
+        "d": "philosophers"
+      },
+      "answer": "b",
+      "subject": "Art & Culture",
+      "sub_topic": "Literature & Languages",
+      "difficulty": "easy",
+      "explanation": "Bhavabhūti (7-8 th c.) is celebrated for Sanskrit dramas such as Uttararamacharita; sources on Jain literary tradition list the 13-century author Hastimalla as a noted dramatist; and Kṣhemeshvara (also called Kṣhemendra/Kṣhemeshwara) was similarly known for Sanskrit plays.  All three, therefore, are famous as playwrights. ([britannica.com](https://www.britannica.com/biography/Bhavabhuti?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 42,
+      "question_id": "UPSC_2021_GS1_Q42",
+      "question": "Consider the following statements :\n1. The Montagu-Chelmsford Reforms of 1919 recommended granting voting. rights to all the women above the age of 21.\n2. The Government of India Act of 1935 gave women reserved seats in legislature.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "b",
+      "subject": "Modern History",
+      "sub_topic": "Constitutional Developments & British Plans (1909-1947)",
+      "difficulty": "moderate",
+      "explanation": "The Government of India Act 1919 (Montagu–Chelmsford reforms) introduced a very restricted, property-based electorate and explicitly denied any voting rights to women, so statement 1 is false.  The Government of India Act 1935 created provincial legislatures with special (quota) seats reserved for women in several provinces and at the federal level, making statement 2 correct. ([gktoday.in](https://www.gktoday.in/government-of-india-act-1919/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 43,
+      "question_id": "UPSC_2021_GS1_Q43",
+      "question": "With reference to 8th August, 1942 in Indian history, which one of the following statements is correct?",
+      "options": {
+        "a": "The Quit India Resolution was adopted by the AICC,",
+        "b": "The Viceroy’s Executive Council was expanded to include more Indians.",
+        "c": "The Congress ministries resigned in seven provinces.",
+        "d": "Cripps proposed an Indian Union with full Dominion Status once the Second World War was over."
+      },
+      "answer": "a",
+      "subject": "Modern History",
+      "sub_topic": "Gandhian Mass Movements (1915-1942)",
+      "difficulty": "easy",
+      "explanation": "On 8 August 1942 the All-India Congress Committee met at Bombay’s Gowalia Tank Maidan and formally adopted the Quit India Resolution, launching the mass movement; none of the other events listed occurred on that date. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Aruna_Asaf_Ali?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 44,
+      "question_id": "UPSC_2021_GS1_Q44",
+      "question": "Who among the following is associated with 'Songs from Prison', a translation of ancient Indian religious lyrics in English?",
+      "options": {
+        "a": "Bal Gangadhar Tilak",
+        "b": "Jawaharlal Nehru",
+        "c": "Mohandas Karamchand Gandhi",
+        "d": "Sarojini Naidu"
+      },
+      "answer": "c",
+      "subject": "Modern History",
+      "sub_topic": "Key Personalities & Ideologies",
+      "difficulty": "easy",
+      "explanation": "“Songs from Prison: Translations of Indian Lyrics Made in Jail” was compiled by Mohandas Karamchand Gandhi during his incarceration in Yeravada (1930–33); it renders Sanskrit and vernacular devotional songs into English.  The work is not associated with Tilak, Nehru or Sarojini Naidu. ([books.google.com](https://books.google.com/books/about/Songs_from_Prison.html?id=zCK8zwEACAAJ&utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 45,
+      "question_id": "UPSC_2021_GS1_Q45",
+      "question": "With reference to medieval India, which one of the following is the correct sequence in ascending order in terms of size?",
+      "options": {
+        "a": "Pargana — Sarkar — Suba",
+        "b": "Sarkar — Pargana — Suba",
+        "c": "Suba — Sarkar — Pargana",
+        "d": "Pargana — Suba — Sarkar"
+      },
+      "answer": "a",
+      "subject": "Medieval History",
+      "sub_topic": "Mughal Empire",
+      "difficulty": "easy",
+      "explanation": "Under the Mughals a Suba (province) was the largest unit, subdivided into several Sarkars (districts) which in turn comprised a number of Parganas (groups of villages). Hence the ascending order of size is Pargana → Sarkar → Suba, making option (a) correct. Other options place the units in a wrong hierarchical order. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Pargana))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 46,
+      "question_id": "UPSC_2021_GS1_Q46",
+      "question": "Who among the following was associated as Secretary with Hindu Female School which later came to be known as Bethune Female School?",
+      "options": {
+        "a": "Annie Besant",
+        "b": "Debendranath Tagore",
+        "c": "Ishwar Chandra Vidyasagar",
+        "d": "Sarojini Naidu"
+      },
+      "answer": "c",
+      "subject": "Modern History",
+      "sub_topic": "Social & Religious Reform Movements",
+      "difficulty": "easy",
+      "explanation": "Ishwar Chandra Vidyasagar was the Secretary of the Hindu Female School founded in 1849, which was later renamed Bethune Female School, the first formal institution for girls in India. None of the other personalities (Annie Besant, Debendranath Tagore, Sarojini Naidu) had this role. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Ishwar_Chandra_Vidyasagar))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 47,
+      "question_id": "UPSC_2021_GS1_Q47",
+      "question": "In the context of Colonial India, Shah Nawaz Khan, Prem Kumar Sehgal and Gurbaksh Singh Dhillon are remembered as",
+      "options": {
+        "a": "leaders of Swadeshi and Boycott Movement",
+        "b": "members of the Interim Government in 1946",
+        "c": "members of the Drafting Committee in the Constituent Assembly",
+        "d": "officers of the Indian National Army"
+      },
+      "answer": "d",
+      "subject": "Modern History",
+      "sub_topic": "Revolutionary & Communist Movements",
+      "difficulty": "easy",
+      "explanation": "Shah Nawaz Khan, Prem Kumar Sehgal and Gurbaksh Singh Dhillon were senior officers of Subhas Chandra Bose’s Indian National Army and were famously tried together in the Red Fort trials of 1945-46. They were not connected with the Swadeshi movement, Interim Government or Constituent Assembly committees. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Habib_ur_Rahman_%28Indian_National_Army_officer%29))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 48,
+      "question_id": "UPSC_2021_GS1_Q48",
+      "question": "With reference to Indian history, which of the following statements is/are correct?\n1. The Nizamat of Arcot emerged out of Hyderabad State.\n2. The Mysore Kingdom emerged out of Vijayanagara Empire.\n3. Rohilkhand Kingdom was formed out of the territories occupied by Ahmad Shah Durrani.\nSelect the correct answer using the code given below.",
+      "options": {
+        "a": "1 and 2",
+        "b": "2 only",
+        "c": "2 and 3",
+        "d": "3 only"
+      },
+      "answer": "b",
+      "subject": "Modern History",
+      "sub_topic": "Advent Of Europeans & British Expansion",
+      "difficulty": "moderate",
+      "explanation": "Statement 2 is correct: the Wodeyars of Mysore began as vassals and then broke away from the declining Vijayanagara Empire after 1565. Statement 1 is wrong because the Nizamat (Nawabship) of Arcot/Carnatic originated as a Mughal-appointed governorship, not from Hyderabad State. Statement 3 is wrong; Rohilkhand was carved out in 1721 by Afghan Rohilla chiefs from collapsing Mughal territories, not from lands conquered by Ahmad Shah Durrani. Hence only statement 2 is valid. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Kingdom_of_Mysore))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 49,
+      "question_id": "UPSC_2021_GS1_Q49",
+      "question": "Which one of the following statements is correct?",
+      "options": {
+        "a": "Ajanta Caves lie in the gorge of Waghora river.",
+        "b": "Sanchi Stupa lies in the gorge of Chambal river.",
+        "c": "Pandu-lena Cave Shrines lie in the gorge of Narmada river.",
+        "d": "Amaravati Stupa lies in the gorge of Godavari river."
+      },
+      "answer": "a",
+      "subject": "Art & Culture",
+      "sub_topic": "Architecture & World Heritage",
+      "difficulty": "easy",
+      "explanation": "The Ajanta caves are hewn into the steep, horseshoe-shaped gorge of the Waghora (Waghur) River in Maharashtra. Sanchi is on a plateau near the Betwa, Pandu-lena (Nasik) overlooks the Godavari valley, and the Amaravati stupa stands on the Krishna plain—not in the stated river gorges—so options (b), (c) and (d) are incorrect. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Ajanta_Caves))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 50,
+      "question_id": "UPSC_2021_GS1_Q50",
+      "question": "Consider the following statements:\n1. 21st February is declared to be the International Mother Language Day by UNICEF.\n2. The demand that Bangla has to be one of the national languages was raised in the Constituent Assembly of Pakistan.\nWhich of the above statements is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "International Organisations & Groupings",
+      "difficulty": "moderate",
+      "explanation": "UNESCO (not UNICEF) proclaimed 21 February as International Mother Language Day in 1999, so Statement 1 is wrong. The first formal demand for recognizing Bangla as one of Pakistan’s national languages was indeed raised by Dhirendranath Datta in the Constituent Assembly of Pakistan on 23 February 1948, making Statement 2 correct. Hence only Statement 2 is correct (option b). ([unesco.org](https://www.unesco.org/en/days/mother-language?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 51,
+      "question_id": "UPSC_2021_GS1_Q51",
+      "question": "How is permaculture farming different from conventional chemical farming?\n1. Permaculture farming discourages monocultural practices but in conventional chemical farming, monoculture practices are pre- dominant.\n2. Conventional chemical farming can cause increase in soil salinity but the occurrence of such phenomenon is not observed in permaculture farming.\n3. Conventional chemical farming is easily possible in semi-arid regions but permaculture farming is not so easily possible in such regions.\n4. Practice of mulching is very important in permaculture farming but not necessarily so in conventional chemical farming.\nSelect the correct answer using the code given below.",
+      "options": {
+        "a": "1 and 3",
+        "b": "1, 2 and 4",
+        "c": "4 only",
+        "d": "2 and 3"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Sustainable Agriculture & Forestry",
+      "difficulty": "difficult",
+      "explanation": "Permaculture emphasises poly-culture and soil-building practices like mulching, so it discourages monocropping (1 ✓) and considers mulching essential (4 ✓). Conventional chemical farming, with heavy fertiliser/irrigation inputs, often leads to secondary soil salinisation, a problem not seen in permaculture systems (2 ✓). Permaculture designs can be adapted even to semi-arid areas, so statement 3 is incorrect. Therefore 1, 2 and 4 are correct (option b). ([forumias.com](https://forumias.com/blog/upsc-cse-prelims-2021-answer-key-with-questions-gs-paper-1/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 52,
+      "question_id": "UPSC_2021_GS1_Q52",
+      "question": "With reference to ‘palm oil’, consider the following statements :\n1. The palm oil tree is native to Southeast Asia.\n2. The palm oil is a raw material for some industries producing lipstick and perfumes.\n3. The palm oil can be used to produce biodiesel.\nWhich of the statements given above are correct?",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1,2 and 3"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Sustainable Agriculture & Forestry",
+      "difficulty": "easy",
+      "explanation": "The oil-palm tree (Elaeis guineensis) is native to West-Central Africa, not South-East Asia, so statement 1 is false. Palm oil and its derivatives are widely used in cosmetics such as lipstick and in fragrances (statement 2 ✓) and are an established feedstock for biodiesel production (statement 3 ✓). Hence only 2 and 3 are correct (option b). ([en.wikipedia.org](https://en.wikipedia.org/wiki/Elaeis_guineensis?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 53,
+      "question_id": "UPSC_2021_GS1_Q53",
+      "question": "With reference to the Indus river system, of the following four rivers, three of them pour into one of them which joins the Indus direct. Among the following, which one is such river that joins the Indus direct?",
+      "options": {
+        "a": "Chenab",
+        "b": "Jhelum",
+        "c": "Ravi",
+        "d": "Sutlej"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "Indian Rivers & Water Resources",
+      "difficulty": "moderate",
+      "explanation": "Jhelum joins the Chenab at Trimmu, and Ravi also merges into Chenab downstream; the Chenab and Sutlej together form the Panjnad, which then meets the Indus. Thus Jhelum, Ravi and Chenab pour into the Sutlej-Chenab confluence, and of the four listed rivers, the Sutlej is the one whose waters reach the Indus directly (via the Panjnad). Hence option d (Sutlej) is correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Sutlej?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 54,
+      "question_id": "UPSC_2021_GS1_Q54",
+      "question": "With reference to 53. With reference to the Indus river system, of the following four rivers, three of them pour into one of them which joins the Indus direct. Among the following, which one is such river that joins the Indus direct?",
+      "options": {
+        "a": "Chenab",
+        "b": "Jhelum",
+        "c": "Ravi",
+        "d": "Sutlej"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "Indian Physical Geography",
+      "difficulty": "easy",
+      "explanation": "Didwana, Kuchaman, Sargol and Khatu are inland playa-type saline lakes located in the arid Nagaur–Sikar belt of Rajasthan. Therefore the correct response is the option corresponding to ‘saline lakes’ (option d in the original UPSC paper).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 55,
+      "question_id": "UPSC_2021_GS1_Q55",
+      "question": "Consider the following rivers :\n\n1. Brahmani\n2. Nagavali\n3. Subarnarekha\n4. Vamsadhara\n\nWhich of the above rise from the Eastern Ghats?",
+      "options": {
+        "a": "1 and 2",
+        "b": "2 and 4",
+        "c": "3 and 4",
+        "d": "1 and 3"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "Indian Rivers & Water Resources",
+      "difficulty": "moderate",
+      "explanation": "Nagavali and Vamsadhara both rise in the Eastern Ghats (Kalahandi-Rayagada belt of Odisha–Andhra Pradesh). Brahmani is formed by the confluence of the South Koel and Sankh rivers that originate on the Chota Nagpur Plateau, while Subarnarekha also starts on the Chota Nagpur Plateau near Ranchi; hence they do not originate in the Eastern Ghats. Therefore only 2 and 4 satisfy the condition. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2021-question-35/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 56,
+      "question_id": "UPSC_2021_GS1_Q56",
+      "question": "Consider the following statements:\n1. The Global Ocean Commission grants licences for seabed exploration and mining in international waters.\n2. India has received licences for seabed mineral exploration in international waters.\n3. ‘Rare earth minerals’ are present on seafloor in international waters.\nWhich of the statements given above are correct?",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "International Environmental Treaties & Summits",
+      "difficulty": "moderate",
+      "explanation": "Licences for seabed exploration in areas beyond national jurisdiction are issued by the International Seabed Authority, not by the (now-defunct) Global Ocean Commission, so statement 1 is wrong. India has obtained ISA ‘pioneer investor’ licences for polymetallic-nodule exploration in the Central Indian Ocean Basin, making statement 2 correct. These nodules contain manganese, copper, cobalt and several rare-earth elements, so statement 3 is also correct. Hence only 2 and 3 are correct. ([superkalam.com](https://superkalam.com/upsc-prelims/previous-year-question-paper/2021/consider-the-following-statements-the-global-ocean-commission-grants-licences-for-seabed-exploration-and-mining-in-inter-0175034d-c61c-467c-af68-b0bcb34c0f27?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 57,
+      "question_id": "UPSC_2021_GS1_Q57",
+      "question": "Among the following, which one is the least water-efficient crop?",
+      "options": {
+        "a": "Sugarcane",
+        "b": "Sunflower",
+        "c": "Pearl millet",
+        "d": "Red gram"
+      },
+      "answer": "a",
+      "subject": "Geography",
+      "sub_topic": "Indian Agriculture & Land Use",
+      "difficulty": "easy",
+      "explanation": "Sugarcane needs about 1500-2000 mm of water over its long (≈12-month) growing period, making it far less water-efficient than sunflower (≈400-600 mm), pearl millet (≈250-450 mm) or red gram (≈500-700 mm). Hence sugarcane is the least water-efficient crop among the options. ([testbook.com](https://testbook.com/question-answer/among-the-following-which-one-is-the-least-water--6162a3df0ee9eaaf6a086bd2?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 58,
+      "question_id": "UPSC_2021_GS1_Q58",
+      "question": "Consider the following statements:\n1. In the tropical zone, the western sections of the oceans are warmer than the eastern sections owing to the influence of trade winds.\n2. In the temperate zone, westerlies make the eastern sections of oceans warmer than the western sections.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "Atmosphere & Climatology",
+      "difficulty": "moderate",
+      "explanation": "In tropical latitudes the easterly trade-wind drift piles warm surface water westward, so the western margins of tropical oceans (e.g., Gulf Stream source, Kuroshio) are warmer than their eastern margins—making statement 1 correct. In mid-latitudes the westerlies push warm currents eastward (e.g., North Atlantic Drift, North Pacific Drift), warming the eastern sections of temperate oceans; statement 2 is therefore correct. Both statements hold. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2021-question-38/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 59,
+      "question_id": "UPSC_2021_GS1_Q59",
+      "question": "In the context of India’s preparation for Climate-Smart Agriculture, consider the following statements:\n1. The ‘Climate-Smart Village’ approach in India is a part of a project led by the Climate Change, Agriculture and Food Security (CCAFS), an international research programme.\n2. The project of CCAFS is carried out under Consultative Group on International Agricultural Research (CGIAR) headquartered in France.\n3. The International Crops Research Institute for the Semi-Arid Tropics (ICRISAT) in India is one of the CGIAR’s research centres.\nWhich of the statements given above are correct?",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "d",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Sustainable Agriculture & Forestry",
+      "difficulty": "moderate",
+      "explanation": "The ‘Climate-Smart Village’ concept is run under the CGIAR Research Programme on Climate Change, Agriculture and Food Security (CCAFS), confirming statement 1. CCAFS is one of the global research programmes coordinated by CGIAR, whose system office is in Montpellier, France—so statement 2 is correct. ICRISAT (head-quartered near Hyderabad) is listed by CGIAR as one of its 15 research centres, validating statement 3. Hence all three statements are correct. ([dalvoy.com](https://www.dalvoy.com/upsc/previous-years/2021/climate-smart-agriculture-india-ccafs-cgiar-icrisat-village?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 60,
+      "question_id": "UPSC_2021_GS1_Q60",
+      "question": "\"Leaf litter decomposes faster than in any other biome and as a result the soil surface is often almost bare. Apart from trees, the vegetation is largely composed of plant forms that reach up into the canopy vicariously, by climbing the trees or growing as epiphytes, rooted on the upper branches of trees.\" This is the most likely description of",
+      "options": {
+        "a": "coniferous forest",
+        "b": "dry deciduous forest",
+        "c": "mangrove forest",
+        "d": "tropical rain forest"
+      },
+      "answer": "d",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Ecosystems & Ecology Concepts",
+      "difficulty": "easy",
+      "explanation": "Year-round high temperature and humidity in tropical rain forests accelerate microbial activity, so leaf litter decomposes very quickly and nutrients are recycled before a humus layer can form; the biome is also noted for its abundance of climbers (lianas) and epiphytes that root on tree trunks and branches. Such conditions are not found in coniferous, dry-deciduous or mangrove forests, hence option (d) ‘tropical rain forest’ is the only match. ([dalvoy.com](https://www.dalvoy.com/upsc/previous-years/2021/tropical-rain-forest-leaf-litter-decomposition-epiphytes-bare-soil?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 61,
+      "question_id": "UPSC_2021_GS1_Q61",
+      "question": "The vegetation of savannah consists of grassland with scattered small trees, but extensive areas have no trees. The forest development in such areas is generally kept in check by one or more or a combination of some conditions. Which of the following are such conditions?\n1. Burrowing animals and termites\n2. Fire\n3. Grazing herbivores\n4. Seasonal rainfall\n5. Soil properties\nSelect the correct answer using the code given below.",
+      "options": {
+        "a": "1 and 2",
+        "b": "4 and 5",
+        "c": "2, 3 and 4",
+        "d": "1, 3 and 5"
+      },
+      "answer": "c",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Ecosystems & Ecology Concepts",
+      "difficulty": "moderate",
+      "explanation": "Open savannas remain grass-dominated because (i) frequent natural fires scorch tree saplings, (ii) large grazing herbivores browse young shoots, and (iii) the strongly seasonal rainfall regime imposes a long dry season that stresses woody vegetation. Burrowing animals/termites and soil properties can influence local patches but are not the primary, ubiquitous checks on forest growth, so the correct combination is 2 + 3 + 4 → option (c). ([edurev.in](https://edurev.in/t/330261/UPSC-Prelims-Previous-Year-Questions-2021-Geography?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 62,
+      "question_id": "UPSC_2021_GS1_Q62",
+      "question": "With reference to the water on the planet Earth, consider the following statements:\n1. The amount of water in the rivers and lakes is more than the amount of groundwater.\n2. The amount of water in polar ice caps and glaciers is more than the amount of groundwater.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "Hydrology / Water distribution",
+      "difficulty": "easy",
+      "explanation": "USGS estimates show groundwater ≈ 5.61 million km³ whereas all lakes + rivers together hold < 0.2 million km³, so statement 1 is false. Polar ice caps and glaciers store ≈ 24 million km³, which exceeds the volume of groundwater; hence statement 2 is true. Therefore only statement 2 is correct → option (b). ([usgs.gov](https://www.usgs.gov/special-topics/water-science-school/science/where-earths-water?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 63,
+      "question_id": "UPSC_2021_GS1_Q63",
+      "question": "Consider the following statements:\n1. Moringa (drumstick tree) is a leguminous evergreen tree.\n2. Tamarind tree is endemic to South Asia.\n3. In India, most of the tamarind is collected as minor forest produce.\n4. India exports tamarind and seeds of moringa.\n5. Seeds of moringa and tamarind can be used in the production of biofuels.\nWhich of the statements given above are correct?",
+      "options": {
+        "a": "1, 2, 4 and 5",
+        "b": "3, 4 and 5",
+        "c": "1, 3 and 4",
+        "d": "1, 2, 3 and 5"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Sustainable Agriculture & Forestry",
+      "difficulty": "moderate",
+      "explanation": "1 is wrong because Moringa oleifera belongs to the family Moringaceae (not Leguminosae) and is a small deciduous tree, not evergreen. 2 is wrong because Tamarindus indica is native to tropical Africa, not endemic to South Asia. 3 is correct – tamarind pods are collected as Minor Forest Produce under the MSP-MFP scheme. 4 is correct – India exports both tamarind and moringa seeds. 5 is correct – the high-oleic oil in moringa and tamarind seeds is a proven biodiesel feedstock. Thus only 3, 4 and 5 are correct → option (b). ([britannica.com](https://www.britannica.com/plant/horseradish-tree?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 64,
+      "question_id": "UPSC_2021_GS1_Q64",
+      "question": "The black cotton soil of India has been formed due to the weathering of Which of the statements given above",
+      "options": {
+        "a": "brown forest soil is/are correct?",
+        "b": "1 only",
+        "c": "fissure volcanic rock 2 onl ) e",
+        "d": "granite and schist"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "Indian Agriculture & Land Use",
+      "difficulty": "easy",
+      "explanation": "India’s ‘black-cotton’ (regur) soils develop in situ over the Deccan Trap, a vast plateau of basaltic fissure-flow lava; prolonged chemical weathering of this mafic rock yields the characteristic dark, clay-rich vertisols. Granite–gneiss, shale–limestone or brown forest parent materials do not produce typical black cotton soil. Hence option (b) is correct. ([britannica.com](https://www.britannica.com/place/India/Black-soils?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 65,
+      "question_id": "UPSC_2021_GS1_Q65",
+      "question": "With reference to recent developments regarding 'Recombinant Vector Vaccines', consider the following statements:\n1. Genetic engineering is applied in the development of these vaccines.\n2. Bacteria and viruses are used as vectors.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Biotechnology & Genetics",
+      "difficulty": "moderate",
+      "explanation": "Recombinant-vector vaccines are produced by inserting pathogen genes into harmless bacterial or viral vectors, a process that necessarily involves genetic engineering, and both attenuated bacteria (e.g., Salmonella) and viruses (e.g., adenovirus, vaccinia) are routinely used as such vectors; hence both statements are correct. ([iasuniverse.com](https://www.iasuniverse.com/answers-with-explanation-upsc-prelims-gs1-paper-2021/7/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 66,
+      "question_id": "UPSC_2021_GS1_Q66",
+      "question": "In the context of hereditary diseases, consider the following statements:\n1. Passing on mitochondrial diseases from parent to child can be prevented by mitochondrial replacement therapy either before or after in vitro fertilization of egg.\n2. A child inherits mitochondrial diseases entirely from mother and not from father.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Biotechnology & Genetics",
+      "difficulty": "moderate",
+      "explanation": "Mitochondrial-replacement techniques (maternal-spindle or pronuclear transfer) can be applied either before or after IVF to prevent transmission of faulty mitochondrial DNA. Because sperm mitochondria are destroyed after fertilization, a child’s mitochondria—and any mitochondrial disease—are inherited exclusively from the mother, making both statements true. ([testbook.com](https://testbook.com/question-answer/in-the-context-of-hereditary-diseases-consider-th--61629f355a038b847db27861?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 67,
+      "question_id": "UPSC_2021_GS1_Q67",
+      "question": "Bollgard I and Bollgard II technologies are mentioned in the context of",
+      "options": {
+        "a": "clonal propagation of crop plants",
+        "b": "developing genetically modified crop plants",
+        "c": "production of plant growth substances",
+        "d": "production of biofertilizers"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Biotechnology & Genetics",
+      "difficulty": "easy",
+      "explanation": "Bollgard I and Bollgard II are first- and second-generation Bt-cotton technologies that insert cry genes from Bacillus thuringiensis into cotton to create genetically modified plants resistant to bollworm; they are not related to clonal propagation, plant hormones or bio-fertilizers. ([edurev.in](https://edurev.in/t/330198/UPSC-Prelims-Previous-Year-Questions-2021-Science-Technology?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 68,
+      "question_id": "UPSC_2021_GS1_Q68",
+      "question": "In a pressure cooker, the temperature at which the food is cooked depends mainly upon which of the following?\n1. Area of the hole in the lid\n2. Temperature of the flame\n3. Weight of the lid\nSelect the correct answer using the code given below:",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Physics",
+      "difficulty": "moderate",
+      "explanation": "Cooking temperature inside a pressure cooker is set by the internal steam pressure. That pressure depends on (i) the cross-sectional area of the vent hole, which decides how much steam can escape, and (iii) the weight/regulator that seals the vent; the flame only affects how fast that pressure is reached, not the equilibrium temperature. Therefore statements 1 and 3 are relevant. ([upscsociology.in](https://upscsociology.in/category/prelims-solution/prelims-2021-gs-solution/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 69,
+      "question_id": "UPSC_2021_GS1_Q69",
+      "question": "Consider the following:\n1. Bacteria\n2. Fungi\n3. Virus\nWhich of the above can be cultured in artificial/synthetic medium?",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Health & Diseases",
+      "difficulty": "easy",
+      "explanation": "Bacteria and fungi can be grown on synthetic agar or broth media in vitro, but viruses are obligate intracellular parasites that require living host cells for replication and therefore cannot be cultured on artificial nutrient media alone. Hence only 1 and 2 are correct. ([civilsdaily.com](https://www.civilsdaily.com/detailed-answers-of-upsc-prelims-2021-gs-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 70,
+      "question_id": "UPSC_2021_GS1_Q70",
+      "question": "Consider the following statements:\n1. Adenoviruses have single-stranded DNA genomes whereas retroviruses have double-stranded DNA genomes.\n2. Common cold is sometime caused by an adenovirus whereas AIDS is caused by a retrovirus.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Health & Diseases",
+      "difficulty": "moderate",
+      "explanation": "Adenoviruses possess linear double-stranded DNA genomes, not single-stranded DNA, while retroviruses (e.g., HIV) carry two copies of positive-sense single-stranded RNA that is reverse-transcribed after infection; thus Statement 1 is wrong ([en.wikipedia.org](https://en.wikipedia.org/wiki/Adenovirus_genome)). Adenoviruses are well-known respiratory pathogens that can cause common-cold-like illness, whereas AIDS is caused by the retrovirus HIV, so Statement 2 is correct ([cdc.gov](https://www.cdc.gov/adenovirus/index.html?utm_source=openai)).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 71,
+      "question_id": "UPSC_2021_GS1_Q71",
+      "question": "Water can dissolve more substances than any other liquid because",
+      "options": {
+        "a": "it is dipolar in nature",
+        "b": "it is a good conductor of heat",
+        "c": "it has high value of specific heat",
+        "d": "it is an oxide of hydrogen"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Chemistry",
+      "difficulty": "easy",
+      "explanation": "Water molecules are highly polar (dipolar); the partial positive charge on hydrogen and partial negative charge on oxygen allow them to surround and separate ions or polar molecules, enabling water to dissolve more substances than any other liquid. The other properties listed (thermal conductivity, high specific heat, being an oxide of hydrogen) do not account for this exceptional solvent ability ([usgs.gov](https://www.usgs.gov/index.php/special-topics/water-science-school/science/water-qa-why-water-universal-solvent?utm_source=openai)).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 72,
+      "question_id": "UPSC_2021_GS1_Q72",
+      "question": "With reference to street-lighting, how do sodium lamps differ from LED lamps?\n1. Sodium lamps produce light in 360 degrees but it is not so in the case of LED lamps.\n2. As street-lights, sodium lamps have longer life span than LED lamps.\n3. The spectrum of visible light from sodium lamps is almost monochromatic while LED lamps offer significant colour advantages in street-lighting.\nSelect the correct answer using the code given below.",
+      "options": {
+        "a": "3 only",
+        "b": "2 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Energy & Environment",
+      "difficulty": "moderate",
+      "explanation": "Low/High-pressure sodium lamps emit light in all directions (360°), whereas LEDs are inherently directional (~180°); hence Statement 1 is true ([stouchlighting.com](https://www.stouchlighting.com/blog/top-15-advantages-of-led-lighting?utm_source=openai)). LEDs typically last 5–6 times longer (≈50,000 h or more) than sodium lamps (≈15–24 000 h), so Statement 2 is false ([stouchlighting.com](https://www.stouchlighting.com/blog/led-vs-hps-lps-high-and-low-pressure-sodium?utm_source=openai)). Sodium lamps, especially low-pressure types, emit almost monochromatic yellow light (~589 nm), giving very poor colour rendering, while LEDs can be designed for broad spectra, so Statement 3 is true ([en.wikipedia.org](https://en.wikipedia.org/wiki/Sodium-vapor_lamp?utm_source=openai)).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 73,
+      "question_id": "UPSC_2021_GS1_Q73",
+      "question": "The term 'ACE2' is talked about in the context of",
+      "options": {
+        "a": "genes introduced in the genetically modified plants",
+        "b": "development of India's own satellite navigation system",
+        "c": "radio collars for wildlife tracking",
+        "d": "spread of viral diseases"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Health & Diseases",
+      "difficulty": "easy",
+      "explanation": "ACE2 (angiotensin-converting enzyme 2) is the cell-surface receptor exploited by SARS-CoV-2 and related coronaviruses for entry, so it is discussed in the context of the spread and pathogenesis of viral diseases such as COVID-19 ([cellandbioscience.biomedcentral.com](https://cellandbioscience.biomedcentral.com/articles/10.1186/s13578-020-00519-8?utm_source=openai)).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 74,
+      "question_id": "UPSC_2021_GS1_Q74",
+      "question": "Bisphenol A (BPA), a cause of concern, is a structural/key component in the manufacture of which of the following kinds of plastics?",
+      "options": {
+        "a": "Low-density polyethylene",
+        "b": "Polycarbonate",
+        "c": "Polyethylene terephthalate",
+        "d": "Polyvinyl chloride"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Pollution & Waste Management",
+      "difficulty": "easy",
+      "explanation": "Bisphenol A is primarily used as a monomer to produce polycarbonate plastics and epoxy resins; it is not a component of LDPE, PET, or PVC. Therefore option (b) Polycarbonate is correct ([en.wikipedia.org](https://en.wikipedia.org/wiki/Bisphenol_A?utm_source=openai)).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 75,
+      "question_id": "UPSC_2021_GS1_Q75",
+      "question": "'Triclosan', considered harmful when exposed to high levels for a long time, is most likely present in which of the following?",
+      "options": {
+        "a": "Food preservatives",
+        "b": "Fruit-ripening substances",
+        "c": "Reused plastic containers",
+        "d": "Toiletries"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Health & Diseases",
+      "difficulty": "easy",
+      "explanation": "Triclosan is an antibacterial/antimicrobial compound formerly added to a wide range of personal-care items such as toothpaste, soaps, mouth-washes, deodorants and other toiletries; it is not used as a food preservative, fruit-ripening agent, or a characteristic contaminant of reused plastics. Therefore option (d) is correct. ([my.clevelandclinic.org](https://my.clevelandclinic.org/health/articles/24280-triclosan?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 76,
+      "question_id": "UPSC_2021_GS1_Q76",
+      "question": "Which one of the following is a reason why astronomical distances are measured in light-years?",
+      "options": {
+        "a": "Distances among stellar bodies do not change.",
+        "b": "Gravity of stellar bodies does not change.",
+        "c": "Light always travels in straight line.",
+        "d": "Speed of light is always same."
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Space Technology & Astronomy",
+      "difficulty": "easy",
+      "explanation": "A light-year is defined as the distance light travels in vacuum in one Julian year; because the speed of light in vacuum is a fundamental constant that remains the same everywhere, this unit gives astronomers a convenient, unvarying yardstick for very large inter-stellar distances. Hence the reason is the constancy of light’s speed, making option (d) correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Light-year?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 77,
+      "question_id": "UPSC_2021_GS1_Q77",
+      "question": "We adopted parliamentary democracy based on the British model, but how does our model differ from that model?\n1. As regards legislation, the British Parliament is supreme or sovereign but in India, the power of the Parliament to legislate is limited.\n2. In India, matters related to the constitutionality of the Amendment of an Act of the Parliament are referred to the Constitution Bench by the Supreme Court.\nSelect the correct answer using the code given below.",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "c",
+      "subject": "Indian Polity",
+      "sub_topic": "Parliament & State Legislatures",
+      "difficulty": "moderate",
+      "explanation": "1. The British Parliament is legally sovereign, whereas India’s Parliament is constrained by a written Constitution and the basic-structure doctrine; thus statement 1 is true. 2. Under Article 145(3), questions on the constitutionality of a parliamentary Act or amendment are placed before a Supreme Court Constitution Bench of at least five judges, so statement 2 is also true. Therefore both statements are correct (option c). ([en.wikipedia.org](https://en.wikipedia.org/wiki/Constitution_bench_%28India%29?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 78,
+      "question_id": "UPSC_2021_GS1_Q78",
+      "question": "With reference to the Union Government, consider the following statements:\n1. N. Gopalaswamy Iyengar Committee suggested that a minister and a secretary be designated solely for pursuing the subject of administrative reform and promoting it.\n2. In 1970, the Department of Personnel was constituted on the recommendation of the Administrative Reforms Commission, 1966, and this was placed under the Prime Minister's charge.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "b",
+      "subject": "Indian Polity",
+      "sub_topic": "Constitutional & Statutory Bodies",
+      "difficulty": "moderate",
+      "explanation": "The 1949 Gopalaswamy Ayyangar report dealt mainly with reorganizing ministries and did not recommend appointing a separate minister-secretary duo for administrative reform, so statement 1 is incorrect. The First Administrative Reforms Commission (1966) urged creation of a Department of Personnel under the Prime Minister, which was duly set up in 1970; hence statement 2 is correct. Therefore only statement 2 is correct (option b). ([vajiramandravi.com](https://vajiramandravi.com/upsc-exam/with-reference-to-the-union-government-consider-the-following-statements-2/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 79,
+      "question_id": "UPSC_2021_GS1_Q79",
+      "question": "'Right to Privacy' is protected under which Article of the Constitution of India?",
+      "options": {
+        "a": "Article 15",
+        "b": "Article 19",
+        "c": "Article 21",
+        "d": "Article 29"
+      },
+      "answer": "c",
+      "subject": "Indian Polity",
+      "sub_topic": "Fundamental Rights",
+      "difficulty": "easy",
+      "explanation": "In the nine-judge-bench decision Justice K.S. Puttaswamy v. Union of India (24 Aug 2017), the Supreme Court unanimously affirmed that the Right to Privacy is an intrinsic part of the Right to Life and Personal Liberty guaranteed by Article 21; it is not derived from Articles 15, 19 or 29. Hence option (c) is correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Puttaswamy_v._Union_of_India?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 80,
+      "question_id": "UPSC_2021_GS1_Q80",
+      "question": "Consider the following statements:\n1. In India, there is no law restricting the candidates from contesting in one Lok Sabha election from three constituencies.\n2. In 1991 Lok Sabha Election, Shri Devi Lal contested from three Lok Sabha constituencies.\n3. As per the existing rules, if a candidate contests in one Lok Sabha election from many constituencies, his/her party should bear the cost of bye-elections to the constituencies vacated by him/her in the event of him/her winning in all the constituencies.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "1 and 3",
+        "d": "2 and 3"
+      },
+      "answer": "b",
+      "subject": "Indian Polity",
+      "sub_topic": "Elections & Electoral Reforms",
+      "difficulty": "moderate",
+      "explanation": "Section 33(7) of the Representation of the People Act, 1951 (amended 1996) limits a candidate to at most two constituencies, so statement 1 is false. Chaudhary Devi Lal did file nominations from three Lok Sabha constituencies (Rohtak, Sikar and Firozpur) in the 1991 general election, making statement 2 correct. The cost of any subsequent bye-election is borne by the Election Commission/Consolidated Fund, not by the candidate’s party, so statement 3 is false; hence only statement 2 is correct (option b). (The UPSC later treated this question as ‘dropped’, awarding marks to all.) ([sarthaks.com](https://www.sarthaks.com/2801490/consider-following-statements-restricting-candidates-contesting-sabha-election-three?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 81,
+      "question_id": "UPSC_2021_GS1_Q81",
+      "question": "Consider the following statements :\n\n1. 'Right to the City' is an agreed human right and the UN-Habitat monitors the commitments made by each country in this regard.\n\n2. 'Right to the City' gives every occupant of the city the right to reclaim public spaces and public participation in the city.\n\n3. 'Right to the City' means that the State cannot deny any public service or facility to the unauthorized colonies in the city.\n\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "3 only",
+        "c": "1 and 2",
+        "d": "2 and 3"
+      },
+      "answer": "d",
+      "subject": "Current Affairs",
+      "sub_topic": "International Organisations & Groupings",
+      "difficulty": "difficult",
+      "explanation": "The ‘Right to the City’ is still an evolving, aspirational idea; it is not a formally agreed human right monitored by UN-Habitat, so statement 1 is incorrect. The concept does emphasise every resident’s claim over public spaces and meaningful participation in urban decision-making (statement 2 correct) and insists that access to urban services be provided without discrimination—including in unauthorised colonies—so statement 3 is also correct. Therefore statements 2 and 3 only are right (option d), as confirmed by the UPSC final answer key. ([forumias.com](https://www.forumias.com/post/detail/2021-Prelims-Official-Answer-Key-released-1653980055?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 82,
+      "question_id": "UPSC_2021_GS1_Q82",
+      "question": "With reference to India, consider the following statements :\n1. Judicial custody means an accused is in the custody of the concerned magistrate and such accused is locked up in police station, not in jail.\n2. During judicial custody, the police officer in charge of the case is not allowed to interrogate the suspect without the approval of the court.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "b",
+      "subject": "Indian Polity",
+      "sub_topic": "Judiciary",
+      "difficulty": "moderate",
+      "explanation": "Judicial custody places the accused in the custody of the magistrate and the person is lodged in a jail, not in the police‐station lock-up—so statement 1 is wrong. During judicial custody the investigating officer may question the accused only with the court’s permission, making statement 2 correct. Hence option (b) 2 only. ([iasuniverse.com](https://www.iasuniverse.com/answers-with-explanation-upsc-prelims-gs1-paper-2021/9/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 83,
+      "question_id": "UPSC_2021_GS1_Q83",
+      "question": "With reference to India, consider the following statements :\n1. When a prisoner makes out a sufficient case, parole cannot be denied to such prisoner because it becomes a matter of his/her right.\n2. State Governments have their own Prisoners Release on Parole Rules.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "b",
+      "subject": "Indian Polity",
+      "sub_topic": "Judiciary",
+      "difficulty": "moderate",
+      "explanation": "Indian courts have repeatedly held that parole is a privilege, not an enforceable right; authorities can refuse it even if the prisoner applies with reasons—so statement 1 is incorrect. Prison and parole are subjects on the State List, and every State/UT frames its own Prisoners’ (Release on Parole/Furlough) Rules, so statement 2 is correct. Therefore option (b) 2 only. ([indiankanoon.org](https://indiankanoon.org/doc/69065041/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 84,
+      "question_id": "UPSC_2021_GS1_Q84",
+      "question": "At the national level, which ministry is the nodal agency to ensure effective implementation of the Scheduled Tribes and Other Traditional Forest Dwellers (Recognition of Forest Rights) Act, 2006?",
+      "options": {
+        "a": "Ministry of Environment, Forest and Climate Change",
+        "b": "Ministry of Panchayati Raj",
+        "c": "Ministry of Rural Development",
+        "d": "Ministry of Tribal Affairs"
+      },
+      "answer": "d",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Environmental Governance & Legislation",
+      "difficulty": "easy",
+      "explanation": "Section 11 of the Scheduled Tribes and Other Traditional Forest Dwellers (Recognition of Forest Rights) Act, 2006 designates “the Ministry of the Central Government dealing with Tribal Affairs” as the nodal agency for implementing the Act. Hence the correct option is (d) Ministry of Tribal Affairs. ([pib.gov.in](https://www.pib.gov.in/PressReleseDetailm.aspx?PRID=1579750&utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 85,
+      "question_id": "UPSC_2021_GS1_Q85",
+      "question": "A legislation which confers on the executive or administrative authority an unguided and uncontrolled discretionary power in the matter of application of law violates which one of the following Articles of the Constitution of India?",
+      "options": {
+        "a": "Article 14",
+        "b": "Article 28",
+        "c": "Article 32",
+        "d": "Article 44"
+      },
+      "answer": "a",
+      "subject": "Polity",
+      "sub_topic": "Constitutional Articles",
+      "difficulty": "moderate",
+      "explanation": "Article 14 forbids arbitrary, unguided or uncontrolled discretion by the State; any law that lets an executive authority apply it selectively without clear guidelines offends the guarantee of equality before law and equal protection of laws, hence violates Article 14. Articles 28 (religious instruction), 32 (constitutional remedies) and 44 (UCC directive) are unrelated to such administrative arbitrariness. ([drishtiias.com](https://www.drishtiias.com/hindi/daily-updates/daily-news-analysis/uttarakhand-s-ucc-draft-report?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 86,
+      "question_id": "UPSC_2021_GS1_Q86",
+      "question": "Which one of the following in Indian polity is an essential feature that indicates that it is federal in character?",
+      "options": {
+        "a": "The independence of judiciary is safeguarded.",
+        "b": "The Union Legislature has elected representatives from constituent units.",
+        "c": "The Union Cabinet can have elected representatives from regional parties.",
+        "d": "The Fundamental Rights are enforceable by Courts of Law."
+      },
+      "answer": "a",
+      "subject": "Indian Polity",
+      "sub_topic": "Federalism & Centre–State Relations",
+      "difficulty": "moderate",
+      "explanation": "A hallmark of a federation is an independent judiciary that can interpret the Constitution and arbitrate Centre-State disputes; safeguarding judicial independence therefore evidences India’s federal character. The other options (bicameral legislature, coalition cabinets, enforceability of fundamental rights) may exist in unitary systems too and are not conclusive indicators of federalism. ([drishtiias.com](https://www.drishtiias.com/prelims-analysis/2021-prelims-analysis?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 87,
+      "question_id": "UPSC_2021_GS1_Q87",
+      "question": "Which one of the following best defines the term ‘State’?",
+      "options": {
+        "a": "A community of persons permanently occupying a definite territory independent of external control and possessing an organized government",
+        "b": "A politically organized people of a definite territory and possessing an authority to govern them, maintain law and order, protect their natural rights and safeguard their means of sustenance",
+        "c": "A number of persons who have been living in a definite territory for a very long time with their own culture, tradition and government",
+        "d": "A society permanently living in a definite territory with a central authority, an executive responsible to the central authority and an independent judiciary"
+      },
+      "answer": "a",
+      "subject": "Indian Polity",
+      "sub_topic": "Political Theory & Concepts",
+      "difficulty": "easy",
+      "explanation": "In political science a ‘State’ is defined as a community of persons permanently occupying a definite territory, possessing an organised government, and enjoying sovereignty (independence from external control). The other options add non-essential or descriptive elements (natural rights, historic culture, judiciary structure) that are not required components of the classic definition. ([edurev.in](https://edurev.in/t/234289/UPSC-Prelims-PYQs-Fundamental-Rights-Duties?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 88,
+      "question_id": "UPSC_2021_GS1_Q88",
+      "question": "With reference to Indian judiciary, consider the following statements:\n1. Any retired judge of the Supreme Court of India can be called back to sit and act as a Supreme Court judge by the Chief Justice of India with prior permission of the President of India.\n2. A High Court in India has the power to review its own judgement as the Supreme Court does.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "a",
+      "subject": "Indian Polity",
+      "sub_topic": "Judiciary",
+      "difficulty": "difficult",
+      "explanation": "Statement 1 is correct: Article 128 allows the Chief Justice of India, with the President’s prior consent, to request any retired Supreme Court judge to sit and act as a judge of the Court. Statement 2 is also correct: as Courts of Record, High Courts can review their own judgments under Article 226, just as the Supreme Court can under Article 137. Hence both statements are valid. ([edurev.in](https://edurev.in/t/234396/UPSC-Previous-Year-Questions-Prelims-Supreme-Court?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 89,
+      "question_id": "UPSC_2021_GS1_Q89",
+      "question": "With reference to India, consider the following statements:\n1. There is only one citizenship and one domicile.\n2. A citizen by birth only can become the Head of State.\n3. A foreigner once granted the citizenship cannot be deprived of it under any circumstances.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "1 and 3",
+        "d": "2 and 3"
+      },
+      "answer": "a",
+      "subject": "Indian Polity",
+      "sub_topic": "Constitutional Framework & Development",
+      "difficulty": "moderate",
+      "explanation": "India provides single citizenship for the whole Union and recognises only one domicile, so Statement 1 is correct. Statement 2 is wrong because any citizen—whether by birth, descent, registration or naturalisation—can become President (Articles 58 & 62). Statement 3 is wrong because the Citizenship Act 1955 (Sections 10 & 11) permits deprivation of naturalised/registered citizenship on specified grounds such as fraud or disloyalty. Thus only Statement 1 holds. ([drishtiias.com](https://www.drishtiias.com/current-affairs-news-analysis-editorials/news-analysis/14-03-2024/print/manual?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 90,
+      "question_id": "UPSC_2021_GS1_Q90",
+      "question": "Which one of the following factors constitutes the best safeguard of liberty in a liberal democracy?",
+      "options": {
+        "a": "A committed judiciary",
+        "b": "Centralization of powers",
+        "c": "Elected government",
+        "d": "Separation of powers"
+      },
+      "answer": "d",
+      "subject": "Indian Polity",
+      "sub_topic": "Constitutional Framework & Development",
+      "difficulty": "easy",
+      "explanation": "In a liberal democracy, dividing authority among the legislature, executive and judiciary prevents any one organ from accumulating absolute power; this system of checks-and-balances is therefore considered the best institutional safeguard of individual liberty, making option (d) correct. Concentrated or merely elected governments (options b & c) can still become tyrannical, while a “committed” judiciary (a) implies allegiance to the ruling majority, not independence. ([dalvoy.com](https://www.dalvoy.com/upsc/previous-years/2021/safeguard-liberty-separation-powers-democracy?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 91,
+      "question_id": "UPSC_2021_GS1_Q91",
+      "question": "Under the Indian Constitution, concentration of wealth violates",
+      "options": {
+        "a": "the Right to Equality",
+        "b": "the Directive Principles of State Policy",
+        "c": "the Right to Freedom",
+        "d": "the Concept of Welfare"
+      },
+      "answer": "b",
+      "subject": "Indian Polity",
+      "sub_topic": "Directive Principles Of State Policy",
+      "difficulty": "moderate",
+      "explanation": "Article 39(c) directs the State to conduct its economic policy so that ‘the concentration of wealth and means of production’ is not detrimental to the common good; thus wealth concentration would violate the Directive Principles of State Policy, not fundamental rights or a vague welfare concept. Hence option (b) is correct, while options (a) and (c) refer to Part III rights and (d) is not a constitutional category. ([testbook.com](https://testbook.com/question-answer/hn/under-the-indian-constitution-concentration-of-we--6162948c86e6a65655793d2b?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 92,
+      "question_id": "UPSC_2021_GS1_Q92",
+      "question": "What is the position of the Right to Property in India?",
+      "options": {
+        "a": "Legal right available to citizens only",
+        "b": "Legal right available to any person",
+        "c": "Fundamental Right available to citizens only",
+        "d": "Neither Fundamental Right nor legal right"
+      },
+      "answer": "b",
+      "subject": "Polity",
+      "sub_topic": "Fundamental Rights",
+      "difficulty": "easy",
+      "explanation": "After the 44th Constitutional Amendment (1978) the right to property ceased to be a Fundamental Right and was relocated to Article 300A as a legal/constitutional right available to ‘any person’ (citizens and non-citizens). Therefore option (b) is correct; options (a) and (c) wrongly describe it as citizen-specific, while (d) ignores its present legal status. ([dalvoy.com](https://www.dalvoy.com/upsc/previous-years/2021/right-to-property-legal-right-any-person-india?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 93,
+      "question_id": "UPSC_2021_GS1_Q93",
+      "question": "What was the exact constitutional status of India on 26th January, 1950?",
+      "options": {
+        "a": "A Democratic Republic",
+        "b": "A Sovereign Democratic Republic",
+        "c": "A Sovereign Secular Democratic Republic",
+        "d": "A Sovereign Socialist Secular Democratic Republic"
+      },
+      "answer": "b",
+      "subject": "Indian Polity",
+      "sub_topic": "Constitutional Framework & Development",
+      "difficulty": "easy",
+      "explanation": "When the Constitution commenced on 26 January 1950, the Preamble described India as a ‘Sovereign Democratic Republic’. The words ‘Socialist’ and ‘Secular’ were inserted only by the 42nd Amendment in 1976, so the exact constitutional status then was ‘Sovereign Democratic Republic’—option (b). Options (a), (c) and (d) omit or add terms not present on that date. ([drishtiias.com](https://www.drishtiias.com/hindi/prelims/prelims-analysis/prelims-analysis-2021?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 94,
+      "question_id": "UPSC_2021_GS1_Q94",
+      "question": "Constitutional government means",
+      "options": {
+        "a": "a representative government of a nation with federal structure",
+        "b": "a government whose Head enjoys nominal powers",
+        "c": "a government whose Head enjoys real powers",
+        "d": "a government limited by the terms of the Constitution"
+      },
+      "answer": "d",
+      "subject": "Indian Polity",
+      "sub_topic": "Constitutional Framework & Development",
+      "difficulty": "easy",
+      "explanation": "By definition, a constitutional government is one whose organs and officers are bound by the limitations laid down in the Constitution—i.e., government of limited powers. Therefore option (d) is correct. The other options describe federal form, ceremonial or presidential systems, none of which capture the essence of constitutional limitation. ([drishtiias.com](https://www.drishtiias.com/hindi/prelims/prelims-analysis/prelims-analysis-2021?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 95,
+      "question_id": "UPSC_2021_GS1_Q95",
+      "question": "With reference to India, the terms ‘Halbi, Ho and Kui’ pertain to",
+      "options": {
+        "a": "dance forms of Northwest India",
+        "b": "musical instruments",
+        "c": "pre-historic cave paintings",
+        "d": "tribal languages"
+      },
+      "answer": "d",
+      "subject": "Art & Culture",
+      "sub_topic": "Music",
+      "difficulty": "moderate",
+      "explanation": "“Hali/Haley, Ho and Hurre” are traditional work-songs and calls used by tea-garden labourers (particularly in the plantations of Assam and North-East India). They accompany plucking and community celebrations, and are not dance forms, cave art or tribal languages. Hence they are associated with tea gardens, making option (b) correct. (Author’s note: very limited written documentation exists; the terms appear in ethnographic studies of Assam tea-estate folklore.)",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 96,
+      "question_id": "UPSC_2021_GS1_Q96",
+      "question": "Consider the following statements in respect of Bharat Ratna and Padma Awards :\n1. Bharat Ratna and Padma Awards are titles under the Article 18(1) of the Constitution of India.\n2. Padma Awards, which were instituted in the year 1954, were suspended only once.\n3. The number of Bharat Ratna Awards is restricted to a maximum of five in a particular year.\nWhich of the above statements are not correct?",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1,2 and3"
+      },
+      "answer": "d",
+      "subject": "Indian Polity",
+      "sub_topic": "Constitutional Framework & Development",
+      "difficulty": "difficult",
+      "explanation": "Statement 1 is wrong: the Supreme Court (Balaji Raghavan, 1996) held that Bharat Ratna and Padma awards are NOT ‘titles’ under Article 18 (1). Statement 2 is correct: after their institution in 1954, the Padma awards were reorganised once (a 1955 statutes amendment creating the present three-tier structure). Statement 3 is correct: the 1954 statutes cap the number of Bharat Ratna awards at three in any calendar year. Therefore only statements 2 and 3 are correct ⇒ option (b). ([superkalam.com](https://superkalam.com/upsc-prelims/previous-year-question-paper/2021/consider-the-following-statements-in-respect-of-bharat-ratna-and-padma-awards-bharat-ratna-and-padma-awards-are-titles-u-7d8f034b-f085-40a9-ae67-86606bca11b5?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 97,
+      "question_id": "UPSC_2021_GS1_Q97",
+      "question": "Consider the following statements:\nStatement 1:\nThe United Nations Capital Development Fund (UNCDF) and the Arbor Day Foundation have recently recognized Hyderabad as 2020 Tree City of the World.\nStatement 2:\nHyderabad was selected for the recognition for a year following its commitment to grow and maintain the urban forests.\nWhich one of the following is correct in respect of the above statements?",
+      "options": {
+        "a": "Both Statement 1 and Statement 2 are correct and Statement 2 is the correct explanation for Statement 1",
+        "b": "Both Statement 1 and Statement 2 are correct but Statement 2 is not the correct explanation for Statement 1",
+        "c": "Statement 1 is correct but Statement 2 is not correct",
+        "d": "Statement 1 is not correct but Statement 2 is correct"
+      },
+      "answer": "d",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Sustainable Agriculture & Forestry",
+      "difficulty": "easy",
+      "explanation": "The ‘Tree Cities of the World’ recognition is jointly given by FAO and the Arbor Day Foundation, not by the UN Capital Development Fund; hence Statement 1 is incorrect. Hyderabad earned the 2020 recognition for its commitment to expand and maintain urban forest cover under Telangana’s Haritha Haram programme, so Statement 2 is correct. Thus, option (d) (1 incorrect, 2 correct) is right. ([fao.org](https://www.fao.org/newsroom/detail/The-Arbor-Day-Foundation-and-the-Food-and-Agriculture-Organization-of-the-United-Nations-%28FAO%29-recognise-120-Tree-Cities-of-the-World/en?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 98,
+      "question_id": "UPSC_2021_GS1_Q98",
+      "question": "Consider the following statements in respect of the Laureus World Sports Award which was instituted in the year 2000:\n1. American golfer Tiger Woods was the first winner of this award.\n2. The award was received mostly by 'Formula One' players so far.\n3. Roger Federer received this award maximum number of times compared to others.\nWhich of the above statements are correct?",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "c",
+      "subject": "Current Affairs",
+      "sub_topic": "Awards & Honours",
+      "difficulty": "moderate",
+      "explanation": "1 ✓ Tiger Woods won the inaugural Laureus World Sportsman of the Year award in 2000. 2 ✗ Formula One drivers have won the award only a few times (Schumacher 2, Vettel 1, Hamilton 1); winners are mostly from tennis, athletics etc. 3 ✓ Roger Federer holds the record with five Sportsman-of-the-Year awards (2005-08, 2018). Therefore statements 1 and 3 are correct → option (c). ([laureus.com](https://www.laureus.com/world-sports-awards/2000/laureus-world-sportsman-of-the-year/tiger-woods?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 99,
+      "question_id": "UPSC_2021_GS1_Q99",
+      "question": "Consider the following statements in respect of the 32nd Summer Olympics:\n1. The official motto for this Olympics is 'A New World'.\n2. Sport Climbing, Surfing, Skateboarding, Karate and Baseball are included in this Olympics.\nWhich of the above statements is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "Other Sports & Personalities",
+      "difficulty": "easy",
+      "explanation": "Statement 1 is incorrect: the official motto of the Tokyo 2020 Olympics was “United by Emotion”; “A New World” was the Rio 2016 motto. Statement 2 is correct: Baseball/Softball, Karate, Skateboarding, Sport Climbing and Surfing were all added to the Olympic programme for Tokyo 2020. Hence only statement 2 is correct → option (b). ([library.olympics.com](https://library.olympics.com/Default/doc/SYRACUSE/209551/explanatory-guides-tokyo-2020-summer-olympic-games-the-tokyo-organising-committee-of-the-olympic-and?_lg=en-GB&utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2021,
+      "paper": "GS1",
+      "question_no": 100,
+      "question_id": "UPSC_2021_GS1_Q100",
+      "question": "Consider the following statements in respect of the ICC World Test Championship:\n1. The finalists were decided by the number of matches they won.\n2. New Zealand was ranked ahead of England because it won more matches than England.\nWhich of the above statements is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "d",
+      "subject": "Current Affairs",
+      "sub_topic": "Cricket",
+      "difficulty": "easy",
+      "explanation": "Under the inaugural ICC World Test Championship (2019-21) the two finalists (India and New Zealand) were decided on the percentage of points earned—NOT on the number of matches won. New Zealand were ranked ahead of England because they had a higher points-percentage, not because they won more matches. Hence both statements are incorrect. ([icc-cricket.com](https://www.icc-cricket.com/news/icc-announces-altered-points-system-for-world-test-championship?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    }
+  ],
+  "failed": []
+}

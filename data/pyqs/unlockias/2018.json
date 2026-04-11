@@ -1,0 +1,2009 @@
+{
+  "year": 2018,
+  "fetched_at": "2026-04-11T20:00:36.294Z",
+  "count": 100,
+  "failures": 0,
+  "questions": [
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 1,
+      "question_id": "UPSC_2018_GS1_Q1",
+      "question": "Consider the following statements:\n1. In the first Lok Sabha, the single largest party in the opposition was the Swatantra Party.\n2. In the Lok Sabha, a “Leader of the Opposition” was recognised for the first time in 1969.\n3. In the Lok Sabha, if a party does not have a minimum of 75 members, its leader cannot be recognised as the Leader of the Opposition.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 and 3 only",
+        "b": "2 only",
+        "c": "2 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "b",
+      "subject": "Indian Polity",
+      "sub_topic": "Parliament & State Legislatures",
+      "difficulty": "moderate",
+      "explanation": "The largest opposition group in the 1st Lok Sabha was the Communist Party of India, not the Swatantra Party (founded in 1959), so Statement 1 is false. The post of Leader of the Opposition in the Lok Sabha was first officially recognised in 1969, making Statement 2 true. The minimum strength required is 10 % of the House (54 members at present), not 75, so Statement 3 is false. Hence only Statement 2 is correct. ([sprintupsc.com](https://sprintupsc.com/PreviousYearsWeb/upsc-prelims-2018-answer-key.html?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 2,
+      "question_id": "UPSC_2018_GS1_Q2",
+      "question": "Which of the following leaf modifications occur(s) in the desert areas to inhibit water loss?\n1. Hard and waxy leaves\n2. Tiny leaves\n3. Thorns instead of leaves\nSelect the correct answer using the code given below:",
+      "options": {
+        "a": "2 and 3 only",
+        "b": "2 only",
+        "c": "3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "d",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Ecosystems & Ecology Concepts",
+      "difficulty": "easy",
+      "explanation": "Xerophytic (desert) plants limit transpiration by having thick waxy cuticles, very small (or absent) leaves, and by modifying leaves into thorns; all three listed modifications occur, so statements 1, 2 and 3 are correct. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2018-question-2/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 3,
+      "question_id": "UPSC_2018_GS1_Q3",
+      "question": "As per the NSSO 70th Round “Situation Assessment Survey of Agricultural Households”, consider the following statements:\n1. Rajasthan has the highest percentage share of agricultural households among its rural households.\n2. Out of the total agricultural households in the country, a little over 60 percent belong to OBCs.\n3. In Kerala, a little over 60 percent of agricultural households reported to have received maximum income from sources other than agricultural activities.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "2 and 3 only",
+        "b": "2 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "c",
+      "subject": "Indian Economy",
+      "sub_topic": "Agriculture & Rural Development",
+      "difficulty": "difficult",
+      "explanation": "NSSO 70th-round data show Rajasthan had the highest proportion (≈78 %) of agricultural households among rural households, and in Kerala about 61 % of such households derived most income from non-agricultural sources—so Statements 1 and 3 are correct. Only ~45 % of agricultural households belonged to OBCs, not ‘a little over 60 %’, making Statement 2 false. Therefore, option (c) 1 and 3 only is correct. ([testbook.com](https://testbook.com/question-answer/ques--5f353a6a761c1c0d0e3ff8c0?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 4,
+      "question_id": "UPSC_2018_GS1_Q4",
+      "question": "How is the National Green Tribunal (NGT) different from the Central Pollution Control Board (CPCB)?\n1. The NGT has been established by an Act whereas the CPCB has been created by an executive order of the Government.\n2. The NGT provides environmental justice and helps reduce the burden of litigation in the higher courts whereas the CPCB promotes cleanliness of streams and wells, and aims to improve the quality of air in the country.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Environmental Governance & Legislation",
+      "difficulty": "moderate",
+      "explanation": "The National Green Tribunal (NGT) is a statutory body created by the NGT Act, 2010, but the Central Pollution Control Board is also statutory, established under the Water (Prevention and Control of Pollution) Act, 1974—so Statement 1 is incorrect. Statement 2 is correct: the NGT adjudicates environmental disputes, easing higher-court burdens, whereas the CPCB’s mandate is to monitor and control water and air pollution. Hence only Statement 2 is correct. ([vajiramandravi.com](https://vajiramandravi.com/upsc-exam/how-is-the-national-green-tribunal-ngt-different-from-the-central-pollution-control-board-cpcb/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 5,
+      "question_id": "UPSC_2018_GS1_Q5",
+      "question": "Consider the following statements :\n1. The Parliament of India can place a particular law in the Ninth Schedule of the Constitution of India.\n2. The validity of a law placed in the Ninth Schedule cannot be examined by any court and no judgement can be made on it.\nWhich of the statements given above is/are correct ?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "a",
+      "subject": "Indian Polity",
+      "sub_topic": "Constitutional Framework & Development",
+      "difficulty": "moderate",
+      "explanation": "Article 31B empowers Parliament to place any legislation in the Ninth Schedule, thereby validating it even if it conflicts with Fundamental Rights; hence Statement 1 is correct. However, in I.R. Coelho v. State of Tamil Nadu (2007) the Supreme Court ruled that every law inserted into the Ninth Schedule after 24 April 1973 remains subject to judicial review on the touchstone of the basic-structure doctrine, so Statement 2 is incorrect. ([constitutionofindia.net](https://www.constitutionofindia.net/articles/article-31b-validation-of-certain-acts-and-regulations/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 6,
+      "question_id": "UPSC_2018_GS1_Q6",
+      "question": "Which one of the following best describes the term “Merchant Discount Rate” sometimes seen in news ?",
+      "options": {
+        "a": "The incentive given by a bank to a merchant for accepting payments through debit cards pertaining to that bank.",
+        "b": "The amount paid back by banks to their customers when they use debit cards for financial transactions for purchasing goods or services.",
+        "c": "The charge to a merchant by a bank for accepting payments from his customers through the bank’s debit cards.",
+        "d": "The incentive given by the Government to merchants for promoting digital payments by their customers through Point of Sale (PoS) machines and debit cards."
+      },
+      "answer": "c",
+      "subject": "Indian Economy",
+      "sub_topic": "Digital Payments & Financial Inclusion",
+      "difficulty": "easy",
+      "explanation": "The Merchant Discount Rate (MDR) is the percentage fee that a merchant’s bank (acquirer) deducts from each card transaction for providing the infrastructure to accept the payment; it is therefore a charge imposed on the merchant, not an incentive or cashback to the customer. ([congress.gov](https://www.congress.gov/crs-product/IF11893?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 7,
+      "question_id": "UPSC_2018_GS1_Q7",
+      "question": "With reference to Indias decision to levy an equalization tax of 6% on _ online advertisement services offered by non-resident entities, which of the following statements is/are correct ? hs It is introduced as a part of the Income Tax Act. 2. Non-resident entities that offer advertisement services in India can claim a tax credit in their home country under the Double Taxation Avoidance Agreements.",
+      "options": {
+        "a": "1 only",
+        "b": ". 2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Energy & Environment",
+      "difficulty": "moderate",
+      "explanation": "NSG membership allows a country to participate in global nuclear trade and obtain advanced nuclear technology, so Statement 1 is correct. There is, however, no automatic legal requirement that an NSG member must be a signatory to the Nuclear Non-Proliferation Treaty (France joined NSG years before acceding to the NPT); therefore Statement 2 is incorrect. ([timesofindia.indiatimes.com](https://timesofindia.indiatimes.com/india/india-counters-china-says-no-need-to-sign-npt-for-nsg-membership/articleshow/52359604.cms?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 8,
+      "question_id": "UPSC_2018_GS1_Q8",
+      "question": "With reference to India's decision to levy an equalization tax of 6% on online advertisement services offered by non-resident entities, which of the following statements is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "Taxation",
+      "difficulty": "moderate",
+      "explanation": "The 6 % Equalisation Levy on online advertisement services was introduced by the Finance Act 2016 as a stand-alone levy and is not part of the Income-tax Act, so Statement 1 is wrong. Because it is outside the scope of Double Taxation Avoidance Agreements, non-resident advertising companies generally cannot claim foreign-tax credit for the levy, making Statement 2 wrong as well. ([ibanet.org](https://www.ibanet.org/article/DF407BCF-8336-4D8F-986E-BCC1BB1064EF?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 9,
+      "question_id": "UPSC_2018_GS1_Q9",
+      "question": "Consider the following statements:\n1. The Fiscal Responsibility and Budget Management (FRBM) Review Committee Report has recommended a debt to GDP ratio of 60% for the general (combined) government by 2023, comprising 40% for the Central Government and 20% for the State Governments.\n2. The Central Government has domestic liabilities of 21% of GDP as compared to that of 49% of GDP of the State Governments.\n3. As per the Constitution of India, it is mandatory for a State to take the Central Government’s consent for raising any loan if the former owes any outstanding liabilities to the latter.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "c",
+      "subject": "Indian Economy",
+      "sub_topic": "Fiscal Policy & Budget",
+      "difficulty": "difficult",
+      "explanation": "The N.K. Singh FRBM Review Committee recommended that by FY 2022-23 the combined (general) government debt-to-GDP ratio should be capped at 60 %, split 40 % for the Centre and 20 % for the States, so Statement 1 is correct. Current data show the Centre’s domestic debt (~49 % of GDP) far exceeds that of the States (~21 %), so Statement 2 is incorrect. Article 293(3) of the Constitution requires a State to obtain the Centre’s consent for new borrowings if it has outstanding loans from the Centre, making Statement 3 correct. Therefore only Statements 1 and 3 are right. ([drishtiias.com](https://www.drishtiias.com/daily-updates/daily-news-analysis/cag-review-of-the-frbm-act?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 10,
+      "question_id": "UPSC_2018_GS1_Q10",
+      "question": "Consider the following statements:\n1. The quantity of imported edible oils is more than the domestic production of edible oils in the last five years.\n2. The Government does not impose any customs duty on all the imported edible oils as a special case.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "Agriculture & Rural Development",
+      "difficulty": "moderate",
+      "explanation": "India meets roughly 60 % of its edible-oil requirement through imports (about 14–15 million t) while domestic output has remained around 7–9 million t in each of the five years preceding 2018, so Statement 1 is correct. Customs duty is in fact levied on all major edible-oil imports (e.g., 30 % on crude palm oil and 45 % on refined palm oil in 2018), therefore Statement 2 is incorrect.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 11,
+      "question_id": "UPSC_2018_GS1_Q11",
+      "question": "He wrote biographies of Mazzini, Garibaldi, Shivaji and Shrikrishna; stayed in America for some time; and was also elected to the Central Assembly. He was",
+      "options": {
+        "a": "Aurobindo Ghosh",
+        "b": "Bipin Chandra Pal",
+        "c": "Lala Lajpat Rai",
+        "d": "Motilal Nehru"
+      },
+      "answer": "c",
+      "subject": "Modern History",
+      "sub_topic": "Key Personalities & Ideologies",
+      "difficulty": "easy",
+      "explanation": "Lala Lajpat Rai authored well-known biographies of Giuseppe Mazzini (1898), Giuseppe Garibaldi (1900), Shivaji (1901) and Shri Krishna (1904); he lived in the United States from 1914-1919 to garner support for India’s cause and, on returning, won election to the Central Legislative Assembly in 1920. The other options neither wrote all these works nor share this exact career profile.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 12,
+      "question_id": "UPSC_2018_GS1_Q12",
+      "question": "Consider the following statements:\n1. Aadhaar card can be used as a proof of citizenship or domicile.\n2. Once issued, Aadhaar number cannot be deactivated or omitted by the Issuing Authority.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "d",
+      "subject": "Indian Polity",
+      "sub_topic": "Constitutional & Statutory Bodies",
+      "difficulty": "moderate",
+      "explanation": "Section 9 of the Aadhaar Act expressly says that Aadhaar is *not* proof of citizenship or domicile, making Statement 1 false. Under Regulation 28 of the Aadhaar (Enrolment & Update) Regulations 2016, UIDAI can deactivate or omit an Aadhaar number for reasons such as duplication or death, so Statement 2 is also false; hence neither statement is correct.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 13,
+      "question_id": "UPSC_2018_GS1_Q13",
+      "question": "Rule of Law Index is released by which o the following ?",
+      "options": {
+        "a": "Amnesty International",
+        "b": "International Court of Justice",
+        "c": "The Office of UN Commissioner fo Human Rights",
+        "d": "World Justice Project Which one of the following links all the ATM in India ?"
+      },
+      "answer": "a",
+      "subject": "Geography",
+      "sub_topic": "World Physical Geography",
+      "difficulty": "easy",
+      "explanation": "Excessive diversion of the Amu Darya and Syr Darya rivers for Soviet-era irrigation caused the Aral Sea to lose over 80 % of its area by the 2000s. The Black Sea is a large inland sea whose dimensions have not shrunk perceptibly, and Lake Baikal, though threatened by pollution, has not faced drastic size reduction. Therefore only Statement 1 is correct.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 14,
+      "question_id": "UPSC_2018_GS1_Q14",
+      "question": "“Rule of Law Index” is released by which of the following ? 17.",
+      "options": {
+        "a": "Amnesty International",
+        "b": "International Court of Justice",
+        "c": "The Office of UN Commissioner for Human Rights . .",
+        "d": "World Justice Project"
+      },
+      "answer": "d",
+      "subject": "Current Affairs",
+      "sub_topic": "International Organisations & Groupings",
+      "difficulty": "easy",
+      "explanation": "The annual “Rule of Law Index” is compiled and released by the World Justice Project (WJP), an independent, U.S.-based non-profit organisation. Amnesty International, the International Court of Justice and the UN Office of the High Commissioner for Human Rights issue reports on human rights and justice but do not publish this composite index.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 15,
+      "question_id": "UPSC_2018_GS1_Q15",
+      "question": "Which one of the following links all the ATMs in India ?",
+      "options": {
+        "a": "Indian Banks’ Association",
+        "b": "National Securities Depository Limited",
+        "c": "National Payments Corporation of India",
+        "d": "Reserve Bank of India"
+      },
+      "answer": "c",
+      "subject": "Indian Economy",
+      "sub_topic": "Digital Payments & Financial Inclusion",
+      "difficulty": "easy",
+      "explanation": "The National Financial Switch (NFS), which inter-connects virtually every ATM in the country, is owned and operated by the National Payments Corporation of India (NPCI); hence NPCI is the organisation that links all ATMs in India. Other bodies listed either represent banks (IBA) or regulate/supervise the system (RBI) but do not operate the switch itself, while NSDL deals with securities depositories, not ATMs. ([en.wikipedia.org](https://en.wikipedia.org/wiki/National_Financial_Switch?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 16,
+      "question_id": "UPSC_2018_GS1_Q16",
+      "question": "The identity platform 'Aadhaar' provides open Application Programming Interfaces (APIs). What does it imply?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "Banking & Financial Sector",
+      "difficulty": "moderate",
+      "explanation": "Capital Adequacy Ratio (CAR/CRAR) is the proportion of a bank’s own capital (Tier-1 and Tier-2 funds) to its risk-weighted assets; this capital is maintained so the bank can absorb losses if borrowers default, making statement 1 correct. The required ratio is fixed by regulators (RBI based on Basel norms), not individually by each bank, so statement 2 is incorrect. Therefore only statement 1 is right. ([economictimes.indiatimes.com](https://economictimes.indiatimes.com/topic/capital-adequacy-ratio/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 17,
+      "question_id": "UPSC_2018_GS1_Q17",
+      "question": "The identity platform 'Aadhaar' provides open 'Application Programming Interfaces (APIs)'. What does it imply?\n1. It can be integrated into any electronic device.\n2. Online authentication using iris is possible.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Computer & Information Technology",
+      "difficulty": "moderate",
+      "explanation": "Aadhaar’s open APIs (part of the India Stack) are device-agnostic, so developers can embed Aadhaar authentication into any electronic device such as PoS machines, mobiles or micro-ATMs, validating statement 1. The authentication API supports multiple biometric modalities, including iris scans, allowing real-time online verification with iris data, so statement 2 is also correct. Hence both statements are true. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2018-question-17/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 18,
+      "question_id": "UPSC_2018_GS1_Q18",
+      "question": "Very recently, in which of the following countries have lakhs of people either suffered from severe famine/acute malnutrition or died due to starvation caused by war/ethnic conflicts?",
+      "options": {
+        "a": "Angola and Zambia",
+        "b": "Morocco and Tunisia",
+        "c": "Venezuela and Colombia",
+        "d": "Yemen and South Sudan"
+      },
+      "answer": "d",
+      "subject": "Current Affairs",
+      "sub_topic": "Disasters & Humanitarian Issues",
+      "difficulty": "easy",
+      "explanation": "Since 2015 Yemen’s civil war has created what the UN calls the world’s worst humanitarian crisis, with millions facing famine, while conflict in South Sudan pushed over six million people into extreme hunger in 2018. No comparable war-induced famines were reported in the other country pairs during that period, making ‘Yemen and South Sudan’ the correct choice. ([theguardian.com](https://www.theguardian.com/world/2018/nov/21/yemen-young-children-dead-starvation-disease-save-the-children?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 19,
+      "question_id": "UPSC_2018_GS1_Q19",
+      "question": "Regarding Wood's Dispatch, which of the following statements are true?\n1. Grants-in-Aid system was introduced.\n2. Establishment of universities was recommended.\n3. English as a medium of instruction at all levels of education was recommended.\nSelect the correct answer using the code given below:",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "a",
+      "subject": "Modern History",
+      "sub_topic": "British Administration & Economic Policies",
+      "difficulty": "moderate",
+      "explanation": "Wood’s Dispatch (1854) introduced the Grants-in-Aid system to finance qualifying private schools and proposed setting up universities at the three Presidency towns, so statements 1 and 2 are correct. It recommended English as the medium only for higher (not all) levels while advocating vernacular languages at the primary stage, rendering statement 3 incorrect. Therefore only 1 and 2 are true. ([striveedgeias.in](https://striveedgeias.in/96-regarding-woods-dispatch-which-of-the-following-statements-are-true-2018/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 20,
+      "question_id": "UPSC_2018_GS1_Q20",
+      "question": "With reference to the Parliament of India, which of the following Parliamentary Committees scrutinizes and reports to the House whether the powers to make regulations, rules, sub-rules, by-laws, etc. conferred by the Constitution or delegated by the Parliament are being properly exercised by the Executive within the scope of such delegation?",
+      "options": {
+        "a": "Committee on Government Assurances",
+        "b": "Committee on Subordinate Legislation",
+        "c": "Rules Committee",
+        "d": "Business Advisory Committee"
+      },
+      "answer": "b",
+      "subject": "Indian Polity",
+      "sub_topic": "Parliament & State Legislatures",
+      "difficulty": "moderate",
+      "explanation": "The Committee on Subordinate Legislation of each House examines whether the Executive has exercised the rule-making powers delegated to it by the Constitution or Parliament within the permitted limits; none of the other listed committees has this mandate. ([economictimes.indiatimes.com](https://economictimes.indiatimes.com/news/india/parliamentary-committee-on-subordinate-legislation-to-discuss-csr/articleshow/92486993.cms?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 21,
+      "question_id": "UPSC_2018_GS1_Q21",
+      "question": "Consider the following statements:\n1. As per the Right to Education (RTE) Act, to be eligible for appointment as a teacher in a State, a person would be required to possess the minimum qualification laid down by the concerned State Council of Teacher Education.\n2. As per the RTE Act, for teaching primary classes, a candidate is required to pass a Teacher Eligibility Test conducted in accordance with the National Council of Teacher Education guidelines.\n3. In India, more than 90% of teacher education institutions are directly under the State Governments.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 and 2",
+        "b": "2 only",
+        "c": "1 and 3",
+        "d": "3 only"
+      },
+      "answer": "b",
+      "subject": "Indian Polity",
+      "sub_topic": "Social Justice & Vulnerable Sections",
+      "difficulty": "moderate",
+      "explanation": "Under Section 23 of the RTE Act the Central Government authorised the National Council for Teacher Education (NCTE) to prescribe minimum qualifications, not a State Council (Statement 1 incorrect). NCTE’s 2010 guidelines also require passing a Teacher Eligibility Test for primary-level teaching (Statement 2 correct). Most teacher-training institutions are private/unaided, so the 90 % figure is wrong (Statement 3 incorrect). Hence only Statement 2 is correct. ([indiacode.nic.in](https://www.indiacode.nic.in/handle/123456789/2086))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 22,
+      "question_id": "UPSC_2018_GS1_Q22",
+      "question": "Consider the following pairs:\nTradition  —  State\n1. Chapchar Kut festival — Mizoram\n2. Khongjom Parba ballad — Manipur\n3. Thang-Ta dance — Sikkim\nWhich of the pairs given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 2",
+        "c": "3 only",
+        "d": "2 and 3"
+      },
+      "answer": "b",
+      "subject": "Art & Culture",
+      "sub_topic": "Festivals, Crafts & Folk Traditions",
+      "difficulty": "moderate",
+      "explanation": "Chapchar Kut is the spring festival of Mizoram and Khongjom Parba is a Manipuri ballad recounting the 1891 Anglo-Manipuri war, so pairs 1 and 2 are correct. Thang-Ta is a Manipuri martial-dance form, not from Sikkim, so pair 3 is incorrect. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Chapch%C3%A2r_K%C3%BBt?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 23,
+      "question_id": "UPSC_2018_GS1_Q23",
+      "question": "Consider the following statements:\n1. The Food Safety and Standards Act, 2006 replaced the Prevention of Food Adulteration Act, 1954.\n2. The Food Safety and Standards Authority of India (FSSAI) is under the charge of Director General of Health Services in the Union Ministry of Health and Family Welfare.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "a",
+      "subject": "Governance",
+      "sub_topic": "Food Safety",
+      "difficulty": "easy",
+      "explanation": "The Food Safety and Standards Act, 2006 repealed/ replaced earlier laws including the Prevention of Food Adulteration Act, 1954 (Statement 1 correct). FSSAI is an autonomous statutory body under the Ministry of Health & Family Welfare, not under the Directorate General of Health Services (Statement 2 incorrect). ([fssai.gov.in](https://fssai.gov.in/cms/about-fssai.php?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 24,
+      "question_id": "UPSC_2018_GS1_Q24",
+      "question": "Among the following cities, which one lies a longitude closest to that of Delhi ?",
+      "options": {
+        "a": "Bengaluru",
+        "b": "Hyderabad",
+        "c": "Nagpur",
+        "d": "Pune International Labour Organizatior Conventions 138 and 182 are related to"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "International Conflicts & Security",
+      "difficulty": "easy",
+      "explanation": "The term “two-state solution” pertains to proposals for creating independent Israeli and Palestinian states to resolve the Israel–Palestine conflict; therefore it is linked to Israel. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Two-state_solution?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 25,
+      "question_id": "UPSC_2018_GS1_Q25",
+      "question": "International Labour Organizatior Conventions 138 and 182 are related to",
+      "options": {
+        "a": "Child labour",
+        "b": "Adaptation of agricultural practices global climate change",
+        "c": "Regulation of food prices and fo security",
+        "d": "Gender parity at the workplace ("
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "Human Development, Poverty & Employment Schemes",
+      "difficulty": "moderate",
+      "explanation": "Under NFSA coverage is based on ‘priority’/AAY households covering 75 % of rural and 50 % of urban population, not only BPL families, so Statement 1 is wrong ([nfsa.gov.in](https://www.nfsa.gov.in/portal/Salient_Features_NFSA_AA?utm_source=openai)).  Section 13 of the Act designates the eldest woman (≥18 yrs) in an eligible household as head for issue of ration card, so Statement 2 is correct ([indiankanoon.org](https://indiankanoon.org/doc/193125601/?utm_source=openai)).  Schedule II fixes the nutritional standard for pregnant/lactating women at about 600 kcal take-home ration, not 1600 kcal, so Statement 3 is wrong ([advocatekhoj.com](https://www.advocatekhoj.com/library/bareacts/nationalfood2013/schedule2.php?STitle=Nutritional+Standards&Title=National+Food+Security+Act%2C+2013&utm_source=openai)).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 26,
+      "question_id": "UPSC_2018_GS1_Q26",
+      "question": "India enacted The Geographical Indications of Goods (Registration and Protection) Act, 1999 in order to comply with the obligations to",
+      "options": {
+        "a": "ILO",
+        "b": "IMF",
+        "c": "UNCTAD",
+        "d": "WTO"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "International Trade & WTO",
+      "difficulty": "easy",
+      "explanation": "India enacted the Geographical Indications of Goods (Registration and Protection) Act, 1999 to meet its obligations under the WTO-administered TRIPS Agreement; hence the correct organisation is the WTO ([en.wikipedia.org](https://en.wikipedia.org/wiki/Geographical_Indications_of_Goods_%28Registration_and_Protection%29_Act%2C_1999?utm_source=openai)).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 27,
+      "question_id": "UPSC_2018_GS1_Q27",
+      "question": "Consider the following statements:\n1. In India, State Governments do not have the power to auction non-coal mines.\n2. Andhra Pradesh and Jharkhand do not have gold mines.\n3. Rajasthan has iron ore mines.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 and 2",
+        "b": "2 only",
+        "c": "1 and 3",
+        "d": "3 only"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "Economic & Mineral Geography",
+      "difficulty": "moderate",
+      "explanation": "The MMDR Amendment Act 2015 empowers State governments to auction licences for all non-coal (major) minerals, so Statement 1 is incorrect ([en.wikipedia.org](https://en.wikipedia.org/wiki/Mines_and_Minerals_%28Development_and_Regulation%29_Act?utm_source=openai)).  Jharkhand possesses several primary and alluvial gold deposits (e.g., in East Singhbhum), so the claim that Odisha/Jharkhand lack gold mines is incorrect, making Statement 2 wrong ([timesofindia.indiatimes.com](https://timesofindia.indiatimes.com/city/ranchi/gsi-finds-250kg-gold-reserve-in-e-singhbhum/articleshow/76250409.cms?utm_source=openai)).  Rajasthan does have significant iron-ore resources—estimated at about 2,621 million t in districts such as Jaipur, Udaipur, Bhilwara etc.—so Statement 3 is correct ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2018-question-27/)).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 28,
+      "question_id": "UPSC_2018_GS1_Q28",
+      "question": "With reference to digital payments, consider the following statements:\n1. BHIM app allows the user to transfer money to anyone with a UPI-enabled bank account.\n2. While a chip-PIN debit card has four factors of authentication, BHIM app has only two factors of authentication.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Computer & Information Technology",
+      "difficulty": "moderate",
+      "explanation": "BHIM transfers money to any beneficiary having a UPI-enabled bank account (via VPA, mobile number, QR, IFSC etc.), so Statement 1 is true ([en.wikipedia.org](https://en.wikipedia.org/wiki/BHIM?utm_source=openai)).  EMV ‘chip-and-PIN’ cards rely on two-factor authentication—possession of the card and knowledge of the PIN—while BHIM likewise uses possession of the registered device plus the UPI-PIN; it is therefore incorrect to say the card has four factors and BHIM only two, so Statement 2 is false ([en.wikipedia.org](https://en.wikipedia.org/wiki/Multi-factor_authentication?utm_source=openai)).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 29,
+      "question_id": "UPSC_2018_GS1_Q29",
+      "question": "Among the following cities, which one lies on a longitude closest to that of Delhi?",
+      "options": {
+        "a": "Bengaluru",
+        "b": "Hyderabad",
+        "c": "Nagpur",
+        "d": "Pune"
+      },
+      "answer": "a",
+      "subject": "Geography",
+      "sub_topic": "Cartography & Map Skills",
+      "difficulty": "easy",
+      "explanation": "Delhi lies near 77.23° E ([en.wikipedia.org](https://en.wikipedia.org/wiki/Delhi)).  Bengaluru is at about 77.56° E, only ~0.3° away, whereas Hyderabad (~78.48° E), Nagpur (~79.1° E) and Pune (~73.85° E) are farther from Delhi’s meridian; therefore Bengaluru’s longitude is the closest to that of Delhi ([en.wikipedia.org](https://en.wikipedia.org/wiki/Bengaluru_geography_and_environment?utm_source=openai)).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 30,
+      "question_id": "UPSC_2018_GS1_Q30",
+      "question": "International Labour Organization’s Conventions 138 and 182 are related to",
+      "options": {
+        "a": "Child labour",
+        "b": "Adaptation of agricultural practices to global climate change",
+        "c": "Regulation of food prices and food security",
+        "d": "Gender parity at the workplace"
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "Human Development, Poverty & Employment Schemes",
+      "difficulty": "easy",
+      "explanation": "ILO Convention No. 138 (Minimum Age Convention, 1973) fixes the minimum age for employment, and Convention No. 182 (Worst Forms of Child Labour Convention, 1999) calls for the prohibition and elimination of the worst forms of child labour. Both conventions therefore relate specifically to child labour, not to climate-change agriculture, food prices, or gender parity. ([ilo.org](https://www.ilo.org/international-programme-elimination-child-labour-ipec/what-child-labour/ilo-conventions-child-labour?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 31,
+      "question_id": "UPSC_2018_GS1_Q31",
+      "question": "Regarding Money Bill, which of the following statements is not correct?",
+      "options": {
+        "a": "A bill shall be deemed to be a Money Bill if it contains only provisions relating to imposition, abolition, remission, alteration or regulation of any tax.",
+        "b": "A Money Bill has provisions for the custody of the Consolidated Fund of India or the Contingency Fund of India.",
+        "c": "A Money Bill is concerned with the appropriation of moneys out of the Contingency Fund of India.",
+        "d": "A Money Bill deals with the regulation of borrowing of money or giving of any guarantee by the Government of India."
+      },
+      "answer": "c",
+      "subject": "Indian Polity",
+      "sub_topic": "Parliament & State Legislatures",
+      "difficulty": "moderate",
+      "explanation": "Article 110(1) treats a Bill as a Money Bill if it contains ONLY provisions on matters such as taxation (clause a), custody of the Consolidated or Contingency Funds (clause c), appropriation of money out of the Consolidated Fund (clause d), regulation of borrowing, etc. It does NOT mention appropriation from the Contingency Fund. Hence statement (c) is not correct, while the other three statements reproduce clauses of Article 110 accurately. ([indiankanoon.org](https://indiankanoon.org/doc/72095/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 32,
+      "question_id": "UPSC_2018_GS1_Q32",
+      "question": "With reference to the election of the President of India, consider the following statements:\n1. The value of the vote of each MLA varies from State to State.\n2. The value of the vote of MPs of the Lok Sabha is more than the value of the vote of MPs of the Rajya Sabha.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "a",
+      "subject": "Indian Polity",
+      "sub_topic": "Union & State Executive",
+      "difficulty": "moderate",
+      "explanation": "Under Article 55(2)(a) the value of each MLA’s vote is calculated from the population of that State, so it necessarily varies from State to State. Article 55(2)(c) then fixes a single value for every elected MP (currently 700-odd votes); this value is the SAME for Lok Sabha and Rajya Sabha members, so statement 2 is wrong. Therefore only statement 1 is correct. ([indiankanoon.org](https://indiankanoon.org/doc/1164414/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 33,
+      "question_id": "UPSC_2018_GS1_Q33",
+      "question": "In the Indian context, what is the implication of ratifying the ‘Additional Protocol’ with the ‘International Atomic Energy Agency (IAEAY ?",
+      "options": {
+        "a": "The civilian nuclear reactors come under IAFA safeguards.",
+        "b": "The military nuclear installations come under the inspection of IAEA.",
+        "c": "The country will have the privilege to buy uranium from the Nuclear Suppliers Group (NSG).",
+        "d": "The country automatically becomes a member of the NSG."
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Energy & Environment",
+      "difficulty": "moderate",
+      "explanation": "India’s ratification of the IAEA Additional Protocol (in force since 25 July 2014) extends IAEA safeguards to the list of India’s civilian nuclear facilities placed under the 2008 safeguards agreement. It does not cover military facilities, confer automatic NSG membership, or by itself guarantee uranium purchases. Hence the implication is that CIVILIAN (not military) reactors come under IAEA inspection as in option (a). ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2018-question-33/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 34,
+      "question_id": "UPSC_2018_GS1_Q34",
+      "question": "Consider the following countries:\n1. Australia\n2. Canada\n3. China\n4. India\n5. Japan\n6. USA\nWhich of the above are among the 'free-trade partners' of ASEAN?",
+      "options": {
+        "a": "1, 2, 4 and 5",
+        "b": "3, 4, 5 and 6",
+        "c": "1, 3, 4 and 5",
+        "d": "2, 3, 4 and 6"
+      },
+      "answer": "c",
+      "subject": "Indian Economy",
+      "sub_topic": "International Trade & WTO",
+      "difficulty": "moderate",
+      "explanation": "By 2018 ASEAN had concluded FTAs with six ‘dialogue partners’: Australia-New Zealand, China, India, Japan, and South Korea (plus, later, Hong Kong). Among the countries listed, Australia (1), China (3), India (4) and Japan (5) are FTA partners, whereas Canada (2) and the USA (6) are not. Therefore option (c) 1-3-4-5 is correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Association_of_Southeast_Asian_Nations))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 35,
+      "question_id": "UPSC_2018_GS1_Q35",
+      "question": "With reference to the 'Global Alliance for Climate-Smart Agriculture (GACSA)', which of the following statements is/are correct?\n1. GACSA is an outcome of the Climate Summit held in Paris in 2015.\n2. Membership of GACSA does not create any binding obligations.\n3. India was instrumental in the creation of GACSA.\nSelect the correct answer using the code given below:",
+      "options": {
+        "a": "1 and 3 only",
+        "b": "2 only",
+        "c": "2 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Sustainable Agriculture & Forestry",
+      "difficulty": "moderate",
+      "explanation": "GACSA was launched on 23 September 2014 on the sidelines of the UN Climate Summit in New York, not at the 2015 Paris COP, so statement 1 is wrong ([ccafs.cgiar.org](https://ccafs.cgiar.org/events/un-climate-summit-2014)).  The alliance is described as a “voluntary coalition”, so membership creates no binding (contractual) obligations, making statement 2 correct ([ccafs.cgiar.org](https://ccafs.cgiar.org/events/un-climate-summit-2014)).  India merely joined later through some NGOs and was not an instrumental founder, so statement 3 is incorrect ([vajiramandravi.com](https://vajiramandravi.com/upsc-exam/with-reference-to-the-global-alliance-for-climate-smart-agriculture-gacsa-which-of-the-following-statements-is-are-correct/?utm_source=openai)).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 36,
+      "question_id": "UPSC_2018_GS1_Q36",
+      "question": "Which of the following is/are the aim/aims of \"Digital India\" Plan of the Government of India?",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "3 only",
+        "c": "2 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "Indian Government Schemes & Initiatives",
+      "difficulty": "moderate",
+      "explanation": "The stated pillars of the Digital India scheme focus on building digital infrastructure and connectivity such as linking villages by broadband/Wi-Fi (statement 3). They do not include creating national ‘internet giants’ or a policy to compel foreign big-data MNCs to locate data centres in India (statements 1 & 2) ([superkalam.com](https://superkalam.com/upsc-prelims/previous-year-question-paper/2018/which-of-the-following-isare-the-aimaims-of-digital-india-plan-of-the-government-of-india-formation-of-indias-own-intern-360439e4-79df-4c45-8f85-8cc3399cd89b?utm_source=openai)).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 37,
+      "question_id": "UPSC_2018_GS1_Q37",
+      "question": "Consider the following pairs:\nTowns sometimes mentioned in news — Country\n1. Aleppo — Syria\n2. Kirkuk — Yemen\n3. Mosul — Palestine\n4. Mazar-i-sharif — Afghanistan\nWhich of the pairs given above are correctly matched?",
+      "options": {
+        "a": "1 and 2",
+        "b": "1 and 4",
+        "c": "2 and 3",
+        "d": "3 and 4"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "World Political Geography & Borders",
+      "difficulty": "easy",
+      "explanation": "Aleppo is a major city in northern Syria ([britannica.com](https://www.britannica.com/place/Aleppo?utm_source=openai)), and Mazar-i-Sharif is in Afghanistan ([en.wikipedia.org](https://en.wikipedia.org/wiki/Mazar-i-Sharif?utm_source=openai))—both pairs are correct.  Kirkuk and Mosul are in Iraq, not Yemen or Palestine, so pairs 2 and 3 are wrong ([en.wikipedia.org](https://en.wikipedia.org/wiki/Kirkuk?utm_source=openai)).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 38,
+      "question_id": "UPSC_2018_GS1_Q38",
+      "question": "In the Federation established by The Government of India Act of 1935, residuary powers were given to the",
+      "options": {
+        "a": "Federal Legislature",
+        "b": "Governor General",
+        "c": "Provincial Legislature",
+        "d": "Provincial Governors"
+      },
+      "answer": "b",
+      "subject": "Modern History",
+      "sub_topic": "Constitutional Developments & British Plans (1909-1947)",
+      "difficulty": "easy",
+      "explanation": "Under the Government of India Act 1935 the three legislative lists were accompanied by residuary powers that were vested in the Governor-General (Viceroy), not in the federal or provincial legislatures or governors ([jagranjosh.com](https://www.jagranjosh.com/general-knowledge/government-of-india-act-1935-1443011759-1?utm_source=openai)).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 39,
+      "question_id": "UPSC_2018_GS1_Q39",
+      "question": "Consider the following statements:\n1. The Speaker of the Legislative Assembly shall vacate his/her office if he/she ceases to be a member of the Assembly.\n2. Whenever the Legislative Assembly is dissolved, the Speaker shall vacate his/her office immediately.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "a",
+      "subject": "Indian Polity",
+      "sub_topic": "Parliament & State Legislatures",
+      "difficulty": "easy",
+      "explanation": "Article 179(a) states that the Speaker of a Legislative Assembly vacates office if he/she ceases to be a member, so statement 1 is correct.  The proviso to Article 179 further says that when the Assembly is dissolved the Speaker remains in office until immediately before the first meeting of the new Assembly, so statement 2 is incorrect ([constitutionofindia.net](https://www.constitutionofindia.net/articles/article-179-vacation-and-resignation-of-and-removal-from-the-offices-of-speaker-and-deputy-speaker/?utm_source=openai)).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 40,
+      "question_id": "UPSC_2018_GS1_Q40",
+      "question": "Which one of the following reflects the most appropriate relationship between law and liberty?",
+      "options": {
+        "a": "If there are more laws, there is less liberty.",
+        "b": "If there are no laws, there is no liberty.",
+        "c": "If there is liberty, laws have to be made by the people.",
+        "d": "If laws are changed too often, liberty is in danger."
+      },
+      "answer": "b",
+      "subject": "Indian Polity",
+      "sub_topic": "Political Theory & Concepts",
+      "difficulty": "moderate",
+      "explanation": "John Locke’s maxim, “where there is no law, there is no freedom,” captures the idea that laws create an orderly framework within which liberty can be enjoyed; hence option (b) is the most appropriate. More laws do not automatically curtail liberty (a), liberty can exist even with laws framed by other organs (c), and frequent amendment need not always imperil freedom (d). ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2018-question-40/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 41,
+      "question_id": "UPSC_2018_GS1_Q41",
+      "question": "Consider the following statements:\n1. No criminal proceedings shall be instituted against the Governor of a State in any court during his term of office.\n2. The emoluments and allowances of the Governor of a State shall not be diminished during his term of office.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "c",
+      "subject": "Indian Polity",
+      "sub_topic": "Union & State Executive",
+      "difficulty": "moderate",
+      "explanation": "Article 361(2) of the Constitution bars the institution or continuation of any criminal proceedings against a sitting Governor, satisfying statement 1. Article 158(4) expressly says that the Governor’s emoluments and allowances “shall not be diminished during his term of office,” validating statement 2. Therefore both statements are correct. ([indiankanoon.org](https://indiankanoon.org/doc/1470888/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 42,
+      "question_id": "UPSC_2018_GS1_Q42",
+      "question": "The well-known painting \"Bani Thani\" belongs to the",
+      "options": {
+        "a": "Bundi school",
+        "b": "Jaipur school",
+        "c": "Kangra school",
+        "d": "Kishangarh school"
+      },
+      "answer": "d",
+      "subject": "Art & Culture",
+      "sub_topic": "Painting & Visual Arts",
+      "difficulty": "easy",
+      "explanation": "“Bani Thani,” often dubbed the ‘Indian Mona Lisa,’ is the best-known masterpiece of the Kishangarh school of Rajasthani miniature painting; it is not associated with Bundi, Jaipur or Kangra styles. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Bani_Thani?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 43,
+      "question_id": "UPSC_2018_GS1_Q43",
+      "question": "What is \"Terminal High Altitude Area Defense (THAAD)\", sometimes seen in the news?",
+      "options": {
+        "a": "An Israeli radar system",
+        "b": "India's indigenous anti-missile programme",
+        "c": "An American anti-missile system",
+        "d": "A defence collaboration between Japan and South Korea"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Defence Technology",
+      "difficulty": "easy",
+      "explanation": "THAAD (Terminal High Altitude Area Defense) is a mobile American anti-ballistic missile system developed by the United States to intercept short- to intermediate-range ballistic missiles; it is neither Israeli, Indian, nor a Japan–South Korea joint project. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Terminal_High_Altitude_Area_Defense?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 44,
+      "question_id": "UPSC_2018_GS1_Q44",
+      "question": "With reference to cultural history of India, consider the following statements:\n1. Most of the Tyagaraja Kritis are devotional songs in praise of Lord Krishna.\n2. Tyagaraja created several new ragas.\n3. Annamacharya and Tyagaraja are contemporaries.\n4. Annamacharya kirtanas are devotional songs in praise of Lord Venkateswara.\nWhich of the statements given above are correct?",
+      "options": {
+        "a": "1 and 3 only",
+        "b": "2 and 4 only",
+        "c": "1, 2 and 3",
+        "d": "2, 3 and 4"
+      },
+      "answer": "b",
+      "subject": "Art & Culture",
+      "sub_topic": "Music",
+      "difficulty": "difficult",
+      "explanation": "1) Tyagaraja’s thousands of kritis praise Lord Rama, not Krishna, so statement 1 is wrong. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Chakkani_Rajamargamu?utm_source=openai)) 2) Music historians credit Tyagaraja with creating dozens of new ragas, making statement 2 correct. ([hinduismtoday.com](https://www.hinduismtoday.com/educational-insights/indias-remarkable-carnatic-musician-saints/?utm_source=openai)) 3) Annamacharya (1408–1503) lived about three centuries before Tyagaraja (1767–1847); they were not contemporaries, so statement 3 is incorrect. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Annamacharya?utm_source=openai)) 4) Annamacharya’s kirtanas are devotional hymns to Lord Venkateswara, so statement 4 is correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Annamacharya))  Hence only statements 2 and 4 are correct, matching option (b).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 45,
+      "question_id": "UPSC_2018_GS1_Q45",
+      "question": "Which of the following are regarded as the main features of the \"Rule of Law\"?",
+      "options": {
+        "a": "1 and 3 only",
+        "b": "2 and 4 only",
+        "c": "1, 2 and 4 only",
+        "d": "1, 2, 3 and 4"
+      },
+      "answer": "c",
+      "subject": "Indian Polity",
+      "sub_topic": "Political Theory & Concepts",
+      "difficulty": "moderate",
+      "explanation": "The classic Diceyan elements of the Rule of Law include limitation of powers (to avoid arbitrariness), equality before the law, and protection of individual liberty/civil rights. ‘People’s responsibility to the Government’ is NOT counted among the core attributes because in a democracy the Government is accountable to the people, not vice-versa. Hence statements 1, 2 and 4 are correct. ([aspirantforum.wordpress.com](https://aspirantforum.wordpress.com/2018/06/09/upsc-prelims-exam-gs-paper-2018-answer-and-explanation/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 46,
+      "question_id": "UPSC_2018_GS1_Q46",
+      "question": "Which one of the following statements correctly describes the meaning of legal tender money?",
+      "options": {
+        "a": "The money which is tendered in courts of law to defray the fee of legal cases",
+        "b": "The money which a creditor is under compulsion to accept in settlement of his claims",
+        "c": "The bank money in the form of cheques, drafts, bills of exchange, etc.",
+        "d": "The metallic money in circulation in a country"
+      },
+      "answer": "b",
+      "subject": "Economy",
+      "sub_topic": "Money and Banking",
+      "difficulty": "easy",
+      "explanation": "Legal-tender money is any money which, under the statute, a creditor is legally compelled to accept in discharge of debt. Court-fee stamps (option a) are only for a specific purpose, cheques/drafts (option c) are negotiable instruments that may be refused, and metallic coins (option d) describe only a form, not the defining property. ([dalvoy.com](https://www.dalvoy.com/upsc/previous-years/2018/legal-tender-money-creditor-compulsion-definition-upsc?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 47,
+      "question_id": "UPSC_2018_GS1_Q47",
+      "question": "Consider the following phenomena : i. Light is affected by gravity. 2. The Universe is constantly expanding. 3. Matter warps its surrounding space-time. Which of the above is/are the prediction/predictions of Albert Einsteins General Theory of Relativity, often discussed in media ?",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "3 only",
+        "c": "1 and 3 only",
+        "d": "1,2 and 3"
+      },
+      "answer": "c",
+      "subject": "Indian Economy",
+      "sub_topic": "National Income & Economic Growth",
+      "difficulty": "moderate",
+      "explanation": "Resources used to supply a ‘free’ public commodity could have produced something else; that foregone benefit (opportunity cost) does not vanish. Instead of being paid directly by the consumers, it is met out of general taxation, so the burden shifts to all tax-paying citizens. Options a and b ignore the cost, while d limits the burden to government finances without showing the ultimate incidence on taxpayers. ([insightsonindia.com](https://www.insightsonindia.com/2018/06/14/insights-ias-final-answer-key-with-detailed-explanations-to-upsc-csp-2018/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 48,
+      "question_id": "UPSC_2018_GS1_Q48",
+      "question": "Increase in absolute and per capita real GNP do not ensure a higher level of economic development, if",
+      "options": {
+        "a": "industrial output fails to keep pace with agricultural output.",
+        "b": "agricultural output fails to keep pace with industrial output.",
+        "c": "poverty and unemployment increase.",
+        "d": "imports grow faster than exports."
+      },
+      "answer": "c",
+      "subject": "Indian Economy",
+      "sub_topic": "National Income & Economic Growth",
+      "difficulty": "moderate",
+      "explanation": "Rising absolute and per-capita real GNP may still mask development failure if the benefits are unevenly distributed. When poverty and unemployment rise, social welfare and human development decline despite higher averages—so economic ‘growth’ does not translate into ‘development’. Other options describe sectoral imbalances or external trade gaps that do not necessarily negate overall development. ([edurev.in](https://edurev.in/t/170673/UPSC-Prelims-Past-Year-2018-with-Solutions-Paper-1))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 49,
+      "question_id": "UPSC_2018_GS1_Q49",
+      "question": "Consider the following statements:\nHuman capital formation as a concept is better explained in terms of a process which enables\n1. individuals of a country to accumulate more capital.\n2. increasing the knowledge, skill levels and capacities of the people of the country.\n3. accumulation of tangible wealth.\n4. accumulation of intangible wealth.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 and 2",
+        "b": "2 only",
+        "c": "2 and 4",
+        "d": "1, 3 and 4"
+      },
+      "answer": "c",
+      "subject": "Indian Economy",
+      "sub_topic": "Human Development, Poverty & Employment Schemes",
+      "difficulty": "moderate",
+      "explanation": "Human-capital formation is the process of raising the knowledge, skills and health (statement 2) that constitute an economy’s intangible productive wealth (statement 4). It is not about individuals merely accumulating physical capital (1) or tangible assets (3). Therefore only statements 2 and 4 are correct. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2018-question-49/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 50,
+      "question_id": "UPSC_2018_GS1_Q50",
+      "question": "Despite being a high saving economy, capital formation may not result in significant increase in output due to",
+      "options": {
+        "a": "weak administrative machinery",
+        "b": "illiteracy",
+        "c": "high population density",
+        "d": "high capital-output ratio"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "National Income & Economic Growth",
+      "difficulty": "easy",
+      "explanation": "Even when an economy saves and invests a lot, output will rise only if a given quantum of capital can generate sufficient additional production. A high capital–output ratio (ICOR) means many units of capital are required to produce one unit of output, so extra capital formation yields only a small output increment. The other factors listed do not directly measure the productivity of capital and therefore cannot explain the phenomenon asked in the question. ([compass.rauias.com](https://compass.rauias.com/quiz/despite-being-a-high-saving-economy-capital-formation-may-not-result-in-significant-increase-in-output-due-to/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 51,
+      "question_id": "UPSC_2018_GS1_Q51",
+      "question": "After the Santhal Uprising subsided, what was/were the measure/measures taken by the colonial government?\n1. The territories called ‘Santhal Parganas’ were created.\n2. It became illegal for a Santhal to transfer land to a non-Santhal.\nSelect the correct answer using the code given below:",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "c",
+      "subject": "Modern History",
+      "sub_topic": "Peasant, Tribal & Labour Movements",
+      "difficulty": "moderate",
+      "explanation": "After suppressing the Santhal Uprising, the British passed the Sonthal Parganas Act (22 Dec 1855) creating a separate ‘Santhal Parganas’ district, and later enacted the Santhal Parganas Tenancy Act 1876 that barred transfer of Santhal land to non-Santhals. Hence both statements are correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Santhal_rebellion?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 52,
+      "question_id": "UPSC_2018_GS1_Q52",
+      "question": "Economically, one of the results of the British rule in India in the 19th century was the",
+      "options": {
+        "a": "increase in the export of Indian handicrafts",
+        "b": "growth in the number of Indian owned factories",
+        "c": "commercialization of Indian agriculture",
+        "d": "rapid increase in the urban population"
+      },
+      "answer": "c",
+      "subject": "Modern History",
+      "sub_topic": "British Administration & Economic Policies",
+      "difficulty": "easy",
+      "explanation": "Colonial land-revenue and trade policies in the 19th century pushed Indian peasants from subsistence food crops to cash crops for export, a process known as commercialisation of agriculture. This was one of the most far-reaching economic consequences of British rule; the other options either declined (handicrafts), grew only slowly (Indian-owned factories), or were not characteristic (urbanisation remained limited). ([en.wikipedia.org](https://en.wikipedia.org/wiki/Economy_of_India?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 53,
+      "question_id": "UPSC_2018_GS1_Q53",
+      "question": "If the President of India exercises his power as provided under Article 356 of the Constitution in respect of a particular State, then",
+      "options": {
+        "a": "the Assembly of the State is automatically dissolved.",
+        "b": "the powers of the Legislature of that State shall be exercisable by or under the authority of the Parliament.",
+        "c": "Article 19 is suspended in that State.",
+        "d": "the President can make laws relating to that State."
+      },
+      "answer": "b",
+      "subject": "Indian Polity",
+      "sub_topic": "Emergency Provisions",
+      "difficulty": "moderate",
+      "explanation": "Article 356(1)(b) declares that when President’s Rule is proclaimed, “the powers of the Legislature of the State shall be exercisable by or under the authority of Parliament.” The Assembly is not automatically dissolved (it may be kept under suspended animation); Fundamental Rights under Article 19 are unaffected, and the President cannot unilaterally legislate except as Parliament authorises under Article 357. ([constitutionofindia.net](https://www.constitutionofindia.net/articles/article-356-provisions-in-case-of-failure-of-constitutional-machinery-in-states/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 54,
+      "question_id": "UPSC_2018_GS1_Q54",
+      "question": "Consider the following pairs:\nCraft  —  Heritage of\n1. Puthukkuli shawls  —  Tamil Nadu\n2. Sujni embroidery  —  Maharashtra\n3. Uppada Jamdani saris  —  Karnataka\nWhich of the pairs given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 2",
+        "c": "3 only",
+        "d": "2 and 3"
+      },
+      "answer": "a",
+      "subject": "Art & Culture",
+      "sub_topic": "Festivals, Crafts & Folk Traditions",
+      "difficulty": "moderate",
+      "explanation": "Puthukkuli (Poothkuli) shawls are woven and embroidered by the Toda tribe of the Nilgiris in Tamil Nadu, so Pair 1 is correct. Sujni (Sujani) embroidery originates from Muzaffarpur in Bihar, not Maharashtra, and Uppada Jamdani saris are hand-woven in Uppada, East Godavari district of Andhra Pradesh, not Karnataka; therefore Pairs 2 and 3 are incorrect. Hence only Pair 1 is correct. ([testbook.com](https://testbook.com/question-answer/consider-the-following-pairscrafth--5f3636967bcaa80d0e1dfd7d?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 55,
+      "question_id": "UPSC_2018_GS1_Q55",
+      "question": "In which of the following areas can GPS technology be used?\n1. Mobile phone operations\n2. Banking operations\n3. Controlling the power grids\nSelect the correct answer using the code given below:",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "d",
+      "subject": "Science",
+      "sub_topic": "Technology",
+      "difficulty": "easy",
+      "explanation": "GPS supplies precise positioning AND nanosecond-level time signals. Hence it is routinely embedded in mobile-phone location services, is used by banks/ATMs and high-frequency trading systems for secure time-stamping, and provides synchronous time to phasor-measurement units that keep modern power-grids stable. Therefore all three listed areas are valid uses. ([scribd.com](https://www.scribd.com/document/390768918/UPSC-GS-Paper-I-2018-Solved-Paper?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 56,
+      "question_id": "UPSC_2018_GS1_Q56",
+      "question": "Which one of the following statements does not apply to the system of Subsidiary Alliance introduced by Lord Wellesley ?",
+      "options": {
+        "a": "To maintain a large standing army at others expense",
+        "b": "To keep India safe from Napoleonic danger",
+        "c": "To secure a fixed income for the Company",
+        "d": "To establish British paramountcy over the Indian States (33"
+      },
+      "answer": "c",
+      "subject": "Indian Economy",
+      "sub_topic": "Financial Markets & Capital Markets",
+      "difficulty": "moderate",
+      "explanation": "1 is wrong because the RBI acts as public-debt manager for BOTH the Union and the State governments. 2 is correct—only the Union Government issues Treasury Bills; States issue longer-tenor State-Development Loans instead. 3 is correct because T-Bills are zero-coupon instruments issued below par and redeemed at face value. Hence only 2 and 3 are true. ([edukemy.com](https://edukemy.com/upsc-current-affairs/daily-current-affairs/swayam-plus-platform/01-03-2024?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 57,
+      "question_id": "UPSC_2018_GS1_Q57",
+      "question": "Consider the following statements:\n1. The Earth's magnetic field has reversed every few hundred thousand years.\n2. When the Earth was created more than 4000 million years ago, there was 54% oxygen and no carbon dioxide.\n3. When living organisms originated, they modified the early atmosphere of the Earth.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "Astronomy & Earth–Sun System",
+      "difficulty": "moderate",
+      "explanation": "Palaeomagnetic studies show the geomagnetic field flips polarity irregularly, on an average every ~200–300 k years, so statement 1 is correct. Geological evidence indicates the primordial atmosphere was CO₂-rich and virtually devoid of free O₂ (<0.01 %), not 54 % oxygen, so statement 2 is false. Oxygenic photosynthesis by early cyanobacteria later enriched the atmosphere, making statement 3 correct. Thus only 1 and 3 hold. ([jagranjosh.com](https://www.jagranjosh.com/articles/upsc-civil-services-ias-prelims-csat-exam-2018-question-paper-and-answer-key-1527851395-1?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 58,
+      "question_id": "UPSC_2018_GS1_Q58",
+      "question": "The terms 'WannaCry, Petya and EternalBlue' sometimes mentioned in the news recently are related to",
+      "options": {
+        "a": "Exoplanets",
+        "b": "Cryptocurrency",
+        "c": "Cyber attacks",
+        "d": "Mini satellites"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Computer & Information Technology",
+      "difficulty": "easy",
+      "explanation": "‘WannaCry’ and ‘Petya’ were headline-grabbing 2017 ransomware outbreaks that exploited the EternalBlue vulnerability; all of them are names of malicious code/cyber-attack campaigns, not planets, cryptocurrencies or satellites. Hence the terms are related to cyber attacks. ([dalvoy.com](https://www.dalvoy.com/upsc/previous-years/2018/wannacry-petya-eternalblue-cyber-attacks-context?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 59,
+      "question_id": "UPSC_2018_GS1_Q59",
+      "question": "With reference to the circumstances in Indian agriculture, the concept of \"Conservation Agriculture\" assumes significance. Which of the following fall under the Conservation Agriculture?",
+      "options": {
+        "a": "1, 3 and 4",
+        "b": "2, 3, 4 and 5",
+        "c": "2, 4 and 5",
+        "d": "1, 2, 3 and 5"
+      },
+      "answer": "c",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Sustainable Agriculture & Forestry",
+      "difficulty": "moderate",
+      "explanation": "Conservation Agriculture rests on three pillars: (i) minimum soil disturbance (minimum tillage – statement 2), (ii) permanent soil cover with residues or live mulches (statement 4), and (iii) crop diversification via spatial/temporal rotations (statement 5). Avoiding monoculture or plantation crops is not a defined CA principle. Therefore statements 2, 4 and 5 only. ([vajiramandravi.com](https://vajiramandravi.com/upsc-exam/with-reference-to-the-circumstances-in-indian-agriculture-the-concept-of-conservation-agriculture-assumes-significance-which-of-the-following-fall-under-the-conservation-agriculture/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 60,
+      "question_id": "UPSC_2018_GS1_Q60",
+      "question": "The term “sixth mass extinction/sixth extinction” is often mentioned in the news in the context of the discussion of",
+      "options": {
+        "a": "Widespread monoculture practices in agriculture and large-scale commercial farming with indiscriminate use of chemicals in many parts of the world that may result in the loss of good native ecosystems.",
+        "b": "Fears of a possible collision of a meteorite with the Earth in the near future in the manner it happened 65 million years ago that caused the mass extinction of many species including those of dinosaurs.",
+        "c": "Large-scale cultivation of genetically modified crops in many parts of the world and promoting their cultivation in other parts of the world which may cause the disappearance of good native crop plants and the loss of food biodiversity.",
+        "d": "Mankind’s over-exploitation/misuse of natural resources, fragmentation/loss of natural habitats, destruction of ecosystems, pollution and global climate change."
+      },
+      "answer": "d",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Biodiversity & Conservation",
+      "difficulty": "moderate",
+      "explanation": "Scientists use the phrase “sixth mass extinction” for the ongoing, human-driven loss of species caused by habitat fragmentation, over-exploitation, pollution and climate change—factors that mirror the drivers listed in option (d). UNEP notes that land degradation and other human pressures are already “pushing the planet towards a sixth mass species extinction.”([unep.org](https://www.unep.org/news-and-stories/story/warning-sixth-mass-species-extinction-cards?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 61,
+      "question_id": "UPSC_2018_GS1_Q61",
+      "question": "With reference to the Indian Regional Navigation Satellite System (IRNSS), consider the following statements:\n1. IRNSS has three satellites in geostationary and four satellites in geosynchronous orbits.\n2. IRNSS covers entire India and about 5500 sq. km beyond its borders.\n3. India will have its own satellite navigation system with full global coverage by the middle of 2019.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 2 only",
+        "c": "2 and 3 only",
+        "d": "None"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Space Technology & Astronomy",
+      "difficulty": "moderate",
+      "explanation": "IRNSS (now branded NavIC) is a 7-satellite constellation with 3 satellites in geostationary orbit and 4 in inclined geosynchronous orbits, so Statement 1 is correct. The service area extends over India and roughly 1 500 km beyond, not just 5 500 km², making Statement 2 incorrect. It is a regional—not global—system, so Statement 3 is also incorrect. Hence only Statement 1 is right.([isro.gov.in](https://www.isro.gov.in/SatelliteNavigationServices.html?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 62,
+      "question_id": "UPSC_2018_GS1_Q62",
+      "question": "Consider the following phenomena:\n1. Light is affected by gravity.\n2. The Universe is constantly expanding.\n3. Matter warps its surrounding space-time.\nWhich of the above is/are the prediction/predictions of Albert Einstein’s General Theory of Relativity, often discussed in media?",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Physics",
+      "difficulty": "moderate",
+      "explanation": "Einstein’s General Theory of Relativity predicts that (1) light follows curved space-time and is therefore bent by gravity, (2) cosmological solutions of the field equations allow and indeed imply an expanding universe, and (3) mass–energy warps the surrounding space-time fabric. All three statements are therefore correct.([sprintupsc.com](https://sprintupsc.com/PreviousYearsWeb/upsc-prelims-2018-answer-key.html))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 63,
+      "question_id": "UPSC_2018_GS1_Q63",
+      "question": "With reference to the Genetically Modified mustard (GM mustard) developed in India, consider the following statements:\n1. GM mustard has the genes of a soil bacterium that give the plant the property of pest-resistance to a wide variety of pests.\n2. GM mustard has the genes that allow the plant cross-pollination and hybridization.\n3. GM mustard has been developed jointly by the IARI and Punjab Agricultural University.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 and 3 only",
+        "b": "2 only",
+        "c": "2 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Biotechnology & Genetics",
+      "difficulty": "moderate",
+      "explanation": "India’s GM mustard (DMH-11) uses barnase–barstar genes from a soil bacterium to induce male sterility and restore fertility, facilitating cross-pollination and hybrid seed production—Statement 2 is correct. These genes do not confer broad pest resistance (Statement 1 incorrect) and the crop was developed by Delhi University’s CGMCP team, not jointly by IARI and PAU (Statement 3 incorrect). Thus only Statement 2 is valid.([learningcorner.epaper.thehindu.com](https://learningcorner.epaper.thehindu.com/article/66088166?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 64,
+      "question_id": "UPSC_2018_GS1_Q64",
+      "question": "Consider the following pairs: Terms sometimes seen in news - Context/Topic 1. Belle II - Artificial Intelligence experiment\n2. Blockchain - Digital/Cryptocurrency technology\n3. CRISPR - Cas9 - Particle Physics\nWhich of the pairs given above is/are correctly matched?",
+      "options": {
+        "a": "1 and 3 only",
+        "b": "2 only",
+        "c": "2 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Computer & Information Technology",
+      "difficulty": "moderate",
+      "explanation": "Blockchain is the distributed-ledger technology that underpins digital/crypto-currencies such as Bitcoin, so pair 2 is correctly matched. The Belle II experiment is a high-energy particle-physics detector at Japan’s SuperKEKB collider, not an artificial-intelligence project (pair 1 wrong). CRISPR-Cas9 is a genome-editing biotechnology tool, not related to particle physics (pair 3 wrong). Therefore only pair 2 is correctly matched.([nature.com](https://www.nature.com/articles/d41586-020-00417-6?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 65,
+      "question_id": "UPSC_2018_GS1_Q65",
+      "question": "Which of the following statements best describes \"carbon fertilization\"?",
+      "options": {
+        "a": "Increased plant growth due to increased concentration of carbon dioxide in the atmosphere",
+        "b": "Increased temperature of Earth due to increased concentration of carbon dioxide in the atmosphere",
+        "c": "Increased acidity of oceans as a result of increased concentration of carbon dioxide in the atmosphere",
+        "d": "Adaptation of all living beings on Earth to the climate change brought about by increased concentration of carbon dioxide in the atmosphere"
+      },
+      "answer": "a",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Climate Change & Greenhouse Gases",
+      "difficulty": "easy",
+      "explanation": "The term “carbon fertilization” (or CO₂-fertilization effect) refers to the stimulation of photosynthesis and biomass production in plants when atmospheric CO₂ concentration rises; hence the best description is ‘increased plant growth due to higher CO₂’. It is not about temperature rise (greenhouse effect), ocean acidification, or universal biological adaptation. ([en.wikipedia.org](https://en.wikipedia.org/wiki/CO2_fertilization_effect?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 66,
+      "question_id": "UPSC_2018_GS1_Q66",
+      "question": "When the alarm of your smartphone rings in the morning, you wake up and tap it to stop the alarm which causes your geyser to be switched on automatically. The smart mirror in your bathroom shows the day's weather and also indicates the level of water in your overhead tank. After you take some groceries from your refrigerator for making breakfast, it recognises the shortage of stock in it and places an order for the supply of fresh grocery items. When you step out of your house and lock the door, all lights, fans, geysers and AC machines get switched off automatically. On your way to office, your car warns you about traffic congestion ahead and suggests an alternative route, and if you are late for a meeting, it sends a message to your office accordingly.\nIn the context of emerging communication technologies, which one of the following terms best applies to the above scenario?",
+      "options": {
+        "a": "Border Gateway Protocol",
+        "b": "Internet of Things",
+        "c": "Internet Protocol",
+        "d": "Virtual Private Network"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Computer & Information Technology",
+      "difficulty": "easy",
+      "explanation": "A network of everyday objects (phone, geyser, fridge, car, etc.) communicating autonomously through embedded sensors and connectivity is precisely the Internet of Things (IoT). Border Gateway Protocol is a routing protocol, Internet Protocol provides addressing, and a Virtual Private Network secures connections; none of these alone describes the scenario. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2018-question-66/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 67,
+      "question_id": "UPSC_2018_GS1_Q67",
+      "question": "With reference to solar power production in India, consider the following statements:\n1. India is the third largest in the world in the manufacture of silicon wafers used in photovoltaic units.\n2. The solar power tariffs are determined by the Solar Energy Corporation of India.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Energy & Environment",
+      "difficulty": "moderate",
+      "explanation": "India does not rank among the top three global manufacturers of silicon wafers; production is dominated by China, Taiwan, and South Korea. Solar tariffs are set through competitive bidding under regulatory oversight (CERC/SERCs), not fixed by the Solar Energy Corporation of India. Therefore, both statements are incorrect. ([vajiramandravi.com](https://vajiramandravi.com/upsc-exam/with-reference-to-solar-power-production-in-india/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 68,
+      "question_id": "UPSC_2018_GS1_Q68",
+      "question": "The staple commodities of export by the English East India Company from Bengal in the middle of the 18th century were",
+      "options": {
+        "a": "Raw cotton, oil-seeds and opium",
+        "b": "Sugar, salt, zinc and lead",
+        "c": "Copper, silver, gold, spices and tea",
+        "d": "Cotton, silk, saltpetre and opium"
+      },
+      "answer": "d",
+      "subject": "Modern History",
+      "sub_topic": "British Administration & Economic Policies",
+      "difficulty": "moderate",
+      "explanation": "Mid-18th-century Bengal supplied the Company with high-value textiles (cotton, silk), saltpetre for gunpowder, and opium used in the China trade; these formed its staple exports. The other option sets either include commodities that were largely imported (precious metals), locally consumed (salt), or not major Bengal exports then. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2018-question-68/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 69,
+      "question_id": "UPSC_2018_GS1_Q69",
+      "question": "Which one of the following is a very significant aspect of the Champaran Satyagraha?",
+      "options": {
+        "a": "Active all-India participation of lawyers, students and women in the National Movement",
+        "b": "Active involvement of Dalit and Tribal communities of India in the National Movement",
+        "c": "Joining of peasant unrest to India’s National Movement",
+        "d": "Drastic decrease in the cultivation of plantation crops and commercial crops"
+      },
+      "answer": "c",
+      "subject": "Modern History",
+      "sub_topic": "Gandhian Mass Movements (1915-1942)",
+      "difficulty": "easy",
+      "explanation": "Champaran was Gandhi’s first satyagraha and linked the long-standing indigo peasants’ grievances to the wider national struggle, marking the entry of agrarian unrest into the freedom movement. It was not notable primarily for pan-Indian participation of lawyers/women, Dalit-tribal mobilisation, or a decline in commercial crops. ([indianexpress.com](https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/knowledge-nugget-champaran-satyagraha-upsc-mahad-gandhi-9951674/lite/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 70,
+      "question_id": "UPSC_2018_GS1_Q70",
+      "question": "Who among the following were the founders of the “Hind Mazdoor Sabha” established in 1948?",
+      "options": {
+        "a": "B. Krishna Pillai, E.M.S. Namboodiripad and K.C. George",
+        "b": "Jayaprakash Narayan, Deen Dayal Upadhyay and M.N. Roy",
+        "c": "C.P. Ramaswamy Iyer, K. Kamaraj and Veeresalingam Pantulu",
+        "d": "Ashok Mehta, T.S. Ramanujam and G.G. Mehta"
+      },
+      "answer": "d",
+      "subject": "Modern History",
+      "sub_topic": "Post-Independence India",
+      "difficulty": "moderate",
+      "explanation": "The Hind Mazdoor Sabha was founded on 29 December 1948 by socialist trade-union leaders including Ashok Mehta, T. S. Ramanujam and G. G. Mehta (along with Basawon Singh, R. S. Ruikar, Maniben Kara, etc.). The other option-pairs never figured in its founding, so option (d) alone is correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Hind_Mazdoor_Sabha?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 71,
+      "question_id": "UPSC_2018_GS1_Q71",
+      "question": "With reference to the religious practices in India, the “Sthanakvasi” sect belongs to",
+      "options": {
+        "a": "Buddhism",
+        "b": "Jainism",
+        "c": "Vaishnavism",
+        "d": "Shaivism"
+      },
+      "answer": "b",
+      "subject": "Art & Culture",
+      "sub_topic": "Philosophy & Religion",
+      "difficulty": "easy",
+      "explanation": "Sthānakavāsī is a non-idolatrous sub-sect of the Śvetāmbara branch of JAINISM; it rejects temple worship and performs rituals in ‘sthanaks’ (meeting halls). Hence option (b) Jainism is correct, while Buddhism, Vaishnavism and Shaivism are unrelated. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Sth%C4%81nakav%C4%81s%C4%AB?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 72,
+      "question_id": "UPSC_2018_GS1_Q72",
+      "question": "With reference to the cultural history of India, consider the following statements:\n1. White marble was used in making Buland Darwaza and Khanqah at Fatehpur Sikri.\n2. Red sandstone and marble were used in making Bara Imambara and Rumi Darwaza at Lucknow.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "d",
+      "subject": "Art & Culture",
+      "sub_topic": "Architecture & World Heritage",
+      "difficulty": "moderate",
+      "explanation": "1. Buland Darwaza and the Khanqah at Fatehpur Sikri are built mainly of RED SANDSTONE with white-marble inlay—not wholly of white marble—so statement 1 is wrong. 2. Bara Imambara and Rumi Darwaza at Lucknow were constructed chiefly with lakhauri BRICKS and lime-stucco, using little or no red sandstone or marble, so statement 2 is also wrong. Therefore neither statement is correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Buland_Darwaza?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 73,
+      "question_id": "UPSC_2018_GS1_Q73",
+      "question": "Which one of the following foreign travellers elaborately discussed about diamonds and diamond mines of India ?",
+      "options": {
+        "a": "Francois Bernier",
+        "b": "Jean-Baptiste Tavernier",
+        "c": "Jean de Thevenot",
+        "d": "Abbe Barthelemy Carre"
+      },
+      "answer": "b",
+      "subject": "Medieval History",
+      "sub_topic": "Medieval Culture & Historiography",
+      "difficulty": "easy",
+      "explanation": "Jean-Baptiste Tavernier, a 17th-century French gem-merchant, toured the Deccan and left the first detailed European description of the diamond mines of Golconda; his Six Voyages remains the classic objective account. Bernier, Thévenot and Carré discussed other subjects, not specifically India’s diamond mines. ([naturalhistory.si.edu](https://www.naturalhistory.si.edu/explore/collections/hope-diamond-history?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 74,
+      "question_id": "UPSC_2018_GS1_Q74",
+      "question": "With reference to Indian history, who among the following is a future Buddha, yet to come to save the world ?",
+      "options": {
+        "a": "Avalokiteshvara",
+        "b": "Lokesvara",
+        "c": "Maitreya",
+        "d": "Padmapani"
+      },
+      "answer": "c",
+      "subject": "Art & Culture",
+      "sub_topic": "Philosophy & Religion",
+      "difficulty": "easy",
+      "explanation": "In Buddhist eschatology Maitreya (Pali Metteyya) is the bodhisattva destined to become the NEXT or ‘future’ Buddha who will appear on earth to renew the Dharma. Avalokiteshvara/Padmapani and Lokeshvara are compassionate bodhisattvas but not the prophesied future Buddha. ([britannica.com](https://www.britannica.com/topic/Maitreya-Buddhism?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 75,
+      "question_id": "UPSC_2018_GS1_Q75",
+      "question": "Which one of the following statements does not apply to the system of Subsidiary Alliance introduced by Lord Wellesley ?",
+      "options": {
+        "a": "To maintain a large standing army at other’s expense",
+        "b": "To keep India safe from Napoleonic danger",
+        "c": "To secure a fixed income for the Company",
+        "d": "To establish British paramountcy over the Indian States"
+      },
+      "answer": "c",
+      "subject": "Modern History",
+      "sub_topic": "Advent Of Europeans & British Expansion",
+      "difficulty": "moderate",
+      "explanation": "The Subsidiary Alliance obliged Indian rulers to maintain British troops at their cost (a), accept British ‘protection’ against the French/Napoleonic threat (b) and thereby acknowledge British paramountcy (d). Its principal aim was strategic-political, not fundraising; although subsidies were taken, the arrangement was never conceived as a guaranteed, fixed revenue stream for the Company, so statement 3 is NOT applicable. ([testbook.com](https://testbook.com/question-answer/which-one-of-the-following-statements-does-not-app--5f3680e8d334a70d143e28d7?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 76,
+      "question_id": "UPSC_2018_GS1_Q76",
+      "question": "With reference to the history of ancient India, Mahavira and Buddha were contemporaries. However, their important differences included",
+      "options": {
+        "a": "The caste system and social equality were advocated by both of them respectively",
+        "b": "One condemned violence in any form while the other permitted it in certain circumstances",
+        "c": "Buddha's followers were organized into monastic communities while Mahavira's followers were not",
+        "d": "In their respective approach to salvation, one believed in severe austerity while the other did not believe in it"
+      },
+      "answer": "d",
+      "subject": "Modern History",
+      "sub_topic": "British Administration & Economic Policies",
+      "difficulty": "moderate",
+      "explanation": "Three developments laid the groundwork for English education: the Charter Act 1813 earmarked funds for ‘modern’ learning, the General Committee of Public Instruction (1823) decided how to spend the grant, and the Orientalist-Anglicist controversy (1820s-30s) culminated in Macaulay’s Minute favouring English. Hence all three statements are relevant. ([testbook.com](https://testbook.com/question-answer/which-of-the-following-led-to-the-introduction-of--5f3681bdbffb4d0d16b17d0c?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 77,
+      "question_id": "UPSC_2018_GS1_Q77",
+      "question": "With reference to the religious practices in India, the 'Bhakti movement' of the medieval period sought to",
+      "options": {
+        "a": "Bring about social equality by rejecting the caste system based on birth",
+        "b": "Establish the supremacy of Brahmin caste and Vedic rituals",
+        "c": "Increase the political power of the Muslim rulers",
+        "d": "Reconcile the differences between Hindus and Muslims through the concept of monotheism"
+      },
+      "answer": "a",
+      "subject": "Geography",
+      "sub_topic": "Indian Physical Geography",
+      "difficulty": "easy",
+      "explanation": "Kodaikanal Lake in Tamil Nadu is a man-made (artificial) star-shaped lake created in 1863 by Sir Vere H. Levinge. Kolleru, Nainital and Renuka are naturally formed water-bodies. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Kodaikanal_Lake?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 78,
+      "question_id": "UPSC_2018_GS1_Q78",
+      "question": "Consider the following pairs : Regions sometimes Country mentioned in news 1. Catalonia — Spain\n2. Crimea — Hungary\n3. Mindanao — Philippines 4, Oromia * — Nigeria\nWhich of the pairs given above are correctly matched ?",
+      "options": {
+        "a": "1, 2 and 3",
+        "b": "3 and 4 only",
+        "c": "1 and 3 only",
+        "d": "2 and 4 only"
+      },
+      "answer": "c",
+      "subject": "Current Affairs",
+      "sub_topic": "Indian Government Schemes & Initiatives",
+      "difficulty": "moderate",
+      "explanation": "PMKVY is the flagship scheme of the Ministry of Skill Development & Entrepreneurship (not the Ministry of Labour), making statement 1 incorrect. Scheme guidelines attach 40 hours of ‘Employability & Entrepreneurship’ (soft skills, financial & digital literacy, etc.) to every course and include Recognition of Prior Learning to align informal workers’ skills with the NSQF, so statements 2 and 3 are correct. ([pib.gov.in](https://www.pib.gov.in/PressReleasePage.aspx?PRID=1556205&utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 79,
+      "question_id": "UPSC_2018_GS1_Q79",
+      "question": "In 1920, which of the following changed its name to \"Swarajya Sabha\"?",
+      "options": {
+        "a": "All India Home Rule League",
+        "b": "Hindu Mahasabha",
+        "c": "South Indian Liberal Federation",
+        "d": "The Servants of India Society"
+      },
+      "answer": "a",
+      "subject": "Modern History",
+      "sub_topic": "Gandhian Era & Mass Movements (1919-1947)",
+      "difficulty": "easy",
+      "explanation": "Mahatma Gandhi revived Annie Besant’s All-India Home Rule League in 1920 and renamed it ‘Swarajya Sabha’. The other organisations listed retained their original names. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Indian_Home_Rule_movement?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 80,
+      "question_id": "UPSC_2018_GS1_Q80",
+      "question": "Which among the following events happened earliest?",
+      "options": {
+        "a": "Swami Dayanand established Arya Samaj.",
+        "b": "Dinabandhu Mitra wrote Neeldarpan.",
+        "c": "Bankim Chandra Chattopadhyay wrote Anandmath.",
+        "d": "Satyendranath Tagore became the first Indian to succeed in the Indian Civil Services Examination."
+      },
+      "answer": "b",
+      "subject": "Modern History",
+      "sub_topic": "Social & Religious Reform Movements",
+      "difficulty": "moderate",
+      "explanation": "Dinabandhu Mitra’s play ‘Nil Darpan’ was written in 1858-59 and first published in 1860, making it the earliest event. Satyendranath Tagore cleared the ICS in 1863, Swami Dayanand founded the Arya Samaj in April 1875, and Bankim Chandra’s ‘Anandamath’ was published in 1882; hence option (b) is earliest. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Nil_Darpan?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 81,
+      "question_id": "UPSC_2018_GS1_Q81",
+      "question": "Which of the following is/are the possible consequence/s of heavy sand mining in riverbeds?\n1. Decreased salinity in the river\n2. Pollution of groundwater\n3. Lowering of the water-table\nSelect the correct answer using the code given below :",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Water & Wetland Conservation",
+      "difficulty": "moderate",
+      "explanation": "Removing large volumes of sand destroys the river-bed’s natural filter, allowing contaminants to percolate and pollute groundwater and deepening the channel, which lowers adjoining water-tables. It generally raises—not lowers—salinity near estuaries, so only statements 2 and 3 are correct. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2018-question-81/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 82,
+      "question_id": "UPSC_2018_GS1_Q82",
+      "question": "With reference to agricultural soils, consider the following statements :\n1. A high content of organic matter in soil drastically reduces its water holding capacity.\n2. Soil does not play any role in the sulphur cycle.\n3. Irrigation over a period of time can contribute to the salinization of some agricultural lands.\nWhich of the statements given above is/are correct ?",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "Physical Geography & Geomorphology",
+      "difficulty": "moderate",
+      "explanation": "Organic matter acts like a sponge and actually increases a soil’s water-holding capacity, so statement 1 is wrong. Soil microorganisms drive key steps of the sulphur cycle, so statement 2 is wrong. Long-term irrigation can lead to salt accumulation on the surface, making statement 3 correct; therefore only statement 3 is right. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2018-question-82/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 83,
+      "question_id": "UPSC_2018_GS1_Q83",
+      "question": "The Partnership for Action on Green Economy (PAGE), a UN mechanism to assist countries' transition towards greener and more inclusive economies, emerged at",
+      "options": {
+        "a": "The Earth Summit on Sustainable Development 2002, Johannesburg",
+        "b": "The United Nations Conference on Sustainable Development 2012, Rio de Janeiro",
+        "c": "The United Nations Framework Convention on Climate Change 2015, Paris",
+        "d": "The World Sustainable Development Summit 2016, New Delhi"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "International Environmental Treaties & Summits",
+      "difficulty": "easy",
+      "explanation": "The Partnership for Action on Green Economy (PAGE) was created in 2013 as the UN system’s direct response to the call in the Rio+20 United Nations Conference on Sustainable Development (2012) outcome document, so it ‘emerged’ from that 2012 Rio conference. ([unep.org](https://www.unep.org/news-and-stories/news/partnership-action-green-economy-launched-brazil-0?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 84,
+      "question_id": "UPSC_2018_GS1_Q84",
+      "question": "With reference to the governance of public sector banking in India, consider the following statements : i. Capital infusion into public sector banks by the Government of India has steadily increased in the last decade. To put the public sector banks in order, the merger of associate banks with the parent State Bank of India has been affected. Which of the statements given above is/are correct ?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Materials & Engineering",
+      "difficulty": "moderate",
+      "explanation": "3D printing is already used to fabricate metal parts, customised bionic organs/ears, automotive components and patient-specific implants for reconstructive surgery; advanced voxel-based additive manufacturing also allows direct printing and physical visualisation of complex data sets, making all five applications valid. Hence option (d). ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2018-question-84/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 85,
+      "question_id": "UPSC_2018_GS1_Q85",
+      "question": "Consider the following statements : i. The Barren Island volcano is an active volcano located in the Indian territory. 2. Barren Island lies about 140 km east of Great Nicobar. 3. The last time the Barren Island volcano erupted was in 1991 and it has remained inactive since then. Which of the statements given above is/are correct ?",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3",
+        "c": "3 only",
+        "d": "1 and 3"
+      },
+      "answer": "a",
+      "subject": "Geography",
+      "sub_topic": "Indian Physical Geography",
+      "difficulty": "moderate",
+      "explanation": "Barren Island is the only confirmed active volcano in Indian territory, located in the Andaman Sea, so statement 1 is correct. It lies about 140 km northeast of Port Blair—not east of Great Nicobar—making statement 2 wrong. After the major 1991 eruption it has shown intermittent activity in 1994-95, 2005, 2017, 2022, 2025 etc., so it has not remained dormant; statement 3 is therefore incorrect. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Barren_Island_%28Andaman_Islands%29?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 86,
+      "question_id": "UPSC_2018_GS1_Q86",
+      "question": "Why is a plant called Prosopis juliflora often mentioned in news?",
+      "options": {
+        "a": "Its extract is widely used in cosmetics.",
+        "b": "It tends to reduce the biodiversity in the area in which it grows.",
+        "c": "Its extract is used in the synthesis of pesticides.",
+        "d": "None of the above"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Biodiversity & Conservation",
+      "difficulty": "easy",
+      "explanation": "Prosopis juliflora (now Neltuma juliflora) was introduced into India but has spread aggressively; in areas such as the Banni grasslands it forms dense thickets that out-compete native flora and degrade local biodiversity. Hence it is in the news for reducing biodiversity, making option (b) correct; the plant is not mainly valued for cosmetic extracts or pesticide synthesis. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Banni_Grasslands_Reserve?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 87,
+      "question_id": "UPSC_2018_GS1_Q87",
+      "question": "In the history of India, which one of the following is also known as 'Devapala'?",
+      "options": {
+        "a": "A temple carved out of a single rock",
+        "b": "An image of deity sculptured in stone",
+        "c": "A king's edict inscribed in stone",
+        "d": "A stone pillar erected in memory of the dead"
+      },
+      "answer": "d",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Ecosystems & Ecology Concepts",
+      "difficulty": "moderate",
+      "explanation": "1) Most shallow-water coral reefs occur in warm tropical seas between the Tropics of Cancer and Capricorn, so statement 1 is correct. 2) Australia (~17 %), Indonesia (~18 %) and the Philippines (~9 %) together hold about 44 % of global reef area—well over one-third—so statement 2 is correct. 3) Coral reefs support at least 32 of the 33 known animal phyla, far more than tropical rain-forests, so statement 3 is also correct. Therefore all three statements are right. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2018-question-87/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 88,
+      "question_id": "UPSC_2018_GS1_Q88",
+      "question": "\"Momentum for Change: Climate Neutral Now\" is an initiative launched by",
+      "options": {
+        "a": "The Intergovernmental Panel on Climate Change",
+        "b": "The UNEP Secretariat",
+        "c": "The UNFCCC Secretariat",
+        "d": "The World Meteorological Organization"
+      },
+      "answer": "c",
+      "subject": "Environment & Ecology",
+      "sub_topic": "International Environmental Treaties & Summits",
+      "difficulty": "easy",
+      "explanation": "“Momentum for Change: Climate Neutral Now” was launched by the UNFCCC (United Nations Climate Change) Secretariat to highlight actions moving toward climate neutrality; hence option (c) is correct. ([unfccc.int](https://unfccc.int/news/momentum-for-change-climate-neutral-now?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 89,
+      "question_id": "UPSC_2018_GS1_Q89",
+      "question": "With reference to educational institutions during colonial rule in India, consider the following pairs:\nInstitution — Founder\n1. Sanskrit College at Benaras — William Jones\n2. Calcutta Madarsa — Warren Hastings\n3. Fort William College — Arthur Wellesley\nWhich of the pairs given above is/are correct?",
+      "options": {
+        "a": "1 and 2",
+        "b": "2 only",
+        "c": "1 and 3",
+        "d": "3 only"
+      },
+      "answer": "b",
+      "subject": "Modern History",
+      "sub_topic": "British Administration & Economic Policies",
+      "difficulty": "moderate",
+      "explanation": "Jonathan Duncan, not William Jones, founded the Sanskrit College at Benares in 1791, so pair 1 is incorrect. Warren Hastings established the Calcutta (Aliah) Madrasah in 1780/81, so pair 2 is correct. Fort William College was founded in 1800 by Lord (Richard) Wellesley, not his brother Arthur Wellesley, so pair 3 is wrong. Thus only pair 2 is correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Jonathan_Duncan_%28governor_of_Bombay%29?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 90,
+      "question_id": "UPSC_2018_GS1_Q90",
+      "question": "Consider the following pairs:\nRegions sometimes mentioned in news — Country\n1. Catalonia — Spain\n2. Crimea — Hungary\n3. Mindanao — Philippines\n4. Oromia — Nigeria\nWhich of the pairs given above are correctly matched?",
+      "options": {
+        "a": "1, 2 and 3",
+        "b": "3 and 4 only",
+        "c": "1 and 3 only",
+        "d": "2 and 4 only"
+      },
+      "answer": "c",
+      "subject": "Current Affairs",
+      "sub_topic": "International Conflicts & Security",
+      "difficulty": "moderate",
+      "explanation": "Catalonia is an autonomous community of Spain, and Mindanao is the southern island group of the Philippines, so pairs 1 and 3 are correct. Crimea is a peninsula claimed by Ukraine/Russia, not Hungary, and Oromia is a regional state in Ethiopia, not Nigeria; therefore those pairs are incorrect. Thus only 1 and 3 are correctly matched, giving option (c). ([en.wikipedia.org](https://en.wikipedia.org/wiki/Catalonia?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 91,
+      "question_id": "UPSC_2018_GS1_Q91",
+      "question": "Consider the following events:\n1. The first democratically elected communist party government formed in a State in India.\n2. India's then largest bank, 'Imperial Bank of India', was renamed 'State Bank of India'.\n3. Air India was nationalised and became the national carrier.\n4. Goa became a part of independent India.\nWhich of the following is the correct chronological sequence of the above events?",
+      "options": {
+        "a": "4 – 1 – 2 – 3",
+        "b": "3 – 2 – 1 – 4",
+        "c": "4 – 2 – 1 – 3",
+        "d": "3 – 1 – 2 – 4"
+      },
+      "answer": "b",
+      "subject": "Modern History",
+      "sub_topic": "Post-Independence India",
+      "difficulty": "moderate",
+      "explanation": "Air India was nationalised and became the national carrier in 1953; the Imperial Bank was renamed State Bank of India on 1 July 1955; Kerala formed the first democratically elected Communist government in April 1957; and Goa was integrated into India on 19 December 1961. The correct chronological order is 3 → 2 → 1 → 4, i.e., option (b). ([en.wikipedia.org](https://en.wikipedia.org/wiki/Air_India?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 92,
+      "question_id": "UPSC_2018_GS1_Q92",
+      "question": "Right to Privacy is protected as an intrinsic part of Right to Life and Personal Liberty. Which of the following in the Constitution of India correctly and appropriately imply the above statement?",
+      "options": {
+        "a": "Article 14 and the provisions under the 42nd Amendment to the Constitution",
+        "b": "Article 17 and the Directive Principles of State Policy in Part IV",
+        "c": "Article 21 and the freedoms guaranteed in Part III",
+        "d": "Article 24 and the provisions under the 44th Amendment to the Constitution"
+      },
+      "answer": "c",
+      "subject": "Indian Polity",
+      "sub_topic": "Fundamental Rights",
+      "difficulty": "easy",
+      "explanation": "In the landmark K.S. Puttaswamy judgment (2017), a nine-judge bench held that the Right to Privacy is an intrinsic part of the Right to Life and Personal Liberty under Article 21, read with the freedoms in Part III of the Constitution. Hence option (c) correctly states the constitutional basis; the other options cite unrelated Articles or amendments. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Puttaswamy_v._Union_of_India?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 93,
+      "question_id": "UPSC_2018_GS1_Q93",
+      "question": "In ancient India, which one of the following was a post held by a high official of the Mauryan administration?",
+      "options": {
+        "a": "Amatya",
+        "b": "Maha Mattara",
+        "c": "Sandhivigrahika",
+        "d": "Samahartri"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "Agriculture & Rural Development",
+      "difficulty": "moderate",
+      "explanation": "The MSP mechanism covers 23 crops, including barley (jau), ragi, groundnut (moongfali) and sesame (til). Arecanut, coffee and turmeric are not notified for MSP. Therefore only items 2, 4, 5 and 6 have MSPs announced by the CCEA, matching option (b). ([en.wikipedia.org](https://en.wikipedia.org/wiki/Minimum_support_price_%28India%29?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 94,
+      "question_id": "UPSC_2018_GS1_Q94",
+      "question": "With reference to the Mughal administration, which one of the following positions was held by an official who was in charge of the royal household and also had access to the emperor?",
+      "options": {
+        "a": "Wazir",
+        "b": "Khan-i-Khanan",
+        "c": "Mir Bakshi",
+        "d": "Kotwal"
+      },
+      "answer": "a",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Protected Areas & Wildlife",
+      "difficulty": "easy",
+      "explanation": "Pakke (formerly Pakhui) Wildlife Sanctuary/Tiger Reserve is situated in East Kameng district of Arunachal Pradesh, not in Manipur, Meghalaya or Nagaland. Hence option (a) is correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Pakke_Tiger_Reserve?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 95,
+      "question_id": "UPSC_2018_GS1_Q95",
+      "question": "With reference to India's satellite launch vehicles, consider the following statements:\n1. PSLVs launch the satellites useful for Earth resources monitoring whereas GSLVs are designed mainly to launch communication satellites.\n2. Satellites launched by PSLV appear to remain permanently fixed in the same position in the sky, as viewed from a particular location on Earth.\n3. GSLV Mk III is a four-stage launch vehicle with the first and third stages using solid rocket motors; and the second and fourth stages using liquid rocket engines.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3",
+        "c": "1 and 2",
+        "d": "3 only"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Space Technology & Astronomy",
+      "difficulty": "moderate",
+      "explanation": "PSLV is a four-stage launcher optimized for placing Earth-observation/remote-sensing satellites in sun-synchronous polar orbits useful for resource-mapping, whereas GSLV is designed to lift heavier communication satellites to geostationary transfer orbit, so Statement 1 is correct. Satellites put in polar orbits by PSLV do NOT appear stationary in the sky (only geostationary‐orbit satellites do), so Statement 2 is wrong. GSLV Mk III (LVM3) is a three-stage vehicle with two solid S200 strap-ons, one liquid L110 core and one cryogenic C25 upper stage—not a four-stage solid-liquid alternation—so Statement 3 is wrong ([isro.gov.in](https://www.isro.gov.in/ISRO_EN/PSLV_CON.html?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 96,
+      "question_id": "UPSC_2018_GS1_Q96",
+      "question": "Consider the following statements regarding the Mughal Empire:",
+      "options": {
+        "a": "The title 'Padshah' was used for Mughal emperors and it implied supreme authority",
+        "b": "The Mughal administrative system was a centralized one with the emperor at the apex",
+        "c": "The nobility under the Mughals derived their powers from the emperor and were appointed and dismissible by him",
+        "d": "All of the above"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "Banking & Financial Sector",
+      "difficulty": "moderate",
+      "explanation": "Government capital infusion into public-sector banks has fluctuated (₹25,000 cr in 2016-17 but only ₹10,000 cr in 2017-18, etc.); it has not shown a steady year-on-year rise—so Statement 1 is incorrect. The 2017 consolidation in which SBI absorbed its five associate banks (and Bharatiya Mahila Bank) was undertaken precisely to rationalise and strengthen PSBs, making Statement 2 correct ([civilsdaily.com](https://www.civilsdaily.com/answer-key-for-upsc-prelims-2018/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 97,
+      "question_id": "UPSC_2018_GS1_Q97",
+      "question": "Consider the following items:\n\n1. Cereal grains hulled\n2. Chicken eggs cooked\n3. Fish processed and canned\n4. Newspapers containing advertising material\n\nWhich of the above items is/are exempted under GST (Goods and Services Tax)?",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1, 2 and 4 only",
+        "d": "1, 2, 3 and 4"
+      },
+      "answer": "c",
+      "subject": "Indian Economy",
+      "sub_topic": "Taxation",
+      "difficulty": "difficult",
+      "explanation": "GST Schedule lists hulled cereal grains (HS 1104) at NIL rate, cooked eggs (HS 0407) at NIL rate, and newspapers—even when containing advertising material (HS 4902)—at NIL rate. Processed or canned fish (HS 1604) attracts 12 % and is therefore not exempt. Thus only items 1, 2 and 4 are GST-exempt ([cbic-gst.gov.in](https://cbic-gst.gov.in/gst-goods-services-rates.html?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 98,
+      "question_id": "UPSC_2018_GS1_Q98",
+      "question": "Consider the following statements:\n\n1. The definition of \"Critical Wildlife Habitat\" is incorporated in the Forest Rights Act, 2006.\n2. For the first time in India, Baigas have been given Habitat Rights.\n3. Union Ministry of Environment, Forest and Climate Change officially decides and declares Habitat Rights for Primitive and Vulnerable Tribal Groups in any part of India.\n\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 and 3 only",
+        "c": "3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "a",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Environmental Governance & Legislation",
+      "difficulty": "moderate",
+      "explanation": "The term “Critical Wildlife Habitat” (CWH) is defined in Section 2 of the Scheduled Tribes and Other Traditional Forest Dwellers (Forest Rights) Act 2006, so Statement 1 is correct. In 2016–17 Madhya Pradesh granted the Baiga tribe the first formal ‘Habitat Rights’, making Statement 2 correct. Habitat-rights notifications are issued by State governments under the Act; the Union MoEFCC only issues guidelines, so Statement 3 is incorrect ([civilsdaily.com](https://www.civilsdaily.com/answer-key-for-upsc-prelims-2018/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 99,
+      "question_id": "UPSC_2018_GS1_Q99",
+      "question": "Consider the following:\n\n1. Birds\n2. Dust blowing\n3. Rain\n4. Wind blowing\n\nWhich of the above spread plant diseases?",
+      "options": {
+        "a": "1 and 3 only",
+        "b": "3 and 4 only",
+        "c": "1, 2 and 4 only",
+        "d": "1, 2, 3 and 4"
+      },
+      "answer": "d",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Sustainable Agriculture & Forestry",
+      "difficulty": "easy",
+      "explanation": "Plant pathogens can be spread directly or indirectly by numerous agents: birds (carry spores on bodies), wind and dust (air-borne dispersal), and rain-splash dispersal are all well-documented. Hence all four listed agents—birds, dust blowing, rain and wind—can transmit plant diseases ([civilsdaily.com](https://www.civilsdaily.com/answer-key-for-upsc-prelims-2018/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2018,
+      "paper": "GS1",
+      "question_no": 100,
+      "question_id": "UPSC_2018_GS1_Q100",
+      "question": "With reference to organic farming in India, consider the following statements:\n\n1. \"The National Programme for Organic Production\" (NPOP) is operated under the guidelines and directions of the Union Ministry of Rural Development.\n2. \"The Agricultural and Processed Food Products Export Development Authority\" (APEDA) functions as the Secretariat for the implementation of NPOP.\n3. Sikkim has become India's first fully organic State.\n\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 and 3 only",
+        "c": "3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Sustainable Agriculture & Forestry",
+      "difficulty": "moderate",
+      "explanation": "The National Programme for Organic Production (NPOP) is run by the Ministry of Commerce & Industry, not the Ministry of Rural Development, so statement 1 is false. APEDA, an agency under this ministry, acts as the secretariat/implementing body for NPOP, making statement 2 true. Sikkim was officially declared India’s first 100 % organic State in 2016, so statement 3 is also true; hence only statements 2 and 3 are correct. ([apeda.gov.in](https://apeda.gov.in/national-programme-for-organic-production-npop?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    }
+  ],
+  "failed": []
+}

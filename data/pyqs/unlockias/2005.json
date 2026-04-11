@@ -1,0 +1,3016 @@
+{
+  "year": 2005,
+  "fetched_at": "2026-04-11T20:00:21.062Z",
+  "count": 149,
+  "failures": 1,
+  "questions": [
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 1,
+      "question_id": "UPSC_2005_GS1_Q1",
+      "question": "According to Census 2001, which one of the following Indian States has the maximum population in India after Uttar Pradesh?",
+      "options": {
+        "a": "West Bengal",
+        "b": "Maharashtra",
+        "c": "Bihar",
+        "d": "Tamil Nadu"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "Population & Demography",
+      "difficulty": "easy",
+      "explanation": "Provisional totals of Census 2001 show Uttar Pradesh at 166 million, followed by Maharashtra at about 97 million; Bihar (≈83 million) and West Bengal (≈80 million) rank next. Therefore Maharashtra is the most populous state after Uttar Pradesh, so option (b) is correct. ([educationforallinindia.com](https://educationforallinindia.com/state-specific-analysis-of-census-2001-population-data/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 2,
+      "question_id": "UPSC_2005_GS1_Q2",
+      "question": "Itaipu Dam built on the River Parana is one of the largest dams in the world. Which one of the following two countries have this as a joint project?",
+      "options": {
+        "a": "Brazil and Peru",
+        "b": "Paraguay and Ecuador",
+        "c": "Brazil and Paraguay",
+        "d": "Colombia and Paraguay"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "World Physical Geography",
+      "difficulty": "easy",
+      "explanation": "The Itaipu Dam lies on the Paraná River along the Brazil–Paraguay border and is run jointly by the two nations under Itaipu Binacional. No such joint project exists between the other country pairs listed. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Itaipu_Dam?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 3,
+      "question_id": "UPSC_2005_GS1_Q3",
+      "question": "Consider the following statements :\n1. There are 25 High Courts in India\n2. Punjab, Haryana and the Union Territory of Chandigarh have a common High Court.\n3. National Capital Territory of Delhi has a High Court of its own.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "2 and 3",
+        "b": "1 and 2",
+        "c": "1, 2 and 3",
+        "d": "3 only"
+      },
+      "answer": "a",
+      "subject": "Indian Polity",
+      "sub_topic": "Judiciary",
+      "difficulty": "moderate",
+      "explanation": "In 2005 India had 21 High Courts, not 25, so statement 1 is incorrect. The Punjab & Haryana High Court at Chandigarh serves Punjab, Haryana and the UT of Chandigarh (statement 2 correct). Delhi has had its own High Court since 31 October 1966 (statement 3 correct). Therefore only statements 2 and 3 are correct. ([highcourtchd.gov.in](https://www.highcourtchd.gov.in/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 4,
+      "question_id": "UPSC_2005_GS1_Q4",
+      "question": "Which one of the following cities is not a former capital of the given country (Country given in the brackets)?",
+      "options": {
+        "a": "Karachi (Pakistan)",
+        "b": "Auckland (New Zealand)",
+        "c": "Kyoto (Japan)",
+        "d": "Brisbane (Australia)"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "World Political Geography & Borders",
+      "difficulty": "easy",
+      "explanation": "Karachi was Pakistan’s federal capital from 1947-1959; Auckland was New Zealand’s capital from 1841-1865; Kyoto was Japan’s imperial capital from 794-1868. Brisbane, however, has never been Australia’s national capital (Melbourne then Canberra held that role), making option (d) the city that is NOT a former capital of the country named. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Karachi?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 5,
+      "question_id": "UPSC_2005_GS1_Q5",
+      "question": "Consider the following statements :\n1. Total land area of Earth is approximately 1475 lakh square kilometers\n2. Ratio of land area to water area on Earth is approximately 1 : 4\n3. Maximum percentage of Earth's water is in the Pacific Ocean.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 and 3",
+        "b": "2 and 3",
+        "c": "1 only",
+        "d": "3 only"
+      },
+      "answer": "a",
+      "subject": "Geography",
+      "sub_topic": "Physical Geography & Geomorphology",
+      "difficulty": "moderate",
+      "explanation": "Earth’s land area is about 149 million km² (≈ 1475 lakh km²), so statement 1 is broadly accurate. Land comprises ~29 % of the surface (water ~71 %), giving a ratio near 1:2.4, not 1:4, so statement 2 is wrong. The Pacific Ocean contains the largest share of the planet’s ocean water (~46 %), so statement 3 is correct. Hence only statements 1 and 3 are true. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Continent?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 6,
+      "question_id": "UPSC_2005_GS1_Q6",
+      "question": "Consider the following statements :\n1. Kyoto Protocol came into force in the year 2005\n2. Kyoto Protocol deals primarily with the depletion of the Ozone layer.\n3. Methane as a greenhouse gas is more harmful than carbon dioxide\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 and 2",
+        "b": "1 and 3",
+        "c": "1 only",
+        "d": "3 only"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "International Environmental Treaties & Summits",
+      "difficulty": "moderate",
+      "explanation": "The Kyoto Protocol entered into force on 16 February 2005, satisfying statement 1. It addresses greenhouse-gas mitigation under the UNFCCC, not ozone-layer depletion (statement 2 incorrect). Methane has a 100-year global-warming potential about 28 times that of CO₂, making it more damaging per unit mass (statement 3 correct). Thus statements 1 and 3 are correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Kyoto_Protocol?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 7,
+      "question_id": "UPSC_2005_GS1_Q7",
+      "question": "Which one of the following pairs is not correctly matched?",
+      "options": {
+        "a": "Seikan Rail Tunnel — China",
+        "b": "Petronas Tower — Malaysia",
+        "c": "Appalachian Trail — United States of America",
+        "d": "Rogun Dam — Tajikistan"
+      },
+      "answer": "a",
+      "subject": "Geography",
+      "sub_topic": "Transport & Infrastructure Geography",
+      "difficulty": "moderate",
+      "explanation": "Seikan Rail Tunnel is in Japan, not China, so pair (a) is wrongly matched. Petronas Towers are in Kuala Lumpur, Malaysia; the Appalachian Trail is a long-distance hiking trail in the United States; and Rogun Dam is being built on the Vakhsh River in Tajikistan, all of which are correctly matched to their countries. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Seikan_Tunnel?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 8,
+      "question_id": "UPSC_2005_GS1_Q8",
+      "question": "Which one of the following is the correct sequence of the given Continents in the decreasing order of their percentage of Earth’s land?",
+      "options": {
+        "a": "North America - Africa - South America - Europe",
+        "b": "Africa - North America - South America - Europe",
+        "c": "North America - Africa - Europe - South America",
+        "d": "Africa - North America - Europe - South America"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "World Physical Geography",
+      "difficulty": "easy",
+      "explanation": "By share of Earth’s land surface the correct descending order is: Africa (~20 %), North America (~16 %), South America (~12 %), Europe (~7 %). Option (b) matches this sequence. ([aspireias.com](https://www.aspireias.com/upsc-general-study-10years-paper/2005))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 9,
+      "question_id": "UPSC_2005_GS1_Q9",
+      "question": "Match items in the List-I with List-II and select the correct answer using the codes given below the lists:\nList I (Country)\n(A) Netherlands\n(B) Ukraine\n(C) Poland\n(D) Japan\n\nList II (Name of Parliament)\n1. Diet\n2. States General\n3. Supreme Council\n4. Sejm",
+      "options": {
+        "a": "A–4  B–1  C–2  D–3",
+        "b": "A–2  B–3  C–4  D–1",
+        "c": "A–4  B–3  C–2  D–1",
+        "d": "A–2  B–1  C–4  D–3"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "International Relations & Treaties",
+      "difficulty": "moderate",
+      "explanation": "Netherlands – States General, Ukraine – Supreme Council (Verkhovna Rada), Poland – Sejm, Japan – Diet; thus the code A-2 B-3 C-4 D-1 corresponds to option (b). ([iasexamportal.com](https://iasexamportal.com/GK/COUNTRIES-AND-NAME-OF-PARLIAMENT?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 10,
+      "question_id": "UPSC_2005_GS1_Q10",
+      "question": "For which one of the following countries, is Spanish not an official language?",
+      "options": {
+        "a": "Chile",
+        "b": "Colombia",
+        "c": "Republic of Congo",
+        "d": "Cuba"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "Population & Demography",
+      "difficulty": "easy",
+      "explanation": "Spanish is an official language in Chile, Colombia and Cuba. In the Republic of the Congo the official language is French (with Kituba and Lingala as national languages); Spanish has no official status there, making option (c) correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Republic_of_the_Congo?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 11,
+      "question_id": "UPSC_2005_GS1_Q11",
+      "question": "Who among the following is not a recipient of the Bharat Ratna Award?",
+      "options": {
+        "a": "Ustad Bismillah Khan",
+        "b": "Satyajit Ray",
+        "c": "Lata Mangeshkar",
+        "d": "Raj Kapoor"
+      },
+      "answer": "d",
+      "subject": "Art & Culture",
+      "sub_topic": "Cultural Institutions & Awards",
+      "difficulty": "easy",
+      "explanation": "Ustad Bismillah Khan (2001), Satyajit Ray (1992) and Lata Mangeshkar (2001) have all received the Bharat Ratna. Raj Kapoor received honours such as the Padma Bhushan and Dadasaheb Phalke Award but was never awarded the Bharat Ratna, so option (d) is correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Bharat_Ratna?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 12,
+      "question_id": "UPSC_2005_GS1_Q12",
+      "question": "Match List-I with List-II and select the correct answer using the codes given below the lists:\nList I (National Park/Wild-life Sanctuary)\n(A) Bondla Wildlife Sanctuary\n(B) Kangerghat National Park\n(C) Orang Sanctuary\n(D) Ushakothi Wildlife Sanctuary\n\nList II (State)\n1. Orissa\n2. Assam\n3. Chhattisgarh\n4. Goa\n5. Tripura",
+      "options": {
+        "a": "A–2  B–4  C–5  D–1",
+        "b": "A–4  B–3  C–2  D–1",
+        "c": "A–2  B–3  C–5  D–4",
+        "d": "A–4  B–1  C–2  D–3"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Protected Areas & Wildlife",
+      "difficulty": "moderate",
+      "explanation": "Bondla Wildlife Sanctuary is in Goa, Kanger (Kanger Ghati) National Park lies in Chhattisgarh, Orang Sanctuary/National Park is in Assam and Ushakothi Wildlife Sanctuary is in Odisha; therefore the correct matching is A-4, B-3, C-2, D-1, option (b). ([en.wikipedia.org](https://en.wikipedia.org/wiki/Bondla_Wildlife_Sanctuary?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 13,
+      "question_id": "UPSC_2005_GS1_Q13",
+      "question": "Which party was founded by Subhash Chandra Bose in the year 1939 after he broke away from the Congress?",
+      "options": {
+        "a": "Indian Freedom Party",
+        "b": "Azad Hind Fauj",
+        "c": "Revolutionary Front",
+        "d": "Forward Bloc"
+      },
+      "answer": "d",
+      "subject": "Modern History",
+      "sub_topic": "Key Personalities & Ideologies",
+      "difficulty": "easy",
+      "explanation": "After resigning the Congress presidency in April 1939, Subhas Chandra Bose formed the All-India Forward Bloc in May 1939; none of the other options corresponds to the party he founded. ([en.wikipedia.org](https://en.wikipedia.org/wiki/All_India_Forward_Bloc?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 14,
+      "question_id": "UPSC_2005_GS1_Q14",
+      "question": "Who among the following is the President of the FICCI?",
+      "options": {
+        "a": "Sunil Mittal",
+        "b": "Brijmohan Lal Munjal",
+        "c": "Onkar S. Kanwar",
+        "d": "Vivek Burman"
+      },
+      "answer": "c",
+      "subject": "Current Affairs",
+      "sub_topic": "Business & Economy",
+      "difficulty": "moderate",
+      "explanation": "For the term 2004-05 the President of FICCI was Onkar S. Kanwar (Apollo Tyres); he held the office until December 2005 when Saroj Poddar succeeded him, so option (c) is correct. ([rediff.com](https://www.rediff.com/money/2004/dec/29ficci.htm?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 15,
+      "question_id": "UPSC_2005_GS1_Q15",
+      "question": "Consider the following statements :\n1. During the year 2004, India’s foreign exchange reserves did not exceed the 125 billion U.S. Dollar mark\n2. The series of index numbers of wholesale prices introduced from April, 2000 has the year 1993-94 as base year.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "External Sector & Balance Of Payments",
+      "difficulty": "moderate",
+      "explanation": "India’s forex reserves crossed the US $125 billion level in November 2004, so statement 1 is wrong. The WPI series introduced from the week ending 1 April 2000 indeed has 1993-94 = 100 as its base year, making statement 2 correct; hence only statement 2 is true (option b). ([timesofindia.indiatimes.com](https://timesofindia.indiatimes.com/business/india-business/forex-reserves-cross-usd-125-billion-mark/articleshow/938125.cms?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 16,
+      "question_id": "UPSC_2005_GS1_Q16",
+      "question": "Consider the following statements :\n1. Anhydrous sodium carbonate is commonly known as baking soda\n2. Baking soda is used in fire extinguishers\n3. Bleaching powder is manufactured in Hasenclever plant\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1, 2 and 3",
+        "b": "2 and 3",
+        "c": "3 only",
+        "d": "1 and 2"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Chemistry",
+      "difficulty": "moderate",
+      "explanation": "Anhydrous sodium carbonate is washing soda, not baking soda (so statement 1 is false). Sodium bicarbonate (baking soda) releases CO₂ and is the main agent in BC dry-chemical fire extinguishers (statement 2 true). Bleaching powder is industrially produced by reacting chlorine with slaked lime in plants such as the Hasenclever plant (statement 3 true). Thus only statements 2 and 3 are correct (option b). ([en.wikipedia.org](https://en.wikipedia.org/wiki/Sodium_bicarbonate?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 17,
+      "question_id": "UPSC_2005_GS1_Q17",
+      "question": "Consider the following statements :\n1. A geostationary satellite is at an approximate height of 10,000 km\n2. FM transmission of music is of very good quality because the atmospheric or man-made noises which are generally frequency variations can do little harm.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Computer & Information Technology",
+      "difficulty": "moderate",
+      "explanation": "A geostationary satellite orbits at about 36 000 km above the equator, not 10 000 km, so statement 1 is wrong. FM broadcasting gives high-fidelity sound because it is largely immune to the amplitude-type noise that dominates atmospheric and man-made interference; hence statement 2 is accepted as correct. Therefore only statement 2 is correct. ([selfstudyhistory.com](https://selfstudyhistory.com/2015/04/06/prelims-ias-general-studies-solved-paper-with-explanations-2005-part-2/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 18,
+      "question_id": "UPSC_2005_GS1_Q18",
+      "question": "What is the order of magnitude of electric resistance of the human body (dry)?",
+      "options": {
+        "a": "10² ohm",
+        "b": "10⁴ ohm",
+        "c": "10⁶ ohm",
+        "d": "10⁸ ohm"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Biology",
+      "difficulty": "easy",
+      "explanation": "The electrical resistance of dry human skin is of the order of 10 000 ohms (10⁴ Ω); moisture lowers it sharply, but in the dry state this is the typical magnitude. ([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2005-solved-question-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 19,
+      "question_id": "UPSC_2005_GS1_Q19",
+      "question": "Consider the following statements :\n1. The axis of the earth’s magnetic field is inclined at 23 ½° to the geographic axis of the earth.\n2. The earth’s magnetic pole in the northern hemisphere is located on a peninsula in northern Canada.\n3. Earth’s magnetic equator passes through Thumba in South India.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1, 2 and 3",
+        "b": "2 and 3",
+        "c": "2 only",
+        "d": "3 only"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "Astronomy & Earth–Sun System",
+      "difficulty": "moderate",
+      "explanation": "The magnetic axis is inclined only about 11 ° to the geographic axis, so statement 1 is incorrect. The north magnetic pole lies on Arctic islands of northern Canada—i.e., on a peninsula—making statement 2 correct. Thumba (Kerala) was selected for India’s rocket range precisely because the magnetic equator passes through it, so statement 3 is also correct. Thus statements 2 and 3 alone are correct. ([gktoday.in](https://www.gktoday.in/question/consider-the-following-statements1-the-axis-of-the?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 20,
+      "question_id": "UPSC_2005_GS1_Q20",
+      "question": "Which one of the following is the landmark performance of Dr. V. Mohan Reddy, an Indian born doctor working in USA, during February, 2005",
+      "options": {
+        "a": "Research on human stem cell which is likely to revolutionise treatment of deadly disease like cancer",
+        "b": "Successful open heart procedure called arterial switch performed on an infant",
+        "c": "Research on genetic engineering which can help in treatment of deadly disease like AIDS",
+        "d": "Successful brain surgery to revive the function of nearly dead brain of a premature born infant"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "Indian Government Schemes & Initiatives",
+      "difficulty": "easy",
+      "explanation": "In February 2005, paediatric cardiac surgeon Dr V. Mohan Reddy successfully performed an open-heart ‘arterial switch’ operation on an infant with transposition of the great arteries—an accomplishment widely reported as a landmark for an India-born doctor in the USA. The other options refer to unrelated research/surgeries. ([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2005-solved-question-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 21,
+      "question_id": "UPSC_2005_GS1_Q21",
+      "question": "Pneumoconiosis afflicts the workers who work mainly in",
+      "options": {
+        "a": "Tanneries",
+        "b": "Coal mining industry",
+        "c": "Distilleries",
+        "d": "Glass industry"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Health & Diseases",
+      "difficulty": "easy",
+      "explanation": "Pneumoconiosis (‘black-lung disease’) results from prolonged inhalation of coal dust and therefore chiefly affects workers in coal-mining operations, not tanneries, distilleries or glass factories. ([aspireias.com](https://www.aspireias.com/upsc-general-study-10years-paper/2005?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 22,
+      "question_id": "UPSC_2005_GS1_Q22",
+      "question": "Who among the following was not a contemporary of the other three?",
+      "options": {
+        "a": "Bimbisara",
+        "b": "Gautama Buddha",
+        "c": "Milinda",
+        "d": "Prasenjit"
+      },
+      "answer": "c",
+      "subject": "Ancient History",
+      "sub_topic": "Mahajanapadas & Early Kingdoms",
+      "difficulty": "easy",
+      "explanation": "Bimbisara (king of Magadha), Gautama Buddha and Prasenjit/Pasenadi (king of Kosala) all lived in the 6th–5th century BCE and frequently appear together in early Buddhist sources. Milinda is the Indo-Greek king Menander I who reigned roughly 165–130 BCE—about four centuries later—so he was not their contemporary.([britannica.com](https://www.britannica.com/biography/Menander-Indo-Greek-king?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 23,
+      "question_id": "UPSC_2005_GS1_Q23",
+      "question": "Consider the following statements :\nThe Government of India Act, 1935 provided for\n1. the provincial autonomy\n2. the establishment of Federal Court\n3. All India Federation at the centre\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 and 2",
+        "b": "2 and 3",
+        "c": "1 and 3",
+        "d": "1, 2 and 3"
+      },
+      "answer": "d",
+      "subject": "Modern History",
+      "sub_topic": "Constitutional Developments & British Plans (1909-1947)",
+      "difficulty": "moderate",
+      "explanation": "The 1935 Act (i) abolished dyarchy in provinces and introduced full provincial autonomy, (ii) created a Federal Court (which actually started in 1937) and (iii) provided for an All-India Federation of British Provinces and Princely States (though the federation never materialised). Hence all three statements are correct.([en.wikipedia.org](https://en.wikipedia.org/wiki/Government_of_India_Act_1935?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 24,
+      "question_id": "UPSC_2005_GS1_Q24",
+      "question": "Consider the following statements :\n1. Warren Hastings was the first Governor General who established a regular police force in India on the British pattern\n2. A Supreme Court was established at Calcutta by the Regulating Act, 1773.\n3. The Indian Penal Code came into effect in the year 1860.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 and 2",
+        "b": "2 and 3",
+        "c": "1 and 3",
+        "d": "1, 2 and 3"
+      },
+      "answer": "b",
+      "subject": "Modern History",
+      "sub_topic": "British Administration & Economic Policies",
+      "difficulty": "moderate",
+      "explanation": "1 is wrong: the first regular police force on the British model was established by Lord Cornwallis through the Cornwallis Code (1793), not by Warren Hastings.([gktoday.in](https://www.gktoday.in/police-reforms-of-cornwallis/)) 2 is correct because the Regulating Act 1773 set up the Supreme Court at Fort William, Calcutta (opened 1774).([en.wikipedia.org](https://en.wikipedia.org/wiki/Regulating_Act_1773?utm_source=openai)) 3 is treated as correct in UPSC keys; the Indian Penal Code was enacted in 1860 (it formally commenced on 1 January 1862).([en.wikipedia.org](https://en.wikipedia.org/wiki/Indian_Penal_Code?utm_source=openai)) Therefore only statements 2 and 3 are correct.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 25,
+      "question_id": "UPSC_2005_GS1_Q25",
+      "question": "Which one of the following is the correct chronological order of the battles fought in India in the 18th Century?",
+      "options": {
+        "a": "Battle of Wandawash - Battle of Buxar - Battle of Ambur - Battle of Plassey",
+        "b": "Battle of Ambur - Battle of Plassey - Battle of Wandawash - Battle of Buxar",
+        "c": "Battle of Wandawash - Battle of Plassey - Battle of Ambur - Battle of Buxar",
+        "d": "Battle of Ambur - Battle of Buxar - Battle of Wandawash - Battle of Plassey"
+      },
+      "answer": "b",
+      "subject": "Modern History",
+      "sub_topic": "Advent Of Europeans & British Expansion",
+      "difficulty": "moderate",
+      "explanation": "Chronological order: Battle of Ambur (1749)([en.wikipedia.org](https://en.wikipedia.org/wiki/Battle_of_Ambur?utm_source=openai)) → Battle of Plassey (1757)([en.wikipedia.org](https://en.wikipedia.org/wiki/Battle_of_Plassey?utm_source=openai)) → Battle of Wandiwash (1760)([en.wikipedia.org](https://en.wikipedia.org/wiki/Battle_of_Wandiwash?utm_source=openai)) → Battle of Buxar (1764)([en.wikipedia.org](https://en.wikipedia.org/wiki/Battle_of_Buxar?utm_source=openai)). Option (b) lists exactly this sequence.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 26,
+      "question_id": "UPSC_2005_GS1_Q26",
+      "question": "Which countries played in the Lawn Tennis Davis Cup Final in the year 2004?",
+      "options": {
+        "a": "Switzerland and United States of America",
+        "b": "Spain and United States of America",
+        "c": "Australia and Argentina",
+        "d": "Sweden and Belgium"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "Tennis Grand Slams",
+      "difficulty": "easy",
+      "explanation": "The 2004 Davis Cup World Group final was contested between Spain and the United States in Seville, where Spain won the tie 3-2.([en.wikipedia.org](https://en.wikipedia.org/wiki/2004_Davis_Cup?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 27,
+      "question_id": "UPSC_2005_GS1_Q27",
+      "question": "Where do the Sahariya tribals, who were recently in the news, live?",
+      "options": {
+        "a": "Andhra Pradesh",
+        "b": "Assam",
+        "c": "Rajasthan",
+        "d": "Orissa"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "Population & Demography",
+      "difficulty": "easy",
+      "explanation": "The Sahariya (or Saharia) are a Particularly Vulnerable Tribal Group concentrated mainly in Rajasthan’s Baran-Kota region, where repeated reports of starvation deaths put them in the news in the early 2000s.([timesofindia.indiatimes.com](https://timesofindia.indiatimes.com/india/20-die-of-starvation-in-rajasthan/articleshow/26064700.cms?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 28,
+      "question_id": "UPSC_2005_GS1_Q28",
+      "question": "Whose autobiography is the book “My Music, My Life”?",
+      "options": {
+        "a": "Pandit Shiv Kumar Sharma",
+        "b": "Ustad Amjad Ali Khan",
+        "c": "Pandit Ravi Shankar",
+        "d": "Ustad Zakir Hussain"
+      },
+      "answer": "c",
+      "subject": "Art & Culture",
+      "sub_topic": "Music",
+      "difficulty": "easy",
+      "explanation": "“My Music, My Life” is the autobiography of sitar virtuoso Pandit Ravi Shankar, first published in 1968 and re-issued later by Simon & Schuster.([simonandschuster.com](https://www.simonandschuster.com/books/My-Music-My-Life/Ravi-Shankar/9781601090102?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 29,
+      "question_id": "UPSC_2005_GS1_Q29",
+      "question": "Consider the following statements :\n1. India is the only country in the world producing all the five known commercial varieties of silk.\n2. India is the largest producer of sugar in the world.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "Agriculture & Rural Development",
+      "difficulty": "moderate",
+      "explanation": "India is the only nation that commercially produces all five varieties of silk—Mulberry, Tasar, Oak Tasar, Eri and Muga—giving Statement 1 true.([silks.csb.gov.in](https://silks.csb.gov.in/pune/wp-content/themes/Common_District/pune/sgf-frame.html?utm_source=openai))  In 2005 Brazil, not India, was the world’s largest sugar producer, with India ranked second, so Statement 2 is false.([investopedia.com](https://www.investopedia.com/articles/investing/101615/5-countries-produce-most-sugar.asp?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 30,
+      "question_id": "UPSC_2005_GS1_Q30",
+      "question": "Which one of the following pairs is not correctly matched?",
+      "options": {
+        "a": "Arjun : Indigenous produced Main Battle Tank (MBT)",
+        "b": "Phalcon : Cruise missile supplied by Russia to India",
+        "c": "Saras : Indigenously developed civilian passenger aircraft",
+        "d": "Operation Seabird : New Indian Naval Base at Karwar"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Defence Technology",
+      "difficulty": "moderate",
+      "explanation": "The Phalcon is an Israeli EL/W-2090 airborne early-warning (AEW&C) system mounted on Russian Il-76 aircraft—not a cruise missile—so the pair is mismatched. The other pairs (Arjun MBT, Saras aircraft, Operation Seabird at Karwar) are correctly matched.([dawn.com](https://www.dawn.com/news/134776/us-confirms-israeli-awacs-sale-to-india?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 31,
+      "question_id": "UPSC_2005_GS1_Q31",
+      "question": "Match items in the List-I with List-II and select the correct answer using the codes given below the lists:\nList I (Power Station)\n(A) Kothagudem\n(B) Raichur\n(C) Mettur\n(D) Wanakbori\n\nList II (State)\n1. Andhra Pradesh\n2. Gujarat\n3. Karnataka\n4. Tamil Nadu",
+      "options": {
+        "a": "A–4  B–2  C–1  D–3",
+        "b": "A–1  B–3  C–4  D–2",
+        "c": "A–4  B–3  C–1  D–2",
+        "d": "A–1  B–2  C–4  D–3"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "Economic & Mineral Geography",
+      "difficulty": "moderate",
+      "explanation": "Kothagudem TPS is in (then) Andhra Pradesh, Raichur TPS in Karnataka, Mettur TPS in Tamil Nadu, and Wanakbori TPS in Gujarat, matching option (b): A-1, B-3, C-4, D-2.([en.wikipedia.org](https://en.wikipedia.org/wiki/Kothagudem_Thermal_Power_Station?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 32,
+      "question_id": "UPSC_2005_GS1_Q32",
+      "question": "For which one of the following, is Satara well-known?",
+      "options": {
+        "a": "Thermal power plant",
+        "b": "Wind energy plant",
+        "c": "Hydro-electric plant",
+        "d": "Nuclear Power plant"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "Economic & Mineral Geography",
+      "difficulty": "easy",
+      "explanation": "Satara district of Maharashtra hosts the large Chalkewadi-Thoseghar–Vankusawade plateau wind-farm complex, one of the earliest and biggest wind-energy clusters in India; no major thermal, hydro-electric or nuclear stations are located there. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Vankusawade_Wind_Park?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 33,
+      "question_id": "UPSC_2005_GS1_Q33",
+      "question": "Which one of the following companies has started a rural marketing network called ‘e-chaupals’?",
+      "options": {
+        "a": "ITC",
+        "b": "Dabur",
+        "c": "Proctor and Gamble",
+        "d": "Hindustan Lever"
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "Agriculture & Rural Development",
+      "difficulty": "easy",
+      "explanation": "The ‘e-Choupal’ digital rural procurement and information network was conceived and launched by ITC Ltd.’s Agri-Business Division in 2000; Dabur, P&G and Hindustan Lever have no such programme named e-Choupal. ([en.wikipedia.org](https://en.wikipedia.org/wiki/E-Choupal?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 34,
+      "question_id": "UPSC_2005_GS1_Q34",
+      "question": "Which one of the following statements is NOT correct?",
+      "options": {
+        "a": "Rourkela Steel Plant, the first integrated steel plant in the Public Sector of India was set up with the Soviet Union collaboration",
+        "b": "Salem Steel Plant is a premier producer of stainless steel in India.",
+        "c": "Maharashtra Elektrosmelt Ltd. is a subsidiary of the Steel Authority of India Ltd.",
+        "d": "Visakhapatnam Steel Plant is a unit of the Rashtriya Ispat Nigam Ltd."
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "Infrastructure & Industry",
+      "difficulty": "moderate",
+      "explanation": "Rourkela Steel Plant was set up in technical collaboration with West German firms Krupp & Demag, not with the Soviet Union, making statement (a) incorrect. Salem Steel produces stainless steel; Maharashtra Elektrosmelt (now Chandrapur Ferro-Alloy Plant) has been a subsidiary of SAIL; Visakhapatnam Steel Plant forms the core unit of Rashtriya Ispat Nigam Ltd.—all of which are correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Rourkela_Steel_Plant?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 35,
+      "question_id": "UPSC_2005_GS1_Q35",
+      "question": "Match items in the List-I with List-II and select the correct answer using the codes given below the lists:\nList I (Person)\n(A) V.R.S. Natrajan\n(B) A.K. Puri\n(C) V. Thulasidas\n(D) Jogdish Khattar\n\nList II (Organization)\n1. Bharat Heavy Electricals Limited\n2. Air India\n3. Maruti Udyog Limited\n4. Bharat Earth Movers Limited\n5. Indian Space Research Organization",
+      "options": {
+        "a": "A 2   B 3   C 5   D 1",
+        "b": "A 4   B 1   C 2   D 3",
+        "c": "A 2   B 1   C 5   D 3",
+        "d": "A 4   B 3   C 2   D 1"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "Infrastructure & Industry",
+      "difficulty": "moderate",
+      "explanation": "• V.R.S. Natarajan was Chairman–MD of Bharat Earth Movers Ltd. (BEML) (4). • A.K. Puri assumed charge as CMD of Bharat Heavy Electricals Ltd. (1). • V. Thulasidas (IAS) headed Air India as CMD (2). • Jagdish Khattar was Managing Director of Maruti Udyog Ltd. (3). Hence the correct matching sequence is 4-1-2-3. ([indiatoday.in](https://www.indiatoday.in/india/south/story/beml-chief-v-r-s-natarajan-accused-of-fraud-101032-2012-05-02?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 36,
+      "question_id": "UPSC_2005_GS1_Q36",
+      "question": "Which one of the following is the correct statement?",
+      "options": {
+        "a": "The modern Kochi was a Dutch colony till India’s independence.",
+        "b": "The Dutch defeated the Portuguese and built Fort Williams in the modern Kochi.",
+        "c": "The modern Kochi was first a Dutch colony before the Portuguese took over from them.",
+        "d": "The modern Kochi never became a part of the British colony."
+      },
+      "answer": "b",
+      "subject": "Medieval History",
+      "sub_topic": "European Powers & Early Colonial Contacts",
+      "difficulty": "moderate",
+      "explanation": "The Dutch captured Cochin from the Portuguese in 1663 and, during their rule over the Cochin kingdom, built William Fort (also called Chettuva/‘Fort William’) in 1714; thus the Dutch did defeat the Portuguese and erected Fort William, whereas Kochi later passed to the British (so options a, c and d are incorrect). ([en.wikipedia.org](https://en.wikipedia.org/wiki/Fort_Kochi))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 37,
+      "question_id": "UPSC_2005_GS1_Q37",
+      "question": "Which one of the following was probed by the Liberhan Commission?",
+      "options": {
+        "a": "Cricket match fixing",
+        "b": "Best Bakery Case",
+        "c": "Tehelka tapes Case",
+        "d": "Demolition of the disputed structure at Ayodhya"
+      },
+      "answer": "d",
+      "subject": "Current Affairs",
+      "sub_topic": "Indian Government Schemes & Initiatives",
+      "difficulty": "easy",
+      "explanation": "The Liberhan Ayodhya Commission of Inquiry (headed by Justice M. S. Liberhan) was set up on 16 December 1992 specifically to investigate the circumstances leading to the demolition of the disputed Babri Masjid structure at Ayodhya; it had nothing to do with match-fixing, Best Bakery or Tehelka cases. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Liberhan_Commission?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 38,
+      "question_id": "UPSC_2005_GS1_Q38",
+      "question": "Which one of the following airports in India is the first to be owned by a public limited company?",
+      "options": {
+        "a": "Dabolim Airport, Goa",
+        "b": "Cochin airport",
+        "c": "Hyderabad airport",
+        "d": "Bangalore airport"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "Infrastructure & Industry",
+      "difficulty": "easy",
+      "explanation": "Cochin International Airport, opened in 1999 and developed under a public-private-partnership model, is owned and operated by Cochin International Airport Ltd. (CIAL), a public-limited company—making it the first Indian airport with this ownership structure. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Cochin_International_Airport?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 39,
+      "question_id": "UPSC_2005_GS1_Q39",
+      "question": "Consider the following statements:\n1. Champaner - Pavagadh Archaeological Park\n2. Chhatrapati Shivaji Railway Station, Mumbai\n3. Mamallapuram\n4. Sun Temple (Konark Temple)\nWhich of the above are included in the World Heritage List of UNESCO?",
+      "options": {
+        "a": "1, 2 and 3",
+        "b": "1, 3 and 4",
+        "c": "2 and 4",
+        "d": "1, 2, 3 and 4"
+      },
+      "answer": "d",
+      "subject": "Art & Culture",
+      "sub_topic": "Architecture & World Heritage",
+      "difficulty": "moderate",
+      "explanation": "All four sites are on UNESCO’s World Heritage List: Champaner-Pavagadh Archaeological Park (inscribed 2004), Chhatrapati Shivaji Terminus, Mumbai (inscribed 2004), the Group of Monuments at Mamallapuram (inscribed 1984) and the Sun Temple, Konark (inscribed 1984). Hence 1, 2, 3 and 4 are included. ([whc.unesco.org](https://whc.unesco.org/en/list/1101/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 40,
+      "question_id": "UPSC_2005_GS1_Q40",
+      "question": "Which one of the following pairs is not correctly matched?",
+      "options": {
+        "a": "Bahamas — Nassau",
+        "b": "Costa Rica — San Jose",
+        "c": "Nicaragua — Belmopan",
+        "d": "Dominican Republic — Santo Domingo"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "World Political Geography & Borders",
+      "difficulty": "easy",
+      "explanation": "Belmopan is the capital of Belize, not Nicaragua; Nicaragua’s capital is Managua. The other pairs—Bahamas – Nassau, Costa Rica – San José, Dominican Republic – Santo Domingo—are correctly matched, so the incorrect pair is ‘Nicaragua – Belmopan’. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Managua?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 41,
+      "question_id": "UPSC_2005_GS1_Q41",
+      "question": "Which one of the following is the correct sequence of the given towns of Pakistan while moving from the North towards the South?",
+      "options": {
+        "a": "Islamabad - Gujrawala - Peshawar - Multan",
+        "b": "Peshawar - Gujrawala - Multan - Islamabad",
+        "c": "Peshawar - Islamabad - Gujrawala - Multan",
+        "d": "Islamabad - Multan - Peshawar - Gujrawala"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "Cartography & Map Skills",
+      "difficulty": "moderate",
+      "explanation": "Latitudinally the cities lie as follows: Peshawar 34.0° N, Islamabad 33.7° N, Gujranwala 32.1° N, Multan 30.2° N. Therefore, moving north-to-south the correct sequence is Peshawar → Islamabad → Gujranwala → Multan. ([weather-atlas.com](https://www.weather-atlas.com/en/pakistan/peshawar?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 42,
+      "question_id": "UPSC_2005_GS1_Q42",
+      "question": "Where are the Balearic Islands located?",
+      "options": {
+        "a": "Mediterranean Sea",
+        "b": "Black Sea",
+        "c": "Baltic Sea",
+        "d": "North Sea"
+      },
+      "answer": "a",
+      "subject": "Geography",
+      "sub_topic": "World Physical Geography",
+      "difficulty": "easy",
+      "explanation": "The Balearic Islands (Mallorca, Menorca, Ibiza, Formentera) are an archipelago in the western Mediterranean Sea off Spain’s east coast, hence option (a) is correct; the other seas lie in northern or eastern Europe and do not contain this island group. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Balearic_Islands))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 43,
+      "question_id": "UPSC_2005_GS1_Q43",
+      "question": "Which one of the following countries does not border Lithuania?",
+      "options": {
+        "a": "Poland",
+        "b": "Ukraine",
+        "c": "Belarus",
+        "d": "Latvia"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "World Political Geography & Borders",
+      "difficulty": "easy",
+      "explanation": "According to the CIA World Factbook, Lithuania shares land borders with Belarus, Latvia, Poland and Russia (Kaliningrad); it has no common frontier with Ukraine, making option (b) the only country listed that does NOT border Lithuania. ([cia.gov](https://www.cia.gov/the-world-factbook/about/archives/2021/field/land-boundaries/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 44,
+      "question_id": "UPSC_2005_GS1_Q44",
+      "question": "Match List-I (Distinguished Person) with List-II (Achievement/Known as) and select the correct answer using the codes given below the lists:\nList I\n(A) Guenter Grass\n(B) Trevor Huddleston\n(C) Dicky Dolma\n(D) Kim Campbell\n\nList II\n1. First woman Prime Minister of Canada\n2. Nobel Prize winner for literature\n3. Leading campaigner against apartheid in South Africa\n4. Youngest woman to climb the Mt. Everest\n5. American violinist",
+      "options": {
+        "a": "A 5   B 3   C 2   D 1",
+        "b": "A 2   B 3   C 4   D 1",
+        "c": "A 5   B 3   C 4   D 2",
+        "d": "A 2   B 1   C 3   D 5"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "Awards & Honours",
+      "difficulty": "moderate",
+      "explanation": "Günter Grass won the 1999 Nobel Prize in Literature (2) ([en.wikipedia.org](https://en.wikipedia.org/wiki/G%C3%BCnter_Grass)); Anglican bishop Trevor Huddleston was a leading anti-apartheid activist (3) ([en.wikipedia.org](https://en.wikipedia.org/wiki/Trevor_Huddleston)); Indian mountaineer Dicky Dolma became the youngest woman to summit Mt Everest in 1993 (4) ([en.wikipedia.org](https://en.wikipedia.org/wiki/Dicky_Dolma?utm_source=openai)); Kim Campbell was sworn in as Canada’s first woman Prime Minister in 1993 (1) ([en.wikipedia.org](https://en.wikipedia.org/wiki/Kim_Campbell?utm_source=openai)). The correct matching A-2, B-3, C-4, D-1 corresponds to option (b).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 46,
+      "question_id": "UPSC_2005_GS1_Q46",
+      "question": "Match List-I with List-II and select the correct answer using the codes given below the lists:\nList I (Distinguished Person)\n(A) B.V. Rao\n(B) C.K. Prahlad\n(C) John Kurien\n(D) Kiran Karnik\n\nList II (Area of Work)\n1. Automobiles Manufacture\n2. Fisheries Economy\n3. Information Technology and Software\n4. Poultry Farming\n5. Management Science",
+      "options": {
+        "a": "A 2   B 5   C 1   D 3",
+        "b": "A 4   B 3   C 2   D 5",
+        "c": "A 2   B 3   C 1   D 5",
+        "d": "A 4   B 5   C 2   D 3"
+      },
+      "answer": "d",
+      "subject": "Current Affairs",
+      "sub_topic": "Business & Economy",
+      "difficulty": "moderate",
+      "explanation": "B.V. Rao is hailed as the ‘father of India’s poultry industry’ → Poultry Farming (4) ([en.wikipedia.org](https://en.wikipedia.org/wiki/B._V._Rao)); C.K. Prahalad was a globally renowned management thinker → Management Science (5) ([en.wikipedia.org](https://en.wikipedia.org/wiki/C._K._Prahalad)); Prof. John Kurien is a leading fisheries economist and advocate → Fisheries Economy (2) ([dakshin.org](https://dakshin.org/dt_team/prof-john-kurien/)); Kiran Karnik served as president of NASSCOM and is associated with the IT/software sector → Information Technology & Software (3) ([en.wikipedia.org](https://en.wikipedia.org/wiki/Kiran_Karnik)). Thus the correct pairing A-4, B-5, C-2, D-3 matches option (d).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 47,
+      "question_id": "UPSC_2005_GS1_Q47",
+      "question": "Consider the following statements:\n1. The Parliament cannot enlarge the jurisdiction of the Supreme Court of India as its jurisdiction is limited to that conferred by the Constitution.\n2. The officers and servants of the Supreme Court and High Courts are appointed by the concerned Chief Justice and the administrative expenses are charged on the Consolidated Fund of India.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "b",
+      "subject": "Indian Polity",
+      "sub_topic": "Judiciary",
+      "difficulty": "moderate",
+      "explanation": "Article 138 empowers Parliament to enlarge the jurisdiction and powers of the Supreme Court; hence statement 1 is incorrect.  Articles 146 (Supreme Court) and 229 (High Courts) let the respective Chief Justices appoint officers/servants; in the Supreme Court those administrative expenses are charged on the Consolidated Fund of India, so the statement is treated as correct for the exam. Therefore only statement 2 is correct (option b). ([edurev.in](https://edurev.in/t/234396/UPSC-Previous-Year-Questions--Prelims--Supreme-Court))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 48,
+      "question_id": "UPSC_2005_GS1_Q48",
+      "question": "Consider the following statements:\n1. Article 301 pertains to the Right to Property.\n2. Right to Property is a legal right but not a Fundamental Right.\n3. Article 300 A was inserted in the Constitution of India by the Congress Government at the Centre by the 44th Constitutional Amendment.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "2 only",
+        "b": "2 and 3",
+        "c": "1 and 3",
+        "d": "1, 2 and 3"
+      },
+      "answer": "a",
+      "subject": "Indian Polity",
+      "sub_topic": "Fundamental Rights",
+      "difficulty": "moderate",
+      "explanation": "Article 301 deals with freedom of trade, commerce and intercourse, not property, so statement 1 is wrong.  The 44th Constitutional Amendment Act 1978 (passed by the Janata government) deleted the property right from Part III and introduced Article 300A, making it only a legal/constitutional right; thus statement 2 is correct while statement 3 (crediting Congress for the insertion) is incorrect. Hence only statement 2 is right. ([edurev.in](https://edurev.in/t/233667/Judiciary-Legal-Rights-Solved-Questions--1995-2009-?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 49,
+      "question_id": "UPSC_2005_GS1_Q49",
+      "question": "Who among the following invented Lasers?",
+      "options": {
+        "a": "Theodore Maiman",
+        "b": "Denis Papin",
+        "c": "Willam Moton",
+        "d": "Fancis Crick"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Science & Technology History",
+      "difficulty": "easy",
+      "explanation": "American physicist Theodore Harold Maiman built and operated the first working ruby laser on 16 May 1960, earning him recognition as the inventor of the laser. The other personalities listed are connected with steam engine (Denis Papin), cotton-gin–related work (William Morton) or DNA structure (Francis Crick), not lasers. ([britannica.com](https://www.britannica.com/biography/Theodore-Maiman?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 50,
+      "question_id": "UPSC_2005_GS1_Q50",
+      "question": "Consider the following statements:\n1. Articles 371A to 371I were inserted in the Constitution of India to meet regional demands of Nagaland, Assam, Manipur, Andhra Pradesh, Sikkim, Mizoram, Arunachal Pradesh and Goa.\n2. Constitution of India and the United States of America can envisage a dual policy (the Union and the States) but a single citizenship.\n3. A naturalized citizen of India can never be deprived of his citizenship.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1, 2 and 3",
+        "b": "1 and 3",
+        "c": "3 only",
+        "d": "1 only"
+      },
+      "answer": "d",
+      "subject": "Indian Polity",
+      "sub_topic": "Federalism & Centre–State Relations",
+      "difficulty": "difficult",
+      "explanation": "Articles 371A-I were indeed added to meet special regional demands of Nagaland, Assam, Manipur, Andhra Pradesh, Sikkim, Mizoram, Arunachal Pradesh and Goa, so statement 1 is correct.  The U.S. Constitution recognises both national and separate state citizenship (14th Amendment), whereas India has only single citizenship; therefore statement 2 is wrong.  Under section 10 of the Citizenship Act 1955, a naturalised Indian citizen can be deprived of citizenship on grounds such as fraud or disloyalty, so statement 3 is also wrong.  Hence only statement 1 is correct → option (d). ([constitutionofindia.net](https://www.constitutionofindia.net/articles/article-371a-special-provision-with-respect-to-the-state-of-nagaland/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 51,
+      "question_id": "UPSC_2005_GS1_Q51",
+      "question": "Consider the following statements:\n1. Part IX of the Constitution of India contains provisions for Panchayats and was inserted by the Constitution (73rd Amendment) Act, 1992.\n2. Part IX A of the Constitution of India contains provisions for municipalities and Article 243Q envisages two types of municipalities – a Municipal Council and a Municipal Corporation – for every state.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "a",
+      "subject": "Indian Polity",
+      "sub_topic": "Local Government & Panchayati Raj",
+      "difficulty": "moderate",
+      "explanation": "The Constitution (73rd Amendment) Act 1992 inserted Part IX (Articles 243–243O) dealing with Panchayats, confirming statement 1.  Article 243Q (Part IX-A, added by the 74th Amendment) mandates three classes of urban local bodies—Nagar Panchayat (transitional area), Municipal Council (smaller urban area) and Municipal Corporation (larger urban area); thus statement 2, which mentions only two, is incorrect. Therefore only statement 1 is correct (option a). ([en.wikipedia.org](https://en.wikipedia.org/wiki/Seventy-third_Amendment_of_the_Constitution_of_India))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 52,
+      "question_id": "UPSC_2005_GS1_Q52",
+      "question": "Consider the following statements:\n1. Lord Mountbatten was the Viceroy when Shimla Conference took place.\n2. Indian Navy Revolt, 1946 took place when the Indian sailors in the Royal Indian Navy at Bombay and Karachi rose against the Government.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "b",
+      "subject": "Modern History",
+      "sub_topic": "Transfer Of Power & Partition (1945-1947)",
+      "difficulty": "moderate",
+      "explanation": "The Simla Conference of June 1945 was convened by Viceroy Lord Wavell, not Lord Mountbatten, so statement 1 is wrong. The Royal Indian Navy mutiny of February 1946 indeed began at HMIS Talwar in Bombay and quickly spread to ships and shore establishments in both Bombay and Karachi, so statement 2 is correct. Therefore only statement 2 is correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Simla_Conference?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 53,
+      "question_id": "UPSC_2005_GS1_Q53",
+      "question": "Which one of the following territories was not affected by the Revolt of 1857?",
+      "options": {
+        "a": "Jhansi",
+        "b": "Chittor",
+        "c": "Jagdishpur",
+        "d": "Lucknow"
+      },
+      "answer": "b",
+      "subject": "Modern History",
+      "sub_topic": "Advent Of Europeans & British Expansion",
+      "difficulty": "easy",
+      "explanation": "Major flashpoints of the 1857 revolt included Jhansi, Jagdishpur (in Bihar) and Lucknow; Chittor in present-day Rajasthan was not a centre of the uprising. Hence Chittor was unaffected. ([compass.rauias.com](https://compass.rauias.com/modern-history/centres-leaders-revolt-1857/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 54,
+      "question_id": "UPSC_2005_GS1_Q54",
+      "question": "Which one of the following places did Kunwar Singh, a prominent leader of the Revolt of 1857, belong to?",
+      "options": {
+        "a": "Bihar",
+        "b": "Madhya Pradesh",
+        "c": "Rajasthan",
+        "d": "Uttar Pradesh"
+      },
+      "answer": "a",
+      "subject": "Modern History",
+      "sub_topic": "Advent Of Europeans & British Expansion",
+      "difficulty": "easy",
+      "explanation": "Kunwar Singh was the Zamindar-ruler of Jagdishpur estate in present-day Bihar and led the rebellion there, so he belonged to Bihar. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Kunwar_Singh?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 55,
+      "question_id": "UPSC_2005_GS1_Q55",
+      "question": "Which one of the following pairs are correctly matched?\nMovement / Satyagraha                            Person Actively Associated With\n1. Champaran                                             Rajendra Prasad\n2. Ahmedabad Mill Workers                    Morarji Desai\n3. Kheda                                                     Vallabhbhai Patel\nSelect the correct answer using the codes given below:",
+      "options": {
+        "a": "1 and 2",
+        "b": "2 and 3",
+        "c": "1 and 3",
+        "d": "1, 2 and 3"
+      },
+      "answer": "c",
+      "subject": "Modern History",
+      "sub_topic": "Gandhian Mass Movements (1915-1942)",
+      "difficulty": "moderate",
+      "explanation": "Dr. Rajendra Prasad assisted Gandhi in the Champaran Satyagraha of 1917; Sardar Vallabhbhai Patel was Gandhi’s main lieutenant in the Kheda Satyagraha of 1918, so statements 1 and 3 are correct. The Ahmedabad Mill-Workers strike (1918) was led by Gandhi with Anasuya Sarabhai—Morarji Desai had no role—so statement 2 is incorrect. Thus only 1 and 3 are correctly matched. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Champaran_Satyagraha?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 56,
+      "question_id": "UPSC_2005_GS1_Q56",
+      "question": "Who among the following was not associated with the formation of U.P. Kisan Sabha in February 1918?",
+      "options": {
+        "a": "Indra Narain Dwivedi",
+        "b": "Gauri Shankar Misra",
+        "c": "Jawaharlal Nehru",
+        "d": "Madan Mohan Malviya"
+      },
+      "answer": "c",
+      "subject": "Modern History",
+      "sub_topic": "Peasant, Tribal & Labour Movements",
+      "difficulty": "moderate",
+      "explanation": "The United Provinces (U.P.) Kisan Sabha was set up in February 1918 at Lucknow by Gauri Shankar Mishra and Indra Narain Dwivedi with the active support of Madan Mohan Malviya. Jawaharlal Nehru became involved with Awadh peasant activities only later (1920 onwards), so he was **not** among the founders. Hence option (c) is not associated. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Kisan_Sabha_movement_%281919%E2%80%931922%29?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 57,
+      "question_id": "UPSC_2005_GS1_Q57",
+      "question": "Who among the following drafted the resolution on fundamental rights for the Karachi Session of Congress in 1931?",
+      "options": {
+        "a": "Dr. B.R. Ambedkar",
+        "b": "Pandit Jawaharlal Nehru",
+        "c": "Dr. Rajendra Prasad",
+        "d": "Sardar Vallabhbhai Patel"
+      },
+      "answer": "b",
+      "subject": "Modern History",
+      "sub_topic": "Gandhian Mass Movements (1915-1942)",
+      "difficulty": "moderate",
+      "explanation": "The Fundamental Rights and Economic Programme resolution placed before the special Karachi Session (March 1931) was drafted by Pandit Jawaharlal Nehru, with some editorial changes by Gandhi. Other leaders listed were not involved in drafting this resolution. ([nehruarchive.in](https://nehruarchive.in/documents/resolution-on-fundamental-rights-31-march-1931-llwk7?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 58,
+      "question_id": "UPSC_2005_GS1_Q58",
+      "question": "In October 1920, who of the following headed a group of Indians gathered at Tashkent to set up a communist party of India?",
+      "options": {
+        "a": "H.K. Sarkar",
+        "b": "P.C. Joshi",
+        "c": "M.C. Chagla",
+        "d": "M.N. Roy"
+      },
+      "answer": "d",
+      "subject": "Modern History",
+      "sub_topic": "Revolutionary & Communist Movements",
+      "difficulty": "moderate",
+      "explanation": "On 17 October 1920 a handful of Indian revolutionaries in Tashkent founded what they called the ‘Indian Communist Party’; the group was led by M. N. Roy, who had recently been working with the Comintern. None of the other options were present in Tashkent at that time or led the effort. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Communist_Party_of_India?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 59,
+      "question_id": "UPSC_2005_GS1_Q59",
+      "question": "At which Congress Session was the Working Committee authorized to launch a programme of Civil Disobedience?",
+      "options": {
+        "a": "Bombay",
+        "b": "Lahore",
+        "c": "Lucknow",
+        "d": "Tripuri"
+      },
+      "answer": "b",
+      "subject": "Modern History",
+      "sub_topic": "Gandhian Mass Movements (1915-1942)",
+      "difficulty": "moderate",
+      "explanation": "The Lahore Session of December 1929 (presided over by J. L. Nehru) adopted the Poorna Swaraj resolution and expressly authorised the Congress Working Committee to launch a programme of civil disobedience, including non-payment of taxes, whenever it considered the moment ripe. ([insightsonindia.com](https://www.insightsonindia.com/modern-indian-history/national-movement-1919-1939/lahore-session-1929/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 60,
+      "question_id": "UPSC_2005_GS1_Q60",
+      "question": "In which one of the following provinces was a Congress Ministry not formed under the Act of 1935?",
+      "options": {
+        "a": "Bihar",
+        "b": "Madras",
+        "c": "Orissa",
+        "d": "Punjab"
+      },
+      "answer": "d",
+      "subject": "Modern History",
+      "sub_topic": "Constitutional Developments & British Plans (1909-1947)",
+      "difficulty": "moderate",
+      "explanation": "After the 1937 provincial elections Congress formed ministries in Madras, Bombay, United Provinces, Central Provinces, Bihar, Orissa, and later NWFP; it could not form a ministry in Punjab, where the Unionist Party dominated. Hence Punjab is the only province among the given options without a Congress ministry. ([bissoy.com](https://www.bissoy.com/mcq/1043847?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 61,
+      "question_id": "UPSC_2005_GS1_Q61",
+      "question": "Consider the following statements: On the eve of the launch of Quit India Movement, Mahatma Gandhi\n1. asked the Government servants to resign.\n2. asked the soldiers to leave their posts.\n3. asked the Princes of the Princely States to accept the sovereignty of their own people.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 and 2",
+        "b": "2 and 3",
+        "c": "3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "c",
+      "subject": "Modern History",
+      "sub_topic": "Gandhian Mass Movements (1915-1942)",
+      "difficulty": "moderate",
+      "explanation": "In his Gowalia Tank speech Gandhi told (i) government servants to stay in their jobs but declare allegiance to Congress (so he did NOT ask them to resign) and (ii) soldiers to remain in the army but refuse to fire on compatriots (he did NOT ask them to leave posts). He did, however, call upon the Princes to ‘accept the sovereignty of their own people’. Therefore only statement 3 is correct. ([compass.rauias.com](https://compass.rauias.com/modern-history/quit-india-movement-1942/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 62,
+      "question_id": "UPSC_2005_GS1_Q62",
+      "question": "Where were the Ghadar revolutionaries, who became active during the outbreak of the World War I, based?",
+      "options": {
+        "a": "Central America",
+        "b": "North America",
+        "c": "West America",
+        "d": "South America"
+      },
+      "answer": "b",
+      "subject": "Modern History",
+      "sub_topic": "Revolutionary & Communist Movements",
+      "difficulty": "easy",
+      "explanation": "The Ghadar Party, formed in July 1913, operated from Yugantar Ashram in San Francisco and from immigrant centres in the U.S.-Canada Pacific coast; during World War I its revolutionary network was therefore based in North America. Central, West or South America were never centres of Ghadar activity, so option (b) is correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Ghadar_Movement?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 63,
+      "question_id": "UPSC_2005_GS1_Q63",
+      "question": "What was Komagata Maru?",
+      "options": {
+        "a": "A political party based in Taiwan",
+        "b": "Peasant communist leader of China",
+        "c": "A naval ship on voyage to China",
+        "d": "A Chinese village where Mao Tse Tung began his Long March"
+      },
+      "answer": "c",
+      "subject": "Modern History",
+      "sub_topic": "Revolutionary & Communist Movements",
+      "difficulty": "moderate",
+      "explanation": "Komagata Maru was a Japanese steamship chartered by Punjabi migrants that sailed to Vancouver in 1914; its passengers were refused entry and the ship was sent back, making it a symbol of colonial discrimination. It was a vessel—not a party, person or village—so option (c) \"a naval ship\" is the only correct description. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Komagata_Maru_incident?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 64,
+      "question_id": "UPSC_2005_GS1_Q64",
+      "question": "Who among the following was a proponent of Fabianism as a movement?",
+      "options": {
+        "a": "Annie Besant",
+        "b": "A.O. Hume",
+        "c": "Michael Madhusudan Dutt",
+        "d": "R. Palme Dutt"
+      },
+      "answer": "a",
+      "subject": "Modern History",
+      "sub_topic": "Key Personalities & Ideologies",
+      "difficulty": "easy",
+      "explanation": "Before coming to India, Annie Besant was sponsored by George Bernard Shaw to join Britain’s Fabian Society and soon became one of its leading speakers, making her the noted advocate of Fabianism among the choices. Hume founded the INC but was not a Fabian, Michael Madhusudan Dutt was a poet, and R. Palme Dutt was a Marxist historian; hence (a). ([en.wikipedia.org](https://en.wikipedia.org/wiki/Annie_Besant?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 65,
+      "question_id": "UPSC_2005_GS1_Q65",
+      "question": "Recently, to which of the following countries did India offer to build a Buddha Temple?",
+      "options": {
+        "a": "China",
+        "b": "Myanmar",
+        "c": "Thailand",
+        "d": "Vietnam"
+      },
+      "answer": "a",
+      "subject": "Current Affairs",
+      "sub_topic": "International Relations & Treaties",
+      "difficulty": "moderate",
+      "explanation": "In December 2004 the Indian government offered to help rebuild a Buddhist temple at Luoyang’s historic White Horse Temple complex in China, strengthening cultural ties. No comparable offer was made to Myanmar, Thailand or Vietnam, so the correct answer is (a) China. ([timesofindia.indiatimes.com](https://timesofindia.indiatimes.com/india/a-temple-of-peace-for-india-china/articleshow/952338.cms?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 66,
+      "question_id": "UPSC_2005_GS1_Q66",
+      "question": "Which one of the following is not an ASEAN member?",
+      "options": {
+        "a": "Cambodia",
+        "b": "China",
+        "c": "Laos",
+        "d": "Philippines"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "International Organisations & Groupings",
+      "difficulty": "easy",
+      "explanation": "ASEAN’s ten members by 2005 were Brunei, Cambodia, Indonesia, Laos, Malaysia, Myanmar, the Philippines, Singapore, Thailand and Vietnam; China, though a dialogue partner, is not a member state. Therefore option (b) China is the non-member, while Cambodia, Laos and the Philippines are members. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Member_states_of_ASEAN?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 67,
+      "question_id": "UPSC_2005_GS1_Q67",
+      "question": "Consider the following:\n1. Disputes with mobile cellular companies\n2. Motor accident cases\n3. Pension cases\nFor which of the above are Lok Adalats held?",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 2 only",
+        "c": "2 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "d",
+      "subject": "Indian Polity",
+      "sub_topic": "Judiciary",
+      "difficulty": "moderate",
+      "explanation": "Under the Legal Services Authorities Act, 1987, Lok Adalats can take up (i) civil disputes, including claims under the Motor Vehicles Act, (ii) public-utility disputes such as telecom/mobile services, and (iii) service-related pension disputes that many State Legal Services Authorities run as special “Pension Lok Adalats”. Hence all three categories are admissible. ([nalsa.gov.in](https://nalsa.gov.in/lok-adalats/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 68,
+      "question_id": "UPSC_2005_GS1_Q68",
+      "question": "Consider the following statements :\n1. Second World Buddhist Summit was held in Bangkok in November–December, 2004\n2. World Punjabi Conference was held in Jalandhar in December, 2004\n3. 4th Meeting of the SAARC, Trade Ministers was held in Islamabad in November, 2004\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 2",
+        "c": "2 and 3",
+        "d": "1, 2 and 3"
+      },
+      "answer": "c",
+      "subject": "Current Affairs",
+      "sub_topic": "International Relations & Treaties",
+      "difficulty": "difficult",
+      "explanation": "1 is wrong—the 2nd World Buddhist Summit was held at Lumbini, Nepal (30 Nov – 2 Dec 2004), not Bangkok. 2 is correct—the World Punjabi Conference and related festivities were hosted in Punjab (Indian side) in early December 2004; press reports announced the events at Patiala/Jalandhar. 3 is correct—the 4th Meeting of SAARC Commerce/Trade Ministers convened in Islamabad in November 2004. Therefore only 2 & 3 are correct. ([phayul.com](https://www.phayul.com/2004/11/19/8240/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 69,
+      "question_id": "UPSC_2005_GS1_Q69",
+      "question": "Consider the following statements :\n1. The Parliament of Russia is called Federal Assembly.\n2. The Council of the Federation in the Russian Parliament is the lower house\n3. The name of the upper house in the Russian Parliament is State Duma.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1, 2 and 3",
+        "b": "1 and 2",
+        "c": "2 and 3",
+        "d": "1 only"
+      },
+      "answer": "d",
+      "subject": "Current Affairs",
+      "sub_topic": "International Relations & Treaties",
+      "difficulty": "moderate",
+      "explanation": "Russia’s bicameral legislature is the Federal Assembly (statement 1 correct). The Federation Council is the UPPER house, while the State Duma is the LOWER house; statements 2 and 3 therefore reverse the actual arrangement and are incorrect. Hence only statement 1 is right. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Federal_Assembly_%28Russia%29?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 70,
+      "question_id": "UPSC_2005_GS1_Q70",
+      "question": "Consider the following statements :\n1. Great Britain comprises England, Wales, Scotland and Northern Ireland.\n2. England covers less than 60% of the total area of the United Kingdom.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "World Political Geography & Borders",
+      "difficulty": "easy",
+      "explanation": "Great Britain comprises England, Scotland and Wales—not Northern Ireland—so statement 1 is wrong. England’s land area is about 53 % of the UK (well below 60 %), so statement 2 is correct. Hence, option (b) 2 only. ([en.wikipedia.org](https://en.wikipedia.org/wiki/United_Kingdom?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 71,
+      "question_id": "UPSC_2005_GS1_Q71",
+      "question": "Consider the following statements :\n1. During the process of osmosis, the solvent travels from the concentrated solution to the dilute solution.\n2. In the reverse osmosis, external pressure is applied to the dilute solution.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Biology",
+      "difficulty": "easy",
+      "explanation": "In osmosis solvent (water) naturally moves from the MORE dilute solution (higher water potential) to the MORE concentrated solution through a semipermeable membrane, so statement 1 is incorrect. In reverse osmosis, an external pressure greater than the osmotic pressure is applied on the concentrated side to force solvent to the dilute side; statement 2 incorrectly says the pressure is applied on the dilute solution. Thus both statements are wrong. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Osmosis?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 72,
+      "question_id": "UPSC_2005_GS1_Q72",
+      "question": "Consider the following statements :\n1. Poverty Reduction and Growth Facility (PRGF) has been established by the International Development Association (IDA) to provide further assistance to low-income countries facing high level of indebtedness.\n2. Singapore Regional Training Institute (STI) is one of the institutes that provide training in macroeconomics analysis and policy, and related subjects as a part of programme of the IMF Institute.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "International Institutions & Reports",
+      "difficulty": "moderate",
+      "explanation": "The Poverty Reduction and Growth Facility (PRGF) was created by the International Monetary Fund in 1999 (it replaced the ESAF); it is therefore not an International Development Association (IDA) window, so Statement 1 is wrong. The Singapore Regional Training Institute (STI), set up in 1998, is run under the IMF Institute and conducts courses in macro-economic analysis and related policy areas, so Statement 2 is correct. Hence only statement 2 is correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Poverty_Reduction_and_Growth_Facility?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 73,
+      "question_id": "UPSC_2005_GS1_Q73",
+      "question": "Consider the following statements :\n1. Sensex is based on 50 of the most important stocks available on the Bombay Stock Exchange (BSE)\n2. For calculating the Sensex, all the Sensex stocks are assigned proportional weightage.\n3. New York Stock Exchange is the oldest stock exchange in the world.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "2 only",
+        "b": "1 and 3",
+        "c": "2 and 3",
+        "d": "None"
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "Financial Markets & Capital Markets",
+      "difficulty": "moderate",
+      "explanation": "The BSE Sensex is a free-float market-capitalization-weighted index of 30 (not 50) leading shares listed on the Bombay Stock Exchange; therefore Statement 1 is incorrect. Because the index is market-cap weighted, each constituent gets weight proportional to its market value, so Statement 2 is correct. The oldest organised securities market is generally recognised as the Amsterdam Stock Exchange founded in 1602, not the New York Stock Exchange (1792); Statement 3 is incorrect. Thus only Statement 2 is correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/BSE_SENSEX?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 74,
+      "question_id": "UPSC_2005_GS1_Q74",
+      "question": "Consider the following statements :\n1. The Headquarters of the International Organization for Standardization are located in Rome\n2. ISO 9000 relates to the quality management system and standards.\n3. ISO 14000 relates to environmental management system standards.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 and 2",
+        "b": "3 only",
+        "c": "2 and 3",
+        "d": "None"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Science & Technology Institutions",
+      "difficulty": "easy",
+      "explanation": "ISO’s central secretariat is in Geneva, Switzerland—not Rome—so Statement 1 is wrong. ISO 9000 is the family of standards dealing with quality-management systems, while ISO 14000 deals with environmental-management systems; Statements 2 and 3 are both correct. Hence only Statements 2 and 3 are correct. ([iso.org](https://www.iso.org/contact-iso.html?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 75,
+      "question_id": "UPSC_2005_GS1_Q75",
+      "question": "Consider the following statements :\n1. In the First Round Table Conference Dr. Ambedkar demanded electorates for the depressed classes.\n2. In the Poona Pact, special provisions for representation of the depressed people in the local bodies and civil services were made.\n3. The Indian National Congress did not take part in the Third Round Table Conference.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 and 2",
+        "b": "2 and 3",
+        "c": "1 and 3",
+        "d": "1, 2 and 3"
+      },
+      "answer": "c",
+      "subject": "Modern History",
+      "sub_topic": "Constitutional Developments & British Plans (1909-1947)",
+      "difficulty": "moderate",
+      "explanation": "Dr B. R. Ambedkar did demand separate electorates for the Depressed Classes at the First Round Table Conference (1930–31), so Statement 1 is true. The Poona Pact (1932) replaced separate electorates with reserved seats in provincial legislatures; it did not give special representation in local bodies or civil services, so Statement 2 is false. The Indian National Congress boycotted the Third Round Table Conference (1932), making Statement 3 true. Therefore Statements 1 and 3 only are correct. ([scribd.com](https://www.scribd.com/document/732020741/2005-GS1-Set-A-With-Answers))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 76,
+      "question_id": "UPSC_2005_GS1_Q76",
+      "question": "Consider the following statements :\n1. Ishwar Chandra Vidyasagar founded the Bethune School at Calcutta with the main aim of encouraging education for women.\n2. Bankim Chandra Chattopadhyay was the first graduate of the Calcutta University.\n3. Keshav Chandra Sen’s campaign against Sati led to the enactment of a law to ban Sati by the then Governor General.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 2",
+        "c": "2 and 3",
+        "d": "1, 2 and 3"
+      },
+      "answer": "b",
+      "subject": "Modern History",
+      "sub_topic": "Social & Religious Reform Movements",
+      "difficulty": "moderate",
+      "explanation": "Ishwar Chandra Vidyasagar was closely associated with, and is traditionally credited as a co-founder/prime mover of, the Bethune (Hindu Female) School established in 1849 to promote women’s education, so Statement 1 is treated as correct in official keys. Bankim Chandra Chattopadhyay was one of the first two graduates of Calcutta University in 1858–59, making Statement 2 correct. Sati had already been legally abolished in 1829 by Lord William Bentinck; Keshab Chandra Sen’s later reformist activities did not lead to that law, so Statement 3 is incorrect. Hence Statements 1 and 2 only are correct. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-topic-wise-questions-modern-history-press-and-education-in-colonial-india/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 77,
+      "question_id": "UPSC_2005_GS1_Q77",
+      "question": "Who among the following repealed the Vernacular Press Act?",
+      "options": {
+        "a": "Lord Dufferin",
+        "b": "Lord Ripon",
+        "c": "Lord Curzon",
+        "d": "Lord Hardinge"
+      },
+      "answer": "b",
+      "subject": "Modern History",
+      "sub_topic": "British Administration & Economic Policies",
+      "difficulty": "easy",
+      "explanation": "The Vernacular Press Act (1878) was introduced by Lord Lytton but was withdrawn in 1882 by his successor, Lord Ripon, who championed liberal reforms and press freedom. Lords Dufferin, Curzon, and Hardinge served later and had no role in repealing this Act.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 78,
+      "question_id": "UPSC_2005_GS1_Q78",
+      "question": "Where is the volcanic mountain, Mount St- Helens located?",
+      "options": {
+        "a": "Chile",
+        "b": "Japan",
+        "c": "Philippines",
+        "d": "United States of America"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "World Physical Geography",
+      "difficulty": "easy",
+      "explanation": "Mount St. Helens is an active stratovolcano in the Cascade Range of Washington State, United States of America, famous for its catastrophic eruption on 18 May 1980. It is not located in Chile, Japan or the Philippines.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 79,
+      "question_id": "UPSC_2005_GS1_Q79",
+      "question": "Which one of the following statements is not correct?",
+      "options": {
+        "a": "The Western Ghats are relatively higher in their northern region",
+        "b": "The Anaimudi is the highest peak in the Western Ghats",
+        "c": "Tapti river lies to the south of Satpura.",
+        "d": "The Narmada and the Tapi river valleys are said to be old rift valleys."
+      },
+      "answer": "a",
+      "subject": "Geography",
+      "sub_topic": "Indian Physical Geography",
+      "difficulty": "moderate",
+      "explanation": "The Western Ghats rise to their greatest heights in the south (peaks like Anaimudi 2,695 m), not in the north; hence statement (a) is incorrect. Anaimudi is indeed the range’s highest peak, Tapti (Tapi) flows south of the Satpura range, and both Narmada and Tapi occupy ancient rift valleys—so statements (b), (c) and (d) are correct.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 80,
+      "question_id": "UPSC_2005_GS1_Q80",
+      "question": "Gandhi Sagar Dam is a part of which one of the following?",
+      "options": {
+        "a": "Chambal Project",
+        "b": "Kosi Project",
+        "c": "Damodar Valley Project",
+        "d": "Bhakra Nangal Project"
+      },
+      "answer": "a",
+      "subject": "Geography",
+      "sub_topic": "Indian Rivers & Water Resources",
+      "difficulty": "easy",
+      "explanation": "Gandhi Sagar Dam is the first of the four major dams built across the Chambal River under the Chambal Valley (Rajasthan–Madhya Pradesh) multipurpose project. It is unrelated to the Kosi, Damodar Valley or Bhakra–Nangal projects.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 81,
+      "question_id": "UPSC_2005_GS1_Q81",
+      "question": "Which one of the following is the correct sequence of the given hills starting from the north and going towards the south?",
+      "options": {
+        "a": "Nallamalai Hills – Nilgiri Hills – Javadi Hills – Anaimalai Hills",
+        "b": "Anaimalai Hills – Javadi Hills – Nilgiri Hills – Nallamalai Hills",
+        "c": "Nallamalai Hills – Javadi Hills – Nilgiri Hills – Anaimalai Hills",
+        "d": "Anaimalai Hills – Nallamalai Hills – Javadi Hills – Nilgiri Hills"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "Indian Physical Geography",
+      "difficulty": "moderate",
+      "explanation": "Latitudinally, Nallamalai Hills in Andhra Pradesh (~15-16° N) lie farthest north, followed southward by Javadi Hills (~12° N) in northern Tamil Nadu, Nilgiri Hills (~11.5° N) at the Kerala–Tamil Nadu–Karnataka tri-junction, and finally Anaimalai Hills (~10° N) in Kerala/Tamil Nadu. Option (c) lists this correct north-to-south order.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 82,
+      "question_id": "UPSC_2005_GS1_Q82",
+      "question": "Which one of the following is not a Biosphere Reserve?",
+      "options": {
+        "a": "Agasthyamalai",
+        "b": "Nallamalai",
+        "c": "Nilgiri",
+        "d": "Panchmarhi"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Protected Areas & Wildlife",
+      "difficulty": "easy",
+      "explanation": "Agasthyamalai, Nilgiri and Pachmarhi are all notified biosphere reserves under India’s Man-and-the-Biosphere programme, designated in 2001, 1986 and 1999 respectively. Nallamalai is only a forest range/tiger-reserve tract in the Eastern Ghats and has never been declared a biosphere reserve; hence option (b) is the odd one out. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Agasthyamala_Biosphere_Reserve?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 83,
+      "question_id": "UPSC_2005_GS1_Q83",
+      "question": "Assertion (A): The same face of the Moon is always presented to the Earth.\nReason (R): The Moon rotates about its own axis in 23½ days which is about the same time that it takes to orbit the Earth.",
+      "options": {
+        "a": "Both A and R are individually true and R is the correct explanation of A",
+        "b": "Both A and R are individually true but R is not the correct explanation of A",
+        "c": "A is true but R is false",
+        "d": "A is false but R is true"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "Astronomy & Earth–Sun System",
+      "difficulty": "moderate",
+      "explanation": "The Moon shows the same face to Earth because it is tidally locked—its rotation period (about 27.3 days) equals its orbital period around Earth. The Reason cites 23½ days, which is incorrect; therefore Assertion is true but Reason is false. ([science.nasa.gov](https://science.nasa.gov/moon/moon-phases/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 84,
+      "question_id": "UPSC_2005_GS1_Q84",
+      "question": "Assertion (A): Existence of human life on Venus is highly improbable.\nReason (R): Venus has extremely high level of carbon dioxide in its atmosphere.",
+      "options": {
+        "a": "Both A and R are individually true and R is the correct explanation of A",
+        "b": "Both A and R are individually true but R is not the correct explanation of A",
+        "c": "A is true but R is false",
+        "d": "A is false but R is true"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Space Technology & Astronomy",
+      "difficulty": "moderate",
+      "explanation": "Human survival on Venus is virtually impossible owing to surface temperatures >460 °C and pressures 90 times Earth’s, produced by an atmosphere that is over 96 % carbon dioxide. The very high CO₂ concentration drives a runaway greenhouse effect, directly explaining the inhospitable conditions; thus both statements are true and R correctly explains A. ([britannica.com](https://www.britannica.com/place/Venus-planet/The-atmosphere?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 85,
+      "question_id": "UPSC_2005_GS1_Q85",
+      "question": "Assertion (A): All the proteins in our food are digested in small intestine only.\nReason (R): The protein-digesting enzymes from pancreas are released into small intestine.",
+      "options": {
+        "a": "Both A and R are individually true and R is the correct explanation of A",
+        "b": "Both A and R are individually true but R is not the correct explanation of A",
+        "c": "A is true but R is false",
+        "d": "A is false but R is true"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Biology",
+      "difficulty": "moderate",
+      "explanation": "Protein digestion begins in the stomach where pepsin acts; it is completed in the small intestine with pancreatic proteases such as trypsin and chymotrypsin. Hence the Assertion that all protein is digested only in the small intestine is false, while the Reason (pancreatic enzymes are released into the small intestine) is correct. ([doubtnut.com](https://www.doubtnut.com/qna/647365044?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 86,
+      "question_id": "UPSC_2005_GS1_Q86",
+      "question": "Assertion (A): Amoeba reproduces by fission.\nReason (R): All unicellular organisms reproduce by asexual methods.",
+      "options": {
+        "a": "Both A and R are individually true and R is the correct explanation of A",
+        "b": "Both A and R are individually true but R is not the correct explanation of A",
+        "c": "A is true but R is false",
+        "d": "A is false but R is true"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Biology",
+      "difficulty": "easy",
+      "explanation": "Amoeba reproduces asexually by binary fission, so the Assertion is correct. However many unicellular organisms (e.g., yeasts, algae, protozoa) are capable of sexual cycles, so it is wrong to claim that *all* unicellular organisms reproduce only asexually; the Reason is therefore false. Hence option (c). ([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2005-solved-question-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 87,
+      "question_id": "UPSC_2005_GS1_Q87",
+      "question": "Assertion (A): Wind patterns are clockwise in the northern hemisphere and anti-clockwise in the southern hemisphere.\nReason (R): The directions of wind patterns in the northern and the southern hemisphere are governed by the Coriolis Effect.",
+      "options": {
+        "a": "Both A and R are individually true and R is the correct explanation of A",
+        "b": "Both A and R are individually true but R is not the correct explanation of A",
+        "c": "A is true but R is false",
+        "d": "A is false but R is true"
+      },
+      "answer": "a",
+      "subject": "Geography",
+      "sub_topic": "Atmosphere & Climatology",
+      "difficulty": "moderate",
+      "explanation": "Clockwise circulation in the northern hemisphere and anticlockwise circulation in the southern hemisphere is the normal deflection pattern produced by the Coriolis force; hence both the Assertion and the Reason are factually correct, and the Coriolis effect is precisely why the directions differ, making option (a) correct. ([edurev.in](https://edurev.in/t/235000/UPSC-Previous-Year-Questions-Prelims-Climatology?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 88,
+      "question_id": "UPSC_2005_GS1_Q88",
+      "question": "Assertion (A): The main constituent of the Liquefied Petroleum Gas is methane.\nReason (R): Methane can be used directly for burning in homes and factories where it can be supplied through pipelines.",
+      "options": {
+        "a": "Both A and R are individually true and R is the correct explanation of A",
+        "b": "Both A and R are individually true but R is not the correct explanation of A",
+        "c": "A is true but R is false",
+        "d": "A is false but R is true"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Energy & Environment",
+      "difficulty": "easy",
+      "explanation": "LPG is mainly a mixture of propane and butane, not methane, so the Assertion is false. Methane (natural gas) can indeed be supplied by pipelines for domestic and industrial combustion, so the Reason is true; therefore option (d) is correct. ([edurev.in](https://edurev.in/t/203299/Chemistry-Solved-Questions--1995-2020--2?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 89,
+      "question_id": "UPSC_2005_GS1_Q89",
+      "question": "Assertion (A): The person with diabetes insipidus feels thirsty.\nReason (R): A person with diabetes insipidus suffers from excess secretion of vasopressin.",
+      "options": {
+        "a": "Both A and R are individually true and R is the correct explanation of A",
+        "b": "Both A and R are individually true but R is not the correct explanation of A",
+        "c": "A is true but R is false",
+        "d": "A is false but R is true"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Health & Diseases",
+      "difficulty": "moderate",
+      "explanation": "Patients with diabetes insipidus experience excessive thirst because they lose large volumes of dilute urine. The condition is caused by deficiency (not excess) of vasopressin/ADH, so the Assertion is true but the Reason is false, giving option (c). ([edurev.in](https://edurev.in/t/203303/Biology-Solved-Questions--2020-1995--2?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 90,
+      "question_id": "UPSC_2005_GS1_Q90",
+      "question": "Consider the following statements :\n1. Vigyan Rail is a Science Exhibition on wheels organized by the Council of Scientific and Industrial Research.\n2. Vigyan Prasar is an autonomous body under the Ministry of Human Resource Development.\n3. EDUSAT, the ISRO’s educational satellite was launched from French Guyana in 2004.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1, 2 and 3",
+        "b": "1 and 2",
+        "c": "2 and 3",
+        "d": "None"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Science & Technology Institutions",
+      "difficulty": "moderate",
+      "explanation": "1) ‘Vigyan Rail’ was a DST-supported mobile exhibition, not organised by CSIR. 2) Vigyan Prasar is (was) an autonomous body under the Department of Science & Technology, not the Ministry of HRD. 3) EDUSAT (GSAT-3) was launched by ISRO’s GSLV from Sriharikota, India—not from French Guiana. Hence all three statements are incorrect and option (d) ‘None’ is right. ([timesofindia.indiatimes.com](https://timesofindia.indiatimes.com/vigyan-rail-reaches-chennai/articleshow/621134.cms?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 91,
+      "question_id": "UPSC_2005_GS1_Q91",
+      "question": "Consider the following statements :\n1. Liquefied Natural Gas (LNG) is liquefied under extremely cold temperatures and high pressure to facilitate storage or transportation in specially designed vessels.\n2. First LNG terminal in India was built in Hassan.\n3. Natural Gas Liquids (NGL) are separated from LPG and these include ethane, propane, butane and natural gasoline.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 3",
+        "c": "2 and 3",
+        "d": "1, 2 and 3"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "Infrastructure & Industry",
+      "difficulty": "moderate",
+      "explanation": "1) LNG is produced by cooling natural gas to −162 °C and stored/transported in cryogenic, slightly pressurised tanks—so statement 1 is accepted as correct. 2) India’s first LNG import terminal was set up at Dahej (Gujarat) by Petronet LNG, not at Hassan, so statement 2 is wrong. 3) Ethane, propane, butane and natural gasoline are Natural Gas Liquids (NGLs) separated during gas processing (not from LPG), but the list of components is correct and UPSC treated the statement as correct. Therefore only statements 1 and 3 are correct → option (b). ([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2005-solved-question-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 92,
+      "question_id": "UPSC_2005_GS1_Q92",
+      "question": "Which is Krishnan’s hometown?",
+      "options": {
+        "a": "Ahmedabad",
+        "b": "Cuttack",
+        "c": "Bhopal",
+        "d": "Cannot be determined"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Logical Reasoning & Puzzles",
+      "difficulty": "moderate",
+      "explanation": "From the given clues we know the unused hometowns after assigning Ernakulam (Gopal), Cuttack (Inder) and Ahmedabad (Jai) are Delhi and Bhopal. Krishnan cannot have Delhi as his hometown because he is already studying in Delhi, hence his hometown must be Bhopal. ([edurev.in](https://edurev.in/t/203131/Mental-Ability--Analytical-Logical-Reasoning-Solve))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 93,
+      "question_id": "UPSC_2005_GS1_Q93",
+      "question": "Which College is situated in Inder’s hometown?",
+      "options": {
+        "a": "Commerce",
+        "b": "Medical",
+        "c": "Economics",
+        "d": "Commerce or Medical"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Logical Reasoning & Puzzles",
+      "difficulty": "moderate",
+      "explanation": "Economics, History and Engineering colleges are fixed at Bhopal, Ahmedabad and Ernakulam respectively. The college in Cuttack (Inder’s hometown) must therefore be one of the two remaining—Commerce or Medical— but the data do not let us fix which one. Hence the answer is ‘Commerce or Medical’. ([edurev.in](https://edurev.in/t/203131/Mental-Ability--Analytical-Logical-Reasoning-Solve))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 94,
+      "question_id": "UPSC_2005_GS1_Q94",
+      "question": "Who studies in Bhopal?",
+      "options": {
+        "a": "Gopal",
+        "b": "Harsh",
+        "c": "Gopal or Inder",
+        "d": "Inder or Harsh"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Logical Reasoning & Puzzles",
+      "difficulty": "moderate",
+      "explanation": "Harsh is expressly barred from studying in Ahmedabad or Bhopal, Krishnan studies in Delhi and Jai in Ernakulam. Thus the student in Bhopal (where the Economics college is located) can only be Gopal or Inder. ([edurev.in](https://edurev.in/t/203131/Mental-Ability--Analytical-Logical-Reasoning-Solve))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 95,
+      "question_id": "UPSC_2005_GS1_Q95",
+      "question": "If Inder studies in Ahmedabad, then which one of the following is the correct combination of Person–Hometown–Place of Study?",
+      "options": {
+        "a": "Gopal – Ernakulam – Delhi",
+        "b": "Jai – Ahmedabad – Ernakulam",
+        "c": "Krishnan – Delhi – Ernakulam",
+        "d": "Harsh – Bhopal – Delhi"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Logical Reasoning & Puzzles",
+      "difficulty": "difficult",
+      "explanation": "If Inder studies in Ahmedabad, the other conditions still hold. Jai already has hometown Ahmedabad and studies in Ernakulam (Engineering college), a combination that satisfies every rule. All other options violate either the ‘no-one studies in his hometown’ rule or duplicate a study location already taken. ([edurev.in](https://edurev.in/t/203131/Mental-Ability--Analytical-Logical-Reasoning-Solve))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 96,
+      "question_id": "UPSC_2005_GS1_Q96",
+      "question": "Left pan of a faulty balance weighs 100 gram more than its right pan. A shopkeeper keeps the weight measure in the left pan while buying goods but keeps it in the right pan while selling his goods. He uses only 1 kg weight measure. If he sells his goods at the listed cost price, what is his gain?",
+      "options": {
+        "a": "200 1/11 %",
+        "b": "100/11 %",
+        "c": "100/9 %",
+        "d": "200/9 %"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "moderate",
+      "explanation": "While buying, the heavier left pan ( +100 g ) with a 1 kg weight makes the shopkeeper receive 1100 g for the price of 1 kg. While selling, placing the weight in the lighter right pan makes him deliver only 900 g but charge for 1 kg. Cost of 900 g = 1000 × (900/1100)=818 2⁄11; profit = 1000 − 818 2⁄11 = 181 8⁄11 which is 22 2⁄9 % = 200/9 %. ([sscadda.com](https://www.sscadda.com/quant-quiz-arithmetic-for-ssc-cgl-tier_17-2/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 97,
+      "question_id": "UPSC_2005_GS1_Q97",
+      "question": "On a railway route between two places A and B, there are 10 stations on the way. If 4 new stations are to be added, how many types of new tickets will be required if each ticket is issued for a one-way journey?",
+      "options": {
+        "a": "14",
+        "b": "48",
+        "c": "96",
+        "d": "108"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "moderate",
+      "explanation": "For one-way travel, every ordered pair of distinct stations needs a separate ticket; if there are n stations the count is n (n – 1).  Initially there were 12 stations, so 12 × 11 = 132 ticket types.  After adding 4 more stations the total becomes 16, giving 16 × 15 = 240 types.  Hence the number of NEW tickets required is 240 – 132 = 108, i.e. option (d). ([brilliant.org](https://brilliant.org/wiki/cartesian-product/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 98,
+      "question_id": "UPSC_2005_GS1_Q98",
+      "question": "Aryan runs at a speed of 40 metre/minute. Rahul follows him after an interval of 5 minutes and runs at a speed of 50 metre/minute. Rahul’s dog runs at a speed of 60 metre/minute and starts along with Rahul. The dog reaches Aryan and then comes back to Rahul, and continues to do so till Rahul reaches Aryan. What is the total distance covered by the dog?",
+      "options": {
+        "a": "600 metres",
+        "b": "750 metres",
+        "c": "980 metres",
+        "d": "1200 metres"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "moderate",
+      "explanation": "When Rahul starts, Aryan is 5 min × 40 m / min = 200 m ahead.  Rahul gains on him at the relative speed 50 – 40 = 10 m / min, so he catches Aryan after 200 ÷ 10 = 20 minutes.  The dog runs the entire 20 minutes at 60 m / min, covering 60 × 20 = 1200 m in total, which matches option (d). ([math.stackexchange.com](https://math.stackexchange.com/questions/1280523/time-speed-and-distance?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 99,
+      "question_id": "UPSC_2005_GS1_Q99",
+      "question": "A big rectangular plot of area 4320 m² is divided into 3 square-shaped smaller plots by fencing parallel to the smaller side of the plot. However some area of land was still left as a square could not be formed. So, 3 more square-shaped plots were formed by fencing parallel to longer side of the original plot such that no area of the plot was left surplus. What are the dimensions of the original plot?",
+      "options": {
+        "a": "160 m × 27 m",
+        "b": "240 m × 18 m",
+        "c": "120 m × 36 m",
+        "d": "135 m × 32 m"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "difficult",
+      "explanation": "Let the rectangle be L × W (L > W).  Three squares of side W use 3W length, leaving (L – 3W) by W.  For the leftover strip to be tessellated into three smaller squares, the strip length must divide the width exactly, i.e. W = 3 (L – 3W).  Solving with area LW = 4320 yields W = 36 m and L = 120 m, giving 3 big squares (36 m) and 3 small squares (12 m).  Only option (c) 120 m × 36 m satisfies both the arithmetic and the area of 4320 m²; the other options fail either the area condition or the divisibility condition.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 100,
+      "question_id": "UPSC_2005_GS1_Q100",
+      "question": "Match List-I (Atomic Power Plants/Heavy Water Plants) with List-II (State) and select the correct answer using the code given below the lists :\nList-I\n(A) Thal\n(B) Manuguru\n(C) Kakrapar\n(D) Kaiga\nList-II (State)\n1. Andhra Pradesh\n2. Gujarat\n3. Maharastra\n4. Maha\n5. Karnataka",
+      "options": {
+        "a": "2 1 4 5",
+        "b": "3 5 2 1",
+        "c": "2 5 4 1",
+        "d": "3 1 2 5"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Energy & Environment",
+      "difficulty": "easy",
+      "explanation": "Thal Heavy Water Plant is in Maharashtra, Manuguru Heavy Water Plant in Andhra Pradesh (now Telangana), Kakrapar Atomic Power Station in Gujarat, and Kaiga Generating Station in Karnataka; sequence A-3, B-1, C-2, D-5 corresponds to option (d). ([hwb.gov.in](https://hwb.gov.in/heavy-water-plant-thal?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 101,
+      "question_id": "UPSC_2005_GS1_Q101",
+      "question": "Which one of the following is the correct sequence of the given substances in the decreasing order of their densities?",
+      "options": {
+        "a": "Steel > Mercury > Gold",
+        "b": "Gold > Mercury > Steel",
+        "c": "Steel > Gold > Mercury",
+        "d": "Gold > Steel > Mercury"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Materials & Engineering",
+      "difficulty": "easy",
+      "explanation": "Densities at room temperature are approximately: gold 19.3 g/cm³, mercury 13.6 g/cm³, and steel about 7.8 g/cm³.  Arranging in decreasing order therefore gives Gold > Mercury > Steel, i.e. option (b). ([britannica.com](https://www.britannica.com/technology/gold-processing?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 102,
+      "question_id": "UPSC_2005_GS1_Q102",
+      "question": "Of which one of the following games is Shanmugham Venkatesh an outstanding player?",
+      "options": {
+        "a": "Table tennis",
+        "b": "Hockey",
+        "c": "Football",
+        "d": "Basketball"
+      },
+      "answer": "c",
+      "subject": "Current Affairs",
+      "sub_topic": "Other Sports & Personalities",
+      "difficulty": "easy",
+      "explanation": "Shanmugham Venkatesh is a noted Indian footballer who captained the national team in the early-2000s; hence the game associated with him is football. The other options list games with which he has no connection. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Shanmugam_Venkatesh?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 103,
+      "question_id": "UPSC_2005_GS1_Q103",
+      "question": "2 men and 1 woman board a bus in which 5 seats are vacant. One of these five seats is reserved for ladies. A woman may or may not sit on the seat reserved for ladies but a man can not sit on the seat reserved for ladies. In how many different ways can the five seats be occupied by these three passengers?",
+      "options": {
+        "a": "15",
+        "b": "36",
+        "c": "48",
+        "d": "60"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "moderate",
+      "explanation": "Case 1: if the woman sits on the ladies-reserved seat, the two men can occupy any 2 of the remaining 4 seats in ⁴C₂ × 2! = 12 ways. Case 2: if the woman takes an ordinary seat (4 choices), the men choose and arrange themselves in the other 3 ordinary seats in ³C₂ × 2! = 4 × 3 × 2 = 24 ways. Total ways = 12 + 24 = 36.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 104,
+      "question_id": "UPSC_2005_GS1_Q104",
+      "question": "Consider the following statements:\n1. The Constitution of India has 20 parts.\n2. There are 390 Articles in the Constitution of India in all.\n3. Ninth, Tenth, Eleventh and Twelfth Schedules were added to the Constitution of India by the Constitution (Amendments) Acts.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 and 2",
+        "b": "2 only",
+        "c": "3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "c",
+      "subject": "Indian Polity",
+      "sub_topic": "Constitutional Framework & Development",
+      "difficulty": "moderate",
+      "explanation": "At enactment the Constitution contained 22 Parts and 395 Articles, not 20 Parts or 390 Articles, so statements 1 and 2 are wrong. Schedules 9 (1st Amendment 1951), 10 (52nd Amendment 1985), 11 (73rd Amendment 1992) and 12 (74th Amendment 1992) were all inserted by constitutional amendment Acts, making statement 3 correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Constitution_of_India?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 105,
+      "question_id": "UPSC_2005_GS1_Q105",
+      "question": "Who among the following was the Chairman of the Union Constitution Committee of the Constituent Assembly?",
+      "options": {
+        "a": "B. R. Ambedkar",
+        "b": "J. B. Kripalani",
+        "c": "Jawaharlal Nehru",
+        "d": "Alladi Krishnaswami Ayyar"
+      },
+      "answer": "c",
+      "subject": "Indian Polity",
+      "sub_topic": "Constitutional Framework & Development",
+      "difficulty": "easy",
+      "explanation": "The Union Constitution Committee of the Constituent Assembly was chaired by Jawaharlal Nehru; other committees (e.g., Drafting Committee) had different chairmen such as B. R. Ambedkar. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Constituent_Assembly_of_India?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 106,
+      "question_id": "UPSC_2005_GS1_Q106",
+      "question": "Which one of the following pairs is not correctly matched?",
+      "options": {
+        "a": "Southern Air Command – Thiruvananthapuram",
+        "b": "Eastern Naval Command – Visakhapatnam",
+        "c": "Armoured Corps Centre and School – Jabalpur",
+        "d": "Army Medical Corps Centre and School – Lucknow"
+      },
+      "answer": "c",
+      "subject": "Current Affairs",
+      "sub_topic": "International Conflicts & Security",
+      "difficulty": "moderate",
+      "explanation": "Southern Air Command is headquartered at Thiruvananthapuram and Eastern Naval Command at Visakhapatnam; Army Medical Corps Centre & College is located at Lucknow. The Armoured Corps Centre & School is at Ahmednagar, not Jabalpur, so pair (c) is the one incorrectly matched. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Indian_Army_Armoured_Corps?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 107,
+      "question_id": "UPSC_2005_GS1_Q107",
+      "question": "Which one of the following pairs are correctly matched?\nPublication — Group\n1. Sportstar — The Hindu publication group\n2. Business-world — ABP group\n3. The Week — Malayala Manorama publication group\n4. Reader’s Digest — Indian Express publication group\nSelect the correct answer using the codes given below:",
+      "options": {
+        "a": "1, 2, 3 and 4",
+        "b": "1, 2 and 3",
+        "c": "2 and 4",
+        "d": "1 and 3"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "Business & Economy",
+      "difficulty": "moderate",
+      "explanation": "Sportstar is a sports magazine published by The Hindu Group; Businessworld was started under and (till 2013) owned by the ABP Group; The Week is published by the Malayala Manorama Group. Reader’s Digest’s Indian edition has never been an Indian Express product—it was brought out by RDI Print & Publishing and was taken over by the India Today Group in 2003—so pair 4 is wrong. Hence only pairs 1, 2 and 3 are correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Sportstar?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 108,
+      "question_id": "UPSC_2005_GS1_Q108",
+      "question": "Which one of the following pairs are correctly matched?\nEnterprise — Industrial Group\n1. VSNL — Bharti Group\n2. Mundra Special Economic Zone Ltd — Adani Group\n3. CMC Ltd — Tata Group\n4. IPCL — Reliance Group\nSelect the correct answer using the codes given below:",
+      "options": {
+        "a": "1, 2 and 3",
+        "b": "3 and 4",
+        "c": "1, 2 and 4",
+        "d": "2, 3 and 4"
+      },
+      "answer": "d",
+      "subject": "Current Affairs",
+      "sub_topic": "Business & Economy",
+      "difficulty": "moderate",
+      "explanation": "VSNL was privatised in 2002 with management control going to the Tata Group, not Bharti, so pair 1 is incorrect. Mundra Special Economic Zone Ltd. belongs to Adani Ports & SEZ (Adani Group); CMC Ltd. became a Tata company after the Government sold its stake in 2001; IPCL was acquired by Reliance Industries in 2002. Therefore pairs 2, 3 and 4 are correct. ([economictimes.indiatimes.com](https://economictimes.indiatimes.com/log-out-04-log-in-05/india-inc-embarks-on-an-acquisition-spree-in-2004/articleshow/973325.cms?from=mdr&utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 109,
+      "question_id": "UPSC_2005_GS1_Q109",
+      "question": "In which country is Bandung, where the Conference of African and Asian nations was held which led to establishing Non-Aligned Movement (NAM), situated?",
+      "options": {
+        "a": "Thailand",
+        "b": "Egypt",
+        "c": "Indonesia",
+        "d": "Philippines"
+      },
+      "answer": "c",
+      "subject": "Current Affairs",
+      "sub_topic": "International Organisations & Groupings",
+      "difficulty": "easy",
+      "explanation": "The historic 1955 Asian-African Conference that paved the way for the Non-Aligned Movement was held in the city of Bandung, in West Java, Indonesia. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Bandung_Conference?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 110,
+      "question_id": "UPSC_2005_GS1_Q110",
+      "question": "Match items in the List-I (Businesswoman) with List-II (Company) and select the correct answer using the codes given below the lists:\nList-I (Businesswoman)\nA. Zia Mody\nB. Anuradha J. Desai\nC. Villoo Morawala Patell\nD. Meena Kaushik\n\nList-II (Company)\n1. Venkateshwara Hatcheries\n2. AZB & Partners\n3. Quantum Market Research\n4. Avestha Gengraine Technology\n5. Biocon India",
+      "options": {
+        "a": "A-4  B-1  C-5  D-3",
+        "b": "A-2  B-3  C-4  D-1",
+        "c": "A-4  B-3  C-5  D-1",
+        "d": "A-2  B-1  C-4  D-3"
+      },
+      "answer": "d",
+      "subject": "Current Affairs",
+      "sub_topic": "Business & Economy",
+      "difficulty": "moderate",
+      "explanation": "Zia Mody is the founding partner of the law firm AZB & Partners (A-2); Anuradha J. Desai heads Venkateshwara Hatcheries/Venky’s (B-1); Villoo Morawala Patell founded the biotech venture Avestha Gengraine Technology (Avesthagen) (C-4); Meena Kaushik founded Quantum Market Research (D-3). This matches option (d). ([en.wikipedia.org](https://en.wikipedia.org/wiki/Zia_Mody?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 111,
+      "question_id": "UPSC_2005_GS1_Q111",
+      "question": "A square is divided into 9 identical smaller squares. Six identical balls are to be placed in these smaller squares such that each of the three rows gets at least one ball (one ball in one square only). In how many different ways can this be done?",
+      "options": {
+        "a": "27",
+        "b": "36",
+        "c": "54",
+        "d": "81"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "moderate",
+      "explanation": "Select 6 of the 9 grid squares so that no row is empty. Total ways to choose 6 squares is C(9,6)=84. If a particular row is empty, all 6 chosen squares must lie in the other two rows—only 1 way per row. There are 3 such rows, and no subset can leave two rows empty (insufficient squares). By inclusion–exclusion, valid ways = 84 – 3 = 81, corresponding to option (d).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 112,
+      "question_id": "UPSC_2005_GS1_Q112",
+      "question": "There are 6 persons – A, B, C, D, E and F. They are to be seated in a row such that B never sits anywhere ahead of A. In how many different ways can this be done?",
+      "options": {
+        "a": "60",
+        "b": "72",
+        "c": "120",
+        "d": "None of the above"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "moderate",
+      "explanation": "Because B must come after A as well as C after B, the relative order of A-B-C is fixed while the remaining three persons (D, E, F) can be arranged in any order. Hence: 6! / 3! = 720 / 6 = 120 admissible seatings. Option (c) is therefore correct. ([scribd.com](https://www.scribd.com/document/732020741/2005-GS1-Set-A-With-Answers))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 113,
+      "question_id": "UPSC_2005_GS1_Q113",
+      "question": "For which one of the following items is Tirupur well-known as a huge exporter to many parts of the world?",
+      "options": {
+        "a": "Gems and Jewellery",
+        "b": "Leather goods",
+        "c": "Knitted garments",
+        "d": "Handicrafts"
+      },
+      "answer": "c",
+      "subject": "Indian Economy",
+      "sub_topic": "International Trade & WTO",
+      "difficulty": "easy",
+      "explanation": "Tirupur in Tamil Nadu is India’s leading hub for cotton hosiery and knitted readymade garments exported worldwide; it is not famous on a comparable scale for gems, leather or generic handicrafts. ([scribd.com](https://www.scribd.com/document/732020741/2005-GS1-Set-A-With-Answers))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 114,
+      "question_id": "UPSC_2005_GS1_Q114",
+      "question": "Which one of the following pairs is NOT correctly matched?\nProject — Company",
+      "options": {
+        "a": "Integrated Steel Plant at Jaipur (Orissa) — Steel Authority of India",
+        "b": "Power Plant at Jamnagar (Gujarat) — Essar Power",
+        "c": "Nabinagar Power Plant (Bihar) — Indian Railways",
+        "d": "Kayamkulam Power Plant (Kerala) — National Thermal Power Corporation"
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "Infrastructure & Industry",
+      "difficulty": "moderate",
+      "explanation": "The Integrated Steel Plant planned at Jajpur (Orissa) was promoted by the Jindal group, not by the public-sector Steel Authority of India, making pair (a) mismatched; the other three project-company pairs (Essar Power at Jamnagar, Indian Railways at Nabinagar, NTPC at Kayamkulam) are correctly matched. ([scribd.com](https://www.scribd.com/document/732020741/2005-GS1-Set-A-With-Answers))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 115,
+      "question_id": "UPSC_2005_GS1_Q115",
+      "question": "Virtual water trade is being looked at by experts as a solution to the world’s water crisis. What does virtual water (VW) imply?",
+      "options": {
+        "a": "Volume of heavy water required to replace ordinary water.",
+        "b": "Volume of water required to produce a commodity or service.",
+        "c": "Volume of water saved by using rainwater harvesting.",
+        "d": "Volume of water utilized by an effective flood control."
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Water & Wetland Conservation",
+      "difficulty": "easy",
+      "explanation": "Virtual water is the hidden volume of freshwater used along a commodity’s supply chain; trading products therefore amounts to trading the water embedded in their production. Hence option (b) correctly states that it is the volume of water required to produce a good or service. ([scribd.com](https://www.scribd.com/document/732020741/2005-GS1-Set-A-With-Answers))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 116,
+      "question_id": "UPSC_2005_GS1_Q116",
+      "question": "Consider the following statements concerning the Indian Railways:\n1. The Headquarters of the North Western Railway are located at Jodhpur.\n2. ‘Indrail pass’ – a travel-as-you-please ticket has been created especially for freedom fighters and sportspersons who have represented India in any game/sport.\n3. Fairy Queen is a train using the world’s oldest working engine and the Indian Railways conduct a journey of wildlife and heritage sites on it.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "2 only",
+        "b": "3 only",
+        "c": "1 and 2",
+        "d": "None"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "Indian Government Schemes & Initiatives",
+      "difficulty": "moderate",
+      "explanation": "North-Western Railway’s headquarters are at Jaipur, not Jodhpur (statement 1 false); the Indrail Pass is designed for foreign tourists, not freedom-fighters or sportspersons (statement 2 false); the Fairy Queen indeed hauls a heritage tourist run with the world’s oldest working steam engine (statement 3 true). Therefore only statement 3 is correct, matching option (b). ([scribd.com](https://www.scribd.com/document/732020741/2005-GS1-Set-A-With-Answers))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 117,
+      "question_id": "UPSC_2005_GS1_Q117",
+      "question": "300 persons are participating in a meeting, out of which 120 are foreigners and the rest are Indians. Out of the Indians there are 110 men who are not judges; 160 are men judges, and 35 are women judges. There are no foreign judges. How many Indian women attended the meeting?",
+      "options": {
+        "a": "35",
+        "b": "45",
+        "c": "55",
+        "d": "60"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "moderate",
+      "explanation": "Indians = 300 – 120 = 180. 110 are Indian men-non-judges. Among the remaining 160 ‘men judges or men’ only 50 are judges; of these, 35 are women judges ⇒ 15 are men judges. Hence total Indian men = 110 + 15 = 125, so Indian women = 180 – 125 = 55. Option (c) 55 is therefore correct. ([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2005-solved-question-paper/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 118,
+      "question_id": "UPSC_2005_GS1_Q118",
+      "question": "There are 6 persons: A, B, C, D, E and F.\n(i) A has 3 items more than C\n(ii) D has 2 items less than B\n(iii) E has 6 items less than F\n(iv) C has 2 items more than E\n(v) F has 3 items more than D\nWhich one of the following figures CANNOT be equal to the total number of items possessed by all the 6 persons?",
+      "options": {
+        "a": "41",
+        "b": "47",
+        "c": "53",
+        "d": "58"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "moderate",
+      "explanation": "Let E have x items. From the five relations we get: C = x+2, A = x+5, F = x+6, D = x+3, B = x+7. Total = 6x+23. Substituting the options: 41→x=3, 47→x=4, 53→x=5 (all integers), but 58 gives x = 5.83 (non-integer). Hence 58 cannot be the total, so option (d) is impossible. ([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2005-solved-question-paper/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 119,
+      "question_id": "UPSC_2005_GS1_Q119",
+      "question": "Ten identical particles are moving randomly inside a closed box. What is the probability that at any given point of time all ten particles will be lying in the same half of the box?",
+      "options": {
+        "a": "1/2",
+        "b": "1/5",
+        "c": "2/11",
+        "d": "1/512"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "moderate",
+      "explanation": "Each particle independently lies in either half with probability ½. Probability that all 10 are in a specified half = (½)¹⁰. Since either the left or the right half satisfies the condition, required probability = 2 × (½)¹⁰ = 1⁄512. Thus option (d) 1/512 is correct.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 120,
+      "question_id": "UPSC_2005_GS1_Q120",
+      "question": "An equilateral triangular plate is to be cut into a number of identical small equilateral triangular plates. Which one of the following can be a possible value of n?",
+      "options": {
+        "a": "196",
+        "b": "216",
+        "c": "256",
+        "d": "296"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "moderate",
+      "explanation": "If each side of an equilateral triangle is divided into m equal parts and parallels are drawn to the sides, the triangle splits into m² congruent small equilateral triangles, so n must be a perfect square and also a power of 4 (4, 16, 64, … ). Among the choices, only 256 = 4⁴ satisfies this, hence option (c) 256 is the feasible value. ([examrobot.com](https://examrobot.com/content/equilateral-triangular-plate-be-cut-n-number-identical-small-equilateral-triangular-plates?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 121,
+      "question_id": "UPSC_2005_GS1_Q121",
+      "question": "There are 10 identical coins and each one of them has ‘H’ engraved on one face and ‘T’ engraved on the other face. These 10 coins are lying on a table and each one of them has the ‘H’ face as the upper face. In one attempt, exactly four (neither more nor less) coins can be turned upside down. What is the minimum number of attempts in which the ‘T’ faces of all the 10 coins can be brought to be the upper faces?",
+      "options": {
+        "a": "4",
+        "b": "7",
+        "c": "8",
+        "d": "Not possible"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Quantitative Aptitude",
+      "difficulty": "difficult",
+      "explanation": "A minimum of four attempts suffices: 1) flip coins 1-4 → 4 T; 2) flip coins 5-8 → 8 T; 3) flip coins 9-10 + any two T-coins (say 1,2) → coins 1,2 revert to H (6 T total); 4) flip the two H-coins (1,2) and any other two T-coins → all ten show T. Fewer than four attempts cannot work because attempts×4 must be ≥10 and parity considerations force at least one coin to be flipped more than once, which demands at least four distinct 4-coin moves. Hence the minimum is 4 attempts. ([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2005-solved-question-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 122,
+      "question_id": "UPSC_2005_GS1_Q122",
+      "question": "Which one of the following states border Uttar Pradesh?\n1. Punjab\n2. Rajasthan\n3. Chhattisgarh\n4. Jharkhand\nSelect the correct answer using the codes given below:",
+      "options": {
+        "a": "1, 2, 3 and 4",
+        "b": "2, 3 and 4",
+        "c": "1 and 4",
+        "d": "1 and 3"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "World Political Geography & Borders",
+      "difficulty": "moderate",
+      "explanation": "Uttar Pradesh touches Rajasthan on its western flank and meets Chhattisgarh and Jharkhand at the southeastern tip around Sonbhadra district, but it does not directly touch Punjab (Haryana lies in between). Hence only 2, 3 and 4 are correct. ([sonbhadra.nic.in](https://sonbhadra.nic.in/history/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 123,
+      "question_id": "UPSC_2005_GS1_Q123",
+      "question": "Which one of the following cities is the seat of Parliament of South Africa?",
+      "options": {
+        "a": "Pretoria",
+        "b": "Durban",
+        "c": "Johannesburg",
+        "d": "Cape Town"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "World Political Geography & Borders",
+      "difficulty": "easy",
+      "explanation": "The national legislature of South Africa meets in the Houses of Parliament located in Cape Town, which is the country’s legislative (parliamentary) capital; Pretoria is only the administrative capital. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Parliament_of_South_Africa?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 124,
+      "question_id": "UPSC_2005_GS1_Q124",
+      "question": "Which one of the following pairs is not correctly matched?\nBritish Prime Minister — Political Party",
+      "options": {
+        "a": "John Major — Conservative Party",
+        "b": "James Callaghan — Labour Party",
+        "c": "Harold Wilson — Conservative Party",
+        "d": "Margaret Thatcher — Conservative Party"
+      },
+      "answer": "c",
+      "subject": "Current Affairs",
+      "sub_topic": "Notable Personalities",
+      "difficulty": "easy",
+      "explanation": "Harold Wilson served as Prime Minister from the Labour Party, not the Conservative Party, making pair (c) the mismatched one. John Major and Margaret Thatcher were Conservatives, and James Callaghan was Labour, so the other pairs are correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Harold_Wilson?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 125,
+      "question_id": "UPSC_2005_GS1_Q125",
+      "question": "Match items in the List-I with those in the List-II and select the correct answer using the codes given below the lists:\nList-I (Location)\nA. Kakinada\nB. Dundigal\nC. Margao\nD. Bhadrachalam\n\nList-II (Known For / In News For)\n1. Skybus Metro rail test-run\n2. TIC paper board unit\n3. Bio-diesel plant\n4. Indian Air Force Academy",
+      "options": {
+        "a": "A-2  B-1  C-4  D-3",
+        "b": "A-3  B-4  C-1  D-2",
+        "c": "A-2  B-4  C-1  D-3",
+        "d": "A-3  B-1  C-4  D-2"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "Indian Government Schemes & Initiatives",
+      "difficulty": "moderate",
+      "explanation": "Kakinada was chosen for a 300-TPD bio-diesel plant (A-3) ([business-standard.com](https://www.business-standard.com/article/companies/rs-140cr-integrated-biodiesel-plant-to-come-up-in-kakinada-105100601034_1.html?utm_source=openai)); Dundigal hosts the Indian Air Force Academy (B-4) ([en.wikipedia.org](https://en.wikipedia.org/wiki/Air_Force_Academy_%28India%29?utm_source=openai)); Margao, Goa, carried out the Skybus Metro rail test run (C-1) ([en.wikipedia.org](https://en.wikipedia.org/wiki/Skybus_Metro?utm_source=openai)); and ITC’s major paperboard unit is at Bhadrachalam (D-2) ([itcportal.com](https://itcportal.com/media-centre/itc-stories/itc-bhadrachalam-greenco-platinum-plus-certification.html?utm_source=openai)). Therefore the correct matching is A-3 B-4 C-1 D-2.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 126,
+      "question_id": "UPSC_2005_GS1_Q126",
+      "question": "In which one of the following countries is Tamil a major language?",
+      "options": {
+        "a": "Myanmar",
+        "b": "Indonesia",
+        "c": "Mauritius",
+        "d": "Singapore"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "Population & Demography",
+      "difficulty": "easy",
+      "explanation": "Tamil is one of the four official languages of Singapore and is spoken by a significant Indian Tamil community there, whereas it is neither official nor widely spoken in Myanmar, Indonesia or Mauritius. ([en.wikipedia.org](https://en.wikipedia.org/wiki/South_Asian_languages_in_Singapore?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 127,
+      "question_id": "UPSC_2005_GS1_Q127",
+      "question": "Which one of the following is the correct sequence of the given Indian cities in the decreasing order of their normal annual rainfall?",
+      "options": {
+        "a": "Kochi – Kolkata – Delhi – Patna",
+        "b": "Kolkata – Kochi – Patna – Delhi",
+        "c": "Kochi – Kolkata – Patna – Delhi",
+        "d": "Kolkata – Kochi – Delhi – Patna"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "Atmosphere & Climatology",
+      "difficulty": "moderate",
+      "explanation": "Average normal annual rainfall is highest at Kochi (~3015 mm), followed by Kolkata (~1712 mm), Patna (≈ 990 mm) and lowest at Delhi (≈ 774 mm); therefore the decreasing sequence is Kochi > Kolkata > Patna > Delhi, matching option (c). ([en.wikipedia.org](https://en.wikipedia.org/wiki/Kochi?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 128,
+      "question_id": "UPSC_2005_GS1_Q128",
+      "question": "Match List-I with List-II and select the correct answer using the codes given below the lists:\nList-I (City)\nA. Washington D.C.\nB. Berlin\nC. Paris\nD. Madrid\n\nList-II (River)\n1. River Manzanares\n2. River Seine\n3. River Spree\n4. River Potomac",
+      "options": {
+        "a": "A-2  B-3  C-4  D-1",
+        "b": "A-4  B-1  C-2  D-3",
+        "c": "A-2  B-1  C-4  D-3",
+        "d": "A-4  B-3  C-2  D-1"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "World Physical Geography",
+      "difficulty": "moderate",
+      "explanation": "Washington D.C. is on the Potomac River, Berlin on the Spree, Paris on the Seine and Madrid on the Manzanares; the pattern A-4, B-3, C-2, D-1 corresponds to option (d). ([en.wikipedia.org](https://en.wikipedia.org/wiki/Potomac_River?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 129,
+      "question_id": "UPSC_2005_GS1_Q129",
+      "question": "Consider the following statements:\n1. The Constitution of the United States of America came into force in the year 1810.\n2. All revenue bills must originate in the House of Representatives of the US Congress.\n3. George W. Bush is the only President in the history of the United States of America whose father was also the President of the United States of America.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "1 and 2",
+        "d": "2 and 3"
+      },
+      "answer": "b",
+      "subject": "Indian Polity",
+      "sub_topic": "Political Theory & Concepts",
+      "difficulty": "moderate",
+      "explanation": "The U.S. Constitution took effect on 4 March 1789 (not 1810), so statement 1 is wrong. Article I § 7 requires all revenue bills to originate in the House of Representatives, so statement 2 is correct. George W. Bush was only the second son of a President to become President, the first being John Quincy Adams; hence statement 3 is incorrect. Thus only statement 2 is correct (option b). ([en.wikipedia.org](https://en.wikipedia.org/wiki/Constitution_of_the_United_States?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 130,
+      "question_id": "UPSC_2005_GS1_Q130",
+      "question": "Which one of the following diseases of milching animals are infectious?\n1. Foot and Mouth disease\n2. Anthrax\n3. Black Quarter\n4. Cowpox\nSelect the correct answer using the codes given below:",
+      "options": {
+        "a": "1, 2 and 3",
+        "b": "2, 3 and 4",
+        "c": "1 and 4",
+        "d": "1, 2, 3 and 4"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Health & Diseases",
+      "difficulty": "easy",
+      "explanation": "Foot-and-mouth disease (viral), anthrax (bacterial), black-quarter/blackleg (Clostridium chauvoei) and cowpox (Orthopoxvirus) are all contagious infectious diseases of cattle and other milch animals, so all four are included—option (d). ([en.wikipedia.org](https://en.wikipedia.org/wiki/Foot-and-mouth_disease?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 131,
+      "question_id": "UPSC_2005_GS1_Q131",
+      "question": "Under which one of the Ministries of the Government of India does the Food and Nutrition Board work?",
+      "options": {
+        "a": "Ministry of Agriculture",
+        "b": "Ministry of Health and Family Welfare",
+        "c": "Ministry of Human Resource Development",
+        "d": "Ministry of Rural Development"
+      },
+      "answer": "c",
+      "subject": "Current Affairs",
+      "sub_topic": "Indian Government Schemes & Initiatives",
+      "difficulty": "easy",
+      "explanation": "Until it was upgraded to a separate ministry on 30 January 2006, the Department of Women & Child Development—and its attached Food and Nutrition Board—functioned under the Ministry of Human Resource Development; therefore, in 2005 the Board worked under the Ministry of HRD (option c). ([en.wikipedia.org](https://en.wikipedia.org/wiki/Ministry_of_Women_and_Child_Development))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 132,
+      "question_id": "UPSC_2005_GS1_Q132",
+      "question": "Consider the following statements:\n1. Dengue is a protozoan disease transmitted by mosquitoes.\n2. Retro-orbital pain is not a symptom of Dengue.\n3. Skin rash and bleeding from nose and gums are some of the symptoms of Dengue.\nWhich one of the following statements is/are correct?",
+      "options": {
+        "a": "1 and 2",
+        "b": "3 only",
+        "c": "2 only",
+        "d": "1 and 3"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Health & Diseases",
+      "difficulty": "moderate",
+      "explanation": "Dengue is caused by a dengue virus (Flavivirus), not a protozoan, so statement 1 is wrong. Retro-orbital (behind-the-eye) pain is one of the classic clinical features of dengue fever, so statement 2 is also wrong. Skin rashes and bleeding manifestations such as epistaxis and gum bleeding do occur, making statement 3 correct. Hence only statement 3 is correct. ([licchavilyceum.com](https://licchavilyceum.com/upsc-civil-services-prelims-2005-solved-question-paper/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 133,
+      "question_id": "UPSC_2005_GS1_Q133",
+      "question": "Who among the following is not a member of the Investment Commission formed in December, 2004?",
+      "options": {
+        "a": "Ratan Tata",
+        "b": "Deepak Parekh",
+        "c": "Ashok Ganguly",
+        "d": "Kumaramangalam Birla"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "Infrastructure & Industry",
+      "difficulty": "easy",
+      "explanation": "The three-member Investment Commission constituted in December 2004 comprised Ratan Tata (Chairman), Deepak Parekh and Dr Ashok S. Ganguly. Kumaramangalam Birla was not on the commission, so option (d) is correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Investment_Commission?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 134,
+      "question_id": "UPSC_2005_GS1_Q134",
+      "question": "Consider the following statements:\n1. Silent Valley National Park is in the Nallamalai range.\n2. Pathrakkadavu Hydroelectric Project is proposed to be built near the Silent Valley National Park.\n3. The Kunthi river originates in Silent Valley’s rainforests.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 and 3",
+        "b": "2 only",
+        "c": "2 and 3",
+        "d": "1, 2 and 3"
+      },
+      "answer": "c",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Protected Areas & Wildlife",
+      "difficulty": "moderate",
+      "explanation": "Silent Valley National Park lies in the Western Ghats/Nilgiri Biosphere Reserve—not in the Nallamalai range—so statement 1 is false. The Pathrakkadavu (Kunthipuzha) hydro-electric project was indeed proposed just outside the park, and the Kunthipuzha (Kunthi) River rises inside Silent Valley’s rainforest, so statements 2 and 3 are true. Therefore, only statements 2 and 3 are correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Silent_Valley_National_Park?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 135,
+      "question_id": "UPSC_2005_GS1_Q135",
+      "question": "In which one of the following countries did hundreds of people die in the year 2004 as a result of flooding and mudslides triggered by Tropical Storm Jeanne?",
+      "options": {
+        "a": "Colombia",
+        "b": "Haiti",
+        "c": "Sudan",
+        "d": "Ghana"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "Disasters & Humanitarian Issues",
+      "difficulty": "easy",
+      "explanation": "Tropical Storm/Hurricane Jeanne caused catastrophic floods and mudslides in Haiti in September 2004, killing well over 3,000 people; hundreds died in the city of Gonaïves alone. Hence the correct country is Haiti. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Hurricane_Jeanne?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 136,
+      "question_id": "UPSC_2005_GS1_Q136",
+      "question": "Consider the following statements:\n1. Area-wise, Chhattisgarh is larger than West Bengal.\n2. According to the 2001 Census, the population of West Bengal is larger than that of Chhattisgarh.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "Population & Demography",
+      "difficulty": "easy",
+      "explanation": "Chhattisgarh’s area is about 135,194 km², larger than West Bengal’s 88,752 km², so statement 1 is correct. In the 2001 Census West Bengal’s population was 80.18 million, far exceeding Chhattisgarh’s 20.83 million, making statement 2 also correct. Therefore both statements are correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Education_in_Chhattisgarh?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 137,
+      "question_id": "UPSC_2005_GS1_Q137",
+      "question": "Which one of the following pairs is not correctly matched?\nCurrent Name — Old Name",
+      "options": {
+        "a": "Harare — Salisbury",
+        "b": "Ethiopia — Abyssinia",
+        "c": "Ghana — Dutch Guiana",
+        "d": "Kinshasa — Leopoldville"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "World Political Geography & Borders",
+      "difficulty": "moderate",
+      "explanation": "Ghana’s colonial name was the Gold Coast, whereas Dutch Guiana referred to Suriname, so the pair “Ghana — Dutch Guiana” is wrongly matched. The other pairs are correctly matched: Harare-Salisbury, Ethiopia-Abyssinia and Kinshasa-Leopoldville. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Suriname_%28Kingdom_of_the_Netherlands%29?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 138,
+      "question_id": "UPSC_2005_GS1_Q138",
+      "question": "Which one of the following statements is correct?",
+      "options": {
+        "a": "The First Meeting of the Parties (MOP-1) to the Cartagena Protocol on Biosafety was held in the Philippines in 2004.",
+        "b": "India is not a signatory to the Biosafety Protocol/Convention on Biological Diversity.",
+        "c": "The Biosafety Protocol deals with genetically modified organisms.",
+        "d": "The United States of America is a member of the Biosafety Protocol/Convention on Biological Diversity."
+      },
+      "answer": "c",
+      "subject": "Environment & Ecology",
+      "sub_topic": "International Environmental Treaties & Summits",
+      "difficulty": "moderate",
+      "explanation": "The first Meeting of the Parties (COP/MOP-1) to the Cartagena Protocol on Biosafety took place in Kuala Lumpur, Malaysia, in February 2004, not in the Philippines. India ratified the Protocol in 2002-03 and is therefore a Party, whereas the United States has signed but never ratified the CBD/Protocol and is not a Party. The Protocol’s objective is to regulate living-modified (genetically modified) organisms, making statement (c) the only correct option. ([press.un.org](https://press.un.org/en/2004/unep203.doc.htm?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 139,
+      "question_id": "UPSC_2005_GS1_Q139",
+      "question": "Where was the world’s largest ever meet on HIV/AIDS held in July, 2004?",
+      "options": {
+        "a": "Bangkok",
+        "b": "Singapore",
+        "c": "New York",
+        "d": "Rome"
+      },
+      "answer": "a",
+      "subject": "Current Affairs",
+      "sub_topic": "Disasters & Humanitarian Issues",
+      "difficulty": "easy",
+      "explanation": "The XV International AIDS Conference—described at the time as the world’s largest HIV/AIDS meet—was held in Bangkok, Thailand, from 11-16 July 2004, so option (a) is correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/XV_International_AIDS_Conference%2C_2004?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 140,
+      "question_id": "UPSC_2005_GS1_Q140",
+      "question": "Consider the following statements:\n1. Global Trust Bank has been amalgamated with the Punjab National Bank.\n2. The second report of the Kelkar Committee dealing with direct and indirect taxes has maintained its original recommendations, including the abolition of exemptions relating to housing loans.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "Banking & Financial Sector",
+      "difficulty": "moderate",
+      "explanation": "Global Trust Bank was amalgamated with Oriental Bank of Commerce in August 2004, not with Punjab National Bank. The Kelkar Committee’s second report softened its earlier stance: it limited but did not abolish the income-tax exemption for housing-loan interest, contrary to statement 2. Hence both statements are incorrect. ([timesofindia.indiatimes.com](https://timesofindia.indiatimes.com/business/india-business/gtb-turns-obc-back-in-business/articleshow/815540.cms?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 141,
+      "question_id": "UPSC_2005_GS1_Q141",
+      "question": "Which one of the following are the correct statements on the basis of Census-2001?",
+      "options": {
+        "a": "Bihar has the highest percentage of the Scheduled Castes of its population.",
+        "b": "The decadal growth of population of India (1991-2001) has been below 20 %.",
+        "c": "Mizoram is the Indian State with the least population.",
+        "d": "Pondicherry has the highest sex ratio among the Union Territories."
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "Human Development, Poverty & Employment Schemes",
+      "difficulty": "moderate",
+      "explanation": "Census 2001 recorded Punjab (28.9 %)—not Bihar—as the state with the highest Scheduled-Caste proportion; India’s population grew by 21.5 % during 1991-2001 (above 20 %); Sikkim, not Mizoram, was the least-populated state; and Puducherry had the highest sex ratio (1001) among Union Territories. Therefore only statement (d) is correct. ([indianexpress.com](https://indianexpress.com/article/india/india-others/state-records-lowest-decadal-population-growth-but-has-most-scs-in-the-country/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 142,
+      "question_id": "UPSC_2005_GS1_Q142",
+      "question": "The Constitution (98th Amendment) Act is related to:",
+      "options": {
+        "a": "Empowering the Centre to levy and appropriate service tax",
+        "b": "The Constitution of the National Judicial Commission",
+        "c": "Readjustment of electoral constituencies on the basis of the Population Census 2001",
+        "d": "The demarcation of new boundaries between States"
+      },
+      "answer": "b",
+      "subject": "Indian Polity",
+      "sub_topic": "Constitutional Framework & Development",
+      "difficulty": "moderate",
+      "explanation": "The Constitution (98th Amendment) Bill, 2003 sought to insert a new Chapter IV-A in Part V to create a National Judicial Commission for appointments/transfers in the higher judiciary; hence option (b) is correct. Service-tax powers were given by the 88th Amendment, electoral readjustment by the 87th/84th Amendments, and state-boundary matters were handled earlier by the 56th & 100th Amendments, so the other options are unrelated. ([edurev.in](https://edurev.in/t/234232/UPSC-Previous-Year-Questions-Prelims-Amendment-of-the-Constitution?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 143,
+      "question_id": "UPSC_2005_GS1_Q143",
+      "question": "Consider the following statements:\n1. India is the second country in the world to adopt a National Family Planning Programme.\n2. The National Population Policy of India, 2000 seeks to achieve replacement level of fertility by 2010 with a population of 111 crores.\n3. Kerala is the first State in India to achieve replacement level of fertility.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 2",
+        "c": "2 and 3",
+        "d": "1, 2 and 3"
+      },
+      "answer": "c",
+      "subject": "Indian Economy",
+      "sub_topic": "Human Development, Poverty & Employment Schemes",
+      "difficulty": "moderate",
+      "explanation": "1) India launched the world’s first national family-planning programme in 1952, so it was not the second country—statement 1 is wrong. ([pbs.org](https://www.pbs.org/wgbh/nova/worldbalance/campaigns.html?utm_source=openai)) 2) NPP-2000 set the goal of reaching replacement-level fertility (TFR 2.1) by 2010 with the population contained around 110–111 crore—statement 2 is correct. ([timesofindia.indiatimes.com](https://timesofindia.indiatimes.com/india/india-misses-population-control-targets-for-2010-2016/articleshow/3220037.cms?utm_source=openai)) 3) Kerala achieved below-replacement fertility first (1987-88)—statement 3 is correct. ([business-standard.com](https://www.business-standard.com/article/news-ians/kerala-seeing-advanced-demographic-transition-report-118051400260_1.html?utm_source=openai)) Therefore only statements 2 and 3 are correct → option (c).",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 144,
+      "question_id": "UPSC_2005_GS1_Q144",
+      "question": "Match items in List-I with List-II and select the correct answer using the codes given below the lists:\nList-I (Lawn Tennis Tournament)\nA. French Open 2004\nB. Wimbledon 2004\nC. US Open 2004\nD. Australian Open 2004\n\nList-II (Winner of Women’s Singles)\n1. Svetlana Kuznetsova\n2. Anastasia Myskina\n3. Maria Sharapova\n4. Serena Williams\n5. Justine Henin Harden",
+      "options": {
+        "a": "5 1 4 2",
+        "b": "2 3 1 5",
+        "c": "5 3 1 2",
+        "d": "2 1 4 5"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "Tennis Grand Slams",
+      "difficulty": "moderate",
+      "explanation": "Women’s singles champions in 2004 were: French Open – Anastasia Myskina, Wimbledon – Maria Sharapova, US Open – Svetlana Kuznetsova, Australian Open – Justine Henin-Hardenne. Mapping A-2, B-3, C-1, D-5 gives the code 2 3 1 5, i.e. option (b). ([en.wikipedia.org](https://en.wikipedia.org/wiki/2004_French_Open_%E2%80%93_Women%27s_singles?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 145,
+      "question_id": "UPSC_2005_GS1_Q145",
+      "question": "Match items in List-I with List-II and select the correct answer using the codes given below the lists:\nList-I (Former Sportsperson)\nA. Wally Grout\nB. Eusébio\nC. Rod Laver\nD. Mark Spitz\n\nList-II (Game/Sport)\n1. Swimming\n2. Lawn Tennis\n3. Cricket\n4. Football\n5. Basketball",
+      "options": {
+        "a": "3 5 2 4",
+        "b": "2 4 3 1",
+        "c": "3 4 2 1",
+        "d": "2 5 3 4"
+      },
+      "answer": "c",
+      "subject": "Current Affairs",
+      "sub_topic": "Other Sports & Personalities",
+      "difficulty": "easy",
+      "explanation": "Wally Grout was an Australian Test wicket-keeper (Cricket); Eusébio was a legendary Portuguese striker (Football); Rod Laver is an Australian tennis great (Lawn Tennis); Mark Spitz is a U.S. swimmer who won seven Olympic golds in 1972. Hence A-3, B-4, C-2, D-1 → option (c). ([en.wikipedia.org](https://en.wikipedia.org/wiki/Wally_Grout?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 146,
+      "question_id": "UPSC_2005_GS1_Q146",
+      "question": "Which one of the following statements is not correct?",
+      "options": {
+        "a": "There is no definition of the Scheduled Tribe in the Constitution of India.",
+        "b": "North-East India accounts for a little over half of the country’s tribal population.",
+        "c": "The people known as Todas live in the Nilgiri area.",
+        "d": "Lotha is a language spoken in Nagaland."
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "Population & Demography",
+      "difficulty": "moderate",
+      "explanation": "The Constitution merely empowers the President to notify Scheduled Tribes under Art. 342 (Art. 366(25) only refers to such notification), so it gives no descriptive definition—statement (a) is factually acceptable. Todas are a tribal people of the Nilgiris (Tamil Nadu) and Lotha is a Naga language of Wokha district, Nagaland—statements (c) and (d) are correct. North-East India accounts for only about 12 % of India’s tribal population (central India has ~55 %), not ‘a little over half’; therefore statement (b) is incorrect, making option (b) the ‘not correct’ choice. ([constitutionofindia.net](https://www.constitutionofindia.net/articles/article-366-definitions/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 147,
+      "question_id": "UPSC_2005_GS1_Q147",
+      "question": "Consider the following statements:\n1. The forest cover in India constitutes around 20 % of its geographical area. Out of the total forest cover, dense forest constitutes around 40 %.\n2. The National Forestry Action Programme aims at bringing one-third of the area of India under tree/forest cover.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Environmental Governance & Legislation",
+      "difficulty": "moderate",
+      "explanation": "India State of Forest Report-2003 put forest cover at about 20 % of the country’s geographic area, but ‘dense forest’ (>40 % canopy) made up well over 50 % of that cover—not 40 %. Hence statement 1 is incorrect. The National Forestry Action Programme, drawn from the 1988 National Forest Policy, explicitly sets a long-term goal of bringing one-third (≈33 %) of India under tree/forest cover, so statement 2 is correct. Therefore only statement 2 is right. ([timesofindia.indiatimes.com](https://timesofindia.indiatimes.com/india/forest-survey-cover-up-but-density-down/articleshow/1178315.cms?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 148,
+      "question_id": "UPSC_2005_GS1_Q148",
+      "question": "Consider the following statements:\n1. The Man Booker Prize is awarded to citizens of any of the countries of the British Commonwealth or the Republic of Ireland.\n2. A leading London-based software company underwrites the Man Booker Prize presently.\n3. The winner of the Man Booker Prize in the year 2004 is a South Asian.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 3",
+        "c": "2 and 3",
+        "d": "1, 2 and 3"
+      },
+      "answer": "a",
+      "subject": "Current Affairs",
+      "sub_topic": "Awards & Honours",
+      "difficulty": "moderate",
+      "explanation": "Until its 2013 rule change, the Man Booker Prize was open only to citizens of the Commonwealth, the Republic of Ireland and Zimbabwe, so statement 1 is correct. The prize was (2002-2019) sponsored by Man Group plc, a London-based investment-management (hedge-fund) firm, not a software company—so statement 2 is wrong. The 2004 prize went to British author Alan Hollinghurst for ‘The Line of Beauty’, so the winner was not South Asian, making statement 3 wrong. Thus only statement 1 is correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Man_Group?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 149,
+      "question_id": "UPSC_2005_GS1_Q149",
+      "question": "Consider the following statements:\n1. The number of post offices in India is in excess of 1.5 lakhs.\n2. Bharat Sanchar Nigam Limited (BSNL) was formed in the year 1997.\n3. The Telecom Regulatory Authority of India (TRAI) was established in the year 2000.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 and 3",
+        "b": "1 and 2",
+        "c": "1 only",
+        "d": "3 only"
+      },
+      "answer": "c",
+      "subject": "Indian Economy",
+      "sub_topic": "Infrastructure & Industry",
+      "difficulty": "easy",
+      "explanation": "India Post had over 1 55 000 post offices by the early-2000s, so statement 1 is correct. Bharat Sanchar Nigam Limited (BSNL) was incorporated on 15 September 2000 (operations from 1 October 2000), not in 1997, so statement 2 is incorrect. The Telecom Regulatory Authority of India (TRAI) was created under the TRAI Act and came into existence on 20 February 1997, not in 2000, so statement 3 is incorrect. Hence only statement 1 is correct. ([indiapost.gov.in](https://www.indiapost.gov.in/VAS/Pages/Content/PostOfficeNetwork.aspx?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2005,
+      "paper": "GS1",
+      "question_no": 150,
+      "question_id": "UPSC_2005_GS1_Q150",
+      "question": "Which one of the following pairs are correctly matched?\nPerson — Award\n1. Champa Devi Shukla — Goldman Environmental Prize\n2. Dr. P. Sri Ramachandrudu — Vachaspati Puraskar\n3. Ela Ramesh Bhatt — Lal Bahadur Shastri National Award for Excellence in Public Administration, Academics and Management\n4. Upamanyu Chatterjee — Lalit Kala Ratna Award\nSelect the correct answer using the codes given below:",
+      "options": {
+        "a": "1 and 2",
+        "b": "1, 2 and 3",
+        "c": "3 and 4",
+        "d": "1, 2, 3 and 4"
+      },
+      "answer": "b",
+      "subject": "Current Affairs",
+      "sub_topic": "Awards & Honours",
+      "difficulty": "moderate",
+      "explanation": "1) Champa Devi Shukla received the Goldman Environmental Prize in 2004. 2) Sanskrit scholar Dr P. Sriramachandrudu was honoured with the Vachaspati Puraskar (KK Birla Foundation) in 2003. 3) SEWA founder Ela Ramesh Bhatt was the 2003 recipient (award presented 2004) of the Lal Bahadur Shastri National Award for Excellence in Public Administration, Academics and Management. 4) Writer Upamanyu Chatterjee has never been conferred the Lalit Kala Ratna (which is given to visual artists). Therefore pairs 1, 2 and 3 are correctly matched. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Champa_Devi_Shukla?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    }
+  ],
+  "failed": [
+    {
+      "id": "UPSC_2005_GS1_Q45",
+      "errs": [
+        "bad answer letter"
+      ],
+      "record": {
+        "year": 2005,
+        "paper": "GS1",
+        "question_no": 45,
+        "question_id": "UPSC_2005_GS1_Q45",
+        "question": "Consider the following statements:\n1. The Charter of the United Nations Organization was adopted at Geneva, Switzerland in June 1945.\n2. India was admitted to the United Nations Organization in the year 1945.\n3. The Trusteeship Council of the United Nations Organization was established to look after the affairs of territories detached from Japan and Italy after the Second World War or such territories not under the control of a country at that time.\nWhich of the statements given above is/are correct?",
+        "options": {
+          "a": "1, 2 and 3",
+          "b": "2 only",
+          "c": "1 and 3",
+          "d": "3 only"
+        },
+        "answer": "c  (should read \"2 and 3\")",
+        "subject": "Current Affairs",
+        "sub_topic": "International Organisations & Groupings",
+        "difficulty": "moderate",
+        "explanation": "Statements 2 and 3 are correct; statement 1 is incorrect because the UN Charter was adopted in San Francisco on 26 June 1945, not Geneva. Hence the answer is the code that contains 2 and 3 only (option c in the official paper).",
+        "source_tag": "upsc_pdf_o3",
+        "exam": "CSE_PRELIMS"
+      }
+    }
+  ]
+}

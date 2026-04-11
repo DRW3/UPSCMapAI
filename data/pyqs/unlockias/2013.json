@@ -1,0 +1,2009 @@
+{
+  "year": 2013,
+  "fetched_at": "2026-04-11T20:00:30.439Z",
+  "count": 100,
+  "failures": 0,
+  "questions": [
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 1,
+      "question_id": "UPSC_2013_GS1_Q1",
+      "question": "What will follow if a Money Bill is substantially amended by the Rajya Sabha?",
+      "options": {
+        "a": "The Lok Sabha may still proceed with the Bill, accepting or not accepting the recommendations of the Rajya Sabha",
+        "b": "The Lok Sabha cannot consider the Bill further",
+        "c": "The Lok Sabha may send the Bill to the Rajya Sabha for reconsideration",
+        "d": "The President may call a joint sitting for passing the Bill"
+      },
+      "answer": "a",
+      "subject": "Indian Polity",
+      "sub_topic": "Parliament & State Legislatures",
+      "difficulty": "moderate",
+      "explanation": "Under Article 109(2)–(4) of the Constitution, the Rajya Sabha can only make recommendations on a Money Bill; the Lok Sabha may accept or reject them and then proceed to pass the Bill in either form. Therefore, even if Rajya Sabha suggests substantial amendments, the Lok Sabha can move ahead irrespective of those recommendations. It cannot be blocked (b), resent compulsorily (c), nor does a joint sitting apply to Money Bills (d). ([indiankanoon.org](https://indiankanoon.org/doc/729393/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 2,
+      "question_id": "UPSC_2013_GS1_Q2",
+      "question": "Which one of the following statements is correct?",
+      "options": {
+        "a": "In India, the same person cannot be appointed as Governor for two or more States at the same time",
+        "b": "The Judges of the High Court of the States in India are appointed by the Governor of the State just as the Judges of the Supreme Court are appointed by the President",
+        "c": "No procedure has been laid down in the Constitution of India for the removal of a Governor from his/her post",
+        "d": "In the case of a Union Territory having a legislative setup, the Chief Minister is appointed by the Lt. Governor on the basis of majority support"
+      },
+      "answer": "c",
+      "subject": "Indian Polity",
+      "sub_topic": "Union & State Executive",
+      "difficulty": "moderate",
+      "explanation": "Article 156 says a Governor holds office at the ‘pleasure of the President’; the Constitution provides no specific procedure or grounds for removal, making statement (c) correct. A single individual can hold additional charge of two or more States, so (a) is wrong. High Court judges are appointed by the President, not the Governor, so (b) is wrong. In Union Territories with legislatures (e.g., Delhi), the Chief Minister is appointed by the President, not the Lt. Governor, so (d) is incorrect. ([indiankanoon.org](https://indiankanoon.org/doc/185565701/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 3,
+      "question_id": "UPSC_2013_GS1_Q3",
+      "question": "Which one of the following pairs is correctly matched?\nGeographical Feature : Region",
+      "options": {
+        "a": "Abyssinian Plateau : Arabia",
+        "b": "Atlas Mountains : North-Western Africa",
+        "c": "Guiana Highlands : South-Western Africa",
+        "d": "Okavango Basin : Patagonia"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "World Physical Geography",
+      "difficulty": "easy",
+      "explanation": "The Atlas Mountains stretch across north-western Africa (Morocco-Algeria-Tunisia), matching option (b). The Abyssinian (Ethiopian) Plateau lies in Ethiopia, not Arabia; the Guiana Highlands are in north-eastern South America, not Africa; the Okavango Basin is in Botswana (southern Africa), not Patagonia. ([britannica.com](https://www.britannica.com/summary/Atlas-Mountains?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 4,
+      "question_id": "UPSC_2013_GS1_Q4",
+      "question": "With reference to the history of Indian rock-cut architecture, consider the following statements:\n1. The caves at Badami are the oldest surviving rock-cut caves in India.\n2. The Barabar rock-cut caves were originally made for Ajivikas by Emperor Chandragupta Maurya.\n3. At Ellora, caves were made for different faiths.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "c",
+      "subject": "Art & Culture",
+      "sub_topic": "Architecture & World Heritage",
+      "difficulty": "moderate",
+      "explanation": "Barabar Hill caves (3rd century BCE) are the oldest surviving rock-cut caves in India, making statement 1 incorrect. These Barabar caves were dedicated to Ajivikas by Emperor Ashoka (and his grandson Dasharatha), not Chandragupta Maurya, so statement 2 is wrong. Ellora (6th–10th century CE) contains Buddhist, Hindu and Jain caves, so statement 3 is correct. Hence only statement 3 is true. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Barabar_Caves?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 5,
+      "question_id": "UPSC_2013_GS1_Q5",
+      "question": "Recombinant DNA technology (Genetic Engineering) allows genes to be transferred\n1. across different species of plants\n2. from animals to plants\n3. from microorganisms to higher organisms\nSelect the correct answer using the codes given below.",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Biotechnology & Genetics",
+      "difficulty": "easy",
+      "explanation": "Genetic engineering permits horizontal transfer of genes beyond natural breeding barriers. Examples include moving plant genes between unrelated plant species, inserting animal genes such as antifreeze proteins into plants, and introducing microbial genes like Bt toxin from Bacillus thuringiensis into crop plants. Hence all three statements are true, making option (d) correct. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-55/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 6,
+      "question_id": "UPSC_2013_GS1_Q6",
+      "question": "The Chinese traveller Yuan Chwang (Hiuen Tsang) who visited India recorded the general conditions and culture of India at that time. In this context, which of the following statements is/are correct?\n1. The roads and river-routes were completely immune from robbery.\n2. As regards punishment for offences, ordeals by fire, water and poison were the instruments for determining the innocence or guilt of a person.\n3. The tradesmen had to pay duties at ferries and barrier stations.\nSelect the correct answer using the codes given below.",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "b",
+      "subject": "Ancient History",
+      "sub_topic": "Foreign Travellers & Accounts",
+      "difficulty": "moderate",
+      "explanation": "Hiuen-tsang describes ordeals by fire, water, weighing and poison as common judicial practices (statement 2) and notes that traders paid light duties at ferries and barrier stations (statement 3). He himself was robbed during his journey, so roads and river routes were not completely immune from robbery, rendering statement 1 incorrect. Therefore only 2 and 3 are correct → option (b). ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-56/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 7,
+      "question_id": "UPSC_2013_GS1_Q7",
+      "question": "Consider the following:\n1. Star tortoise\n2. Monitor lizard\n3. Pygmy hog\n4. Spider monkey\nWhich of the above are naturally found in India?",
+      "options": {
+        "a": "1, 2 and 3 only",
+        "b": "2 and 3 only",
+        "c": "1 and 4 only",
+        "d": "1, 2, 3 and 4"
+      },
+      "answer": "a",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Protected Areas & Wildlife",
+      "difficulty": "easy",
+      "explanation": "The Indian star tortoise (Geochelone elegans), several monitor lizard species (e.g., Varanus bengalensis) and the critically endangered pygmy hog (Porcula salvania) are native to India. Spider monkeys (genus Ateles) are confined to Central and South America and are absent from India. Thus 1, 2 and 3 only are naturally found in India → option (a). ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-57/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 8,
+      "question_id": "UPSC_2013_GS1_Q8",
+      "question": "Which of the following can be found as pollutants in the drinking water in some parts of India?\n1. Arsenic\n2. Sorbitol\n3. Fluoride\n4. Formaldehyde\n5. Uranium\nSelect the correct answer using the codes given below.",
+      "options": {
+        "a": "1 and 3 only",
+        "b": "2, 4 and 5 only",
+        "c": "1, 3 and 5 only",
+        "d": "1, 2, 3, 4 and 5"
+      },
+      "answer": "c",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Water & Wetland Conservation",
+      "difficulty": "moderate",
+      "explanation": "Chronic arsenic contamination affects groundwater in parts of West Bengal, Bihar and Assam; excess fluoride occurs in Rajasthan, Andhra Pradesh and other regions; and naturally occurring uranium above permissible limits has been reported from aquifers in Punjab and Rajasthan. Sorbitol (a sugar alcohol) and formaldehyde are not documented as widespread drinking-water pollutants in India. Hence statements 1, 3 and 5 are correct → option (c). ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-paper-with-answer-key-general-studies-paper-1/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 9,
+      "question_id": "UPSC_2013_GS1_Q9",
+      "question": "With reference to Indian History, the Members of the Constituent Assembly from the Provinces were",
+      "options": {
+        "a": "directly elected by the people of those Provinces",
+        "b": "nominated by the Indian National Congress and the Muslim League",
+        "c": "elected by the Provincial Legislative Assemblies",
+        "d": "selected by the Government for their expertise in constitutional matters"
+      },
+      "answer": "c",
+      "subject": "Modern History",
+      "sub_topic": "Constitutional Developments & British Plans (1909-1947)",
+      "difficulty": "easy",
+      "explanation": "Under the Cabinet Mission Plan (May 1946), seats allotted to British-Indian provinces in the Constituent Assembly were filled by indirect elections conducted in the respective Provincial Legislative Assemblies using proportional representation with the single transferable vote. They were neither directly elected by the public nor nominated by parties or the government. Hence option (c) is correct. ([aiduva.com](https://aiduva.com/upsc/constituent-assembly-members-election-method-prelims-2013/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 10,
+      "question_id": "UPSC_2013_GS1_Q10",
+      "question": "Consider the following animals:\n1. Sea cow\n2. Sea horse\n3. Sea lion\nWhich of the above is/are mammal/mammals?",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 3 only",
+        "c": "2 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Biodiversity & Conservation",
+      "difficulty": "easy",
+      "explanation": "Sea cow (dugong/manatee) and sea lion are both air-breathing, milk-producing marine mammals, whereas the sea horse is a bony fish; hence only 1 and 3 are mammals. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-60/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 11,
+      "question_id": "UPSC_2013_GS1_Q11",
+      "question": "Consider the following statements:\n1. An amendment to the Constitution of India can be initiated by an introduction of a Bill in the Lok Sabha only.\n2. If such an amendment seeks to make changes in the federal character of the Constitution, the amendment also requires to be ratified by the legislatures of all the States of India.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "d",
+      "subject": "Indian Polity",
+      "sub_topic": "Constitutional Framework & Development",
+      "difficulty": "moderate",
+      "explanation": "A Constitution (Amendment) Bill may be introduced in either House of Parliament, not just the Lok Sabha, making statement 1 wrong. Amendments affecting the federal structure must be ratified by at least one-half of the State legislatures, not all, so statement 2 is also wrong. Therefore, neither statement is correct. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-paper-with-answer-key-general-studies-paper-1/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 12,
+      "question_id": "UPSC_2013_GS1_Q12",
+      "question": "Consider the following statements. The Attorney-General of India can:\n1. take part in the proceedings of the Lok Sabha\n2. be a member of a committee of the Lok Sabha\n3. speak in the Lok Sabha\n4. vote in the Lok Sabha\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "c",
+      "subject": "Indian Polity",
+      "sub_topic": "Union & State Executive",
+      "difficulty": "moderate",
+      "explanation": "Article 88 gives the Attorney-General the right to speak and otherwise participate in the proceedings of either House and its committees (statements 1, 2 & 3), but expressly denies any right to vote, so only 1, 2 and 3 are correct. ([gktoday.in](https://www.gktoday.in/solution-upsc-civil-services-preliminary-examination-2013-paper-1-general-studies/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 13,
+      "question_id": "UPSC_2013_GS1_Q13",
+      "question": "With reference to the usefulness of the by-products of the sugar industry, which of the following statements is/are correct?\n1. Bagasse can be used as biomass fuel for the generation of energy.\n2. Molasses can be used as one of the feedstocks for the production of synthetic chemical fertilizers.\n3. Molasses can be used for the production of ethanol.\nSelect the correct answer using the codes given below:",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "c",
+      "subject": "Indian Economy",
+      "sub_topic": "Agriculture & Rural Development",
+      "difficulty": "moderate",
+      "explanation": "Bagasse, the fibrous residue after crushing sugarcane, is widely burnt as a biomass fuel for cogeneration (statement 1 correct). Molasses is a feedstock for fermentation industries, notably ethanol production (statement 3 correct), but it is not used to make synthetic chemical fertilizers, which rely on ammonia/urea (statement 2 wrong). ([drishtiias.com](https://www.drishtiias.com/to-the-points/paper3/https/www.drishtiias.com/to-the-points/paper3/sugar-industry?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 14,
+      "question_id": "UPSC_2013_GS1_Q14",
+      "question": "Variations in the length of daytime and night-time from season to season are due to",
+      "options": {
+        "a": "the earth's rotation on its axis",
+        "b": "the earth's revolution round the sun in an elliptical manner",
+        "c": "latitudinal position of the place",
+        "d": "revolution of the earth on a tilted axis"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "Astronomy & Earth–Sun System",
+      "difficulty": "easy",
+      "explanation": "Seasonal changes in day-length arise because the Earth’s axis is tilted (23.5°) and the planet revolves around the Sun; this tilt causes varying solar illumination at different times of the year. Hence option (d) is correct. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-64/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 15,
+      "question_id": "UPSC_2013_GS1_Q15",
+      "question": "The Narmada river flows to the west, while most other large peninsular rivers flow to the east. Why?\n1. It occupies a linear rift valley.\n2. It flows between the Vindhyas and the Satpuras.\n3. The land slopes to the west from Central India.\nSelect the correct answer using the codes given below:",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "None"
+      },
+      "answer": "a",
+      "subject": "Geography",
+      "sub_topic": "Indian Rivers & Water Resources",
+      "difficulty": "moderate",
+      "explanation": "The Narmada flows westward because it occupies a geologically-formed linear rift valley that opens towards the Arabian Sea; this structural control is the decisive factor. While the river does run between the Vindhyan range (north) and the Satpura range (south), that fact does not explain its westward flow, and the general regional slope is actually eastwards, not westwards. Hence only statement 1 is correct. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-paper-with-answer-key-general-studies-paper-1/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 16,
+      "question_id": "UPSC_2013_GS1_Q16",
+      "question": "On the planet Earth, most of the freshwater exists as ice caps and glaciers. Out of the remaining freshwater, the largest proportion",
+      "options": {
+        "a": "is found in the atmosphere as moisture and clouds",
+        "b": "is found in freshwater lakes and rivers",
+        "c": "exists as groundwater",
+        "d": "exists as soil moisture"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "Oceanography",
+      "difficulty": "easy",
+      "explanation": "After the bulk of Earth’s freshwater that is locked up in ice caps and glaciers, the greatest share of the remainder is stored underground in aquifers as groundwater. Atmospheric moisture, surface lakes/rivers and soil moisture each constitute far smaller fractions. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-paper-with-answer-key-general-studies-paper-1/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 17,
+      "question_id": "UPSC_2013_GS1_Q17",
+      "question": "Consider the following pairs:\n1. Nokrek Biosphere Reserve : Garo Hills\n2. Loktak Lake               : Barail Range\n3. Namdapha National Park    : Dafla Hills\nWhich of the above pairs is/are correctly matched?",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1, 2 and 3",
+        "d": "None"
+      },
+      "answer": "a",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Protected Areas & Wildlife",
+      "difficulty": "moderate",
+      "explanation": "Nokrek Biosphere Reserve is correctly located in the Garo Hills of Meghalaya. Loktak Lake lies in Manipur, not the Barail Range of Assam, and Namdapha National Park is in the Changlang district of Arunachal Pradesh rather than the Dafla Hills; therefore only Pair 1 is right. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-67/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 18,
+      "question_id": "UPSC_2013_GS1_Q18",
+      "question": "Consider the following:\n1. Electromagnetic radiation\n2. Geothermal energy\n3. Gravitational force\n4. Plate movements\n5. Rotation of the earth\n6. Revolution of the earth\nWhich of the above are responsible for bringing dynamic changes on the surface of the earth?",
+      "options": {
+        "a": "1, 2, 3 and 4 only",
+        "b": "1, 3, 5 and 6 only",
+        "c": "2, 4, 5 and 6 only",
+        "d": "1, 2, 3, 4, 5 and 6"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "Physical Geography & Geomorphology",
+      "difficulty": "difficult",
+      "explanation": "All six listed factors drive dynamic changes on Earth’s surface: solar electromagnetic radiation (weathering and climate), internal geothermal energy (volcanism), gravitational force (tides, mass wasting), plate movements (orogeny, earthquakes), Earth’s rotation (Coriolis effects, diurnal tides) and revolution (seasonal energy variation). Hence every item contributes, making option (d) correct. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-68/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 19,
+      "question_id": "UPSC_2013_GS1_Q19",
+      "question": "Which of the following bodies does not/do not find mention in the Constitution?\n1. National Development Council\n2. Planning Commission\n3. Zonal Councils\nSelect the correct answer using the codes given below:",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "d",
+      "subject": "Indian Polity",
+      "sub_topic": "Constitutional & Statutory Bodies",
+      "difficulty": "easy",
+      "explanation": "None of the three bodies are mentioned in the Constitution: the National Development Council and the erstwhile Planning Commission were created by executive resolutions, while the Zonal Councils were established by the States Re-organisation Act, 1956 (a statute). Consequently, all three fall outside the constitutional text. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-69/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 20,
+      "question_id": "UPSC_2013_GS1_Q20",
+      "question": "The demand for the Tebhaga Peasant Movement in Bengal was for",
+      "options": {
+        "a": "the reduction of the share of the landlords from one-half of the crop to one-third",
+        "b": "the grant of ownership of land to peasants as they were the actual cultivators of the land",
+        "c": "the uprooting of Zamindari system and the end of serfdom",
+        "d": "writing off all peasant debts"
+      },
+      "answer": "a",
+      "subject": "Modern History",
+      "sub_topic": "Peasant, Tribal & Labour Movements",
+      "difficulty": "moderate",
+      "explanation": "The Tebhaga agitation demanded that share-croppers (bargadars) keep two-thirds of the harvest and give only one-third to the jotedar landlord—i.e., reduce the landlord’s share from one-half to one-third. Options on zamindari abolition, land ownership or debt-waiver were not part of this specific movement. ([aiduva.com](https://aiduva.com/upsc/tebhaga-peasant-movement-bengal-demands-prelims-2013/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 21,
+      "question_id": "UPSC_2013_GS1_Q21",
+      "question": "The Parliament can make any law for whole or any part of India for implementing international treaties",
+      "options": {
+        "a": "with the consent of all the States",
+        "b": "with the consent of the majority of States",
+        "c": "with the consent of the States concerned",
+        "d": "without the consent of any State"
+      },
+      "answer": "d",
+      "subject": "Indian Polity",
+      "sub_topic": "Parliament & State Legislatures",
+      "difficulty": "easy",
+      "explanation": "Article 253 states that ‘notwithstanding anything’ in the federal scheme, Parliament may make law for the whole or any part of India to implement treaties, conventions or decisions of international bodies. It does not require any State’s consent, so option (d) is correct while (a)–(c) incorrectly presume State concurrence. ([constitutionofindia.net](https://www.constitutionofindia.net/articles/article-253-legislation-for-giving-effect-to-international-agreements/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 22,
+      "question_id": "UPSC_2013_GS1_Q22",
+      "question": "In the grasslands, trees do not replace the grasses as a part of an ecological succession because of",
+      "options": {
+        "a": "insects and fungi",
+        "b": "limited sunlight and paucity of nutrients",
+        "c": "water limits and fire",
+        "d": "None of the above"
+      },
+      "answer": "c",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Ecosystems & Ecology Concepts",
+      "difficulty": "moderate",
+      "explanation": "In grasslands, scarce soil moisture and the regular occurrence of fires kill tree seedlings before they can establish, preventing replacement of grasses; therefore the key limiting factors are water deficit and fire. Insects, fungi, nutrient or light shortages are not the primary reasons in this biome. ([compass.rauias.com](https://compass.rauias.com/upsc-prelims/environment-pyq/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 23,
+      "question_id": "UPSC_2013_GS1_Q23",
+      "question": "Which one of the following is the correct sequence of ecosystems in the order of decreasing productivity?",
+      "options": {
+        "a": "Oceans, lakes, grasslands, mangroves",
+        "b": "Mangroves, oceans, grasslands, lakes",
+        "c": "Mangroves, grasslands, lakes, oceans",
+        "d": "Oceans, mangroves, lakes, grasslands"
+      },
+      "answer": "c",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Ecosystems & Ecology Concepts",
+      "difficulty": "moderate",
+      "explanation": "Net primary productivity per unit area is highest in nutrient-rich, shallow mangrove/estuarine systems, followed by grasslands, then most lakes, and is lowest in open oceans which are nutrient-poor ‘biological deserts’. Hence the decreasing order is Mangroves > Grasslands > Lakes > Oceans. Other sequences mis-place oceans or lakes. ([aiduva.com](https://aiduva.com/upsc/ecosystem-productivity-sequence-oceans-mangroves-prelims-2013))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 24,
+      "question_id": "UPSC_2013_GS1_Q24",
+      "question": "Contour bunding is a method of soil conservation used in",
+      "options": {
+        "a": "desert margins, liable to strong wind action",
+        "b": "low flat plains, close to stream courses, liable to flooding",
+        "c": "scrublands, liable to spread of weed growth",
+        "d": "None of the above"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "Physical Geography & Geomorphology",
+      "difficulty": "moderate",
+      "explanation": "Contour bunding involves building embankments along contours on gentle to moderately sloping hill terrain to arrest runoff and erosion. None of the three settings listed (wind-eroded desert margins, flat flood-prone plains, or scrublands) describe its normal application, so ‘None of the above’ is correct. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-74/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 25,
+      "question_id": "UPSC_2013_GS1_Q25",
+      "question": "The Government enacted the Panchayat Extension to Scheduled Areas (PESA) Act in 1996. Which one of the following is NOT identified as its objective?",
+      "options": {
+        "a": "To provide self-governance",
+        "b": "To recognize traditional rights",
+        "c": "To create autonomous regions in tribal areas",
+        "d": "To free tribal people from exploitation"
+      },
+      "answer": "c",
+      "subject": "Indian Polity",
+      "sub_topic": "Local Government & Panchayati Raj",
+      "difficulty": "moderate",
+      "explanation": "The Panchayat (Extension to Scheduled Areas) Act, 1996 was enacted to extend self-governance to Fifth-Schedule tribal areas, recognise their customary rights and practices, and protect them from exploitation. It does not speak of creating ‘autonomous regions’—that feature belongs to the Sixth-Schedule provisions for Autonomous District Councils—hence option (c) is NOT an objective. ([mrunal.org](https://mrunal.org/2013/05/answerkey-csat-2013-gs-polity-questions-solved-with-explanation-reference-all-four-sets.html/comment-page-2?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 26,
+      "question_id": "UPSC_2013_GS1_Q26",
+      "question": "Under the Scheduled Tribes and Other Traditional Forest Dwellers (Recognition of Forest Rights) Act, 2006, who shall be the authority to initiate the process for determining the nature and extent of individual or community forest rights or both?",
+      "options": {
+        "a": "State Forest Department",
+        "b": "District Collector/Deputy Commissioner",
+        "c": "Tahsildar/Block Development Officer/Mandal Revenue Officer",
+        "d": "Gram Sabha"
+      },
+      "answer": "d",
+      "subject": "Indian Polity",
+      "sub_topic": "Social Justice & Vulnerable Sections",
+      "difficulty": "moderate",
+      "explanation": "Section 6 of the Scheduled Tribes and Other Traditional Forest Dwellers (Recognition of Forest Rights) Act, 2006 vests the Gram Sabha with the authority to initiate the process of determining the nature and extent of individual and community forest rights; other bodies only scrutinise or approve its recommendations. Therefore option (d) is correct, while the Forest Department, Collector and Tahsildar have no initiating power under the Act. ([mrunal.org](https://mrunal.org/2013/05/answerkey-csat-2013-gs-polity-questions-solved-with-explanation-reference-all-four-sets.html/comment-page-2?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 27,
+      "question_id": "UPSC_2013_GS1_Q27",
+      "question": "Improper handling and storage of cereal grains and oilseeds result in the production of toxins known as aflatoxins which are not generally destroyed by normal cooking process. Aflatoxins are produced by",
+      "options": {
+        "a": "bacteria",
+        "b": "protozoa",
+        "c": "moulds",
+        "d": "viruses"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Health & Diseases",
+      "difficulty": "easy",
+      "explanation": "Aflatoxins are secondary metabolites produced by certain moulds (fungi) of the genus Aspergillus that grow on improperly stored grains and oil-seeds; they survive normal cooking temperatures. Bacteria, protozoa and viruses do not generate aflatoxins, making option (c) the only correct choice. ([mrunal.org](https://mrunal.org/2013/06/answerkey-csat-2013-gs-science-physics-biology-questions-solved-with-explanation-reference-all-four-sets-abcd.html?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 28,
+      "question_id": "UPSC_2013_GS1_Q28",
+      "question": "'Economic Justice' as one of the objectives of the Indian Constitution has been provided in",
+      "options": {
+        "a": "the Preamble and the Fundamental Rights",
+        "b": "the Preamble and the Directive Principles of State Policy",
+        "c": "the Fundamental Rights and the Directive Principles of State Policy",
+        "d": "None of the above"
+      },
+      "answer": "b",
+      "subject": "Indian Polity",
+      "sub_topic": "Constitutional Framework & Development",
+      "difficulty": "easy",
+      "explanation": "The Preamble pledges ‘Justice, social, economic and political’, and Article 38 of the Directive Principles directs the State to promote a social order based on social, economic and political justice. Fundamental Rights deal chiefly with civil–political liberties, not economic justice. Hence the objective is reflected in the Preamble and the DPSPs only—option (b). ([mrunal.org](https://mrunal.org/2013/05/answerkey-csat-2013-gs-polity-questions-solved-with-explanation-reference-all-four-sets.html/comment-page-2?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 29,
+      "question_id": "UPSC_2013_GS1_Q29",
+      "question": "Due to improper/indiscriminate disposal of old and used computers or their parts, which of the following are released into the environment as e-waste?\n1. Beryllium\n2. Cadmium\n3. Chromium\n4. Heptachlor\n5. Mercury\n6. Lead\n7. Plutonium\nSelect the correct answer using the codes given below:",
+      "options": {
+        "a": "1, 3, 4, 6 and 7 only",
+        "b": "1, 2, 3, 5 and 6 only",
+        "c": "2, 4, 5 and 7 only",
+        "d": "1, 2, 3, 4, 5, 6 and 7"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Pollution & Waste Management",
+      "difficulty": "moderate",
+      "explanation": "Discarded computers release several toxic metals: beryllium (mother-boards), cadmium (Ni-Cd batteries), chromium (hexavalent surface coatings), mercury (switches, LCDs) and lead (solder). Heptachlor is a pesticide, and plutonium is radioactive material not used in electronic hardware; therefore the correct set is 1, 2, 3, 5 and 6, i.e. option (b). ([mrunal.org](https://mrunal.org/2013/06/answerkey-csat-2013-environment-biodiversity-enb-questions-solved-with-explanation-reference-all-four-sets-abcd.html?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 30,
+      "question_id": "UPSC_2013_GS1_Q30",
+      "question": "Acid rain is caused by the pollution of environment by",
+      "options": {
+        "a": "carbon dioxide and nitrogen",
+        "b": "carbon monoxide and carbon dioxide",
+        "c": "ozone and carbon dioxide",
+        "d": "nitrous oxide and sulphur dioxide"
+      },
+      "answer": "d",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Pollution & Waste Management",
+      "difficulty": "easy",
+      "explanation": "Acid rain forms when sulphur dioxide (SO₂) and nitrogen oxides (NOₓ—including nitrous oxide) released from anthropogenic sources react with atmospheric moisture to produce sulphuric and nitric acids; hence the pollutants responsible are sulphur dioxide and nitrous oxide, making option (d) correct. Other options list gases (CO, CO₂, O₃) that do not produce strong acids on dissolution in rainwater. ([licchavilyceum.com](https://licchavilyceum.com/upsc-prelims-2013-question-paper-solved/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 31,
+      "question_id": "UPSC_2013_GS1_Q31",
+      "question": "With reference to food chains in ecosystems, consider the following statements:\n1. A food chain illustrates the order in which a chain of organisms feed upon each other.\n2. Food chains are found within the populations of a species.\n3. A food chain illustrates the numbers of each organism which are eaten by others.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 2 only",
+        "c": "1, 2 and 3",
+        "d": "None"
+      },
+      "answer": "a",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Ecosystems & Ecology Concepts",
+      "difficulty": "moderate",
+      "explanation": "Statement 1 is true because a food chain is a linear sequence showing the order in which organisms feed on one another (producer → primary consumer → secondary consumer, etc.). Statements 2 and 3 are false: food chains link different species in a community, not members of the same population, and they do not depict the numbers of organisms (that is shown by pyramids of numbers/biomass). Therefore only statement 1 is correct. ([licchavilyceum.com](https://licchavilyceum.com/upsc-prelims-2013-question-paper-solved/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 32,
+      "question_id": "UPSC_2013_GS1_Q32",
+      "question": "Consider the following pairs:\nNational Park : River flowing through the Park\n1. Corbett National Park : Ganga\n2. Kaziranga National Park : Manas\n3. Silent Valley National Park : Kaveri\nWhich of the above pairs is/are correctly matched?",
+      "options": {
+        "a": "1 and 2",
+        "b": "3 only",
+        "c": "1 and 3",
+        "d": "None"
+      },
+      "answer": "d",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Protected Areas & Wildlife",
+      "difficulty": "moderate",
+      "explanation": "None of the given park–river pairs is right: Jim Corbett NP is traversed by the Ramganga (a tributary of the Ganga, not the main Ganga); Kaziranga NP lies along the Brahmaputra, not the Manas; Silent Valley NP is drained by the Kunthipuzha (a tributary of Bharathappuzha), not the Kaveri. Hence option (d) ‘None’ is correct. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-82/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 33,
+      "question_id": "UPSC_2013_GS1_Q33",
+      "question": "Consider the following organisms:\n1. Agaricus\n2. Nostoc\n3. Spirogyra\nWhich of the above is/are used as biofertilizer/biofertilizers?",
+      "options": {
+        "a": "1 and 2",
+        "b": "2 only",
+        "c": "2 and 3",
+        "d": "3 only"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Sustainable Agriculture & Forestry",
+      "difficulty": "moderate",
+      "explanation": "Nostoc is a nitrogen-fixing cyanobacterium widely used as a biofertilizer in paddy fields. Agaricus is an edible mushroom with no nitrogen-fixing ability, and Spirogyra is a green alga not employed as a biofertilizer. Therefore only organism 2 qualifies, making option (b) correct. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-83/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 34,
+      "question_id": "UPSC_2013_GS1_Q34",
+      "question": "Which of the following adds/add nitrogen to the soil?\n1. Excretion of urea by animals\n2. Burning of coal by man\n3. Death of vegetation\nSelect the correct answer using the codes given below.",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "c",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Biogeochemical Cycles & Earth Systems",
+      "difficulty": "moderate",
+      "explanation": "Nitrogen enters soil when animals excrete urea (which soil microbes hydrolyse to ammonia and then nitrates) and when vegetation dies and decomposes, returning organic nitrogen to the soil. Burning coal emits mainly CO₂, SO₂ and particulates; it does not directly contribute bioavailable nitrogen to soils, so statement 2 is incorrect. Thus statements 1 and 3 only are correct (option c). ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-84/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 35,
+      "question_id": "UPSC_2013_GS1_Q35",
+      "question": "In which of the following States is lion-tailed macaque found in its natural habitat?\n1. Tamil Nadu\n2. Kerala\n3. Karnataka\n4. Andhra Pradesh\nSelect the correct answer using the codes given below.",
+      "options": {
+        "a": "1, 2 and 3 only",
+        "b": "2 only",
+        "c": "1, 3 and 4 only",
+        "d": "1, 2, 3 and 4"
+      },
+      "answer": "a",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Biodiversity & Conservation",
+      "difficulty": "moderate",
+      "explanation": "The lion-tailed macaque (Macaca silenus) is endemic to the wet evergreen forests of the Western Ghats and occurs naturally in Tamil Nadu, Kerala and Karnataka, but not in Andhra Pradesh. Hence statements 1, 2 and 3 are correct while 4 is incorrect, making option (a) the right choice. ([cambridge.org](https://www.cambridge.org/core/journals/oryx/article/decline-of-the-endangered-liontailed-macaque-macaca-silenus-in-the-western-ghats-india/9DB9A593D828F129CEAE693D04F2F69B?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 36,
+      "question_id": "UPSC_2013_GS1_Q36",
+      "question": "Some Buddhist rock-cut caves are called Chaityas, while the others are called Viharas. What is the difference between the two?",
+      "options": {
+        "a": "Vihara is a place of worship, while Chaitya is the dwelling place of the monks",
+        "b": "Chaitya is a place of worship, while Vihara is the dwelling place of the monks",
+        "c": "Chaitya is the stupa at the far end of the cave, while Vihara is the hall axial to it",
+        "d": "There is no material difference between the two"
+      },
+      "answer": "b",
+      "subject": "Art & Culture",
+      "sub_topic": "Architecture & World Heritage",
+      "difficulty": "easy",
+      "explanation": "In Buddhist rock-cut architecture a Chaitya (chaitya-gṛha) is a barrel-roofed prayer hall that enshrines a stupa and is used for congregational worship, whereas a Vihara is the residential monastery where monks live and study. Therefore option (b) correctly distinguishes the two; the other options reverse or blur their functions. ([vaia.com](https://www.vaia.com/en-us/explanations/architecture/architectural-styles/buddhist-architecture/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 37,
+      "question_id": "UPSC_2013_GS1_Q37",
+      "question": "Which one of the following describes best the concept of Nirvana in Buddhism?",
+      "options": {
+        "a": "The extinction of the flame of desire",
+        "b": "The complete annihilation of self",
+        "c": "A state of bliss and rest",
+        "d": "A mental stage beyond all comprehension"
+      },
+      "answer": "a",
+      "subject": "Art & Culture",
+      "sub_topic": "Philosophy & Religion",
+      "difficulty": "easy",
+      "explanation": "The literal meaning of nirvāṇa is ‘blowing out/extinction’; doctrinally it is the extinguishing of the ‘three fires’ of craving, hatred and delusion—i.e., the flame of desire—bringing an end to suffering and rebirth. Option (a) expresses this most precisely, while the other options misrepresent or over-generalize the concept. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Nirvana_%28Buddhism%29?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 38,
+      "question_id": "UPSC_2013_GS1_Q38",
+      "question": "According to the Constitution of India, which of the following are fundamental for the governance of the country?",
+      "options": {
+        "a": "Fundamental Rights",
+        "b": "Fundamental Duties",
+        "c": "Directive Principles of State Policy",
+        "d": "Fundamental Rights and Fundamental Duties"
+      },
+      "answer": "c",
+      "subject": "Indian Polity",
+      "sub_topic": "Directive Principles Of State Policy",
+      "difficulty": "easy",
+      "explanation": "Article 37 declares that the Directive Principles of State Policy, though non-justiciable, are ‘fundamental to the governance of the country’ and must guide the State in law-making. Neither Fundamental Rights nor Fundamental Duties are described in these terms, so option (c) is correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Fundamental_Rights%2C_Directive_Principles_and_Fundamental_Duties_of_India?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 39,
+      "question_id": "UPSC_2013_GS1_Q39",
+      "question": "The people of India agitated against the arrival of Simon Commission because",
+      "options": {
+        "a": "Indians never wanted the review of the working of the Act of 1919",
+        "b": "Simon Commission recommended the abolition of Dyarchy in the Provinces",
+        "c": "there was no Indian member in the Simon Commission",
+        "d": "the Simon Commission suggested the partition of the country"
+      },
+      "answer": "c",
+      "subject": "Modern History",
+      "sub_topic": "Constitutional Developments & British Plans (1909-1947)",
+      "difficulty": "easy",
+      "explanation": "Nationalists boycotted and protested the 1928 Simon Commission because its seven members were all British; the exclusion of Indians from a body meant to decide India’s constitutional future was considered unacceptable. Thus the reason was that ‘there was no Indian member in the Simon Commission’ (option c). The other statements do not reflect the primary cause of the agitation. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Simon_Commission?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 40,
+      "question_id": "UPSC_2013_GS1_Q40",
+      "question": "Quit India Movement was launched in response to",
+      "options": {
+        "a": "Cabinet Mission Plan",
+        "b": "Cripps Proposals",
+        "c": "Simon Commission Report",
+        "d": "Wavell Plan"
+      },
+      "answer": "b",
+      "subject": "Modern History",
+      "sub_topic": "Gandhian Mass Movements (1915-1942)",
+      "difficulty": "easy",
+      "explanation": "The All-India Congress Committee gave the ‘Quit India’ call on 8 August 1942 immediately after rejecting Sir Stafford Cripps’ March 1942 constitutional proposals; the other plans listed (Simon Report 1929, Wavell Plan 1945, Cabinet Mission 1946) came in different years and were not the trigger. ([forumias.com](https://forumias.com/blog/download-upsc-prelim-2013-gs-paper-1-question-paper/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 41,
+      "question_id": "UPSC_2013_GS1_Q41",
+      "question": "The balance of payments of a country is a systematic record of",
+      "options": {
+        "a": "all import and export transactions of a country during a given period of time, normally a year",
+        "b": "goods exported from a country during a year",
+        "c": "economic transaction between the government of one country to another",
+        "d": "capital movements from one country to another"
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "External Sector & Balance Of Payments",
+      "difficulty": "easy",
+      "explanation": "UPSC’s official key treats the Balance of Payments as the systematic record of all a country’s import-export transactions over a year, making option (a) the best available choice. Options (b), (c) and (d) cover only a slice of BoP items (goods alone, only inter-governmental flows, or only capital flows) and are therefore incomplete. ([forumias.com](https://forumias.com/blog/download-upsc-prelim-2013-gs-paper-1-question-paper/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 42,
+      "question_id": "UPSC_2013_GS1_Q42",
+      "question": "The Reserve Bank of India regulates the commercial banks in matters of\n1. liquidity of assets\n2. branch expansion\n3. merger of banks\n4. winding-up of banks\nSelect the correct answer using the codes given below.",
+      "options": {
+        "a": "1 and 4 only",
+        "b": "2, 3 and 4 only",
+        "c": "1, 2 and 3 only",
+        "d": "1, 2, 3 and 4"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "Banking & Financial Sector",
+      "difficulty": "moderate",
+      "explanation": "Under the Banking Regulation Act 1949 the RBI: (i) controls banks’ liquidity through CRR/SLR, (ii) issues licences for branch expansion (s 22), (iii) must sanction any amalgamation or merger (s 44A, 45), and (iv) can seek moratoria or winding-up of a bank (s 45). Hence all four statements are correct and option (d) is right; any option omitting one of these powers is incorrect. ([forumias.com](https://forumias.com/blog/download-upsc-prelim-2013-gs-paper-1-question-paper/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 43,
+      "question_id": "UPSC_2013_GS1_Q43",
+      "question": "An increase in the Bank Rate generally indicates that the",
+      "options": {
+        "a": "market rate of interest is likely to fall",
+        "b": "Central Bank is no longer making loans to commercial banks",
+        "c": "Central Bank is following an easy-money policy",
+        "d": "Central Bank is following a tight-money policy"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "Monetary Policy & Money Supply",
+      "difficulty": "easy",
+      "explanation": "A rise in the Bank Rate is a contractionary signal: RBI lending to banks becomes dearer, squeezing credit and indicating a tight-money (restrictive) policy. The other options describe effects opposite to what actually happens. ([forumias.com](https://forumias.com/blog/download-upsc-prelim-2013-gs-paper-1-question-paper/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 44,
+      "question_id": "UPSC_2013_GS1_Q44",
+      "question": "In India, deficit financing is used for raising resources for",
+      "options": {
+        "a": "economic development",
+        "b": "redemption of public debt",
+        "c": "adjusting the balance of payments",
+        "d": "reducing the foreign debt"
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "Fiscal Policy & Budget",
+      "difficulty": "easy",
+      "explanation": "India has historically resorted to deficit financing—i.e., monetising part of the fiscal deficit—to obtain additional resources for Plan and other developmental expenditure; it is not aimed at paying off debt or external-sector adjustment. Thus option (a) is correct while the other purposes listed do not accord with Indian practice. ([forumias.com](https://forumias.com/blog/download-upsc-prelim-2013-gs-paper-1-question-paper/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 45,
+      "question_id": "UPSC_2013_GS1_Q45",
+      "question": "Which of the following characterizes/characterize the people of Indus Civilization?\n1. They possessed great palaces and temples.\n2. They worshipped both male and female deities.\n3. They employed horse-drawn chariots in warfare.\nSelect the correct statement/statements using the codes given below.",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 only",
+        "c": "1, 2 and 3",
+        "d": "None of the statements given above is correct"
+      },
+      "answer": "b",
+      "subject": "Ancient History",
+      "sub_topic": "Indus Valley Civilization",
+      "difficulty": "moderate",
+      "explanation": "Excavations show no evidence of large palaces or temples at Harappa-Mohenjo-daro, and no horse remains or chariots have been found, so Statements 1 and 3 are incorrect. Terracotta ‘mother-goddess’ figurines and the Pashupati seal indicate veneration of both female and male deities, making Statement 2 correct.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 46,
+      "question_id": "UPSC_2013_GS1_Q46",
+      "question": "Which of the following diseases can be transmitted from one person to another through tattooing?\n1. Chikungunya\n2. Hepatitis B\n3. HIV-AIDS\nSelect the correct answer using the codes given below.",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "b",
+      "subject": "Science & Technology",
+      "sub_topic": "Health & Diseases",
+      "difficulty": "easy",
+      "explanation": "Unsterile tattoo needles can transmit blood-borne pathogens such as Hepatitis B virus and HIV. Chikungunya, however, is an arboviral disease spread by Aedes mosquitoes, not by percutaneous blood contact, so only Statements 2 and 3 are correct.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 47,
+      "question_id": "UPSC_2013_GS1_Q47",
+      "question": "Which of the following statements is/are applicable to Jain doctrine?\n1. The surest way of annihilating Karma is to practice penance.\n2. Every object, even the smallest particle, has a soul.\n3. Karma is the bane of the soul and must be ended.\nSelect the correct answer using the codes given below.",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "d",
+      "subject": "Art & Culture",
+      "sub_topic": "Philosophy & Religion",
+      "difficulty": "moderate",
+      "explanation": "Jain philosophy teaches that karmic matter binds to the soul and must be destroyed (Statement 3); rigorous penance (tapas) is regarded as the most certain method to burn this karma (Statement 1); and it holds that even earth, water, fire, air and the minutest particles possess individual jīvas or souls (Statement 2). Hence all three statements are correct.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 48,
+      "question_id": "UPSC_2013_GS1_Q48",
+      "question": "Which one of the following terms describes not only the physical space occupied by an organism, but also its functional role in the community of organisms?",
+      "options": {
+        "a": "Ecotone",
+        "b": "Ecological niche",
+        "c": "Habitat",
+        "d": "Home range"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Ecosystems & Ecology Concepts",
+      "difficulty": "easy",
+      "explanation": "The ecological niche includes both the physical space an organism occupies and its functional role (resource use, interactions, trophic position) within the community; none of the other terms encompass both aspects.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 49,
+      "question_id": "UPSC_2013_GS1_Q49",
+      "question": "Photochemical smog is a resultant of the reaction among",
+      "options": {
+        "a": "NO₂, O₃ and peroxyacetyl nitrate in the presence of sunlight",
+        "b": "CO, O₂ and peroxyacetyl nitrate in the presence of sunlight",
+        "c": "CO, CO₂ and NO₂ at low temperature",
+        "d": "high concentration of NO₂, O₃ and CO in the evening"
+      },
+      "answer": "a",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Pollution & Waste Management",
+      "difficulty": "easy",
+      "explanation": "Photochemical smog forms when nitrogen dioxide (NO₂) reacts under intense sunlight producing ozone (O₃) and secondary pollutants like peroxyacetyl nitrate (PAN); their simultaneous presence typifies this smog variety, matching Option (a). Carbon monoxide or low-temperature conditions are not defining reactants for photochemical smog.",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 50,
+      "question_id": "UPSC_2013_GS1_Q50",
+      "question": "Consider the following minerals:\n1. Calcium\n2. Iron\n3. Sodium\nWhich of the minerals given above is/are required by human body for the contraction of muscles?",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Biology",
+      "difficulty": "easy",
+      "explanation": "Calcium ions bind to troponin to start the actin–myosin cross-bridge cycle; sodium ions generate the depolarising action potential that releases the calcium; iron (as a component of myoglobin and of oxidative-phosphorylation enzymes) supplies the oxygen-linked energy needed for repeated contractions. Hence all three minerals are required, making option (d) correct. ([upscprep.com](https://www.upscprep.com/upsc-prelims-gs-2013-question-paper-and-answer-key/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 51,
+      "question_id": "UPSC_2013_GS1_Q51",
+      "question": "Consider the following statements :\nThe Parliamentary Committee on Public Accounts\n1. consists of not more than 25 Members of the Lok Sabha\n2. scrutinizes appropriation and finance accounts of the Government\n3. examines the report of the Comptroller and Auditor General of India\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "b",
+      "subject": "Indian Polity",
+      "sub_topic": "Parliament & State Legislatures",
+      "difficulty": "moderate",
+      "explanation": "The Public Accounts Committee has a maximum strength of 22 members—15 elected from the Lok Sabha and not more than 7 from the Rajya Sabha—so statement 1 is wrong. Its primary functions are to scrutinise the Appropriation and Finance Accounts of the Government of India and to examine the reports of the Comptroller & Auditor General; statements 2 and 3 are therefore correct. Thus only 2 and 3 are correct (option b). ([en.wikipedia.org](https://en.wikipedia.org/wiki/Public_Accounts_Committee_%28India%29?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 52,
+      "question_id": "UPSC_2013_GS1_Q52",
+      "question": "Consider the following Bhakti Saints :\n1. Dadu Dayal\n2. Guru Nanak\n3. Tyagaraja\nWho among the above was/were preaching when the Lodi dynasty fell and Babur took over?",
+      "options": {
+        "a": "1 and 3",
+        "b": "2 only",
+        "c": "2 and 3",
+        "d": "1 and 2"
+      },
+      "answer": "b",
+      "subject": "Medieval History",
+      "sub_topic": "Bhakti Movement",
+      "difficulty": "moderate",
+      "explanation": "The Lodi dynasty fell and Babur established Mughal rule in 1526. Guru Nanak (1469-1539) was alive and preaching during this period, whereas Dadu Dayal was born later in 1544 and Tyagaraja much later in 1767. Therefore only Guru Nanak fits the time-frame, making option (b) correct. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Guru_Nanak?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 53,
+      "question_id": "UPSC_2013_GS1_Q53",
+      "question": "With reference to the food chains in ecosystems, which of the following kinds of organism is/are known as decomposer organism/organisms?\n1. Virus\n2. Fungi\n3. Bacteria\nSelect the correct answer using the codes given below.",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "b",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Ecosystems & Ecology Concepts",
+      "difficulty": "easy",
+      "explanation": "Decomposers are chiefly saprophytic bacteria and fungi that break down organic matter; viruses are obligate intracellular parasites and do not perform saprophytic decomposition. Hence only statements 2 and 3 are correct (option b). ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-3/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 54,
+      "question_id": "UPSC_2013_GS1_Q54",
+      "question": "The most important fishing grounds of the world are found in the regions where",
+      "options": {
+        "a": "warm and cold atmospheric currents meet",
+        "b": "rivers drain out large amounts of freshwater into the sea",
+        "c": "warm and cold oceanic currents meet",
+        "d": "continental shelf is undulating"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "Oceanography",
+      "difficulty": "moderate",
+      "explanation": "The richest marine fishing grounds (e.g., the Grand Banks of Newfoundland, the Agulhas Bank) occur where warm and cold oceanic currents converge, causing upwelling of nutrient-rich waters that support abundant plankton and fish. Therefore option (c) is correct; the other conditions are secondary or localised. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Grand_Banks_of_Newfoundland?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 55,
+      "question_id": "UPSC_2013_GS1_Q55",
+      "question": "Which of the following is/are unique characteristic/characteristics of equatorial forests?\n1. Presence of tall, closely set trees with crowns forming a continuous canopy\n2. Coexistence of a large number of species\n3. Presence of numerous varieties of epiphytes\nSelect the correct answer using the codes given below.",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "d",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Ecosystems & Ecology Concepts",
+      "difficulty": "moderate",
+      "explanation": "All three statements describe classic features of equatorial (tropical-rain) forests: (1) very tall, densely spaced trees whose interlocking crowns create an almost unbroken canopy; (2) extremely high biodiversity with many species co-existing; and (3) abundant epiphytes such as orchids and ferns that grow on tree trunks and branches. Hence 1, 2 and 3 are correct. ([aiduva.com](https://aiduva.com/upsc/equatorial-forests-characteristics-canopy-epiphytes-prelims-2013/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 56,
+      "question_id": "UPSC_2013_GS1_Q56",
+      "question": "Which of the following constitute Capital Account?\n1. Foreign Loans\n2. Foreign Direct Investment\n3. Private Remittances\n4. Portfolio Investment\nSelect the correct answer using the codes given below.",
+      "options": {
+        "a": "1, 2 and 3",
+        "b": "1, 2 and 4",
+        "c": "2, 3 and 4",
+        "d": "1, 3 and 4"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "External Sector & Balance Of Payments",
+      "difficulty": "moderate",
+      "explanation": "The capital account records transactions that change a country’s asset-liability position. Foreign loans (external borrowing), Foreign Direct Investment (FDI) and Portfolio Investment are capital inflows/outflows, so 1, 2 and 4 belong to the capital account. Private remittances are current-account (transfer) items, so statement 3 is NOT part of the capital account. Therefore the correct set is 1-2-4. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-5/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 57,
+      "question_id": "UPSC_2013_GS1_Q57",
+      "question": "Consider the following historical places :\n1. Ajanta Caves\n2. Lepakshi Temple\n3. Sanchi Stupa\nWhich of the above places is/are also known for mural paintings?",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 2 only",
+        "c": "1, 2 and 3",
+        "d": "None"
+      },
+      "answer": "b",
+      "subject": "Art & Culture",
+      "sub_topic": "Painting & Visual Arts",
+      "difficulty": "moderate",
+      "explanation": "Ajanta caves are famous for 2nd century BCE–5th century CE Buddhist murals, and the Lepakshi Veerabhadra temple (Andhra Pradesh) contains 16th-century Vijayanagara murals. Sanchi Stupa is noted for stone sculptures and gateways, not wall paintings. Hence only 1 and 2 have mural paintings. ([studyadda.com](https://www.studyadda.com/solved-papers/solved-paper-general-studies-2013_q66/773/355687?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 58,
+      "question_id": "UPSC_2013_GS1_Q58",
+      "question": "With reference to the history of philosophical thought in India, consider the following statements regarding Sankhya school :\n1. Sankhya does not accept the theory of rebirth or transmigration of soul.\n2. Sankhya holds that it is the self-knowledge that leads to liberation and not any exterior influence or agent.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "b",
+      "subject": "Art & Culture",
+      "sub_topic": "Philosophy & Religion",
+      "difficulty": "moderate",
+      "explanation": "Sankhya, while atheistic, accepts the karma doctrine and thus the cyclic transmigration of the soul; statement 1 is incorrect. It teaches that discrimination between Purusha (consciousness) and Prakriti (matter) — i.e., self-knowledge — alone brings liberation, without the help of an external deity; statement 2 is correct. Hence only statement 2 is right. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-7/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 59,
+      "question_id": "UPSC_2013_GS1_Q59",
+      "question": "In the context of India, which of the following principles is/are implied institutionally in the parliamentary government?\n1. Members of the Cabinet are Members of the Parliament.\n2. Ministers hold the office till they enjoy confidence in the Parliament.\n3. Cabinet is headed by the Head of the State.\nSelect the correct answer using the codes given below.",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "3 only",
+        "c": "2 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "a",
+      "subject": "Indian Polity",
+      "sub_topic": "Parliament & State Legislatures",
+      "difficulty": "easy",
+      "explanation": "In India’s parliamentary model: (1) Ministers (including Cabinet) must be or become Members of Parliament; (2) they remain in office only while they enjoy the confidence of the Lok Sabha (collective responsibility). The Cabinet is headed by the Prime Minister (Head of Government), not by the President (Head of State), so statement 3 is wrong. Thus only 1 and 2 are implied institutionally. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-8/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 60,
+      "question_id": "UPSC_2013_GS1_Q60",
+      "question": "The annual range of temperature in the interior of the continents is high as compared to coastal areas. What is/are the reason/reasons?\n1. Thermal difference between land and water\n2. Variation in altitude between continents and oceans\n3. Presence of strong winds in the interior\n4. Heavy rains in the interior as compared to coasts\nSelect the correct answer using the codes given below.",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 2 only",
+        "c": "2 and 3 only",
+        "d": "1, 2, 3 and 4"
+      },
+      "answer": "a",
+      "subject": "Geography",
+      "sub_topic": "Atmosphere & Climatology",
+      "difficulty": "moderate",
+      "explanation": "Interiors lack the moderating influence of the sea; land heats and cools much faster than water, so the thermal contrast between land and ocean (statement 1) produces greater summer–winter extremes. Altitude differences, strong interior winds and heavier interior rain have no systematic effect on the annual temperature range, so statements 2, 3 and 4 are incorrect. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-9/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 61,
+      "question_id": "UPSC_2013_GS1_Q61",
+      "question": "Which of the following is/are the characteristic/characteristics of Indian coal?\n1. High ash content\n2. Low sulphur content\n3. Low ash fusion temperature\nSelect the correct answer using the codes given below.",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "a",
+      "subject": "Geography",
+      "sub_topic": "Economic & Mineral Geography",
+      "difficulty": "moderate",
+      "explanation": "Most Indian Gondwana coal has high ash (20-40 %) and generally low sulphur (<1 %), but its ash-fusion temperature is comparatively high, not low, so statement 3 is wrong. Hence only statements 1 and 2 are correct. ([rishiupsc.com](https://rishiupsc.com/2013-prelims-question-paper-with-answers/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 62,
+      "question_id": "UPSC_2013_GS1_Q62",
+      "question": "Which of the following statements regarding laterite soils of India are correct?\n1. They are generally red in colour.\n2. They are rich in nitrogen and potash.\n3. They are well-developed in Rajasthan and UP.\n4. Tapioca and cashew nuts grow well on these soils.\nSelect the correct answer using the codes given below.",
+      "options": {
+        "a": "1, 2 and 3",
+        "b": "2, 3 and 4",
+        "c": "1 and 4",
+        "d": "2 and 3 only"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "Indian Agriculture & Land Use",
+      "difficulty": "moderate",
+      "explanation": "Laterite soils form under intense leaching; they are characteristically red-brick in colour (statement 1) and support crops like tapioca and cashew (statement 4). They are poor in nitrogen and potash and are concentrated in humid peninsular belts—not in arid Rajasthan or the Indo-Gangetic plains—so statements 2 and 3 are incorrect. ([rishiupsc.com](https://rishiupsc.com/2013-prelims-question-paper-with-answers/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 63,
+      "question_id": "UPSC_2013_GS1_Q63",
+      "question": "Consider the following statements :\n1. Natural gas occurs in the Gondwana beds.\n2. Mica occurs in abundance in Kodarma.\n3. Dharwars are famous for petroleum.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 and 2",
+        "b": "2 only",
+        "c": "2 and 3",
+        "d": "None"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "Economic & Mineral Geography",
+      "difficulty": "easy",
+      "explanation": "Kodarma (Jharkhand) is famous for large mica deposits (statement 2 correct). Natural gas is associated mainly with Tertiary sedimentary basins, not the Gondwana beds, and the ancient Dharwar cratons are rich in iron ore and gold—not petroleum—so statements 1 and 3 are incorrect. ([rishiupsc.com](https://rishiupsc.com/2013-prelims-question-paper-with-answers/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 64,
+      "question_id": "UPSC_2013_GS1_Q64",
+      "question": "Consider the following crops :\n1. Cotton\n2. Groundnut\n3. Rice\n4. Wheat\nWhich of these are Kharif crops?",
+      "options": {
+        "a": "1 and 4",
+        "b": "2 and 3 only",
+        "c": "1, 2 and 3",
+        "d": "2, 3 and 4"
+      },
+      "answer": "c",
+      "subject": "Geography",
+      "sub_topic": "Indian Agriculture & Land Use",
+      "difficulty": "easy",
+      "explanation": "Kharif (monsoon-sown) crops in India include cotton, groundnut and rice; wheat is a winter-sown rabi crop. Therefore statements 1, 2 and 3 identify Kharif crops, while statement 4 does not. ([rishiupsc.com](https://rishiupsc.com/2013-prelims-question-paper-with-answers/))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 65,
+      "question_id": "UPSC_2013_GS1_Q65",
+      "question": "“Climate is extreme, rainfall is scanty and the people used to be nomadic herders.”\nThe above statement best describes which of the following regions?",
+      "options": {
+        "a": "African Savannah",
+        "b": "Central Asian Steppe",
+        "c": "North American Prairie",
+        "d": "Siberian Tundra"
+      },
+      "answer": "b",
+      "subject": "Geography",
+      "sub_topic": "Atmosphere & Climatology",
+      "difficulty": "moderate",
+      "explanation": "The Central Asian Steppe is noted for a continental climate with very hot summers, bitterly cold winters, and scanty semi-arid rainfall; traditional livelihoods were nomadic pastoralism (Kazakh, Mongol, Kirghiz herders). African savannah and North-American prairies receive higher seasonal rainfall, while the Siberian tundra is an icy permafrost region, not a grassland suited to large-scale nomadic grazing. ([forumias.com](https://forumias.com/blog/page/download-upsc-prelim-2013-gs-paper-1-question-paper?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 66,
+      "question_id": "UPSC_2013_GS1_Q66",
+      "question": "Consider the following statements :\n1. Inflation benefits the debtors.\n2. Inflation benefits the bond-holders.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "Inflation & Price Indices",
+      "difficulty": "easy",
+      "explanation": "When prices rise, the real value of money falls; debtors repay fixed-rupee loans with ‘cheaper’ money and thus gain, whereas bond-holders (creditors receiving fixed nominal coupons) see the real value of their interest and principal shrink and therefore lose. Hence only statement 1 is correct. ([studyadda.com](https://www.studyadda.com/solved-papers/solved-paper-general-studies-2013_q66/773/355696?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 67,
+      "question_id": "UPSC_2013_GS1_Q67",
+      "question": "Disguised unemployment generally means",
+      "options": {
+        "a": "large number of people remain unemployed",
+        "b": "alternative employment is not available",
+        "c": "marginal productivity of labour is zero",
+        "d": "productivity of workers is low"
+      },
+      "answer": "c",
+      "subject": "Indian Economy",
+      "sub_topic": "Human Development, Poverty & Employment Schemes",
+      "difficulty": "easy",
+      "explanation": "Disguised unemployment exists when additional workers add nothing to output; the marginal productivity of labour is zero. Options (a), (b) and (d) describe symptoms but not the defining economic criterion. ([forumias.com](https://forumias.com/blog/page/download-upsc-prelim-2013-gs-paper-1-question-paper?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 68,
+      "question_id": "UPSC_2013_GS1_Q68",
+      "question": "Consider the following statements :\n1. The Council of Ministers in the Centre shall be collectively responsible to the Parliament.\n2. The Union Ministers shall hold the office during the pleasure of the President of India.\n3. The Prime Minister shall communicate to the President about the proposals for legislation.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "b",
+      "subject": "Indian Polity",
+      "sub_topic": "Union & State Executive",
+      "difficulty": "moderate",
+      "explanation": "Article 75(3) makes the Council of Ministers collectively responsible to the Lok Sabha, not to Parliament as a whole, so statement 1 is wrong. Article 75(2) says ministers hold office ‘during the pleasure of the President’ (statement 2 correct). Article 78(c) obliges the Prime Minister to keep the President informed about legislative proposals (statement 3 correct). Therefore only 2 and 3 are correct. ([forumias.com](https://forumias.com/blog/page/download-upsc-prelim-2013-gs-paper-1-question-paper?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 69,
+      "question_id": "UPSC_2013_GS1_Q69",
+      "question": "Consider the following statements:\n1. National Development Council is an organ of the Planning Commission.\n2. The Economic and Social Planning is kept in the Concurrent List in the Constitution of India.\n3. The Constitution of India prescribes that Panchayats should be assigned the task of preparation of plans for economic development and social justice.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "b",
+      "subject": "Indian Polity",
+      "sub_topic": "Local Government & Panchayati Raj",
+      "difficulty": "moderate",
+      "explanation": "The National Development Council is an advisory body and is not an internal organ of the erstwhile Planning Commission, so statement 1 is incorrect. ‘Economic and Social Planning’ appears as Entry 20 of the Concurrent List (Seventh Schedule), making statement 2 correct. Article 243G directs that Panchayats be endowed with powers to prepare plans for economic development and social justice, so statement 3 is correct. Hence statements 2 and 3 only. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-18/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 70,
+      "question_id": "UPSC_2013_GS1_Q70",
+      "question": "Consider the following statements:\n1. The Chairman and the Deputy Chairman of the Rajya Sabha are not the members of that House.\n2. While the nominated members of the two Houses of the Parliament have no voting right in the presidential election, they have the right to vote in the election of the Vice President.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "b",
+      "subject": "Indian Polity",
+      "sub_topic": "Parliament & State Legislatures",
+      "difficulty": "moderate",
+      "explanation": "The Vice-President, who is ex-officio Chairman of the Rajya Sabha, is **not** a member of either House, but the Deputy-Chairman is elected *from among* the sitting members of the Rajya Sabha; hence Statement 1 is wrong. Nominated members of both Houses are excluded from the electoral college for the President, yet they do vote for the Vice-President, so Statement 2 is correct. Therefore only statement 2 is right. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-19/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 71,
+      "question_id": "UPSC_2013_GS1_Q71",
+      "question": "With reference to National Legal Services Authority, consider the following statements:\n1. Its objective is to provide free and competent legal services to the weaker sections of the society on the basis of equal opportunity.\n2. It issues guidelines for the State Legal Services Authorities to implement the legal programmes and schemes throughout the country.\nWhich of the statements given above is/are correct?",
+      "options": {
+        "a": "1 only",
+        "b": "2 only",
+        "c": "Both 1 and 2",
+        "d": "Neither 1 nor 2"
+      },
+      "answer": "c",
+      "subject": "Indian Polity",
+      "sub_topic": "Judiciary",
+      "difficulty": "moderate",
+      "explanation": "NALSA, created under the Legal Services Authorities Act 1987, pursues the mandate of Article 39-A by providing *free and competent legal services* to weaker sections (Statement 1). As the apex body, it frames policies and *issues guidelines to State Legal Services Authorities* for implementing legal‐aid schemes across India (Statement 2). Both statements are therefore correct. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-paper-with-answer-key-general-studies-paper-1/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 72,
+      "question_id": "UPSC_2013_GS1_Q72",
+      "question": "During a thunderstorm, the thunder in the skies is produced by the\n1. meeting of cumulonimbus clouds in the sky\n2. lightning that separates the nimbus clouds\n3. violent upward movement of air and water particles\nSelect the correct answer using the codes given below.",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3",
+        "c": "1 and 3",
+        "d": "None of the above produces the thunder"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "Atmosphere & Climatology",
+      "difficulty": "moderate",
+      "explanation": "Thunder is the sound wave produced by the *sudden, explosive expansion of air* that is super-heated by a lightning discharge; it is **not** caused directly by cloud collisions, by lightning “separating nimbus clouds”, or by the mere upward rush of air and water droplets listed in the statements. Hence none of the three statements explains the production of thunder. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Thunder?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 73,
+      "question_id": "UPSC_2013_GS1_Q73",
+      "question": "Consider the following pairs:\nTribe               State\n1. Limboo (Limbu) : Sikkim\n2. Karbi           : Himachal Pradesh\n3. Dongaria Kondh  : Odisha\n4. Bonda           : Tamil Nadu\nWhich of the above pairs are correctly matched?",
+      "options": {
+        "a": "1 and 3 only",
+        "b": "2 and 4 only",
+        "c": "1, 3 and 4 only",
+        "d": "1, 2, 3 and 4"
+      },
+      "answer": "a",
+      "subject": "Art & Culture",
+      "sub_topic": "Tribes & Communities",
+      "difficulty": "moderate",
+      "explanation": "The Limboo (Limbu) people are recognized in Sikkim, and the Dongaria Kondh inhabit the Niyamgiri hills of Odisha—both pairs are correct. Karbi are a major tribe of Assam, not Himachal Pradesh; the Bonda (or Bondo) reside in Malkangiri district of Odisha, not Tamil Nadu. Thus only pairs 1 and 3 are correctly matched. ([rishiupsc.com](https://rishiupsc.com/2013-prelims-question-paper-with-answers/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 74,
+      "question_id": "UPSC_2013_GS1_Q74",
+      "question": "Consider the following liquid assets:\n1. Demand deposits with the banks\n2. Time deposits with the banks\n3. Savings deposits with the banks\n4. Currency\nThe correct sequence of these assets in the decreasing order of liquidity is",
+      "options": {
+        "a": "1–4–3–2",
+        "b": "4–3–2–1",
+        "c": "2–3–1–4",
+        "d": "4–1–3–2"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "Monetary Policy & Money Supply",
+      "difficulty": "moderate",
+      "explanation": "Liquidity falls as the ease of immediate cash conversion decreases: (1) currency is itself cash; (2) demand deposits can be withdrawn on demand; (3) savings deposits require minimal notice and are less liquid; (4) time deposits are locked in until maturity. Hence the decreasing-liquidity order is Currency → Demand Deposits → Savings Deposits → Time Deposits, i.e., 4-1-3-2. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-24/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 75,
+      "question_id": "UPSC_2013_GS1_Q75",
+      "question": "In the context of Indian economy, ‘Open Market Operations’ refers to",
+      "options": {
+        "a": "borrowing by scheduled banks from the RBI",
+        "b": "lending by commercial banks to industry and trade",
+        "c": "purchase and sale of government securities by the RBI",
+        "d": "None of the above"
+      },
+      "answer": "c",
+      "subject": "Indian Economy",
+      "sub_topic": "Monetary Policy & Money Supply",
+      "difficulty": "easy",
+      "explanation": "Open Market Operations (OMOs) are a monetary-policy instrument in which the Reserve Bank of India buys or sells Government securities in the open market to inject or absorb liquidity. They are not about RBI borrowing from banks or banks’ commercial lending. ([rbi.org.in](https://www.rbi.org.in/scripts/BS_SpeechesView.aspx?Id=234&utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 76,
+      "question_id": "UPSC_2013_GS1_Q76",
+      "question": "Priority Sector Lending by banks in India constitutes the lending to",
+      "options": {
+        "a": "agriculture",
+        "b": "micro and small enterprises",
+        "c": "weaker sections",
+        "d": "All of the above"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "Banking & Financial Sector",
+      "difficulty": "easy",
+      "explanation": "RBI guidelines list agriculture, micro & small enterprises (now MSMEs) and loans to weaker sections among the broad categories that qualify as priority-sector advances; hence lending to any of these falls under PSL, making “All of the above” correct. ([rbi.org.in](https://www.rbi.org.in/scripts/AboutUsDisplay.aspx?pg=RuralPaCDept.htm&utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 77,
+      "question_id": "UPSC_2013_GS1_Q77",
+      "question": "Which one among the following industries is the maximum consumer of water in India?",
+      "options": {
+        "a": "Engineering",
+        "b": "Paper and pulp",
+        "c": "Textiles",
+        "d": "Thermal power"
+      },
+      "answer": "d",
+      "subject": "Geography",
+      "sub_topic": "Economic & Mineral Geography",
+      "difficulty": "moderate",
+      "explanation": "Studies of industrial water demand show that thermal-power plants, which employ large wet-cooling systems, account for the bulk of industrial freshwater withdrawal in India, far exceeding sectors such as textiles, paper–pulp or engineering. ([indiawaterportal.org](https://www.indiawaterportal.org/health-and-sanitation/sanitation/thermal-power-plants-indias-biggest-water-guzzling-industry?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 78,
+      "question_id": "UPSC_2013_GS1_Q78",
+      "question": "To obtain full benefits of demographic dividend, what should India do?",
+      "options": {
+        "a": "Promoting skill development",
+        "b": "Introducing more social-security schemes",
+        "c": "Reducing infant mortality rate",
+        "d": "Privatization of higher education"
+      },
+      "answer": "a",
+      "subject": "Indian Economy",
+      "sub_topic": "Human Development, Poverty & Employment Schemes",
+      "difficulty": "moderate",
+      "explanation": "A demographic dividend converts a large working-age cohort into higher growth only if the labour force is productively employed; international and Indian policy analyses emphasise large-scale skill development and education as the essential prerequisite, whereas merely adding social-security schemes, lowering infant mortality, or privatising higher education does not directly create employable skills. ([worldbank.org](https://www.worldbank.org/en/news/press-release/2025/02/28/india-accelerated-reforms-needed-to-speed-up-growth-and-achieve-high-income-status-by-2047?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 79,
+      "question_id": "UPSC_2013_GS1_Q79",
+      "question": "In the context of cultural history of India, a pose in dance and dramatics called ‘Tribhanga’ has been a favourite of Indian artists from ancient times till today. Which one of the following statements best describes this pose?",
+      "options": {
+        "a": "One leg is bent and the body is slightly but oppositely curved at waist and neck",
+        "b": "Facial expressions, hand gestures and make-up are combined to symbolize certain epic or historic characters",
+        "c": "Movements of body, face and hands are used to express oneself or to tell a story",
+        "d": "A little smile, slightly curved waist and certain hand gestures are emphasized to express the feelings of love or eroticism"
+      },
+      "answer": "a",
+      "subject": "Art & Culture",
+      "sub_topic": "Classical Dance Forms",
+      "difficulty": "easy",
+      "explanation": "Tribhanga (\"three-bend\") is a graceful stance where one leg is bent and the body bends in opposite directions at the knee, waist and neck, creating an S-shaped curve; this matches option (a). Other options describe generic abhinaya or lasya elements, not the structural pose. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Tribhanga?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 80,
+      "question_id": "UPSC_2013_GS1_Q80",
+      "question": "Annie Besant was\n1. responsible for starting the Home Rule Movement\n2. the founder of the Theosophical Society\n3. once the President of the Indian National Congress\nSelect the correct statement/statements using the codes given below.",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "c",
+      "subject": "Modern History",
+      "sub_topic": "Early Nationalism & Indian National Congress (1885-1915)",
+      "difficulty": "moderate",
+      "explanation": "Annie Besant co-launched the Home Rule League in 1916 (so statement 1 is correct) and presided over the Calcutta session of the Congress in 1917, becoming its first woman president (statement 3 correct). The Theosophical Society, however, was founded in New York in 1875 by H. P. Blavatsky and H. S. Olcott; Besant joined later, so statement 2 is wrong. Hence only 1 and 3 are correct (option c). ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-30/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 81,
+      "question_id": "UPSC_2013_GS1_Q81",
+      "question": "The Ilbert Bill controversy was related to the",
+      "options": {
+        "a": "imposition of certain restrictions to carry arms by the Indians",
+        "b": "imposition of restrictions on newspapers and magazines published in Indian languages",
+        "c": "removal of disqualifications imposed on the Indian magistrates with regard to the trial of the Europeans",
+        "d": "removal of a duty on imported cotton cloth"
+      },
+      "answer": "c",
+      "subject": "Modern History",
+      "sub_topic": "British Administration & Economic Policies",
+      "difficulty": "easy",
+      "explanation": "The Ilbert Bill sought to remove the legal disqualification that prevented Indian District and Sessions Judges from trying European British subjects; the controversy arose from European opposition to being tried by Indian magistrates. Therefore option (c) correctly describes the issue. ([iasgyan.in](https://www.iasgyan.in/prelims-previous-year-papers/upsc-modern-history-pyqs-2014-25-with-solved-answers?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 82,
+      "question_id": "UPSC_2013_GS1_Q82",
+      "question": "A rise in general level of prices may be caused by\n1. an increase in the money supply\n2. a decrease in the aggregate level of output\n3. an increase in the effective demand\nSelect the correct answer using the codes given below.",
+      "options": {
+        "a": "1 only",
+        "b": "1 and 2 only",
+        "c": "2 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "Inflation & Price Indices",
+      "difficulty": "easy",
+      "explanation": "Inflation can arise when (1) the money supply expands-demand-pull inflation, (2) aggregate output falls so fewer goods chase the same money—supply-side (cost-push) inflation, and (3) effective (aggregate) demand rises faster than supply. All three listed factors can therefore raise the general price level, making option (d) correct. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-32/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 83,
+      "question_id": "UPSC_2013_GS1_Q83",
+      "question": "Which one of the following groups of items is included in India’s foreign-exchange reserves?",
+      "options": {
+        "a": "Foreign-currency assets, Special Drawing Rights (SDRs) and loans from foreign countries",
+        "b": "Foreign-currency assets, gold holdings of the RBI and SDRs",
+        "c": "Foreign-currency assets, loans from the World Bank and SDRs",
+        "d": "Foreign-currency assets, gold holdings of the RBI and loans from the World Bank"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "External Sector & Balance Of Payments",
+      "difficulty": "easy",
+      "explanation": "India’s forex reserves, managed by the RBI, comprise (i) foreign-currency assets, (ii) gold holdings of the RBI and (iii) Special Drawing Rights (SDRs) along with the IMF reserve tranche. Loans from foreign countries or the World Bank are not part of reserves. Thus the grouping in option (b) is correct. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-33/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 84,
+      "question_id": "UPSC_2013_GS1_Q84",
+      "question": "Which one of the following is likely to be the most inflationary in its effect?",
+      "options": {
+        "a": "Repayment of public debt",
+        "b": "Borrowing from the public to finance a budget deficit",
+        "c": "Borrowing from banks to finance a budget deficit",
+        "d": "Creating new money to finance a budget deficit"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "Fiscal Policy & Budget",
+      "difficulty": "moderate",
+      "explanation": "Financing a budget deficit by creating new money (monetisation) directly increases the money supply without a corresponding rise in output, making it the most inflationary method. Repaying debt or borrowing from the public/banks either leaves money supply unchanged or even contracts private liquidity in the short run, so they are less inflationary. Hence option (d) is the most inflationary. ([compass.rauias.com](https://compass.rauias.com/upsc-prelims/economy-pyq/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 85,
+      "question_id": "UPSC_2013_GS1_Q85",
+      "question": "Supply of money remaining the same when there is an increase in demand for money, there will be",
+      "options": {
+        "a": "a fall in the level of prices",
+        "b": "an increase in the rate of interest",
+        "c": "a decrease in the rate of interest",
+        "d": "an increase in the level of income and employment"
+      },
+      "answer": "b",
+      "subject": "Indian Economy",
+      "sub_topic": "Monetary Policy & Money Supply",
+      "difficulty": "moderate",
+      "explanation": "With the quantity of money fixed, an increase in the public’s desire to hold money creates an excess demand for money balances. The adjustment comes through a rise in the market rate of interest, which rations the now-scarcer liquidity until money demand again equals supply. Keynesian and modern IS–LM presentations therefore show the interest rate moving up when money demand shifts right, exactly as stated in option (b). ([britannica.com](https://www.britannica.com/money/economic-stabilizer/Interest-rate-policy?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 86,
+      "question_id": "UPSC_2013_GS1_Q86",
+      "question": "Fruits stored in a cold chamber exhibit longer storage life because",
+      "options": {
+        "a": "exposure to sunlight is prevented",
+        "b": "concentration of carbon dioxide in the environment is increased",
+        "c": "rate of respiration is decreased",
+        "d": "there is an increase in humidity"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Biology",
+      "difficulty": "easy",
+      "explanation": "Refrigerated (cold-storage) conditions slow the biochemical respiration of harvested fruits, delaying ripening, senescence and microbial spoilage, and thereby extending shelf-life. Preventing sunlight, raising CO₂ or humidity can have additional effects, but the primary, universally exploited mechanism is the temperature-induced reduction of the respiration rate. Hence option (c) alone gives the fundamental reason. ([britannica.com](https://www.britannica.com/topic/fruit-processing/Maturation-and-spoilage?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 87,
+      "question_id": "UPSC_2013_GS1_Q87",
+      "question": "Consider the following fauna of India:\n1. Gharial\n2. Leatherback turtle\n3. Swamp deer\nWhich of the above is/are endangered?",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "3 only",
+        "c": "1, 2 and 3",
+        "d": "None"
+      },
+      "answer": "c",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Biodiversity & Conservation",
+      "difficulty": "easy",
+      "explanation": "The gharial is listed as Critically Endangered, the leatherback turtle as Endangered in Indian waters, and the swamp deer (barasingha) as Vulnerable; UPSC treated all three threatened categories as ‘endangered’ for the purpose of the question. Consequently the official key marks option (c) (1, 2 and 3) correct. ([dailyo.in](https://www.dailyo.in/amp/variety/upsc-civil-services-exam-prelims-mains-answer-key-general-studies-ambiguous-questions-18680?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 88,
+      "question_id": "UPSC_2013_GS1_Q88",
+      "question": "Ball bearings are used in bicycles, cars, etc., because",
+      "options": {
+        "a": "the actual area of contact between the wheel and axle is increased",
+        "b": "the effective area of contact between the wheel and axle is increased",
+        "c": "the effective area of contact between the wheel and axle is reduced",
+        "d": "None of the above statements is correct"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Physics",
+      "difficulty": "easy",
+      "explanation": "Ball bearings place hard steel balls between the wheel and axle so that the members roll over one another; rolling friction involves only small point contacts whose area is far smaller than the sliding contact in a plain bearing. The drastic reduction in the effective area of contact lowers frictional resistance, which is why option (c) is correct. ([britannica.com](https://www.britannica.com/science/rolling-friction?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 89,
+      "question_id": "UPSC_2013_GS1_Q89",
+      "question": "Consider the following phenomena:\n1. Size of the sun at dusk\n2. Colour of the sun at dawn\n3. Moon being visible at dawn\n4. Twinkle of stars in the sky\n5. Polestar being visible in the sky\nWhich of the above are optical illusions?",
+      "options": {
+        "a": "1, 2 and 3",
+        "b": "3, 4 and 5",
+        "c": "1, 2 and 4",
+        "d": "2, 3 and 5"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Physics",
+      "difficulty": "moderate",
+      "explanation": "1 The apparent larger size of the Sun (or Moon) near the horizon is a classic perceptual illusion. 2 The reddish colour of the Sun at dawn results from Rayleigh scattering along a long atmospheric path and is likewise a visual effect. 4 Stars ‘twinkle’ because atmospheric turbulence refracts their light rapidly, an illusion called scintillation. Moon-visibility at dawn and the fixed Pole Star are real positional phenomena, so only statements 1, 2 and 4 are optical illusions, matching option (c). ([britannica.com](https://www.britannica.com/topic/illusion/Optical-phenomena?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 90,
+      "question_id": "UPSC_2013_GS1_Q90",
+      "question": "Rainbow is produced when sunlight falls on drops of rain. Which of the following physical phenomena are responsible for this?\n1. Dispersion\n2. Refraction\n3. Internal reflection\nSelect the correct answer using the codes given below.",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "d",
+      "subject": "Science & Technology",
+      "sub_topic": "Physics",
+      "difficulty": "easy",
+      "explanation": "A rainbow forms when sunlight enters a raindrop, is refracted and dispersed into its component colours, undergoes one internal reflection from the back surface of the drop, and is finally refracted again on exiting; thus dispersion, refraction and internal reflection all operate together. Hence all three listed phenomena are involved. ([mrunal.org](https://mrunal.org/2013/06/answerkey-csat-2013-gs-science-physics-biology-questions-solved-with-explanation-reference-all-four-sets-abcd.html?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 91,
+      "question_id": "UPSC_2013_GS1_Q91",
+      "question": "Many transplanted seedlings do not grow because",
+      "options": {
+        "a": "the new soil does not contain favourable minerals",
+        "b": "most of the root hairs grip the new soil too hard",
+        "c": "most of the root hairs are lost during transplantation",
+        "d": "leaves get damaged during transplantation"
+      },
+      "answer": "c",
+      "subject": "Science & Technology",
+      "sub_topic": "Biology",
+      "difficulty": "easy",
+      "explanation": "During transplantation the delicate, single-celled root hairs that absorb nearly all water and minerals are torn off; without these hairs the seedling cannot take up enough water and often wilts or dies. Mineral content of new soil or leaf damage are secondary and root hairs do not ‘grip’ new soil too hard; loss of root hairs is the primary cause. ([aiduva.com](https://aiduva.com/upsc/transplanted-seedlings-failure-root-hair-loss-prelims-2013?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 92,
+      "question_id": "UPSC_2013_GS1_Q92",
+      "question": "Economic growth in country X will necessarily have to occur if",
+      "options": {
+        "a": "there is technical progress in the world economy",
+        "b": "there is population growth in X",
+        "c": "there is capital formation in X",
+        "d": "the volume of trade grows in the world economy"
+      },
+      "answer": "c",
+      "subject": "Indian Economy",
+      "sub_topic": "National Income & Economic Growth",
+      "difficulty": "moderate",
+      "explanation": "Capital formation adds to the physical stock of productive assets (plant, machinery, infrastructure), raising an economy’s productive capacity and therefore ensuring positive growth in output. Population growth, world trade expansion or global technical progress may influence but do not guarantee domestic growth; only domestic investment (capital formation) makes growth in country X necessary in the economic sense. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-42/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 93,
+      "question_id": "UPSC_2013_GS1_Q93",
+      "question": "Which of the following statements is/are correct?\n1. Viruses lack enzymes necessary for the generation of energy.\n2. Viruses can be cultured in any synthetic medium.\n3. Viruses are transmitted from one organism to another by biological vectors only.\nSelect the correct answer using the codes given below.",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Health & Diseases",
+      "difficulty": "moderate",
+      "explanation": "Viruses are metabolically inert outside a host cell and lack the enzyme systems needed to generate ATP or other energy molecules, so statement 1 is correct. They cannot be grown on artificial nutrient media but require living cells, making statement 2 wrong, and they may spread through mechanical means (air, contact, water) as well as biological vectors, so statement 3 is also wrong; therefore only statement 1 is correct. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-paper-with-answer-key-general-studies-paper-1/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 94,
+      "question_id": "UPSC_2013_GS1_Q94",
+      "question": "Which of the following leaf modifications occurs/occur in desert areas to inhibit water loss?\n1. Hard and waxy leaves\n2. Tiny leaves or no leaves\n3. Thorns instead of leaves\nSelect the correct answer using the codes given below.",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "d",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Ecosystems & Ecology Concepts",
+      "difficulty": "easy",
+      "explanation": "Xerophytic plants reduce transpiration by developing hard, thick, wax-coated leaves, by shrinking foliage to tiny scales or shedding it altogether, and by converting leaves into spines (thorns); all three adaptations minimise surface area and cuticular water loss in arid deserts. Hence each of statements 1, 2 and 3 is correct. ([edukemy.com](https://edukemy.com/blog/upsc-prelims-2013-question-44/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 95,
+      "question_id": "UPSC_2013_GS1_Q95",
+      "question": "The known forces of nature can be divided into four classes, viz., gravity, electromagnetism, weak nuclear force and strong nuclear force. With reference to them, which one of the following statements is not correct?",
+      "options": {
+        "a": "Gravity is the strongest of the four",
+        "b": "Electromagnetism acts only on particles with an electric charge",
+        "c": "Weak nuclear force causes radioactivity",
+        "d": "Strong nuclear force holds protons and neutrons inside the nucleus of an atom"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Physics",
+      "difficulty": "easy",
+      "explanation": "Gravity is actually the weakest (≈10-40 of the strength of electromagnetism), whereas the strong nuclear force is the strongest. Electromagnetism acts only on electrically-charged particles, the weak force governs β-decay (hence radioactivity), and the strong force binds protons and neutrons in the nucleus. Hence statement (a) is the only one that is not correct. ([science.nasa.gov](https://science.nasa.gov/universe/overview/forces?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 96,
+      "question_id": "UPSC_2013_GS1_Q96",
+      "question": "The efforts to detect the existence of Higgs boson particle have become frequent news in the recent past. What is/are the importance/ importances of discovering this particle?\n1. It will enable us to understand as to why elementary particles have mass.\n2. It will enable us in the near future to develop the technology of transferring matter from one point to another without traversing the physical space between them.\n3. It will enable us to create better fuels for nuclear fission.\nSelect the correct answer using the codes given below.",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "a",
+      "subject": "Science & Technology",
+      "sub_topic": "Physics",
+      "difficulty": "moderate",
+      "explanation": "The Higgs field/brout-englert-higgs mechanism explains why elementary particles acquire mass, so statement 1 is correct. Discovery of the Higgs does not imply near-term ‘matter teleportation’ (2) or improved nuclear-fission fuels (3); these are speculative and unrelated. Therefore only statement 1 is correct. ([home.cern](https://home.cern/backgrounders/cern-and-higgs-boson?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 97,
+      "question_id": "UPSC_2013_GS1_Q97",
+      "question": "Mycorrhizal biotechnology has been used in rehabilitating degraded sites because mycorrhiza enables the plants to\n1. resist drought and increase absorptive area\n2. tolerate extremes of pH\n3. resist disease infestation\nSelect the correct answer using the codes given below:",
+      "options": {
+        "a": "1 only",
+        "b": "2 and 3 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "d",
+      "subject": "Environment & Ecology",
+      "sub_topic": "Sustainable Agriculture & Forestry",
+      "difficulty": "moderate",
+      "explanation": "Mycorrhizal fungi extend a plant’s root system, improving water and nutrient uptake (helping drought resistance); they buffer plants against extreme soil pH, and they out-compete or inhibit soil pathogens, reducing disease. Thus all three statements are true and option (d) is correct. ([aiduva.com](https://aiduva.com/upsc/mycorrhizal-biotechnology-drought-tolerance-prelims-2013/?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 98,
+      "question_id": "UPSC_2013_GS1_Q98",
+      "question": "Who among the following constitute the National Development Council?\n1. The Prime Minister\n2. The Chairman, Finance Commission\n3. Ministers of the Union Cabinet\n4. Chief Ministers of the States\nSelect the correct answer using the codes given below:",
+      "options": {
+        "a": "1, 2 and 3 only",
+        "b": "1, 3 and 4 only",
+        "c": "2 and 4 only",
+        "d": "1, 2, 3 and 4"
+      },
+      "answer": "b",
+      "subject": "Indian Polity",
+      "sub_topic": "Constitutional & Statutory Bodies",
+      "difficulty": "easy",
+      "explanation": "The National Development Council is chaired by the Prime Minister and includes all Union Cabinet Ministers and the Chief Ministers of States/UT Administrators. The Chairman of the Finance Commission is not a member. Hence statements 1, 3 and 4 only are included → option (b). ([en.wikipedia.org](https://en.wikipedia.org/wiki/National_Development_Council_%28India%29?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 99,
+      "question_id": "UPSC_2013_GS1_Q99",
+      "question": "The national income of a country for a given period is equal to the",
+      "options": {
+        "a": "total value of goods and services produced by the nationals",
+        "b": "sum of total consumption and investment expenditure",
+        "c": "sum of personal income of all individuals",
+        "d": "money value of final goods and services produced"
+      },
+      "answer": "d",
+      "subject": "Indian Economy",
+      "sub_topic": "National Income & Economic Growth",
+      "difficulty": "easy",
+      "explanation": "UPSC’s official key treats national income for a period as the monetary value of all final goods and services produced, i.e. the value of final output measured by the product/expenditure method; options referring only to ‘nationals’, ‘consumption + investment’, or personal incomes are incomplete. Therefore option (d) is correct. ([forumias.com](https://forumias.com/blog/page/download-upsc-prelim-2013-gs-paper-1-question-paper?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    },
+    {
+      "year": 2013,
+      "paper": "GS1",
+      "question_no": 100,
+      "question_id": "UPSC_2013_GS1_Q100",
+      "question": "Which of the following grants/grant direct credit assistance to rural households?\n1. Regional Rural Banks\n2. National Bank for Agriculture and Rural Development\n3. Land Development Banks\nSelect the correct answer using the codes given below:",
+      "options": {
+        "a": "1 and 2 only",
+        "b": "2 only",
+        "c": "1 and 3 only",
+        "d": "1, 2 and 3"
+      },
+      "answer": "c",
+      "subject": "Indian Economy",
+      "sub_topic": "Agriculture & Rural Development",
+      "difficulty": "moderate",
+      "explanation": "Regional Rural Banks lend directly to small and marginal farmers and other rural households, while Land Development Banks provide long-term mortgage credit to land-owning farmers—both therefore extend direct credit. NABARD is largely an apex refinancing body and, except for a few pilot schemes, does not lend straight to individual households. Hence only statements 1 and 3 are correct (option c). ([drishtiias.com](https://www.drishtiias.com/current-affairs-news-analysis-editorials/news-analysis/03-08-2022?utm_source=openai))",
+      "source_tag": "upsc_pdf_o3",
+      "exam": "CSE_PRELIMS"
+    }
+  ],
+  "failed": []
+}
