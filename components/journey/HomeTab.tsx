@@ -1340,7 +1340,7 @@ export default function HomeTab({
         animation: `homeGlowIn 500ms ease-out ${nextDelay()}ms both`,
         letterSpacing: '0.01em',
       }}>
-        Made with ❤️ by Top UPSC Mentors & AI
+        Made with ❤️ by Top UPSC Mentors
       </div>
     </div>
   )
