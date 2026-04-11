@@ -50,7 +50,7 @@ interface IdentityCardProps {
 
 function IdentityCard({ profile, level, onReset }: IdentityCardProps) {
   const initial = (profile.name || 'U').charAt(0).toUpperCase()
-  const prepConfig = PREP_STAGE_CONFIG[profile.prepStage]
+  const prepConfig = PREP_STAGE_CONFIG[profile.prepStage] ?? { icon: '📚', label: profile.prepStage ?? 'Student', description: '' }
 
   function handleReset() {
     if (window.confirm('Reset all progress? This cannot be undone.')) {
@@ -549,8 +549,8 @@ export function DesktopProfilePane({ state }: Props) {
           totalAnswered={totalAnswered}
           streak={progress.streak ?? 0}
         />
-        <Heatmap studyCalendar={progress.studyCalendar} />
-        <RecentMilestones studyCalendar={progress.studyCalendar} />
+        <Heatmap studyCalendar={progress.studyCalendar ?? []} />
+        <RecentMilestones studyCalendar={progress.studyCalendar ?? []} />
       </div>
     </div>
   )
