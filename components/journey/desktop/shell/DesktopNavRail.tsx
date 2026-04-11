@@ -35,6 +35,8 @@ export function DesktopNavRail({ state }: Props) {
         background: 'rgba(5,5,16,0.55)',
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
+        position: 'sticky',
+        top: 0,
       }}
     >
       <div style={{

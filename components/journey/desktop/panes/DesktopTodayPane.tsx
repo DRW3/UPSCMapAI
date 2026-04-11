@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState, useEffect } from 'react'
+import { useMemo, useState, useEffect, useCallback } from 'react'
 import type { JourneyStateValue, EnrichedTopicEntry } from '@/components/journey/hooks/useJourneyState'
 import { DAILY_GOALS } from '@/components/journey/types'
 import { UPSC_SYLLABUS, type LearningSubject } from '@/data/syllabus'
@@ -148,11 +148,8 @@ export function DesktopTodayPane({ state }: DesktopTodayPaneProps) {
 
       {/* RIGHT COLUMN */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-        {/* Focus Subjects */}
-        <DesktopFocusSubjects state={state} subjects={subjects} />
-
-        {/* Up Next */}
-        <DesktopUpNextList upNextTopics={upNextTopics} state={state} />
+        {/* Up Next (includes focus subjects) */}
+        <DesktopUpNextList upNextTopics={upNextTopics} state={state} subjects={subjects} />
       </div>
     </div>
   )
@@ -365,62 +362,52 @@ function ProgressBar({
   )
 }
 
-// ── DesktopFocusSubjects ───────────────────────────────────────────────────────
-// Port of the mobile FocusAreaPanel from HomeTab.tsx.
-// Behavioral parity:
-//  - compact view: shows profile.weakSubjects chips in pick order (newest first)
-//  - edit mode: shows ALL subjects as toggleable chips, prepend-on-toggle
-//  - save fires handleProfileUpdate({ ...profile, weakSubjects: draftWeak })
-//  - "Saved" pill flash + chip burst on save
-//  - double-rAF scroll to [data-desktop-center-scroll] after save
+// ── DesktopUpNextList (with focus subjects merged in) ──────────────────────────
 
-interface DesktopFocusSubjectsProps {
+interface DesktopUpNextListProps {
+  upNextTopics: EnrichedTopicEntry[]
   state: JourneyStateValue
   subjects: LearningSubject[]
 }
 
-function DesktopFocusSubjects({ state, subjects }: DesktopFocusSubjectsProps) {
+function DesktopUpNextList({ upNextTopics, state, subjects }: DesktopUpNextListProps) {
   const { profile } = state
 
+  // Focus-subjects state (previously in DesktopFocusSubjects)
   const [editing, setEditing] = useState(false)
   const [draftWeak, setDraftWeak] = useState<string[]>(profile?.weakSubjects ?? [])
   const [savedFlash, setSavedFlash] = useState(false)
   const [chipBurst, setChipBurst] = useState(false)
 
-  // Re-sync draft when saved profile changes
   useEffect(() => {
     setDraftWeak(profile?.weakSubjects ?? [])
   }, [profile?.weakSubjects])
 
-  if (!profile || !subjects.length) return null
-
-  const currentFocus = profile.weakSubjects ?? []
+  const currentFocus = profile?.weakSubjects ?? []
   const sortedDraft = [...draftWeak].sort().join(',')
   const sortedSaved = [...currentFocus].sort().join(',')
   const hasChanges = sortedDraft !== sortedSaved || draftWeak.join(',') !== currentFocus.join(',')
 
-  // Chips shown in pick order (newest first = index 0 = highest priority)
   const focusedSubjects = currentFocus
     .map(id => subjects.find(s => s.id === id))
     .filter((s): s is LearningSubject => !!s)
 
-  const toggle = (id: string) => {
+  const toggle = useCallback((id: string) => {
     setDraftWeak(prev =>
       prev.includes(id)
         ? prev.filter(x => x !== id)
-        : [id, ...prev]   // PREPEND: newest pick = highest priority
+        : [id, ...prev]
     )
-  }
+  }, [])
 
-  const apply = () => {
-    if (!hasChanges) return
+  const apply = useCallback(() => {
+    if (!profile || !hasChanges) return
     state.handleProfileUpdate({ ...profile, weakSubjects: draftWeak })
     setEditing(false)
     setSavedFlash(true)
     setChipBurst(true)
     window.setTimeout(() => setSavedFlash(false), 1700)
     window.setTimeout(() => setChipBurst(false), 1300)
-    // Double-rAF scroll to desktop center pane top
     if (typeof window !== 'undefined') {
       window.requestAnimationFrame(() => {
         window.requestAnimationFrame(() => {
@@ -437,257 +424,197 @@ function DesktopFocusSubjects({ state, subjects }: DesktopFocusSubjectsProps) {
         })
       })
     }
-  }
+  }, [profile, hasChanges, draftWeak, state])
 
-  const cancel = () => {
+  const cancel = useCallback(() => {
     setDraftWeak(currentFocus)
     setEditing(false)
-  }
+  }, [currentFocus])
 
   return (
-    <HoloFrame
-      radius={18}
-      thickness={1.5}
-      padding="14px 16px 16px"
-      gradient="conic-gradient(from var(--dj-angle, 0deg), rgba(99,102,241,0.55), rgba(56,189,248,0.55), rgba(168,85,247,0.55), rgba(244,114,182,0.45), rgba(99,102,241,0.55))"
-      innerBackground="#0a0a14"
-      speed={8}
-    >
-      {/* Scan line */}
-      <div style={{
-        position: 'absolute', top: 0, bottom: 0, left: 0, width: '40%',
-        background: 'linear-gradient(90deg, transparent, rgba(129,140,248,0.07), transparent)',
-        animation: 'dj-scanX 5s ease-in-out infinite',
-        pointerEvents: 'none', zIndex: 1,
-      }} />
-
-        {/* Header */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, position: 'relative', zIndex: 2 }}>
-          {/* Pulsing status dot */}
-          <div style={{
-            width: 7, height: 7, borderRadius: '50%',
-            background: '#a78bfa',
-            boxShadow: '0 0 8px rgba(167,139,250,0.85), 0 0 16px rgba(167,139,250,0.35)',
-            animation: 'dj-dotPulse 2.4s ease-in-out infinite',
-            flexShrink: 0,
-          }} />
-          <span style={{
-            fontSize: 14, fontWeight: 800,
-            background: 'linear-gradient(135deg, #ffffff 0%, #e0e7ff 60%, #c4b5fd 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-            letterSpacing: '-0.015em',
-            lineHeight: 1.2,
-          }}>
-            My Focus Subjects
-          </span>
-          {savedFlash && (
-            <span
-              role="status"
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: 4,
-                fontSize: 10, fontWeight: 800,
-                color: '#6ee7b7',
-                background: 'rgba(52,211,153,0.14)',
-                border: '1px solid rgba(52,211,153,0.40)',
-                padding: '3px 8px', borderRadius: 999,
-                letterSpacing: '0.05em', textTransform: 'uppercase',
-                boxShadow: '0 0 12px rgba(52,211,153,0.30)',
-                animation: 'dj-shimmer 1.6s ease-out both',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              <svg width="9" height="9" viewBox="0 0 16 16" fill="none">
-                <path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              Saved
-            </span>
-          )}
-          <div style={{ flex: 1 }} />
-          <button
-            onClick={() => editing ? cancel() : setEditing(true)}
-            aria-label={editing ? 'Close focus picker' : 'Change focus subjects'}
+    <div style={{
+      padding: '18px 20px',
+      borderRadius: 18,
+      background: 'rgba(255,255,255,0.025)',
+      border: '1px solid rgba(255,255,255,0.06)',
+    }}>
+      {/* Section header */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+        <span style={{
+          fontSize: 11, fontWeight: 800,
+          color: 'rgba(255,255,255,0.55)',
+          letterSpacing: '0.08em', textTransform: 'uppercase',
+        }}>
+          Up Next
+        </span>
+        <div style={{ flex: 1 }} />
+        {savedFlash && (
+          <span
+            role="status"
             style={{
-              display: 'flex', alignItems: 'center', gap: 6,
-              background: editing ? 'rgba(244,114,182,0.12)' : 'rgba(99,102,241,0.14)',
-              border: editing ? '1px solid rgba(244,114,182,0.40)' : '1px solid rgba(99,102,241,0.40)',
-              color: editing ? '#f9a8d4' : '#c4b5fd',
-              fontSize: 11, fontWeight: 800, letterSpacing: '0.06em',
-              padding: '7px 14px', borderRadius: 999,
-              cursor: 'pointer', textTransform: 'uppercase',
-              transition: 'all 200ms ease-out',
-              WebkitTapHighlightColor: 'transparent',
-              boxShadow: editing
-                ? '0 2px 12px rgba(244,114,182,0.20)'
-                : '0 2px 14px rgba(99,102,241,0.22), inset 0 1px 0 rgba(255,255,255,0.05)',
+              display: 'inline-flex', alignItems: 'center', gap: 4,
+              fontSize: 10, fontWeight: 800,
+              color: '#6ee7b7',
+              background: 'rgba(52,211,153,0.14)',
+              border: '1px solid rgba(52,211,153,0.40)',
+              padding: '3px 8px', borderRadius: 999,
+              letterSpacing: '0.05em', textTransform: 'uppercase',
+              boxShadow: '0 0 12px rgba(52,211,153,0.30)',
+              animation: 'dj-shimmer 1.6s ease-out both',
+              whiteSpace: 'nowrap',
             }}
           >
-            {editing ? (
-              <>
-                <svg width="10" height="10" viewBox="0 0 16 16" fill="none">
-                  <path d="M3 3l10 10M13 3L3 13" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" />
-                </svg>
-                Close
-              </>
-            ) : (
-              <>
-                <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
-                  <path d="M2 8a6 6 0 0 1 10.5-4M14 8a6 6 0 0 1-10.5 4M12 2v3.5h-3.5M4 14v-3.5h3.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                Change
-              </>
-            )}
-          </button>
-        </div>
+            <svg width="9" height="9" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            Saved
+          </span>
+        )}
+      </div>
 
-        {/* Body */}
-        {!editing ? (
-          <div style={{ marginTop: 11, position: 'relative', zIndex: 2 }}>
-            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.50)', marginBottom: 9, lineHeight: 1.55 }}>
-              {focusedSubjects.length > 0
-                ? (focusedSubjects.length > 1
-                    ? 'Your daily tip and next step follow the chip on the left.'
-                    : 'Your next step will focus on this subject.')
-                : 'No focus subjects picked yet. Tap Change to select.'}
+      {/* Focus subject chips */}
+      {profile && subjects.length > 0 && (
+        <div style={{ marginBottom: 14 }}>
+          {!editing ? (
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+              {focusedSubjects.map((s, i) => {
+                const rgb = hexToRgb(s.color)
+                return (
+                  <span key={s.id} style={{
+                    display: 'flex', alignItems: 'center', gap: 5,
+                    padding: '4px 10px',
+                    borderRadius: 999,
+                    background: `rgba(${rgb},0.12)`,
+                    border: `1px solid rgba(${rgb},0.30)`,
+                    color: `rgba(${rgb},0.95)`,
+                    fontSize: 11, fontWeight: 650,
+                    whiteSpace: 'nowrap',
+                    boxShadow: `0 0 10px rgba(${rgb},0.10)`,
+                    ...(chipBurst ? {
+                      animation: `dj-pulse 1.2s cubic-bezier(0.16,1,0.3,1) ${i * 70}ms both`,
+                    } : {}),
+                  }}>
+                    <span style={{ fontSize: 11 }}>{s.icon}</span>
+                    {s.shortTitle}
+                  </span>
+                )
+              })}
+              {focusedSubjects.length === 0 && (
+                <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', fontStyle: 'italic' }}>
+                  No focus subjects selected
+                </span>
+              )}
+              <button
+                onClick={() => setEditing(true)}
+                style={{
+                  padding: '4px 10px',
+                  borderRadius: 999,
+                  background: 'rgba(99,102,241,0.08)',
+                  border: '1px solid rgba(99,102,241,0.25)',
+                  color: '#a5b4fc',
+                  fontSize: 10, fontWeight: 700,
+                  cursor: 'pointer',
+                  letterSpacing: '0.04em',
+                }}
+              >
+                Change
+              </button>
             </div>
-            {focusedSubjects.length > 0 && (
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                {focusedSubjects.map((s, i) => {
+          ) : (
+            <div style={{ animation: 'dj-fadeUp 350ms cubic-bezier(0.22,1,0.36,1) both' }}>
+              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.50)', marginBottom: 10, lineHeight: 1.55 }}>
+                Pick the subjects you want to study most. Tap to add or remove.
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 12 }}>
+                {subjects.map((s, i) => {
+                  const isOn = draftWeak.includes(s.id)
                   const rgb = hexToRgb(s.color)
                   return (
-                    <span key={s.id} style={{
-                      display: 'flex', alignItems: 'center', gap: 5,
-                      padding: '5px 10px',
-                      borderRadius: 999,
-                      background: `rgba(${rgb},0.12)`,
-                      border: `1px solid rgba(${rgb},0.30)`,
-                      color: `rgba(${rgb},0.95)`,
-                      fontSize: 11, fontWeight: 650,
-                      whiteSpace: 'nowrap',
-                      boxShadow: `0 0 10px rgba(${rgb},0.10)`,
-                      ...(chipBurst ? {
-                        animation: `dj-pulse 1.2s cubic-bezier(0.16,1,0.3,1) ${i * 70}ms both`,
-                      } : {}),
-                    }}>
+                    <button
+                      key={s.id}
+                      onClick={() => toggle(s.id)}
+                      aria-pressed={isOn}
+                      style={{
+                        display: 'flex', alignItems: 'center', gap: 5,
+                        padding: '6px 10px', borderRadius: 999,
+                        background: isOn ? `rgba(${rgb},0.18)` : 'rgba(255,255,255,0.025)',
+                        border: isOn ? `1.5px solid rgba(${rgb},0.55)` : '1.5px solid rgba(255,255,255,0.07)',
+                        color: isOn ? `rgba(${rgb},0.98)` : 'rgba(255,255,255,0.55)',
+                        fontSize: 11, fontWeight: isOn ? 750 : 550,
+                        cursor: 'pointer',
+                        transition: 'all 200ms cubic-bezier(0.16,1,0.3,1)',
+                        WebkitTapHighlightColor: 'transparent',
+                        boxShadow: isOn ? `0 0 14px rgba(${rgb},0.20), inset 0 1px 0 rgba(255,255,255,0.05)` : 'none',
+                        animation: `dj-fadeUp 260ms cubic-bezier(0.16,1,0.3,1) ${i * 18}ms both`,
+                      }}
+                    >
                       <span style={{ fontSize: 12 }}>{s.icon}</span>
                       {s.shortTitle}
-                    </span>
+                      {isOn && (
+                        <svg width="9" height="9" viewBox="0 0 16 16" fill="none" style={{ marginLeft: 1 }}>
+                          <path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      )}
+                    </button>
                   )
                 })}
               </div>
-            )}
-          </div>
-        ) : (
-          <div style={{
-            marginTop: 12, position: 'relative', zIndex: 2,
-            animation: 'dj-fadeUp 350ms cubic-bezier(0.22,1,0.36,1) both',
-          }}>
-            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.50)', marginBottom: 11, lineHeight: 1.55 }}>
-              Pick the subjects you want to study most. Tap to add or remove.
-            </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 14 }}>
-              {subjects.map((s, i) => {
-                const isOn = draftWeak.includes(s.id)
-                const rgb = hexToRgb(s.color)
-                return (
-                  <button
-                    key={s.id}
-                    onClick={() => toggle(s.id)}
-                    aria-pressed={isOn}
-                    style={{
-                      display: 'flex', alignItems: 'center', gap: 5,
-                      padding: '6px 10px', borderRadius: 999,
-                      background: isOn ? `rgba(${rgb},0.18)` : 'rgba(255,255,255,0.025)',
-                      border: isOn ? `1.5px solid rgba(${rgb},0.55)` : '1.5px solid rgba(255,255,255,0.07)',
-                      color: isOn ? `rgba(${rgb},0.98)` : 'rgba(255,255,255,0.55)',
-                      fontSize: 11, fontWeight: isOn ? 750 : 550,
-                      cursor: 'pointer',
-                      transition: 'all 200ms cubic-bezier(0.16,1,0.3,1)',
-                      WebkitTapHighlightColor: 'transparent',
-                      boxShadow: isOn ? `0 0 14px rgba(${rgb},0.20), inset 0 1px 0 rgba(255,255,255,0.05)` : 'none',
-                      animation: `dj-fadeUp 260ms cubic-bezier(0.16,1,0.3,1) ${i * 18}ms both`,
-                    }}
-                  >
-                    <span style={{ fontSize: 12 }}>{s.icon}</span>
-                    {s.shortTitle}
-                    {isOn && (
-                      <svg width="9" height="9" viewBox="0 0 16 16" fill="none" style={{ marginLeft: 1 }}>
-                        <path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+              <div style={{ display: 'flex', gap: 8, marginBottom: 14 }}>
+                <button
+                  onClick={apply}
+                  disabled={!hasChanges}
+                  style={{
+                    flex: 1,
+                    padding: '9px 14px',
+                    borderRadius: 12,
+                    background: hasChanges
+                      ? 'linear-gradient(135deg, rgba(99,102,241,0.95) 0%, rgba(168,85,247,0.95) 50%, rgba(56,189,248,0.95) 100%)'
+                      : 'rgba(255,255,255,0.04)',
+                    border: hasChanges
+                      ? '1px solid rgba(167,139,250,0.45)'
+                      : '1px solid rgba(255,255,255,0.06)',
+                    color: hasChanges ? '#fff' : 'rgba(255,255,255,0.30)',
+                    fontSize: 11, fontWeight: 800,
+                    letterSpacing: '0.08em', textTransform: 'uppercase',
+                    cursor: hasChanges ? 'pointer' : 'default',
+                    transition: 'all 250ms ease-out',
+                    WebkitTapHighlightColor: 'transparent',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
+                  }}
+                >
+                  {hasChanges ? (
+                    <>
+                      <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
+                        <path d="M9 1L2 9h5l-1 6 7-8H8l1-6z" fill="currentColor" />
                       </svg>
-                    )}
-                  </button>
-                )
-              })}
+                      Save
+                    </>
+                  ) : (
+                    'No changes'
+                  )}
+                </button>
+                <button
+                  onClick={cancel}
+                  style={{
+                    padding: '9px 14px',
+                    borderRadius: 12,
+                    background: 'rgba(255,255,255,0.03)',
+                    border: '1px solid rgba(255,255,255,0.08)',
+                    color: 'rgba(255,255,255,0.50)',
+                    fontSize: 11, fontWeight: 700,
+                    cursor: 'pointer',
+                    WebkitTapHighlightColor: 'transparent',
+                  }}
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
+          )}
+        </div>
+      )}
 
-            <button
-              onClick={apply}
-              disabled={!hasChanges}
-              style={{
-                width: '100%',
-                padding: '11px 14px',
-                borderRadius: 14,
-                background: hasChanges
-                  ? 'linear-gradient(135deg, rgba(99,102,241,0.95) 0%, rgba(168,85,247,0.95) 50%, rgba(56,189,248,0.95) 100%)'
-                  : 'rgba(255,255,255,0.04)',
-                border: hasChanges
-                  ? '1px solid rgba(167,139,250,0.45)'
-                  : '1px solid rgba(255,255,255,0.06)',
-                color: hasChanges ? '#fff' : 'rgba(255,255,255,0.30)',
-                fontSize: 12, fontWeight: 800,
-                letterSpacing: '0.10em', textTransform: 'uppercase',
-                cursor: hasChanges ? 'pointer' : 'default',
-                boxShadow: hasChanges
-                  ? '0 6px 24px rgba(99,102,241,0.32), 0 0 0 1px rgba(255,255,255,0.06) inset'
-                  : 'none',
-                transition: 'all 250ms ease-out',
-                WebkitTapHighlightColor: 'transparent',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
-                animation: hasChanges ? 'dj-shimmer 4s linear infinite' : undefined,
-              }}
-            >
-              {hasChanges ? (
-                <>
-                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                    <path d="M9 1L2 9h5l-1 6 7-8H8l1-6z" fill="currentColor" />
-                  </svg>
-                  Save &amp; Update My Plan
-                </>
-              ) : (
-                'Pick at least one change'
-              )}
-            </button>
-          </div>
-        )}
-    </HoloFrame>
-  )
-}
-
-// ── DesktopUpNextList ──────────────────────────────────────────────────────────
-
-interface DesktopUpNextListProps {
-  upNextTopics: EnrichedTopicEntry[]
-  state: JourneyStateValue
-}
-
-function DesktopUpNextList({ upNextTopics, state }: DesktopUpNextListProps) {
-  return (
-    <div style={{
-      background: 'rgba(255,255,255,0.04)',
-      border: '1px solid rgba(255,255,255,0.07)',
-      borderRadius: 18,
-      padding: '16px 18px',
-    }}>
-      <div style={{
-        fontSize: 12, fontWeight: 800,
-        color: 'rgba(255,255,255,0.55)',
-        letterSpacing: '0.07em', textTransform: 'uppercase',
-        marginBottom: 14,
-      }}>
-        Up Next
-      </div>
-
+      {/* Up Next topic list */}
       {upNextTopics.length === 0 ? (
         <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.30)', paddingBottom: 4 }}>
           No available topics right now.
@@ -700,11 +627,7 @@ function DesktopUpNextList({ upNextTopics, state }: DesktopUpNextListProps) {
             return (
               <button
                 key={topic.id}
-                onClick={() => state.handleNodeTap(
-                  topic.id,
-                  topic,
-                  subject,
-                )}
+                onClick={() => state.handleNodeTap(topic.id, topic, subject)}
                 style={{
                   display: 'flex', alignItems: 'center', gap: 10,
                   padding: '10px 12px',

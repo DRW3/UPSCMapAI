@@ -149,20 +149,36 @@ function RecommendationCard({
   )
 }
 
-function SubjectBrowseCard({ subject }: { subject: LearningSubject }) {
+function SubjectBrowseCard({ subject, onSelect }: { subject: LearningSubject; onSelect: (id: string) => void }) {
   const rgb = hexToRgb(subject.color)
   const topicCount = subject.units.reduce((acc, u) => acc + u.topics.length, 0)
 
   return (
-    <div style={{
-      background: `rgba(${rgb},0.06)`,
-      border: `1px solid rgba(${rgb},0.18)`,
-      borderRadius: 12,
-      padding: '12px 14px',
-      display: 'flex',
-      flexDirection: 'column',
-      gap: 6,
-    }}>
+    <button
+      onClick={() => onSelect(subject.id)}
+      style={{
+        background: `rgba(${rgb},0.06)`,
+        border: `1px solid rgba(${rgb},0.18)`,
+        borderRadius: 12,
+        padding: '12px 14px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 6,
+        cursor: 'pointer',
+        textAlign: 'left',
+        transition: 'all 200ms',
+      }}
+      onMouseEnter={e => {
+        ;(e.currentTarget as HTMLButtonElement).style.background = `rgba(${rgb},0.14)`
+        ;(e.currentTarget as HTMLButtonElement).style.borderColor = `rgba(${rgb},0.35)`
+        ;(e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-2px)'
+      }}
+      onMouseLeave={e => {
+        ;(e.currentTarget as HTMLButtonElement).style.background = `rgba(${rgb},0.06)`
+        ;(e.currentTarget as HTMLButtonElement).style.borderColor = `rgba(${rgb},0.18)`
+        ;(e.currentTarget as HTMLButtonElement).style.transform = 'translateY(0)'
+      }}
+    >
       <span style={{ fontSize: 22, lineHeight: 1 }}>{subject.icon}</span>
       <div style={{
         fontSize: 12, fontWeight: 700,
@@ -177,7 +193,7 @@ function SubjectBrowseCard({ subject }: { subject: LearningSubject }) {
       }}>
         {topicCount} topic{topicCount !== 1 ? 's' : ''}
       </div>
-    </div>
+    </button>
   )
 }
 
@@ -188,7 +204,7 @@ interface Props {
 }
 
 export function DesktopPracticePane({ state }: Props) {
-  const { enrichedTopicStates, progress, handleStartPractice } = state
+  const { enrichedTopicStates, progress, handleStartPractice, setActiveTab, setActiveSubjectId } = state
 
   // Smart recommendation: pick up to 6 started/completed topics with the
   // LOWEST accuracy. Only recommend topics where the user has answered at
@@ -256,7 +272,14 @@ export function DesktopPracticePane({ state }: Props) {
           gap: 10,
         }}>
           {UPSC_SYLLABUS.map(s => (
-            <SubjectBrowseCard key={s.id} subject={s} />
+            <SubjectBrowseCard
+              key={s.id}
+              subject={s}
+              onSelect={(id) => {
+                setActiveTab('path')
+                setActiveSubjectId(id)
+              }}
+            />
           ))}
         </div>
       </div>
