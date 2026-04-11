@@ -911,10 +911,13 @@ export default function HomeTab({
           )}
         </div>
         {/* Mentor's Suggestion — Apple-Intelligence-style AI brief */}
-        <MentorsSuggestion tip={dailyTip} streak={progress.streak || 0} firstName={firstName} />
+        <div id="tour-mentor">
+          <MentorsSuggestion tip={dailyTip} streak={progress.streak || 0} firstName={firstName} />
+        </div>
       </div>
 
       {/* ═══ 2. HERO CTA — one clear next action ═══ */}
+      <div id="tour-next-step">
       {!hasStarted && !allCompleted ? (
         /* ── Welcome — scannable, no paragraphs ── */
         <div style={{
@@ -1119,6 +1122,7 @@ export default function HomeTab({
           </div>
         </div>
       ) : null}
+      </div>
 
       {/* ═══ 3. TODAY'S MISSION — task checklist with CTA ═══ */}
       <div style={{
@@ -1322,7 +1326,7 @@ export default function HomeTab({
       )}
 
       {/* ═══ 5b. AI FOCUS CALIBRATION — sits right above the insight line ═══ */}
-      <div style={{
+      <div id="tour-focus-subjects" style={{
         animation: `homeGlowIn 500ms ease-out ${nextDelay()}ms both`,
       }}>
         <FocusAreaPanel

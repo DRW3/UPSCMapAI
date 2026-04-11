@@ -173,7 +173,7 @@ export function MobileLearningJourney() {
           </div>
 
           {/* Row 2: Segmented tab control */}
-          <div style={{
+          <div id="tour-tab-bar" style={{
             height: 44,
             background: 'rgba(8,8,18,0.80)',
             backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)',
