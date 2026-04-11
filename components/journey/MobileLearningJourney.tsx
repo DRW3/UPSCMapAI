@@ -224,7 +224,7 @@ export function MobileLearningJourney() {
 
       {/* Main Content Area */}
       <div style={{
-        marginTop: 'calc(env(safe-area-inset-top, 0px) + 100px)',
+        marginTop: 'calc(env(safe-area-inset-top, 0px) + 96px)',
         flex: 1,
         minHeight: 0,
         display: 'flex',
@@ -243,7 +243,12 @@ export function MobileLearningJourney() {
               // Reset scroll to top every time the Today tab mounts —
               // prevents stale scroll position when navigating back
               // from the landing page or switching tabs.
-              if (el) el.scrollTop = 0
+              if (el) {
+                el.scrollTop = 0
+                // Also reset the window scroll in case the browser
+                // restored a scroll position from a previous session.
+                window.scrollTo(0, 0)
+              }
             }}
             style={{ flex: 1, minHeight: 0, overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}
           >

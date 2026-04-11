@@ -841,7 +841,7 @@ export default function HomeTab({
   // ── Render ──────────────────────────────────────────────────────────────────
 
   return (
-    <div style={{ minHeight: '100vh', padding: '8px 16px 100px 16px' }}>
+    <div style={{ minHeight: '100vh', padding: '2px 16px 100px 16px' }}>
       <style>{`
         @property --edge-angle {
           syntax: '<angle>';
@@ -915,7 +915,7 @@ export default function HomeTab({
       {/* ═══ 1. GREETING — 2 lines max ═══ */}
       <div style={{
         marginBottom: 14,
-        paddingTop: 4,
+        paddingTop: 0,
         animation: `homeGlowIn 500ms ease-out ${nextDelay()}ms both`,
       }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
