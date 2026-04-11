@@ -518,7 +518,14 @@ interface Props {
 
 export function DesktopProfilePane({ state }: Props) {
   const { profile, progress, enrichedTopicStates, handleResetJourney } = state
-  if (!profile) return null
+
+  if (!profile) {
+    return (
+      <div style={{ padding: 40, textAlign: 'center', color: 'rgba(255,255,255,0.5)', fontSize: 14 }}>
+        Loading profile...
+      </div>
+    )
+  }
 
   // Compute stats
   const totalAnswered = Object.values(progress.topics).reduce((s, t) => s + (t.questionsAnswered || 0), 0)
@@ -526,31 +533,39 @@ export function DesktopProfilePane({ state }: Props) {
   const acc = totalAnswered > 0 ? Math.round((totalCorrect / totalAnswered) * 100) : 0
   const level = Math.floor(totalAnswered / 50) + 1
   const completed = Object.values(progress.topics).filter(t => t.state === 'completed').length
+  const calendar = progress.studyCalendar ?? []
 
   return (
     <div style={{
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-      gap: 20,
       animation: 'dj-fadeUp 500ms cubic-bezier(0.16,1,0.3,1) both',
-      alignItems: 'start',
     }}>
-      {/* COL 1 — Identity + Subject progress */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+      {/* Identity card — full width at the top */}
+      <div style={{ marginBottom: 20 }}>
         <IdentityCard profile={profile} level={level} onReset={handleResetJourney} />
-        <SubjectProgressList enrichedTopicStates={enrichedTopicStates} />
       </div>
 
-      {/* COL 2 — Stats + Heatmap + Recent activity */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+      {/* Stats grid — 4 cards in a row */}
+      <div style={{ marginBottom: 20 }}>
         <StatsGrid
           completed={completed}
           acc={acc}
           totalAnswered={totalAnswered}
           streak={progress.streak ?? 0}
         />
-        <Heatmap studyCalendar={progress.studyCalendar ?? []} />
-        <RecentMilestones studyCalendar={progress.studyCalendar ?? []} />
+      </div>
+
+      {/* Two columns: subject progress + heatmap/milestones */}
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gap: 20,
+        alignItems: 'start',
+      }}>
+        <SubjectProgressList enrichedTopicStates={enrichedTopicStates} />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+          <Heatmap studyCalendar={calendar} />
+          <RecentMilestones studyCalendar={calendar} />
+        </div>
       </div>
     </div>
   )
