@@ -18,7 +18,7 @@ export function DesktopMentorDock({ state, inline }: Props) {
   const [messages, setMessages] = useState<Array<{ role: 'mentor' | 'user', text: string }>>([])
   const [input, setInput] = useState('')
   const [sending, setSending] = useState(false)
-  const chatEndRef = useRef<HTMLDivElement>(null)
+  const chatContainerRef = useRef<HTMLDivElement>(null)
 
   // When dailyTip arrives, set it as the first mentor message (only once)
   useEffect(() => {
@@ -29,7 +29,10 @@ export function DesktopMentorDock({ state, inline }: Props) {
 
   // Scroll to bottom on new messages
   useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    const container = chatContainerRef.current
+    if (container) {
+      container.scrollTop = container.scrollHeight
+    }
   }, [messages])
 
   const handleSend = async () => {
@@ -71,71 +74,101 @@ export function DesktopMentorDock({ state, inline }: Props) {
         display: 'flex', flexDirection: 'column', gap: 16,
       }}
     >
-      {/* Compact AI orb + label row */}
-      <div style={{
-        display: 'flex', alignItems: 'center', gap: 14,
-        marginBottom: 8,
-        flexShrink: 0,
-      }}>
-        {/* Mini orb — 56px */}
+      {/* Header — compact sparkle for inline, full orb for dock */}
+      {inline ? (
+        // Inline (Today tab): tiny sparkle icon + label in one tight row
         <div style={{
-          position: 'relative',
-          width: 56, height: 56,
+          display: 'flex', alignItems: 'center', gap: 8,
           flexShrink: 0,
         }}>
-          {/* Outer rotating ring */}
-          <div style={{
-            position: 'absolute', inset: 0, borderRadius: '50%',
-            background: 'conic-gradient(from var(--dj-angle, 0deg), #6366f1, #67e8f9, #a78bfa, #f472b6, #6366f1)',
-            animation: 'dj-rotate 10s linear infinite',
-            padding: 1.5,
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}>
+            <defs>
+              <linearGradient id="mentor-sparkle" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#a78bfa" />
+                <stop offset="50%" stopColor="#ec4899" />
+                <stop offset="100%" stopColor="#06b6d4" />
+              </linearGradient>
+            </defs>
+            <path d="M12 2L13.5 9L21 10.5L13.5 12L12 19L10.5 12L3 10.5L10.5 9L12 2Z" fill="url(#mentor-sparkle)" />
+          </svg>
+          <span style={{
+            fontSize: 11, fontWeight: 800,
+            color: 'rgba(255,255,255,0.55)',
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase',
           }}>
-            <div style={{ width: '100%', height: '100%', borderRadius: '50%', background: '#050510' }} />
-          </div>
-          {/* Core */}
-          <div style={{
-            position: 'absolute', inset: '14%', borderRadius: '50%',
-            background: 'radial-gradient(circle at 35% 30%, #e0e7ff 0%, #818cf8 35%, #4338ca 80%, #1e1b4b 100%)',
-            boxShadow: '0 0 20px rgba(99,102,241,0.50)',
-            animation: 'dj-corePulse 2.2s ease-in-out infinite',
-          }} />
-          {/* Bright center */}
-          <div style={{
-            position: 'absolute', inset: '36%', borderRadius: '50%',
-            background: '#fff',
-            boxShadow: '0 0 10px rgba(255,255,255,0.95)',
-          }} />
+            Mentor&apos;s Suggestion
+          </span>
         </div>
+      ) : (
+        // Dock (other tabs): full 56px orb + label
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: 14,
+          marginBottom: 8,
+          flexShrink: 0,
+        }}>
+          {/* Mini orb — 56px */}
+          <div style={{
+            position: 'relative',
+            width: 56, height: 56,
+            flexShrink: 0,
+          }}>
+            {/* Outer rotating ring */}
+            <div style={{
+              position: 'absolute', inset: 0, borderRadius: '50%',
+              background: 'conic-gradient(from var(--dj-angle, 0deg), #6366f1, #67e8f9, #a78bfa, #f472b6, #6366f1)',
+              animation: 'dj-rotate 10s linear infinite',
+              padding: 1.5,
+            }}>
+              <div style={{ width: '100%', height: '100%', borderRadius: '50%', background: '#050510' }} />
+            </div>
+            {/* Core */}
+            <div style={{
+              position: 'absolute', inset: '14%', borderRadius: '50%',
+              background: 'radial-gradient(circle at 35% 30%, #e0e7ff 0%, #818cf8 35%, #4338ca 80%, #1e1b4b 100%)',
+              boxShadow: '0 0 20px rgba(99,102,241,0.50)',
+              animation: 'dj-corePulse 2.2s ease-in-out infinite',
+            }} />
+            {/* Bright center */}
+            <div style={{
+              position: 'absolute', inset: '36%', borderRadius: '50%',
+              background: '#fff',
+              boxShadow: '0 0 10px rgba(255,255,255,0.95)',
+            }} />
+          </div>
 
-        {/* Label */}
-        <div>
-          <div style={{
-            fontSize: 13, fontWeight: 800,
-            background: 'linear-gradient(135deg, #c4b5fd, #67e8f9)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            lineHeight: 1.2,
-          }}>
-            Your AI Mentor
-          </div>
-          <div style={{
-            fontSize: 10, fontWeight: 600,
-            color: 'rgba(255,255,255,0.40)',
-            marginTop: 2,
-          }}>
-            Always here to guide you
+          {/* Label */}
+          <div>
+            <div style={{
+              fontSize: 13, fontWeight: 800,
+              background: 'linear-gradient(135deg, #c4b5fd, #67e8f9)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              lineHeight: 1.2,
+            }}>
+              Your AI Mentor
+            </div>
+            <div style={{
+              fontSize: 10, fontWeight: 600,
+              color: 'rgba(255,255,255,0.40)',
+              marginTop: 2,
+            }}>
+              Always here to guide you
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Chat messages area */}
-      <div style={{
-        flex: '0 1 auto',
-        maxHeight: 'min(340px, 40vh)',
-        overflowY: 'auto',
-        display: 'flex', flexDirection: 'column', gap: 10,
-        padding: '8px 4px',
-      }}>
+      <div
+        ref={chatContainerRef}
+        style={{
+          flex: '0 1 auto',
+          maxHeight: 'min(340px, 40vh)',
+          overflowY: 'auto',
+          display: 'flex', flexDirection: 'column', gap: 10,
+          padding: '8px 4px',
+        }}>
         {messages.length === 0 && !dailyTip && (
           <div style={{
             display: 'flex', alignItems: 'center', gap: 8,
@@ -182,7 +215,6 @@ export function DesktopMentorDock({ state, inline }: Props) {
             {msg.text}
           </div>
         ))}
-        <div ref={chatEndRef} />
       </div>
 
       {/* Chat input */}
