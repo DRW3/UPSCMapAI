@@ -383,7 +383,7 @@ function DesktopUpNextList({ upNextTopics, state, subjects }: DesktopUpNextListP
     setDraftWeak(profile?.weakSubjects ?? [])
   }, [profile?.weakSubjects])
 
-  const currentFocus = profile?.weakSubjects ?? []
+  const currentFocus = useMemo(() => profile?.weakSubjects ?? [], [profile?.weakSubjects])
   const sortedDraft = [...draftWeak].sort().join(',')
   const sortedSaved = [...currentFocus].sort().join(',')
   const hasChanges = sortedDraft !== sortedSaved || draftWeak.join(',') !== currentFocus.join(',')

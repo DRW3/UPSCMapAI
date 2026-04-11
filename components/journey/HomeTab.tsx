@@ -53,14 +53,9 @@ function getGreeting(): string {
   return 'Late night grind'
 }
 
-function getToday(): string {
-  const now = new Date()
-  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
-}
+// getToday removed — was only used by the deleted motivationalInsight
 
-function toLocalDateString(date: Date): string {
-  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
-}
+// toLocalDateString removed — was only used by the deleted motivationalInsight
 
 // Quotes removed — keeping landing lean and action-focused
 
@@ -664,8 +659,6 @@ export default function HomeTab({
   onProfileUpdate,
 }: HomeTabProps) {
 
-  const today = getToday()
-
   // ── Continue topic ─────────────────────────────────────────────────────────
   // Source of truth: the parent computes this in MobileLearningJourney and
   // passes it down. The same computed value is also fed to the daily-tip API
@@ -769,7 +762,7 @@ export default function HomeTab({
   // accuracy is computed per-subject inside weakAreaNudge
 
   // ── Syllabus completion stats ──────────────────────────────────────────────
-  const { completedTopics, totalTopics } = useMemo(() => {
+  const { totalTopics } = useMemo(() => {
     const states = Object.values(topicStates)
     return {
       completedTopics: states.filter(s => s.state === 'completed').length,
@@ -778,72 +771,6 @@ export default function HomeTab({
   }, [topicStates])
 
   // crowns3Plus shown in Profile tab
-
-  // ── Study pace calculations ─────────────────────────────────────────────────
-  const daysUntilExam = useMemo(() => {
-    if (!profile?.examYear) return null
-    const prelimsDate = new Date(profile.examYear, 4, 25)
-    const now = new Date()
-    now.setHours(0, 0, 0, 0)
-    const diff = Math.ceil((prelimsDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24))
-    return diff > 0 ? diff : null
-  }, [profile?.examYear])
-
-  const paceStatus = useMemo(() => {
-    if (!profile || !daysUntilExam || daysUntilExam <= 0 || totalTopics === 0) return null
-    const remaining = totalTopics - completedTopics
-    const topicsPerWeek = remaining > 0 ? Math.ceil((remaining / daysUntilExam) * 7 * 10) / 10 : 0
-    const prelimsDate = new Date(profile.examYear!, 4, 25)
-    const startOfPrep = new Date(prelimsDate)
-    startOfPrep.setFullYear(startOfPrep.getFullYear() - 1)
-    const totalDays = Math.ceil((prelimsDate.getTime() - startOfPrep.getTime()) / (1000 * 60 * 60 * 24))
-    const timeElapsed = Math.max(0, Math.min(100, Math.round(((totalDays - daysUntilExam) / totalDays) * 100)))
-    const syllabusPercent = Math.round((completedTopics / totalTopics) * 100)
-    const paceRatio = syllabusPercent > 0 && timeElapsed > 0 ? syllabusPercent / timeElapsed : 0
-    let status: 'ahead' | 'on_track' | 'behind' = 'on_track'
-    if (paceRatio >= 1.2) status = 'ahead'
-    else if (paceRatio < 0.6) status = 'behind'
-    return { topicsPerWeek, syllabusPercent, timeElapsed, paceRatio, status, remaining }
-  }, [profile, daysUntilExam, totalTopics, completedTopics])
-
-  // ── Motivational insight ──────────────────────────────────────────────────
-  const motivationalInsight = useMemo(() => {
-    const now = new Date()
-    const sevenDaysAgo = new Date(now)
-    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7)
-    const cutoff = toLocalDateString(sevenDaysAgo)
-    const fourteenDaysAgo = new Date(now)
-    fourteenDaysAgo.setDate(fourteenDaysAgo.getDate() - 14)
-    const prevCutoff = toLocalDateString(fourteenDaysAgo)
-    const thisWeek = progress.studyCalendar.filter(d => d.date >= cutoff && d.date <= today)
-    const prevWeek = progress.studyCalendar.filter(d => d.date >= prevCutoff && d.date < cutoff)
-    const thisWeekQ = thisWeek.reduce((s, d) => s + d.questionsAnswered, 0)
-    const prevWeekQ = prevWeek.reduce((s, d) => s + d.questionsAnswered, 0)
-
-    if (totalTopics > 0 && completedTopics / totalTopics > 0.5) {
-      return { emoji: '\uD83C\uDFAF', text: `Over halfway! ${completedTopics} of ${totalTopics} topics done. The finish line is in sight.` }
-    }
-    if (progress.streak >= 7) {
-      return { emoji: '\uD83D\uDD25', text: `${progress.streak}-day streak puts you in the top 15% of consistent learners.` }
-    }
-    if (paceStatus?.status === 'ahead') {
-      const weeksAhead = paceStatus.remaining > 0 && paceStatus.topicsPerWeek > 0
-        ? Math.round(((paceStatus.syllabusPercent - paceStatus.timeElapsed) / 100) * (daysUntilExam || 365) / 7) : 0
-      return { emoji: '\uD83D\uDE80', text: `${Math.max(1, weeksAhead)} week${weeksAhead !== 1 ? 's' : ''} ahead of schedule. Keep this energy!` }
-    }
-    if (paceStatus?.status === 'behind') {
-      const topicsBehind = Math.max(1, Math.round((paceStatus.timeElapsed / 100 * totalTopics) - completedTopics))
-      return { emoji: '\u23F0', text: `${topicsBehind} topics behind pace. A focused weekend can fix this!` }
-    }
-    if (thisWeekQ > prevWeekQ && prevWeekQ > 0) {
-      const pctImprove = Math.round(((thisWeekQ - prevWeekQ) / prevWeekQ) * 100)
-      return { emoji: '\uD83D\uDCC8', text: `Activity improved ${pctImprove}% this week. You're getting sharper!` }
-    }
-    if (progress.streak > 0) {
-      return { emoji: '\uD83D\uDCAA', text: `${progress.streak}-day streak and counting. Every topic brings you closer.` }
-    }
-    return { emoji: '\u2728', text: 'Start studying today to build momentum. Consistency beats intensity!' }
-  }, [progress, paceStatus, totalTopics, completedTopics, daysUntilExam, today])
 
   // Achievements shown in Profile tab, not here
 
