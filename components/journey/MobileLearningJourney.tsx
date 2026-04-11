@@ -1,5 +1,6 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import { UPSC_SYLLABUS } from '@/data/syllabus'
 import {
   DEFAULT_TOPIC_PROGRESS,
@@ -20,6 +21,11 @@ import OnboardingFlow from '@/components/journey/OnboardingFlow'
 import CelebrationOverlay from '@/components/journey/CelebrationOverlay'
 import ProPaywall from '@/components/journey/ProPaywall'
 import { useJourneyState, type TabId } from './hooks/useJourneyState'
+
+const GuidedTour = dynamic(
+  () => import('./GuidedTour').then(m => ({ default: m.GuidedTour })),
+  { ssr: false }
+)
 
 // ── Main Component ────────────────────────────────────────────────────────────
 
@@ -396,6 +402,11 @@ export function MobileLearningJourney() {
           firstName={profile?.name?.split(' ')[0] || null}
           onDismiss={() => setGoalCelebrationOpen(false)}
         />
+      )}
+
+      {/* Guided tour — fires once for new users after onboarding */}
+      {mounted && !showOnboarding && activeTab === 'home' && (
+        <GuidedTour />
       )}
 
     </div>
