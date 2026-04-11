@@ -224,7 +224,7 @@ export function MobileLearningJourney() {
 
       {/* Main Content Area */}
       <div style={{
-        marginTop: 'calc(env(safe-area-inset-top, 0px) + 110px)',
+        marginTop: 'calc(env(safe-area-inset-top, 0px) + 100px)',
         flex: 1,
         minHeight: 0,
         display: 'flex',
@@ -237,7 +237,16 @@ export function MobileLearningJourney() {
         transition: 'opacity 300ms ease, transform 300ms ease',
       }}>
         {activeTab === 'home' && (
-          <div data-home-scroll="1" style={{ flex: 1, minHeight: 0, overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}>
+          <div
+            data-home-scroll="1"
+            ref={(el) => {
+              // Reset scroll to top every time the Today tab mounts —
+              // prevents stale scroll position when navigating back
+              // from the landing page or switching tabs.
+              if (el) el.scrollTop = 0
+            }}
+            style={{ flex: 1, minHeight: 0, overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}
+          >
             <HomeTab
               progress={progress}
               subjects={UPSC_SYLLABUS}
