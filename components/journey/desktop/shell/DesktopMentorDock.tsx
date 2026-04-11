@@ -11,10 +11,6 @@ interface Props {
 
 export function DesktopMentorDock({ state, inline }: Props) {
   const { dailyTip, progress, profile } = state
-  const totalAnswered = Object.values(progress.topics).reduce((s, t) => s + (t.questionsAnswered || 0), 0)
-  const totalCorrect = Object.values(progress.topics).reduce((s, t) => s + (t.correctAnswers || 0), 0)
-  const acc = totalAnswered > 0 ? Math.round((totalCorrect / totalAnswered) * 100) : 0
-
   const [messages, setMessages] = useState<Array<{ role: 'mentor' | 'user', text: string }>>([])
   const [input, setInput] = useState('')
   const [sending, setSending] = useState(false)
@@ -222,33 +218,41 @@ export function DesktopMentorDock({ state, inline }: Props) {
                 </div>
               )}
               {messages.map((msg, i) => (
-                <div key={i} style={{
-                  padding: '10px 14px',
-                  borderRadius: msg.role === 'user' ? '14px 14px 4px 14px' : '14px 14px 14px 4px',
-                  background: msg.role === 'user'
-                    ? 'rgba(99,102,241,0.15)'
-                    : 'rgba(255,255,255,0.03)',
-                  border: msg.role === 'user'
-                    ? '1px solid rgba(99,102,241,0.30)'
-                    : '1px solid rgba(255,255,255,0.06)',
-                  alignSelf: msg.role === 'user' ? 'flex-end' : 'flex-start',
-                  maxWidth: '92%',
-                  fontSize: 12.5, lineHeight: 1.55,
-                  color: msg.role === 'user' ? 'rgba(255,255,255,0.90)' : 'rgba(255,255,255,0.75)',
-                }}>
-                  {msg.role === 'mentor' && (
-                    <div style={{
-                      fontSize: 9, fontWeight: 800,
-                      color: '#a78bfa',
-                      letterSpacing: '0.08em',
-                      textTransform: 'uppercase',
-                      marginBottom: 4,
-                    }}>
-                      AI Mentor
-                    </div>
-                  )}
-                  {msg.text}
-                </div>
+                msg.role === 'mentor' ? (
+                  // Mentor messages: plain text, no bubble — just the label + text
+                  <div key={i} style={{
+                    fontSize: 12.5, lineHeight: 1.6,
+                    color: 'rgba(255,255,255,0.78)',
+                    padding: '4px 2px',
+                  }}>
+                    {i === 0 && (
+                      <div style={{
+                        fontSize: 9, fontWeight: 800,
+                        color: '#a78bfa',
+                        letterSpacing: '0.08em',
+                        textTransform: 'uppercase',
+                        marginBottom: 6,
+                      }}>
+                        AI Mentor
+                      </div>
+                    )}
+                    {msg.text}
+                  </div>
+                ) : (
+                  // User messages: keep the chat bubble
+                  <div key={i} style={{
+                    padding: '10px 14px',
+                    borderRadius: '14px 14px 4px 14px',
+                    background: 'rgba(99,102,241,0.15)',
+                    border: '1px solid rgba(99,102,241,0.30)',
+                    alignSelf: 'flex-end',
+                    maxWidth: '92%',
+                    fontSize: 12.5, lineHeight: 1.55,
+                    color: 'rgba(255,255,255,0.90)',
+                  }}>
+                    {msg.text}
+                  </div>
+                )
               ))}
             </div>
           </div>
@@ -296,35 +300,6 @@ export function DesktopMentorDock({ state, inline }: Props) {
         </button>
       </div>
 
-      {/* Quick stats grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, flexShrink: 0 }}>
-        {[
-          { label: 'Accuracy', value: `${acc}%`, color: '#34d399' },
-          { label: 'Questions', value: String(totalAnswered), color: '#67e8f9' },
-        ].map(stat => (
-          <div key={stat.label} style={{
-            padding: '10px 12px',
-            borderRadius: 10,
-            background: 'rgba(255,255,255,0.025)',
-            border: '1px solid rgba(255,255,255,0.06)',
-            textAlign: 'center',
-          }}>
-            <div style={{
-              fontSize: 16, fontWeight: 800,
-              background: `linear-gradient(135deg, #fff, ${stat.color})`,
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-            }}>{stat.value}</div>
-            <div style={{
-              fontSize: 9, fontWeight: 700,
-              color: 'rgba(255,255,255,0.45)',
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              marginTop: 2,
-            }}>{stat.label}</div>
-          </div>
-        ))}
-      </div>
     </aside>
   )
 }

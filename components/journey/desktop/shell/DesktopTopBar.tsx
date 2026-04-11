@@ -12,6 +12,8 @@ export function DesktopTopBar({ state, onOpenCommandPalette }: Props) {
   const { profile, progress } = state
   const firstName = profile?.name?.split(' ')[0] ?? ''
   const totalAnswered = Object.values(progress.topics).reduce((s, t) => s + (t.questionsAnswered || 0), 0)
+  const totalCorrect = Object.values(progress.topics).reduce((s, t) => s + (t.correctAnswers || 0), 0)
+  const acc = totalAnswered > 0 ? Math.round((totalCorrect / totalAnswered) * 100) : 0
   const level = Math.floor(totalAnswered / 50) + 1
 
   return (
@@ -98,19 +100,46 @@ export function DesktopTopBar({ state, onOpenCommandPalette }: Props) {
 
       {/* RIGHT — stats */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
-        {(progress.streak || 0) > 0 && (
-          <div style={{
-            display: 'flex', alignItems: 'center', gap: 5,
-            padding: '6px 12px',
-            borderRadius: 10,
-            background: 'rgba(249,115,22,0.10)',
-            border: '1px solid rgba(249,115,22,0.30)',
-            color: '#fb923c',
-            fontSize: 12, fontWeight: 800,
-          }}>
-            🔥 {progress.streak}
-          </div>
-        )}
+        {/* Streak — always visible */}
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: 5,
+          padding: '6px 12px',
+          borderRadius: 10,
+          background: (progress.streak || 0) > 0 ? 'rgba(249,115,22,0.10)' : 'rgba(255,255,255,0.04)',
+          border: (progress.streak || 0) > 0 ? '1px solid rgba(249,115,22,0.30)' : '1px solid rgba(255,255,255,0.08)',
+          color: (progress.streak || 0) > 0 ? '#fb923c' : 'rgba(255,255,255,0.40)',
+          fontSize: 12, fontWeight: 800,
+        }}>
+          🔥 {progress.streak || 0}
+        </div>
+
+        {/* Accuracy */}
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: 5,
+          padding: '6px 12px',
+          borderRadius: 10,
+          background: 'rgba(52,211,153,0.10)',
+          border: '1px solid rgba(52,211,153,0.30)',
+          color: '#6ee7b7',
+          fontSize: 12, fontWeight: 800,
+        }}>
+          {acc}%
+        </div>
+
+        {/* Questions answered */}
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: 5,
+          padding: '6px 12px',
+          borderRadius: 10,
+          background: 'rgba(103,232,249,0.10)',
+          border: '1px solid rgba(103,232,249,0.30)',
+          color: '#67e8f9',
+          fontSize: 12, fontWeight: 800,
+        }}>
+          {totalAnswered} Qs
+        </div>
+
+        {/* Level */}
         <div style={{
           display: 'flex', alignItems: 'center', gap: 5,
           padding: '6px 12px',

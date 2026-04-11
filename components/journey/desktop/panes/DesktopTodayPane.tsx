@@ -132,8 +132,7 @@ export function DesktopTodayPane({ state }: DesktopTodayPaneProps) {
           background: 'rgba(5,5,16,0.55)',
           backdropFilter: 'blur(16px)',
           WebkitBackdropFilter: 'blur(16px)',
-          overflow: 'hidden',
-          maxHeight: 480,
+          maxHeight: 420,
           animation: 'dj-fadeUp 500ms cubic-bezier(0.16,1,0.3,1) 0.1s both',
         }}>
           <DesktopMentorDock state={state} inline />
