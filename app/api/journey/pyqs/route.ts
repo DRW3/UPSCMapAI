@@ -11,6 +11,8 @@ import Groq from 'groq-sdk'
 
 export const runtime = 'nodejs'
 
+const PYQ_TABLE = process.env.PYQ_TABLE || 'upsc_pyqs';
+
 let _groq: Groq | null = null
 function getGroq() {
   if (!_groq) _groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
@@ -384,7 +386,7 @@ async function fetchFromSupabase(
   // Strict tag-based query — the ONLY source of truth for topic membership.
   const topicTag = `topic:${topicId}`
   let tagQuery = supabase
-    .from('upsc_pyqs')
+    .from(PYQ_TABLE)
     .select(SELECT_FIELDS)
     .contains('tags', [topicTag])
     .not('options', 'is', null)
@@ -610,7 +612,7 @@ export async function GET(req: NextRequest) {
       const supabase = createServerClient()
       const SELECT_FIELDS = 'id, year, question, options, answer, explanation, subject, topic, difficulty, source, tags'
       const { data } = await supabase
-        .from('upsc_pyqs')
+        .from(PYQ_TABLE)
         .select(SELECT_FIELDS)
         .in('id', onlyIds)
         .not('options', 'is', null)

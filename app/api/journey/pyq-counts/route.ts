@@ -5,6 +5,8 @@ import { TOPIC_KEYWORD_MAP } from '@/data/topic-keyword-map'
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
+const PYQ_TABLE = process.env.PYQ_TABLE || 'upsc_pyqs';
+
 export async function GET(req: NextRequest) {
   try {
     const supabase = createServerClient()
@@ -15,7 +17,7 @@ export async function GET(req: NextRequest) {
     let from = 0
     while (true) {
       const { data: page, error: pageErr } = await supabase
-        .from('upsc_pyqs')
+        .from(PYQ_TABLE)
         .select('id, tags, year')
         .not('options', 'is', null)
         .not('answer', 'is', null)
@@ -63,7 +65,7 @@ export async function GET(req: NextRequest) {
     } else {
       // Fallback: keyword-based counting (legacy — needs question+subject fields)
       const { data: fullData } = await supabase
-        .from('upsc_pyqs')
+        .from(PYQ_TABLE)
         .select('id, question, subject, year')
         .not('options', 'is', null)
         .not('answer', 'is', null)
