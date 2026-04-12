@@ -892,7 +892,7 @@ export default function PracticeSheet({
             ? 'ps-slideUp 0.4s cubic-bezier(0.16,1,0.3,1) forwards'
             : 'none',
           transform: sheetVisible && !dismissing ? `translateY(${dragTranslate}px)` : sheetVisible ? undefined : 'translateY(100%)',
-          transition: isDragging.current ? 'none' : 'transform 0.3s ease',
+          transition: isDragging.current ? 'none' : dragTranslate !== 0 ? 'transform 0.3s ease' : 'none',
         }}
       >
         {/* Drag Handle */}
