@@ -303,15 +303,26 @@ function SubjectTopicGrid({ subject, state }: SubjectTopicGridProps) {
                     {/* Topic icon + title */}
                     <div style={{ display: 'flex', alignItems: 'flex-start', gap: 7, marginTop: 2 }}>
                       <span style={{ fontSize: 16, flexShrink: 0, lineHeight: 1.3 }}>{topic.icon}</span>
-                      <span style={{
-                        fontSize: 12,
-                        fontWeight: 600,
-                        color: isLocked ? 'rgba(255,255,255,0.40)' : 'rgba(255,255,255,0.85)',
-                        lineHeight: 1.35,
-                        letterSpacing: '0.01em',
-                      }}>
-                        {topic.title}
-                      </span>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                        <span style={{
+                          fontSize: 12,
+                          fontWeight: 600,
+                          color: isLocked ? 'rgba(255,255,255,0.40)' : 'rgba(255,255,255,0.85)',
+                          lineHeight: 1.35,
+                          letterSpacing: '0.01em',
+                        }}>
+                          {topic.title}
+                        </span>
+                        {(state.pyqCounts[topic.id] ?? 0) > 0 && (
+                          <span style={{
+                            fontSize: 10,
+                            color: isLocked ? 'rgba(255,255,255,0.25)' : 'rgba(167,139,250,0.85)',
+                            fontWeight: 600,
+                          }}>
+                            {state.pyqCounts[topic.id]} PYQs
+                          </span>
+                        )}
+                      </div>
                     </div>
                   </div>
                 )

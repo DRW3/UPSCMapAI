@@ -1115,7 +1115,7 @@ export default function PracticeSheet({
               {/* Question text */}
               <p
                 className="text-[16px] font-medium leading-[1.65] tracking-[-0.01em]"
-                style={{ color: 'rgba(255,255,255,0.92)' }}
+                style={{ color: 'rgba(255,255,255,0.92)', whiteSpace: 'pre-wrap' }}
               >
                 {current.question}
               </p>
@@ -1211,7 +1211,7 @@ export default function PracticeSheet({
                         {/* Option text */}
                         <span
                           className="text-[14px] leading-snug flex-1 py-3"
-                          style={{ color: textColor }}
+                          style={{ color: textColor, whiteSpace: 'pre-wrap' }}
                         >
                           {text}
                         </span>
@@ -1339,7 +1339,7 @@ export default function PracticeSheet({
                   </div>
                   {current.explanation && (
                     <button onClick={() => setShowExplanation(!showExplanation)} className="mt-1.5 text-left w-full">
-                      <p className="text-[12px] leading-relaxed" style={{ color: 'rgba(255,255,255,0.62)' }}>
+                      <p className="text-[12px] leading-relaxed" style={{ color: 'rgba(255,255,255,0.62)', whiteSpace: 'pre-wrap' }}>
                         {showExplanation
                           ? current.explanation
                           : current.explanation.slice(0, 130) + (current.explanation.length > 130 ? '...' : '')}
@@ -1359,7 +1359,7 @@ export default function PracticeSheet({
                   onClick={() => setShowExplanation(!showExplanation)}
                   className="mt-1 text-left w-full"
                 >
-                  <p className="text-[12px] leading-relaxed" style={{ color: 'rgba(255,255,255,0.50)' }}>
+                  <p className="text-[12px] leading-relaxed" style={{ color: 'rgba(255,255,255,0.50)', whiteSpace: 'pre-wrap' }}>
                     {showExplanation
                       ? current.explanation
                       : current.explanation.slice(0, 100) + (current.explanation.length > 100 ? '...' : '')}
