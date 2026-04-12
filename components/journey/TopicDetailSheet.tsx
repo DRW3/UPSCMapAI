@@ -11,6 +11,9 @@ import {
   QUESTIONS_PER_CROWN,
 } from './types'
 import { getMainsFramework } from './mains-frameworks'
+import AIGuideButton from './AIGuideButton'
+import AIGuideOverlay from './AIGuideOverlay'
+import { useAIGuide } from './hooks/useAIGuide'
 
 interface TopicDetailSheetProps {
   topic: LearningTopic
@@ -112,6 +115,14 @@ export default function TopicDetailSheet({
     keyTakeaways: useRef<HTMLDivElement>(null),
     connectedTopics: useRef<HTMLDivElement>(null),
   }
+
+  // AI Guide
+  const aiGuide = useAIGuide({
+    topicTitle: topic.title,
+    subjectId: subject.id,
+    notes: notes as Record<string, unknown> | null,
+    sectionRefs,
+  })
 
   const scrollToSection = useCallback((ref: React.RefObject<HTMLDivElement | null>) => {
     const el = ref.current
@@ -1026,6 +1037,17 @@ export default function TopicDetailSheet({
             )
           })()}
 
+          {/* AI Guided Learning button */}
+              {notes && !notesLoading && variant !== 'inline' && variant !== 'desktop' && (
+                <div style={{ padding: '0 20px', marginBottom: 8 }}>
+                  <AIGuideButton
+                    state={aiGuide.state}
+                    onStart={aiGuide.start}
+                    subjectColor={subject.color}
+                  />
+                </div>
+              )}
+
           {/* 4. UPSC Relevance Banner */}
           {notesLoading ? (
             <div style={{
@@ -1188,7 +1210,7 @@ export default function TopicDetailSheet({
                      angle first, before the hook, so the aspirant sees the
                      exam-oriented framing at the very top of the notes. */}
                 {notes.examTip && (
-                  <div ref={sectionRefs.examStrategy} style={{
+                  <div ref={sectionRefs.examStrategy} className={aiGuide.activeSectionId === 'examStrategy' ? 'aig-glow' : ''} style={{
                     marginBottom: 24,
                     padding: '16px 16px 16px 18px',
                     borderRadius: 18,
@@ -1232,7 +1254,7 @@ export default function TopicDetailSheet({
 
                 {/* B. Hook Card — attention-grabbing callout */}
                 {notes.hook && (
-                  <div ref={sectionRefs.hook} style={{
+                  <div ref={sectionRefs.hook} className={aiGuide.activeSectionId === 'hook' ? 'aig-glow' : ''} style={{
                     marginBottom: 24,
                     padding: '16px 16px 16px 18px',
                     borderRadius: 18,
@@ -1270,7 +1292,7 @@ export default function TopicDetailSheet({
                 )}
 
                 {/* C. Summary Card — overview section */}
-                <div ref={sectionRefs.overview} style={{
+                <div ref={sectionRefs.overview} className={aiGuide.activeSectionId === 'overview' ? 'aig-glow' : ''} style={{
                   padding: '16px 18px',
                   borderRadius: 18,
                   background: 'rgba(255,255,255,0.025)',
@@ -1300,7 +1322,7 @@ export default function TopicDetailSheet({
 
                 {/* D. Timeline */}
                 {notes.timeline && notes.timeline.length > 0 && (
-                  <div ref={sectionRefs.timeline} style={{ marginBottom: 24, animation: 'tds-cardIn 0.3s ease 0.35s both' }}>
+                  <div ref={sectionRefs.timeline} className={aiGuide.activeSectionId === 'timeline' ? 'aig-glow' : ''} style={{ marginBottom: 24, animation: 'tds-cardIn 0.3s ease 0.35s both' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
                       <div style={{
                         width: 28, height: 28, borderRadius: 8,
@@ -1359,7 +1381,7 @@ export default function TopicDetailSheet({
 
                 {/* E. Key Concepts */}
                 {notes.keyPoints && notes.keyPoints.length > 0 && (
-                  <div ref={sectionRefs.keyConcepts} style={{ marginBottom: 24 }}>
+                  <div ref={sectionRefs.keyConcepts} className={aiGuide.activeSectionId === 'keyConcepts' ? 'aig-glow' : ''} style={{ marginBottom: 24 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
                       <div style={{
                         width: 28, height: 28, borderRadius: 8,
@@ -1463,7 +1485,7 @@ export default function TopicDetailSheet({
 
                 {/* F. Comparison Table */}
                 {notes.comparison && notes.comparison.rows && notes.comparison.rows.length > 0 && (
-                  <div ref={sectionRefs.comparison} style={{ marginBottom: 24, animation: 'tds-cardIn 0.3s ease 0.4s both' }}>
+                  <div ref={sectionRefs.comparison} className={aiGuide.activeSectionId === 'comparison' ? 'aig-glow' : ''} style={{ marginBottom: 24, animation: 'tds-cardIn 0.3s ease 0.4s both' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
                       <div style={{
                         width: 28, height: 28, borderRadius: 8,
@@ -1518,7 +1540,7 @@ export default function TopicDetailSheet({
 
                 {/* H. Quick Facts */}
                 {notes.importantFacts && notes.importantFacts.length > 0 && (
-                  <div ref={sectionRefs.quickFacts} style={{ marginBottom: 24 }}>
+                  <div ref={sectionRefs.quickFacts} className={aiGuide.activeSectionId === 'quickFacts' ? 'aig-glow' : ''} style={{ marginBottom: 24 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
                       <div style={{
                         width: 28, height: 28, borderRadius: 8,
@@ -1578,7 +1600,7 @@ export default function TopicDetailSheet({
                   const branchColors = [color, '#60a5fa', '#f472b6', '#fbbf24', '#34d399', '#a78bfa', '#fb923c']
                   const branches = notes.mindMap.branches
                   return (
-                  <div ref={sectionRefs.mindMap} style={{ marginBottom: 24, animation: 'tds-cardIn 0.3s ease 0.6s both' }}>
+                  <div ref={sectionRefs.mindMap} className={aiGuide.activeSectionId === 'mindMap' ? 'aig-glow' : ''} style={{ marginBottom: 24, animation: 'tds-cardIn 0.3s ease 0.6s both' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
                       <div style={{
                         width: 28, height: 28, borderRadius: 8,
@@ -1722,7 +1744,7 @@ export default function TopicDetailSheet({
 
                 {/* NEW-C. PYQ Trends */}
                 {notes.pyqTrends && notes.pyqTrends.length > 0 && (
-                  <div ref={sectionRefs.pyqTrends} style={{ marginBottom: 24, animation: 'tds-cardIn 0.3s ease 0.65s both' }}>
+                  <div ref={sectionRefs.pyqTrends} className={aiGuide.activeSectionId === 'pyqTrends' ? 'aig-glow' : ''} style={{ marginBottom: 24, animation: 'tds-cardIn 0.3s ease 0.65s both' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
                       <div style={{
                         width: 28, height: 28, borderRadius: 8,
@@ -1788,7 +1810,7 @@ export default function TopicDetailSheet({
                   const framework = getMainsFramework(subject.id, topic.id)
                   if (!framework) return null
                   return (
-                  <div ref={sectionRefs.answerFramework} style={{
+                  <div ref={sectionRefs.answerFramework} className={aiGuide.activeSectionId === 'answerFramework' ? 'aig-glow' : ''} style={{
                     marginBottom: 24,
                     padding: '16px 16px 16px 18px',
                     borderRadius: 18,
@@ -1920,7 +1942,7 @@ export default function TopicDetailSheet({
 
                 {/* NEW-E. Case Studies */}
                 {notes.caseStudies && notes.caseStudies.length > 0 && (
-                  <div ref={sectionRefs.caseStudies} style={{ marginBottom: 24, animation: 'tds-cardIn 0.3s ease 0.75s both' }}>
+                  <div ref={sectionRefs.caseStudies} className={aiGuide.activeSectionId === 'caseStudies' ? 'aig-glow' : ''} style={{ marginBottom: 24, animation: 'tds-cardIn 0.3s ease 0.75s both' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
                       <div style={{
                         width: 28, height: 28, borderRadius: 8,
@@ -1975,7 +1997,7 @@ export default function TopicDetailSheet({
 
                 {/* NEW-F. Common Mistakes */}
                 {notes.commonMistakes && notes.commonMistakes.length > 0 && (
-                  <div ref={sectionRefs.commonMistakes} style={{ marginBottom: 24, animation: 'tds-cardIn 0.3s ease 0.8s both' }}>
+                  <div ref={sectionRefs.commonMistakes} className={aiGuide.activeSectionId === 'commonMistakes' ? 'aig-glow' : ''} style={{ marginBottom: 24, animation: 'tds-cardIn 0.3s ease 0.8s both' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
                       <div style={{
                         width: 28, height: 28, borderRadius: 8,
@@ -2057,7 +2079,7 @@ export default function TopicDetailSheet({
                     }
                   }
                   return (
-                    <div ref={sectionRefs.sourceRecommendations} style={{ marginBottom: 24, animation: 'tds-cardIn 0.3s ease 0.85s both' }}>
+                    <div ref={sectionRefs.sourceRecommendations} className={aiGuide.activeSectionId === 'sourceRecommendations' ? 'aig-glow' : ''} style={{ marginBottom: 24, animation: 'tds-cardIn 0.3s ease 0.85s both' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
                         <div style={{
                           width: 28, height: 28, borderRadius: 8,
@@ -2198,7 +2220,7 @@ export default function TopicDetailSheet({
 
                 {/* J. Key Takeaways */}
                 {notes.keyTakeaways && notes.keyTakeaways.length > 0 && (
-                  <div ref={sectionRefs.keyTakeaways} style={{
+                  <div ref={sectionRefs.keyTakeaways} className={aiGuide.activeSectionId === 'keyTakeaways' ? 'aig-glow' : ''} style={{
                     marginBottom: 24,
                     padding: '16px 16px 16px 18px',
                     borderRadius: 18,
@@ -2248,7 +2270,7 @@ export default function TopicDetailSheet({
 
                 {/* K. Connections */}
                 {notes.connections && (
-                  <div ref={sectionRefs.connectedTopics} style={{
+                  <div ref={sectionRefs.connectedTopics} className={aiGuide.activeSectionId === 'connectedTopics' ? 'aig-glow' : ''} style={{
                     marginBottom: 16, padding: '10px 14px',
                     borderRadius: 12,
                     background: 'rgba(255,255,255,0.02)',
@@ -2651,6 +2673,26 @@ export default function TopicDetailSheet({
           </div>
         </>
       )}
+      {/* AI Guide overlay + glow styles */}
+      <AIGuideOverlay
+        state={aiGuide.state}
+        subtitle={aiGuide.subtitle}
+        currentSectionIdx={aiGuide.currentSectionIdx}
+        totalSections={aiGuide.totalSections}
+        subjectColor={subject.color}
+        onPause={aiGuide.pause}
+        onResume={aiGuide.resume}
+        onStartDoubt={aiGuide.startDoubt}
+        onStopDoubt={aiGuide.stopDoubt}
+        onClose={aiGuide.close}
+        onStartPractice={onStartPractice}
+      />
+      <style>{`
+        .aig-glow {
+          box-shadow: 0 0 0 2px ${subject.color}40, 0 0 24px ${subject.color}15 !important;
+          transition: box-shadow 0.5s ease !important;
+        }
+      `}</style>
     </>
   )
 }
