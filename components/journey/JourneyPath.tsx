@@ -324,7 +324,7 @@ function UnitHeader({ data }: { data: UnitHeaderData }) {
 
   return (
     <div style={{
-      margin: '24px 0 10px',
+      margin: '16px 0 10px',
       padding: '12px 16px',
       borderRadius: 14,
       background: 'rgba(255,255,255,0.03)',
@@ -1653,9 +1653,9 @@ export default function JourneyPath({
                   top: 0,
                   zIndex: 10,
                   background: '#050510',
-                  paddingTop: 4,
-                  paddingBottom: 8,
-                  marginTop: -4,
+                  paddingTop: 6,
+                  paddingBottom: 16,
+                  marginTop: -6,
                 } : undefined}
               >
                 <SubjectAccordionHeader
@@ -1672,6 +1672,7 @@ export default function JourneyPath({
                   position: 'relative',
                   width: '100%',
                   overflow: 'hidden',
+                  paddingTop: 4,
                 }}>
                   {/* Vertical path line (base, dim) */}
                   <div style={{
